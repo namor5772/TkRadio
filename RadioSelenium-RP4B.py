@@ -1,7 +1,4 @@
-# install lxml
-# install Beautifull soup
-# install selenium
-# TEST REP 19/2/25 16:26
+# CAN BE USED ON WINDOWS MACHINES IF pathImages adjusted
 
 import subprocess
 import inspect
@@ -9,6 +6,7 @@ import tkinter as tk
 import time
 import urllib.request
 import requests
+import os
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -22,19 +20,28 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Get the directory of the current script & then assumed directory for Images
+script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = script_dir.replace("\\","/")
+pathImages = script_dir + "/Images"
+print(f"The Images path is: {pathImages}")
+#pathImages = r"/home/roman/GitHub/WifiRadio3/Images"
+#pathImages = r"C:/Users/roman/OneDrive/GitRepos/TkRadio/Images"
+
 # Create an instance of FirefoxOptions
 firefox_options = Options()
 #firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
-image_path = r"/home/roman/GitHub/WifiRadio3/Images/logo.png"
-image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
 refresh_http = "http://www.ri.com.au" # 'cleans' browser between station websites
+
+# global position variables for graphics
 Ygap = 110
 Ygap2 = 186
 Xgap = 446
 Xgap2 = 200
 Xgap3 = 340
+
 
 def Suck_ABC(br,sPath):
     br.refresh()
@@ -115,7 +122,7 @@ def Radio1(br,Num,sPath):
     time.sleep(1)
     
   # get station logo
-    image_path3 = r"/home/roman/GitHub/WifiRadio3/Images"
+    image_path3 = pathImages
     image_path3 = image_path3 + "/" + logo
     image = Image.open(image_path3)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
@@ -127,13 +134,12 @@ def Radio1(br,Num,sPath):
     try:
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
-        #response = requests.head(img2_url)
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
+        image2_path = pathImages + "/presenter.jpg"
+#        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
-        print("Image element not found on the webpage.")            
         # Display a blank image
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/Blank.png"
+        print("Image element not found on the webpage.")            
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -203,7 +209,8 @@ def Radio2(br,Num,sPath):
     time.sleep(1)
 
   # get station logo
-    image_path2 = r"/home/roman/GitHub/WifiRadio3/Images/ABC_Radio_National.png"
+    image_path2 = pathImages + "/ABC_Radio_National.png"
+#    image_path2 = r"/home/roman/GitHub/WifiRadio3/Images/ABC_Radio_National.png"
     image = Image.open(image_path2)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
     photo = ImageTk.PhotoImage(scaled_image)
@@ -213,6 +220,7 @@ def Radio2(br,Num,sPath):
   # get presenter image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
     img2_url = img2_element.get_attribute("src")
+    image2_path = pathImages + "/presenter.jpg"
     urllib.request.urlretrieve(img2_url, image2_path)
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
@@ -271,8 +279,7 @@ def Radio3(br,Num,sPath):
     time.sleep(1)
 
   # get station logo
-    image_path3 = r"/home/roman/GitHub/WifiRadio3/Images"
-    image_path3 = image_path3 + "/" + logo
+    image_path3 = pathImages + "/" + logo
     image = Image.open(image_path3)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
     photo = ImageTk.PhotoImage(scaled_image)
@@ -283,12 +290,12 @@ def Radio3(br,Num,sPath):
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
+        image2_path = pathImages + "/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
         print("Image element not found on the webpage.")            
         # Display a blank image
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/Blank.png"
+        image2_path = pathImages + "/Blank.png"
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -356,6 +363,7 @@ def Radio4(br,sPath):
   # get station logo
     img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
     img_url = img_element.get_attribute("src")
+    image_path = pathImages + "/logo.png"
     urllib.request.urlretrieve(img_url, image_path)
     # Display the station logo as given in the image_path global variable
     image = Image.open(image_path)
@@ -368,12 +376,13 @@ def Radio4(br,sPath):
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
+        image2_path = pathImages + "/presenter.jpg"
+        print(image2_path)
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
         print("Image element not found on the webpage.")            
         # Display a blank image
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/ABC_faint.png"
+        image2_path = pathImages + "/ABC_faint.png"
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -436,6 +445,7 @@ def Radio5(br,sPath):
   # get station logo
     img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
     img_url = img_element.get_attribute("src")
+    image_path = pathImages + "/logo.png"
     urllib.request.urlretrieve(img_url, image_path)
     # Display the station logo as given in the image_path global variable
     image = Image.open(image_path)
@@ -448,12 +458,12 @@ def Radio5(br,sPath):
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
+        image2_path = pathImages + "/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
         print("Image element not found on the webpage.")            
         # Display a blank image
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/ABC_faint.png"
+        image2_path = pathImages + "/ABC_faint.png"
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -502,7 +512,7 @@ def Radio6(br,sPath):
     time.sleep(1)
 
   # get station logo
-    image_path3 = r"/home/roman/GitHub/WifiRadio3/Images/ABC_Kids_listen.png"
+    image_path3 = pathImages + "/ABC_Kids_listen.png"
     image = Image.open(image_path3)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
     photo = ImageTk.PhotoImage(scaled_image)
@@ -513,12 +523,12 @@ def Radio6(br,sPath):
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
+        image2_path = pathImages + "/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
         print("Image element not found on the webpage.")            
         # Display a blank image
-        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/Blank.png"
+        image2_path = pathImages + "/Blank.png"
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -585,8 +595,7 @@ def Radio7(br,Num,sPath):
     time.sleep(1)
 
   # get station logo
-    image_path3 = r"/home/roman/GitHub/WifiRadio3/Images"
-    image_path3 = image_path3 + "/" + logo
+    image_path3 = pathImages + "/" + logo
     image = Image.open(image_path3)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
     photo = ImageTk.PhotoImage(scaled_image)
@@ -594,7 +603,7 @@ def Radio7(br,Num,sPath):
     label.image = photo  # Keep a reference to avoid garbage collection
 
   # Display a blank program image
-    image2_path = r"/home/roman/GitHub/WifiRadio3/Images/Blank.png"
+    image2_path = pathImages + "/Blank.png"
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -695,6 +704,7 @@ def iHeart(br, sPath):
   # get station logo
     img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
     img_url = img_element.get_attribute("src")
+    image_path = pathImages + "/logo.png"
     urllib.request.urlretrieve(img_url, image_path)
     # Display the station logo as given in the image_path global variable
     image = Image.open(image_path)
@@ -706,6 +716,7 @@ def iHeart(br, sPath):
   # get song image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
     img2_url = img2_element.get_attribute("src")
+    image2_path = pathImages + "/presenter.jpg"
     urllib.request.urlretrieve(img2_url, image2_path)
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;

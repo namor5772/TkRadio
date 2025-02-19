@@ -1,2 +1,2 @@
 # TkRadio
-Internet Radio that uses Python Tinker &amp; Selenium
+Internet Radio that uses Python Tinker & Selenium

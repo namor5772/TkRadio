@@ -1,6 +1,3 @@
-# CAN BE USED ON LINUX and WINDOWS MACHINES unchanged!
-# AS LONG AS MODULES INSTALLED CORRECTLY
-
 import subprocess
 import inspect
 import tkinter as tk
@@ -27,9 +24,6 @@ script_dir = script_dir.replace("\\","/")
 pathImages = script_dir + "/Images"
 print(f"The Images path is: {pathImages}")
 
-#pathImages = r"/home/roman/GitHub/WifiRadio3/Images"
-#pathImages = r"C:/Users/roman/OneDrive/GitRepos/TkRadio/Images"
-
 # Create the full filepath to the saved radio station file
 filename = 'savedRadioStation.txt'
 filepath = os.path.join(script_dir, filename)
@@ -46,63 +40,6 @@ refresh_http = "http://www.ri.com.au"
 # global position variables for graphics
 Ygap = 11;  Ygap2 = 110; Ygap3 = 295
 Xgap = 446; Xgap2 = 200; Xgap3 = 340
-
-
-def Suck_ABC(br,sPath):
-    br.refresh()
-    br.get(sPath)
-    time.sleep(3)
-    be = br.find_element(By.TAG_NAME, 'body')
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-
-    # Use JavaScript to get the currently focused (active) element
-    active_element = br.execute_script("return document.activeElement")
-
-    # Retrieve various attributes of the active element
-    element_tag_name = active_element.tag_name
-    element_id = active_element.get_attribute('id')
-    element_class = active_element.get_attribute('class')
-    element_name = active_element.get_attribute('name')
-    element_value = active_element.get_attribute('value')
-    element_inner_html = active_element.get_attribute('innerHTML')
-
-    # Parse the innerHTML with BeautifulSoup
-    soup = BeautifulSoup(element_inner_html, 'lxml')
-
-    # Find all elements with data-component="KeyboardFocus"
-    focused_elements = soup.find_all(attrs={"data-component": "KeyboardFocus"})
-
-    # Extract and print the text content of these elements
-    for element in focused_elements:
-        print(element.text)
-
-    be.send_keys(Keys.ENTER)
-    time.sleep(1)
-    be = br.find_element(By.TAG_NAME, 'body')
-
-    for _ in range(14):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-
 
 
 # START ***** Functions that stream radio stations *****

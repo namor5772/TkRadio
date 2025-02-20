@@ -400,4 +400,494 @@ JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-45dc52
 
 JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
 JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
-                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                        1740004537711	geckodriver	INFO	Listening on 127.0.0.1:46649
+1740004537810	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "42063" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqPGAhd"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740004541532	Marionette	INFO	Marionette enabled
+1740004542036	Marionette	INFO	Listening on port 37115
+WebDriver BiDi listening on ws://127.0.0.1:42063
+Read port: 37115
+[GFX1-]: Failed to create EGLContext!: 0x3009
+1740004542859	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740007315490	Marionette	INFO	Stopped listening on port 37115
+1740007383629	geckodriver	INFO	Listening on 127.0.0.1:59969
+1740007384237	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "55731" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileX3vBiB"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740007387774	Marionette	INFO	Marionette enabled
+1740007388277	Marionette	INFO	Listening on port 43081
+WebDriver BiDi listening on ws://127.0.0.1:55731
+Read port: 43081
+1740007388586	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740007454701	Marionette	INFO	Stopped listening on port 43081
+1740007459168	geckodriver	INFO	Listening on 127.0.0.1:38877
+1740007459260	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "59559" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilezVU1Cq"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740007462694	Marionette	INFO	Marionette enabled
+1740007463530	Marionette	INFO	Listening on port 46133
+Read port: 46133
+WebDriver BiDi listening on ws://127.0.0.1:59559
+[GFX1-]: Failed to create EGLContext!: 0x3009
+1740007464098	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js, line 714: Script terminated by timeout at:
+Hp@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:714:358
+Y<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:106:147
+Z.NP@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1108:377
+w<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:319:153
+@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1108:89
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740007706899	Marionette	INFO	Stopped listening on port 46133
+1740007711209	geckodriver	INFO	Listening on 127.0.0.1:45903
+1740007711302	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "47239" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile6v5oHN"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740007714756	Marionette	INFO	Marionette enabled
+1740007715258	Marionette	INFO	Listening on port 39557
+Read port: 39557
+WebDriver BiDi listening on ws://127.0.0.1:47239
+1740007715549	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+1740008446085	Marionette	INFO	Stopped listening on port 39557
+1740008472229	geckodriver	INFO	Listening on 127.0.0.1:48943
+1740008472821	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "53765" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileDpZeP5"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740008476278	Marionette	INFO	Marionette enabled
+1740008476796	Marionette	INFO	Listening on port 41881
+Read port: 41881
+WebDriver BiDi listening on ws://127.0.0.1:53765
+1740008477233	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js, line 253: Script terminated by timeout at:
+T<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:253:145
+TD.prototype.Z9@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1106:419
+V<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:26:284
+@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1107:358
+M<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:478:315
+Hp@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:714:377
+Y<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:106:147
+Z.NP@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1108:377
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js, line 56: Script terminated by timeout at:
+V<@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:56:148
+@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:56:149
+@https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__en.js:1130:510
+
+JavaScript error: https://www.google.com/recaptcha/api2/bframe?hl=en&v=rW64dpMGAGrjU7JJQr9xxPl8&k=6LcNjL8lAAAAAB3chG8dvYH2LKi33r9xFw0kihjQ, line 184: ReferenceError: recaptcha is not defined
+1740008559053	Marionette	INFO	Stopped listening on port 41881
+1740008567741	geckodriver	INFO	Listening on 127.0.0.1:47023
+1740008567870	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "33783" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilerGyXUQ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740008571405	Marionette	INFO	Marionette enabled
+1740008571945	Marionette	INFO	Listening on port 37693
+Read port: 37693
+WebDriver BiDi listening on ws://127.0.0.1:33783
+1740008572237	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+1740008751980	Marionette	INFO	Stopped listening on port 37693
+1740008757684	geckodriver	INFO	Listening on 127.0.0.1:46719
+1740008757777	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "33721" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileAzKqay"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740008761218	Marionette	INFO	Marionette enabled
+1740008761701	Marionette	INFO	Listening on port 46461
+WebDriver BiDi listening on ws://127.0.0.1:33721
+Read port: 46461
+[GFX1-]: Failed to create EGLContext!: 0x3009
+Read port: 46461
+1740008763768	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740008820870	Marionette	INFO	Stopped listening on port 46461
+1740008825475	geckodriver	INFO	Listening on 127.0.0.1:41233
+1740008825567	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "41667" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileDN5ki6"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740008829022	Marionette	INFO	Marionette enabled
+1740008829511	Marionette	INFO	Listening on port 40437
+WebDriver BiDi listening on ws://127.0.0.1:41667
+Read port: 40437
+1740008829804	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript warning: https://static.chartbeat.com/js/chartbeat.js, line 11: Script terminated by timeout at:
+z@https://static.chartbeat.com/js/chartbeat.js:11:304
+n.update@https://static.chartbeat.com/js/chartbeat.js:34:52
+X.prototype.ya@https://static.chartbeat.com/js/chartbeat.js:62:34
+r/<@https://static.chartbeat.com/js/chartbeat.js:8:431
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009059886	Marionette	INFO	Stopped listening on port 40437
+1740009065388	geckodriver	INFO	Listening on 127.0.0.1:39343
+1740009065479	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "56641" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilevXQJ9b"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740009068895	Marionette	INFO	Marionette enabled
+1740009069446	Marionette	INFO	Listening on port 44509
+Read port: 44509
+WebDriver BiDi listening on ws://127.0.0.1:56641
+1740009069729	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13756, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13738, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13750, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:50092
+53534/l5/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:89563
+53534/sW/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:49902
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43008
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://imasdk.googleapis.com/js/sdkloader/ima3.js, line 168: Script terminated by timeout at:
+lm@https://imasdk.googleapis.com/js/sdkloader/ima3.js:168:406
+Gj/b.j@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:51268
+_.K@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:50827
+Zr@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:99417
+Xx<@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:423032
+QR.prototype.g@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:291283
+HR.prototype.start/<@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:290045
+rA@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:154404
+tA/this.next@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:154703
+b@https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202502130101/pubads_impl.js:33:154954
+nrWrapper@https://www.iheart.com/live/hope-1032-6314/:27:18182
+
+JavaScript error: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Error: Request aborted
+JavaScript error: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Error: Request aborted
+JavaScript error: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Error: Request aborted
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1673987132, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1673987132:11:367
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1673987132:453:37
+
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_462182712, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_462182712:11:289
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_462182712:453:37
+
+1740009332008	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 3121 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/cruise-1323-6177/, line 38: Script terminated by timeout at:
+nrWrapper@https://www.iheart.com/live/cruise-1323-6177/:38:18032
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009421427	Marionette	INFO	Stopped listening on port 44509
+1740009434644	geckodriver	INFO	Listening on 127.0.0.1:54699
+1740009434740	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "52921" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileMbLy6X"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740009438280	Marionette	INFO	Marionette enabled
+1740009438780	Marionette	INFO	Listening on port 36227
+WebDriver BiDi listening on ws://127.0.0.1:52921
+Read port: 36227
+1740009439078	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 4846 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/mix-90s-10072/, line 27: Script terminated by timeout at:
+i@https://www.iheart.com/live/mix-90s-10072/:27:13605
+h@https://www.iheart.com/live/mix-90s-10072/:27:10221
+emit@https://www.iheart.com/live/mix-90s-10072/:27:9579
+emit@https://www.iheart.com/live/mix-90s-10072/:27:9556
+emit@https://www.iheart.com/live/mix-90s-10072/:27:9556
+i@https://www.iheart.com/live/mix-90s-10072/:27:17892
+nrWrapper@https://www.iheart.com/live/mix-90s-10072/:27:17720
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009516058	Marionette	INFO	Stopped listening on port 36227
+1740009613041	geckodriver	INFO	Listening on 127.0.0.1:39173
+1740009613657	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "47913" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile87a7Dp"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740009617211	Marionette	INFO	Marionette enabled
+1740009617718	Marionette	INFO	Listening on port 32999
+Read port: 32999
+WebDriver BiDi listening on ws://127.0.0.1:47913
+1740009618011	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 6496 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Script terminated by timeout at:
+y@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:312136
+u@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:680494
+74880/I<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:681769
+S@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:349473
+64287/s/</<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:342853
+74880/b/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:681393
+V@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:92220
+G@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:94246
+ta@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202889
+na@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:203658
+useState@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:207711
+86190/t.useState@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:286767
+15453/W<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:95501
+Xi@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202064
+Ua@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:210911
+ku@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:249241
+El@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240808
+xl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240731
+hl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:237764
+24688/Yo/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189478
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Yo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189425
+Go@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189358
+sl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:234534
+ba@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:206410
+15453/W</n<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:95531
+_triggerEvents@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:740
+trigger@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:2003
+21551/y.prototype.setPlayingState@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:8511
+play@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:86746
+62301/_afterSetup/</<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:70142
+d@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19591
+s@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19165
+trigger@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:96857
+B/<@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:92052
+d@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19687
+c@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:18982
+setup/m.trigger@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:68132
+B@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:19913
+setup/<@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:68646
+d@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19687
+c@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:18967
+set@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:70916
+setup/</<@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:73587
+d@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19687
+c@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:18967
+t/n.providerListener</S@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:5301
+d@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:19687
+c@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:18982
+value@https://ssl.p.jwpcdn.com/player/v/8.7.6/provider.hlsjs.js:98:8336
+setState@https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js:10:72609
+timeupdate@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:267951
+nrWrapper@https://www.iheart.com/live/mix-90s-10072/:27:17759
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_743971303, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_743971303:11:289
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_743971303:453:37
+
+JavaScript error: https://web-static.pages.iheart.com/jw-player/8.7.6/jwplayer.js, line 10: Error: Network timeout //imasdk.googleapis.com/js/sdkloader/ima3.js
+JavaScript error: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Error: Network Error
+JavaScript error: https://au-config.sensic.net/s2s-web.js, line 1: TypeError: t is undefined
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009745875	Marionette	INFO	Stopped listening on port 32999
+1740009791328	geckodriver	INFO	Listening on 127.0.0.1:50849
+1740009791423	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "46763" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileaJTTLL"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740009794933	Marionette	INFO	Marionette enabled
+1740009795436	Marionette	INFO	Listening on port 37545
+WebDriver BiDi listening on ws://127.0.0.1:46763
+Read port: 37545
+[GFX1-]: Failed to create EGLContext!: 0x3009
+1740009796097	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13728, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009884241	Marionette	INFO	Stopped listening on port 37545
+1740009889445	geckodriver	INFO	Listening on 127.0.0.1:46097
+1740009889541	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "48053" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiledgvmWR"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740009893073	Marionette	INFO	Marionette enabled
+1740009893563	Marionette	INFO	Listening on port 41997
+WebDriver BiDi listening on ws://127.0.0.1:48053
+Read port: 41997
+1740009893876	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6035: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6035: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6035: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval, line 6035: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval, line 6035: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6035 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6035 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6035 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6035 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6035 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6031: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6031: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js, line 6031: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval, line 6031: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval, line 6031: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 4399 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/2gcDh6yRedHV_MOLAlqLrgzj-oY8yGcKEBahF_chYYc.js line 2 > eval line 6031 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://www.iheart.com/live/cruise-1323-6177/, line 38: Script terminated by timeout at:
+n@https://www.iheart.com/live/cruise-1323-6177/:38:12280
+N/<@https://www.iheart.com/live/cruise-1323-6177/:38:35716
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740009991019	Marionette	INFO	Stopped listening on port 41997
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1740010055721	geckodriver	INFO	Listening on 127.0.0.1:49737
+1740010055844	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "53837" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileCx44qw"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740010059709	Marionette	INFO	Marionette enabled
+1740010060202	Marionette	INFO	Listening on port 44869
+Read port: 44869
+WebDriver BiDi listening on ws://127.0.0.1:53837
+1740010060501	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 2502 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1345335996, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1345335996:11:289
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1345335996:453:37
+
+1740020427122	geckodriver	INFO	Listening on 127.0.0.1:43859
+1740020427218	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... te" "--remote-debugging-port" "44941" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileRy3lYJ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740020430674	Marionette	INFO	Marionette enabled
+1740020431171	Marionette	INFO	Listening on port 38761
+Read port: 38761
+WebDriver BiDi listening on ws://127.0.0.1:44941
+1740020431467	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Failed to create EGLContext!: 0x3009
+console.error: ({})
+libva info: VA-API version 1.17.0
+libva info: Trying to open /usr/lib/arm-linux-gnueabihf/dri/v3d_drv_video.so
+libva info: va_openDriver() returns -1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 3765 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js, line 1: Script terminated by timeout at:
+Z@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:642851
+62301/cn<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:42599
+d@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:14301
+m@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:14597
+30537/e/</_<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:21986
+53124/h/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:9150
+Xi@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202064
+Fa@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:210006
+ku@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:250270
+El@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240808
+xl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240731
+hl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:237764
+24688/Yo/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189478
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Yo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189425
+Go@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189358
+jl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:246254
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Al@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:245904
+24688/Cl/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:245815
+M@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:306437
+86171/x.port1.onmessage@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:305193
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1216355091, line 453: Script terminated by timeout at:
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1216355091:453:47
+
+1740020541128	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 3031 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://js-agent.newrelic.com/nr-spa-1.281.0.min.js, line 2: Script terminated by timeout at:
+5999/addTiming/<@https://js-agent.newrelic.com/nr-spa-1.281.0.min.js:2:39133
+addTiming@https://js-agent.newrelic.com/nr-spa-1.281.0.min.js:2:39135
+5999/w/<@https://js-agent.newrelic.com/nr-spa-1.281.0.min.js:2:38342
+emit@https://www.iheart.com/live/cruise-1323-6177/:38:9618
+i@https://www.iheart.com/live/cruise-1323-6177/:38:10655
+N/<@https://www.iheart.com/live/cruise-1323-6177/:38:34448
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1809110102, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1809110102:11:289
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1809110102:453:37
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740020628226	Marionette	INFO	Stopped listening on port 38761

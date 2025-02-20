@@ -1,4 +1,5 @@
-# CAN BE USED ON WINDOWS MACHINES IF pathImages adjusted
+# CAN BE USED ON LINUX and WINDOWS MACHINES unchanged!
+# AS LONG AS MODULES INSTALLED CORRECTLY
 
 import subprocess
 import inspect
@@ -25,8 +26,15 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = script_dir.replace("\\","/")
 pathImages = script_dir + "/Images"
 print(f"The Images path is: {pathImages}")
+
 #pathImages = r"/home/roman/GitHub/WifiRadio3/Images"
 #pathImages = r"C:/Users/roman/OneDrive/GitRepos/TkRadio/Images"
+
+# Create the full filepath to the saved radio station file
+filename = 'savedRadioStation.txt'
+filepath = os.path.join(script_dir, filename)
+print(f'The file {filepath} stores the last streamed station name.')
+
 
 # Create an instance of FirefoxOptions
 firefox_options = Options()
@@ -1118,7 +1126,11 @@ def on_select(event):
         text_box.insert(tk.END, row + "\n")
     # Disable the text box to make it read-only
     text_box.config(state=tk.DISABLED)
+    # save station name to file (if radio powered off when playing this station)
+    with open(filepath, 'w') as file:
+        file.write(selected_value)
     print("")
+
 
 
 # Create the main window
@@ -1129,7 +1141,7 @@ root.title("INTERNET RADIO 3.0")
 root.geometry("600x450+0+0")
 root.resizable(False, False)  
 
-# Create a combobox (dropdown list)t
+# Create a combobox (dropdown list)
 aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
@@ -1138,6 +1150,18 @@ combobox.pack(anchor='nw', padx=155, pady=35)
 
 # Bind the combobox selection event to the on_select function
 combobox.bind("<<ComboboxSelected>>", on_select)
+
+# select last station when radio powered up
+def select_and_trigger():
+    try:
+        with open(filepath, 'r') as file:
+            lastStation = file.read()
+    except FileNotFoundError:
+        print(f'Error: The file {filepath} does not exist.')
+        lastStation = aStation[0][0]
+    print(f'Last station is {lastStation}')    
+    combobox.set(lastStation);
+    on_select(None)
 
 # Create a text box and position it using grid
 text_box = tk.Text(root, height=22, width=90)
@@ -1152,11 +1176,11 @@ label.place(x=18, y=5)  # Adjust the position
     
 label2 = tk.Label(root)
 label2.pack()
-#label2.place(x=155, y=107)  # Adjust the position
 
+root.after(1000, select_and_trigger)
+print("Radio stream interface")
 
-
-# Run the application
+# Run the GUI loop
 root.mainloop()
 
 print("Radio stream interface")

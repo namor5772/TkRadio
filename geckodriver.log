@@ -891,3 +891,196 @@ JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-587678
 
 JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
 1740020628226	Marionette	INFO	Stopped listening on port 38761
+1740026995344	geckodriver	INFO	Listening on 127.0.0.1:43193
+1740026996566	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "50337" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVEnlOG"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740027000093	Marionette	INFO	Marionette enabled
+1740027000900	Marionette	INFO	Listening on port 37643
+Read port: 37643
+WebDriver BiDi listening on ws://127.0.0.1:50337
+1740027001269	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:50064
+53534/l5/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:89563
+53534/sW/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:49902
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43008
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/main-e9f91aac1e4dc025.js, line 6: Script terminated by timeout at:
+a@https://www.abc.net.au/_next/static/chunks/main-e9f91aac1e4dc025.js:6:12071
+58127/W/<@https://www.abc.net.au/_next/static/chunks/main-e9f91aac1e4dc025.js:6:12542
+r@https://www.abc.net.au/_next/static/chunks/main-e9f91aac1e4dc025.js:6:8359
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1740027412639	Marionette	INFO	Stopped listening on port 37643
+[Parent 2234, IPC I/O Parent] WARNING: process 3232 exited on signal 9: file ./ipc/chromium/src/base/process_util_posix.cc:335
+1740027431568	geckodriver	INFO	Listening on 127.0.0.1:60621
+1740027431662	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "53853" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileigbEzo"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740027434224	Marionette	INFO	Marionette enabled
+1740027434730	Marionette	INFO	Listening on port 44013
+Read port: 44013
+WebDriver BiDi listening on ws://127.0.0.1:53853
+1740027435011	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+close@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:70596
+closeActive@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:70896
+i@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:159149
+53534/fo</a<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:158978
+53534/sW/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:49902
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43008
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13725, line 264: unreachable code after return statement
+1740027566897	Marionette	INFO	Stopped listening on port 44013
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+[Child 3829, MediaDecoderStateMachine #1] WARNING: Decoder=f23459a0 Decode error: NS_ERROR_FAILURE (0x80004005) - Couldn't start Utility process: file ./dom/media/MediaDecoderStateMachineBase.cpp:168
+1740027573515	geckodriver	INFO	Listening on 127.0.0.1:52151
+1740027573609	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "45907" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVwyB2q"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740027576152	Marionette	INFO	Marionette enabled
+1740027576627	Marionette	INFO	Listening on port 40051
+WebDriver BiDi listening on ws://127.0.0.1:45907
+Read port: 40051
+1740027577276	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13725, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ofn4uuxmEhkaO4XGNFPPKZmsLhzabhMv0IGBKLJhIWY.js line 2 > eval line 6511 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1249689520, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1249689520:11:289
+dD/this.T@https://imasdk.googleapis.com/js/core/bridge3.686.0_en.html#fid=goog_1249689520:453:37
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13749, line 264: unreachable code after return statement
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13749, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13968, line 264: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-NZ6NQM6F, line 681: Script terminated by timeout at:
+yF/b/<@https://www.googletagmanager.com/gtm.js?id=GTM-NZ6NQM6F:681:323
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13962, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13737, line 264: unreachable code after return statement
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 94: Script terminated by timeout at:
+l@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:94:1560
+u@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:94:2250
+c@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:94:3740
+297/i/./src/controller/base-playlist-controller.ts/e.playlistLoaded@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:42:1920
+297/i/./src/controller/level-controller.ts/m.onLevelLoaded@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:90:6097
+297/i/./node_modules/eventemitter3/index.js/u.prototype.emit@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:14:1847
+297/i/./src/hls.ts/y.emit@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:198:3420
+297/i/./src/hls.ts/y.trigger@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:198:3518
+297/i/./src/loader/playlist-loader.ts/e.handlePlaylistLoaded@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:234:8819
+297/i/./src/loader/playlist-loader.ts/e.handleTrackOrLevelPlaylist@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:234:6612
+297/i/./src/loader/playlist-loader.ts/e.loadsuccess@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:234:4316
+297/i/./src/utils/xhr-loader.ts/e.readystatechange@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:366:2605
+s@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:58908
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://static.chartbeat.com/js/chartbeat.js, line 8: Script terminated by timeout at:
+r/<@https://static.chartbeat.com/js/chartbeat.js:8:467
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13773, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement

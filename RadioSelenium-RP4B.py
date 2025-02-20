@@ -35,20 +35,17 @@ filename = 'savedRadioStation.txt'
 filepath = os.path.join(script_dir, filename)
 print(f'The file {filepath} stores the last streamed station name.')
 
-
 # Create an instance of FirefoxOptions
 firefox_options = Options()
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
-refresh_http = "http://www.ri.com.au" # 'cleans' browser between station websites
+# 'cleans' browser between station websites
+refresh_http = "http://www.ri.com.au" 
 
 # global position variables for graphics
-Ygap = 110
-Ygap2 = 186
-Xgap = 446
-Xgap2 = 200
-Xgap3 = 340
+Ygap = 11;  Ygap2 = 110; Ygap3 = 295
+Xgap = 446; Xgap2 = 200; Xgap3 = 340
 
 
 def Suck_ABC(br,sPath):
@@ -143,7 +140,6 @@ def Radio1(br,Num,sPath):
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
-#        image2_path = r"/home/roman/GitHub/WifiRadio3/Images/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
         # Display a blank image
@@ -159,9 +155,9 @@ def Radio1(br,Num,sPath):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station == "ABC_Classic2":
-        label2.place(x=Xgap, y=Ygap+Ygap2)  # Adjust the position
+        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
     else:
-        label2.place(x=Xgap, y=Ygap)  # Adjust the position
+        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
     
   # Find program details
     ht = be.get_attribute('innerHTML')
@@ -218,7 +214,6 @@ def Radio2(br,Num,sPath):
 
   # get station logo
     image_path2 = pathImages + "/ABC_Radio_National.png"
-#    image_path2 = r"/home/roman/GitHub/WifiRadio3/Images/ABC_Radio_National.png"
     image = Image.open(image_path2)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
     photo = ImageTk.PhotoImage(scaled_image)
@@ -238,7 +233,7 @@ def Radio2(br,Num,sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3, y=Ygap)  # Adjust the position
+    label2.place(x=Xgap3, y=Ygap2)  # Adjust the position
     
   # Find stream details
     ht = be.get_attribute('innerHTML')
@@ -315,9 +310,9 @@ def Radio3(br,Num,sPath):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station_short == "ABC_Classic":
-        label2.place(x=Xgap, y=Ygap+Ygap2)  # Adjust the position
+        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
     else:
-        label2.place(x=Xgap, y=Ygap)  # Adjust the position
+        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
   # Find program details
     ht = be.get_attribute('innerHTML')
@@ -401,7 +396,7 @@ def Radio4(br,sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap2, y=Ygap)  # Adjust the position
+    label2.place(x=Xgap2, y=Ygap2)  # Adjust the position
     
   # Find live program details
     ht = be.get_attribute('innerHTML')
@@ -482,7 +477,7 @@ def Radio5(br,sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap)  # Adjust the position
+    label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
   # Find live program details
     ht = be.get_attribute('innerHTML')
@@ -547,7 +542,7 @@ def Radio6(br,sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap+Ygap2)  # Adjust the position
+    label2.place(x=Xgap, y=Ygap3)  # Adjust the position
     
     # Find program details
     ht = be.get_attribute('innerHTML')
@@ -621,7 +616,7 @@ def Radio7(br,Num,sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap+Ygap2)  # Adjust the position
+    label2.place(x=Xgap, y=Ygap3)  # Adjust the position
         
     # Find program details
     ht = be.get_attribute('innerHTML')
@@ -733,7 +728,7 @@ def iHeart(br, sPath):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap)  # Adjust the position
+    label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
   # Find program and song details
     ht = be.get_attribute('innerHTML')

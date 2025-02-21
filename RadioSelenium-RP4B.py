@@ -40,8 +40,12 @@ browser = webdriver.Firefox(options=firefox_options)
 refresh_http = "http://www.ri.com.au" 
 
 # global position variables for graphics
-Ygap = 11;  Ygap2 = 110; Ygap3 = 295
-Xgap = 446; Xgap2 = 200; Xgap3 = 340
+Ygap = 10;  Ygap2 = 107; Ygap3 = 300
+Xgap = 450; Xgap2 = 202; Xgap3 = 345
+
+# global variables for combobox selection indexes
+combobox_index = -1
+combobox2_index = -1
 
 
 # START ***** Functions that stream radio stations *****
@@ -81,8 +85,9 @@ def Radio1(br,Num,sPath):
         image2_path = pathImages + "/presenter.jpg"
         urllib.request.urlretrieve(img2_url, image2_path)
     except NoSuchElementException:
-        # Display a blank image
         print("Image element not found on the webpage.")            
+        # Display a blank image
+        image2_path = pathImages + "/Blank.png"
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -290,7 +295,7 @@ def Radio4(br,sPath):
         be.send_keys(Keys.TAB)
         
   # adjust amount of tabbing depending on where you end up!
-    Adjusted = False;
+    Adjusted = False
     focused_element = br.execute_script("return document.activeElement")
     if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
            be.send_keys(Keys.SHIFT,Keys.TAB)
@@ -1039,16 +1044,33 @@ aStation = [
     ["Mix 102.3",Mix_102_3],
     ["Cruise 1323",Cruise_1323],
     ["Mix 80s",Mix_80s],
-    ["Mix 90s",Mix_90s],
+    ["Mix 90s",Mix_90s]
 ]
 
-# when a radio station is selected in the drop box
+
+aStation2 = [
+    ["-- EMPTY 0 --",-1],
+    ["ABC Broken Hill NSW",1],
+    ["-- EMPTY 2 --",-1],
+    ["Cruise 1323",105],
+    ["-- EMPTY 4 --",-1],
+    ["Hope 103.2",101],
+    ["-- EMPTY 6 --",-1],
+    ["-- EMPTY 7 --",-1],
+    ["-- EMPTY 8 --",-1],
+    ["GOLD101.7",84]
+]
+
+
+# when a radio station is selected in combobox
 def on_select(event):
     selected_value = combobox.get()
     selected_index = combobox.current()
+    global combobox_index
+    combobox_index = selected_index # save for use with adding station to playlist
     print("Selected:", selected_value)
     print("Index:", selected_index)
-    text = aStation[selected_index][1]();
+    text = aStation[selected_index][1]()
     print(text)
     text_rows = text.split("*")
     # Make text box editable, so contents can be deleted and rewritten
@@ -1066,6 +1088,106 @@ def on_select(event):
     print("")
 
 
+# when a radio station is selected in combobox2
+def on_select2(event):
+    selected_value = combobox2.get()
+    selected_index = combobox2.current()
+    global combobox2_index
+    combobox2_index = selected_index # save for use with adding or deleting station from playlist
+    selected_index = aStation2[selected_index][1]
+    print("Selected:", selected_value)
+    print("Index:", selected_index)
+
+    if selected_index != -1:
+        text = aStation[selected_index][1]();
+        print(text)
+        text_rows = text.split("*")
+        # Make text box editable, so contents can be deleted and rewritten
+        text_box.config(state=tk.NORMAL)
+        text_box.delete('1.0', tk.END)
+        print(text_rows)
+        # Insert each row of text into the text box
+        for row in text_rows:
+            text_box.insert(tk.END, row + "\n")
+        # Disable the text box to make it read-only
+        text_box.config(state=tk.DISABLED)
+        # save station name to file (if radio powered off when playing this station)
+        with open(filepath, 'w') as file:
+            file.write(selected_value)
+        print("")
+    else:
+        browser.get(refresh_http)
+        time.sleep(2)
+        text = selected_value + "*No station playing"
+        text_rows = text.split("*")
+        # Make text box editable, so contents can be deleted and rewritten
+        text_box.config(state=tk.NORMAL)
+        text_box.delete('1.0', tk.END)
+        print(text_rows)
+        # Insert each row of text into the text box
+        for row in text_rows:
+            text_box.insert(tk.END, row + "\n")
+        # Disable the text box to make it read-only
+        text_box.config(state=tk.DISABLED)
+
+        # Display the station logo and program graphic as blank
+        image_path = pathImages + "/Blank.png"
+        image = Image.open(image_path)
+        scaled_image = image.resize((90, 90))  # Adjust the size as needed
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+        scaled_image2 = image.resize((135, 135))  # Adjust the size as needed
+        photo2 = ImageTk.PhotoImage(scaled_image2)
+        label2.config(image=photo2)
+        label2.image = photo2  # Keep a reference to avoid garbage collection
+        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+    print("")
+
+
+def on_button_Add_press(evente):
+    print("Add button pressed")
+    print("Index:", combobox_index)
+    print("Index2:", combobox2_index)
+    # change aStation2[] and combobox2 list to reflect the addition
+    global aStation2
+    if (combobox_index != -1) and (combobox2_index != -1):
+        lastStation = aStation[combobox_index][0]
+        aStation2[combobox2_index][0] = lastStation
+        aStation2[combobox2_index][1] = combobox_index
+        new_values = []
+        for element in aStation2:
+            new_values.append(element[0])
+        combobox2.config(values=new_values)
+        combobox2.set(lastStation) # select the just added station, to refresh display
+        on_select2(None)
+    else:
+        print("No station added")    
+    print("")
+
+
+def on_button_Del_press(event):
+    print("Del button pressed")
+    print("Index:", combobox_index)
+    print("Index2:", combobox2_index)
+    # change aStation2[] and combobox2 list to reflect the deletion
+    global aStation2
+    index = aStation2[combobox2_index][1]
+    print("index:", index)
+    if (combobox2_index != -1) and (index != -1):
+        lastStation = "-- EMPTY " + str(combobox2_index) +" --"
+        aStation2[combobox2_index][0] = lastStation
+        aStation2[combobox2_index][1] = -1
+        new_values = []
+        for element in aStation2:
+            new_values.append(element[0])
+        combobox2.config(values=new_values)
+        combobox2.set(lastStation) # select the deleted station, to refresh display
+        on_select2(None)
+    else:
+        print("No station to delete")    
+    print("")
+
 
 # Create the main window
 root = tk.Tk()
@@ -1076,16 +1198,26 @@ root.geometry("600x450+0+0")
 root.resizable(False, False)  
 
 # Create a combobox (dropdown list)
+# Used to display all avialable radio stations
 aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
-combobox = ttk.Combobox(root, values=aStringArray, width=33)
-combobox.pack(anchor='nw', padx=155, pady=35)
-
+combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
+combobox.place(x=155, y=15)  # Adjust the position
 # Bind the combobox selection event to the on_select function
-combobox.bind("<<ComboboxSelected>>", on_select)
+combobox.bind("<<ComboboxSelected>>", on_select) 
 
-# select last station when radio powered up
+# Create a combobox2 (dropdown list)
+# Used to display a playlist of up to 10 radio stations
+aStringArray2 = []
+for element in aStation2:
+    aStringArray2.append(element[0])   
+combobox2 = ttk.Combobox(root, values=aStringArray2, height=10, width=33)
+combobox2.place(x=155, y=55)  # Adjust the position
+# Bind the combobox2 selection event to the on_select2 function
+combobox2.bind("<<ComboboxSelected>>", on_select2) 
+
+# select last station after radio was last powered down
 def select_and_trigger():
     try:
         with open(filepath, 'r') as file:
@@ -1097,19 +1229,30 @@ def select_and_trigger():
     combobox.set(lastStation);
     on_select(None)
 
-# Create a text box and position it using grid
-text_box = tk.Text(root, height=22, width=90)
-text_box.pack(anchor='nw', padx=15, pady=15)
+# Create a text box, position and size it
+text_box = tk.Text(root)
+text_box.place(x=10, y=105, width=580, height=335)
+text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-# Enable the text box to insert text
-text_box.config(state=tk.NORMAL)
-
+# used for station logo image and program related image
+# Positioning of latter can vary
 label = tk.Label(root)
 label.pack()
-label.place(x=18, y=5)  # Adjust the position
-    
+label.place(x=18, y=5)
 label2 = tk.Label(root)
 label2.pack()
+
+# button used for adding radio station to playlist
+button_Add = tk.Button(root, text="Add")
+button_Add.place(x=400, y=55, width=40, height=20)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_Add.bind("<Button-1>", on_button_Add_press)
+    
+# button used for deleting radio station from playlist
+button_Del = tk.Button(root, text="Del")
+button_Del.place(x=450, y=55, width=40, height=20)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_Del.bind("<Button-1>", on_button_Del_press)
 
 root.after(1000, select_and_trigger)
 print("Radio stream interface")
@@ -1118,7 +1261,6 @@ print("Radio stream interface")
 root.mainloop()
 
 print("Radio stream interface")
-
 
 while True:
     startup = False    

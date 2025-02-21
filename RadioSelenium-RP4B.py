@@ -48,9 +48,11 @@ refresh_http = "http://www.ri.com.au"
 Ygap = 10;  Ygap2 = 107; Ygap3 = 300
 Xgap = 450; Xgap2 = 202; Xgap3 = 345
 
-# global variables for combobox selection indexes
+# global variables for combobox selection indexes & button related
 combobox_index = -1
 combobox2_index = -1
+buttonFlag = False
+buttonIndex = 0
 
 
 # START ***** Functions that stream radio stations *****
@@ -1110,13 +1112,9 @@ def on_closing():
 # do this when a radio station is selected in combobox
 def on_select(event):
     selected_value = combobox.get()
-#    selected_index = combobox.current()
     global combobox_index
     combobox_index = combobox.current()
-#    combobox_index = selected_index # save for use with adding station to playlist
     print("Selected:", selected_value)
-#    print("Index:", selected_index)
-#    text = aStation[selected_index][1]()
     print("Index:", combobox_index)
     text = aStation[combobox_index][1]()
     print(text)
@@ -1135,18 +1133,23 @@ def on_select(event):
 
 # do this when a radio station is selected in combobox2
 def on_select2(event):
-    selected_value = combobox2.get()
-    selected_index = combobox2.current()
+    global buttonFlag
     global combobox2_index
-    combobox2_index = selected_index # save for use with adding or deleting station from playlist
-    selected_index = aStation2[selected_index][1]
-    selected_index = int(selected_index)
+    if not buttonFlag:
+        selected_value = combobox2.get()
+        selected_index = combobox2.current()
+        combobox2_index = selected_index # save for use with adding or deleting station from playlist
+        selected_index = aStation2[selected_index][1]
+        selected_index = int(selected_index)
+    else:
+        selected_index = int(aStation2[buttonIndex][1])
+        selected_value = aStation2[buttonIndex][0]
+        buttonFlag = False # make sure to reset buttonFlag once it is used           
     print("Selected:", selected_value)
     print("Index:", selected_index)
 
     if selected_index != -1:
-        print(int(selected_index))
-        text = aStation[selected_index][1]() # strangely selected_index has to be cast to int
+        text = (aStation[selected_index][1])() # strangely selected_index has to be cast to int
         print(text)
         text_rows = text.split("*")
         # Make text box editable, so contents can be deleted and rewritten
@@ -1161,7 +1164,6 @@ def on_select2(event):
         # save station name to file (if radio powered off when playing this station)
         with open(filepath, 'w') as file:
             file.write(selected_value)
-        print("")
     else:
         browser.get(refresh_http)
         time.sleep(2)
@@ -1239,16 +1241,64 @@ def on_button_Del_press(event):
 
 def on_button_0_press(event):
     print("Button 0 pressed")
+    # sets global variables and these are used in on_select2
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 0
+    on_select2(None)    
 
 def on_button_1_press(event):
     print("Button 1 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 1
+    on_select2(None)    
 
 def on_button_2_press(event):
     print("Button 2 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 2
+    on_select2(None)    
 
 def on_button_3_press(event):
     print("Button 3 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 3
+    on_select2(None)    
 
+def on_button_4_press(event):
+    print("Button 4 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 4
+    on_select2(None)    
+
+def on_button_5_press(event):
+    print("Button 5 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 5
+    on_select2(None)    
+
+def on_button_6_press(event):
+    print("Button 6 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 6
+    on_select2(None)    
+
+def on_button_7_press(event):
+    print("Button 7 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 7
+    on_select2(None)    
+
+def on_button_8_press(event):
+    print("Button 8 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 8
+    on_select2(None)    
+
+def on_button_9_press(event):
+    print("Button 9 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 9
+    on_select2(None)    
 
 
 # Create the main window
@@ -1305,29 +1355,69 @@ button_Del.place(x=450-25-15, y=55-25, width=40, height=20)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_Del.bind("<Button-1>", on_button_Del_press)
 
+
+
 # playlist button #0
+button_image0 = Image.open(pathImages + "/Button0.png")
 button_0 = tk.Button(root, text="0")
-button_0.place(x=155-25, y=55-25+28, width=40, height=40)
+button_0.place(x=155-25+45*0, y=55-25+28, width=40, height=40)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_0.bind("<Button-1>", on_button_0_press)
 
 # playlist button #1
 button_1 = tk.Button(root, text="1")
-button_1.place(x=155-25+45, y=55-25+28, width=40, height=40)
+button_1.place(x=155-25+45*1, y=55-25+28, width=40, height=40)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_1.bind("<Button-1>", on_button_1_press)
 
 # playlist button #2
 button_2 = tk.Button(root, text="2")
-button_2.place(x=155-25+45+45, y=55-25+28, width=40, height=40)
+button_2.place(x=155-25+45*2, y=55-25+28, width=40, height=40)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_2.bind("<Button-1>", on_button_2_press)
 
 # playlist button #3
 button_3 = tk.Button(root, text="3")
-button_3.place(x=155-25+45+45+45, y=55-25+28, width=40, height=40)
+button_3.place(x=155-25+45*3, y=55-25+28, width=40, height=40)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_3.bind("<Button-1>", on_button_3_press)
+
+# playlist button #4
+button_4 = tk.Button(root, text="4")
+button_4.place(x=155-25+45*4, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_4.bind("<Button-1>", on_button_4_press)
+
+# playlist button #5
+button_5 = tk.Button(root, text="5")
+button_5.place(x=155-25+45*5, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_5.bind("<Button-1>", on_button_5_press)
+
+# playlist button #6
+button_6 = tk.Button(root, text="6")
+button_6.place(x=155-25+45*6, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_6.bind("<Button-1>", on_button_6_press)
+
+# playlist button #7
+button_7 = tk.Button(root, text="7")
+button_7.place(x=155-25+45*7, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_7.bind("<Button-1>", on_button_7_press)
+
+# playlist button #8
+button_8 = tk.Button(root, text="8")
+button_8.place(x=155-25+45*8, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_8.bind("<Button-1>", on_button_8_press)
+
+# playlist button #9
+button_9 = tk.Button(root, text="9")
+button_9.place(x=155-25+45*9, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_9.bind("<Button-1>", on_button_9_press)
+
 
 # doing stuff just after gui is initialised and we are running in the root thread
 root.after(1000, select_and_trigger)

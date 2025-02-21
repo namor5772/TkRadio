@@ -1,5 +1,3 @@
-#TEST
-
 import subprocess
 import inspect
 import tkinter as tk
@@ -7,9 +5,11 @@ import time
 import urllib.request
 import requests
 import os
+import csv
 
 from PIL import Image, ImageTk
 from tkinter import ttk
+from tkinter import messagebox
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
@@ -29,7 +29,12 @@ print(f"The Images path is: {pathImages}")
 # Create the full filepath to the saved radio station file
 filename = 'savedRadioStation.txt'
 filepath = os.path.join(script_dir, filename)
-print(f'The file {filepath} stores the last streamed station name.')
+print(f'The file {filepath} stores the last streamed station before shutdown.')
+
+# Create the full filepath to the saved playlist file
+filename2 = 'playlist.txt'
+filepath2 = os.path.join(script_dir, filename2)
+print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Create an instance of FirefoxOptions
 firefox_options = Options()
@@ -933,9 +938,9 @@ def smooth_relax():
 # END ******* Functions that stream radio stations *****
 
 
-# 2D array of radio station information in [short name, long name, url] format
-# clearly this can be varied if you wish to listen to different 7 stations
-# Have 83 ABC stations
+# 2D array of radio station information in [long name, calling function] format
+# clearly this can be varied if you wish to listen to different stations
+# Currently we Have 83 ABC stations and 108 in total!
 aStation = [
     ["ABC Radio Sydney NSW",ABC_Radio_Sydney_NSW],
     ["ABC Broken Hill NSW",ABC_Broken_Hill_NSW],
@@ -1047,30 +1052,73 @@ aStation = [
     ["Mix 90s",Mix_90s]
 ]
 
-
+# 2D an array of preset radio stations, in long name and index (to aStation[]) format
+# this is the default, but is actually copied from file at statup and saved to file on exit!
 aStation2 = [
     ["-- EMPTY 0 --",-1],
-    ["ABC Broken Hill NSW",1],
+    ["-- EMPTY 1 --",-1],
     ["-- EMPTY 2 --",-1],
-    ["Cruise 1323",105],
+    ["-- EMPTY 3 --",-1],
     ["-- EMPTY 4 --",-1],
-    ["Hope 103.2",101],
+    ["-- EMPTY 5 --",-1],
     ["-- EMPTY 6 --",-1],
     ["-- EMPTY 7 --",-1],
     ["-- EMPTY 8 --",-1],
-    ["GOLD101.7",84]
+    ["-- EMPTY 9 --",-1],
 ]
 
 
-# when a radio station is selected in combobox
+# select last station after radio was last powered down
+def select_and_trigger():
+    try:
+        with open(filepath, 'r') as file:
+            lastStation = file.read()
+    except FileNotFoundError:
+        print(f'Error: The file {filepath} does not exist.')
+        lastStation = aStation[0][0]
+    print(f'Last station is {lastStation}')    
+    combobox.set(lastStation);
+    on_select(None)
+
+
+# populate the playlist array aStation2 from file saved at shutdown
+try:
+    with open(filepath2, 'r') as file:
+        reader = csv.reader(file)
+        aStation2 = [row for row in reader]     
+except FileNotFoundError:
+    print(f'Error: The file {filepath2} does not exist.')
+# will just use the default aStation2[] array created above
+
+
+# do this when closing the window/app
+def on_closing():
+    # save station name to file (if radio powered off when playing this station)
+    with open(filepath, 'w') as file:
+        file.write(combobox.get())
+
+    # save the playlist to file
+    with open(filepath2, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(aStation2)
+
+    browser.quit() # close the WebDriver
+    root.destroy() # destroy GUI   
+    print("Closing the app...")
+
+
+# do this when a radio station is selected in combobox
 def on_select(event):
     selected_value = combobox.get()
-    selected_index = combobox.current()
+#    selected_index = combobox.current()
     global combobox_index
-    combobox_index = selected_index # save for use with adding station to playlist
+    combobox_index = combobox.current()
+#    combobox_index = selected_index # save for use with adding station to playlist
     print("Selected:", selected_value)
-    print("Index:", selected_index)
-    text = aStation[selected_index][1]()
+#    print("Index:", selected_index)
+#    text = aStation[selected_index][1]()
+    print("Index:", combobox_index)
+    text = aStation[combobox_index][1]()
     print(text)
     text_rows = text.split("*")
     # Make text box editable, so contents can be deleted and rewritten
@@ -1082,24 +1130,23 @@ def on_select(event):
         text_box.insert(tk.END, row + "\n")
     # Disable the text box to make it read-only
     text_box.config(state=tk.DISABLED)
-    # save station name to file (if radio powered off when playing this station)
-    with open(filepath, 'w') as file:
-        file.write(selected_value)
     print("")
 
 
-# when a radio station is selected in combobox2
+# do this when a radio station is selected in combobox2
 def on_select2(event):
     selected_value = combobox2.get()
     selected_index = combobox2.current()
     global combobox2_index
     combobox2_index = selected_index # save for use with adding or deleting station from playlist
     selected_index = aStation2[selected_index][1]
+    selected_index = int(selected_index)
     print("Selected:", selected_value)
     print("Index:", selected_index)
 
     if selected_index != -1:
-        text = aStation[selected_index][1]();
+        print(int(selected_index))
+        text = aStation[selected_index][1]() # strangely selected_index has to be cast to int
         print(text)
         text_rows = text.split("*")
         # Make text box editable, so contents can be deleted and rewritten
@@ -1145,6 +1192,7 @@ def on_select2(event):
     print("")
 
 
+# do this when the Add button is pressed
 def on_button_Add_press(evente):
     print("Add button pressed")
     print("Index:", combobox_index)
@@ -1165,7 +1213,7 @@ def on_button_Add_press(evente):
         print("No station added")    
     print("")
 
-
+# do this when the Del button is pressed
 def on_button_Del_press(event):
     print("Del button pressed")
     print("Index:", combobox_index)
@@ -1189,10 +1237,24 @@ def on_button_Del_press(event):
     print("")
 
 
+def on_button_0_press(event):
+    print("Button 0 pressed")
+
+def on_button_1_press(event):
+    print("Button 1 pressed")
+
+def on_button_2_press(event):
+    print("Button 2 pressed")
+
+def on_button_3_press(event):
+    print("Button 3 pressed")
+
+
+
 # Create the main window
 root = tk.Tk()
 
-# Set title, size and position of window, and make it non-resizable
+# Set title, size and position of the main window, and make it non-resizable
 root.title("INTERNET RADIO 3.0")  
 root.geometry("600x450+0+0")
 root.resizable(False, False)  
@@ -1203,38 +1265,27 @@ aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
 combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
-combobox.place(x=155, y=15)  # Adjust the position
+combobox.place(x=155-25, y=15-10)  # Adjust the position
 # Bind the combobox selection event to the on_select function
 combobox.bind("<<ComboboxSelected>>", on_select) 
 
 # Create a combobox2 (dropdown list)
-# Used to display a playlist of up to 10 radio stations
+# used to display a playlist of up to 10 radio stations
 aStringArray2 = []
 for element in aStation2:
     aStringArray2.append(element[0])   
 combobox2 = ttk.Combobox(root, values=aStringArray2, height=10, width=33)
-combobox2.place(x=155, y=55)  # Adjust the position
+combobox2.place(x=155-25, y=55-25)  # Adjust the position
 # Bind the combobox2 selection event to the on_select2 function
 combobox2.bind("<<ComboboxSelected>>", on_select2) 
 
-# select last station after radio was last powered down
-def select_and_trigger():
-    try:
-        with open(filepath, 'r') as file:
-            lastStation = file.read()
-    except FileNotFoundError:
-        print(f'Error: The file {filepath} does not exist.')
-        lastStation = aStation[0][0]
-    print(f'Last station is {lastStation}')    
-    combobox.set(lastStation);
-    on_select(None)
-
 # Create a text box, position and size it
+# used to display the program and song details
 text_box = tk.Text(root)
 text_box.place(x=10, y=105, width=580, height=335)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-# used for station logo image and program related image
+# used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
 label.pack()
@@ -1244,24 +1295,49 @@ label2.pack()
 
 # button used for adding radio station to playlist
 button_Add = tk.Button(root, text="Add")
-button_Add.place(x=400, y=55, width=40, height=20)
+button_Add.place(x=400-25-15, y=55-25, width=40, height=20)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_Add.bind("<Button-1>", on_button_Add_press)
     
 # button used for deleting radio station from playlist
 button_Del = tk.Button(root, text="Del")
-button_Del.place(x=450, y=55, width=40, height=20)
+button_Del.place(x=450-25-15, y=55-25, width=40, height=20)
 # Bind the <Button-1> event (left mouse button click) to the function
 button_Del.bind("<Button-1>", on_button_Del_press)
 
+# playlist button #0
+button_0 = tk.Button(root, text="0")
+button_0.place(x=155-25, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_0.bind("<Button-1>", on_button_0_press)
+
+# playlist button #1
+button_1 = tk.Button(root, text="1")
+button_1.place(x=155-25+45, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_1.bind("<Button-1>", on_button_1_press)
+
+# playlist button #2
+button_2 = tk.Button(root, text="2")
+button_2.place(x=155-25+45+45, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_2.bind("<Button-1>", on_button_2_press)
+
+# playlist button #3
+button_3 = tk.Button(root, text="3")
+button_3.place(x=155-25+45+45+45, y=55-25+28, width=40, height=40)
+# Bind the <Button-1> event (left mouse button click) to the function
+button_3.bind("<Button-1>", on_button_3_press)
+
+# doing stuff just after gui is initialised and we are running in the root thread
 root.after(1000, select_and_trigger)
 print("Radio stream interface")
+
+# Bind the closing event to the on_closing function
+root.protocol("WM_DELETE_WINDOW", on_closing)
 
 # Run the GUI loop
 root.mainloop()
 
-print("Radio stream interface")
-
-while True:
-    startup = False    
+print("out of GUI loop..")
 

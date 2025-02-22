@@ -1,10 +1,10 @@
-ABC Jazz,79
-ABC Radio Adelaide SA,26
-ABC Jazz,79
-ABC triple j Unearthed,67
-ABC triple j Hottest,66
+ABC Radio Sydney NSW,0
+ABC Radio National LIVE,53
+ABC NewsRadio,52
 ABC Classic LIVE,73
 ABC Classic2,78
-ABC triple j LIVE,61
 ABC Jazz,79
-ABC Double j LIVE,68
+ABC Radio Australia,82
+GOLD101.7,84
+Cruise 1323,105
+Hope 103.2,101

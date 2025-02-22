@@ -1203,12 +1203,15 @@ def on_select2(event):
     global buttonFlag
     global combobox2_index
     if not buttonFlag:
-        print("Never get here")
+        selected_value = combobox2.get()
+        selected_index = combobox2.current()
+        combobox2_index = selected_index # save for use with adding or deleting station from playlist
+        selected_index = int(aStation2[selected_index][1])
     else:
         print("buttonFlag True")
         selected_index = int(aStation2[buttonIndex][1])
         selected_value = aStation2[buttonIndex][0]
-        #buttonFlag = False # make sure to reset buttonFlag once it is used
+        buttonFlag = False # make sure to reset buttonFlag once it is used
     print("Selected:", selected_value)
     print("Index:", selected_index)
     print("Button index:", buttonIndex)
@@ -1275,6 +1278,11 @@ def on_button_Add_press(evente):
         lastStation = aStation[combobox_index][0]
         aStation2[buttonIndex][0] = lastStation
         aStation2[buttonIndex][1] = combobox_index
+        #new_values = []
+        #for element in aStation2:
+        #    new_values.append(element[0])
+        #combobox2.config(values=new_values)
+        #combobox2.set(lastStation) # select the just added station, to refresh display
 
         # this will save the icon of the station added to the playlist with its button number name
         on_select2(None)
@@ -1357,6 +1365,11 @@ def on_button_Del_press(event):
         lastStation = "-- EMPTY " + str(buttonIndex) +" --"
         aStation2[buttonIndex][0] = lastStation
         aStation2[buttonIndex][1] = -1
+        #new_values = []
+        #for element in aStation2:
+        #    new_values.append(element[0])
+        #combobox2.config(values=new_values)
+        #combobox2.set(lastStation) # select the deleted station, to refresh display
         on_select2(None)
     else:
         print("No station to delete")    
@@ -1492,8 +1505,9 @@ combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
 combobox.place(x=155-25, y=15-10)  # Adjust the position
 combobox.bind("<<ComboboxSelected>>", on_select) 
 
-
-# Populate if possible the playlist array aStation2 from file saved at shutdown
+# Create a combobox2 (dropdown list)
+# used to display a playlist of up to 10 radio stations
+# but first populate if possible the playlist array aStation2 from file saved at shutdown
 try:
     with open(filepath2, 'r') as file:
         reader = csv.reader(file)
@@ -1501,6 +1515,12 @@ try:
 except FileNotFoundError:
     # will just use the default aStation2[] array created above
     print(f'Error: The file {filepath2} does not exist.')
+aStringArray2 = []
+for element in aStation2:
+    aStringArray2.append(element[0])   
+combobox2 = ttk.Combobox(root, values=aStringArray2, height=10, width=33)
+combobox2.place(x=155-25, y=55-25)  # Adjust the position
+combobox2.bind("<<ComboboxSelected>>", on_select2) 
 
 
 # Create a text box, position and size it

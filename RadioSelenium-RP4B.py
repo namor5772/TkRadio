@@ -89,6 +89,7 @@ def Radio1(br,Num,sPath):
         buttonImagePath = pathImages + "/button_" + str(buttonIndex)
         scaled_image.save(buttonImagePath)
         buttonFlag = False
+        print(f"saving button icon {buttonImagePath}")
 
     photo = ImageTk.PhotoImage(scaled_image)
     label.config(image=photo)

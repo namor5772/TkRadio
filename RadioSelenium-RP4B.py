@@ -53,6 +53,7 @@ combobox_index = -1
 combobox2_index = -1
 buttonFlag = False
 buttonIndex = 0
+addFlag = False
 
 
 # START ***** Functions that stream radio stations *****
@@ -81,6 +82,14 @@ def Radio1(br,Num,sPath):
     image_path3 = image_path3 + "/" + logo
     image = Image.open(image_path3)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
+
+    # saving button icon
+    global buttonFlag
+    if buttonFlag:
+        buttonImagePath = pathImages + "/button_" + str(buttonIndex)
+        scaled_image.save(buttonImagePath)
+        buttonFlag = False
+
     photo = ImageTk.PhotoImage(scaled_image)
     label.config(image=photo)
     label.image = photo  # Keep a reference to avoid garbage collection
@@ -1147,6 +1156,7 @@ def on_select2(event):
         buttonFlag = False # make sure to reset buttonFlag once it is used           
     print("Selected:", selected_value)
     print("Index:", selected_index)
+    print("Button index:", buttonIndex)
 
     if selected_index != -1:
         text = (aStation[selected_index][1])() # strangely selected_index has to be cast to int
@@ -1202,6 +1212,9 @@ def on_button_Add_press(evente):
     # change aStation2[] and combobox2 list to reflect the addition
     global aStation2
     if (combobox_index != -1) and (combobox2_index != -1):
+        global addFlag
+        addFlag = True # so can get and save icon for playlist button
+
         lastStation = aStation[combobox_index][0]
         aStation2[combobox2_index][0] = lastStation
         aStation2[combobox2_index][1] = combobox_index
@@ -1240,17 +1253,35 @@ def on_button_Del_press(event):
 
 
 def on_button_0_press(event):
+    button_0.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_0.update_idletasks()  # Force update
+    time.sleep(1)
+    button_0.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_0.update_idletasks()  # Force update
     print("Button 0 pressed")
-    # sets global variables and these are used in on_select2
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = 0
     on_select2(None)    
 
+def on_button_0_release(event):
+    button_0.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_0.update_idletasks()  # Force update
+    print("Button 0 released")
+
+
 def on_button_1_press(event):
+    button_1.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_1.update_idletasks()  # Force update
     print("Button 1 pressed")
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = 1
     on_select2(None)    
+
+def on_button_1_release(event):
+    button_1.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_1.update_idletasks()  # Force update
+    print("Button 1 released")
+
 
 def on_button_2_press(event):
     print("Button 2 pressed")
@@ -1306,7 +1337,7 @@ root = tk.Tk()
 
 # Set title, size and position of the main window, and make it non-resizable
 root.title("INTERNET RADIO 3.0")  
-root.geometry("600x450+0+0")
+root.geometry("640x480+0+0")
 root.resizable(False, False)  
 
 # Create a combobox (dropdown list)
@@ -1358,64 +1389,86 @@ button_Del.bind("<Button-1>", on_button_Del_press)
 
 
 # playlist button #0
-button_image0 = Image.open(pathImages + "/Button0.png")
-button_0 = tk.Button(root, text="0")
+button_image0 = Image.open(pathImages + "/button0.png")
+button_image0_resized = button_image0.resize((35,35), Image.Resampling.LANCZOS)
+tk_image0 = ImageTk.PhotoImage(button_image0_resized)
+button_0 = tk.Button(root, image=tk_image0)
 button_0.place(x=155-25+45*0, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
-button_0.bind("<Button-1>", on_button_0_press)
+button_0.bind("<ButtonPress>", on_button_0_press)
+button_0.bind("<ButtonRelease>", on_button_0_release)
 
 # playlist button #1
-button_1 = tk.Button(root, text="1")
+button_image1 = Image.open(pathImages + "/button1.png")
+button_image1_resized = button_image1.resize((35,35), Image.Resampling.LANCZOS)
+tk_image1 = ImageTk.PhotoImage(button_image1_resized)
+button_1 = tk.Button(root, image=tk_image1)
 button_1.place(x=155-25+45*1, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
-button_1.bind("<Button-1>", on_button_1_press)
+button_1.bind("<ButtonPress>", on_button_1_press)
+button_1.bind("<ButtonRelease>", on_button_1_release)
+
 
 # playlist button #2
-button_2 = tk.Button(root, text="2")
+button_image2 = Image.open(pathImages + "/button2.png")
+button_image2_resized = button_image2.resize((35,35), Image.Resampling.LANCZOS)
+tk_image2 = ImageTk.PhotoImage(button_image2_resized)
+button_2 = tk.Button(root, image=tk_image2)
 button_2.place(x=155-25+45*2, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_2.bind("<Button-1>", on_button_2_press)
 
 # playlist button #3
-button_3 = tk.Button(root, text="3")
+button_image3 = Image.open(pathImages + "/button3.png")
+button_image3_resized = button_image3.resize((35,35), Image.Resampling.LANCZOS)
+tk_image3 = ImageTk.PhotoImage(button_image3_resized)
+button_3 = tk.Button(root, image=tk_image3)
 button_3.place(x=155-25+45*3, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_3.bind("<Button-1>", on_button_3_press)
 
 # playlist button #4
-button_4 = tk.Button(root, text="4")
+button_image4 = Image.open(pathImages + "/button4.png")
+button_image4_resized = button_image4.resize((35,35), Image.Resampling.LANCZOS)
+tk_image4 = ImageTk.PhotoImage(button_image4_resized)
+button_4 = tk.Button(root, image=tk_image4)
 button_4.place(x=155-25+45*4, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_4.bind("<Button-1>", on_button_4_press)
 
 # playlist button #5
-button_5 = tk.Button(root, text="5")
+button_image5 = Image.open(pathImages + "/button5.png")
+button_image5_resized = button_image5.resize((35,35), Image.Resampling.LANCZOS)
+tk_image5 = ImageTk.PhotoImage(button_image5_resized)
+button_5 = tk.Button(root, image=tk_image5)
 button_5.place(x=155-25+45*5, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_5.bind("<Button-1>", on_button_5_press)
 
 # playlist button #6
-button_6 = tk.Button(root, text="6")
+button_image6 = Image.open(pathImages + "/button6.png")
+button_image6_resized = button_image6.resize((35,35), Image.Resampling.LANCZOS)
+tk_image6 = ImageTk.PhotoImage(button_image6_resized)
+button_6 = tk.Button(root, image=tk_image6)
 button_6.place(x=155-25+45*6, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_6.bind("<Button-1>", on_button_6_press)
 
 # playlist button #7
-button_7 = tk.Button(root, text="7")
+button_image7 = Image.open(pathImages + "/button7.png")
+button_image7_resized = button_image7.resize((35,35), Image.Resampling.LANCZOS)
+tk_image7 = ImageTk.PhotoImage(button_image7_resized)
+button_7 = tk.Button(root, image=tk_image7)
 button_7.place(x=155-25+45*7, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_7.bind("<Button-1>", on_button_7_press)
 
 # playlist button #8
-button_8 = tk.Button(root, text="8")
+button_image8 = Image.open(pathImages + "/button8.png")
+button_image8_resized = button_image8.resize((35,35), Image.Resampling.LANCZOS)
+tk_image8 = ImageTk.PhotoImage(button_image8_resized)
+button_8 = tk.Button(root, image=tk_image8)
 button_8.place(x=155-25+45*8, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_8.bind("<Button-1>", on_button_8_press)
 
 # playlist button #9
-button_9 = tk.Button(root, text="9")
+button_image9 = Image.open(pathImages + "/button9.png")
+button_image9_resized = button_image9.resize((35,35), Image.Resampling.LANCZOS)
+tk_image9 = ImageTk.PhotoImage(button_image9_resized)
+button_9 = tk.Button(root, image=tk_image9)
 button_9.place(x=155-25+45*9, y=55-25+28, width=40, height=40)
-# Bind the <Button-1> event (left mouse button click) to the function
 button_9.bind("<Button-1>", on_button_9_press)
 
 

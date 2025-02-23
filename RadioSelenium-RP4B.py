@@ -1348,7 +1348,7 @@ def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     time.sleep(1)
-    buttons[i].config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     print("Button " + str(i) +" pressed")
     global buttonFlag;  buttonFlag = True

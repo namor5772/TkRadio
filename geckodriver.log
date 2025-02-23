@@ -5012,3 +5012,676 @@ console.error: RemoteSecuritySettings:
   Failed to download attachment: [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
 console.error: RemoteSecuritySettings: 
   Failed to download attachment: [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+1740277506684	geckodriver	INFO	Listening on 127.0.0.1:33171
+1740277506790	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "45847" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilepb1mjI"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740277509344	Marionette	INFO	Marionette enabled
+1740277509812	Marionette	INFO	Listening on port 36919
+WebDriver BiDi listening on ws://127.0.0.1:45847
+Read port: 36919
+1740277510502	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 5738 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5095: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5095 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 4425: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 4425 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js, line 13: Script terminated by timeout at:
+C@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:13:325
+h@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:93:449
+
+1740283958855	geckodriver	INFO	Listening on 127.0.0.1:46185
+1740283958987	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "59335" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilen7FXWC"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740283961542	Marionette	INFO	Marionette enabled
+1740283962017	Marionette	INFO	Listening on port 42707
+WebDriver BiDi listening on ws://127.0.0.1:59335
+Read port: 42707
+1740283962680	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 1873 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1071715267, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1071715267:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1071715267:451:37
+
+JavaScript warning: https://www.iheart.com/live/hope-1032-6314/, line 27: Script terminated by timeout at:
+p@https://www.iheart.com/live/hope-1032-6314/:27:10552
+S/<@https://www.iheart.com/live/hope-1032-6314/:27:34587
+
+1740284070569	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 4492 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/hope-1032-6314/, line 27: Script terminated by timeout at:
+p@https://www.iheart.com/live/hope-1032-6314/:27:10552
+S/<@https://www.iheart.com/live/hope-1032-6314/:27:34587
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1781564683, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1781564683:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1781564683:451:37
+
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 4639 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Script terminated by timeout at:
+86190/t.useCallback@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:286274
+m@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:204656
+Xi@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202064
+Ua@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:210911
+ku@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:249241
+El@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240808
+xl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240731
+hl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:237764
+24688/Yo/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189478
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Yo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189425
+Go@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189358
+sl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:234534
+ba@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:206410
+15453/W</n<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:95531
+_triggerEvents@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:740
+trigger@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:2003
+21551/y.prototype.setPlayingState@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:8511
+_next@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:81048
+nrWrapper@https://www.iheart.com/live/hope-1032-6314/:27:17734
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1224056301, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1224056301:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1224056301:451:37
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js, line 16: Script terminated by timeout at:
+t@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:49945
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 2882 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Script terminated by timeout at:
+a@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:11864
+a@https://www.iheart.com/v8.61.0/9a1d26a/bundles/5940.www.js:1:9830
+Xi@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202064
+Ua@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:210911
+ku@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:249241
+El@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240808
+xl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240731
+hl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:237764
+24688/Yo/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189478
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Yo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189425
+Go@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189358
+sl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:234534
+ba@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:206410
+15453/W</n<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:95531
+_triggerEvents@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:858
+trigger@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:2003
+changeTrack@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:94473
+_next@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:81681
+nrWrapper@https://www.iheart.com/live/hope-1032-6314/:27:17734
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1314181623, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1314181623:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1314181623:451:37
+
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 1984 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+1740284464216	Marionette	INFO	Stopped listening on port 42707
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740284490606	geckodriver	INFO	Listening on 127.0.0.1:58705
+1740284491254	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "57671" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZY7pzC"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740284493990	Marionette	INFO	Marionette enabled
+1740284494466	Marionette	INFO	Listening on port 46801
+WebDriver BiDi listening on ws://127.0.0.1:57671
+Read port: 46801
+1740284495128	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 314 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://js-agent.newrelic.com/nr-spa-1.283.2.min.js, line 2: Script terminated by timeout at:
+1847/Q/<@https://js-agent.newrelic.com/nr-spa-1.283.2.min.js:2:75720
+emit@https://www.iheart.com/live/hope-1032-6314/:27:9593
+i@https://www.iheart.com/live/hope-1032-6314/:27:17867
+nrWrapper@https://www.iheart.com/live/hope-1032-6314/:27:17695
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140, line 98: Script terminated by timeout at:
+Of@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:98:5
+sD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:449:40
+yD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:455:65
+wD.prototype.sendBeacon@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:456:48
+wD.prototype.j@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:454:167
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_108703140:451:327
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 2213 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+1740284725363	Marionette	INFO	Stopped listening on port 46801
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740284780912	geckodriver	INFO	Listening on 127.0.0.1:35003
+1740284781024	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "38343" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2aCApH"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740284783589	Marionette	INFO	Marionette enabled
+1740284784069	Marionette	INFO	Listening on port 45841
+WebDriver BiDi listening on ws://127.0.0.1:38343
+Read port: 45841
+1740284784751	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://static.chartbeat.com/js/chartbeat.js, line 32: Script terminated by timeout at:
+L.create@https://static.chartbeat.com/js/chartbeat.js:32:271
+n.create@https://static.chartbeat.com/js/chartbeat.js:33:543
+n.update@https://static.chartbeat.com/js/chartbeat.js:34:287
+X.prototype.ya@https://static.chartbeat.com/js/chartbeat.js:62:34
+r/<@https://static.chartbeat.com/js/chartbeat.js:8:431
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 1244 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360, line 97: Script terminated by timeout at:
+Of@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:97:852
+sD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:449:40
+yD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:455:65
+wD.prototype.sendBeacon@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:456:48
+wD.prototype.j@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:454:167
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_151892360:451:327
+
+1740285035755	Marionette	INFO	Stopped listening on port 45841
+JavaScript warning: https://www.iheart.com/live/the-bounce-6327/, line 27: Script terminated by timeout at:
+nrWrapper@https://www.iheart.com/live/the-bounce-6327/:27:17584
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740285058366	geckodriver	INFO	Listening on 127.0.0.1:41117
+1740285058540	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "50271" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileuyKEP2"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740285061252	Marionette	INFO	Marionette enabled
+1740285061765	Marionette	INFO	Listening on port 44919
+WebDriver BiDi listening on ws://127.0.0.1:50271
+Read port: 44919
+1740285062428	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtm.js?id=GTM-NZ6NQM6F, line 693: Script terminated by timeout at:
+d@https://www.googletagmanager.com/gtm.js?id=GTM-NZ6NQM6F:693:49
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13968, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:50064
+53534/l5/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:89563
+53534/sW/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:49902
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43008
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13968, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13968, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+1740285713599	Marionette	INFO	Stopped listening on port 44919
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/IyZ984yGrXrBd6ihLOYGwy9X/recaptcha__en.js, line 1109: Script terminated by timeout at:
+qn.prototype.dM@https://www.gstatic.com/recaptcha/releases/IyZ984yGrXrBd6ihLOYGwy9X/recaptcha__en.js:1109:332
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740285741987	geckodriver	INFO	Listening on 127.0.0.1:36245
+1740285742141	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "47749" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile6UdbVm"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740285745090	Marionette	INFO	Marionette enabled
+1740285745572	Marionette	INFO	Listening on port 44601
+WebDriver BiDi listening on ws://127.0.0.1:47749
+Read port: 44601
+1740285745885	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13606, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+1740286003207	Marionette	INFO	Stopped listening on port 44601
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 258: Script terminated by timeout at:
+297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740286056732	geckodriver	INFO	Listening on 127.0.0.1:38779
+1740286057376	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "52103" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilezSFgCZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740286059989	Marionette	INFO	Marionette enabled
+1740286060457	Marionette	INFO	Listening on port 42561
+Read port: 42561
+WebDriver BiDi listening on ws://127.0.0.1:52103
+1740286060740	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js, line 16: Script terminated by timeout at:
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45389
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45320
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45438
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45438
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45320
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45438
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45320
+e@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:45438
+66925/n/ed<@https://www.abc.net.au/_next/static/chunks/4941-9798631c77814efa.js:16:49003
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13737, line 264: unreachable code after return statement
+JavaScript warning: https://static.chartbeat.com/js/chartbeat.js, line 12: Script terminated by timeout at:
+p@https://static.chartbeat.com/js/chartbeat.js:12:333
+L.q@https://static.chartbeat.com/js/chartbeat.js:31:565
+n.q@https://static.chartbeat.com/js/chartbeat.js:35:94
+n.update@https://static.chartbeat.com/js/chartbeat.js:34:74
+X.prototype.ya@https://static.chartbeat.com/js/chartbeat.js:62:34
+r/<@https://static.chartbeat.com/js/chartbeat.js:8:431
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+close@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:70596
+closeActive@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:70896
+i@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:159149
+53534/fo</a<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:158978
+53534/sW/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:49902
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43008
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13757, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/sY/</n<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:51560
+53534/sY/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:51780
+sY@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:51003
+53534/s5/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:52845
+sc@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:43062
+s5@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:52825
+s@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:58885
+297/i/./src/utils/xhr-loader.ts/e.loadInternal@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:366:1923
+297/i/./src/utils/xhr-loader.ts/e.load@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:366:1231
+297/i/./src/loader/playlist-loader.ts/e.load@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:234:3982
+297/i/./src/loader/playlist-loader.ts/e.onLevelLoading@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:234:2055
+297/i/./node_modules/eventemitter3/index.js/u.prototype.emit@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:14:1847
+297/i/./src/hls.ts/y.emit@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:198:3420
+297/i/./src/hls.ts/y.trigger@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:198:3518
+297/i/./src/controller/level-controller.ts/m.loadPlaylist@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:90:6858
+297/i/./src/controller/base-playlist-controller.ts/e.playlistLoaded/this.timer<@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:42:2961
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 6771 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/gold1017-6186/, line 38: Script terminated by timeout at:
+n@https://www.iheart.com/live/gold1017-6186/:38:12255
+S/<@https://www.iheart.com/live/gold1017-6186/:38:34614
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_2100145382, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_2100145382:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_2100145382:451:37
+
+1740286375150	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 4254 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/, line 27: Script terminated by timeout at:
+S/<@https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/:27:34591
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_289719803, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_289719803:11:367
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_289719803:451:37
+
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 5849 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://www.iheart.com/live/iheartcountry-australia-7222/, line 30: Script terminated by timeout at:
+n@https://www.iheart.com/live/iheartcountry-australia-7222/:30:12255
+S/<@https://www.iheart.com/live/iheartcountry-australia-7222/:30:34614
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924, line 97: Script terminated by timeout at:
+Of@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:97:852
+sD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:449:40
+yD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:455:65
+wD.prototype.sendBeacon@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:456:48
+wD.prototype.j@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:454:167
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_30809924:451:327
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13725, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+1740286649860	Marionette	INFO	Stopped listening on port 42561
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 258: Script terminated by timeout at:
+297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740286661526	geckodriver	INFO	Listening on 127.0.0.1:55145
+1740286662128	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "45317" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileoaBfL0"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740286664661	Marionette	INFO	Marionette enabled
+1740286665148	Marionette	INFO	Listening on port 43657
+WebDriver BiDi listening on ws://127.0.0.1:45317
+Read port: 43657
+1740286665804	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13962, line 264: unreachable code after return statement
+1740287007226	Marionette	INFO	Stopped listening on port 43657
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1740287018597	geckodriver	INFO	Listening on 127.0.0.1:44131
+1740287018740	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ss" "--remote-debugging-port" "34485" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileR5M1K6"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+[GFX1-]: glxtest: DRM render node not clearly detectable. Falling back to using the only one that was found.
+1740287021631	Marionette	INFO	Marionette enabled
+1740287022115	Marionette	INFO	Listening on port 43785
+Read port: 43785
+WebDriver BiDi listening on ws://127.0.0.1:34485
+1740287022422	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js, line 24: Script terminated by timeout at:
+53534/ss/<@https://www.abc.net.au/_next/static/chunks/pages/_app-5876784bcc5b7eb9.js:24:42998
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 3163 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://imasdk.googleapis.com/js/sdkloader/ima3.js, line 145: Script terminated by timeout at:
+vl/this.U@https://imasdk.googleapis.com/js/sdkloader/ima3.js:145:37
+nrWrapper@https://www.iheart.com/live/iheartcountry-australia-7222/:30:17734
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1662742114, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1662742114:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1662742114:451:37
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+1740287176245	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 6254 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval, line 5394: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/YMTlHzM8q1bMRhxKXzNyNRDu_s2b7jhLqEN0fMSFM0U.js line 2 > eval line 5394 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js, line 2: Script terminated by timeout at:
+r@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:353807
+e@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:335901
+o@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:353232
+s@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:79110
+d@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:79826
+Bn@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:51608
+Xi@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:202064
+Ua@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:210911
+ku@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:249241
+El@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240808
+xl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:240731
+hl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:237764
+24688/Yo/<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189478
+86171/t.unstable_runWithPriority@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:307497
+Vo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189187
+Yo@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189425
+Go@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:189358
+sl@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:234534
+ba@https://www.iheart.com/v8.61.0/9a1d26a/bundles/4817.www.js:2:206410
+15453/W</n<@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:95531
+_triggerEvents@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:858
+trigger@https://www.iheart.com/v8.61.0/9a1d26a/bundles/7277.www.js:1:2003
+changeTrack@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:94473
+_next@https://www.iheart.com/v8.61.0/9a1d26a/bundles/entry.www.js:1:81681
+nrWrapper@https://www.iheart.com/live/hope-1032-6314/:27:17734
+
+JavaScript warning: https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js, line 48: Script terminated by timeout at:
+Va@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:534
+Xa@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:49:304
+Ua.prototype.flush@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:49:127
+Wa@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:483
+hh/c/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:131:292
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+pg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:515
+Sa.prototype.Tb/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:315
+pg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:524
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+pg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:515
+Sa.prototype.Tb/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:315
+pg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:524
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+h@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:93:477
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573, line 98: Script terminated by timeout at:
+Of@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:98:5
+sD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:449:40
+yD@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:455:65
+wD.prototype.sendBeacon@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:456:48
+wD.prototype.j@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:454:167
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_1759304573:451:327
+
+JavaScript error: chrome://browser/content/browser.js, line 3134: NS_ERROR_XPC_GS_RETURNED_FAILURE: ServiceManager::GetService returned failure code:
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 3422 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://js-agent.newrelic.com/nr-spa-1.283.2.min.js, line 2: Script terminated by timeout at:
+5999/addTiming/<@https://js-agent.newrelic.com/nr-spa-1.283.2.min.js:2:40137
+addTiming@https://js-agent.newrelic.com/nr-spa-1.283.2.min.js:2:40139
+5999/w/<@https://js-agent.newrelic.com/nr-spa-1.283.2.min.js:2:39346
+emit@https://www.iheart.com/live/iheartcountry-australia-7222/:30:9593
+i@https://www.iheart.com/live/iheartcountry-australia-7222/:30:10630
+S/<@https://www.iheart.com/live/iheartcountry-australia-7222/:30:34591
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2"
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js, line 10: Script terminated by timeout at:
+E@https://ssl.p.jwpcdn.com/player/v/8.7.6/jwplayer.core.controls.html5.js:10:42023
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_206646819, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_206646819:11:289
+wD/this.U@https://imasdk.googleapis.com/js/core/bridge3.687.1_en.html#fid=goog_206646819:451:37
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval, line 1: Script terminated by timeout at:
+kR@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval:1:53
+v@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval:1:88
+@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval:1:26
+JT@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval:1:195
+Vj@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval line 274 > eval line 1 > eval line 1 > eval:1:49
+Z.F</<@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:53073
+pa@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:23900
+Q@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:14078
+S@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:451
+Q/<@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:14623
+zk</<@https://pagead2.googlesyndication.com/bg/sdrlLtlXz6tyZoQC0nabp5KIr-Vpt2sqR-5Uea_adQ8.js line 2 > eval:274:49192
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13607, line 264: unreachable code after return statement
+1740287442134	Marionette	INFO	Stopped listening on port 43785
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 258: Script terminated by timeout at:
+297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment

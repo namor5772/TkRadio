@@ -1157,15 +1157,6 @@ def after_GUI_started():
 
 # do this when closing the window/app
 def on_closing():
-    # save number of last playlist that was played (0,...,9), ie buttonIndex.
-    with open(filepath, 'w') as file:
-        file.write(str(buttonIndex))
-
-    # save the playlist to file
-    with open(filepath2, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(aStation2)
-
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
@@ -1184,14 +1175,6 @@ def on_select(event):
     print(text)
     text_rows = text.split("*")
 
-    # hide the annoying blinking that appears on selecting a station
-    # via the combobox though the fudge of tabing far enough out of it
-    combobox.set(fullStationName)
-    root.event_generate('<Tab>')
-    root.event_generate('<Tab>')
-    root.event_generate('<Tab>')
-    root.update_idletasks()
-
     # Make text box editable, so contents can be deleted and rewritten
     text_box.config(state=tk.NORMAL)
     text_box.delete('1.0', tk.END)
@@ -1201,6 +1184,14 @@ def on_select(event):
         text_box.insert(tk.END, row + "\n")
     # Disable the text box to make it read-only
     text_box.config(state=tk.DISABLED)
+
+    # hide the annoying blinking cursor though the fudge
+    # of selective focus setting
+    #combobox.set(fullStationName)
+    combobox.focus_set()
+    combobox.selection_clear()
+    buttons[buttonIndex].focus_set()
+    root.update_idletasks()
     print("")
 
 
@@ -1222,14 +1213,6 @@ def on_select2(event):
         print(text)
         text_rows = text.split("*")
 
-        # make seletedd button synchronize with combobox
-        # hide the annoying blinking cursor though the fudge
-        # of tabing far enough out of it
-        combobox.set(fullStationName)
-        root.event_generate('<Tab>')
-        root.event_generate('<Tab>')
-        root.update_idletasks()
-
         # Make text box editable, so contents can be deleted and rewritten
         text_box.config(state=tk.NORMAL)
         text_box.delete('1.0', tk.END)
@@ -1239,8 +1222,17 @@ def on_select2(event):
         for row in text_rows:
             text_box.insert(tk.END, row + "\n")
 
+        # make seleted button synchronize with combobox
+        # hide the annoying blinking cursor though the fudge
+        # of selective focus setting
+        combobox.set(fullStationName)
+        combobox.focus_set()
+        combobox.selection_clear()
+        buttons[buttonIndex].focus_set()
+        
         # Disable the text box to make it read-only
         text_box.config(state=tk.DISABLED)
+        root.update_idletasks()
     else:
         # There is nothing to stream
         browser.get(refresh_http)
@@ -1272,6 +1264,10 @@ def on_select2(event):
         label2.config(image=photo2)
         label2.image = photo2  # Keep a reference to avoid garbage collection
         label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+
+    # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
+    with open(filepath, 'w') as file:
+        file.write(str(buttonIndex))
     print("")
 
 
@@ -1302,7 +1298,14 @@ def on_button_Add_press(evente):
         photo = ImageTk.PhotoImage(image_resized)
         buttons[buttonIndex].config(image=photo)
         buttons[buttonIndex].image = photo
-        buttons[buttonIndex].update_idletasks() 
+        buttons[buttonIndex].update_idletasks()
+
+        # save the playlist to file
+        with open(filepath2, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(aStation2)
+
+
     else:
         print("No station added")    
     print("")
@@ -1339,6 +1342,11 @@ def on_button_Del_press(event):
         buttons[buttonIndex].config(image=photo)
         buttons[buttonIndex].image = photo
         buttons[buttonIndex].update_idletasks() 
+
+        # save the playlist to file
+        with open(filepath2, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(aStation2)
     else:
         print("No station to delete")    
     print("")
@@ -1373,7 +1381,9 @@ for element in aStation:
     aStringArray.append(element[0])
 combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
 combobox.place(x=130, y=2)  # Adjust the position
-combobox.bind("<<ComboboxSelected>>", on_select) 
+combobox.bind("<<ComboboxSelected>>", on_select)
+combobox.config(state="readonly")
+
 
 
 

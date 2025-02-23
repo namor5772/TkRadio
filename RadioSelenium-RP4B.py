@@ -1376,6 +1376,7 @@ combobox.place(x=130, y=2)  # Adjust the position
 combobox.bind("<<ComboboxSelected>>", on_select) 
 
 
+
 # Populate if possible the playlist array aStation2 from file saved at shutdown
 try:
     with open(filepath2, 'r') as file:
@@ -1404,12 +1405,12 @@ label2.pack()
 
 # Create button used for adding radio station to playlist
 button_Add = tk.Button(root, text="Add")
-button_Add.place(x=400-25-15, y=2, width=40, height=20)
+button_Add.place(x=400-25-15+50, y=2, width=40, height=20)
 button_Add.bind("<ButtonPress>", on_button_Add_press)
     
 # Create button used for deleting radio station from playlist
 button_Del = tk.Button(root, text="Del")
-button_Del.place(x=450-25-15, y=2, width=40, height=20)
+button_Del.place(x=450-25-15+50, y=2, width=40, height=20)
 button_Del.bind("<ButtonPress>", on_button_Del_press)
 
 # Create the buttons (fully) and add them to the list

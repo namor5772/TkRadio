@@ -50,9 +50,9 @@ Xgap = 450; Xgap2 = 202; Xgap3 = 345
 
 # global variables for combobox selection indexes & button related
 combobox_index = -1
-combobox2_index = -1
+buttonIndex = -1
 buttonFlag = False
-buttonIndex = -1 # really a substitute for combobox2_index 
+buttonIndex = -1 # really a substitute for buttonIndex 
 addFlag = False
 
 
@@ -86,7 +86,7 @@ def Radio1(br,Num,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -181,7 +181,7 @@ def Radio2(br,Num,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -259,7 +259,7 @@ def Radio3(br,Num,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -353,7 +353,7 @@ def Radio4(br,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -443,7 +443,7 @@ def Radio5(br,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -517,7 +517,7 @@ def Radio6(br,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -609,7 +609,7 @@ def Radio7(br,Num,sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -729,7 +729,7 @@ def iHeart(br, sPath):
     # saving button icon
     global addFlag
     if addFlag:
-        buttonImagePath = pathImages + "/button" + str(combobox2_index) + ".png"
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
         scaled_image.save(buttonImagePath)
         addFlag = False
         print(f"saving button icon {buttonImagePath}")
@@ -1201,11 +1201,11 @@ def on_select(event):
 # do this when a radio station is selected in combobox2
 def on_select2(event):
     global buttonFlag
-    global combobox2_index
+    global buttonIndex
     if not buttonFlag:
         selected_value = combobox2.get()
         selected_index = combobox2.current()
-        combobox2_index = selected_index # save for use with adding or deleting station from playlist
+        buttonIndex = selected_index # save for use with adding or deleting station from playlist
         selected_index = int(aStation2[selected_index][1])
     else:
         print("buttonFlag True")

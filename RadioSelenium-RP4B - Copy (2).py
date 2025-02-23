@@ -1133,10 +1133,18 @@ aStation = [
 
 # 2D an array of preset radio stations, in long name and index (to aStation[]) format
 # this is the default, but is actually copied from file at statup and saved to file on exit!
-aStation2 = []
-for i in range(numButtons):
-    station = ["-- EMPTY " + str(i) +" --", -1]
-    aStation2.append(station)
+aStation2 = [
+    ["-- EMPTY 0 --",-1],
+    ["-- EMPTY 1 --",-1],
+    ["-- EMPTY 2 --",-1],
+    ["-- EMPTY 3 --",-1],
+    ["-- EMPTY 4 --",-1],
+    ["-- EMPTY 5 --",-1],
+    ["-- EMPTY 6 --",-1],
+    ["-- EMPTY 7 --",-1],
+    ["-- EMPTY 8 --",-1],
+    ["-- EMPTY 9 --",-1]
+]
 
 
 def after_GUI_started():
@@ -1183,15 +1191,6 @@ def on_select(event):
     text = fullStationName + "*" + text
     print(text)
     text_rows = text.split("*")
-
-    # hide the annoying blinking that appears on selecting a station
-    # via the combobox though the fudge of tabing far enough out of it
-    combobox.set(fullStationName)
-    root.event_generate('<Tab>')
-    root.event_generate('<Tab>')
-    root.event_generate('<Tab>')
-    root.update_idletasks()
-
     # Make text box editable, so contents can be deleted and rewritten
     text_box.config(state=tk.NORMAL)
     text_box.delete('1.0', tk.END)
@@ -1221,14 +1220,6 @@ def on_select2(event):
         text = fullStationName + "*" + text
         print(text)
         text_rows = text.split("*")
-
-        # make seletedd button synchronize with combobox
-        # hide the annoying blinking cursor though the fudge
-        # of tabing far enough out of it
-        combobox.set(fullStationName)
-        root.event_generate('<Tab>')
-        root.event_generate('<Tab>')
-        root.update_idletasks()
 
         # Make text box editable, so contents can be deleted and rewritten
         text_box.config(state=tk.NORMAL)
@@ -1303,6 +1294,65 @@ def on_button_Add_press(evente):
         buttons[buttonIndex].config(image=photo)
         buttons[buttonIndex].image = photo
         buttons[buttonIndex].update_idletasks() 
+
+        # now need to update the icon on the buttonIndex button
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+        image = Image.open(buttonImagePath)
+        image_resized = image.resize((35,35), Image.Resampling.LANCZOS)
+        photo = ImageTk.PhotoImage(image_resized)
+        match buttonIndex:
+            case 0:
+                print("case 0")
+                button_0.config(image=photo)
+                button_0.image = photo
+                button_0.update_idletasks() 
+            case 1:
+                print("case 1")
+                button_1.config(image=photo)
+                button_1.image = photo
+                button_1.update_idletasks()
+            case 2:
+                print("case 2")
+                button_2.config(image=photo)
+                button_2.image = photo
+                button_2.update_idletasks()
+            case 3:
+                print("case 3")
+                button_3.config(image=photo)
+                button_3.image = photo
+                button_3.update_idletasks()
+            case 4:
+                print("case 4")
+                button_4.config(image=photo)
+                button_4.image = photo
+                button_4.update_idletasks()
+            case 5:
+                print("case 5")
+                button_5.config(image=photo)
+                button_5.image = photo
+                button_5.update_idletasks()
+            case 6:
+                print("case 6")
+                button_6.config(image=photo)
+                button_6.image = photo
+                button_6.update_idletasks()
+            case 7:
+                print("case 7")
+                button_7.config(image=photo)
+                button_7.image = photo
+                button_7.update_idletasks()
+            case 8:
+                print("case 8")
+                button_8.config(image=photo)
+                button_8.image = photo
+                button_8.update_idletasks()
+            case 9:
+                print("case 9")
+                button_9.config(image=photo)
+                button_9.image = photo
+                button_9.update_idletasks()
+            case _:
+                print("case _")
     else:
         print("No station added")    
     print("")
@@ -1339,10 +1389,66 @@ def on_button_Del_press(event):
         buttons[buttonIndex].config(image=photo)
         buttons[buttonIndex].image = photo
         buttons[buttonIndex].update_idletasks() 
+
+        # now need to update the icon on the buttonIndex button
+        image_resized = image.resize((35,35), Image.Resampling.LANCZOS)
+        photo = ImageTk.PhotoImage(image_resized)
+        match buttonIndex:
+            case 0:
+                print("case 0")
+                button_0.config(image=photo)
+                button_0.image = photo
+                button_0.update_idletasks() 
+            case 1:
+                print("case 1")
+                button_1.config(image=photo)
+                button_1.image = photo
+                button_1.update_idletasks()
+            case 2:
+                print("case 2")
+                button_2.config(image=photo)
+                button_2.image = photo
+                button_2.update_idletasks()
+            case 3:
+                print("case 3")
+                button_3.config(image=photo)
+                button_3.image = photo
+                button_3.update_idletasks()
+            case 4:
+                print("case 4")
+                button_4.config(image=photo)
+                button_4.image = photo
+                button_4.update_idletasks()
+            case 5:
+                print("case 5")
+                button_5.config(image=photo)
+                button_5.image = photo
+                button_5.update_idletasks()
+            case 6:
+                print("case 6")
+                button_6.config(image=photo)
+                button_6.image = photo
+                button_6.update_idletasks()
+            case 7:
+                print("case 7")
+                button_7.config(image=photo)
+                button_7.image = photo
+                button_7.update_idletasks()
+            case 8:
+                print("case 8")
+                button_8.config(image=photo)
+                button_8.image = photo
+                button_8.update_idletasks()
+            case 9:
+                print("case 9")
+                button_9.config(image=photo)
+                button_9.image = photo
+                button_9.update_idletasks()
+            case _:
+                print("case _")
     else:
         print("No station to delete")    
     print("")
-
 
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
@@ -1353,6 +1459,117 @@ def on_button_press(event, i):
     print("Button " + str(i) +" pressed")
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
+    on_select2(None)    
+
+
+def on_button_0_press(event):
+    button_0.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_0.update_idletasks()  # Force update
+    time.sleep(1)
+    button_0.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_0.update_idletasks()  # Force update
+    print("Button 0 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 0
+    on_select2(None)    
+
+def on_button_1_press(event):
+    button_1.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_1.update_idletasks()  # Force update
+    time.sleep(1)
+    button_1.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_1.update_idletasks()  # Force update
+    print("Button 1 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 1
+    on_select2(None)    
+
+def on_button_2_press(event):
+    button_2.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_2.update_idletasks()  # Force update
+    time.sleep(1)
+    button_2.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_2.update_idletasks()  # Force update
+    print("Button 2 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 2
+    on_select2(None)    
+
+def on_button_3_press(event):
+    button_3.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_3.update_idletasks()  # Force update
+    time.sleep(1)
+    button_3.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_3.update_idletasks()  # Force update
+    print("Button 3 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 3
+    on_select2(None)    
+
+def on_button_4_press(event):
+    button_4.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_4.update_idletasks()  # Force update
+    time.sleep(1)
+    button_4.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_4.update_idletasks()  # Force update
+    print("Button 4 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 4
+    on_select2(None)    
+
+def on_button_5_press(event):
+    button_5.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_5.update_idletasks()  # Force update
+    time.sleep(1)
+    button_5.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_5.update_idletasks()  # Force update
+    print("Button 5 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 5
+    on_select2(None)    
+
+def on_button_6_press(event):
+    button_6.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_6.update_idletasks()  # Force update
+    time.sleep(1)
+    button_6.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_6.update_idletasks()  # Force update
+    print("Button 6 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 6
+    on_select2(None)    
+
+def on_button_7_press(event):
+    button_7.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_7.update_idletasks()  # Force update
+    time.sleep(1)
+    button_7.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_7.update_idletasks()  # Force update
+    print("Button 7 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 7
+    on_select2(None)    
+
+def on_button_8_press(event):
+    button_8.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_8.update_idletasks()  # Force update
+    time.sleep(1)
+    button_8.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_8.update_idletasks()  # Force update
+    print("Button 8 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 8
+    on_select2(None)    
+
+def on_button_9_press(event):
+    button_9.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_9.update_idletasks()  # Force update
+    time.sleep(1)
+    button_9.config(relief="raised", bg="SystemButtonFace")  # Simulate button press
+    button_9.update_idletasks()  # Force update
+    print("Button 9 pressed")
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = 9
     on_select2(None)    
 
 
@@ -1412,11 +1629,92 @@ button_Del = tk.Button(root, text="Del")
 button_Del.place(x=450-25-15, y=2, width=40, height=20)
 button_Del.bind("<ButtonPress>", on_button_Del_press)
 
+
+# Create playlist button #0
+button_image0 = Image.open(pathImages + "/button0.png")
+button_image0_resized = button_image0.resize((35,35), Image.Resampling.LANCZOS)
+tk_image0 = ImageTk.PhotoImage(button_image0_resized)
+button_0 = tk.Button(root, image=tk_image0)
+button_0.place(x=155-25+45*0, y=55-25+28, width=40, height=40)
+button_0.bind("<ButtonPress>", on_button_0_press)
+
+# Create playlist button #1
+button_image1 = Image.open(pathImages + "/button1.png")
+button_image1_resized = button_image1.resize((35,35), Image.Resampling.LANCZOS)
+tk_image1 = ImageTk.PhotoImage(button_image1_resized)
+button_1 = tk.Button(root, image=tk_image1)
+button_1.place(x=155-25+45*1, y=55-25+28, width=40, height=40)
+button_1.bind("<ButtonPress>", on_button_1_press)
+
+# Create playlist button #2
+button_image2 = Image.open(pathImages + "/button2.png")
+button_image2_resized = button_image2.resize((35,35), Image.Resampling.LANCZOS)
+tk_image2 = ImageTk.PhotoImage(button_image2_resized)
+button_2 = tk.Button(root, image=tk_image2)
+button_2.place(x=155-25+45*2, y=55-25+28, width=40, height=40)
+button_2.bind("<ButtonPress>", on_button_2_press)
+
+# playlist button #3
+button_image3 = Image.open(pathImages + "/button3.png")
+button_image3_resized = button_image3.resize((35,35), Image.Resampling.LANCZOS)
+tk_image3 = ImageTk.PhotoImage(button_image3_resized)
+button_3 = tk.Button(root, image=tk_image3)
+button_3.place(x=155-25+45*3, y=55-25+28, width=40, height=40)
+button_3.bind("<ButtonPress>", on_button_3_press)
+
+# playlist button #4
+button_image4 = Image.open(pathImages + "/button4.png")
+button_image4_resized = button_image4.resize((35,35), Image.Resampling.LANCZOS)
+tk_image4 = ImageTk.PhotoImage(button_image4_resized)
+button_4 = tk.Button(root, image=tk_image4)
+button_4.place(x=155-25+45*4, y=55-25+28, width=40, height=40)
+button_4.bind("<ButtonPress>", on_button_4_press)
+
+# playlist button #5
+button_image5 = Image.open(pathImages + "/button5.png")
+button_image5_resized = button_image5.resize((35,35), Image.Resampling.LANCZOS)
+tk_image5 = ImageTk.PhotoImage(button_image5_resized)
+button_5 = tk.Button(root, image=tk_image5)
+button_5.place(x=155-25+45*5, y=55-25+28, width=40, height=40)
+button_5.bind("<ButtonPress>", on_button_5_press)
+
+# playlist button #6
+button_image6 = Image.open(pathImages + "/button6.png")
+button_image6_resized = button_image6.resize((35,35), Image.Resampling.LANCZOS)
+tk_image6 = ImageTk.PhotoImage(button_image6_resized)
+button_6 = tk.Button(root, image=tk_image6)
+button_6.place(x=155-25+45*6, y=55-25+28, width=40, height=40)
+button_6.bind("<ButtonPress>", on_button_6_press)
+
+# playlist button #7
+button_image7 = Image.open(pathImages + "/button7.png")
+button_image7_resized = button_image7.resize((35,35), Image.Resampling.LANCZOS)
+tk_image7 = ImageTk.PhotoImage(button_image7_resized)
+button_7 = tk.Button(root, image=tk_image7)
+button_7.place(x=155-25+45*7, y=55-25+28, width=40, height=40)
+button_7.bind("<ButtonPress>", on_button_7_press)
+
+# playlist button #8
+button_image8 = Image.open(pathImages + "/button8.png")
+button_image8_resized = button_image8.resize((35,35), Image.Resampling.LANCZOS)
+tk_image8 = ImageTk.PhotoImage(button_image8_resized)
+button_8 = tk.Button(root, image=tk_image8)
+button_8.place(x=155-25+45*8, y=55-25+28, width=40, height=40)
+button_8.bind("<ButtonPress>", on_button_8_press)
+
+# playlist button #9
+button_image9 = Image.open(pathImages + "/button9.png")
+button_image9_resized = button_image9.resize((35,35), Image.Resampling.LANCZOS)
+tk_image9 = ImageTk.PhotoImage(button_image9_resized)
+button_9 = tk.Button(root, image=tk_image9)
+button_9.place(x=155-25+45*9, y=55-25+28, width=40, height=40)
+button_9.bind("<ButtonPress>", on_button_9_press)
+
 # Create the buttons (fully) and add them to the list
 buttons = []
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
-    button.place(x=128+(sizeButton+5)*i, y=35, width=sizeButton, height=sizeButton)
+    button.place(x=128+(sizeButton+5)*i, y=30, width=sizeButton, height=sizeButton)
     button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)

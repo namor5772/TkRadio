@@ -1192,7 +1192,7 @@ def on_select(event):
     combobox.selection_clear()
     buttons[buttonIndex].focus_set()
     root.update_idletasks()
-    print("")
+    print("")               
 
 
 # do this when a radio station is selected via playlist buttons
@@ -1273,6 +1273,12 @@ def on_select2(event):
 
 # do this when the Add button is pressed
 def on_button_Add_press(evente):
+    button_Add.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_Add.update_idletasks()  # Force update
+    time.sleep(1)
+    button_Add.config(relief="raised", bg="gray90")  # Simulate button press
+    button_Add.update_idletasks()  # Force update
+
     print("Add button pressed")
     print("From index:", combobox_index)
     print("To index:", buttonIndex)
@@ -1304,8 +1310,6 @@ def on_button_Add_press(evente):
         with open(filepath2, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(aStation2)
-
-
     else:
         print("No station added")    
     print("")
@@ -1313,6 +1317,12 @@ def on_button_Add_press(evente):
 
 # do this when the Del button is pressed
 def on_button_Del_press(event):
+    button_Del.config(relief="sunken", bg="lightgray")  # Simulate button press
+    button_Del.update_idletasks()  # Force update
+    time.sleep(1)
+    button_Del.config(relief="raised", bg="gray90")  # Simulate button press
+    button_Del.update_idletasks()  # Force update
+
     print("Del button pressed")
     # change aStation2[] to reflect the deletion
     global aStation2
@@ -1363,6 +1373,44 @@ def on_button_press(event, i):
     global buttonIndex; buttonIndex = i
     on_select2(None)    
 
+def on_focus(event, i):
+    buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
+    buttons[i].update_idletasks()  # Force update
+    print(f"on focus: {i}")
+
+def on_focus_out(event, i):
+    buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
+    buttons[i].update_idletasks()  # Force update
+    print(f"on focus out: {i}")
+
+def on_focus_combobox(event):
+    combobox.update_idletasks()  # Force update
+    print("on_focus_combobox")
+
+def on_focus_out_combobox(event):
+    combobox.update_idletasks()  # Force update
+    print("on_focus_out_combobox")
+
+
+def on_focus_Add(event):
+    button_Add.config(relief="raised", bg="darkgray")  # Simulate button press
+    button_Add.update_idletasks()  # Force update
+    print("on_focus_Add")
+
+def on_focus_out_Add(event):
+    button_Add.config(relief="raised", bg="gray90")  # Simulate button press
+    button_Add.update_idletasks()  # Force update
+    print("on_focus_out_Add")
+
+def on_focus_Del(event):
+    button_Del.config(relief="raised", bg="darkgray")  # Simulate button press
+    button_Del.update_idletasks()  # Force update
+    print("on_focus_Del")
+
+def on_focus_out_Del(event):
+    button_Del.config(relief="raised", bg="gray90")  # Simulate button press
+    button_Del.update_idletasks()  # Force update
+    print("on_focus_out_Del")
 
 # Create the main window
 root = tk.Tk()
@@ -1381,10 +1429,11 @@ for element in aStation:
     aStringArray.append(element[0])
 combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
 combobox.place(x=130, y=2)  # Adjust the position
+combobox.bind("<FocusIn>", on_focus_combobox)
+combobox.bind("<FocusOut>", on_focus_out_combobox)
+
 combobox.bind("<<ComboboxSelected>>", on_select)
 combobox.config(state="readonly")
-
-
 
 
 # Populate if possible the playlist array aStation2 from file saved at shutdown
@@ -1417,18 +1466,30 @@ label2.pack()
 button_Add = tk.Button(root, text="Add")
 button_Add.place(x=400-25-15+70, y=2, width=40, height=20)
 button_Add.bind("<ButtonPress>", on_button_Add_press)
+button_Add.bind("<Return>", on_button_Add_press)
+button_Add.bind("<FocusIn>", on_focus_Add)
+button_Add.bind("<FocusOut>", on_focus_out_Add)
     
 # Create button used for deleting radio station from playlist
 button_Del = tk.Button(root, text="Del")
 button_Del.place(x=450-25-15+70, y=2, width=40, height=20)
 button_Del.bind("<ButtonPress>", on_button_Del_press)
+button_Del.bind("<Return>", on_button_Del_press)
+button_Del.bind("<FocusIn>", on_focus_Del)
+button_Del.bind("<FocusOut>", on_focus_out_Del)
 
 # Create the buttons (fully) and add them to the list
 buttons = []
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
     button.place(x=128+(sizeButton+5)*i, y=35, width=sizeButton, height=sizeButton)
+    button.config(bg="gray90")
+
     button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
+    button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
+    button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
+    button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
+
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
     photo = ImageTk.PhotoImage(buttonImage_resized)

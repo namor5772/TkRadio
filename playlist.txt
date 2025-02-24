@@ -5,6 +5,6 @@ ABC Classic SA,76
 ABC Classic2,78
 ABC Jazz,79
 ABC triple j Hottest,66
--- EMPTY 7 --,-1
+GOLD101.7,84
+Hope 103.2,101
 Cruise 1323,105
-iHeartCountry Australia,86

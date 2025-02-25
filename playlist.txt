@@ -6,5 +6,5 @@ ABC Classic2,78
 ABC Jazz,79
 ABC triple j Hottest,66
 GOLD101.7,84
-Hope 103.2,101
-Cruise 1323,105
+Vision Christian Radio,110
+smoothfm 95.3 Sydney,117

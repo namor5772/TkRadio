@@ -6,7 +6,12 @@ import urllib.request
 import requests
 import os
 import csv
+import svglib
+import reportlab
 
+
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPM
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
@@ -38,7 +43,7 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -672,37 +677,80 @@ def Radio8(br,sPath):
     return fe2   
 
 
-
-
-def Smooth(br,ix,iy,sPath):
- #   print(inspect.stack()[1].function)
-    br.refresh()
-    br.get(sPath)
-    time.sleep(3)
-    window_size = br.get_window_size()
-    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-    actions = ActionChains(br)
-    actions.move_by_offset(650, 10).click().perform()
-    window_size = br.get_window_size()
+def Smooth(br,sPath):
+    stack = inspect.stack()
+    print("--")
+    station = inspect.stack()[1].function
+    logo = station + ".png"
+    print(logo)
+    print("--")
     
-    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-    time.sleep(1)
-    actions = ActionChains(br)
-    actions.move_by_offset(ix,iy).click().perform()
-    time.sleep(10)
-
-
-
-def Smooth2(br,sPath):
- #   print(inspect.stack()[1].function)
-    br.refresh()
+    br.get(refresh_http)
+    time.sleep(2)
     br.get(sPath)
-    time.sleep(3)
+    time.sleep(5)
+    be = br.find_element(By.TAG_NAME, 'body')
+    time.sleep(5)
+
+  # press button with virtual mouse to play stream
     window_size = br.get_window_size()
+    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
     actions = ActionChains(br)
-    actions.move_by_offset(650, 900).click().perform()
-    window_size = br.get_window_size()
-    time.sleep(10)
+    actions.move_by_offset(550, 575).click().perform()
+    time.sleep(3)
+
+    time.sleep(15) # DETERMINE TIME
+  # get station logo
+    #img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div/div[1]/div[1]/a[1]/div/img')
+    #img_url = img_element.get_attribute("src")
+    image_path = pathImages + "/" + logo
+   # Display the station logo as given in the image_path global variable
+    image = Image.open(image_path)
+    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+
+    # saving button icon
+    global addFlag
+    if addFlag:
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+        scaled_image.save(buttonImagePath)
+        addFlag = False
+        print(f"saving button icon {buttonImagePath}")
+    
+    photo = ImageTk.PhotoImage(scaled_image)
+    label.config(image=photo)
+    label.image = photo  # Keep a reference to avoid garbage collection
+
+
+
+  # get song image
+    img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
+    img2_url = img2_element.get_attribute("src")
+    image2_path = pathImages + "/presenter.jpg"
+    urllib.request.urlretrieve(img2_url, image2_path)
+    image2 = Image.open(image2_path)
+    width2, height2 = image2.size;
+    print(f"width: {width2}, height: {height2}")
+    width = int(Xprog*width2/height2)
+    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
+    photo2 = ImageTk.PhotoImage(scaled_image2)
+    label2.config(image=photo2)
+    label2.image = photo2  # Keep a reference to avoid garbage collection
+    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+
+   
+ 
+  # Find program and song details
+    
+    ht = be.get_attribute('innerHTML')
+    soup = BeautifulSoup(ht, 'lxml')
+#    fe = soup.find(attrs={"class": "smooth_music-container__R7rU3"})
+    fe = soup.find(attrs={"class": "index_smooth_info-wrapper-desktop__6ZYTT"})
+    if fe is not None:
+        fe1 = fe.get_text(separator="*", strip=True)
+    else:
+        fe1 = "None"
+
+    return fe1
 
 
 
@@ -717,7 +765,7 @@ def iHeart(br, sPath):
     window_size = br.get_window_size()
     print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
     actions = ActionChains(br)
-    actions.move_by_offset(301, 256).click().perform()
+    actions.move_by_offset(300, 250).click().perform()
 
   # get station logo
     img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
@@ -740,6 +788,7 @@ def iHeart(br, sPath):
     label.config(image=photo)
     label.image = photo  # Keep a reference to avoid garbage collection
 
+
   # get song image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
     img2_url = img2_element.get_attribute("src")
@@ -754,6 +803,7 @@ def iHeart(br, sPath):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+
 
   # Find program and song details
     ht = be.get_attribute('innerHTML')
@@ -929,17 +979,12 @@ def ABC_Classic_SA():
     return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
 def ABC_Classic_NT():
     return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
-
-
 def ABC_Classic2():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
 def ABC_Jazz():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
-
-
 def ABC_Country():
     return Radio5(browser,"https://www.abc.net.au/listen/live/country")
-
 def ABC_Kids_listen():
     return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
 
@@ -999,17 +1044,46 @@ def Mix_80s():
 def Mix_90s():
     return iHeart(browser,"https://www.iheart.com/live/mix-90s-10072/")
 
-    
+def ABC_Sport():
+    return iHeart(browser,"https://www.iheart.com/live/abc-sport-7112/")
+def ABC_Sport_Extra():
+    return iHeart(browser,"https://www.iheart.com/live/abc-sport-extra-10233/")
+def Energy_Groove():
+    return iHeart(browser,"https://www.iheart.com/live/energy-groove-6329/")
+def Vision_Christian_Radio():
+    return iHeart(browser,"https://www.iheart.com/live/vision-christian-radio-9689/")
+def Starter_FM():
+    return iHeart(browser,"https://www.iheart.com/live/starter-fm-9353/")
+def _2ME():
+    return iHeart(browser,"https://www.iheart.com/live/2me-10143/")
+def SBS_PopAsia():
+    return iHeart(browser,"https://www.iheart.com/live/sbs-popasia-7028/")
+def _3MBS_Fine_Music_Melbourne():
+    return iHeart(browser,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/")
+def Golden_Days_Radio():
+    return iHeart(browser,"https://www.iheart.com/live/golden-days-radio-8676/")
+def PBS_106_7FM():
+    return iHeart(browser,"https://www.iheart.com/live/pbs-1067fm-6316/")
+
 def smoothfm_953_Sydney():
-    Smooth(browser,0,95,"https://smooth.com.au")
-def smooth_Vintage():
-    Smooth(browser,0,95*2,"https://smooth.com.au")
-def smooth_953_Adelaide():
-    Smooth(browser,0,95*3,"https://smooth.com.au")
-def smooth_80s():
-    Smooth2(browser,"https://smooth.com.au/station/smooth80s")
+    return Smooth(browser,"https://smooth.com.au/station/smoothsydney")
+def smooth_VINTAGE():
+    return Smooth(browser,"https://smooth.com.au/station/smoothvintage")
 def smooth_relax():
-    Smooth2(browser,"https://smooth.com.au/station/smoothrelax")
+    return Smooth(browser,"https://smooth.com.au/station/smoothrelax")
+def smooth_80s():
+    return Smooth(browser,"https://smooth.com.au/station/smooth80s")
+def smoothfm_Adelaide():
+    return Smooth(browser,"https://smooth.com.au/station/adelaide")
+def smoothfm_915_Melbourne():
+    return Smooth(browser,"https://smooth.com.au/station/smoothfm915")
+def smoothfm_Brisbane():
+    return Smooth(browser,"https://smooth.com.au/station/brisbane")
+def smoothfm_Perth():
+    return Smooth(browser,"https://smooth.com.au/station/smoothfmperth")
+
+
+
 
 
 
@@ -1128,10 +1202,31 @@ aStation = [
     ["Mix 102.3",Mix_102_3],
     ["Cruise 1323",Cruise_1323],
     ["Mix 80s",Mix_80s],
-    ["Mix 90s",Mix_90s]
-]
+    ["ABC Sport",ABC_Sport],
+    ["ABC Sport Extra",ABC_Sport_Extra],
+    ["Energy Groove",Energy_Groove],
+    ["Vision Christian Radio",Vision_Christian_Radio],
+    ["Starter FM",Starter_FM],
+    ["2ME",_2ME],
+    ["SBS PopAsia",SBS_PopAsia],
+    ["3MBS Fine Music Melbourne",_3MBS_Fine_Music_Melbourne],
+    ["Golden Days Radio",Golden_Days_Radio],
+    ["PBS 106.7FM",PBS_106_7FM],
 
-# 2D an array of preset radio stations, in long name and index (to aStation[]) format
+    ["smoothfm 95.3 Sydney",smoothfm_953_Sydney],
+    ["smoothfm 91.5 Melbourne",smoothfm_915_Melbourne],
+    ["smoothfm Adelaide",smoothfm_Adelaide],
+    ["smoothfm Brisbane",smoothfm_Brisbane],
+    ["smoothfm Peth",smoothfm_Perth],
+    ["smooth 80s",smooth_80s],
+    ["smooth relax",smooth_relax],
+    ["smooth VINTAGE",smooth_VINTAGE]
+
+] 
+
+
+# 2D an array of preset radio stations, in long name and index (to aStation[]) format    ["smooth 80s",smooth_80s]
+
 # this is the default, but is actually copied from file at statup and saved to file on exit!
 aStation2 = []
 for i in range(numButtons):

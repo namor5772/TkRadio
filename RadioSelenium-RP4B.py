@@ -6,12 +6,8 @@ import urllib.request
 import requests
 import os
 import csv
-import svglib
-import reportlab
 
 
-from svglib.svglib import svg2rlg
-from reportlab.graphics import renderPM
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
@@ -694,9 +690,14 @@ def Smooth(br,sPath):
 
   # press button with virtual mouse to play stream
     window_size = br.get_window_size()
+    width = window_size['width']
+    height = window_size['height']         
     print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+    widthPx =int(550*width/1296)
+    heightPx = 575 #int(575*height/1048)
+    print(f"Move size: width = {widthPx}, height = {heightPx}")
     actions = ActionChains(br)
-    actions.move_by_offset(550, 575).click().perform()
+    actions.move_by_offset(widthPx, heightPx).click().perform()
     time.sleep(3)
 
     time.sleep(15) # DETERMINE TIME
@@ -720,8 +721,6 @@ def Smooth(br,sPath):
     label.config(image=photo)
     label.image = photo  # Keep a reference to avoid garbage collection
 
-
-
   # get song image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
     img2_url = img2_element.get_attribute("src")
@@ -729,7 +728,7 @@ def Smooth(br,sPath):
     urllib.request.urlretrieve(img2_url, image2_path)
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
+    print(f"Pic width: {width2}, Pic height: {height2}")
     width = int(Xprog*width2/height2)
     scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)

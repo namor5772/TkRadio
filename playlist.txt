@@ -1,13 +1,13 @@
 ABC Radio Sydney NSW,0
 ABC Radio National LIVE,53
 smoothfm 95.3 Sydney,117
-smoothfm 91.5 Melbourne,118
-smoothfm Adelaide,119
-smoothfm Brisbane,120
-smoothfm Peth,121
 smooth 80s,122
 smooth relax,123
 smooth VINTAGE,124
+GOLD101.7,84
+Cruise 1323,105
+Hope 103.2,101
+2MBS Fine Music Sydney,96
 ABC NewsRadio,52
 ABC Sport,107
 ABC Sport Extra,108

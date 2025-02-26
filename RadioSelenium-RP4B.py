@@ -7,7 +7,6 @@ import requests
 import os
 import csv
 
-
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
@@ -39,7 +38,7 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -52,11 +51,12 @@ Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
 
 # global variables for combobox selection indexes & button related
-numButtons = 20
+numButtons = 18
 sizeButton = 62
 combobox_index = -1
 buttonIndex = -1
 addFlag = False
+iconSize = 160
 
 
 # START ***** Functions that stream radio stations *****
@@ -84,7 +84,7 @@ def Radio1(br,Num,sPath):
     image_path3 = pathImages
     image_path3 = image_path3 + "/" + logo
     image = Image.open(image_path3)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -179,7 +179,7 @@ def Radio2(br,Num,sPath):
   # get station logo
     image_path2 = pathImages + "/ABC_Radio_National.png"
     image = Image.open(image_path2)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -237,10 +237,10 @@ def Radio3(br,Num,sPath):
     print("--")
 
     br.get(refresh_http)
-    time.sleep(2)
+    time.sleep(3)
 
     br.get(sPath)
-    time.sleep(1)
+    time.sleep(3)
     be = br.find_element(By.TAG_NAME, 'body')
     for _ in range(5):
         be.send_keys(Keys.TAB)
@@ -258,7 +258,7 @@ def Radio3(br,Num,sPath):
   # get station logo
     image_path3 = pathImages + "/" + logo
     image = Image.open(image_path3)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -352,7 +352,7 @@ def Radio4(br,sPath):
     image_path = pathImages + "/logo.png"
     urllib.request.urlretrieve(img_url, image_path)
     image = Image.open(image_path)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -442,7 +442,7 @@ def Radio5(br,sPath):
     image_path = pathImages + "/logo.png"
     urllib.request.urlretrieve(img_url, image_path)
     image = Image.open(image_path)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -516,7 +516,7 @@ def Radio6(br,sPath):
   # get station logo
     image_path3 = pathImages + "/ABC_Kids_listen.png"
     image = Image.open(image_path3)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -608,7 +608,7 @@ def Radio7(br,Num,sPath):
   # get station logo
     image_path3 = pathImages + "/" + logo
     image = Image.open(image_path3)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -705,7 +705,7 @@ def Smooth(br,sPath):
   # get station logo
     image_path = pathImages + "/" + logo
     image = Image.open(image_path)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -765,7 +765,7 @@ def iHeart(br, sPath):
     urllib.request.urlretrieve(img_url, image_path)
     # Display the station logo as given in the image_path global variable
     image = Image.open(image_path)
-    scaled_image = image.resize((90, 90))  # Adjust the size as needed
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
     # saving button icon
     global addFlag
@@ -1217,7 +1217,6 @@ aStation = [
 
 
 # 2D an array of preset radio stations, in long name and index (to aStation[]) format    ["smooth 80s",smooth_80s]
-
 # this is the default, but is actually copied from file at statup and saved to file on exit!
 aStation2 = []
 for i in range(numButtons):
@@ -1280,7 +1279,6 @@ def on_select(event):
     root.update_idletasks()
     print("")               
 
-
 # do this when a radio station is selected via playlist buttons
 def on_select2(event):
     selected_value = aStation2[buttonIndex][0]
@@ -1341,7 +1339,7 @@ def on_select2(event):
         # Display the station logo and program graphic as blank
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
-        scaled_image = image.resize((90, 90))  # Adjust the size as needed
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
@@ -1505,7 +1503,7 @@ root = tk.Tk()
 # Set title, size and position of the main window, and make it non-resizable
 strHeightForm = str(int(Xprog + 120 + Ydown))
 print(strHeightForm)
-root.title("INTERNET RADIO 3.0")  
+root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
 root.geometry("800x" + strHeightForm + "+0+0")
 root.resizable(False, False)  
 
@@ -1515,13 +1513,11 @@ aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
 combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
-combobox.place(x=130, y=2)  # Adjust the position
+combobox.place(x=130+(sizeButton+5), y=2)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)
 combobox.bind("<FocusOut>", on_focus_out_combobox)
-
 combobox.bind("<<ComboboxSelected>>", on_select)
 combobox.config(state="readonly")
-
 
 # Populate if possible the playlist array aStation2 from file saved at shutdown
 try:
@@ -1543,13 +1539,13 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 # Positioning of latter can vary
 label = tk.Label(root)
 label.pack()
-label.place(x=17, y=5+47)
+label.place(x=15, y=2)
 label2 = tk.Label(root)
 label2.pack()
 
 # Create button used for adding radio station to playlist
 button_Add = tk.Button(root, text="Add")
-button_Add.place(x=400-25-15+70, y=2, width=40, height=20)
+button_Add.place(x=400-25-15+70+(sizeButton+5), y=2, width=40, height=20)
 button_Add.bind("<ButtonPress>", on_button_Add_press)
 button_Add.bind("<Return>", on_button_Add_press)
 button_Add.bind("<FocusIn>", on_focus_Add)
@@ -1557,7 +1553,7 @@ button_Add.bind("<FocusOut>", on_focus_out_Add)
     
 # Create button used for deleting radio station from playlist
 button_Del = tk.Button(root, text="Del")
-button_Del.place(x=450-25-15+70, y=2, width=40, height=20)
+button_Del.place(x=450-25-15+70+(sizeButton+5), y=2, width=40, height=20)
 button_Del.bind("<ButtonPress>", on_button_Del_press)
 button_Del.bind("<Return>", on_button_Del_press)
 button_Del.bind("<FocusIn>", on_focus_Del)
@@ -1568,11 +1564,11 @@ buttons = []
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
 
-    # positioning buttons in 2 rows of 10
-    if (i<10):
-        button.place(x=128+(sizeButton+5)*i, y=35, width=sizeButton, height=sizeButton)
+    # positioning buttons in 2 rows of 9
+    if (i<9):
+        button.place(x=128+(sizeButton+5)*(i+1), y=35, width=sizeButton, height=sizeButton)
     else:
-        button.place(x=128+(sizeButton+5)*(i-10), y=35+sizeButton+5, width=sizeButton, height=sizeButton)
+        button.place(x=128+(sizeButton+5)*(i-8), y=35+sizeButton+5, width=sizeButton, height=sizeButton)
 
     button.config(bg="gray90")
     button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)

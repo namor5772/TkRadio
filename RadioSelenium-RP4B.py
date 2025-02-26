@@ -39,19 +39,20 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
 refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 
 # global graphis position variables
-Ygap = 10;  Ygap2 = 110; Ygap3 = 110
+Ydown = 63
+Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
 Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
 
 # global variables for combobox selection indexes & button related
-numButtons = 10
+numButtons = 20
 sizeButton = 62
 combobox_index = -1
 buttonIndex = -1
@@ -693,19 +694,16 @@ def Smooth(br,sPath):
     width = window_size['width']
     height = window_size['height']         
     print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-    widthPx =int(550*width/1296)
-    heightPx = 575 #int(575*height/1048)
+    widthPx =int(647*width/1295)
+    heightPx = 550 #int(575*height/1048)
     print(f"Move size: width = {widthPx}, height = {heightPx}")
     actions = ActionChains(br)
     actions.move_by_offset(widthPx, heightPx).click().perform()
     time.sleep(3)
 
-    time.sleep(15) # DETERMINE TIME
+    time.sleep(7) # DETERMINE TIME
   # get station logo
-    #img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div/div[1]/div[1]/a[1]/div/img')
-    #img_url = img_element.get_attribute("src")
     image_path = pathImages + "/" + logo
-   # Display the station logo as given in the image_path global variable
     image = Image.open(image_path)
     scaled_image = image.resize((90, 90))  # Adjust the size as needed
 
@@ -735,22 +733,16 @@ def Smooth(br,sPath):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
-
-   
  
   # Find program and song details
-    
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
-#    fe = soup.find(attrs={"class": "smooth_music-container__R7rU3"})
     fe = soup.find(attrs={"class": "index_smooth_info-wrapper-desktop__6ZYTT"})
     if fe is not None:
         fe1 = fe.get_text(separator="*", strip=True)
     else:
         fe1 = "None"
-
     return fe1
-
 
 
 def iHeart(br, sPath):
@@ -764,7 +756,7 @@ def iHeart(br, sPath):
     window_size = br.get_window_size()
     print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
     actions = ActionChains(br)
-    actions.move_by_offset(300, 250).click().perform()
+    actions.move_by_offset(300, 240).click().perform()
 
   # get station logo
     img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
@@ -1470,6 +1462,7 @@ def on_button_press(event, i):
 def on_focus(event, i):
     buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
+    global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
 
 def on_focus_out(event, i):
@@ -1510,7 +1503,7 @@ def on_focus_out_Del(event):
 root = tk.Tk()
 
 # Set title, size and position of the main window, and make it non-resizable
-strHeightForm = str(int(Xprog + 120))
+strHeightForm = str(int(Xprog + 120 + Ydown))
 print(strHeightForm)
 root.title("INTERNET RADIO 3.0")  
 root.geometry("800x" + strHeightForm + "+0+0")
@@ -1539,20 +1532,18 @@ except FileNotFoundError:
     # will just use the default aStation2[] array created above
     print(f'Error: The file {filepath2} does not exist.')
 
-
 # Create a text box, position and size it
 # used to display the program and song details
 text_box = tk.Text(root)
-text_box.place(x=10, y=110, width=Xgap-20, height=Xprog)
+text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 # height=600-110-10
-
 
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
 label.pack()
-label.place(x=15, y=5)
+label.place(x=17, y=5+47)
 label2 = tk.Label(root)
 label2.pack()
 
@@ -1576,9 +1567,14 @@ button_Del.bind("<FocusOut>", on_focus_out_Del)
 buttons = []
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
-    button.place(x=128+(sizeButton+5)*i, y=35, width=sizeButton, height=sizeButton)
-    button.config(bg="gray90")
 
+    # positioning buttons in 2 rows of 10
+    if (i<10):
+        button.place(x=128+(sizeButton+5)*i, y=35, width=sizeButton, height=sizeButton)
+    else:
+        button.place(x=128+(sizeButton+5)*(i-10), y=35+sizeButton+5, width=sizeButton, height=sizeButton)
+
+    button.config(bg="gray90")
     button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))

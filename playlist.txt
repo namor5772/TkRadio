@@ -1,10 +1,20 @@
 ABC Radio Sydney NSW,0
 ABC Radio National LIVE,53
+smoothfm 95.3 Sydney,117
+smoothfm 91.5 Melbourne,118
+smoothfm Adelaide,119
+smoothfm Brisbane,120
+smoothfm Peth,121
+smooth 80s,122
+smooth relax,123
+smooth VINTAGE,124
 ABC NewsRadio,52
-ABC Classic SA,76
+ABC Sport,107
+ABC Sport Extra,108
+ABC triple j LIVE,61
+ABC triple j Hottest,66
+ABC Double j LIVE,68
+ABC Classic LIVE,73
 ABC Classic2,78
 ABC Jazz,79
-ABC triple j Hottest,66
-GOLD101.7,84
-Vision Christian Radio,110
-smoothfm 95.3 Sydney,117
+ABC Country,80

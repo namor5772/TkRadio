@@ -695,13 +695,15 @@ def Smooth(br,sPath):
     height = window_size['height']         
     print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
     widthPx =int(647*width/1295)
-    heightPx = 550 #int(575*height/1048)
+    heightPx = 565   #int(800*(height-130)/(924-130))
     print(f"Move size: width = {widthPx}, height = {heightPx}")
     actions = ActionChains(br)
     actions.move_by_offset(widthPx, heightPx).click().perform()
     time.sleep(3)
 
     time.sleep(7) # DETERMINE TIME
+
+
   # get station logo
     image_path = pathImages + "/" + logo
     image = Image.open(image_path)
@@ -738,6 +740,111 @@ def Smooth(br,sPath):
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "index_smooth_info-wrapper-desktop__6ZYTT"})
+    if fe is not None:
+        fe1 = fe.get_text(separator="*", strip=True)
+    else:
+        fe1 = "None"
+    return fe1
+
+
+def Commercial1(br,sPath,sClass,nType):
+    stack = inspect.stack()
+    print("--")
+    station = inspect.stack()[1].function
+    logo = station + ".png"
+    print(logo)
+    print("--")
+    
+    br.get(refresh_http)
+    time.sleep(2)
+    br.get(sPath)
+    time.sleep(5)
+    be = br.find_element(By.TAG_NAME, 'body')
+    time.sleep(5)
+
+  # press button with virtual mouse to play stream
+    window_size = br.get_window_size()
+    width = window_size['width']
+    height = window_size['height']         
+    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+
+    # sets position of "Listen Live" button depending on nType integer parameter
+    match nType:
+        case 0:
+            # iHeart stations
+            widthPx =300
+            heightPx = 240
+            print("Case 0")
+        case 1:
+            # Smooth stations
+            widthPx =int(647*width/1295)
+            heightPx = 565   #int(800*(height-130)/(924-130))
+            print("Case 1")
+        case 2:
+            # Nova stations
+            widthPx =250
+            heightPx = 460
+            print("Case 2")
+        case _:
+            print("Out of bounds")            
+    print(f"Move size: width = {widthPx}, height = {heightPx}")
+    actions = ActionChains(br)
+    actions.move_by_offset(widthPx, heightPx).click().perform()
+    time.sleep(3)
+
+    time.sleep(7) # DETERMINE TIME
+    # get station logo
+    if nType==0:
+        # for iHeart stations
+        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
+        img_url = img_element.get_attribute("src")
+        image_path = pathImages + "/logo.png"
+        urllib.request.urlretrieve(img_url, image_path)
+    else:
+        # for Smooth & Nova stations
+        image_path = pathImages + "/" + logo
+
+    # Display the station logo as given in the image_path global variable
+    image = Image.open(image_path)
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+
+    # saving button icon
+    global addFlag
+    if addFlag:
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+        scaled_image.save(buttonImagePath)
+        addFlag = False
+        print(f"saving button icon {buttonImagePath}")
+    
+    photo = ImageTk.PhotoImage(scaled_image)
+    label.config(image=photo)
+    label.image = photo  # Keep a reference to avoid garbage collection
+
+  # get song image
+  # get song image
+    if nType==0:
+        # iHeart stations
+        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
+    else:
+        # Smooth & Nova stations
+        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
+    img2_url = img2_element.get_attribute("src")
+    image2_path = pathImages + "/presenter.jpg"
+    urllib.request.urlretrieve(img2_url, image2_path)
+    image2 = Image.open(image2_path)
+    width2, height2 = image2.size;
+    print(f"Pic width: {width2}, Pic height: {height2}")
+    width = int(Xprog*width2/height2)
+    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
+    photo2 = ImageTk.PhotoImage(scaled_image2)
+    label2.config(image=photo2)
+    label2.image = photo2  # Keep a reference to avoid garbage collection
+    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+ 
+  # Find program and song details
+    ht = be.get_attribute('innerHTML')
+    soup = BeautifulSoup(ht, 'lxml')
+    fe = soup.find(attrs={"class": sClass})
     if fe is not None:
         fe1 = fe.get_text(separator="*", strip=True)
     else:
@@ -795,7 +902,6 @@ def iHeart(br, sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
 
-
   # Find program and song details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
@@ -811,6 +917,7 @@ def iHeart(br, sPath):
         fe2 = "None"
     fe3 = fe2+"* *"+fe1    
     return fe3
+
 
 
 
@@ -1054,7 +1161,7 @@ def _3MBS_Fine_Music_Melbourne():
 def Golden_Days_Radio():
     return iHeart(browser,"https://www.iheart.com/live/golden-days-radio-8676/")
 def PBS_106_7FM():
-    return iHeart(browser,"https://www.iheart.com/live/pbs-1067fm-6316/")
+    return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","e1o0hraj0 css-1emovzn e3eyq1h0",0)
 
 def smoothfm_953_Sydney():
     return Smooth(browser,"https://smooth.com.au/station/smoothsydney")
@@ -1069,12 +1176,14 @@ def smoothfm_Adelaide():
 def smoothfm_915_Melbourne():
     return Smooth(browser,"https://smooth.com.au/station/smoothfm915")
 def smoothfm_Brisbane():
-    return Smooth(browser,"https://smooth.com.au/station/brisbane")
+    return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
 def smoothfm_Perth():
-    return Smooth(browser,"https://smooth.com.au/station/smoothfmperth")
+    return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
 
+def nova_969_Sydney():
+    return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",2)
 
-
+#"e1o0hraj0 css-1emovzn e3eyq1h0"
 
 
 
@@ -1211,7 +1320,9 @@ aStation = [
     ["smoothfm Peth",smoothfm_Perth],
     ["smooth 80s",smooth_80s],
     ["smooth relax",smooth_relax],
-    ["smooth VINTAGE",smooth_VINTAGE]
+    ["smooth VINTAGE",smooth_VINTAGE],
+
+    ["nova 969 Sydney",nova_969_Sydney]
 
 ] 
 

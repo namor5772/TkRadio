@@ -54,7 +54,9 @@ numButtons = 10
 sizeButton = 62
 combobox_index = -1
 buttonIndex = -1
-addFlag = False
+addFlag = False 
+iconSize = 160
+eventFlag = True # if on_select or on_select2 are called via event
 
 
 # START ***** Functions that stream radio stations *****

@@ -38,7 +38,7 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -57,7 +57,18 @@ combobox_index = -1
 buttonIndex = -1
 addFlag = False
 iconSize = 160
+eventFlag = True # if on_select & on_select2 are called from event
+stopFlag = False
+selected_value = -1
+selected_index = -1
 
+
+# Define a custom event class
+class CustomEvent:
+    def __init__(self, event_type, widget, data=None):
+        self.type = event_type
+        self.widget = widget
+        self.data = data
 
 # START ***** Functions that stream radio stations *****
 
@@ -748,79 +759,81 @@ def Smooth(br,sPath):
 
 
 def Commercial1(br,sPath,sClass,nType):
-    stack = inspect.stack()
-    print("--")
-    station = inspect.stack()[1].function
-    logo = station + ".png"
-    print(logo)
-    print("--")
+    if eventFlag:
+        stack = inspect.stack()
+        print("--")
+        station = inspect.stack()[1].function
+        logo = station + ".png"
+        print(logo)
+        print("--")
+        
+        br.get(refresh_http)
+        time.sleep(2)
+        br.get(sPath)
+        time.sleep(5)
     
-    br.get(refresh_http)
-    time.sleep(2)
-    br.get(sPath)
-    time.sleep(5)
+        # press button with virtual mouse to play stream
+        window_size = br.get_window_size()
+        width = window_size['width']
+        height = window_size['height']         
+        print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+
+        # sets position of "Listen Live" button depending on nType integer parameter
+        match nType:
+            case 0:
+                # iHeart stations
+                widthPx =300
+                heightPx = 240
+                print("Case 0")
+            case 1:
+                # Smooth stations
+                widthPx =int(647*width/1295)
+                heightPx = 565   #int(800*(height-130)/(924-130))
+                print("Case 1")
+            case 2:
+                # Nova stations
+                widthPx =250
+                heightPx = 460
+                print("Case 2")
+            case _:
+                print("Out of bounds")            
+        print(f"Move size: width = {widthPx}, height = {heightPx}")
+        actions = ActionChains(br)
+        actions.move_by_offset(widthPx, heightPx).click().perform()
+        time.sleep(3)
+
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(5)
+    time.sleep(2)
 
-  # press button with virtual mouse to play stream
-    window_size = br.get_window_size()
-    width = window_size['width']
-    height = window_size['height']         
-    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+    if eventFlag:
+        time.sleep(2) # DETERMINE TIME
+        # get station logo
+        if nType==0:
+            # for iHeart stations
+            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
+            img_url = img_element.get_attribute("src")
+            image_path = pathImages + "/logo.png"
+            urllib.request.urlretrieve(img_url, image_path)
+        else:
+            # for Smooth & Nova stations
+            image_path = pathImages + "/" + logo
 
-    # sets position of "Listen Live" button depending on nType integer parameter
-    match nType:
-        case 0:
-            # iHeart stations
-            widthPx =300
-            heightPx = 240
-            print("Case 0")
-        case 1:
-            # Smooth stations
-            widthPx =int(647*width/1295)
-            heightPx = 565   #int(800*(height-130)/(924-130))
-            print("Case 1")
-        case 2:
-            # Nova stations
-            widthPx =250
-            heightPx = 460
-            print("Case 2")
-        case _:
-            print("Out of bounds")            
-    print(f"Move size: width = {widthPx}, height = {heightPx}")
-    actions = ActionChains(br)
-    actions.move_by_offset(widthPx, heightPx).click().perform()
-    time.sleep(3)
+        # Display the station logo as given in the image_path global variable
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-    time.sleep(7) # DETERMINE TIME
-    # get station logo
-    if nType==0:
-        # for iHeart stations
-        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
-        img_url = img_element.get_attribute("src")
-        image_path = pathImages + "/logo.png"
-        urllib.request.urlretrieve(img_url, image_path)
-    else:
-        # for Smooth & Nova stations
-        image_path = pathImages + "/" + logo
-
-    # Display the station logo as given in the image_path global variable
-    image = Image.open(image_path)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
-
-
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
 
   # get song image
     if nType==0: 
@@ -917,8 +930,6 @@ def iHeart(br, sPath):
         fe2 = "None"
     fe3 = fe2+"* *"+fe1    
     return fe3
-
-
 
 
 def ABC_Radio_Sydney_NSW():
@@ -1091,7 +1102,7 @@ def ABC_Radio_Australia():
     return Radio5(browser,"https://www.abc.net.au/pacific/live")
 
 def KIIS1065():
-    return iHeart(browser,"https://www.iheart.com/live/kiis-1065-6185/")
+    return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
 def GOLD1017():
     return Commercial1(browser,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0)
 def CADA():
@@ -1135,7 +1146,7 @@ def The_80s_iHeartRadio():
 def Mix_102_3():
     return Commercial1(browser,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0)
 def Cruise_1323():
-    return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1dwaik6 e4xv9s30",0)
+    return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0)
 def Mix_80s():
     return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
 def Mix_90s():
@@ -1347,7 +1358,7 @@ def after_GUI_started():
     if buttonIndex == -1:
         buttonIndex = 0
     print(f'Index of last station played in playlist is {buttonIndex}')    
-    on_select2(None)
+    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
 
 # do this when closing the window/app
@@ -1359,115 +1370,164 @@ def on_closing():
 
 # do this when a radio station is selected in combobox
 def on_select(event):
-    selected_value = combobox.get()
-    global combobox_index
-    combobox_index = combobox.current()
-    print("Selected:", selected_value)
-    print("Index:", combobox_index)
-    text = aStation[combobox_index][1]()
-    fullStationName = aStation[combobox_index][0] 
-    text = fullStationName + "*" + text
-    print(text)
-    text_rows = text.split("*")
+    print("")
+    print("***********************")
+    print(f"Type: {event.type}")
+    print(f"Widget: {event.widget}")
+    print(f"Data: {event.data}")
+    
+    global eventFlag, stopFlag, selected_value, combobox_index 
+    if event.type=="Auto":
+        eventFlag = True
+        stopFlag = False
+        selected_value = combobox.get()
+        combobox_index = combobox.current()
+        print("selected_value:", selected_value)
+        print("combobox_index:", combobox_index)
 
-    # Make text box editable, so contents can be deleted and rewritten
-    text_box.config(state=tk.NORMAL)
-    text_box.delete('1.0', tk.END)
-    print(text_rows)
-    # Insert each row of text into the text box
-    for row in text_rows:
-        text_box.insert(tk.END, row + "\n")
-    # Disable the text box to make it read-only
-    text_box.config(state=tk.DISABLED)
+    print("stopFlag:",stopFlag)
+    print("eventFlag:",eventFlag)
 
-    # hide the annoying blinking cursor though the fudge
-    # of selective focus setting
-    #combobox.set(fullStationName)
-    combobox.focus_set()
-    combobox.selection_clear()
-    buttons[buttonIndex].focus_set()
-    root.update_idletasks()
-    print("")               
+    if stopFlag==False:
+        text = aStation[combobox_index][1]()
+        fullStationName = aStation[combobox_index][0] 
+        text = fullStationName + "*" + text
+        text_rows = text.split("*")
+        text_box.config(state=tk.NORMAL)
+        text_box.delete('1.0', tk.END)
+        print(text_rows)
+        # Insert each row of text into the text box
+        for row in text_rows:
+            text_box.insert(tk.END, row + "\n")
+        # Disable the text box to make it read-only
+        text_box.config(state=tk.DISABLED)
+
+        # hide the annoying blinking cursor though the fudge
+        # of selective focus setting
+        #combobox.set(fullStationName)
+        combobox.focus_set()
+        combobox.selection_clear()
+        buttons[buttonIndex].focus_set()
+        root.update_idletasks()
+
+        print("")
+        print("JUST ABOUT TO RUN ROOT")
+        eventFlag = False
+        root.after(20000, lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+        print("FINISHED RUNNING ROOT")
+        print("")
 
 
 # do this when a radio station is selected via playlist buttons
 def on_select2(event):
-    selected_value = aStation2[buttonIndex][0]
-    selected_index = int(aStation2[buttonIndex][1])
-    print("Selected:", selected_value)
-    print("Index:", selected_index)
-    print("Button index:", buttonIndex)
-
-    if selected_index != -1:
-        print("selected_index != -1")
-
-        # run selected radio station stream, and return associated textual information 
-        text = (aStation[selected_index][1])()
-        fullStationName = aStation[selected_index][0] 
-        text = fullStationName + "*" + text
-        print(text)
-        text_rows = text.split("*")
-
-        # Make text box editable, so contents can be deleted and rewritten
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        print(text_rows)
-
-        # Insert each row of text into the text box
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-
-        # make seleted button synchronize with combobox
-        # hide the annoying blinking cursor though the fudge
-        # of selective focus setting
-        combobox.set(fullStationName)
-        combobox.focus_set()
-        combobox.selection_clear()
-        buttons[buttonIndex].focus_set()
-        
-        # Disable the text box to make it read-only
-        text_box.config(state=tk.DISABLED)
-        root.update_idletasks()
-    else:
-        # There is nothing to stream
-        browser.get(refresh_http)
-        time.sleep(2)
-        text = selected_value + "*No station playing"
-        text_rows = text.split("*")
-
-        # Make text box editable, so contents can be deleted and rewritten
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        print(text_rows)
-
-        # Insert each row of text into the text box
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-
-        # Disable the text box to make it read-only
-        text_box.config(state=tk.DISABLED)
-
-        # Display the station logo and program graphic as blank
-        image_path = pathImages + "/Blank.png"
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-        scaled_image2 = image.resize((Xprog, Xprog))  # Adjust the size as needed
-        photo2 = ImageTk.PhotoImage(scaled_image2)
-        label2.config(image=photo2)
-        label2.image = photo2  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
-
-    # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
-    with open(filepath, 'w') as file:
-        file.write(str(buttonIndex))
     print("")
+    print("***********************")
+    print(f"Type: {event.type}")
+    print(f"Widget: {event.widget}")
+    print(f"Data: {event.data}")
+
+    global eventFlag, stopFlag, selected_value, selected_index 
+    if event.type=="Auto":
+        eventFlag = True
+        stopFlag = False
+        selected_value = aStation2[buttonIndex][0]
+        selected_index = int(aStation2[buttonIndex][1])
+        print("selected_value:",selected_value)
+        print("selected_index:",selected_index)
+
+    print("stopFlag:",stopFlag)
+    print("eventFlag:",eventFlag)
+
+    if stopFlag==False:
+        print("Selected:", selected_value)
+        print("Index:", selected_index)
+        print("Button index:", buttonIndex)
+
+        if selected_index != -1:
+            print("selected_index != -1")
+
+            # run selected radio station stream, and return associated textual information 
+            text = (aStation[selected_index][1])() # this uses the eventFlag
+            fullStationName = aStation[selected_index][0] 
+            text = fullStationName + "*" + text
+            print(text)
+            text_rows = text.split("*")
+
+            # Make text box editable, so contents can be deleted and rewritten
+            text_box.config(state=tk.NORMAL)
+            text_box.delete('1.0', tk.END)
+            print(text_rows)
+
+            # Insert each row of text into the text box
+            for row in text_rows:
+                text_box.insert(tk.END, row + "\n")
+
+            # make seleted button synchronize with combobox
+            # hide the annoying blinking cursor though the fudge
+            # of selective focus setting
+            if event.type=="Auto":
+                combobox.set(fullStationName)
+                combobox.focus_set()
+                combobox.selection_clear()
+                buttons[buttonIndex].focus_set()
+            
+            # Disable the text box to make it read-only
+            text_box.config(state=tk.DISABLED)
+            root.update_idletasks()
+
+            print("")
+            print("JUST ABOUT TO RUN ROOT")
+            eventFlag = False
+            root.after(20000, lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+            print("FINISHED RUNNING ROOT")
+            print("")
+        else:
+            # There is nothing to stream
+            browser.get(refresh_http)
+            time.sleep(2)
+            text = selected_value + "*No station playing"
+            text_rows = text.split("*")
+
+            # Make text box editable, so contents can be deleted and rewritten
+            text_box.config(state=tk.NORMAL)
+            text_box.delete('1.0', tk.END       )
+            print(text_rows)
+
+            # Insert each row of text into the text box
+            for row in text_rows:
+                text_box.insert(tk.END, row + "\n")
+
+            # Disable the text box to make it read-only
+            text_box.config(state=tk.DISABLED)
+
+            # Display the station logo and program graphic as blank
+            image_path = pathImages + "/Blank.png"
+            image = Image.open(image_path)
+            scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+            photo = ImageTk.PhotoImage(scaled_image)
+            label.config(image=photo)
+            label.image = photo  # Keep a reference to avoid garbage collection
+            scaled_image2 = image.resize((Xprog, Xprog))  # Adjust the size as needed
+            photo2 = ImageTk.PhotoImage(scaled_image2)
+            label2.config(image=photo2)
+            label2.image = photo2  # Keep a reference to avoid garbage collection
+            label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+
+        if event.type=="Auto":
+            # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
+            with open(filepath, 'w') as file:
+                file.write(str(buttonIndex))
+            print("")
+
+    else: #if stopFlag==True
+        stopFlag = False
+        print("")
+        print("DID STOPPING BIT")
+        print("")
 
 
 # do this when the Add button is pressed
-def on_button_Add_press(evente):
+def on_button_Add_press(event):
     button_Add.config(relief="sunken", bg="lightgray")  # Simulate button press
     button_Add.update_idletasks()  # Force update
     time.sleep(1)
@@ -1490,7 +1550,7 @@ def on_button_Add_press(evente):
 
         # This will play the newly added station as well as saving the icon
         # to its playlist button number
-        on_select2(None)
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from button_Add"))
 
         # now need to update the icon on the buttonIndex button
         buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -1539,7 +1599,7 @@ def on_button_Del_press(event):
         image.save(buttonImagePath)
 
         # This will "play" the blank station
-        on_select2(None)
+        on_select2(CustomEvent("Auto", button_Del, "Auto from button_Del"))
 
         # now need to update the icon on the buttonIndex button
         image_resized = image.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
@@ -1566,7 +1626,7 @@ def on_button_press(event, i):
     print("Button " + str(i) +" pressed")
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
-    on_select2(None)    
+    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from buttons[i] press"))    
 
 def on_focus(event, i):
     buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
@@ -1627,7 +1687,7 @@ combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
 combobox.place(x=130+(sizeButton+5), y=2)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)
 combobox.bind("<FocusOut>", on_focus_out_combobox)
-combobox.bind("<<ComboboxSelected>>", on_select)
+combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
 combobox.config(state="readonly")
 
 # Populate if possible the playlist array aStation2 from file saved at shutdown

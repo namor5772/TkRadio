@@ -38,7 +38,7 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -59,8 +59,14 @@ addFlag = False
 iconSize = 160
 eventFlag = True # if on_select & on_select2 are called from event
 stopFlag = False
-selected_value = -1
+selected_value = "INITIAL"
+selected_value_last = "INITIAL"
 selected_index = -1
+startTime = time.time()
+endTime = 0.0
+refreshTime = 10.0 # in seconds for program info
+stationShort = ""
+station = ""
 
 
 # Define a custom event class
@@ -70,46 +76,52 @@ class CustomEvent:
         self.widget = widget
         self.data = data
 
+
 # START ***** Functions that stream radio stations *****
 
 # ALL GOOD
 def Radio1(br,Num,sPath):
-    stack = inspect.stack()
-    station = inspect.stack()[1].function
-    logo = station + ".png"
-    print(logo)
-    print("--")
-    
-    br.get(refresh_http)
-    time.sleep(2)
+    if eventFlag:
+        stack = inspect.stack()
+        global station 
+        station = inspect.stack()[1].function
+        logo = station + ".png"
+        print(logo)
+        print("--")
+        br.get(refresh_http)
+        time.sleep(1)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    for _ in range(Num):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
     time.sleep(1)
-    
-  # get station logo
-    image_path3 = pathImages
-    image_path3 = image_path3 + "/" + logo
-    image = Image.open(image_path3)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
+    if eventFlag:
+        for _ in range(Num):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        time.sleep(1)
+        
+        # get station logo
+        image_path3 = pathImages
+        image_path3 = image_path3 + "/" + logo
+        image = Image.open(image_path3)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
 
-  # get song image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # get song image
     try:
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
@@ -119,6 +131,7 @@ def Radio1(br,Num,sPath):
         print("Image element not found on the webpage.")            
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
+
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -134,7 +147,7 @@ def Radio1(br,Num,sPath):
     else:
         label2.place(x=Xgap, y=Ygap2)  # Adjust the position
     
-  # Find program details
+    # Find program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -142,21 +155,18 @@ def Radio1(br,Num,sPath):
         fe1 = fe.get_text(separator="*", strip=True)
     else:
         fe1 = "None"
-    print(fe1)    
+
     # Remove irrelevant info, starting with [*More]
     sub = "*More"
     pos = fe1.find(sub)
     if pos != -1:
         fe1 = fe1[:pos]
-    print(fe1)    
     sub = "More from*"
     fe1 = fe1.replace(sub,"")
-    print(fe1)    
     sub = "*."
     fe1 = fe1.replace(sub,"")
-    print(fe1)    
         
-  # find song details    
+    # find song details    
     fe = soup.find(attrs={"class": "playingNow"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -168,47 +178,53 @@ def Radio1(br,Num,sPath):
 
 # ALL GOOD
 def Radio2(br,Num,sPath):
-    br.get(refresh_http)
-    time.sleep(2)
+    if eventFlag:
+        br.get(refresh_http)
+        time.sleep(1)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    for _ in range(4):
-        be.send_keys(Keys.UP)
-    for _ in range(Num):
-        be.send_keys(Keys.DOWN)
-    be.send_keys(Keys.ENTER)
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
     time.sleep(1)
 
-  # get station logo
-    image_path2 = pathImages + "/ABC_Radio_National.png"
-    image = Image.open(image_path2)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    if eventFlag:
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(4):
+            be.send_keys(Keys.UP)
+        for _ in range(Num):
+            be.send_keys(Keys.DOWN)
+        be.send_keys(Keys.ENTER)
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
+        # get station logo
+        image_path2 = pathImages + "/ABC_Radio_National.png"
+        image = Image.open(image_path2)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
 
-  # get presenter image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # get presenter image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
     img2_url = img2_element.get_attribute("src")
     image2_path = pathImages + "/presenter.jpg"
     urllib.request.urlretrieve(img2_url, image2_path)
+
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -220,7 +236,7 @@ def Radio2(br,Num,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
     
-  # Find stream details
+    # Find stream details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -228,7 +244,7 @@ def Radio2(br,Num,sPath):
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No specific item playing"
-  # Remove irrelevant info, starting with [*.*More]
+    # Remove irrelevant info, starting with [*.*More]
     sub = "*.*More"
     pos = fe2.find(sub)
     if pos != -1:
@@ -238,52 +254,57 @@ def Radio2(br,Num,sPath):
 
 # ALL GOOD
 def Radio3(br,Num,sPath):
-    stack = inspect.stack()
-    station = inspect.stack()[1].function
-    first_occurrence = station.find("_")
-    second_occurrence = station.find("_", first_occurrence+1)
-    station_short = station[:second_occurrence]
-    logo = station_short + ".png"
-    print(logo)
-    print("--")
+    if eventFlag:
+        stack = inspect.stack()
+        station = inspect.stack()[1].function
+        first_occurrence = station.find("_")
+        second_occurrence = station.find("_", first_occurrence+1)
+        global station_short
+        station_short = station[:second_occurrence]
+        logo = station_short + ".png"
+        print(logo)
+        print("--")
+        br.get(refresh_http)
+        time.sleep(1)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(refresh_http)
-    time.sleep(3)
-
-    br.get(sPath)
-    time.sleep(3)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    for _ in range(5):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    for _ in range(4):
-        be.send_keys(Keys.UP)
-    for _ in range(Num):
-        be.send_keys(Keys.DOWN)
-    be.send_keys(Keys.ENTER)
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
     time.sleep(1)
 
-  # get station logo
-    image_path3 = pathImages + "/" + logo
-    image = Image.open(image_path3)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    if eventFlag:
+        for _ in range(5):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(4):
+            be.send_keys(Keys.UP)
+        for _ in range(Num):
+            be.send_keys(Keys.DOWN)
+        be.send_keys(Keys.ENTER)
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
+        # get station logo
+        image_path3 = pathImages + "/" + logo
+        image = Image.open(image_path3)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
 
-  # get program image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # get program image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
@@ -293,6 +314,7 @@ def Radio3(br,Num,sPath):
         print("Image element not found on the webpage.")            
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
+
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -308,7 +330,7 @@ def Radio3(br,Num,sPath):
     else:
         label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
-  # Find program details
+    # Find program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -316,6 +338,7 @@ def Radio3(br,Num,sPath):
         fe1 = fe.get_text(separator="*", strip=True)
     else:
         fe1 = "None"
+
     # Remove irrelevant info, starting with [*More]
     sub = "*More"
     pos = fe1.find(sub)
@@ -333,51 +356,56 @@ def Radio3(br,Num,sPath):
 
 # ALL GOOD
 def Radio4(br,sPath):
-    br.get(refresh_http)
-    time.sleep(2)
+    if eventFlag:
+        br.get(refresh_http)
+        time.sleep(1)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-        
-  # adjust amount of tabbing depending on where you end up!
-    Adjusted = False
-    focused_element = br.execute_script("return document.activeElement")
-    if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
-           be.send_keys(Keys.SHIFT,Keys.TAB)
-           Adjusted = True
-           print("ADJUSTED TAB")
-    be.send_keys(Keys.ENTER)
-    be.send_keys(Keys.SHIFT,Keys.TAB)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
-    time.sleep(3)
-    
-  # get station logo
-    img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-    img_url = img_element.get_attribute("src")
-    image_path = pathImages + "/logo.png"
-    urllib.request.urlretrieve(img_url, image_path)
-    image = Image.open(image_path)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+    if eventFlag:
+        be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+            
+        # adjust amount of tabbing depending on where you end up!
+        Adjusted = False
+        focused_element = br.execute_script("return document.activeElement")
+        if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
+            be.send_keys(Keys.SHIFT,Keys.TAB)
+            Adjusted = True
+            print("ADJUSTED TAB")
+        be.send_keys(Keys.ENTER)
+        be.send_keys(Keys.SHIFT,Keys.TAB)
+        be.send_keys(Keys.TAB)
+        be.send_keys(Keys.TAB)
+        time.sleep(3)
+        
+        # get station logo
+        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+        img_url = img_element.get_attribute("src")
+        image_path = pathImages + "/logo.png"
+        urllib.request.urlretrieve(img_url, image_path)
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
        
-  # get presenter image
+    # get presenter image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
@@ -388,6 +416,7 @@ def Radio4(br,sPath):
         print("Image element not found on the webpage.")            
         # Display a blank image
         image2_path = pathImages + "/ABC_faint.png"
+
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -400,7 +429,7 @@ def Radio4(br,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap2, y=Ygap2)  # Adjust the position
     
-  # Find live program details
+    # Find live program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
@@ -412,62 +441,67 @@ def Radio4(br,sPath):
     sub = "*-"
     fe3 = fe2.replace(sub,"")
     
-  # Find live program synopsis
+    # Find live program synopsis
     fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No Description"
-    fe3 = fe3+"* * * * *"+fe2
+    fe3 = fe3+"* *"+fe2
     return fe3
 
 
 # ALL GOOD    
 def Radio5(br,sPath):
-    br.get(refresh_http)
-    time.sleep(2)
+    if eventFlag:
+        br.get(refresh_http)
+        time.sleep(1)
+        browser.get(sPath)
+        time.sleep(1)
 
-    browser.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-        
-  # adjust amount of tabbing depending on where you end up!
-    Adjusted = False;
-    focused_element = br.execute_script("return document.activeElement")
-    if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
-           be.send_keys(Keys.SHIFT,Keys.TAB)
-           Adjusted = True
-           print("ADJUSTED TAB")
-    be.send_keys(Keys.ENTER)
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.TAB)
     time.sleep(1)
 
-  # get station logo
-    img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-    img_url = img_element.get_attribute("src")
-    image_path = pathImages + "/logo.png"
-    urllib.request.urlretrieve(img_url, image_path)
-    image = Image.open(image_path)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    if eventFlag:
+        be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+            
+        # adjust amount of tabbing depending on where you end up!
+        Adjusted = False;
+        focused_element = br.execute_script("return document.activeElement")
+        if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
+            be.send_keys(Keys.SHIFT,Keys.TAB)
+            Adjusted = True
+            print("ADJUSTED TAB")
+        be.send_keys(Keys.ENTER)
+        be.send_keys(Keys.TAB)
+        be.send_keys(Keys.TAB)
+        time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # get station logo
+        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+        img_url = img_element.get_attribute("src")
+        image_path = pathImages + "/logo.png"
+        urllib.request.urlretrieve(img_url, image_path)
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-  # get presenter image
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # get presenter image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
@@ -477,6 +511,7 @@ def Radio5(br,sPath):
         print("Image element not found on the webpage.")            
         # Display a blank image
         image2_path = pathImages + "/ABC_faint.png"
+
     # Display the station presenter as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -489,7 +524,7 @@ def Radio5(br,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
-  # Find live program details
+    # Find live program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
@@ -501,47 +536,51 @@ def Radio5(br,sPath):
     sub = "*-"
     fe3 = fe2.replace(sub,"")
     
-  # Find live program synopsis
+    # Find live program synopsis
     fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No Description"
-    fe3 = fe3+"* * * * *"+fe2
+    fe3 = fe3+"* *"+fe2
     return fe3
 
 
-
 def Radio6(br,sPath):
-    br.get(refresh_http)
-    time.sleep(2)
+    if eventFlag:
+        br.get(refresh_http)
+        time.sleep(2)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    for _ in range(3):
-        be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
     time.sleep(1)
 
-  # get station logo
-    image_path3 = pathImages + "/ABC_Kids_listen.png"
-    image = Image.open(image_path3)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    if eventFlag:
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # get station logo
+        image_path3 = pathImages + "/ABC_Kids_listen.png"
+        image = Image.open(image_path3)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-  # get program image
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # get program image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
@@ -551,6 +590,7 @@ def Radio6(br,sPath):
         print("Image element not found on the webpage.")            
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
+
     # Display the program image as given in the image2_path global variable
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -571,11 +611,13 @@ def Radio6(br,sPath):
         fe1 = fe.get_text(separator="*", strip=True)
     else:
         fe1 = "None"
+
     # Remove irrelevant info, starting with [*More]
     sub = "*More"
     pos = fe1.find(sub)
     if pos != -1:
         fe1 = fe1[:pos]
+
     # Find song details     
     fe = soup.find(attrs={"class": "playingNow"})
     if fe is not None:
@@ -587,53 +629,57 @@ def Radio6(br,sPath):
 
 
 def Radio7(br,Num,sPath):
-    stack = inspect.stack()
-    print("--")
-    station = inspect.stack()[1].function
-    logo = station + ".png"
-    print(logo)
-    print("--")
+    if eventFlag:
+        stack = inspect.stack()
+        print("----------")
+        station = inspect.stack()[1].function
+        logo = station + ".png"
+        print(logo)
+        print("----------")
+        br.get(refresh_http)
+        time.sleep(1)
+        br.get(sPath)
+        time.sleep(1)
 
-    br.get(refresh_http)
-    time.sleep(2)
-
-    br.get(sPath)
-    time.sleep(1)
+    # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    be.send_keys(Keys.TAB)
-    be.send_keys(Keys.ENTER)
-    for _ in range(11):
-        be.send_keys(Keys.TAB)
-    if Num==0:
-        be.send_keys(Keys.ENTER)
-    elif Num==1:
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-    else: # if Num==2
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        be.send_keys(Keys.ENTER)
     time.sleep(1)
 
-  # get station logo
-    image_path3 = pathImages + "/" + logo
-    image = Image.open(image_path3)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    if eventFlag:
+        be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(11):
+            be.send_keys(Keys.TAB)
+        if Num==0:
+            be.send_keys(Keys.ENTER)
+        elif Num==1:
+            be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+        else: # if Num==2
+            be.send_keys(Keys.TAB)
+            be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+            be.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
+        # get station logo
+        image_path3 = pathImages + "/" + logo
+        image = Image.open(image_path3)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-  # Display a blank program image
+        # saving button icon
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # Display a blank program image
     image2_path = pathImages + "/Blank.png"
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -665,6 +711,7 @@ def Radio7(br,Num,sPath):
             fe2 = feX.get_text(separator="*", strip=True)
     else:
         fe2 = sName
+
     # Remove irrelevant info, starting with [*.*More]
     sub = "*Stop"
     pos = fe2.find(sub)
@@ -678,99 +725,19 @@ def Radio7(br,Num,sPath):
     return fe2
 
 
-def Radio8(br,sPath):
-    br.refresh()
-    br.get(sPath)
-    fe2 = "GOLD 104.3"
-    return fe2   
-
-
-def Smooth(br,sPath):
-    stack = inspect.stack()
-    print("--")
-    station = inspect.stack()[1].function
-    logo = station + ".png"
-    print(logo)
-    print("--")
-    
-    br.get(refresh_http)
-    time.sleep(2)
-    br.get(sPath)
-    time.sleep(5)
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(5)
-
-  # press button with virtual mouse to play stream
-    window_size = br.get_window_size()
-    width = window_size['width']
-    height = window_size['height']         
-    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-    widthPx =int(647*width/1295)
-    heightPx = 565   #int(800*(height-130)/(924-130))
-    print(f"Move size: width = {widthPx}, height = {heightPx}")
-    actions = ActionChains(br)
-    actions.move_by_offset(widthPx, heightPx).click().perform()
-    time.sleep(3)
-
-    time.sleep(7) # DETERMINE TIME
-
-
-  # get station logo
-    image_path = pathImages + "/" + logo
-    image = Image.open(image_path)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
-
-  # get song image
-    img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
-    img2_url = img2_element.get_attribute("src")
-    image2_path = pathImages + "/presenter.jpg"
-    urllib.request.urlretrieve(img2_url, image2_path)
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"Pic width: {width2}, Pic height: {height2}")
-    width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
- 
-  # Find program and song details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    fe = soup.find(attrs={"class": "index_smooth_info-wrapper-desktop__6ZYTT"})
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
-    else:
-        fe1 = "None"
-    return fe1
-
-
 def Commercial1(br,sPath,sClass,nType):
     if eventFlag:
         stack = inspect.stack()
-        print("--")
+        print("----------")
         station = inspect.stack()[1].function
         logo = station + ".png"
         print(logo)
-        print("--")
+        print("----------")
         
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
-        time.sleep(5)
+        time.sleep(2)
     
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()
@@ -800,7 +767,7 @@ def Commercial1(br,sPath,sClass,nType):
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(3)
+        time.sleep(2)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -864,72 +831,6 @@ def Commercial1(br,sPath,sClass,nType):
     else:
         fe1 = "None"
     return fe1
-
-
-def iHeart(br, sPath):
-    br.get(refresh_http)
-    time.sleep(2)
-    br.get(sPath)
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(2)
-
-  # press button with virtual mouse to play stream
-    window_size = br.get_window_size()
-    print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-    actions = ActionChains(br)
-    actions.move_by_offset(300, 240).click().perform()
-
-  # get station logo
-    img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
-    img_url = img_element.get_attribute("src")
-    image_path = pathImages + "/logo.png"
-    urllib.request.urlretrieve(img_url, image_path)
-    # Display the station logo as given in the image_path global variable
-    image = Image.open(image_path)
-    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-    # saving button icon
-    global addFlag
-    if addFlag:
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        scaled_image.save(buttonImagePath)
-        addFlag = False
-        print(f"saving button icon {buttonImagePath}")
-    
-    photo = ImageTk.PhotoImage(scaled_image)
-    label.config(image=photo)
-    label.image = photo  # Keep a reference to avoid garbage collection
-
-  # get song image
-    img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
-    img2_url = img2_element.get_attribute("src")
-    image2_path = pathImages + "/presenter.jpg"
-    urllib.request.urlretrieve(img2_url, image2_path)
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
-
-  # Find program and song details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    fe = soup.find(attrs={"class": "css-1jnehb1 e1aypx0f0"})
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
-    else:
-        fe1 = "None"
-    fe = soup.find(attrs={"class": "css-1dwaik6 e4xv9s30"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "None"
-    fe3 = fe2+"* *"+fe1    
-    return fe3
 
 
 def ABC_Radio_Sydney_NSW():
@@ -1039,6 +940,7 @@ def ABC_South_West_WA():
 def ABC_NewsRadio():
     return Radio4(browser,"https://www.abc.net.au/listen/live/news")
 def ABC_Radio_National_LIVE():
+
     return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_QLD():
     return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
@@ -1048,12 +950,14 @@ def ABC_Radio_National_SA():
     return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_NT():
     return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
+
 def ABC_SPORT():
     return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
 def ABC_SPORT_EXTRA():
     return Radio7(browser,1,"https://www.abc.net.au/news/sport/audio")
 def ABC_CRICKET():
     return Radio7(browser,2,"https://www.abc.net.au/news/sport/audio")
+
 def ABC_triple_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_QLD():
@@ -1064,10 +968,12 @@ def ABC_triple_j_SA():
     return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_NT():
     return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
+
 def ABC_triple_j_Hottest():
     return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
 def ABC_triple_j_Unearthed():
     return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
+
 def ABC_Double_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
 def ABC_Double_j_QLD():
@@ -1088,12 +994,15 @@ def ABC_Classic_SA():
     return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
 def ABC_Classic_NT():
     return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
+
 def ABC_Classic2():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
 def ABC_Jazz():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
+
 def ABC_Country():
     return Radio5(browser,"https://www.abc.net.au/listen/live/country")
+    
 def ABC_Kids_listen():
     return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
 
@@ -1193,13 +1102,8 @@ def smoothfm_Perth():
 def nova_969_Sydney():
     return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",2)
 
-#"e1o0hraj0 css-1emovzn e3eyq1h0"
-#"css-1dwaik6 e4xv9s30"
-
-
 
 # END ******* Functions that stream radio stations *****
-
 
 # 2D array of radio station information in [long name, calling function] format
 # clearly this can be varied if you wish to listen to different stations
@@ -1333,7 +1237,6 @@ aStation = [
     ["smooth VINTAGE",smooth_VINTAGE],
 
     ["nova 969 Sydney",nova_969_Sydney]
-
 ] 
 
 
@@ -1358,6 +1261,7 @@ def after_GUI_started():
     if buttonIndex == -1:
         buttonIndex = 0
     print(f'Index of last station played in playlist is {buttonIndex}')    
+    print("")    
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
 
@@ -1370,29 +1274,46 @@ def on_closing():
 
 # do this when a radio station is selected in combobox
 def on_select(event):
-    print("")
+    global startTime, finishTime
+    finishTime = time.time()
+    timeInterval = finishTime-startTime
     print("***********************")
+    print(f"Time interval: {timeInterval:.2f} seconds")
+    print("***********************")
+    startTime = time.time()
     print(f"Type: {event.type}")
     print(f"Widget: {event.widget}")
     print(f"Data: {event.data}")
     
-    global eventFlag, stopFlag, selected_value, combobox_index 
+    global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
         eventFlag = True
         stopFlag = False
+        selected_value_last = selected_value
         selected_value = combobox.get()
         combobox_index = combobox.current()
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
 
+    # setting stop flag, this prevents on_select from running again
+    stopFlag = False
+    if (not eventFlag) and (timeInterval < refreshTime-0.5):
+        stopFlag = True
+
     print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
 
     if stopFlag==False:
-        text = aStation[combobox_index][1]()
+        # run selected radio station stream, and return associated textual information 
+        text = aStation[combobox_index][1]() # THIS BIT ACTUALLY STARTS STREAM
         fullStationName = aStation[combobox_index][0] 
         text = fullStationName + "*" + text
         text_rows = text.split("*")
+        if len(text_rows)>1:
+            if text_rows[0]==text_rows[1]:
+                    del text_rows[0]
+
+        # Make text box editable, so contents can be deleted and rewritten
         text_box.config(state=tk.NORMAL)
         text_box.delete('1.0', tk.END)
         print(text_rows)
@@ -1410,30 +1331,53 @@ def on_select(event):
         buttons[buttonIndex].focus_set()
         root.update_idletasks()
 
-        print("")
         print("JUST ABOUT TO RUN ROOT")
         eventFlag = False
-        root.after(20000, lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
         print("FINISHED RUNNING ROOT")
+        print("")
+
+    else: #if stopFlag==True
+        stopFlag = False
+        print("selected_value:",selected_value_last)
+        print("DID STOPPING BIT")
         print("")
 
 
 # do this when a radio station is selected via playlist buttons
 def on_select2(event):
-    print("")
+    global startTime, finishTime
+    finishTime = time.time()
+    timeInterval = finishTime-startTime
     print("***********************")
+    print(f"Time interval: {timeInterval:.2f} seconds")
+    print("***********************")
+    startTime = time.time()
     print(f"Type: {event.type}")
     print(f"Widget: {event.widget}")
     print(f"Data: {event.data}")
 
-    global eventFlag, stopFlag, selected_value, selected_index 
+    global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
     if event.type=="Auto":
         eventFlag = True
-        stopFlag = False
+        selected_value_last = selected_value
         selected_value = aStation2[buttonIndex][0]
         selected_index = int(aStation2[buttonIndex][1])
         print("selected_value:",selected_value)
         print("selected_index:",selected_index)
+
+    # setting stop flag, this prevents on_select2 from running again
+#    if (stopFlag==True) and (not eventFlag):
+#        stopFlag==False
+#    else:    
+#        if (not eventFlag) and (timeInterval < refreshTime-0.5):
+#            stopFlag = True
+
+    # setting stop flag, this prevents on_select2 from running again
+    stopFlag = False
+    if (not eventFlag) and (timeInterval < refreshTime-0.5):
+        stopFlag = True
+
 
     print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
@@ -1450,8 +1394,10 @@ def on_select2(event):
             text = (aStation[selected_index][1])() # this uses the eventFlag
             fullStationName = aStation[selected_index][0] 
             text = fullStationName + "*" + text
-            print(text)
             text_rows = text.split("*")
+            if len(text_rows)>1:
+                if text_rows[0]==text_rows[1]:
+                        del text_rows[0]
 
             # Make text box editable, so contents can be deleted and rewritten
             text_box.config(state=tk.NORMAL)
@@ -1475,12 +1421,12 @@ def on_select2(event):
             text_box.config(state=tk.DISABLED)
             root.update_idletasks()
 
-            print("")
             print("JUST ABOUT TO RUN ROOT")
             eventFlag = False
-            root.after(20000, lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+            root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
             print("FINISHED RUNNING ROOT")
             print("")
+
         else:
             # There is nothing to stream
             browser.get(refresh_http)
@@ -1517,11 +1463,9 @@ def on_select2(event):
             # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
             with open(filepath, 'w') as file:
                 file.write(str(buttonIndex))
-            print("")
 
     else: #if stopFlag==True
-        stopFlag = False
-        print("")
+        print("selected_value:",selected_value_last)
         print("DID STOPPING BIT")
         print("")
 

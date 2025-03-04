@@ -12,9 +12,9 @@ Cruise 1323,105
 smoothfm 95.3 Sydney,117
 nova 969 Sydney,125
 Hope 103.2,101
--- EMPTY 14 --,-1
--- EMPTY 15 --,-1
--- EMPTY 16 --,-1
--- EMPTY 17 --,-1
+smoothfm 95.3 Sydney,117
+smooth 80s,122
+smooth relax,123
+smooth VINTAGE,124
 ABC Jazz,79
 ABC Country,80

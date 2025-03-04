@@ -38,7 +38,7 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
 firefox_options = Options()
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -79,7 +79,6 @@ class CustomEvent:
 
 # START ***** Functions that stream radio stations *****
 
-# ALL GOOD
 def Radio1(br,Num,sPath):
     if eventFlag:
         stack = inspect.stack()
@@ -176,7 +175,6 @@ def Radio1(br,Num,sPath):
     return fe3
 
 
-# ALL GOOD
 def Radio2(br,Num,sPath):
     if eventFlag:
         br.get(refresh_http)
@@ -252,7 +250,6 @@ def Radio2(br,Num,sPath):
     return fe2
 
 
-# ALL GOOD
 def Radio3(br,Num,sPath):
     if eventFlag:
         stack = inspect.stack()
@@ -354,7 +351,6 @@ def Radio3(br,Num,sPath):
     return fe3
 
 
-# ALL GOOD
 def Radio4(br,sPath):
     if eventFlag:
         br.get(refresh_http)
@@ -451,7 +447,6 @@ def Radio4(br,sPath):
     return fe3
 
 
-# ALL GOOD    
 def Radio5(br,sPath):
     if eventFlag:
         br.get(refresh_http)
@@ -939,8 +934,8 @@ def ABC_South_West_WA():
     return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
 def ABC_NewsRadio():
     return Radio4(browser,"https://www.abc.net.au/listen/live/news")
+    
 def ABC_Radio_National_LIVE():
-
     return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_QLD():
     return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
@@ -1060,7 +1055,6 @@ def Mix_80s():
     return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
 def Mix_90s():
     return Commercial1(browser,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0)
-
 def ABC_Sport():
     return Commercial1(browser,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0)
 def ABC_Sport_Extra():
@@ -1296,10 +1290,16 @@ def on_select(event):
         print("combobox_index:", combobox_index)
 
     # setting stop flag, this prevents on_select from running again
-    stopFlag = False
-    if (not eventFlag) and (timeInterval < refreshTime-0.5):
-        stopFlag = True
-
+    # a bit mysterious code due to timing issues
+    if eventFlag:
+        stopFlag = False
+    else: # if (not eventFlag)   
+        if stopFlag:
+            stopFlag=False
+            print("SECOND STOP FAIL")
+        elif (timeInterval < refreshTime-0.5):
+            stopFlag = True    
+            print("FIRST STOP")
     print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
 
@@ -1367,18 +1367,16 @@ def on_select2(event):
         print("selected_index:",selected_index)
 
     # setting stop flag, this prevents on_select2 from running again
-#    if (stopFlag==True) and (not eventFlag):
-#        stopFlag==False
-#    else:    
-#        if (not eventFlag) and (timeInterval < refreshTime-0.5):
-#            stopFlag = True
-
-    # setting stop flag, this prevents on_select2 from running again
-    stopFlag = False
-    if (not eventFlag) and (timeInterval < refreshTime-0.5):
-        stopFlag = True
-
-
+    # a bit mysterious code due to timing issues
+    if eventFlag:
+        stopFlag = False
+    else: # if (not eventFlag)   
+        if stopFlag:
+            stopFlag=False
+            print("SECOND STOP FAIL")
+        elif (timeInterval < refreshTime-0.5):
+            stopFlag = True    
+            print("FIRST STOP")
     print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
 
@@ -1445,6 +1443,7 @@ def on_select2(event):
 
             # Disable the text box to make it read-only
             text_box.config(state=tk.DISABLED)
+            root.update_idletasks()
 
             # Display the station logo and program graphic as blank
             image_path = pathImages + "/Blank.png"
@@ -1458,6 +1457,8 @@ def on_select2(event):
             label2.config(image=photo2)
             label2.image = photo2  # Keep a reference to avoid garbage collection
             label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+            print("BLANK END")
+            print("")
 
         if event.type=="Auto":
             # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
@@ -1477,10 +1478,10 @@ def on_button_Add_press(event):
     time.sleep(1)
     button_Add.config(relief="raised", bg="gray90")  # Simulate button press
     button_Add.update_idletasks()  # Force update
-
     print("Add button pressed")
     print("From index:", combobox_index)
     print("To index:", buttonIndex)
+    
     # change aStation2[] list to reflect the addition
     global aStation2
     if (combobox_index != -1) and (buttonIndex != -1):
@@ -1521,8 +1522,8 @@ def on_button_Del_press(event):
     time.sleep(1)
     button_Del.config(relief="raised", bg="gray90")  # Simulate button press
     button_Del.update_idletasks()  # Force update
-
     print("Del button pressed")
+    
     # change aStation2[] to reflect the deletion
     global aStation2
     index = aStation2[buttonIndex][1]
@@ -1591,7 +1592,6 @@ def on_focus_out_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_out_combobox")
 
-
 def on_focus_Add(event):
     button_Add.config(relief="raised", bg="darkgray")  # Simulate button press
     button_Add.update_idletasks()  # Force update
@@ -1611,6 +1611,7 @@ def on_focus_out_Del(event):
     button_Del.config(relief="raised", bg="gray90")  # Simulate button press
     button_Del.update_idletasks()  # Force update
     print("on_focus_out_Del")
+
 
 # Create the main window
 root = tk.Tk()

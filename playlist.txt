@@ -9,7 +9,7 @@ ABC NewsRadio,52
 ABC Jazz,79
 GOLD101.7,84
 Cruise 1323,105
-smoothfm 95.3 Sydney,117
+PBS 106.7FM,116
 nova 969 Sydney,125
 Hope 103.2,101
 smoothfm 95.3 Sydney,117

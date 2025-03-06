@@ -42,7 +42,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 
@@ -72,6 +72,7 @@ endTime = 0.0
 refreshTime = 10.0 # in seconds for program info
 stationShort = ""
 station = ""
+needSleep = 10 # can be less on faster machines
 
 
 # Define a custom event class
@@ -95,7 +96,7 @@ def Radio1(br,Num,sPath):
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -185,7 +186,7 @@ def Radio2(br,Num,sPath):
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -269,7 +270,7 @@ def Radio3(br,Num,sPath):
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -361,7 +362,7 @@ def Radio4(br,sPath):
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -457,7 +458,7 @@ def Radio5(br,sPath):
         br.get(refresh_http)
         time.sleep(1)
         browser.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -551,7 +552,7 @@ def Radio6(br,sPath):
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -639,7 +640,7 @@ def Radio7(br,Num,sPath):
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
-        time.sleep(1)
+        time.sleep(needSleep)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
@@ -737,7 +738,7 @@ def Commercial1(br,sPath,sClass,nType):
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
-        time.sleep(5)
+        time.sleep(needSleep) # bigger on slow machines
     
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()
@@ -782,7 +783,7 @@ def Commercial1(br,sPath,sClass,nType):
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(2)
+        time.sleep(3)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')

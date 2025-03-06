@@ -36,10 +36,15 @@ filename2 = 'playlist.txt'
 filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
+
 # Open and setup FireFox browser
 firefox_options = Options()
+# below is the headless width and height, if not headless +15 & 8 respectively
+firefox_options.add_argument("--width=1280")
+firefox_options.add_argument("--height=917")
 firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
+
 
 # 'cleans' browser between station websites
 refresh_http = "http://www.ri.com.au" # use my basic "empty" website
@@ -754,9 +759,24 @@ def Commercial1(br,sPath,sClass,nType):
                 print("Case 1")
             case 2:
                 # Nova stations
-                widthPx =250
+                widthPx = 250
                 heightPx = 460
                 print("Case 2")
+            case 3:
+                # Nova_90s & nova_NATION exception
+                widthPx = 300
+                heightPx = 425
+                print("Case 3")
+            case 4:
+                # Nova_THROWBACKS exception
+                widthPx = 300
+                heightPx = 495
+                print("Case 4")
+            case 5:
+                # Nova_FreshCOUNTRY exception
+                widthPx = 250
+                heightPx = 505
+                print("Case 5")
             case _:
                 print("Out of bounds")            
         print(f"Move size: width = {widthPx}, height = {heightPx}")
@@ -1095,6 +1115,22 @@ def smoothfm_Perth():
 
 def nova_969_Sydney():
     return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",2)
+def nova_90s():
+    return Commercial1(browser,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",3) # 3 <========
+def nova_THROWBACKS():
+    return Commercial1(browser,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",4) # 4 <========
+def nova_FreshCOUNTRY():
+    return Commercial1(browser,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",5) # 5 <========
+def nova_NATION():
+    return Commercial1(browser,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",3) # 3 <========
+def nova_919_Adelaide():
+    return Commercial1(browser,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",2)
+def nova_100_Melbourne():
+    return Commercial1(browser,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",2)
+def nova_1069_Brisbane():
+    return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",2)
+def nova_937_Perth():
+    return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",2)
 
 
 # END ******* Functions that stream radio stations *****
@@ -1225,12 +1261,20 @@ aStation = [
     ["smoothfm 91.5 Melbourne",smoothfm_915_Melbourne],
     ["smoothfm Adelaide",smoothfm_Adelaide],
     ["smoothfm Brisbane",smoothfm_Brisbane],
-    ["smoothfm Peth",smoothfm_Perth],
+    ["smoothfm Perth",smoothfm_Perth],
     ["smooth 80s",smooth_80s],
     ["smooth relax",smooth_relax],
     ["smooth VINTAGE",smooth_VINTAGE],
 
-    ["nova 969 Sydney",nova_969_Sydney]
+    ["nova 969 Sydney",nova_969_Sydney],
+    ["nova 100 Melbourne",nova_100_Melbourne],
+    ["nova 919 Adelaide",nova_919_Adelaide],
+    ["nova 1069 Brisbane",nova_1069_Brisbane],
+    ["nova 937 Perth",nova_937_Perth],
+    ["nova 90s",nova_90s],
+    ["nova THROWBACKS",nova_THROWBACKS],
+    ["nova FreshCOUNTRY",nova_FreshCOUNTRY],
+    ["nova_NATION",nova_NATION]
 ] 
 
 

@@ -11,7 +11,7 @@ GOLD101.7,84
 Cruise 1323,105
 PBS 106.7FM,116
 nova 969 Sydney,125
-Hope 103.2,101
+nova THROWBACKS,131
 smoothfm 95.3 Sydney,117
 smooth 80s,122
 smooth relax,123

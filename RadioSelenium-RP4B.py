@@ -737,7 +737,7 @@ def Commercial1(br,sPath,sClass,nType):
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
-        time.sleep(2)
+        time.sleep(5)
     
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()

@@ -1,18 +1,18 @@
 ABC Radio Sydney NSW,0
 ABC Radio National LIVE,53
-ABC triple j LIVE,61
-ABC triple j Hottest,66
-ABC Double j LIVE,68
+ABC NewsRadio,52
 ABC Classic LIVE,73
 ABC Classic2,78
-ABC NewsRadio,52
 ABC Jazz,79
+-- EMPTY 6 --,-1
+-- EMPTY 7 --,-1
+-- EMPTY 8 --,-1
 GOLD101.7,84
 Cruise 1323,105
-PBS 106.7FM,116
 nova 969 Sydney,125
-nova THROWBACKS,131
 smoothfm 95.3 Sydney,117
+-- EMPTY 13 --,-1
+-- EMPTY 14 --,-1
 smooth 80s,122
 smooth relax,123
 smooth VINTAGE,124

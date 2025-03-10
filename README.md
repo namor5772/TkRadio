@@ -120,6 +120,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
+# START #######################################################
+# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
+
 # Get the directory of the current script & then assumed directory for Images
 script_dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = script_dir.replace("\\","/")
@@ -136,7 +140,6 @@ filename2 = 'playlist.txt'
 filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
-
 # Open and setup FireFox browser
 firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
@@ -144,7 +147,6 @@ firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
 firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
-
 
 # 'cleans' browser between station websites
 refresh_http = "http://www.ri.com.au" # use my basic "empty" website
@@ -174,6 +176,9 @@ stationShort = ""
 station = ""
 needSleep = 10 # can be less on faster machines
 
+# END #########################################################
+# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
+
 
 # Define a custom event class
 class CustomEvent:
@@ -183,7 +188,11 @@ class CustomEvent:
         self.data = data
 
 
-# START ***** Functions that stream radio stations *****
+# START ##################################################
+# DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
+#
+# There are 8 of them: Radio1 ... Radio7 & Commercial1. They are needed because the 
+# websites used to stream individual radio stations can differ in their layout.
 
 def Radio1(br,Num,sPath):
     if eventFlag:
@@ -948,6 +957,15 @@ def Commercial1(br,sPath,sClass,nType):
         fe1 = "None"
     return fe1
 
+# END ####################################################
+# DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
+
+
+# START **********************************************************
+# INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
+#
+# Each one calls a particular core function defined above with specific parameters,
+# dependant on the structure of a specific stations website layout
 
 def ABC_Radio_Sydney_NSW():
     return Radio4(browser,"https://www.abc.net.au/listen/live/sydney")
@@ -1055,7 +1073,6 @@ def ABC_South_West_WA():
     return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
 def ABC_NewsRadio():
     return Radio4(browser,"https://www.abc.net.au/listen/live/news")
-    
 def ABC_Radio_National_LIVE():
     return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_QLD():
@@ -1066,14 +1083,12 @@ def ABC_Radio_National_SA():
     return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_NT():
     return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
-
 def ABC_SPORT():
     return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
 def ABC_SPORT_EXTRA():
     return Radio7(browser,1,"https://www.abc.net.au/news/sport/audio")
 def ABC_CRICKET():
     return Radio7(browser,2,"https://www.abc.net.au/news/sport/audio")
-
 def ABC_triple_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_QLD():
@@ -1084,12 +1099,10 @@ def ABC_triple_j_SA():
     return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_NT():
     return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
-
 def ABC_triple_j_Hottest():
     return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
 def ABC_triple_j_Unearthed():
     return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
-
 def ABC_Double_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
 def ABC_Double_j_QLD():
@@ -1110,22 +1123,17 @@ def ABC_Classic_SA():
     return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
 def ABC_Classic_NT():
     return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
-
 def ABC_Classic2():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
 def ABC_Jazz():
     return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
-
 def ABC_Country():
     return Radio5(browser,"https://www.abc.net.au/listen/live/country")
-    
 def ABC_Kids_listen():
     return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
-
 # FIX - ABC Sport one less tab no graphic
 def ABC_Radio_Australia():
     return Radio5(browser,"https://www.abc.net.au/pacific/live")
-
 def KIIS1065():
     return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
 def GOLD1017():
@@ -1196,7 +1204,6 @@ def Golden_Days_Radio():
     return Commercial1(browser,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0)
 def PBS_106_7FM():
     return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0)
-
 def smoothfm_953_Sydney():
     return Commercial1(browser,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1)
 def smooth_VINTAGE():
@@ -1213,7 +1220,6 @@ def smoothfm_Brisbane():
     return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
 def smoothfm_Perth():
     return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
-
 def nova_969_Sydney():
     return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",2)
 def nova_90s():
@@ -1233,8 +1239,9 @@ def nova_1069_Brisbane():
 def nova_937_Perth():
     return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",2)
 
+# END ************************************************************
+# INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
 
-# END ******* Functions that stream radio stations *****
 
 # 2D array of radio station information in [long name, calling function] format
 # clearly this can be varied if you wish to listen to different stations
@@ -1322,7 +1329,6 @@ aStation = [
     ["ABC Jazz",ABC_Jazz],    ["ABC Country",ABC_Country],
     ["ABC Kids listen",ABC_Kids_listen],
     ["ABC Radio Australia",ABC_Radio_Australia],
-
     ["KISS 1065",KIIS1065],
     ["GOLD101.7",GOLD1017],
     ["CADA",CADA],
@@ -1357,7 +1363,6 @@ aStation = [
     ["3MBS Fine Music Melbourne",_3MBS_Fine_Music_Melbourne],
     ["Golden Days Radio",Golden_Days_Radio],
     ["PBS 106.7FM",PBS_106_7FM],
-
     ["smoothfm 95.3 Sydney",smoothfm_953_Sydney],
     ["smoothfm 91.5 Melbourne",smoothfm_915_Melbourne],
     ["smoothfm Adelaide",smoothfm_Adelaide],
@@ -1366,7 +1371,6 @@ aStation = [
     ["smooth 80s",smooth_80s],
     ["smooth relax",smooth_relax],
     ["smooth VINTAGE",smooth_VINTAGE],
-
     ["nova 969 Sydney",nova_969_Sydney],
     ["nova 100 Melbourne",nova_100_Melbourne],
     ["nova 919 Adelaide",nova_919_Adelaide],
@@ -1379,7 +1383,7 @@ aStation = [
 ] 
 
 
-# 2D an array of preset radio stations, in long name and index (to aStation[]) format    ["smooth 80s",smooth_80s]
+# 2D array of preset radio stations, in long name and index (to aStation[]) format.
 # this is the default, but is actually copied from file at statup and saved to file on exit!
 aStation2 = []
 for i in range(numButtons):
@@ -1387,10 +1391,10 @@ for i in range(numButtons):
     aStation2.append(station)
 
 
+# does stuff just after gui is initialised and we are running in the root thread
 def after_GUI_started():
-  # select last station after radio was last powered down
-    global buttonIndex
-    global buttonFlag; buttonFlag = True
+  # select to stream last station that was streaming just before radio was powered down
+    global buttonIndex, buttonFlag; buttonFlag = True
     try:
         with open(filepath, 'r') as file:
             buttonIndex = int(file.read())
@@ -1411,8 +1415,9 @@ def on_closing():
     print("Closing the app...")
 
 
-# do this when a radio station is selected in combobox
+# do this when a radio station is selected from combobox
 def on_select(event):
+    # determine the timeInterval between calling on_select() or on_select2()
     global startTime, finishTime
     finishTime = time.time()
     timeInterval = finishTime-startTime
@@ -1424,18 +1429,20 @@ def on_select(event):
     print(f"Widget: {event.widget}")
     print(f"Data: {event.data}")
     
+    # set various flags and parameters related to starting a station stream or accesing its website
     global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
-        eventFlag = True
-        stopFlag = False
+        eventFlag = True # if on_select() is called by selecting a combobox entry
+        stopFlag = False # if this call of on_select() should be implemented
+      # parameters relating to how this funtion was called
         selected_value_last = selected_value
         selected_value = combobox.get()
         combobox_index = combobox.current()
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
 
-    # setting stop flag, this prevents on_select from running again
-    # a bit mysterious code due to timing issues
+    # setting stop flag, this prevents on_select() from running again
+    # "mysterious" code due to timing issues
     if eventFlag:
         stopFlag = False
     else: # if (not eventFlag)   
@@ -1470,12 +1477,13 @@ def on_select(event):
 
         # hide the annoying blinking cursor though the fudge
         # of selective focus setting
-        #combobox.set(fullStationName)
         combobox.focus_set()
         combobox.selection_clear()
         buttons[buttonIndex].focus_set()
         root.update_idletasks()
 
+        # on_select() schedules itself to run in nominally refreshTime seconds.
+        # this updates the program text and grapic while the selected radio station is streaming
         print("JUST ABOUT TO RUN ROOT")
         eventFlag = False
         root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
@@ -1483,13 +1491,16 @@ def on_select(event):
         print("")
 
     else: #if stopFlag==True
+        # Makes the scheduled call to on_select() do nothing if
+        # it occurs after another station stream has been started
         stopFlag = False
         print("selected_value:",selected_value_last)
         print("DID STOPPING BIT")
         print("")
 
 
-# do this when a radio station is selected via playlist buttons
+# do this when a radio station is selected via playlist buttons,
+# similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
     global startTime, finishTime
     finishTime = time.time()
@@ -1512,7 +1523,7 @@ def on_select2(event):
         print("selected_index:",selected_index)
 
     # setting stop flag, this prevents on_select2 from running again
-    # a bit mysterious code due to timing issues
+    # "mysterious" code due to timing issues
     if eventFlag:
         stopFlag = False
     else: # if (not eventFlag)   
@@ -1616,7 +1627,9 @@ def on_select2(event):
         print("")
 
 
-# do this when the Add button is pressed
+# do this when the Add button is pressed.
+# it adds the radio station previously selected via the combobox to the playlist button
+# that has focus. In particular it displays the station logo on the button and links it to the station.
 def on_button_Add_press(event):
     button_Add.config(relief="sunken", bg="lightgray")  # Simulate button press
     button_Add.update_idletasks()  # Force update
@@ -1661,6 +1674,8 @@ def on_button_Add_press(event):
 
 
 # do this when the Del button is pressed
+# it deletes the radio station linked from the playlist button that currently has focus.
+# Its icon is also deleted from the button.
 def on_button_Del_press(event):
     button_Del.config(relief="sunken", bg="lightgray")  # Simulate button press
     button_Del.update_idletasks()  # Force update
@@ -1707,6 +1722,9 @@ def on_button_Del_press(event):
     print("")
 
 
+# called when playlist button i is pressed.
+# visually simulates a physical button press and initiates the station stream by
+# calling the on_selec2() function
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
@@ -1718,45 +1736,67 @@ def on_button_press(event, i):
     global buttonIndex; buttonIndex = i
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from buttons[i] press"))    
 
+# called when a playlist button receives focus.
+# visually indicates that the button has focus and
+# saves the buttonIndex in a global variable
 def on_focus(event, i):
     buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
 
+# called when a playlist button loses focus.
+# returns the button is a visually "unfocused" state. 
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     print(f"on focus out: {i}")
 
+# called when station combobox receives focus.
+# makes sure its display is updated.
 def on_focus_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_combobox")
 
+# called when station combobox loses focus.
+# makes sure its display is updated.
 def on_focus_out_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_out_combobox")
 
+# called when the Add button receives focus.
+# visually indicates that the button has focus and
+# makes sure its display is updated.
 def on_focus_Add(event):
     button_Add.config(relief="raised", bg="darkgray")  # Simulate button press
     button_Add.update_idletasks()  # Force update
     print("on_focus_Add")
 
+# called when the Add button loses focus.
+# makes sure its display is updated.
 def on_focus_out_Add(event):
     button_Add.config(relief="raised", bg="gray90")  # Simulate button press
     button_Add.update_idletasks()  # Force update
     print("on_focus_out_Add")
 
+# called when the Del button receives focus.
+# visually indicates that the button has focus and
+# makes sure its display is updated.
 def on_focus_Del(event):
     button_Del.config(relief="raised", bg="darkgray")  # Simulate button press
     button_Del.update_idletasks()  # Force update
     print("on_focus_Del")
 
+# called when the Del button loses focus.
+# makes sure its display is updated.
 def on_focus_out_Del(event):
     button_Del.config(relief="raised", bg="gray90")  # Simulate button press
     button_Del.update_idletasks()  # Force update
     print("on_focus_out_Del")
 
+
+####################################
+# THIS IS WHERE THE CORE CODE STARTS
 
 # Create the main window
 root = tk.Tk()
@@ -1780,7 +1820,7 @@ combobox.bind("<FocusOut>", on_focus_out_combobox)
 combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
 combobox.config(state="readonly")
 
-# Populate if possible the playlist array aStation2 from file saved at shutdown
+# Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
     with open(filepath2, 'r') as file:
         reader = csv.reader(file)
@@ -1804,7 +1844,7 @@ label.place(x=15, y=2)
 label2 = tk.Label(root)
 label2.pack()
 
-# Create button used for adding radio station to playlist
+# Create [Add] button used for adding radio stations to playlist
 button_Add = tk.Button(root, text="Add")
 button_Add.place(x=400-25-15+70+(sizeButton+5), y=2, width=40, height=20)
 button_Add.bind("<ButtonPress>", on_button_Add_press)
@@ -1812,7 +1852,7 @@ button_Add.bind("<Return>", on_button_Add_press)
 button_Add.bind("<FocusIn>", on_focus_Add)
 button_Add.bind("<FocusOut>", on_focus_out_Add)
     
-# Create button used for deleting radio station from playlist
+# Create [Del] button used for deleting radio stations from playlist
 button_Del = tk.Button(root, text="Del")
 button_Del.place(x=450-25-15+70+(sizeButton+5), y=2, width=40, height=20)
 button_Del.bind("<ButtonPress>", on_button_Del_press)
@@ -1820,7 +1860,7 @@ button_Del.bind("<Return>", on_button_Del_press)
 button_Del.bind("<FocusIn>", on_focus_Del)
 button_Del.bind("<FocusOut>", on_focus_out_Del)
 
-# Create the buttons (fully) and add them to the list
+# Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
@@ -1845,8 +1885,7 @@ for i in range(numButtons):
     button.update_idletasks()
     buttons.append(button)
 
-
-# doing stuff just after gui is initialised and we are running in the root thread
+# doing stuff just after the gui is initialised and we are running in the root thread
 root.after(1000, after_GUI_started)
 print("Radio stream interface")
 

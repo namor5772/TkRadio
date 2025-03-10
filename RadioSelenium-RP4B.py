@@ -1763,6 +1763,7 @@ button_Del.bind("<FocusOut>", on_focus_out_Del)
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
 for i in range(numButtons):
+    # HELP
     button = tk.Button(root, text=f"Button{i}")
 
     # positioning buttons in 2 rows of 9

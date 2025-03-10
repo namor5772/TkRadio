@@ -1,35 +1,35 @@
 # TkRadio
+
 An Internet Radio that uses Python with tkinter & selenium
 
-The main python file is called RadioSelenium-RP4B.py and it implements the internet radio on Windows 11 and Linux and in particular on a Raspberry Pi 4B (although loading streams can sometimes be a bit slow). You will need to load many additional modules and the process for this will vary depending on the platform. The FireFox browser also needs to be loaded.
+Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here. In any case the main Python file RadioSelenium-RP4B.py is unchanged
 
-It has access to over 100 radio stations mainly available in Australia. It accesses the streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed about every 12 seconds as the stream is playing.
+It has access to over 100 radio stations mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed approximately every 12 seconds while the stream is playing.
 
 For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. There is an [Add] button which adds/replaces a station to a selected button, while the [Del] button deletes the station from the button/playlist, deleting its logo and leaving the button graphic blank. The stations to be added are selected from the combobox which enables all available stations to be streamed. You select a station from the combobox, then select a button and then press the [Add] button.
 
-Occasionally internet/website issues might cause a station to fail to stream or or not correctly refresh the program text and graphic. This can almost always be resolved by just selecting the station again.
+Occasionally internet/website issues might cause a station to fail to stream or not correctly refresh the program text and graphic. This can almost always be resolved by just selecting the station again.
 
 The currently playing station from the playlist is saved to file so that if the program is restarted it will automatically start streaming that station. The current playlist is also saved to file after any changes so that it is displayed after restart.
 
 The RadioSelenium-RP4B.py python file can be launched from any directory as long as it contains the Images subdirectory and its files from the GitHub repository. The playlist and last streaming station files are assumed to be in the same directory.
 
-Here we will describe in detail how to implement this radio as a dedicated app on a Raspberry Pi, in particular the hardware and software setup.
-
-Below are two images of the applications GUI:
-![alt text](image.png)
-
-![alt text](image-1.png)
+Below is an image of the applications GUI with the selected (from playlist) ABC Classic station streaming:
+![app GUI image](Images/imageGUI.png)
 
 ## Hardware
 
 We use a Raspberry Pi 4B with 4GB of memory
+
+*** COMPLETE
 
 ## Software Setup
 
 Here we detail ALL the software needed for this project. Starting with the blank micro SD card that will contain all the software running on the Raspberry Pi.
 
 1. Install the OS on a 32GB SanDisk Ultra 10 micro SD card (or equivalent). I used a Windows 11 PC with the __Raspberry Pi Imager v1.8.5__ app, selecting the Raspberry Pi OS (64-bit) Debian GNU/Linux 12 (bookworm) OS. In the setup use:
-    ```
+
+    ```text
     hostname:             rpi
     username:             {username}
     password:             {password}
@@ -38,63 +38,81 @@ Here we detail ALL the software needed for this project. Starting with the blank
     Wireless LAN country: AU
     locale:               Australia/Sydney
     keyboard:             us
-    ```   
+    ```
+
 1. Place the SD card into the Raspberry Pi which is assumed to have a wireless mouse & keyboard connected, a HDMI monitor connected and USB powered stereo speakers connected to the 3.5mm jack. Power up the Raspberry Pi (by plugging in a USB-C 3A rated power pack). If everthing works it should boot into the GUI. Then:
     - Confirm that the system connects to the internet or set it up via the taskbar.
     - Make the system have max volume using the slider available on the taskbar.
     - Open a terminal window and run the following commands:
-        ```    
+
+        ```sh
         sudo apt update
         sudo apt full-upgrade
         sudo apt autoremove
         sudo reboot        
         ```
+
 1. Download the GitHub repository directory TkRadio and all its contents (including subdirectories) to your /__home/{username)/__ directory. You can do that via a USB stick or using Visual Studio Code directly from the Raspberry Pi you are using.
 1. Install latest versions of Idle & Python
    - Python already installed with OS - Version 3.11.2
    - Install Idle from a terminal window with this command:
-        ```
+
+        ```sh
         sudo apt-get install idle
         ```
+
         When you start Idle from the taskbar, the Help => About IDLE menu selection should show you that:
-        ```
+
+        ```sh
         Python version: 3.11.2
         Tk version: 8.6.13
         IDLE version: 3.11.2
         ```
+
 1. Install the Python Imaging Library (PIL) from the terminal with:
-    ```
+
+    ```sh
     sudo apt-get update
     sudo apt-get install python3.pil python3.pil.imagetk
     ```
+
 1. Install the Selenium library for Python from the terminal with:
-    ```
+
+    ```sh
     sudo apt_get install python3_pip
     python3 -m venv selenium_env
     source selenium_env/bin/activate
     pip install selenium
     sudo apt-get install python3-selenium
     ```
+
 1. Install the gekodriver (necessary for selenium to operate with the FireFox browser), Note: FireFox is already installed with the OS:
-    - From the https://github.com/mozilla/gekodriver/releases repository or otherwise download the tar.gz file __gekodriver-v0.36.0-linux-aarch64.tar.gz__ file to the __/home/{username}/Downloads__ directory and then from a terminal window run:
-    ```
+    - From the <https://github.com/mozilla/gekodriver/releases> repository or otherwise (from this repository) download the tar.gz file __gekodriver-v0.36.0-linux-aarch64.tar.gz__ file to the __/home/{username}/Downloads__ directory and then from a terminal window run:
+
+    ```sh
     cd /
     cd /home/{username}/Downloads
     tar -xvzf gekodriver-v0.36.0-linux-aarch64.tar.gz
     sudo mv gekodriver /usr/local/bin
     gekodriver --version
     ```
+
 1. Setup auto-start:
     - create a directory named __autostart__ in the directory __/home/{username}/.config__ (which is hidden, so you need to use __ls -al__ to see its contents from the /home/{username} directory)  
     - in that __autostart__ directory use __sudo nano__ via a terminal to create a file called __autoRadio.desktop__ with the following content:
-    ```
+
+    ```sh
     [Desktop Entry]
     Type=Application
     Exec=/usr/bin/idle -r /home/{username}/TkRadio/RadioSelenium-RP4B.py
     ```
+
+    You could also just use file available in the repository, but off course you will need to replace {username} with the text relevant to your system.
+
 1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type __sudo reboot__ in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
 
 ## Python Script
+
 The actual gui application that implements the internet radio is the python script [RadioSelenium-RP4B.py](RadioSelenium-RP4B.py) located in the /home/{username}/TkRadio directory:
 
 ```Python
@@ -141,11 +159,12 @@ filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
-firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
+# you can comment out the --headless line if you wish to see the FireFox browser in action
+firefox_options = Options()
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless") # SETUP FIREFOX TO BE HEADLESS
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -165,7 +184,7 @@ buttonIndex = -1
 addFlag = False
 iconSize = 160
 eventFlag = True # if on_select & on_select2 are called from event
-stopFlag = False
+stopFlag = False # true on_select & on_select2 will run withoud doing anything 
 selected_value = "INITIAL"
 selected_value_last = "INITIAL"
 selected_index = -1
@@ -180,7 +199,7 @@ needSleep = 10 # can be less on faster machines
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
 
 
-# Define a custom event class
+# Define a utility custom event class
 class CustomEvent:
     def __init__(self, event_type, widget, data=None):
         self.type = event_type
@@ -197,11 +216,9 @@ class CustomEvent:
 def Radio1(br,Num,sPath):
     if eventFlag:
         stack = inspect.stack()
-        global station 
-        station = inspect.stack()[1].function
+        global station; station = inspect.stack()[1].function
         logo = station + ".png"
-        print(logo)
-        print("--")
+        print(logo); print("--")
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)

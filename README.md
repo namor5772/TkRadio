@@ -2,7 +2,7 @@
 
 An Internet Radio that uses Python with tkinter & selenium
 
-Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here. In any case the main Python file RadioSelenium-RP4B.py is unchanged
+Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (somewhat in the [Windows setup](#windows-setup) section). In any case the main Python file RadioSelenium-RP4B.py is unchanged
 
 It has access to over 100 radio stations mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed approximately every 12 seconds while the stream is playing.
 
@@ -110,6 +110,30 @@ Here we detail ALL the software needed for this project. Starting with the blank
     You could also just use file available in the repository, but off course you will need to replace {username} with the text relevant to your system.
 
 1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type __sudo reboot__ in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
+
+## Windows setup
+
+He we describe how to setup the launch of this app through a desktop shortcut.
+
+On GUI Right click mouse to open popup menu, select: New => Shortcut
+A dialog box appears. Into the "Type the location of the item:" text box paste the following:
+
+```text
+C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-RP4B.py"
+```
+
+Press the [Next] button.
+In the following text box titled "Type a name for this shortcut" type "RADIO" (replacing "pythonw.exe").
+Press the [Finish] button.
+This new shortcut then appears on the desktop with the Python icon. This can be changed if you desire. Interestingly when examining the Properties of this shortcut we have (automatically generated) the following properties:
+
+```text
+Target location: Python312
+Target: C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-RP4B.py"
+Start in: C:\Users\grobl\AppData\Local\Programs\Python\Python312
+```
+
+Clearly the will vary depending on directories containing the Python script and the Python executable.
 
 ## Python Script
 

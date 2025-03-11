@@ -4,15 +4,15 @@ ABC NewsRadio,52
 ABC Classic LIVE,73
 ABC Classic2,78
 ABC Jazz,79
--- EMPTY 6 --,-1
--- EMPTY 7 --,-1
--- EMPTY 8 --,-1
+ABC Radio Australia,82
+ABC Country,80
+ABC Kids listen,81
 GOLD101.7,84
 Cruise 1323,105
 nova 969 Sydney,125
 smoothfm 95.3 Sydney,117
--- EMPTY 13 --,-1
--- EMPTY 14 --,-1
+ABC SPORT,58
+nova 90s,130
 smooth 80s,122
 smooth relax,123
 smooth VINTAGE,124

@@ -49,7 +49,8 @@ firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
-refresh_http = "http://www.ri.com.au" # use my basic "empty" website
+#refresh_http = "http://www.ri.com.au" # use my basic "empty" website
+refresh_http = "https://www.blank.org/" # use my basic "empty" website
 
 # global graphis position variables
 Ydown = 63
@@ -75,6 +76,7 @@ refreshTime = 10.0 # in seconds for program info
 stationShort = ""
 station = ""
 needSleep = 10 # can be less on faster machines
+pressButton = True # flag for how stream is started
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -112,11 +114,23 @@ def Radio1(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
-        for _ in range(Num):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
+            for _ in range(Num):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 1")
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 1")
         time.sleep(1)
-        
+
         # get station logo
         image_path3 = pathImages
         image_path3 = image_path3 + "/" + logo
@@ -202,18 +216,27 @@ def Radio2(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
-        for _ in range(3):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(4):
-            be.send_keys(Keys.UP)
-        for _ in range(Num):
-            be.send_keys(Keys.DOWN)
-        be.send_keys(Keys.ENTER)
-        for _ in range(3):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+            for _ in range(4):
+                be.send_keys(Keys.UP)
+            for _ in range(Num):
+                be.send_keys(Keys.DOWN)
+            be.send_keys(Keys.ENTER)
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 2")
         time.sleep(1)
+
 
         # get station logo
         image_path2 = pathImages + "/ABC_Radio_National.png"
@@ -286,17 +309,25 @@ def Radio3(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
-        for _ in range(5):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(4):
-            be.send_keys(Keys.UP)
-        for _ in range(Num):
-            be.send_keys(Keys.DOWN)
-        be.send_keys(Keys.ENTER)
-        for _ in range(3):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
+            for _ in range(5):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+            for _ in range(4):
+                be.send_keys(Keys.UP)
+            for _ in range(Num):
+                be.send_keys(Keys.DOWN)
+            be.send_keys(Keys.ENTER)
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 3")
         time.sleep(1)
 
         # get station logo
@@ -378,22 +409,30 @@ def Radio4(br,sPath):
     time.sleep(1)
 
     if eventFlag:
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(3):
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
             be.send_keys(Keys.TAB)
-            
-        # adjust amount of tabbing depending on where you end up!
-        Adjusted = False
-        focused_element = br.execute_script("return document.activeElement")
-        if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
+            be.send_keys(Keys.ENTER)
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+                
+            # adjust amount of tabbing depending on where you end up!
+            Adjusted = False
+            focused_element = br.execute_script("return document.activeElement")
+            if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
+                be.send_keys(Keys.SHIFT,Keys.TAB)
+                Adjusted = True
+                print("ADJUSTED TAB")
+            be.send_keys(Keys.ENTER)
             be.send_keys(Keys.SHIFT,Keys.TAB)
-            Adjusted = True
-            print("ADJUSTED TAB")
-        be.send_keys(Keys.ENTER)
-        be.send_keys(Keys.SHIFT,Keys.TAB)
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.TAB)
+            be.send_keys(Keys.TAB)
+            be.send_keys(Keys.TAB)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 4")
         time.sleep(3)
         
         # get station logo
@@ -474,21 +513,29 @@ def Radio5(br,sPath):
     time.sleep(1)
 
     if eventFlag:
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(3):
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
             be.send_keys(Keys.TAB)
-            
-        # adjust amount of tabbing depending on where you end up!
-        Adjusted = False;
-        focused_element = br.execute_script("return document.activeElement")
-        if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
-            be.send_keys(Keys.SHIFT,Keys.TAB)
-            Adjusted = True
-            print("ADJUSTED TAB")
-        be.send_keys(Keys.ENTER)
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+                
+            # adjust amount of tabbing depending on where you end up!
+            Adjusted = False;
+            focused_element = br.execute_script("return document.activeElement")
+            if not("Button_btn___qFSk" in focused_element.get_attribute('class')):
+                be.send_keys(Keys.SHIFT,Keys.TAB)
+                Adjusted = True
+                print("ADJUSTED TAB")
+            be.send_keys(Keys.ENTER)
+            be.send_keys(Keys.TAB)
+            be.send_keys(Keys.TAB)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 5")
         time.sleep(1)
 
         # get station logo
@@ -568,9 +615,17 @@ def Radio6(br,sPath):
     time.sleep(1)
 
     if eventFlag:
-        for _ in range(3):
-            be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
+            for _ in range(3):
+                be.send_keys(Keys.TAB)
+            be.send_keys(Keys.ENTER)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 6")
         time.sleep(1)
 
         # get station logo
@@ -637,7 +692,7 @@ def Radio6(br,sPath):
     fe3 = fe1+"*"+fe2
     return fe3
 
-
+# *************************** FIX FIX FIX ****************************************
 def Radio7(br,Num,sPath):
     if eventFlag:
         stack = inspect.stack()
@@ -656,20 +711,28 @@ def Radio7(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
-        be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(11):
-            be.send_keys(Keys.TAB)
-        if Num==0:
-            be.send_keys(Keys.ENTER)
-        elif Num==1:
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # Use tabbing to locate button 
             be.send_keys(Keys.TAB)
             be.send_keys(Keys.ENTER)
-        else: # if Num==2
-            be.send_keys(Keys.TAB)
-            be.send_keys(Keys.TAB)
-            be.send_keys(Keys.ENTER)
-            be.send_keys(Keys.ENTER)
+            for _ in range(11):
+                be.send_keys(Keys.TAB)
+            if Num==0:
+                be.send_keys(Keys.ENTER)
+            elif Num==1:
+                be.send_keys(Keys.TAB)
+                be.send_keys(Keys.ENTER)
+            else: # if Num==2
+                be.send_keys(Keys.TAB)
+                be.send_keys(Keys.TAB)
+                be.send_keys(Keys.ENTER)
+                be.send_keys(Keys.ENTER)
+        else:
+            # Locate the button by its XPATH
+            buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/div/div/main/section[2]/div/section/div/section/section/div[2]/div/div[1]/div/div[2]/button')
+            buttonStream.click()
+            print("BUTTON PRESSED TO START STREAM 7")
         time.sleep(1)
 
         # get station logo
@@ -748,58 +811,96 @@ def Commercial1(br,sPath,sClass,nType):
         time.sleep(2)
         br.get(sPath)
         time.sleep(needSleep) # bigger on slow machines
-    
-        # press button with virtual mouse to play stream
-        window_size = br.get_window_size()
-        width = window_size['width']
-        height = window_size['height']         
-        print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-
-        # sets position of "Listen Live" button depending on nType integer parameter
-        match nType:
-            case 0:
-                # iHeart stations
-                widthPx =300
-                heightPx = 240
-                print("Case 0")
-            case 1:
-                # Smooth stations
-                widthPx =int(647*width/1295)
-                heightPx = 565   #int(800*(height-130)/(924-130))
-                print("Case 1")
-            case 2:
-                # Nova stations
-                widthPx = 250
-                heightPx = 460
-                print("Case 2")
-            case 3:
-                # Nova_90s & nova_NATION exception
-                widthPx = 300
-                heightPx = 425
-                print("Case 3")
-            case 4:
-                # Nova_THROWBACKS exception
-                widthPx = 300
-                heightPx = 495
-                print("Case 4")
-            case 5:
-                # Nova_FreshCOUNTRY exception
-                widthPx = 250
-                heightPx = 505
-                print("Case 5")
-            case _:
-                print("Out of bounds")            
-        print(f"Move size: width = {widthPx}, height = {heightPx}")
-        actions = ActionChains(br)
-        actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(3)
 
     # always runs
     be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(2)
+    time.sleep(1)
 
     if eventFlag:
-        time.sleep(2) # DETERMINE TIME
+        # This where the streaming of the radio station is accomplished
+        if (not pressButton):
+            # press button with virtual mouse to play stream
+            window_size = br.get_window_size()
+            width = window_size['width']
+            height = window_size['height']         
+            print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+
+            # sets position of "Listen Live" button depending on nType integer parameter
+            match nType:
+                case 0:
+                    # iHeart stations
+                    widthPx =300
+                    heightPx = 240
+                    print("Case 0")
+                case 1:
+                    # Smooth stations
+                    widthPx =int(647*width/1295)
+                    heightPx = 565   #int(800*(height-130)/(924-130))
+                    print("Case 1")
+                case 2:
+                    # Nova stations
+                    widthPx = 250
+                    heightPx = 460
+                    print("Case 2")
+                case 3:
+                    # Nova_90s & nova_NATION exception
+                    widthPx = 300
+                    heightPx = 425
+                    print("Case 3")
+                case 4:
+                    # Nova_THROWBACKS exception
+                    widthPx = 300
+                    heightPx = 495
+                    print("Case 4")
+                case 5:
+                    # Nova_FreshCOUNTRY exception
+                    widthPx = 250
+                    heightPx = 505
+                    print("Case 5")
+                case _:
+                    print("Out of bounds")            
+            print(f"Move size: width = {widthPx}, height = {heightPx}")
+            actions = ActionChains(br)
+            actions.move_by_offset(widthPx, heightPx).click().perform()
+        else:    
+            # Locate the button by its XPATH
+            # sets position of "Listen Live" button depending on nType integer parameter
+            match nType:
+                case 0:
+                    # iHeart stations
+                    buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div[4]/div[1]/div/div/div[2]/div/div[1]/button')
+                    buttonStream.click()
+                    print("Case 0")
+                case 1:
+                    # Smooth stations
+                    buttonStream = be.find_element(By.XPATH,'//*[@id="listenLive"]')
+                    buttonStream.click()
+                    print("Case 1")
+                case 2:
+                    # Nova stations
+                    buttonStream = be.find_element(By.XPATH,'//*[@id="listenLive"]')
+                    buttonStream.click()
+                    print("Case 2")
+                case 3:
+                    # Nova_90s & nova_NATION exception
+                    buttonStream = be.find_element(By.XPATH,'//*[@id="listenLive"]')
+                    buttonStream.click()
+                    print("Case 3")
+                case 4:
+                    # Nova_THROWBACKS exception
+                    buttonStream = be.find_element(By.XPATH,'//*[@id="listenLive"]')
+                    buttonStream.click()
+                    print("Case 4")
+                case 5:
+                    # Nova_FreshCOUNTRY exception
+                    buttonStream = be.find_element(By.XPATH,'//*[@id="listenLive"]')
+                    buttonStream.click()
+                    print("Case 5")
+                case _:
+                    print("Out of bounds")            
+            print("BUTTON PRESSED TO START STREAM - COMMERCIAL")
+        time.sleep(3)
+
         # get station logo
         if nType==0:
             # for iHeart stations
@@ -827,7 +928,7 @@ def Commercial1(br,sPath,sClass,nType):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-  # get song image
+    # get song image
     if nType==0: 
         # iHeart stations
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
@@ -847,7 +948,7 @@ def Commercial1(br,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
  
-  # Find program and song details
+    # Find program and song details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": sClass})
@@ -983,12 +1084,15 @@ def ABC_Radio_National_SA():
     return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_NT():
     return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
+
+# ******************* FIX FIX FIX
 def ABC_SPORT():
     return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
 def ABC_SPORT_EXTRA():
     return Radio7(browser,1,"https://www.abc.net.au/news/sport/audio")
 def ABC_CRICKET():
     return Radio7(browser,2,"https://www.abc.net.au/news/sport/audio")
+
 def ABC_triple_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_QLD():
@@ -1031,7 +1135,6 @@ def ABC_Country():
     return Radio5(browser,"https://www.abc.net.au/listen/live/country")
 def ABC_Kids_listen():
     return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
-# FIX - ABC Sport one less tab no graphic
 def ABC_Radio_Australia():
     return Radio5(browser,"https://www.abc.net.au/pacific/live")
 def KIIS1065():

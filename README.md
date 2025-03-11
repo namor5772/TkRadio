@@ -53,7 +53,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
         sudo reboot        
         ```
 
-1. Download the GitHub repository directory TkRadio and all its contents (including subdirectories) to your /__home/{username)/__ directory. You can do that via a USB stick or using Visual Studio Code directly from the Raspberry Pi you are using.
+1. Download the GitHub repository directory TkRadio and all its contents (including subdirectories) to your /__home/{username)/__ directory. You can do that via a USB stick or using Visual Studio Code to clone this repository directly to the Raspberry Pi you are using.
 1. Install latest versions of Idle & Python
    - Python already installed with OS - Version 3.11.2
    - Install Idle from a terminal window with this command:

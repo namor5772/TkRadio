@@ -45,7 +45,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between station websites
@@ -75,7 +75,7 @@ endTime = 0.0
 refreshTime = 10.0 # in seconds for program info
 stationShort = ""
 station = ""
-needSleep = 10 # can be less on faster machines
+needSleep = 5 # can be less on faster machines
 pressButton = True # flag for how stream is started
 
 # END #########################################################
@@ -120,10 +120,6 @@ def Radio1(br,Num,sPath):
             for _ in range(Num):
                 be.send_keys(Keys.TAB)
             be.send_keys(Keys.ENTER)
-            # Locate the button by its XPATH
-            buttonStream = be.find_element(By.XPATH,'')
-            buttonStream.click()
-            print("BUTTON PRESSED TO START STREAM 1")
         else:
             # Locate the button by its XPATH
             buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')

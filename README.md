@@ -1,8 +1,9 @@
 # TkRadio
 
 An Internet Radio that uses Python with tkinter & selenium
+The best way to load this software is to Clone this Git Repository using Visual Studio Code.
 
-Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (somewhat in the [Windows setup](#windows-setup) section). In any case the main Python file RadioSelenium-RP4B.py is unchanged
+Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. In any case the main Python file RadioSelenium-RP4B.py is unchanged.
 
 It has access to over 100 radio stations mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed approximately every 12 seconds while the stream is playing.
 

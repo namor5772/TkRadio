@@ -48,9 +48,9 @@ firefox_options.add_argument("--height=917")
 #firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
-# 'cleans' browser between station websites
+# 'cleans' browser between opening station websites
 #refresh_http = "http://www.ri.com.au" # use my basic "empty" website
-refresh_http = "https://www.blank.org/" # use my basic "empty" website
+refresh_http = "https://www.blank.org/" # use a basic "empty" website
 
 # global graphis position variables
 Ydown = 63
@@ -94,16 +94,22 @@ class CustomEvent:
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 #
 # There are 8 of them: Radio1 ... Radio7 & Commercial1. They are needed because the 
-# websites used to stream individual radio stations can differ in their layout.
+# websites used to stream individual radio stations can differ in their layout, but many are
+# similar so can use the same code. Radio1...Radio7 are for the ABC stations, while Commercial1
+# is for the commercial stations.
 
 def Radio1(br,Num,sPath):
     if eventFlag:
+        # use inspect to get the name of the calling function
+        # this is used to generate the station name and logo
         stack = inspect.stack()
         global station 
         station = inspect.stack()[1].function
         logo = station + ".png"
         print(logo)
         print("--")
+
+        # go to the station website
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
@@ -125,7 +131,7 @@ def Radio1(br,Num,sPath):
         image = Image.open(image_path3)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -133,11 +139,12 @@ def Radio1(br,Num,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
 
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # get song image
+    # get program image
     try:
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
@@ -148,7 +155,7 @@ def Radio1(br,Num,sPath):
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
 
-    # Display the program image as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -163,7 +170,7 @@ def Radio1(br,Num,sPath):
     else:
         label2.place(x=Xgap, y=Ygap2)  # Adjust the position
     
-    # Find program details
+    # get station details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -182,7 +189,7 @@ def Radio1(br,Num,sPath):
     sub = "*."
     fe1 = fe1.replace(sub,"")
         
-    # find song details    
+    # append program details to station details    
     fe = soup.find(attrs={"class": "playingNow"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -194,6 +201,7 @@ def Radio1(br,Num,sPath):
 
 def Radio2(br,Num,sPath):
     if eventFlag:
+        # go to the station website
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
@@ -204,6 +212,16 @@ def Radio2(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
+        # Select timezone for stream (specific to this actual ABC radio website)
+        for _ in range(3):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(4):
+            be.send_keys(Keys.UP)
+        for _ in range(Num):
+            be.send_keys(Keys.DOWN)
+        be.send_keys(Keys.ENTER)
+
         # This where the streaming of the radio station is accomplished
         buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
         buttonStream.click()
@@ -214,7 +232,7 @@ def Radio2(br,Num,sPath):
         image = Image.open(image_path2)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -222,17 +240,18 @@ def Radio2(br,Num,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
 
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # get presenter image
+    # get program image
     img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
     img2_url = img2_element.get_attribute("src")
     image2_path = pathImages + "/presenter.jpg"
     urllib.request.urlretrieve(img2_url, image2_path)
 
-    # Display the station presenter as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -243,7 +262,7 @@ def Radio2(br,Num,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
     
-    # Find stream details
+    # get station and program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -251,6 +270,7 @@ def Radio2(br,Num,sPath):
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No specific item playing"
+
     # Remove irrelevant info, starting with [*.*More]
     sub = "*.*More"
     pos = fe2.find(sub)
@@ -261,6 +281,8 @@ def Radio2(br,Num,sPath):
 
 def Radio3(br,Num,sPath):
     if eventFlag:
+        # use inspect to get the name of the calling function
+        # this is used to generate the station name and logo
         stack = inspect.stack()
         station = inspect.stack()[1].function
         first_occurrence = station.find("_")
@@ -270,6 +292,8 @@ def Radio3(br,Num,sPath):
         logo = station_short + ".png"
         print(logo)
         print("--")
+
+        # go to the station website
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
@@ -280,6 +304,16 @@ def Radio3(br,Num,sPath):
     time.sleep(1)
 
     if eventFlag:
+        # Select timezone for stream (specific to this actual ABC radio website)
+        for _ in range(5):
+            be.send_keys(Keys.TAB)
+        be.send_keys(Keys.ENTER)
+        for _ in range(4):
+            be.send_keys(Keys.UP)
+        for _ in range(Num):
+            be.send_keys(Keys.DOWN)
+        be.send_keys(Keys.ENTER)
+
         # This where the streaming of the radio station is accomplished
         buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
         buttonStream.click()
@@ -290,7 +324,7 @@ def Radio3(br,Num,sPath):
         image = Image.open(image_path3)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -298,6 +332,7 @@ def Radio3(br,Num,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
 
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
@@ -313,7 +348,7 @@ def Radio3(br,Num,sPath):
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
 
-    # Display the program image as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -328,7 +363,7 @@ def Radio3(br,Num,sPath):
     else:
         label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
-    # Find program details
+    # get station details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -342,7 +377,8 @@ def Radio3(br,Num,sPath):
     pos = fe1.find(sub)
     if pos != -1:
         fe1 = fe1[:pos]
-    # find song details    
+
+    # append program details to station details    
     fe = soup.find(attrs={"class": "playingNow"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -354,6 +390,7 @@ def Radio3(br,Num,sPath):
 
 def Radio4(br,sPath):
     if eventFlag:
+        # go to the station website
         br.get(refresh_http)
         time.sleep(1)
         br.get(sPath)
@@ -377,7 +414,7 @@ def Radio4(br,sPath):
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -385,11 +422,12 @@ def Radio4(br,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
         
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
        
-    # get presenter image
+    # get program image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
@@ -401,7 +439,7 @@ def Radio4(br,sPath):
         # Display a blank image
         image2_path = pathImages + "/ABC_faint.png"
 
-    # Display the station presenter as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -413,7 +451,7 @@ def Radio4(br,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap2, y=Ygap2)  # Adjust the position
     
-    # Find live program details
+    # get station details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
@@ -421,11 +459,12 @@ def Radio4(br,sPath):
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No item playing"
+
     # Remove irrelevant info [*-]
     sub = "*-"
     fe3 = fe2.replace(sub,"")
     
-    # Find live program synopsis
+    # append program details to station details    
     fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -437,6 +476,7 @@ def Radio4(br,sPath):
 
 def Radio5(br,sPath):
     if eventFlag:
+        # go to the station website
         br.get(refresh_http)
         time.sleep(1)
         browser.get(sPath)
@@ -460,7 +500,7 @@ def Radio5(br,sPath):
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -468,11 +508,12 @@ def Radio5(br,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
         
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # get presenter image
+    # get program image
     try:      
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
@@ -483,7 +524,7 @@ def Radio5(br,sPath):
         # Display a blank image
         image2_path = pathImages + "/ABC_faint.png"
 
-    # Display the station presenter as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -495,7 +536,7 @@ def Radio5(br,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap, y=Ygap2)  # Adjust the position
 
-    # Find live program details
+    # get station details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
@@ -503,11 +544,12 @@ def Radio5(br,sPath):
         fe2 = fe.get_text(separator="*", strip=True)
     else:
         fe2 = "No item playing"
-        # Remove irrelevant info [*-]
+
+    # Remove irrelevant info [*-]
     sub = "*-"
     fe3 = fe2.replace(sub,"")
     
-    # Find live program synopsis
+    # append program details to station details    
     fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -519,6 +561,7 @@ def Radio5(br,sPath):
 
 def Radio6(br,sPath):
     if eventFlag:
+        # go to the station website
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
@@ -529,7 +572,7 @@ def Radio6(br,sPath):
     time.sleep(1)
 
     if eventFlag:
-        # This where the streaming of the radio station is accomplished
+        # This is where the streaming of the radio station is accomplished
         buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
         buttonStream.click()
         time.sleep(1)
@@ -539,7 +582,7 @@ def Radio6(br,sPath):
         image = Image.open(image_path3)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -547,6 +590,7 @@ def Radio6(br,sPath):
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
         
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
@@ -562,7 +606,7 @@ def Radio6(br,sPath):
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
 
-    # Display the program image as given in the image2_path global variable
+    # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
@@ -574,7 +618,7 @@ def Radio6(br,sPath):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap, y=Ygap3)  # Adjust the position
     
-    # Find program details
+    # get station details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": "view-live-now popup"})
@@ -589,7 +633,7 @@ def Radio6(br,sPath):
     if pos != -1:
         fe1 = fe1[:pos]
 
-    # Find song details     
+    # append program details to station details    
     fe = soup.find(attrs={"class": "playingNow"})
     if fe is not None:
         fe2 = fe.get_text(separator="*", strip=True)
@@ -597,6 +641,7 @@ def Radio6(br,sPath):
         fe2 = "No specific item playing"
     fe3 = fe1+"*"+fe2
     return fe3
+
 
 # *************************** FIX FIX FIX ****************************************
 def Radio7(br,Num,sPath):
@@ -687,6 +732,7 @@ def Radio7(br,Num,sPath):
 
 def Commercial1(br,sPath,sClass,nType):
     if eventFlag:
+        # use inspect to get the name of the calling function
         stack = inspect.stack()
         print("----------")
         station = inspect.stack()[1].function
@@ -694,6 +740,7 @@ def Commercial1(br,sPath,sClass,nType):
         print(logo)
         print("----------")
         
+        # go to the station website
         br.get(refresh_http)
         time.sleep(2)
         br.get(sPath)
@@ -705,7 +752,7 @@ def Commercial1(br,sPath,sClass,nType):
 
     if eventFlag:
         # This where the streaming of the radio station is accomplished
-        # sets position of "Listen Live" button depending on nType integer parameter
+        # the position of the "Listen Live" button depends on he nType integer parameter
         match nType:
             case 0:
                 # iHeart stations
@@ -732,23 +779,24 @@ def Commercial1(br,sPath,sClass,nType):
             # for Smooth & Nova stations
             image_path = pathImages + "/" + logo
 
-        # Display the station logo as given in the image_path global variable
+        # Display the station logo as given in the scaled_image
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon
+        # saving button icon if adding station to playlist 
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
             scaled_image.save(buttonImagePath)
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
-        
+
+        # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # get song image
+    # Display the program image as given in the scaled_image2
     if nType==0: 
         # iHeart stations
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
@@ -768,7 +816,7 @@ def Commercial1(br,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
  
-    # Find program and song details
+    # get station and program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
     fe = soup.find(attrs={"class": sClass})
@@ -777,6 +825,116 @@ def Commercial1(br,sPath,sClass,nType):
     else:
         fe1 = "None"
     return fe1
+
+
+# format used by the radio-australia.org and related stations format
+def Commercial2(br,sPath):
+    if eventFlag:
+        # use inspect to get the name of the calling function
+        stack = inspect.stack()
+        print("----------")
+        station = inspect.stack()[1].function
+        logo = station + ".png"
+        print(logo)
+        print("----------")
+        
+        # go to the station website
+        br.get(refresh_http)
+        time.sleep(2)
+        br.get(sPath)
+        time.sleep(needSleep) # bigger on slow machines
+
+    # always runs
+    be = br.find_element(By.TAG_NAME, 'body')
+    time.sleep(1)
+
+    if eventFlag:
+        # press button with virtual mouse to play stream
+        window_size = br.get_window_size()
+        width = window_size['width']
+        height = window_size['height']         
+        print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
+        widthPx =280
+        heightPx = 390
+        print(f"Move size: width = {widthPx}, height = {heightPx}")
+        actions = ActionChains(br)
+        actions.move_by_offset(widthPx, heightPx).click().perform()
+        time.sleep(3)
+
+        # get station logo
+        image_path = pathImages + "/" + logo
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+
+        # saving button icon if adding station to playlist 
+        global addFlag
+        if addFlag:
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            scaled_image.save(buttonImagePath)
+            addFlag = False
+            print(f"saving button icon {buttonImagePath}")
+        
+        # Display the station logo as given in the scaled_image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+
+    # Stations with program image
+    try:
+        # try to find a particular image element by path
+        img_element = be.find_element(By.XPATH, '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img')
+        img_url = img_element.get_attribute("src")
+        image_path = pathImages + "/presenter.jpg"
+        urllib.request.urlretrieve(img_url, image_path)
+        image = Image.open(image_path)
+        width2, height2 = image.size;
+        print(f"Pic width: {width2}, Pic height: {height2}")
+        width = int(Xprog*width2/height2)
+        scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
+        photo = ImageTk.PhotoImage(scaled_image)
+        label2.config(image=photo)
+        label2.image = photo  # Keep a reference to avoid garbage collection
+        label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+        print("=====> /div/a/img")
+    except NoSuchElementException:
+        try:
+            # if failed above try a slightly different path
+            img_element = be.find_element(By.XPATH, '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img')
+            img_url = img_element.get_attribute("src")
+            image_path = pathImages + "/presenter.jpg"
+            urllib.request.urlretrieve(img_url, image_path)
+            image = Image.open(image_path)
+            width2, height2 = image.size;
+            print(f"Pic width: {width2}, Pic height: {height2}")
+            width = int(Xprog*width2/height2)
+            scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
+            photo = ImageTk.PhotoImage(scaled_image)
+            label2.config(image=photo)
+            label2.image = photo  # Keep a reference to avoid garbage collection
+            label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+            print("=====>  /div/img")
+        except NoSuchElementException:
+            # failed to find image so display a blank image
+            image_path = pathImages + "/Blank.png"
+            image = Image.open(image_path)
+            scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
+            photo = ImageTk.PhotoImage(scaled_image)
+            label2.config(image=photo)
+            label2.image = photo  # Keep a reference to avoid garbage collection
+            label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+            print("=====> No /img")
+
+    # get station and program details (if available)
+    ht = be.get_attribute('innerHTML')
+    soup = BeautifulSoup(ht, 'lxml')
+    fe = soup.find(attrs={"class": "history-song"})
+    if fe is not None:
+        fe1 = fe.get_text(separator="*", strip=True)
+    else:
+        fe1 = "No program information"
+    return fe1
+
+
 
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
@@ -904,15 +1062,8 @@ def ABC_Radio_National_SA():
     return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
 def ABC_Radio_National_NT():
     return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
-
-# ******************* FIX FIX FIX
-def ABC_SPORT():
+def ABC_SPORT(): # *************************************************************** FIX ****
     return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
-def ABC_SPORT_EXTRA():
-    return Radio7(browser,1,"https://www.abc.net.au/news/sport/audio")
-def ABC_CRICKET():
-    return Radio7(browser,2,"https://www.abc.net.au/news/sport/audio")
-
 def ABC_triple_j_LIVE():
     return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
 def ABC_triple_j_QLD():
@@ -1061,6 +1212,37 @@ def nova_1069_Brisbane():
     return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
 def nova_937_Perth():
     return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
+def _2GB_SYDNEY():
+    return Commercial2(browser,"https://www.radio-australia.org/2gb")
+def _2GN_GOULBURN():
+    return Commercial2(browser,"https://www.radio-australia.org/2gn")
+def bbc_radio_1():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
+def bbc_radio_2():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
+def bbc_radio_3():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
+def bbc_radio_4():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
+def bbc_radio_5_live():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
+def _1000_hits_classical_music():
+    return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
+def classic_fm():
+    return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
+def klassik_radio():
+    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
+def klassik_radio_pure_bach():
+    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
+def klassik_radio_pure_beethoven():
+    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
+def klassik_radio_pure_mozart():
+    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
+def klassik_radio_pure_verdi():
+    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
+def epic_piano_chopin():
+    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
+
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1152,7 +1334,7 @@ aStation = [
     ["ABC Jazz",ABC_Jazz],    ["ABC Country",ABC_Country],
     ["ABC Kids listen",ABC_Kids_listen],
     ["ABC Radio Australia",ABC_Radio_Australia],
-    ["KISS 1065",KIIS1065],
+    ["KIIS 1065",KIIS1065],
     ["GOLD101.7",GOLD1017],
     ["CADA",CADA],
     ["iHeartCountry Australia",iHeartCountry_Australia],
@@ -1202,9 +1384,23 @@ aStation = [
     ["nova 90s",nova_90s],
     ["nova THROWBACKS",nova_THROWBACKS],
     ["nova FreshCOUNTRY",nova_FreshCOUNTRY],
-    ["nova_NATION",nova_NATION]
+    ["nova NATION",nova_NATION],
+    ["2GB SYDNEY",_2GB_SYDNEY],
+    ["2GN GOULBURN",_2GN_GOULBURN],
+    ["bbc radio 1",bbc_radio_1],
+    ["bbc radio 2",bbc_radio_2],
+    ["bbc radio 3",bbc_radio_3],
+    ["bbc radio 4",bbc_radio_4],
+    ["bbc radio 5 live",bbc_radio_5_live],
+    ["1000 hits classical music",_1000_hits_classical_music],
+    ["classic fm",classic_fm],
+    ["klassik radio",klassik_radio],
+    ["klassik radio pure bach",klassik_radio_pure_bach],
+    ["klassik radio pure beethoven",klassik_radio_pure_beethoven],
+    ["klassik radio pure mozart",klassik_radio_pure_mozart],
+    ["klassik radio pure verdi",klassik_radio_pure_verdi],
+    ["epic piano chopin",epic_piano_chopin]
 ] 
-
 
 # 2D array of preset radio stations, in long name and index (to aStation[]) format.
 # this is the default, but is actually copied from file at statup and saved to file on exit!

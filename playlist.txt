@@ -3,7 +3,7 @@ ABC Radio National LIVE,53
 ABC NewsRadio,52
 ABC Classic LIVE,73
 ABC Classic2,78
-ABC Jazz,79
+classic fm,136
 ABC Radio Australia,82
 ABC Country,80
 ABC Kids listen,81
@@ -15,6 +15,6 @@ ABC SPORT,58
 nova 90s,130
 smooth 80s,122
 smooth relax,123
-smooth VINTAGE,124
+2GN GOULBURN,135
 ABC Jazz,79
 ABC Country,80

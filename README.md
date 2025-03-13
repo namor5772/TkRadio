@@ -5,7 +5,7 @@ The best way to load this software is to Clone this Git Repository using Visual 
 
 Here the implementation of this software on a dedicated Raspberry Pi 4B will be described in detail. It can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. In any case the main Python file RadioSelenium-RP4B.py is unchanged.
 
-It has access to over 100 radio stations mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed approximately every 12 seconds while the stream is playing.
+It has access to 146 radio stations (currently) mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition if available the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). This program information is refreshed approximately every 12 seconds while the stream is playing.
 
 For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. There is an [Add] button which adds/replaces a station to a selected button, while the [Del] button deletes the station from the button/playlist, deleting its logo and leaving the button graphic blank. The stations to be added are selected from the combobox which enables all available stations to be streamed. You select a station from the combobox, then select a button and then press the [Add] button.
 
@@ -1454,8 +1454,6 @@ aStation = [
     ["ABC Radio National SA",ABC_Radio_National_SA],
     ["ABC Radio National NT",ABC_Radio_National_NT],
     ["ABC SPORT",ABC_SPORT],
-    ["ABC SPORT EXTRA",ABC_SPORT_EXTRA],
-    ["ABC CRICKET",ABC_CRICKET],
     ["ABC triple j LIVE",ABC_triple_j_LIVE],
     ["ABC triple j QLD",ABC_triple_j_QLD],
     ["ABC triple j WA",ABC_triple_j_WA],

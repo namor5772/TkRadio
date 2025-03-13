@@ -1311,8 +1311,6 @@ aStation = [
     ["ABC Radio National SA",ABC_Radio_National_SA],
     ["ABC Radio National NT",ABC_Radio_National_NT],
     ["ABC SPORT",ABC_SPORT],
-    ["ABC SPORT EXTRA",ABC_SPORT_EXTRA],
-    ["ABC CRICKET",ABC_CRICKET],
     ["ABC triple j LIVE",ABC_triple_j_LIVE],
     ["ABC triple j QLD",ABC_triple_j_QLD],
     ["ABC triple j WA",ABC_triple_j_WA],

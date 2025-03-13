@@ -45,7 +45,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -1819,7 +1819,7 @@ def on_focus_out_Del(event):
 root = tk.Tk()
 
 # Set title, size and position of the main window, and make it non-resizable
-strHeightForm = str(int(Xprog + 120 + Ydown))
+strHeightForm = str(int(Xprog + 120 + Ydown)*0+600)
 print(strHeightForm)
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
 root.geometry("800x" + strHeightForm + "+0+0")

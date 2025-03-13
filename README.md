@@ -112,6 +112,8 @@ Here we detail ALL the software needed for this project. Starting with the blank
 
 1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type __sudo reboot__ in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
 
+1. To make this application more immmersive change the display resolution to 800x600 (The app form size is 800x480) and place the task bar at the bottom of the screen and make its icon size very large (ie. 48x48). 
+
 ## Windows setup
 
 He we describe how to setup the launch of this app through a desktop shortcut.

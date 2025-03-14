@@ -20,7 +20,12 @@ Below is an image of the applications GUI with the selected (from playlist) ABC 
 
 ## Hardware
 
-We use a Raspberry Pi 4B with 4GB of memory
+1.  We use a Raspberry Pi 4B with 4GB of memory
+1.  We use an aluminium case with fans since the Raspberry Pi gets hot 
+1.  We use USB powered (by the Raspberry Pi) stereo speakers that are plugged into the 3.5mm socket.
+1.  We use a wireless keyboard and mouse to control the software. The dongle is plugged into a USB port.
+1.  We use a monitor that is plugged in into the micro HDMI port of the Raspberry Pi. Use an adaptor if the HDMI cable has a standard connector.
+
 
 *** COMPLETE
 
@@ -112,7 +117,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
 
 1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type __sudo reboot__ in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
 
-1. To make this application more immmersive change the display resolution to 800x600 (The app form size is 800x480) and place the task bar at the bottom of the screen and make its icon size very large (ie. 48x48). 
+1. To make this application more immmersive change the display resolution to 800x600 which matches the size of the apps form and then position the task bar at the bottom of the screen and make its icon size very large (ie. 48x48). 
 
 ## Windows setup
 

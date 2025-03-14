@@ -1438,8 +1438,9 @@ def on_select(event):
     global startTime, finishTime
     finishTime = time.time()
     timeInterval = finishTime-startTime
+    timeIntervalStr = f"{timeInterval:.2f}"
     print("***********************")
-    print(f"Time interval: {timeInterval:.2f} seconds")
+    print(f"Time interval: {timeIntervalStr} seconds")
     print("***********************")
     startTime = time.time()
     print(f"Type: {event.type}")
@@ -1462,6 +1463,17 @@ def on_select(event):
     # "mysterious" code due to timing issues
     if eventFlag:
         stopFlag = False
+
+        # inform user that a station is being started
+        text = "Please be patient, the station *" +  aStation[combobox_index][0] + "*is being started"
+        text_rows = text.split("*")
+        text_box.config(state=tk.NORMAL)
+        text_box.delete('1.0', tk.END)
+        for row in text_rows:
+            text_box.insert(tk.END, row + "\n")
+        text_box.config(state=tk.DISABLED)
+        root.update_idletasks()
+
     else: # if (not eventFlag)   
         if stopFlag:
             stopFlag=False
@@ -1473,39 +1485,57 @@ def on_select(event):
     print("eventFlag:",eventFlag)
 
     if stopFlag==False:
+
         # run selected radio station stream, and return associated textual information 
-        text = aStation[combobox_index][1]() # THIS BIT ACTUALLY STARTS STREAM
-        fullStationName = aStation[combobox_index][0] 
-        text = fullStationName + "*" + text
-        text_rows = text.split("*")
-        if len(text_rows)>1:
-            if text_rows[0]==text_rows[1]:
-                    del text_rows[0]
+        try:
+            text = aStation[combobox_index][1]() # THIS BIT ACTUALLY STARTS STREAM
+            fullStationName = aStation[combobox_index][0] 
+            text = fullStationName + "*" + text
+            text = text + "* *[" + timeIntervalStr + "]"
+            text_rows = text.split("*")
+            if len(text_rows)>1:
+                if text_rows[0]==text_rows[1]:
+                        del text_rows[0]
 
-        # Make text box editable, so contents can be deleted and rewritten
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        print(text_rows)
-        # Insert each row of text into the text box
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-        # Disable the text box to make it read-only
-        text_box.config(state=tk.DISABLED)
+            # Make text box editable, so contents can be deleted and rewritten
+            text_box.config(state=tk.NORMAL)
+            text_box.delete('1.0', tk.END)
+            print(text_rows)
+            # Insert each row of text into the text box
+            for row in text_rows:
+                text_box.insert(tk.END, row + "\n")
+            # Disable the text box to make it read-only
+            text_box.config(state=tk.DISABLED)
 
-        # hide the annoying blinking cursor though the fudge
-        # of selective focus setting
-        combobox.focus_set()
-        combobox.selection_clear()
-        buttons[buttonIndex].focus_set()
-        root.update_idletasks()
+            # hide the annoying blinking cursor though the fudge
+            # of selective focus setting
+            combobox.focus_set()
+            combobox.selection_clear()
+            buttons[buttonIndex].focus_set()
+            root.update_idletasks()
 
-        # on_select() schedules itself to run in nominally refreshTime seconds.
-        # this updates the program text and grapic while the selected radio station is streaming
-        print("JUST ABOUT TO RUN ROOT")
-        eventFlag = False
-        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
-        print("FINISHED RUNNING ROOT")
-        print("")
+            # on_select() schedules itself to run in nominally refreshTime seconds.
+            # this updates the program text and grapic while the selected radio station is streaming
+            print("JUST ABOUT TO RUN ROOT")
+            eventFlag = False
+            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+            print("FINISHED RUNNING ROOT")
+            print("")
+
+        except urllib.error.HTTPError as e:
+            event.type = "Manual" # to prevent saving of buttonIndex
+
+            # inform user that starting station has failed in some way
+            text = "<<< ERROR >>>*" + aStation[combobox_index][0] + "*failed to load properly*"
+            text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
+            text = text + "*Try again or select a different station."
+            text_rows = text.split("*")
+            text_box.config(state=tk.NORMAL)
+            text_box.delete('1.0', tk.END)
+            for row in text_rows:
+                text_box.insert(tk.END, row + "\n")
+            text_box.config(state=tk.DISABLED)
+            root.update_idletasks()
 
     else: #if stopFlag==True
         # Makes the scheduled call to on_select() do nothing if
@@ -1522,8 +1552,9 @@ def on_select2(event):
     global startTime, finishTime
     finishTime = time.time()
     timeInterval = finishTime-startTime
+    timeIntervalStr = f"{timeInterval:.2f}"
     print("***********************")
-    print(f"Time interval: {timeInterval:.2f} seconds")
+    print(f"Time interval: {timeIntervalStr} seconds")
     print("***********************")
     startTime = time.time()
     print(f"Type: {event.type}")
@@ -1543,6 +1574,17 @@ def on_select2(event):
     # "mysterious" code due to timing issues
     if eventFlag:
         stopFlag = False
+
+        # inform user that a station is being started
+        text = "Please be patient, the station *" +  aStation[selected_index][0] + "*is being started"
+        text_rows = text.split("*")
+        text_box.config(state=tk.NORMAL)
+        text_box.delete('1.0', tk.END)
+        for row in text_rows:
+            text_box.insert(tk.END, row + "\n")
+        text_box.config(state=tk.DISABLED)
+        root.update_idletasks()
+
     else: # if (not eventFlag)   
         if stopFlag:
             stopFlag=False
@@ -1562,52 +1604,70 @@ def on_select2(event):
             print("selected_index != -1")
 
             # run selected radio station stream, and return associated textual information 
-            text = (aStation[selected_index][1])() # this uses the eventFlag
-            fullStationName = aStation[selected_index][0] 
-            text = fullStationName + "*" + text
-            text_rows = text.split("*")
-            if len(text_rows)>1:
-                if text_rows[0]==text_rows[1]:
-                        del text_rows[0]
+            try:
+                text = (aStation[selected_index][1])() # this uses the eventFlag
+                fullStationName = aStation[selected_index][0] 
+                text = fullStationName + "*" + text
+                text = text + "* *[" + timeIntervalStr + "]"
+                text_rows = text.split("*")
+                if len(text_rows)>1:
+                    if text_rows[0]==text_rows[1]:
+                            del text_rows[0]
 
-            # Make text box editable, so contents can be deleted and rewritten
-            text_box.config(state=tk.NORMAL)
-            text_box.delete('1.0', tk.END)
-            print(text_rows)
+                # Make text box editable, so contents can be deleted and rewritten
+                text_box.config(state=tk.NORMAL)
+                text_box.delete('1.0', tk.END)
+                print(text_rows)
 
-            # Insert each row of text into the text box
-            for row in text_rows:
-                text_box.insert(tk.END, row + "\n")
+                # Insert each row of text into the text box
+                for row in text_rows:
+                    text_box.insert(tk.END, row + "\n")
 
-            # make seleted button synchronize with combobox
-            # hide the annoying blinking cursor though the fudge
-            # of selective focus setting
-            if event.type=="Auto":
-                combobox.set(fullStationName)
-                combobox.focus_set()
-                combobox.selection_clear()
-                buttons[buttonIndex].focus_set()
-            
-            # Disable the text box to make it read-only
-            text_box.config(state=tk.DISABLED)
-            root.update_idletasks()
+                # Disable the text box to make it read-only
+                text_box.config(state=tk.DISABLED)
+                root.update_idletasks()
 
-            print("JUST ABOUT TO RUN ROOT")
-            eventFlag = False
-            root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
-            print("FINISHED RUNNING ROOT")
-            print("")
+                # make seleted button synchronize with combobox
+                # hide the annoying blinking cursor though the fudge
+                # of selective focus setting
+                if event.type=="Auto":
+                    combobox.set(fullStationName)
+                    combobox.focus_set()
+                    combobox.selection_clear()
+                    buttons[buttonIndex].focus_set()
+                
+                print("JUST ABOUT TO RUN ROOT")
+                eventFlag = False
+                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+                print("FINISHED RUNNING ROOT")
+                print("")
+
+            except urllib.error.HTTPError as e:
+                event.type = "Manual" # to prevent saving of buttonIndex
+
+                # inform user that starting station has failed in some way
+                text = "<<< ERROR >>>*" + aStation[selected_index][0] + "*failed to load properly*"
+                text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
+                text = text + "*Try again or select a different station."
+                text_rows = text.split("*")
+                text_box.config(state=tk.NORMAL)
+                text_box.delete('1.0', tk.END)
+                for row in text_rows:
+                    text_box.insert(tk.END, row + "\n")
+                text_box.config(state=tk.DISABLED)
+                root.update_idletasks()
 
         else:
             # There is nothing to stream
             browser.get(refresh_http)
             time.sleep(2)
             text = selected_value + "*No station playing"
+            text = text + "* *[" + timeIntervalStr + "]"
             text_rows = text.split("*")
 
             # Make text box editable, so contents can be deleted and rewritten
             text_box.config(state=tk.NORMAL)
-            text_box.delete('1.0', tk.END       )
+            text_box.delete('1.0', tk.END)
             print(text_rows)
 
             # Insert each row of text into the text box

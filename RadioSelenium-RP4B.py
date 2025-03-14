@@ -1813,6 +1813,24 @@ def on_button_press(event, i):
     global buttonIndex; buttonIndex = i
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from buttons[i] press"))    
 
+# called when touch screen button i is pressed.
+# Pressing them (via the touch screen, or via mouse) simulates keyboard interaction
+# with the app gui. The name of the Keypress is in the button name!
+def on_touchButton_press(event, i):
+    bText = touchButtons[i].cget('text')
+    match i:
+        case 0: # <Tab>
+            root.event_generate("<" + bText + ">")
+        case 1: # <Shift-Tab>
+            root.event_generate("<" + bText + ">")
+        case 2: # <Up>
+            pass
+        case 3: # <Down>
+            paSS
+        case 4: # <Return>    
+            root.event_generate("<" + bText + ">")
+    print(f"Pressed <{bText}> button")
+
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
@@ -1962,6 +1980,30 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
+
+# Create the touch pad buttons (fully) and add them to the touchButtons[] list
+touchButtons = []
+for i in range(5):
+    
+    # setting up specific text for the buttons in the array
+    # a bit klunky but it works
+    match i:
+        case 0: bText = "Tab"
+        case 1: bText = "Shift-Tab"
+        case 2: bText = "Up"
+        case 3: bText = "Down"
+        case 4: bText = "Return"
+    button = tk.Button(root, text=bText, font=("Helvetica", 18), takefocus=0)
+
+    # positioning buttons in one row of 5
+    button.place(x=10+158*i, y=485, width=148, height=105)
+
+    # configuring button
+    button.config(bg="gray90")
+    button.bind("<Button-1>", lambda event, i=i: on_touchButton_press(event, i))  # Pass the extra parameter (i)
+    button.update_idletasks()
+    touchButtons.append(button)
+
 
 # doing stuff just after the gui is initialised and we are running in the root thread
 root.after(1000, after_GUI_started)

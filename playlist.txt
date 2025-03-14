@@ -15,6 +15,6 @@ smoothfm Adelaide,117
 nova 90s,128
 smooth 80s,120
 bbc radio 3,136
-2GN GOULBURN,133
+-- EMPTY 17 --,-1
 ABC Jazz,79
 ABC Country,80

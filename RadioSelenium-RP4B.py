@@ -1826,7 +1826,7 @@ def on_touchButton_press(event, i):
         case 2: # <Up>
             pass
         case 3: # <Down>
-            paSS
+            pass
         case 4: # <Return>    
             root.event_generate("<" + bText + ">")
     print(f"Pressed <{bText}> button")
@@ -1837,7 +1837,7 @@ def on_touchButton_press(event, i):
 def on_focus(event, i):
     buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-    global buttonIndex; buttonIndex = i
+    # global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
 
 # called when a playlist button loses focus.

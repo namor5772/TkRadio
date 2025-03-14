@@ -12,9 +12,9 @@ Cruise 1323,103
 nova 919 Adelaide,125
 smoothfm Adelaide,117
 2GB SYDNEY,132
-nova 90s,128
-smooth 80s,120
 bbc radio 3,136
--- EMPTY 17 --,-1
+nova 90s,128
+-- EMPTY 16 --,-1
+klassik radio pure mozart,144
 ABC Jazz,79
 ABC Country,80

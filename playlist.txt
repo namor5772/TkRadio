@@ -1,20 +1,20 @@
 ABC Radio Sydney NSW,0
 ABC Radio National LIVE,53
-ABC NewsRadio,52
-ABC Classic LIVE,71
 ABC Classic2,76
-classic fm,140
-1000 hits classical music,139
-epic piano chopin,146
-klassik radio,141
+ABC Classic LIVE,71
+2GN GOULBURN,133
+2GB SYDNEY,132
+nova THROWBACKS,129
+nova 90s,128
+smooth VINTAGE,122
 GOLD101.7,82
 Cruise 1323,103
-nova 919 Adelaide,125
-smoothfm Adelaide,117
-2GB SYDNEY,132
-bbc radio 3,136
-nova 90s,128
--- EMPTY 16 --,-1
+classic fm,140
 klassik radio pure mozart,144
+epic piano chopin,146
+1000 hits classical music,139
+bbc radio 2,135
+klassik radio pure bach,142
+klassik radio pure verdi,145
 ABC Jazz,79
 ABC Country,80

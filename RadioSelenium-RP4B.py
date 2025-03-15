@@ -1418,9 +1418,8 @@ def after_GUI_started():
     except FileNotFoundError:
         print(f'Error: The file {filepath} does not exist.')
         buttonIndex = 0
-    if buttonIndex == -1:
-        buttonIndex = 0
-    print(f'Index of last station played in playlist is {buttonIndex}')    
+    buttons[buttonIndex].focus_set()    
+    print(f'Button of last station played in playlist is {buttonIndex}')    
     print("")    
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
@@ -1509,10 +1508,10 @@ def on_select(event):
 
             # hide the annoying blinking cursor though the fudge
             # of selective focus setting
-            combobox.focus_set()
-            combobox.selection_clear()
-            buttons[buttonIndex].focus_set()
-            root.update_idletasks()
+            #combobox.focus_set()
+            #combobox.selection_clear()
+            #buttons[buttonIndex].focus_set()
+            #root.update_idletasks()
 
             # on_select() schedules itself to run in nominally refreshTime seconds.
             # this updates the program text and grapic while the selected radio station is streaming
@@ -1575,15 +1574,16 @@ def on_select2(event):
     if eventFlag:
         stopFlag = False
 
-        # inform user that a station is being started
-        text = "Please be patient, the station *" +  aStation[selected_index][0] + "*is being started"
-        text_rows = text.split("*")
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-        text_box.config(state=tk.DISABLED)
-        root.update_idletasks()
+        if selected_index != -1:
+            # inform user that a station is being started
+            text = "Please be patient, the station *" +  aStation[selected_index][0] + "*is being started"
+            text_rows = text.split("*")
+            text_box.config(state=tk.NORMAL)
+            text_box.delete('1.0', tk.END)
+            for row in text_rows:
+                text_box.insert(tk.END, row + "\n")
+            text_box.config(state=tk.DISABLED)
+            root.update_idletasks()
 
     else: # if (not eventFlag)   
         if stopFlag:
@@ -1704,22 +1704,75 @@ def on_select2(event):
         print("")
 
 
-# do this when the Add button is pressed.
-# it adds the radio station previously selected via the combobox to the playlist button
-# that has focus. In particular it displays the station logo on the button and links it to the station.
-def on_button_Add_press(event):
-    button_Add.config(relief="sunken", bg="lightgray")  # Simulate button press
-    button_Add.update_idletasks()  # Force update
+# called when playlist button i is in focus and the Enter key is pressed.
+# visually simulates a physical button press and initiates the station stream by
+# calling the on_select2    () function
+def on_button_press(event, i):
+    buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
+    buttons[i].update_idletasks()  # Force update
     time.sleep(1)
-    button_Add.config(relief="raised", bg="gray90")  # Simulate button press
-    button_Add.update_idletasks()  # Force update
-    print("Add button pressed")
-    print("From index:", combobox_index)
-    print("To index:", buttonIndex)
+    buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
+    buttons[i].update_idletasks()  # Force update
+    print("Button " + str(i) +" pressed")
+
+    global buttonFlag;  buttonFlag = True
+    global buttonIndex; buttonIndex = i
+    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+
+
+# called when playlist button i is in focus and the Delete key is pressed.
+# deletes the station from the playlist.
+def on_button_delete(event, i):
+    global buttonIndex; buttonIndex = i
+
+     # change aStation2[] to reflect the deletion
+    global aStation2
+    index = aStation2[buttonIndex][1]
+    print("deleting station:", index, "with playlist index:", buttonIndex)
+    if index != -1:
+        print("station deleted")    
+
+        lastStation = "-- EMPTY " + str(buttonIndex) +" --"
+        aStation2[buttonIndex][0] = lastStation
+        aStation2[buttonIndex][1] = -1
+
+        # get blank station logo
+        image_path = pathImages + "/Blank.png"
+        image = Image.open(image_path)
+
+        # saving blank button icon
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+        image.save(buttonImagePath)
+
+        # now need to update the icon on the buttonIndex button
+        image_resized = image.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
+        photo = ImageTk.PhotoImage(image_resized)
+        buttons[buttonIndex].config(image=photo)
+        buttons[buttonIndex].image = photo
+        buttons[buttonIndex].update_idletasks() 
+
+        # This will "play" the blank station for the real purpose of shutting down the current station
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"))
+
+        # save the playlist to file
+        with open(filepath2, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(aStation2)
+    else:        
+        print("No station to delete")    
+    print(f"space button {i} pressed")
+
+
+# called when playlist button i is in focus and the Insert key is pressed.
+# Inserts the last station played from the combobox into the playlist.
+# If the playlist button is already occupied, the station is replaced.
+# In particular it displays the station logo on the button and links it to the station.
+def on_button_insert(event, i):
+    global buttonIndex; buttonIndex = i
     
     # change aStation2[] list to reflect the addition
     global aStation2
-    if (combobox_index != -1) and (buttonIndex != -1):
+    if (combobox_index != -1):
         print("station added")    
         global addFlag
         addFlag = True # so can get and save icon for playlist button
@@ -1728,9 +1781,9 @@ def on_button_Add_press(event):
         aStation2[buttonIndex][0] = lastStation
         aStation2[buttonIndex][1] = combobox_index
 
-        # This will play the newly added station as well as saving the icon
+        # This will play the newly added station (from the combobox) as well as saving the icon
         # to its playlist button number
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from button_Add"))
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Insert Key"))
 
         # now need to update the icon on the buttonIndex button
         buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -1749,87 +1802,6 @@ def on_button_Add_press(event):
         print("No station added")    
     print("")
 
-
-# do this when the Del button is pressed
-# it deletes the radio station linked from the playlist button that currently has focus.
-# Its icon is also deleted from the button.
-def on_button_Del_press(event):
-    button_Del.config(relief="sunken", bg="lightgray")  # Simulate button press
-    button_Del.update_idletasks()  # Force update
-    time.sleep(1)
-    button_Del.config(relief="raised", bg="gray90")  # Simulate button press
-    button_Del.update_idletasks()  # Force update
-    print("Del button pressed")
-    
-    # change aStation2[] to reflect the deletion
-    global aStation2
-    index = aStation2[buttonIndex][1]
-    print("deleting station:", index, "with playlist index:", buttonIndex)
-    if (buttonIndex != -1) and (index != -1):
-        print("station deleted")    
-
-        lastStation = "-- EMPTY " + str(buttonIndex) +" --"
-        aStation2[buttonIndex][0] = lastStation
-        aStation2[buttonIndex][1] = -1
-
-        # get blank station logo
-        image_path = pathImages + "/Blank.png"
-        image = Image.open(image_path)
-
-        # saving button icon
-        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-        image.save(buttonImagePath)
-
-        # This will "play" the blank station
-        on_select2(CustomEvent("Auto", button_Del, "Auto from button_Del"))
-
-        # now need to update the icon on the buttonIndex button
-        image_resized = image.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
-        photo = ImageTk.PhotoImage(image_resized)
-        buttons[buttonIndex].config(image=photo)
-        buttons[buttonIndex].image = photo
-        buttons[buttonIndex].update_idletasks() 
-
-        # save the playlist to file
-        with open(filepath2, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerows(aStation2)
-    else:
-        print("No station to delete")    
-    print("")
-
-
-# called when playlist button i is pressed.
-# visually simulates a physical button press and initiates the station stream by
-# calling the on_selec2() function
-def on_button_press(event, i):
-    buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
-    buttons[i].update_idletasks()  # Force update
-    time.sleep(1)
-    buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
-    buttons[i].update_idletasks()  # Force update
-    print("Button " + str(i) +" pressed")
-    global buttonFlag;  buttonFlag = True
-    global buttonIndex; buttonIndex = i
-    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from buttons[i] press"))    
-
-# called when touch screen button i is pressed.
-# Pressing them (via the touch screen, or via mouse) simulates keyboard interaction
-# with the app gui. The name of the Keypress is in the button name!
-def on_touchButton_press(event, i):
-    bText = touchButtons[i].cget('text')
-    match i:
-        case 0: # <Tab>
-            root.event_generate("<" + bText + ">")
-        case 1: # <Shift-Tab>
-            root.event_generate("<" + bText + ">")
-        case 2: # <Up>
-            pass
-        case 3: # <Down>
-            pass
-        case 4: # <Return>    
-            root.event_generate("<" + bText + ">")
-    print(f"Pressed <{bText}> button")
 
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
@@ -1859,36 +1831,6 @@ def on_focus_out_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_out_combobox")
 
-# called when the Add button receives focus.
-# visually indicates that the button has focus and
-# makes sure its display is updated.
-def on_focus_Add(event):
-    button_Add.config(relief="raised", bg="darkgray")  # Simulate button press
-    button_Add.update_idletasks()  # Force update
-    print("on_focus_Add")
-
-# called when the Add button loses focus.
-# makes sure its display is updated.
-def on_focus_out_Add(event):
-    button_Add.config(relief="raised", bg="gray90")  # Simulate button press
-    button_Add.update_idletasks()  # Force update
-    print("on_focus_out_Add")
-
-# called when the Del button receives focus.
-# visually indicates that the button has focus and
-# makes sure its display is updated.
-def on_focus_Del(event):
-    button_Del.config(relief="raised", bg="darkgray")  # Simulate button press
-    button_Del.update_idletasks()  # Force update
-    print("on_focus_Del")
-
-# called when the Del button loses focus.
-# makes sure its display is updated.
-def on_focus_out_Del(event):
-    button_Del.config(relief="raised", bg="gray90")  # Simulate button press
-    button_Del.update_idletasks()  # Force update
-    print("on_focus_out_Del")
-
 
 ####################################
 # THIS IS WHERE THE CORE CODE STARTS
@@ -1897,7 +1839,7 @@ def on_focus_out_Del(event):
 root = tk.Tk()
 
 # Set title, size and position of the main window, and make it non-resizable
-strHeightForm = str(int(Xprog + 120 + Ydown)*0+600)
+strHeightForm = str(int(Xprog + 120 + Ydown)*0+480)
 print(strHeightForm)
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
 root.geometry("800x" + strHeightForm + "+0+0")
@@ -1919,7 +1861,7 @@ combobox.config(state="readonly")
 try:
     with open(filepath2, 'r') as file:
         reader = csv.reader(file)
-        aStation2 = [row for row in reader]     
+        aStation2 = [row for row in reader]             
 except FileNotFoundError:
     # will just use the default aStation2[] array created above
     print(f'Error: The file {filepath2} does not exist.')
@@ -1939,22 +1881,6 @@ label.place(x=15, y=2)
 label2 = tk.Label(root)
 label2.pack()
 
-# Create [Add] button used for adding radio stations to playlist
-button_Add = tk.Button(root, text="Add")
-button_Add.place(x=400-25-15+70+(sizeButton+5), y=2, width=40, height=20)
-button_Add.bind("<ButtonPress>", on_button_Add_press)
-button_Add.bind("<Return>", on_button_Add_press)
-button_Add.bind("<FocusIn>", on_focus_Add)
-button_Add.bind("<FocusOut>", on_focus_out_Add)
-    
-# Create [Del] button used for deleting radio stations from playlist
-button_Del = tk.Button(root, text="Del")
-button_Del.place(x=450-25-15+70+(sizeButton+5), y=2, width=40, height=20)
-button_Del.bind("<ButtonPress>", on_button_Del_press)
-button_Del.bind("<Return>", on_button_Del_press)
-button_Del.bind("<FocusIn>", on_focus_Del)
-button_Del.bind("<FocusOut>", on_focus_out_Del)
-
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
 for i in range(numButtons):
@@ -1968,10 +1894,12 @@ for i in range(numButtons):
         button.place(x=128+(sizeButton+5)*(i-8), y=35+sizeButton+5, width=sizeButton, height=sizeButton)
 
     button.config(bg="gray90")
-    button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
-    button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  # Pass the extra parameter (i)
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
     button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
+    button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  
+    button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
+    button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
+    button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
 
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
@@ -1980,29 +1908,6 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
-
-# Create the touch pad buttons (fully) and add them to the touchButtons[] list
-touchButtons = []
-for i in range(5):
-    
-    # setting up specific text for the buttons in the array
-    # a bit klunky but it works
-    match i:
-        case 0: bText = "Tab"
-        case 1: bText = "Shift-Tab"
-        case 2: bText = "Up"
-        case 3: bText = "Down"
-        case 4: bText = "Return"
-    button = tk.Button(root, text=bText, font=("Helvetica", 18), takefocus=0)
-
-    # positioning buttons in one row of 5
-    button.place(x=10+158*i, y=485, width=148, height=105)
-
-    # configuring button
-    button.config(bg="gray90")
-    button.bind("<Button-1>", lambda event, i=i: on_touchButton_press(event, i))  # Pass the extra parameter (i)
-    button.update_idletasks()
-    touchButtons.append(button)
 
 
 # doing stuff just after the gui is initialised and we are running in the root thread

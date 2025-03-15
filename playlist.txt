@@ -1,9 +1,9 @@
 ABC Radio Sydney NSW,0
 ABC Radio National LIVE,53
-ABC Classic2,76
+ABC NewsRadio,52
 ABC Classic LIVE,71
-2GN GOULBURN,133
-2GB SYDNEY,132
+ABC Classic2,76
+ABC Jazz,77
 nova THROWBACKS,129
 nova 90s,128
 smooth VINTAGE,122

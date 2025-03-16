@@ -102,7 +102,12 @@ Here we detail ALL the software needed for this project. Starting with the blank
     sudo mv gekodriver /usr/local/bin
     gekodriver --version
     ```
+1. Install the Python pynput module with: 
 
+    ``` sh
+    cd /
+    sudo apt install python3-pynput 
+    ```
 1. Setup auto-start:
     - create a directory named __autostart__ in the directory __/home/{username}/.config__ (which is hidden, so you need to use __ls -al__ to see its contents from the /home/{username} directory)  
     - in that __autostart__ directory use __sudo nano__ via a terminal to create a file called __autoRadio.desktop__ with the following content:

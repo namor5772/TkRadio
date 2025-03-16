@@ -6,6 +6,7 @@ import urllib.request
 import requests
 import os
 import csv
+import RPi.GPIO as GPIO
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -19,6 +20,70 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+# START #######################################################
+# SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B
+
+# Set up GPIO
+GPIO.setmode(GPIO.BCM)
+
+TabButton = 21
+ShiftTabButton = 20
+DownButton = 16
+UpButton = 12
+EnterButton = 7
+DeleteButton = 8
+InsertButton = 25
+GPIO.setup(TabButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(ShiftTabButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(DownButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(UpButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(EnterButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(DeleteButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(InsertButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+
+
+
+def on_TabButton_press(channel):
+    focused_widget = root.focus_get()
+    if focused_widget:
+        focused_widget.event_generate("<Tab>")
+    print("TabButton Pressed!")
+
+def on_ShiftTabButton_press(channel):
+    focused_widget = root.focus_get()
+    if focused_widget:
+        focused_widget.event_generate("<Shift-Tab>")
+    print("ShiftTabButton Pressed!")
+
+def on_DownButton_press(channel):
+    #combobox.focus()
+    combobox.event_generate("<Down>")
+    print("DownButton Pressed!")
+
+def on_UpButton_press(channel):
+    focused_widget = root.focus_get()
+    if focused_widget == combobox:
+        focused_widget.event_generate("<Up>")
+    print("UpButton Pressed!")
+
+def on_EnterButton_press(channel):
+    print("EnterButton Pressed!")
+
+def on_DeleteButton_press(channel):
+    print("DeleteButton Pressed!")
+
+def on_InsertButton_press(channel):
+    print("InsertButton Pressed!")
+
+GPIO.add_event_detect(TabButton, GPIO.FALLING, callback=on_TabButton_press, bouncetime=200)    
+GPIO.add_event_detect(ShiftTabButton, GPIO.FALLING, callback=on_ShiftTabButton_press, bouncetime=200)    
+GPIO.add_event_detect(DownButton, GPIO.FALLING, callback=on_DownButton_press, bouncetime=200)    
+GPIO.add_event_detect(UpButton, GPIO.FALLING, callback=on_UpButton_press, bouncetime=200)    
+GPIO.add_event_detect(EnterButton, GPIO.FALLING, callback=on_EnterButton_press, bouncetime=200)    
+GPIO.add_event_detect(DeleteButton, GPIO.FALLING, callback=on_DeleteButton_press, bouncetime=200)    
+GPIO.add_event_detect(InsertButton, GPIO.FALLING, callback=on_InsertButton_press, bouncetime=200)    
+
 
 
 # START #######################################################
@@ -1426,6 +1491,7 @@ def after_GUI_started():
 
 # do this when closing the window/app
 def on_closing():
+    GPIO.cleanup()
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")

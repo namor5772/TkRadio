@@ -5685,3 +5685,248 @@ JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, 
 297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
 
 JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742111210569	geckodriver	INFO	Listening on 127.0.0.1:50229
+1742111210662	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37835" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilevoXGWh"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742111218456	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742111221302	Marionette	INFO	Listening on port 34711
+Read port: 34711
+WebDriver BiDi listening on ws://127.0.0.1:37835
+Read port: 34711
+1742111224172	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+1742111272991	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval, line 3614: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/HxNg9PUaPdYguxX6oz5rDy1re1ykMeNgGq2hx4ESzm0.js line 2 > eval line 3614 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval, line 2426: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/BYD1JPILkTiQBHvcmiwBbhp7KYSQtB9Wi2FWAYPlKxQ.js line 2 > eval line 2426 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/-DAcQ9lQZbiM5HME96vizN3snXxurSkogwgOEvHdK-k.js line 2 > eval line 5663 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js, line 3: Script terminated by timeout at:
+./src/controller/fragment-tracker.js/</s</s.prototype.onBufferAppended@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:3:9282
+./src/event-handler.js/o</e.prototype.onEventGeneric@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:6:9624
+./src/event-handler.js/o</e.prototype.onEvent@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:6:9329
+./node_modules/eventemitter3/index.js/s.prototype.emit@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:1:3144
+./src/observer.js/a</t.prototype.trigger@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:7:10488
+./src/controller/buffer-controller.js/</u</r.prototype.onSBUpdateEnd@https://live.primis.tech/content/video/hls/hls.0.12.4_3.min.js:2:17428
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_69285836, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_69285836:11:289
+AD/this.U@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_69285836:451:37
+
+JavaScript warning: https://ads.pubmatic.com/AdServer/js/user_sync.html?gdpr=&gdpr_consent=&us_privacy=&predirect=https%3A%2F%2Fpbs-us-east.ay.delivery%2Fsetuid%3Fbidder%3Dpubmatic%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D, line 1: Script terminated by timeout at:
+t@https://ads.pubmatic.com/AdServer/js/user_sync.html?gdpr=&gdpr_consent=&us_privacy=&predirect=https%3A%2F%2Fpbs-us-east.ay.delivery%2Fsetuid%3Fbidder%3Dpubmatic%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D:1:13867
+B@https://ads.pubmatic.com/AdServer/js/user_sync.html?gdpr=&gdpr_consent=&us_privacy=&predirect=https%3A%2F%2Fpbs-us-east.ay.delivery%2Fsetuid%3Fbidder%3Dpubmatic%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D:1:15290
+
+JavaScript warning: https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js, line 13: Script terminated by timeout at:
+B@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:13:360
+h@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:93:449
+
+1742111629801	Marionette	INFO	Stopped listening on port 34711
+1742116110976	geckodriver	INFO	Listening on 127.0.0.1:50811
+1742116111486	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "44739" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile0aGCuT"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742116113588	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742116114387	Marionette	INFO	Listening on port 45827
+Read port: 45827
+WebDriver BiDi listening on ws://127.0.0.1:44739
+1742116114903	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742116522910	Marionette	INFO	Stopped listening on port 45827
+1742116763335	geckodriver	INFO	Listening on 127.0.0.1:55645
+1742116763855	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "58483" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile0ZYjVd"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742116766158	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742116766914	Marionette	INFO	Listening on port 43919
+Read port: 43919
+WebDriver BiDi listening on ws://127.0.0.1:58483
+1742116767253	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742117047503	Marionette	INFO	Stopped listening on port 43919
+1742117073185	geckodriver	INFO	Listening on 127.0.0.1:53007
+1742117073205	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "55809" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileHz8A4A"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742117075840	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742117076567	Marionette	INFO	Listening on port 43827
+Read port: 43827
+WebDriver BiDi listening on ws://127.0.0.1:55809
+1742117076916	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742117101430	Marionette	INFO	Stopped listening on port 43827
+1742117120633	geckodriver	INFO	Listening on 127.0.0.1:34825
+1742117120650	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "33123" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiledlMpeH"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742117123122	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742117123883	Marionette	INFO	Listening on port 36909
+Read port: 36909
+WebDriver BiDi listening on ws://127.0.0.1:33123
+1742117124331	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13733, line 264: unreachable code after return statement
+1742117417830	Marionette	INFO	Stopped listening on port 36909
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742117431948	geckodriver	INFO	Listening on 127.0.0.1:52153
+1742117432455	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "38521" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebRMLxn"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742117434950	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742117435700	Marionette	INFO	Listening on port 44555
+WebDriver BiDi listening on ws://127.0.0.1:38521
+Read port: 44555
+1742117436365	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742117571190	Marionette	INFO	Stopped listening on port 44555
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/J79K9xgfxwT6Syzx-UyWdD89/recaptcha__en.js, line 1115: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/J79K9xgfxwT6Syzx-UyWdD89/recaptcha__en.js:1115:470
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742117674199	geckodriver	INFO	Listening on 127.0.0.1:55629
+1742117674324	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37919" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebVwDld"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742117682436	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742117684787	Marionette	INFO	Listening on port 46701
+Read port: 46701
+WebDriver BiDi listening on ws://127.0.0.1:37919
+Read port: 46701
+Read port: 46701
+Read port: 46701
+Read port: 46701
+1742117690344	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742118278819	Marionette	INFO	Stopped listening on port 46701
+1742118289464	geckodriver	INFO	Listening on 127.0.0.1:45721
+1742118289983	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "58049" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile3pX3Po"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742118292326	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742118293046	Marionette	INFO	Listening on port 40987
+Read port: 40987
+WebDriver BiDi listening on ws://127.0.0.1:58049
+1742118293393	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742118372506	Marionette	INFO	Stopped listening on port 40987

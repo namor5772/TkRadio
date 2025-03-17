@@ -6,7 +6,16 @@ import urllib.request
 import requests
 import os
 import csv
-import RPi.GPIO as GPIO
+
+# Checks if the program is running on a Raspberry Pi 4B
+# (by having RPi.GPIO library) and thus set flag
+flagRPi = False
+try:
+    import RPi.GPIO as GPIO
+    print("RPi.GPIO module loaded!")
+    flagRPi = True
+except ImportError:
+    print("Not running on a Raspberry Pi. Skipping RPi.GPIO.")    
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -24,15 +33,15 @@ from selenium.webdriver.support import expected_conditions as EC
 # START #######################################################
 # SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B AND THEIR ACTIONS
 
-# Set up GPIO
-GPIO.setmode(GPIO.BCM)
-
-LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
-RightButton = 20 # scrolls right through horizontal list of possible keys you can press
-KeypressButton = 16 # simulates the key press of the currently selected key
-GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+if flagRPi:
+    # Set up GPIO
+    GPIO.setmode(GPIO.BCM)
+    LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
+    RightButton = 20 # scrolls right through horizontal list of possible keys you can press
+    KeypressButton = 16 # simulates the key press of the currently selected key
+    GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+    GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+    GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
 # keyList index
 # horizontal list of keys you can press (in a simulated fashion)
@@ -128,10 +137,10 @@ def on_KeypressButton_press(channel):
             focused_widget.event_generate("<Insert>")
             print("Insert key pressed!")
 
-
-GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
-GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
-GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
+if flagRPi:
+    GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
+    GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
+    GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
 
 
 # START #######################################################
@@ -1539,7 +1548,8 @@ def after_GUI_started():
 
 # do this when closing the window/app
 def on_closing():
-    GPIO.cleanup()
+    if flagRPi:
+        GPIO.cleanup()
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
@@ -1598,7 +1608,6 @@ def on_select(event):
     print("eventFlag:",eventFlag)
 
     if stopFlag==False:
-
         # run selected radio station stream, and return associated textual information 
         try:
             text = aStation[combobox_index][1]() # THIS BIT ACTUALLY STARTS STREAM
@@ -1959,8 +1968,9 @@ root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")
 root.geometry("800x" + strHeightForm + "+0+0")
 root.resizable(False, False)  
 
-label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
-label_Key.place(x=720, y=0, width=80, height=20)
+if flagRPi:
+    label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
+    label_Key.place(x=720, y=0, width=80, height=20)
 
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations

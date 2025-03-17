@@ -1954,14 +1954,22 @@ def on_focus_out_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_out_combobox")
 
+# show the wifiForm (over the top of the main window)
+def show_wifiForm(event):
+    wifiForm.deiconify()
+    mainButton.focus_set()
+
+# show the root form back over the top wifiForm
+def show_rootForm():
+    wifiForm.withdraw()
+
 
 ####################################
 # THIS IS WHERE THE CORE CODE STARTS
 
 # Create the main window
-root = tk.Tk()
-
 # Set title, size and position of the main window, and make it non-resizable
+root = tk.Tk()
 strHeightForm = str(int(Xprog + 120 + Ydown)*0+480)
 print(strHeightForm)
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
@@ -1969,6 +1977,7 @@ root.geometry("800x" + strHeightForm + "+0+0")
 root.resizable(False, False)  
 
 if flagRPi:
+    # create label which displays the current key that can be pressed using the one GPIO linked button
     label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
     label_Key.place(x=720, y=0, width=80, height=20)
 
@@ -1998,7 +2007,12 @@ except FileNotFoundError:
 text_box = tk.Text(root)
 text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
-# height=600-110-10
+
+# Create a button to display the TopLevel form for configuring wifi settings
+wifiButton = tk.Button(root, text="wifi", command=show_wifiForm)
+wifiButton.place(x=620, y=4, width=40, height=20)
+wifiButton.bind("<Return>", show_wifiForm)  
+    
 
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
@@ -2033,6 +2047,19 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
+
+# Create a secondary Toplevel form without title bar and close buttons
+# It will be used for examining and configuring wifi settings
+wifiForm = tk.Toplevel(root)
+wifiForm.geometry("790x475+13+31")
+wifiForm.overrideredirect(True)
+wifiForm.configure(bg="lightblue")
+wifiForm.withdraw() # Hide the form initially
+
+# Create a button to return to the display of the TopLevel form
+mainButton = tk.Button(wifiForm, text="main", command=show_rootForm)
+mainButton.place(x=620, y=4, width=40, height=20)
+mainButton.config(takefocus=True)
 
 
 # doing stuff just after the gui is initialised and we are running in the root thread

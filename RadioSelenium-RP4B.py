@@ -22,7 +22,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # START #######################################################
-# SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B
+# SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B AND THEIR ACTIONS
 
 # Set up GPIO
 GPIO.setmode(GPIO.BCM)
@@ -43,38 +43,68 @@ GPIO.setup(DeleteButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(InsertButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
 
-
 def on_TabButton_press(channel):
-    focused_widget = root.focus_get()
-    if focused_widget:
+    try:
+        focused_widget = root.focus_get()
         focused_widget.event_generate("<Tab>")
-    print("TabButton Pressed!")
+        print("TabButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Tab> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Tab>")
+        print("TabButton Pressed inside combobox popup!")
+
 
 def on_ShiftTabButton_press(channel):
-    focused_widget = root.focus_get()
-    if focused_widget:
+    try:
+        focused_widget = root.focus_get()
         focused_widget.event_generate("<Shift-Tab>")
-    print("ShiftTabButton Pressed!")
+        print("ShiftTabButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Shift-Tab> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Shift-Tab>")
+        print("ShiftTabButton Pressed inside combobox popup!")
+
 
 def on_DownButton_press(channel):
-    #combobox.focus()
+    # does nothing (no errors) if pressed outside of combobox
     combobox.event_generate("<Down>")
     print("DownButton Pressed!")
 
+
 def on_UpButton_press(channel):
-    focused_widget = root.focus_get()
-    if focused_widget == combobox:
-        focused_widget.event_generate("<Up>")
+    # does nothing (no errors) if pressed outside of combobox
+    combobox.event_generate("<Up>")
     print("UpButton Pressed!")
 
+
 def on_EnterButton_press(channel):
-    print("EnterButton Pressed!")
+    try:
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Return>")
+        print("EnterButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Enter> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        print("EnterButton Pressed inside combobox popup!")
+
 
 def on_DeleteButton_press(channel):
     print("DeleteButton Pressed!")
 
+
 def on_InsertButton_press(channel):
     print("InsertButton Pressed!")
+
 
 GPIO.add_event_detect(TabButton, GPIO.FALLING, callback=on_TabButton_press, bouncetime=200)    
 GPIO.add_event_detect(ShiftTabButton, GPIO.FALLING, callback=on_ShiftTabButton_press, bouncetime=200)    

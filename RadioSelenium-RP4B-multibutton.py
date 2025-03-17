@@ -27,111 +27,93 @@ from selenium.webdriver.support import expected_conditions as EC
 # Set up GPIO
 GPIO.setmode(GPIO.BCM)
 
-LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
-RightButton = 20 # scrolls right through horizontal list of possible keys you can press
-KeypressButton = 16 # simulates the key press of the currently selected key
-GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-
-# keyList index
-# horizontal list of keys you can press (in a simulated fashion)
-numberKeyList = 7 # number of keys
-indexKeyList = 0 # currently selected key
-KeyList = [
-    "Tab",
-    "Shift-Tab",
-    "Enter",
-    "Down",
-    "Up",
-    "Delete",
-    "Insert"
-]    
+TabButton = 21
+ShiftTabButton = 20
+DownButton = 16
+UpButton = 12
+EnterButton = 7
+DeleteButton = 8
+InsertButton = 25
+GPIO.setup(TabButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(ShiftTabButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(DownButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(UpButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(EnterButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(DeleteButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(InsertButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
 
-def on_LeftButton_press(channel):
-    print("LeftButton Pressed!")
-    global indexKeyList
-    if indexKeyList == 0:
-        indexKeyList = numberKeyList-1
-    else:
-        indexKeyList -= 1
-    label_Key.config(text=KeyList[indexKeyList])
-    print(f"Selected key: {KeyList[indexKeyList]}")
+def on_TabButton_press(channel):
+    try:
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Tab>")
+        print("TabButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Tab> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Tab>")
+        print("TabButton Pressed inside combobox popup!")
 
 
-def on_RightButton_press(channel):
-    print("RightButton Pressed!")    
-    global indexKeyList
-    if indexKeyList == numberKeyList-1:
-        indexKeyList = 0
-    else:
-        indexKeyList += 1
-    label_Key.config(text=KeyList[indexKeyList])
-    print(f"Selected key: {KeyList[indexKeyList]}")
+def on_ShiftTabButton_press(channel):
+    try:
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Shift-Tab>")
+        print("ShiftTabButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Shift-Tab> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Shift-Tab>")
+        print("ShiftTabButton Pressed inside combobox popup!")
 
 
-def on_KeypressButton_press(channel):
-    print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")    
-    match indexKeyList:
-        case 0: # Tab
-            try:
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Tab>")
-                print("Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Tab> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Tab>")
-                print("Tab key pressed inside combobox popup!")
-        case 1: # Shift-Tab
-            try:
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Shift-Tab>")
-                print("Shift-Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Shift-Tab> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Shift-Tab>")
-                print("Shift-Tab key pressed inside combobox popup!")
-        case 2: # Enter
-            try:
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Return>")
-                print("Enter key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Enter> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
-                print("Enter key pressed inside combobox popup!")
-        case 3: # Down
-            # does nothing (no errors) if pressed outside of combobox
-            combobox.event_generate("<Down>")
-            print("Down key pressed!")
-        case 4: # Up
-            # does nothing (no errors) if pressed outside of combobox
-            combobox.event_generate("<Up>")
-            print("Up key pressed!")
-        case 5: # Delete
-            focused_widget = root.focus_get()
-            focused_widget.event_generate("<Delete>")
-            print("Delete key pressed!")
-        case 6: # Insert
-            focused_widget = root.focus_get()
-            focused_widget.event_generate("<Insert>")
-            print("Insert key pressed!")
+def on_DownButton_press(channel):
+    # does nothing (no errors) if pressed outside of combobox
+    combobox.event_generate("<Down>")
+    print("DownButton Pressed!")
 
 
-GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
-GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
-GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
+def on_UpButton_press(channel):
+    # does nothing (no errors) if pressed outside of combobox
+    combobox.event_generate("<Up>")
+    print("UpButton Pressed!")
+
+
+def on_EnterButton_press(channel):
+    try:
+        focused_widget = root.focus_get()
+        focused_widget.event_generate("<Return>")
+        print("EnterButton Pressed!")
+    except KeyError as e:
+        # mysterious stuff I have to do to precisely simulate the behaviour
+        # of pressing the <Enter> key within a combobox popup
+        print(f"error {e}")
+        combobox.event_generate("<Return>")
+        print("EnterButton Pressed inside combobox popup!")
+
+
+def on_DeleteButton_press(channel):
+    print("DeleteButton Pressed!")
+
+
+def on_InsertButton_press(channel):
+    print("InsertButton Pressed!")
+
+
+GPIO.add_event_detect(TabButton, GPIO.FALLING, callback=on_TabButton_press, bouncetime=200)    
+GPIO.add_event_detect(ShiftTabButton, GPIO.FALLING, callback=on_ShiftTabButton_press, bouncetime=200)    
+GPIO.add_event_detect(DownButton, GPIO.FALLING, callback=on_DownButton_press, bouncetime=200)    
+GPIO.add_event_detect(UpButton, GPIO.FALLING, callback=on_UpButton_press, bouncetime=200)    
+GPIO.add_event_detect(EnterButton, GPIO.FALLING, callback=on_EnterButton_press, bouncetime=200)    
+GPIO.add_event_detect(DeleteButton, GPIO.FALLING, callback=on_DeleteButton_press, bouncetime=200)    
+GPIO.add_event_detect(InsertButton, GPIO.FALLING, callback=on_InsertButton_press, bouncetime=200)    
+
 
 
 # START #######################################################
@@ -1959,9 +1941,6 @@ root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")
 root.geometry("800x" + strHeightForm + "+0+0")
 root.resizable(False, False)  
 
-label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
-label_Key.place(x=720, y=0, width=80, height=20)
-
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations
 aStringArray = []
@@ -1993,8 +1972,10 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
+label.pack()
 label.place(x=15, y=2)
 label2 = tk.Label(root)
+label2.pack()
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []

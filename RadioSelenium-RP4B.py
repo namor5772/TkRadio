@@ -43,101 +43,100 @@ if flagRPi:
     GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
     GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
-# keyList index
-# horizontal list of keys you can press (in a simulated fashion)
-numberKeyList = 7 # number of keys
-indexKeyList = 0 # currently selected key
-KeyList = [
-    "Tab",
-    "Shift-Tab",
-    "Enter",
-    "Down",
-    "Up",
-    "Delete",
-    "Insert"
-]    
+    # keyList index
+    # horizontal list of keys you can press (in a simulated fashion)
+    numberKeyList = 7 # number of keys
+    indexKeyList = 0 # currently selected key
+    KeyList = [
+        "Tab",
+        "Shift-Tab",
+        "Enter",
+        "Down",
+        "Up",
+        "Delete",
+        "Insert"
+    ]    
 
 
-def on_LeftButton_press(channel):
-    print("LeftButton Pressed!")
-    global indexKeyList
-    if indexKeyList == 0:
-        indexKeyList = numberKeyList-1
-    else:
-        indexKeyList -= 1
-    label_Key.config(text=KeyList[indexKeyList])
-    print(f"Selected key: {KeyList[indexKeyList]}")
+    def on_LeftButton_press(channel):
+        print("LeftButton Pressed!")
+        global indexKeyList
+        if indexKeyList == 0:
+            indexKeyList = numberKeyList-1
+        else:
+            indexKeyList -= 1
+        label_Key.config(text=KeyList[indexKeyList])
+        print(f"Selected key: {KeyList[indexKeyList]}")
 
 
-def on_RightButton_press(channel):
-    print("RightButton Pressed!")    
-    global indexKeyList
-    if indexKeyList == numberKeyList-1:
-        indexKeyList = 0
-    else:
-        indexKeyList += 1
-    label_Key.config(text=KeyList[indexKeyList])
-    print(f"Selected key: {KeyList[indexKeyList]}")
+    def on_RightButton_press(channel):
+        print("RightButton Pressed!")    
+        global indexKeyList
+        if indexKeyList == numberKeyList-1:
+            indexKeyList = 0
+        else:
+            indexKeyList += 1
+        label_Key.config(text=KeyList[indexKeyList])
+        print(f"Selected key: {KeyList[indexKeyList]}")
 
 
-def on_KeypressButton_press(channel):
-    print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")    
-    match indexKeyList:
-        case 0: # Tab
-            try:
+    def on_KeypressButton_press(channel):
+        print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")    
+        match indexKeyList:
+            case 0: # Tab
+                try:
+                    focused_widget = root.focus_get()
+                    focused_widget.event_generate("<Tab>")
+                    print("Tab key pressed!")
+                except KeyError as e:
+                    # mysterious stuff I have to do to precisely simulate the behaviour
+                    # of pressing the <Tab> key within a combobox popup
+                    print(f"error {e}")
+                    combobox.event_generate("<Return>")
+                    focused_widget = root.focus_get()
+                    focused_widget.event_generate("<Tab>")
+                    print("Tab key pressed inside combobox popup!")
+            case 1: # Shift-Tab
+                try:
+                    focused_widget = root.focus_get()
+                    focused_widget.event_generate("<Shift-Tab>")
+                    print("Shift-Tab key pressed!")
+                except KeyError as e:
+                    # mysterious stuff I have to do to precisely simulate the behaviour
+                    # of pressing the <Shift-Tab> key within a combobox popup
+                    print(f"error {e}")
+                    combobox.event_generate("<Return>")
+                    focused_widget = root.focus_get()
+                    focused_widget.event_generate("<Shift-Tab>")
+                    print("Shift-Tab key pressed inside combobox popup!")
+            case 2: # Enter
+                try:
+                    focused_widget = root.focus_get()
+                    focused_widget.event_generate("<Return>")
+                    print("Enter key pressed!")
+                except KeyError as e:
+                    # mysterious stuff I have to do to precisely simulate the behaviour
+                    # of pressing the <Enter> key within a combobox popup
+                    print(f"error {e}")
+                    combobox.event_generate("<Return>")
+                    print("Enter key pressed inside combobox popup!")
+            case 3: # Down
+                # does nothing (no errors) if pressed outside of combobox
+                combobox.event_generate("<Down>")
+                print("Down key pressed!")
+            case 4: # Up
+                # does nothing (no errors) if pressed outside of combobox
+                combobox.event_generate("<Up>")
+                print("Up key pressed!")
+            case 5: # Delete
                 focused_widget = root.focus_get()
-                focused_widget.event_generate("<Tab>")
-                print("Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Tab> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
+                focused_widget.event_generate("<Delete>")
+                print("Delete key pressed!")
+            case 6: # Insert
                 focused_widget = root.focus_get()
-                focused_widget.event_generate("<Tab>")
-                print("Tab key pressed inside combobox popup!")
-        case 1: # Shift-Tab
-            try:
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Shift-Tab>")
-                print("Shift-Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Shift-Tab> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Shift-Tab>")
-                print("Shift-Tab key pressed inside combobox popup!")
-        case 2: # Enter
-            try:
-                focused_widget = root.focus_get()
-                focused_widget.event_generate("<Return>")
-                print("Enter key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Enter> key within a combobox popup
-                print(f"error {e}")
-                combobox.event_generate("<Return>")
-                print("Enter key pressed inside combobox popup!")
-        case 3: # Down
-            # does nothing (no errors) if pressed outside of combobox
-            combobox.event_generate("<Down>")
-            print("Down key pressed!")
-        case 4: # Up
-            # does nothing (no errors) if pressed outside of combobox
-            combobox.event_generate("<Up>")
-            print("Up key pressed!")
-        case 5: # Delete
-            focused_widget = root.focus_get()
-            focused_widget.event_generate("<Delete>")
-            print("Delete key pressed!")
-        case 6: # Insert
-            focused_widget = root.focus_get()
-            focused_widget.event_generate("<Insert>")
-            print("Insert key pressed!")
+                focused_widget.event_generate("<Insert>")
+                print("Insert key pressed!")
 
-if flagRPi:
     GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
     GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
     GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
@@ -1956,12 +1955,12 @@ def on_focus_out_combobox(event):
 
 # show the wifiForm (over the top of the main window)
 def show_wifiForm(event):
-    wifiForm.deiconify()
+    wifi.deiconify()
     mainButton.focus_set()
 
 # show the root form back over the top wifiForm
-def show_rootForm():
-    wifiForm.withdraw()
+def show_rootForm(event):
+    wifi.withdraw()
 
 
 ####################################
@@ -2008,10 +2007,14 @@ text_box = tk.Text(root)
 text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-# Create a button to display the TopLevel form for configuring wifi settings
-wifiButton = tk.Button(root, text="wifi", command=show_wifiForm)
+
+
+# Create a button on the root form to display the secondary wifi form
+wifiButton = tk.Button(root, text="wifi")
 wifiButton.place(x=620, y=4, width=40, height=20)
+wifiButton.config(takefocus=True)
 wifiButton.bind("<Return>", show_wifiForm)  
+wifiButton.bind("<ButtonPress>", show_wifiForm)  
     
 
 # Create labels used for station logo image (label) and program related image (label2)
@@ -2048,18 +2051,45 @@ for i in range(numButtons):
     button.update_idletasks()
     buttons.append(button)
 
-# Create a secondary Toplevel form without title bar and close buttons
-# It will be used for examining and configuring wifi settings
-wifiForm = tk.Toplevel(root)
-wifiForm.geometry("790x475+13+31")
-wifiForm.overrideredirect(True)
-wifiForm.configure(bg="lightblue")
-wifiForm.withdraw() # Hide the form initially
 
-# Create a button to return to the display of the TopLevel form
-mainButton = tk.Button(wifiForm, text="main", command=show_rootForm)
+# SECONDARY wifi FORM RELATED DEFINITIONS
+# *** START *****************************
+
+# Create a secondary wifi form without title bar and close buttons
+# It will be used for examining and configuring wifi settings
+wifi = tk.Toplevel(root)
+wifi.geometry("790x475+13+31")
+wifi.overrideredirect(True)
+wifi.configure(bg="lightblue")
+wifi.withdraw() # Hide the form initially
+
+# Create a button on the secondary wifi form which returns focus
+# and visibility to the root form
+mainButton = tk.Button(wifi, text="main")
 mainButton.place(x=620, y=4, width=40, height=20)
 mainButton.config(takefocus=True)
+mainButton.bind("<Return>", show_rootForm)  
+mainButton.bind("<ButtonPress>", show_rootForm)  
+
+# Create a button on the secondary wifi form which returns focus
+# and visibility to the root form
+mainButton2 = tk.Button(wifi, text="test")
+mainButton2.place(x=620, y=54, width=40, height=20)
+mainButton2.config(takefocus=True)
+mainButton2.bind("<Return>", show_rootForm)  
+mainButton2.bind("<ButtonPress>", show_rootForm)  
+
+# Label
+label3 = tk.Label(wifi, text="Select an option:")
+label3.place(x=15, y=2)
+
+# Create a Combobox
+options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+combobox2 = ttk.Combobox(wifi, values=options)
+combobox2.place(x = 15, y = 25) 
+
+# SECONDARY wifi FORM RELATED DEFINITIONS
+# *** END *******************************
 
 
 # doing stuff just after the gui is initialised and we are running in the root thread

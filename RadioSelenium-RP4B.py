@@ -1531,6 +1531,8 @@ for i in range(numButtons):
 
 # does stuff just after gui is initialised and we are running in the root thread
 def after_GUI_started():
+
+    
   # select to stream last station that was streaming just before radio was powered down
     global buttonIndex, buttonFlag; buttonFlag = True
     try:
@@ -1961,6 +1963,7 @@ def show_wifiForm(event):
 # show the root form back over the top wifiForm
 def show_rootForm(event):
     wifi.withdraw()
+    wifiButton.focus_set()
 
 
 ####################################
@@ -1969,11 +1972,10 @@ def show_rootForm(event):
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
-strHeightForm = str(int(Xprog + 120 + Ydown)*0+480)
-print(strHeightForm)
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
-root.geometry("800x" + strHeightForm + "+0+0")
-root.resizable(False, False)  
+root.geometry("800x480+0+0")
+root.resizable(False, False)
+root.update_idletasks()
 
 if flagRPi:
     # create label which displays the current key that can be pressed using the one GPIO linked button
@@ -2007,15 +2009,13 @@ text_box = tk.Text(root)
 text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-
-
 # Create a button on the root form to display the secondary wifi form
 wifiButton = tk.Button(root, text="wifi")
 wifiButton.place(x=620, y=4, width=40, height=20)
 wifiButton.config(takefocus=True)
 wifiButton.bind("<Return>", show_wifiForm)  
 wifiButton.bind("<ButtonPress>", show_wifiForm)  
-    
+   
 
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
@@ -2058,7 +2058,7 @@ for i in range(numButtons):
 # Create a secondary wifi form without title bar and close buttons
 # It will be used for examining and configuring wifi settings
 wifi = tk.Toplevel(root)
-wifi.geometry("790x475+13+31")
+wifi.geometry("800x480+0+26")
 wifi.overrideredirect(True)
 wifi.configure(bg="lightblue")
 wifi.withdraw() # Hide the form initially

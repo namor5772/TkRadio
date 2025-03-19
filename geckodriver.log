@@ -9960,3 +9960,448 @@ JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#
 v@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_1011134112:11:289
 AD/this.U@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_1011134112:451:37
 
+1742339427148	geckodriver	INFO	Listening on 127.0.0.1:44381
+1742339427156	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "52063" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileoPBiau"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742339429123	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742339429594	Marionette	INFO	Listening on port 45119
+Read port: 45119
+WebDriver BiDi listening on ws://127.0.0.1:52063
+1742339429900	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742339551382	Marionette	INFO	Stopped listening on port 45119
+1742339562681	geckodriver	INFO	Listening on 127.0.0.1:50719
+1742339562693	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "59471" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2XONHW"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742339564622	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742339565178	Marionette	INFO	Listening on port 34937
+Read port: 34937
+WebDriver BiDi listening on ws://127.0.0.1:59471
+1742339565460	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742339764171	Marionette	INFO	Stopped listening on port 34937
+1742339782098	geckodriver	INFO	Listening on 127.0.0.1:49805
+1742339782606	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "58645" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileBHVG2E"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742339784530	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742339785323	Marionette	INFO	Listening on port 42923
+Read port: 42923
+WebDriver BiDi listening on ws://127.0.0.1:58645
+1742339785962	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742340023017	Marionette	INFO	Stopped listening on port 42923
+1742340031604	geckodriver	INFO	Listening on 127.0.0.1:58075
+1742340032114	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "36197" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileE7KYE9"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742340034126	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742340034591	Marionette	INFO	Listening on port 41229
+Read port: 41229
+WebDriver BiDi listening on ws://127.0.0.1:36197
+1742340034880	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742340085378	Marionette	INFO	Stopped listening on port 41229
+1742340094263	geckodriver	INFO	Listening on 127.0.0.1:55847
+1742340094770	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "41989" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileAX4mmN"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742340096656	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742340097124	Marionette	INFO	Listening on port 46365
+Read port: 46365
+WebDriver BiDi listening on ws://127.0.0.1:41989
+1742340097405	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742340732872	Marionette	INFO	Stopped listening on port 46365
+1742340740189	geckodriver	INFO	Listening on 127.0.0.1:48097
+1742340740199	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "59723" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilecTnvvx"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742340742132	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742340742631	Marionette	INFO	Listening on port 42005
+WebDriver BiDi listening on ws://127.0.0.1:59723
+Read port: 42005
+1742340743270	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742340871702	Marionette	INFO	Stopped listening on port 42005
+1742340879152	geckodriver	INFO	Listening on 127.0.0.1:60123
+1742340879660	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "41181" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileByPRNU"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742340881590	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742340882071	Marionette	INFO	Listening on port 38871
+WebDriver BiDi listening on ws://127.0.0.1:41181
+Read port: 38871
+1742340882771	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742341612523	Marionette	INFO	Stopped listening on port 38871
+1742341729072	geckodriver	INFO	Listening on 127.0.0.1:37199
+1742341729084	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "53163" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileTlbqH4"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742341731016	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742341731522	Marionette	INFO	Listening on port 39685
+Read port: 39685
+WebDriver BiDi listening on ws://127.0.0.1:53163
+1742341731851	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742341776260	Marionette	INFO	Stopped listening on port 39685
+1742341878780	geckodriver	INFO	Listening on 127.0.0.1:48427
+1742341879287	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "48783" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilekUB83G"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742341881207	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742341881678	Marionette	INFO	Listening on port 39921
+Read port: 39921
+WebDriver BiDi listening on ws://127.0.0.1:48783
+1742341881965	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742342220048	geckodriver	INFO	Listening on 127.0.0.1:47659
+1742342220556	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "55801" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilerBsILZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742342222570	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742342223044	Marionette	INFO	Listening on port 40871
+Read port: 40871
+WebDriver BiDi listening on ws://127.0.0.1:55801
+1742342223344	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742342733825	Marionette	INFO	Stopped listening on port 40871
+1742342741319	geckodriver	INFO	Listening on 127.0.0.1:34431
+1742342741827	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45989" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilePGDZkU"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742342743778	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742342744265	Marionette	INFO	Listening on port 34049
+WebDriver BiDi listening on ws://127.0.0.1:45989
+Read port: 34049
+1742342744946	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742342863811	Marionette	INFO	Stopped listening on port 34049
+1742342871677	geckodriver	INFO	Listening on 127.0.0.1:33311
+1742342872185	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "42615" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilesYeWrh"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742342874130	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742342874605	Marionette	INFO	Listening on port 44143
+WebDriver BiDi listening on ws://127.0.0.1:42615
+Read port: 44143
+1742342875277	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742342913526	Marionette	INFO	Stopped listening on port 44143
+console.error: services.settings: 
+  main/fxmonitor-breaches Signature failed  [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+console.error: services.settings: 
+Object
+  - prototype Object
+    - columnNumber = 0
+    - data = null
+    - filename = resource://gre/modules/ServiceRequest.sys.mjs
+    - lineNumber = 126
+    - location = {"name":"open","filename":"resource://gre/modules/ServiceRequest.sys.mjs","sourceId":24,"lineNumber":126,"columnNumber":11,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch/<","sourceId":23,"lineNumber":268,"columnNumber":15,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch","sourceId":23,"lineNumber":219,"columnNumber":12,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"validateCollectionSignature","sourceId":21,"lineNumber":1023,"columnNumber":47,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"_importChanges","sourceId":21,"lineNumber":1102,"columnNumber":20,"asyncCause":null,"asyncCaller":null,"caller":null,"formattedStack":"_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"fetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"fetch/<@resource://services-settings/Utils.sys.mjs:268:15\nfetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"open@resource://gre/modules/ServiceRequest.sys.mjs:126:11\nfetch/<@resource://services-settings/Utils.sys.mjs:268:15\nfetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}}
+    - message = 
+    - name = 
+    - result = 2152071198
+    - stack = open@resource://gre/modules/ServiceRequest.sys.mjs:126:11|fetch/<@resource://services-settings/Utils.sys.mjs:268:15|fetch@resource://services-settings/Utils.sys.mjs:219:12|validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47|_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20|
+  - prototype Object
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/devtools-devices sync interrupted by shutdown
+console.warn: services.settings: main/doh-config sync interrupted by shutdown
+console.warn: services.settings: main/doh-providers sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/hijack-blocklists sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/anti-tracking-url-decoration sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/sites-classification sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: ({details:{id:"8ee6692e-d686-a614-6e4f-23d71b55b7f3", last_modified:1683667257606, bucket:"main", collection:"fxmonitor-breaches", host:"firefox.settings.services.mozilla.com"}})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+1742342923414	geckodriver	INFO	Listening on 127.0.0.1:42403
+1742342923922	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "36825" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilepLKbvB"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742342925822	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742342926323	Marionette	INFO	Listening on port 40973
+WebDriver BiDi listening on ws://127.0.0.1:36825
+Read port: 40973
+1742342926993	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742342997755	Marionette	INFO	Stopped listening on port 40973
+1742343006449	geckodriver	INFO	Listening on 127.0.0.1:55767
+1742343006461	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45505" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile5XJGc8"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343008403	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343009170	Marionette	INFO	Listening on port 44665
+WebDriver BiDi listening on ws://127.0.0.1:45505
+Read port: 44665
+1742343009803	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343058712	geckodriver	INFO	Listening on 127.0.0.1:33475
+1742343058724	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "42541" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilej8K7DW"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343060696	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343061205	Marionette	INFO	Listening on port 40241
+Read port: 40241
+WebDriver BiDi listening on ws://127.0.0.1:42541
+1742343061501	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343089479	Marionette	INFO	Stopped listening on port 40241
+console.error: (new Error("Polling for changes failed: .", "resource://services-settings/remote-settings.sys.mjs", 430))
+1742343091038	addons.xpi	ERROR	System addon update list error [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+console.error: Region.sys.mjs: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", "resource://gre/modules/Region.sys.mjs", 738))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 411))
+1742343097118	geckodriver	INFO	Listening on 127.0.0.1:38969
+1742343097625	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60935" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile83zeti"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343099581	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343100074	Marionette	INFO	Listening on port 42499
+WebDriver BiDi listening on ws://127.0.0.1:60935
+Read port: 42499
+1742343100379	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343166559	Marionette	INFO	Stopped listening on port 42499
+1742343175663	geckodriver	INFO	Listening on 127.0.0.1:41645
+1742343176171	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "51195" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileim2HQ8"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343178128	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343178605	Marionette	INFO	Listening on port 45497
+WebDriver BiDi listening on ws://127.0.0.1:51195
+Read port: 45497
+1742343179257	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343220898	Marionette	INFO	Stopped listening on port 45497
+1742343227693	geckodriver	INFO	Listening on 127.0.0.1:51143
+1742343227703	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "43087" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilezYWsFr"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343229653	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343230137	Marionette	INFO	Listening on port 40731
+WebDriver BiDi listening on ws://127.0.0.1:43087
+Read port: 40731
+1742343230781	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343305310	Marionette	INFO	Stopped listening on port 40731
+1742343340940	geckodriver	INFO	Listening on 127.0.0.1:58079
+1742343340953	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "56125" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZHpyVg"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742343342824	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742343343337	Marionette	INFO	Listening on port 38685
+Read port: 38685
+WebDriver BiDi listening on ws://127.0.0.1:56125
+1742343343648	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742343360838	Marionette	INFO	Stopped listening on port 38685
+1742344024562	geckodriver	INFO	Listening on 127.0.0.1:39265
+1742344025069	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "48345" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQrtiSH"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742344026968	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742344027464	Marionette	INFO	Listening on port 39211
+Read port: 39211
+WebDriver BiDi listening on ws://127.0.0.1:48345
+1742344027725	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742344070634	Marionette	INFO	Stopped listening on port 39211
+1742344567837	geckodriver	INFO	Listening on 127.0.0.1:60981
+1742344567847	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60601" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileY97zsM"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742344569789	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742344570283	Marionette	INFO	Listening on port 45611
+WebDriver BiDi listening on ws://127.0.0.1:60601
+Read port: 45611
+1742344570596	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js, line 1: Script terminated by timeout at:
+86590/v/<@https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js:1:95655
+r@https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js:1:95151
+
+1742344607798	Marionette	INFO	Stopped listening on port 45611
+console.error: services.settings: 
+  main/fxmonitor-breaches Signature failed  [Exception... "<no message>"  nsresult: "0x8046001e (<unknown>)"  location: "JS frame :: resource://gre/modules/ServiceRequest.sys.mjs :: open :: line 126"  data: no]
+console.error: services.settings: 
+Object
+  - prototype Object
+    - columnNumber = 0
+    - data = null
+    - filename = resource://gre/modules/ServiceRequest.sys.mjs
+    - lineNumber = 126
+    - location = {"name":"open","filename":"resource://gre/modules/ServiceRequest.sys.mjs","sourceId":24,"lineNumber":126,"columnNumber":11,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch/<","sourceId":23,"lineNumber":268,"columnNumber":15,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch","sourceId":23,"lineNumber":219,"columnNumber":12,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"validateCollectionSignature","sourceId":21,"lineNumber":1023,"columnNumber":47,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"_importChanges","sourceId":21,"lineNumber":1102,"columnNumber":20,"asyncCause":null,"asyncCaller":null,"caller":null,"formattedStack":"_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"fetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"fetch/<@resource://services-settings/Utils.sys.mjs:268:15\nfetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}},"formattedStack":"open@resource://gre/modules/ServiceRequest.sys.mjs:126:11\nfetch/<@resource://services-settings/Utils.sys.mjs:268:15\nfetch@resource://services-settings/Utils.sys.mjs:219:12\nvalidateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47\n_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20\n","nativeSavedFrame":{}}
+    - message = 
+    - name = 
+    - result = 2152071198
+    - stack = open@resource://gre/modules/ServiceRequest.sys.mjs:126:11|fetch/<@resource://services-settings/Utils.sys.mjs:268:15|fetch@resource://services-settings/Utils.sys.mjs:219:12|validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1023:47|_importChanges@resource://services-settings/RemoteSettingsClient.sys.mjs:1102:20|
+  - prototype Object
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/devtools-devices sync interrupted by shutdown
+console.warn: services.settings: main/doh-config sync interrupted by shutdown
+console.warn: services.settings: main/doh-providers sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/hijack-blocklists sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/anti-tracking-url-decoration sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.warn: services.settings: main/sites-classification sync interrupted by shutdown
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: ({details:{id:"8ee6692e-d686-a614-6e4f-23d71b55b7f3", last_modified:1683667257606, bucket:"main", collection:"fxmonitor-breaches", host:"firefox.settings.services.mozilla.com"}})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})

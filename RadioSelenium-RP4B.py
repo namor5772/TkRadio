@@ -6,6 +6,7 @@ import urllib.request
 import requests
 import os
 import csv
+import bluetooth
 
 # Checks if the program is running on a Raspberry Pi 4B
 # (by having RPi.GPIO library) and thus set flag
@@ -1531,9 +1532,8 @@ for i in range(numButtons):
 
 # does stuff just after gui is initialised and we are running in the root thread
 def after_GUI_started():
-
-    
-  # select to stream last station that was streaming just before radio was powered down
+   
+    # select to stream last station that was streaming just before radio was powered down
     global buttonIndex, buttonFlag; buttonFlag = True
     try:
         with open(filepath, 'r') as file:
@@ -1545,6 +1545,11 @@ def after_GUI_started():
     print(f'Button of last station played in playlist is {buttonIndex}')    
     print("")    
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+
+    # restarts bluetooth if it was originally set to on, if previously paired speaker it
+    # turned on this willthen automatically play
+    restart_bluetooth()
+
 
 
 # do this when closing the window/app
@@ -1955,20 +1960,237 @@ def on_focus_out_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_out_combobox")
 
-# show the wifiForm (over the top of the main window)
-def show_wifiForm(event):
-    wifi.deiconify()
+
+# show the setup form (over the top of the main window)
+def show_setup_form(event):
+    setup.deiconify()
     mainButton.focus_set()
 
-# show the root form back over the top wifiForm
-def show_rootForm(event):
-    wifi.withdraw()
-    wifiButton.focus_set()
+# show the root form back over the setup form
+def show_root_form(event):
+    setup.withdraw()
+    setupButton.focus_set()
+
+
+# when [scan] button is pressed
+# get list of bluetooth devices into combobox_bt
+def scan_bluetooth(event):
+    command = "rfkill unblock bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print("Command succeeded:\n", result.stdout)
+    else:
+        print("Command failed with error:\n", result.stderr)
+        
+    command = "sudo systemctl restart bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print("Command succeeded:\n", result.stdout)
+    else:
+
+        print("Command failed with error:\n", result.stderr)
+
+
+# restart bluetooth interface.
+# if a previously paired set of bluetooth speakers is turned and then this function is run
+# if will connect and play though them even if Bluetootch was originally turned off  
+def restart_bluetooth():
+    command = "rfkill unblock bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print("Command succeeded:\n", result.stdout)
+    else:
+        print("Command failed with error:\n", result.stderr)
+        
+    command = "sudo systemctl restart bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print("Command succeeded:\n", result.stdout)
+    else:
+
+        print("Command failed with error:\n", result.stderr)
+
+
+# Helper function to execute a bluetoothctl command
+def run_bluetoothctl_command(command):
+    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    stdout, _ = process.communicate(command)
+    return stdout
+
+
+def pair_bluetooth(event):
+    print("pair_bluetooth RUN")
+    
+    # restarts bluetooth so that we can remove all paired devices
+    command = "sudo systemctl restart bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print(f"Command: {command} - succeeded ", result.stdout)
+    else:
+        print(f"Command: {command} - failed with error: ", result.stderr)
+
+    command = "rfkill unblock bluetooth"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print(f"Command: {command} - succeeded ",result.stdout)
+    else:
+        print(f"Command: {command} - failed with error: ",result.stderr)
+    
+    # remove all paired devices
+    output = run_bluetoothctl_command("devices\n")
+    for line in output.splitlines():
+        if "Device" in line:
+            device_mac = line.split()[1]
+            run_bluetoothctl_command(f"remove {device_mac}\n")
+            print(f"Removed device: {device_mac}")
+
+    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    process.stdin.write("discoverable on\n")
+    process.stdin.flush()
+    time.sleep(5)  # Allow time to discover devices
+    
+    process.stdin.write("scan on\n")
+    process.stdin.flush()
+    time.sleep(20)  # Allow time to discover devices
+    
+    process.stdin.write("scan off\n")
+    process.stdin.flush()
+    time.sleep(5)  # Allow time to discover devices
+
+    output, _ = process.communicate()
+
+    process.stdin.close()  # Close the input stream
+    process.terminate()    # Politely terminate the process
+    process.wait()         # Ensure the process finishes
+    print("First process terminated gracefully.")
+    #print(output)
+    
+    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    process.stdin.write("devices\n")
+    process.stdin.flush()
+    time.sleep(5)
+    output, _ = process.communicate()
+
+    process.stdin.close()  # Close the input stream
+    process.terminate()    # Politely terminate the process
+    process.wait()         # Ensure the process finishes
+    print("Second process terminated gracefully.")
+    #print(output)
+    for line in output.splitlines():
+        if "Device" in line:
+            device_mac = line.split()[1]
+            device_name = line.split()[2]
+            print(f"device mac: {device_mac}, name: {device_name}")
+    print("have extracted discoverable devices")
+
+    
+
+
+    
+
+
+'''
+    command = "sudo bluetooth connect 2F:4F:C6:6A:0B:21"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print("Command succeeded:\n", result.stdout)
+    else:
+
+        print("Command failed with error:\n", result.stderr)
+'''
+
+'''
+    if turn_on_bluetooth():
+        if make_bluetooth_discoverable():
+            devices = bluetooth.discover_devices(lookup_names=True)
+            if not devices:
+                # No Bluetooth devices found
+                label3.config(text="No Bluetooth devices found")
+                print("No Bluetooth devices found")
+                device_list = []
+                combobox_bt['values'] = device_list
+                combobox_bt.focus_set()
+            else:
+                device_list = [f"{addr} - {name})" for addr, name in devices]
+                combobox_bt['values'] = device_list
+                combobox_bt.current(0)
+                combobox_bt.focus_set()
+                if len(devices)==1:
+                    label3.config(text=f"Found 1 device")
+                else:
+                    label3.config(text=f"Found {len(devices)} devices")
+                print(f"Found {len(devices)} device(s)")
+
+'''
+
+
+# makes the Raspberry Pi's Bluetooth discoverable using the 'hciconfig' command.
+def make_bluetooth_discoverable():
+    pass
+'''
+    try:
+        subprocess.run(['sudo', 'hciconfig', 'hci0', 'piscan'], check=True)
+        label3.config(text="Bluetooth is now discoverable!", fg="green")
+        print("Bluetooth is now discoverable!")
+        time.sleep(5)
+        return True
+    except subprocss.CalledProcessError as e:
+        label3.config(text="Failed to make Bluetooth discoverable!", fg="red")
+        print("Failed to make Bluetooth discoverable!")
+        time.sleep(5)
+        return False
+'''    
+
+# turns on Bluetooth
+def turn_on_bluetooth():
+    pass
+'''
+    try:
+        subprocess.run(['sudo', 'systemctl', 'restart', 'bluetooth'], check=True)
+        time.sleep(5)
+        subprocess.run(['bluetoothctl', 'power', 'on'], check=True)
+        label3.config(text="Bluetooth is now ON!", fg="green")
+        print("Bluetooth is now ON!")
+        time.sleep(5)
+        return True
+    except subprocess.CalledProcessError:
+        label3.config(text="Failed to turn on Bluetooth.", fg="red")        
+        print("Failed to turn on Bluetooth.")
+        time.sleep(5)
+        return False
+'''
+
+def on_select_bluetooth(event):
+    pass
+'''
+    # Get the current selection from the Combobox
+    print("TEST")
+    selected_device = combobox_bt.get()
+    mac_address = selected_device.split(" - ")[0]
+    label3.config(text=f"Pairing with {mac_address}")
+    ct = label3.cget("text"); print(ct)
+    time.sleep(5)
+
+    try:
+        # Run the bluetoothctl pair command
+        subprocess.run(['bluetoothctl', 'pair', mac_address], check=True)
+        label3.config(text=f"Paired with {mac_address} successfully!", fg="green")
+        ct = label3.cget("text"); print(ct)
+    except subprocess.CalledProcessError:
+        label3.config(text=f"Failed to pair with {mac_address}", fg="red")
+        ct = label3.cget("text"); print(ct)
+'''
 
 
 ####################################
 # THIS IS WHERE THE CORE CODE STARTS
-
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
@@ -2009,12 +2231,12 @@ text_box = tk.Text(root)
 text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-# Create a button on the root form to display the secondary wifi form
-wifiButton = tk.Button(root, text="wifi")
-wifiButton.place(x=620, y=4, width=40, height=20)
-wifiButton.config(takefocus=True)
-wifiButton.bind("<Return>", show_wifiForm)  
-wifiButton.bind("<ButtonPress>", show_wifiForm)  
+# Create a button on the root form to display the secondary setup form
+setupButton = tk.Button(root, text="setup")
+setupButton.place(x=620, y=4, width=43, height=20)
+setupButton.config(takefocus=True)
+setupButton.bind("<Return>", show_setup_form)  
+setupButton.bind("<ButtonPress>", show_setup_form)  
    
 
 # Create labels used for station logo image (label) and program related image (label2)
@@ -2052,43 +2274,46 @@ for i in range(numButtons):
     buttons.append(button)
 
 
-# SECONDARY wifi FORM RELATED DEFINITIONS
+# SECONDARY setup FORM RELATED DEFINITIONS
 # *** START *****************************
 
-# Create a secondary wifi form without title bar and close buttons
-# It will be used for examining and configuring wifi settings
-wifi = tk.Toplevel(root)
-wifi.geometry("800x480+0+26")
-wifi.overrideredirect(True)
-wifi.configure(bg="lightblue")
-wifi.withdraw() # Hide the form initially
+# Create a secondary setup form without title bar and close buttons
+# It will be used for examining and configuring setup settings
+setup = tk.Toplevel(root)
+setup.geometry("800x480+0+26")
+setup.overrideredirect(True)
+setup.configure(bg="lightblue")
+setup.withdraw() # Hide the form initially
 
-# Create a button on the secondary wifi form which returns focus
+# Create a button on the secondary setup form which returns focus
 # and visibility to the root form
-mainButton = tk.Button(wifi, text="main")
+mainButton = tk.Button(setup, text="main")
 mainButton.place(x=620, y=4, width=40, height=20)
 mainButton.config(takefocus=True)
-mainButton.bind("<Return>", show_rootForm)  
-mainButton.bind("<ButtonPress>", show_rootForm)  
+mainButton.bind("<Return>", show_root_form)  
+mainButton.bind("<ButtonPress>", show_root_form)  
 
-# Create a button on the secondary wifi form which returns focus
-# and visibility to the root form
-mainButton2 = tk.Button(wifi, text="test")
-mainButton2.place(x=620, y=54, width=40, height=20)
-mainButton2.config(takefocus=True)
-mainButton2.bind("<Return>", show_rootForm)  
-mainButton2.bind("<ButtonPress>", show_rootForm)  
+# Create a button on the secondary setup form to enable 
+# scanning for bluetooth devices
+scanButton = tk.Button(setup, text="scan") 
+scanButton.place(x=10, y=200, width=40, height=20)
+scanButton.config(takefocus=True)
+scanButton.bind("<Return>", pair_bluetooth)  
+scanButton.bind("<ButtonPress>", pair_bluetooth)  
 
 # Label
-label3 = tk.Label(wifi, text="Select an option:")
+label3 = tk.Label(setup, text="Select an option:")
 label3.place(x=15, y=2)
 
-# Create a Combobox
-options = ["Option 1", "Option 2", "Option 3", "Option 4"]
-combobox2 = ttk.Combobox(wifi, values=options)
-combobox2.place(x = 15, y = 25) 
+# Create a Combobox for bluetooth connection selection
+options = ["Nothing Available"]
+combobox_bt = ttk.Combobox(setup, values=options, height=25, width=45)
+combobox_bt.place(x = 15, y = 40)
+combobox_bt.bind("<Return>", on_select_bluetooth) 
+combobox_bt.bind("<ButtonPress>", on_select_bluetooth) 
 
-# SECONDARY wifi FORM RELATED DEFINITIONS
+
+# SECONDARY setup FORM RELATED DEFINITIONS
 # *** END *******************************
 
 

@@ -93,7 +93,8 @@ Here we detail ALL the software needed for this project. Starting with the blank
     ```
 
 1. Install the gekodriver (necessary for selenium to operate with the FireFox browser), Note: FireFox is already installed with the OS:
-    - From the <https://github.com/mozilla/gekodriver/releases> repository or otherwise (from this repository) download the tar.gz file __gekodriver-v0.36.0-linux-aarch64.tar.gz__ file to the __/home/{username}/Downloads__ directory and then from a terminal window run:
+
+    From the <https://github.com/mozilla/gekodriver/releases> repository or otherwise (from this repository) download the tar.gz file __gekodriver-v0.36.0-linux-aarch64.tar.gz__ file to the __/home/{username}/Downloads__ directory and then from a terminal window run:
 
     ```sh
     cd /
@@ -102,6 +103,16 @@ Here we detail ALL the software needed for this project. Starting with the blank
     sudo mv gekodriver /usr/local/bin
     gekodriver --version
     ```
+1. Open the terminal and use __alsamixer__ to adjust the audio level to max. This is needed when using a Bluetooth speaker. 
+
+1. Install the Python pybluez module with:
+    ```sh
+    sudo apt install bluetooth libbluetooth-dev
+    sudo apt autoremove
+    sudo apt install python3-bluez
+    ```
+    In a Python script it is then accessed as: __import bluetooth__
+
 1. Install the Python pynput module with: 
 
     ``` sh

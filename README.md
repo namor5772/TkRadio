@@ -105,7 +105,18 @@ Here we detail ALL the software needed for this project. Starting with the blank
     ```
 1. Open the terminal and use __alsamixer__ to adjust the audio level to max. This is needed when using a Bluetooth speaker. 
 
-1. Install the Python pybluez module with:
+1. Remove the Bluetooth plugin from the taskbar as follows:
+    Right mouse click an unoccupied spot on the taskbar
+    A popup appears. Select the [Add / Remove Plugins...] option (with Left mouse click).
+    A dialog box titled "Add / Remove Plugins" appears.
+    Select the "Bluetooth" entry in either the [Left Side] or [Right Side] columns (with left mouse click)
+    Left mouse click the [Remove] button
+    Left mouse click the [OK] button
+
+    This prevents popups from appearing on the main window when the app is performing bluetooth
+    related actions. They take focus away from the app windows which causes problems and is annoying!
+
+1. NOT NECESSARY: Install the Python pybluez module with:
     ```sh
     sudo apt install bluetooth libbluetooth-dev
     sudo apt autoremove
@@ -113,7 +124,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
     ```
     In a Python script it is then accessed as: __import bluetooth__
 
-1. Install the Python pynput module with: 
+1. NOT NECESSARY: Install the Python pynput module with: 
 
     ``` sh
     cd /

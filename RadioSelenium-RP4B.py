@@ -6,7 +6,7 @@ import urllib.request
 import requests
 import os
 import csv
-import bluetooth
+#import bluetooth
 
 # Checks if the program is running on a Raspberry Pi 4B
 # (by having RPi.GPIO library) and thus set flag
@@ -31,6 +31,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 # START #######################################################
 # SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B AND THEIR ACTIONS
 
@@ -47,17 +48,15 @@ if flagRPi:
     # keyList index
     # horizontal list of keys you can press (in a simulated fashion)
     numberKeyList = 7 # number of keys
-    indexKeyList = 0 # currently selected key
+    indexKeyList = 1 # currently selected key
     KeyList = [
-        "Tab",
         "Shift-Tab",
+        "Tab",
         "Enter",
         "Down",
         "Up",
         "Delete",
         "Insert"
-    ]    
-
 
     def on_LeftButton_press(channel):
         print("LeftButton Pressed!")
@@ -69,7 +68,6 @@ if flagRPi:
         label_Key.config(text=KeyList[indexKeyList])
         print(f"Selected key: {KeyList[indexKeyList]}")
 
-
     def on_RightButton_press(channel):
         print("RightButton Pressed!")    
         global indexKeyList
@@ -79,7 +77,6 @@ if flagRPi:
             indexKeyList += 1
         label_Key.config(text=KeyList[indexKeyList])
         print(f"Selected key: {KeyList[indexKeyList]}")
-
 
     def on_KeypressButton_press(channel):
         print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")    
@@ -179,6 +176,17 @@ Ydown = 63
 Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
 Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
+
+# global variables related to bluetooth
+onBluetooth = True 
+aPairable = [] # used to list bluetooth visible devices for pairing a speaker
+numPairable = 0; # number of pairable devices visible
+#
+# Create the full filepath to the bluetooth status text file
+filename3 = 'bluetooth.txt'
+filepath3 = os.path.join(script_dir, filename3)
+print(f'The file {filepath3} stores bluetooth status before shutdown.')
+
 
 # global variables for combobox selection indexes & button related
 numButtons = 18
@@ -1546,9 +1554,12 @@ def after_GUI_started():
     print("")    
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
-    # restarts bluetooth if it was originally set to on, if previously paired speaker it
-    # turned on this willthen automatically play
-    restart_bluetooth()
+    # restarts bluetooth interface if it was originally set to on.
+    # if a previously paired set of bluetooth speakers is turned on when this runs this will
+    # connect and play though them, also displays paired speaker info on setup form.
+    if onBlootooth:
+    subprocess_run("rfkill unblock bluetooth")
+    subprocess_run("sudo systemctl restart bluetooth")
 
 
 
@@ -1941,6 +1952,7 @@ def on_focus(event, i):
     # global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
 
+
 # called when a playlist button loses focus.
 # returns the button is a visually "unfocused" state. 
 def on_focus_out(event, i):
@@ -1948,11 +1960,13 @@ def on_focus_out(event, i):
     buttons[i].update_idletasks()  # Force update
     print(f"on focus out: {i}")
 
+
 # called when station combobox receives focus.
 # makes sure its display is updated.
 def on_focus_combobox(event):
     combobox.update_idletasks()  # Force update
     print("on_focus_combobox")
+
 
 # called when station combobox loses focus.
 # makes sure its display is updated.
@@ -1966,16 +1980,35 @@ def show_setup_form(event):
     setup.deiconify()
     mainButton.focus_set()
 
+
 # show the root form back over the setup form
 def show_root_form(event):
     setup.withdraw()
     setupButton.focus_set()
 
 
+
+# Helper function for subprocess run
+def subprocess_run(command):
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    if result.returncode == 0:
+        print(f"Command '{command}' succeeded: ", result.stdout)
+    else:
+        print(f"Command '{command}' failed with error: ", result.stderr)
+
+
+# Helper function to execute a bluetoothctl command
+def run_bluetoothctl_command(command):
+    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    stdout, _ = process.communicate(command)
+    return stdout
+
+
 # when [scan] button is pressed
 # get list of bluetooth devices into combobox_bt
 def scan_bluetooth(event):
-    command = "rfkill unblock bluetooth"
+
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     time.sleep(2)
     if result.returncode == 0:
@@ -1997,50 +2030,16 @@ def scan_bluetooth(event):
 # if a previously paired set of bluetooth speakers is turned and then this function is run
 # if will connect and play though them even if Bluetootch was originally turned off  
 def restart_bluetooth():
-    command = "rfkill unblock bluetooth"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    if result.returncode == 0:
-        print("Command succeeded:\n", result.stdout)
-    else:
-        print("Command failed with error:\n", result.stderr)
-        
-    command = "sudo systemctl restart bluetooth"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    if result.returncode == 0:
-        print("Command succeeded:\n", result.stdout)
-    else:
-
-        print("Command failed with error:\n", result.stderr)
-
-
-# Helper function to execute a bluetoothctl command
-def run_bluetoothctl_command(command):
-    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-    stdout, _ = process.communicate(command)
-    return stdout
+    subprocess_run("rfkill unblock bluetooth")
+    subprocess_run("sudo systemctl restart bluetooth")
 
 
 def pair_bluetooth(event):
-    print("pair_bluetooth RUN")
+    print("Start Bluetooth PAIRING")
     
     # restarts bluetooth so that we can remove all paired devices
-    command = "sudo systemctl restart bluetooth"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    if result.returncode == 0:
-        print(f"Command: {command} - succeeded ", result.stdout)
-    else:
-        print(f"Command: {command} - failed with error: ", result.stderr)
-
-    command = "rfkill unblock bluetooth"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    if result.returncode == 0:
-        print(f"Command: {command} - succeeded ",result.stdout)
-    else:
-        print(f"Command: {command} - failed with error: ",result.stderr)
+    subprocess_run("sudo systemctl restart bluetooth")
+    subprocess_run("rfkill unblock bluetooth")
     
     # remove all paired devices
     output = run_bluetoothctl_command("devices\n")
@@ -2050,143 +2049,91 @@ def pair_bluetooth(event):
             run_bluetoothctl_command(f"remove {device_mac}\n")
             print(f"Removed device: {device_mac}")
 
+    # create a list aPairable of devices available for possibly pairing to   
     process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
     process.stdin.write("discoverable on\n")
     process.stdin.flush()
-    time.sleep(5)  # Allow time to discover devices
-    
+    time.sleep(2)
     process.stdin.write("scan on\n")
     process.stdin.flush()
-    time.sleep(20)  # Allow time to discover devices
-    
+    time.sleep(15)
     process.stdin.write("scan off\n")
     process.stdin.flush()
-    time.sleep(5)  # Allow time to discover devices
-
+    time.sleep(2)
     output, _ = process.communicate()
-
     process.stdin.close()  # Close the input stream
     process.terminate()    # Politely terminate the process
     process.wait()         # Ensure the process finishes
     print("First process terminated gracefully.")
-    #print(output)
     
     process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
     process.stdin.write("devices\n")
     process.stdin.flush()
     time.sleep(5)
     output, _ = process.communicate()
-
     process.stdin.close()  # Close the input stream
     process.terminate()    # Politely terminate the process
     process.wait()         # Ensure the process finishes
     print("Second process terminated gracefully.")
-    #print(output)
+
+    global aPairable; aPairable = []
+    print(output)
     for line in output.splitlines():
         if "Device" in line:
-            device_mac = line.split()[1]
-            device_name = line.split()[2]
+            line = line.replace("Device ","")
+            device_mac, device_name = line.split(" ", 1)
+            aPairable.append(f"{device_mac} - {device_name}")
             print(f"device mac: {device_mac}, name: {device_name}")
-    print("have extracted discoverable devices")
+    print("have extracted discoverable devices into aPairable")
 
+    global numPairable; numPairable = len(aPairable)
+    if numPairable==0:
+        label3.config(text="No Bluetooth devices found")
+    else:    
+        combobox_bt['values'] = aPairable
+        combobox_bt.current(0)
+        combobox_bt.focus_set()
+        if len(aPairable)==1:
+            label3.config(text=f"Found 1 device")
+        else:
+            label3.config(text=f"Found {numPairable} devices")
+        print(f"Found {numPairable} device(s)")
     
 
-
-    
-
-
-'''
-    command = "sudo bluetooth connect 2F:4F:C6:6A:0B:21"
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    if result.returncode == 0:
-        print("Command succeeded:\n", result.stdout)
-    else:
-
-        print("Command failed with error:\n", result.stderr)
-'''
-
-'''
-    if turn_on_bluetooth():
-        if make_bluetooth_discoverable():
-            devices = bluetooth.discover_devices(lookup_names=True)
-            if not devices:
-                # No Bluetooth devices found
-                label3.config(text="No Bluetooth devices found")
-                print("No Bluetooth devices found")
-                device_list = []
-                combobox_bt['values'] = device_list
-                combobox_bt.focus_set()
-            else:
-                device_list = [f"{addr} - {name})" for addr, name in devices]
-                combobox_bt['values'] = device_list
-                combobox_bt.current(0)
-                combobox_bt.focus_set()
-                if len(devices)==1:
-                    label3.config(text=f"Found 1 device")
-                else:
-                    label3.config(text=f"Found {len(devices)} devices")
-                print(f"Found {len(devices)} device(s)")
-
-'''
-
-
-# makes the Raspberry Pi's Bluetooth discoverable using the 'hciconfig' command.
-def make_bluetooth_discoverable():
-    pass
-'''
-    try:
-        subprocess.run(['sudo', 'hciconfig', 'hci0', 'piscan'], check=True)
-        label3.config(text="Bluetooth is now discoverable!", fg="green")
-        print("Bluetooth is now discoverable!")
-        time.sleep(5)
-        return True
-    except subprocss.CalledProcessError as e:
-        label3.config(text="Failed to make Bluetooth discoverable!", fg="red")
-        print("Failed to make Bluetooth discoverable!")
-        time.sleep(5)
-        return False
-'''    
-
-# turns on Bluetooth
-def turn_on_bluetooth():
-    pass
-'''
-    try:
-        subprocess.run(['sudo', 'systemctl', 'restart', 'bluetooth'], check=True)
-        time.sleep(5)
-        subprocess.run(['bluetoothctl', 'power', 'on'], check=True)
-        label3.config(text="Bluetooth is now ON!", fg="green")
-        print("Bluetooth is now ON!")
-        time.sleep(5)
-        return True
-    except subprocess.CalledProcessError:
-        label3.config(text="Failed to turn on Bluetooth.", fg="red")        
-        print("Failed to turn on Bluetooth.")
-        time.sleep(5)
-        return False
-'''
-
+# Pair and connect to the current selection from the bluetooth combobox
 def on_select_bluetooth(event):
-    pass
-'''
-    # Get the current selection from the Combobox
-    print("TEST")
+    print("ACTUAL PAIRING STARTS HERE")
     selected_device = combobox_bt.get()
     mac_address = selected_device.split(" - ")[0]
-    label3.config(text=f"Pairing with {mac_address}")
+    device_name = selected_device.split(" - ")[1]
+    label3.config(text=f"Paired with: {mac_address} - {device_name}")
     ct = label3.cget("text"); print(ct)
     time.sleep(5)
 
-    try:
-        # Run the bluetoothctl pair command
-        subprocess.run(['bluetoothctl', 'pair', mac_address], check=True)
-        label3.config(text=f"Paired with {mac_address} successfully!", fg="green")
-        ct = label3.cget("text"); print(ct)
-    except subprocess.CalledProcessError:
-        label3.config(text=f"Failed to pair with {mac_address}", fg="red")
-        ct = label3.cget("text"); print(ct)
-'''
+    # does the actual pairing ad connection - need previous acions else not connectable?   
+    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    process.stdin.write("discoverable on\n")
+    process.stdin.flush()
+    time.sleep(1)
+    process.stdin.write("scan on\n")
+    process.stdin.flush()
+    time.sleep(15)
+    process.stdin.write("scan off\n")
+    process.stdin.flush()
+    time.sleep(1)
+    process.stdin.write(f"pair {mac_address}\n")
+    process.stdin.flush()
+    time.sleep(5)
+    process.stdin.write(f"connect {mac_address}\n")
+    process.stdin.flush()
+    time.sleep(5)
+    output, _ = process.communicate()
+    process.stdin.close()  # Close the input stream
+    process.terminate()    # Politely terminate the process
+    process.wait()         # Ensure the process finishes
+    print("process terminated gracefully.")
+    print(output)
+    print("completed pairing and connection?")
 
 
 ####################################
@@ -2308,9 +2255,10 @@ label3.place(x=15, y=2)
 # Create a Combobox for bluetooth connection selection
 options = ["Nothing Available"]
 combobox_bt = ttk.Combobox(setup, values=options, height=25, width=45)
-combobox_bt.place(x = 15, y = 40)
+combobox_bt.place(x = 15, y = 30)
 combobox_bt.bind("<Return>", on_select_bluetooth) 
 combobox_bt.bind("<ButtonPress>", on_select_bluetooth) 
+#combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
 
 
 # SECONDARY setup FORM RELATED DEFINITIONS

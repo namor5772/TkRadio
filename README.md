@@ -105,6 +105,14 @@ Here we detail ALL the software needed for this project. Starting with the blank
     ```
 1. Open the terminal and use __alsamixer__ to adjust the audio level to max. This is needed when using a Bluetooth speaker. 
 
+1. Set audio control system to PulseAudio as follows:
+    run "sudo raspo-config" from a terminal
+    Press Down key 5x to [6 Advanced Options] then press Enter key
+    Press Down key 6x to [A7 Audio Config] then press Enter key
+    You will be at [1 PulseAudio], press the Enter Key twice.
+    Back at the main menu press the Tab key x2 to land on <Finish>
+    Press the Enter key to return to the terminal
+
 1. Remove the Bluetooth plugin from the taskbar as follows:
     Right mouse click an unoccupied spot on the taskbar
     A popup appears. Select the [Add / Remove Plugins...] option (with Left mouse click).

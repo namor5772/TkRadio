@@ -83,55 +83,90 @@ if flagRPi:
         match indexKeyList:
             case 0: # Shift-Tab
                 try:
-                    focused_widget = root.focus_get()
+                    if rootFlag:
+                        focused_widget = root.focus_get()
+                    else:
+                        focused_widget = setup.focus_get()
                     focused_widget.event_generate("<Shift-Tab>")
                     print("Shift-Tab key pressed!")
                 except KeyError as e:
                     # mysterious stuff I have to do to precisely simulate the behaviour
                     # of pressing the <Shift-Tab> key within a combobox popup
                     print(f"error {e}")
-                    combobox.event_generate("<Return>")
-                    focused_widget = root.focus_get()
+                    if rootFlag:
+                        combobox.event_generate("<Return>")
+                        focused_widget = root.focus_get()
+                        print("Shift-Tab key pressed inside combobox popup!")
+                    else:    
+                        combobox_bt.event_generate("<Return>")
+                        focused_widget = setup.focus_get()
+                        print("Shift-Tab key pressed inside combobox_bt popup!")
                     focused_widget.event_generate("<Shift-Tab>")
-                    print("Shift-Tab key pressed inside combobox popup!")
             case 1: # Tab
                 try:
-                    focused_widget = root.focus_get()
+                    if rootFlag:
+                        focused_widget = root.focus_get()
+                    else:
+                        focused_widget = setup.focus_get()
                     focused_widget.event_generate("<Tab>")
                     print("Tab key pressed!")
                 except KeyError as e:
                     # mysterious stuff I have to do to precisely simulate the behaviour
                     # of pressing the <Tab> key within a combobox popup
                     print(f"error {e}")
-                    combobox.event_generate("<Return>")
-                    focused_widget = root.focus_get()
+                    if rootFlag:
+                        combobox.event_generate("<Return>")
+                        focused_widget = root.focus_get()
+                        print("Tab key pressed inside combobox popup!")
+                    else:
+                        combobox_bt.event_generate("<Return>")
+                        focused_widget = setup.focus_get()
+                        print("Tab key pressed inside combobox_bt popup!")
                     focused_widget.event_generate("<Tab>")
-                    print("Tab key pressed inside combobox popup!")
             case 2: # Enter
                 try:
-                    focused_widget = root.focus_get()
+                    if rootFlag:
+                        focused_widget = root.focus_get()
+                    else:
+                        focused_widget = setup.focus_get()
                     focused_widget.event_generate("<Return>")
                     print("Enter key pressed!")
                 except KeyError as e:
                     # mysterious stuff I have to do to precisely simulate the behaviour
                     # of pressing the <Enter> key within a combobox popup
                     print(f"error {e}")
-                    combobox.event_generate("<Return>")
-                    print("Enter key pressed inside combobox popup!")
+                    if rootFlag:
+                        combobox.event_generate("<Return>")
+                        print("Enter key pressed inside combobox popup!")
+                    else:    
+                        combobox_bt.event_generate("<Return>")
+                        print("Enter key pressed inside combobox_bt popup!")
             case 3: # Down
                 # does nothing (no errors) if pressed outside of combobox
-                combobox.event_generate("<Down>")
+                if rootFlag:
+                    combobox.event_generate("<Down>")
+                else:
+                    combobox_bt.event_generate("<Down>")
                 print("Down key pressed!")
             case 4: # Up
                 # does nothing (no errors) if pressed outside of combobox
-                combobox.event_generate("<Up>")
+                if rootFlag:
+                    combobox.event_generate("<Up>")
+                else:
+                    combobox_bt.event_generate("<Up>")
                 print("Up key pressed!")
             case 5: # Delete
-                focused_widget = root.focus_get()
+                if rootFlag:
+                    focused_widget = root.focus_get()
+                else:
+                    focused_widget = setup.focus_get()
                 focused_widget.event_generate("<Delete>")
                 print("Delete key pressed!")
             case 6: # Insert
-                focused_widget = root.focus_get()
+                if rootFlag:
+                    focused_widget = root.focus_get()
+                else:
+                    focused_widget = setup.focus_get()
                 focused_widget.event_generate("<Insert>")
                 print("Insert key pressed!")
 
@@ -178,6 +213,7 @@ Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
 
 # global variables related to bluetooth
+
 onBluetooth = True
 currentPair = "No bluetooth speakers paired" # details of currently paired speakers
 aPairable = [] # used to list bluetooth visible devices for pairing a speaker
@@ -187,7 +223,6 @@ numPairable = 0; # number of pairable devices visible
 filename3 = 'bluetooth.txt'
 filepath3 = os.path.join(script_dir, filename3)
 print(f'The file {filepath3} stores bluetooth status before shutdown.')
-
 
 # global variables for combobox selection indexes & button related
 numButtons = 18
@@ -203,11 +238,12 @@ selected_value_last = "INITIAL"
 selected_index = -1
 startTime = time.time()
 endTime = 0.0
-refreshTime = 10.0 # in seconds for program info
+refreshTime = 20.0 # seconds between updating station info
 stationShort = ""
 station = ""
 needSleep = 5 # can be less on faster machines
 pressButton = True # flag for how stream is started
+rootFlag = True # False indicates that you are in the secondary window
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1065,10 +1101,9 @@ def Commercial2(br,sPath):
         fe1 = "No program information"
     return fe1
 
-
-
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
+
 
 
 # START **********************************************************
@@ -1374,9 +1409,9 @@ def klassik_radio_pure_verdi():
 def epic_piano_chopin():
     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
 
-
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
+
 
 
 # 2D array of radio station information in [long name, calling function] format
@@ -1539,7 +1574,8 @@ for i in range(numButtons):
     aStation2.append(station)
 
 
-# does stuff just after gui is initialised and we are running in the root thread
+
+# after gui is initialised and we are running in the root thread
 def after_GUI_started():
    
     # load bluetooth status file and use it to populate global variables
@@ -1562,7 +1598,7 @@ def after_GUI_started():
         print(f"File not found: {filepath3}")
         # create a bluetooth status file and give it default values
         onBluetooth = False; line1 = "0"  
-        currentPair = "No bluetooth speakers paired"; line2 = currentPair
+        currentPair = "00:00:00:00:00:00 NOTHING"; line2 = currentPair
         with open(filepath3, 'w') as file:
             file.write(line1 + '\n')  # Write the first line with a newline character
             file.write(line2 + '\n')  # Write the second line with a newline character
@@ -1577,12 +1613,14 @@ def after_GUI_started():
     # if a previously paired set of bluetooth speakers is turned on when this runs this will
     # connect and play though them.
     if onBluetooth:
-        restart_bluetooth()
+        connect_bluetooth()
         BTstatusButton.config(text="BT ON")
+        BTstatusButton.config(bg="light green")
     else: # onBluetooth==False
         subprocess_run("sudo systemctl disable bluetooth")                        
         subprocess_run("sudo systemctl stop bluetooth")                        
         BTstatusButton.config(text="BT OFF")
+        BTstatusButton.config(bg="light coral")
       
     # select to stream last station that was streaming just before radio was powered down
     global buttonIndex, buttonFlag; buttonFlag = True
@@ -2003,6 +2041,20 @@ def on_focus_combobox(event):
     print("on_focus_combobox")
 
 
+# called when bluetooth device selection combobox_bt loses focus.
+# makes sure its display is updated.
+def on_focus_out_combobox_bt(event):
+    combobox_bt.update_idletasks()  # Force update
+    print("on_focus_out_combobox_bt")
+
+
+# called when bluetooth device selection combobox_bt receives focus.
+# makes sure its display is updated.
+def on_focus_combobox_bt(event):
+    combobox_bt.update_idletasks()  # Force update
+    print("on_focus_combobox_bt")
+
+
 # called when station combobox loses focus.
 # makes sure its display is updated.
 def on_focus_out_combobox(event):
@@ -2010,26 +2062,31 @@ def on_focus_out_combobox(event):
     print("on_focus_out_combobox")
 
 
+
 # show the setup form (over the top of the main window)
 def show_setup_form(event):
+    rootFlag = False
     setup.deiconify()
     mainButton.focus_set()
+    print(rootFlag)
 
 
 # show the root form back over the setup form
 def show_root_form(event):
+    rootFlag = True
     setup.withdraw()
     setupButton.focus_set()
+    print(rootFlag)
 
 
 # Helper function for subprocess run
 def subprocess_run(command):
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     time.sleep(2)
-    if result.returncode == 0:
-        print(f"Command '{command}' succeeded: ", result.stdout)
-    else:
-        print(f"Command '{command}' failed with error: ", result.stderr)
+    returnCode = result.returncode
+    if returnCode == 0: print(f"Command '{command}' succeeded")
+    else: print(f"Command '{command}' FAILED")
+    return returnCode    
 
 
 # Helper function to execute a bluetoothctl command
@@ -2042,16 +2099,15 @@ def run_bluetoothctl_command(command):
 # restart bluetooth interface.
 # if a previously paired set of bluetooth speakers is turned and then this function is run
 # if will connect and play though them even if Bluetootch was originally turned off  
-def restart_bluetooth():
+def connect_bluetooth():
     mac_address = currentPair.split(" - ")[0]
     device_name = currentPair.split(" - ")[1]
-#    subprocess_run("sudo systemctl restart bluetooth")
-#    subprocess_run("rfkill unblock bluetooth")
     print(f"Restarting Bluetooth interface with currently paired device: {device_name}")
     subprocess_run("sudo systemctl enable bluetooth")                        
     subprocess_run("sudo systemctl start bluetooth")
     subprocess_run("rfkill unblock bluetooth")
-    subprocess_run(f"sudo bluetoothctl connect {mac_address}")
+    returnCode = subprocess_run(f"sudo bluetoothctl connect {mac_address}")
+    return returnCode
 
 
 # if BlueTooth is off then restart interface, If it is on then turn it off.
@@ -2061,30 +2117,37 @@ def toggle_bluetooth(event):
     sText = BTstatusButton.cget("text")
     if sText=="BT ON":
         BTstatusButton.config(text="BT OFF")
+        BTstatusButton.config(bg="light coral")
         onBluetooth = False; line1 = "0"
         subprocess_run("sudo systemctl disable bluetooth")                        
         subprocess_run("sudo systemctl stop bluetooth")                        
     else: #if sText=="BT OFF"
         BTstatusButton.config(text="BT ON")
+        BTstatusButton.config(bg="light green")
         onBluetooth = True; line1 = "1"
-        subprocess_run("sudo systemctl enable bluetooth")                        
-        subprocess_run("sudo systemctl start bluetooth")
-        
+        connect_bluetooth()
+        label4.config(text=f"")
     with open(filepath3, 'w') as file:
         file.write(line1 + '\n')
         file.write(currentPair + '\n')
     print(f"updated: {filepath3}")        
 
 
-
-def _restart_bluetooth(event):
+def _connect_bluetooth(event):
     if onBluetooth:
         print("CONNECTING FOR REAL")
-        restart_bluetooth()
+        returnCode = connect_bluetooth()
+        if returnCode != 0:
+            label4.config(text=f"FAILED")
+        else:
+            label4.config(text=f"")
     else:    
         print("NOT CONNECTING")
+        label4.config(text=f"TURN ON BT")
 
 
+# populates the combobox_bt with the pairable devices, but first removes all previously paired ones.
+# which here should be just one.
 def pair_bluetooth(event):
     print("Start Bluetooth PAIRING")
     
@@ -2107,7 +2170,7 @@ def pair_bluetooth(event):
     time.sleep(2)
     process.stdin.write("scan on\n")
     process.stdin.flush()
-    time.sleep(15)
+    time.sleep(20)
     process.stdin.write("scan off\n")
     process.stdin.flush()
     time.sleep(2)
@@ -2115,8 +2178,7 @@ def pair_bluetooth(event):
     process.stdin.close()  # Close the input stream
     process.terminate()    # Politely terminate the process
     process.wait()         # Ensure the process finishes
-    print("First process terminated gracefully.")
-    
+
     process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
     process.stdin.write("devices\n")
     process.stdin.flush()
@@ -2125,10 +2187,8 @@ def pair_bluetooth(event):
     process.stdin.close()  # Close the input stream
     process.terminate()    # Politely terminate the process
     process.wait()         # Ensure the process finishes
-    print("Second process terminated gracefully.")
 
     global aPairable; aPairable = []
-    print(output)
     for line in output.splitlines():
         if "Device" in line:
             line = line.replace("Device ","")
@@ -2137,70 +2197,90 @@ def pair_bluetooth(event):
             print(f"device mac: {device_mac}, name: {device_name}")
     print("have extracted discoverable devices into aPairable")
 
+    combobox_bt['values'] = aPairable
     global numPairable; numPairable = len(aPairable)
     if numPairable==0:
         label3.config(text="No Bluetooth devices found")
     else:    
-        combobox_bt['values'] = aPairable
         combobox_bt.current(0)
         combobox_bt.focus_set()
         if len(aPairable)==1:
             label3.config(text=f"Found 1 device")
         else:
             label3.config(text=f"Found {numPairable} devices")
-        print(f"Found {numPairable} device(s)")
+    print(f"Found {numPairable} device(s)\n")
     
 
 # Pair and connect to the current selection from the bluetooth combobox
 def on_select_bluetooth(event):
-    print("ACTUAL PAIRING STARTS HERE")
-    selected_device = combobox_bt.get()
-    mac_address = selected_device.split(" - ")[0]
-    device_name = selected_device.split(" - ")[1]
-    label3.config(text=f"Paired with: {mac_address} - {device_name}")
-    ct = label3.cget("text"); print(ct)
-    time.sleep(5)
-
-    # does the actual pairing add connection - need previous acions else not connectable?   
-    process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-    process.stdin.write("discoverable on\n")
-    process.stdin.flush()
-    time.sleep(1)
-    process.stdin.write("scan on\n")
-    process.stdin.flush()
-    time.sleep(15)
-    process.stdin.write("scan off\n")
-    process.stdin.flush()
-    time.sleep(1)
-    process.stdin.write(f"pair {mac_address}\n")
-    process.stdin.flush()
-    time.sleep(5)
-    process.stdin.write(f"connect {mac_address}\n")
-    process.stdin.flush()
-    time.sleep(5)
-    output, _ = process.communicate()
-    process.stdin.close()  # Close the input stream
-    process.terminate()    # Politely terminate the process
-    process.wait()         # Ensure the process finishes
-    print("process terminated gracefully.")
-    print(output)
-    if output=="":
-        msg = "Problems, Press the [Pair] button again"
-        label3.config(text=msg)
-        print(msg)
-    else:    
-        print("completed pairing and connection?")
+    try:
+        print("ACTUAL PAIRING STARTS HERE")
+        selected_device = combobox_bt.get()
+        mac_address = selected_device.split(" - ")[0]
+        device_name = selected_device.split(" - ")[1]
+        time.sleep(5)
+    except IndexError as e:
+        print("SELECTION DOES NOT EXIST - CANNOT PAIR")
+        root.after(100,lambda: mainButton.focus_set()) 
+        return # all code below is ignored
+        
+    loop=0
+    while True:
+        # does the actual pairing to selected mac address - need previous actions else not connectable?   
+        process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+        process.stdin.write("discoverable on\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write("scan on\n")
+        process.stdin.flush()
+        time.sleep(15)
+        process.stdin.write("scan off\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write(f"pair {mac_address}\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write(f"connect {mac_address}\n")
+        process.stdin.flush()
+        time.sleep(5)
+        output, _ = process.communicate()
+        process.stdin.close()  # Close the input stream
+        process.terminate()    # Politely terminate the process
+        process.wait()         # Ensure the process finishes
+        print("**** OUTPUT START ******")
+        print(output)
+        print("**** OUTPUT FINISH *****")
+        position = output.find("Connection successful")
+        loop += 1
+        if position == -1 and loop < 3 :
+            print(f"Failed to Pair try {loop}")
+        else:
+            break
+    if position == -1:
+        print("GAVE UP TRYING TO PAIR - TRY AGAIN!")
+        label3.config(text=f"GAVE UP TRYING TO PAIR - TRY AGAIN!")
+    else:
+        print("SUCESSFULLY PAIRED AND CONNECTED!")
+        label3.config(text=f"Paired with: {mac_address} - {device_name}")
 
     # update the bluetooth.txt config file
-    global onBluetooth; onBluetooth = True; line1 = "1"  
-    global currentPair; currentPair= f"{mac_address} - {device_name}"; line2 = currentPair
+    global onBluetooth
+    if position == -1:
+        if onBluetooth:
+            line1 = "1"
+        else:
+            line1 = "0"
+        line2 = "00:00:00:00:00:00 NOTHING"
+    else:    
+        onBluetooth = True; line1 = "1"  
+        global currentPair; currentPair= f"{mac_address} - {device_name}"; line2 = currentPair
+        BTstatusButton.config(text="BT ON")
     with open(filepath3, 'w') as file:
         file.write(line1 + '\n')  # Write the first line with a newline character
         file.write(line2 + '\n')  # Write the second line with a newline character
     print(f"Default file created {filepath3}")
+    root.after(100,lambda: mainButton.focus_set()) 
 
-    # update the BTstatusButton text
-    BTstatusButton.config(text="BT ON")
     
 
 ####################################
@@ -2218,13 +2298,14 @@ if flagRPi:
     label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
     label_Key.place(x=720, y=0, width=80, height=20)
 
+
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations
 aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
-combobox = ttk.Combobox(root, values=aStringArray, height=20, width=33)
-combobox.place(x=130+(sizeButton+5), y=2)  # Adjust the position
+combobox = ttk.Combobox(root, values=aStringArray, height=20*0+25, width=33)
+combobox.place(x=130+(sizeButton+5), y=2*0+0)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)
 combobox.bind("<FocusOut>", on_focus_out_combobox)
 combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
@@ -2239,30 +2320,32 @@ except FileNotFoundError:
     # will just use the default aStation2[] array created above
     print(f'Error: The file {filepath2} does not exist.')
 
+
 # Create a text box, position and size it
 # used to display the program and song details
 text_box = tk.Text(root)
 text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
+
 # Create a button on the root form to display the secondary setup form
-setupButton = tk.Button(root, text="setup")
-setupButton.place(x=620, y=4, width=43, height=20)
+setupButton = tk.Button(root, text="SETUP")
+setupButton.place(x=500, y=0, height=25)
 setupButton.config(takefocus=True)
 setupButton.bind("<Return>", show_setup_form)  
 setupButton.bind("<ButtonPress>", show_setup_form)  
-   
 
+   
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
 label.place(x=15, y=2)
 label2 = tk.Label(root)
 
+
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
 for i in range(numButtons):
-    # HELP
     button = tk.Button(root, text=f"Button{i}")
 
     # positioning buttons in 2 rows of 9
@@ -2289,61 +2372,62 @@ for i in range(numButtons):
 
 
 # SECONDARY setup FORM RELATED DEFINITIONS
-# *** START *****************************
+# *** START ******************************
 
 # Create a secondary setup form without title bar and close buttons
 # It will be used for examining and configuring setup settings
 setup = tk.Toplevel(root)
 setup.geometry("800x480+0+26")
 setup.overrideredirect(True)
-setup.configure(bg="lightblue")
+#setup.configure(bg="lightblue")
 setup.withdraw() # Hide the form initially
 
 # button which returns focus and visibility back to the main/root form
-mainButton = tk.Button(setup, text="main")
-mainButton.place(x=620, y=4, width=40, height=20)
+mainButton = tk.Button(setup, text="MAIN")
+mainButton.place(x=500, y=0, height=25)
 mainButton.config(takefocus=True)
 mainButton.bind("<Return>", show_root_form)  
 mainButton.bind("<ButtonPress>", show_root_form)  
 
-# button to enable scanning for bluetooth devices
-scanButton = tk.Button(setup, text="SCAN") 
-scanButton.place(x=10, y=200, height=25)
-scanButton.config(takefocus=True)
-scanButton.bind("<Return>", pair_bluetooth)  
-scanButton.bind("<ButtonPress>", pair_bluetooth)  
-
-# button to connect to currently paired bluetooth speakers
-connectButton = tk.Button(setup, text="CONNECT") 
-connectButton.place(x=10, y=150, height=25)
-connectButton.config(takefocus=True)
-connectButton.bind("<Return>", _restart_bluetooth)  
-connectButton.bind("<ButtonPress>", _restart_bluetooth)  
-
 # button to toggle bluetooth connection on/off
 BTstatusButton = tk.Button(setup, text="NONE") 
-BTstatusButton.place(x=10, y=125, height=25)
+BTstatusButton.place(x=15, y=10+25, height=25)
 BTstatusButton.config(takefocus=True)
 BTstatusButton.bind("<Return>", toggle_bluetooth)  
 BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
 
+# button & label to connect to currently paired bluetooth speakers
+cX = 15; cY = 10+25+30
+connectButton = tk.Button(setup, text="CONNECT") 
+connectButton.place(x=cX, y=cY, height=25)
+connectButton.config(takefocus=True)
+connectButton.bind("<Return>", _connect_bluetooth)  
+connectButton.bind("<ButtonPress>", _connect_bluetooth)  
+label4 = tk.Label(setup, text="")
+label4.place(x=cX+100, y=cY+2)
 
-# bluetooth information label
+# Create a Combobox for bluetooth connection selection & related information label
+cX = 15; cY = 10+25+30+30+30
 label3 = tk.Label(setup, text="")
-label3.place(x=15, y=10)
-
-# Create a Combobox for bluetooth connection selection
-options = ["Nothing Available"]
+label3.place(x=cX+1, y=cY)
+options = [""]
 combobox_bt = ttk.Combobox(setup, values=options, height=25, width=40)
-combobox_bt.place(x = 15, y = 40)
+combobox_bt.place(x = cX, y = cY+30)
 combobox_bt.current(0)
-combobox_bt.bind("<Return>", on_select_bluetooth) 
-combobox_bt.bind("<ButtonPress>", on_select_bluetooth) 
-#combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
+combobox_bt.bind("<FocusIn>", on_focus_combobox_bt)
+combobox_bt.bind("<FocusOut>", on_focus_out_combobox_bt)
+combobox_bt.bind("<<ComboboxSelected>>", lambda e: on_select_bluetooth(CustomEvent("Auto", combobox_bt, "ComboBox Event")))
+combobox_bt.config(state="readonly")
 
+# button to enable scanning for bluetooth devices (which will appear in above combobox)
+pairButton = tk.Button(setup, text="SEE DEVICES") 
+pairButton.place(x=cX, y=cY+60, height=25)
+pairButton.config(takefocus=True)
+pairButton.bind("<Return>", pair_bluetooth)  
+pairButton.bind("<ButtonPress>", pair_bluetooth)
 
 # SECONDARY setup FORM RELATED DEFINITIONS
-# *** END *******************************
+# *** END ********************************
 
 
 # doing stuff just after the gui is initialised and we are running in the root thread

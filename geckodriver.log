@@ -15788,3 +15788,1362 @@ TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
 TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
 interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
 webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742752672620	geckodriver	INFO	Listening on 127.0.0.1:34889
+1742752672633	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "52607" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileI3x1Xb"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742752674572	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742752675378	Marionette	INFO	Listening on port 34385
+Read port: 34385
+WebDriver BiDi listening on ws://127.0.0.1:52607
+1742752675995	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2762 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 794: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 794 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6175: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6175 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6018 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1305 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7416 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 583 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 714 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2985 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://s0.2mdn.net/879366/Enabler_01_250.js, line 113: Script terminated by timeout at:
+wg@https://s0.2mdn.net/879366/Enabler_01_250.js:113:129
+ji.prototype.C@https://s0.2mdn.net/879366/Enabler_01_250.js:143:100
+G.prototype.dispose@https://s0.2mdn.net/879366/Enabler_01_250.js:106:648
+F@https://s0.2mdn.net/879366/Enabler_01_250.js:106:360
+Bi.prototype.close@https://s0.2mdn.net/879366/Enabler_01_250.js:151:110
+h.C@https://s0.2mdn.net/879366/Enabler_01_250.js:153:248
+G.prototype.dispose@https://s0.2mdn.net/879366/Enabler_01_250.js:106:648
+F@https://s0.2mdn.net/879366/Enabler_01_250.js:106:360
+Ai@https://s0.2mdn.net/879366/Enabler_01_250.js:153:383
+vg@https://s0.2mdn.net/879366/Enabler_01_250.js:114:369
+b@https://s0.2mdn.net/879366/Enabler_01_250.js:112:292
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3168 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2420 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript warning: https://cdn.mytuner.mobi/static/ctr/js/sm2/soundmanager2-nodebug-jsmin.js, line 13: Script terminated by timeout at:
+G/r/<@https://cdn.mytuner.mobi/static/ctr/js/sm2/soundmanager2-nodebug-jsmin.js:13:143
+
+JavaScript warning: https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=156595, line 1: Script terminated by timeout at:
+J@https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=156595:1:13674
+t@https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=156595:1:13850
+N@https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=156595:1:18318
+B@https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=156595:1:15082
+
+JavaScript warning: https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_1580810634, line 11: Script terminated by timeout at:
+v@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_1580810634:11:289
+AD/this.U@https://imasdk.googleapis.com/js/core/bridge3.688.0_en.html#fid=goog_1580810634:451:37
+
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js, line 1: Script terminated by timeout at:
+86590/v/<@https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js:1:95655
+r@https://smooth.com.au/_next/static/chunks/main-634d4b355907bcec.js:1:95151
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742753889315	Marionette	INFO	Stopped listening on port 34385
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742753896587	geckodriver	INFO	Listening on 127.0.0.1:50311
+1742753896601	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60087" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileow7W1W"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742753898566	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742753899038	Marionette	INFO	Listening on port 43671
+Read port: 43671
+WebDriver BiDi listening on ws://127.0.0.1:60087
+1742753899362	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742754247358	Marionette	INFO	Stopped listening on port 43671
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742754256647	geckodriver	INFO	Listening on 127.0.0.1:42003
+1742754257154	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "46263" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilevdtkDZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742754259285	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742754259800	Marionette	INFO	Listening on port 38053
+WebDriver BiDi listening on ws://127.0.0.1:46263
+Read port: 38053
+1742754260453	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js, line 6: Script terminated by timeout at:
+l@https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js:6:13006
+r@https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js:6:8359
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 293 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval, line 2962: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/J448linBPr6LuDeK2ty-IFLv83FHgqGyxh9A6TGIR3A.js line 2 > eval line 2962 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 155: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/zOdlzACpdQyPxEPqeiDOa3DBW2z25BcW40ltTo8Fydg.js line 2 > eval line 580 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/zOdlzACpdQyPxEPqeiDOa3DBW2z25BcW40ltTo8Fydg.js line 2 > eval line 5641 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/zOdlzACpdQyPxEPqeiDOa3DBW2z25BcW40ltTo8Fydg.js line 2 > eval line 5452 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 155 > eval, line 1: unreachable code after return statement
+JavaScript error: resource://devtools/client/jsonview/Sniffer.sys.mjs, line 53: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIChannel.contentType]
+JavaScript warning: https://connect.facebook.net/en_US/fbevents.js, line 36: Script terminated by timeout at:
+value@https://connect.facebook.net/en_US/fbevents.js:36:789
+@https://connect.facebook.net/en_US/fbevents.js:190:1336
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 155 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159196&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Flive.primis.tech%2Flive%2FliveCS.php%3Fsource%3Dexternal%26advId%3D91%26advUuid%3DPM_UID%26gdpr%3D0%26gdpr_consent%3D, line 1: Script terminated by timeout at:
+J@https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159196&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Flive.primis.tech%2Flive%2FliveCS.php%3Fsource%3Dexternal%26advId%3D91%26advUuid%3DPM_UID%26gdpr%3D0%26gdpr_consent%3D:1:13833
+t@https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159196&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Flive.primis.tech%2Flive%2FliveCS.php%3Fsource%3Dexternal%26advId%3D91%26advUuid%3DPM_UID%26gdpr%3D0%26gdpr_consent%3D:1:13850
+N@https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159196&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Flive.primis.tech%2Flive%2FliveCS.php%3Fsource%3Dexternal%26advId%3D91%26advUuid%3DPM_UID%26gdpr%3D0%26gdpr_consent%3D:1:18318
+B@https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159196&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Flive.primis.tech%2Flive%2FliveCS.php%3Fsource%3Dexternal%26advId%3D91%26advUuid%3DPM_UID%26gdpr%3D0%26gdpr_consent%3D:1:15082
+
+JavaScript warning: https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js, line 48: Script terminated by timeout at:
+Wa@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:434
+h@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:244:1941
+po/</m</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:244:2209
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+gf/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:102:782
+hd/this.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:889
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+N/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:91:475
+hd/this.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:889
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+R/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:101:1477
+hd/this.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:889
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+Vd/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:96:1547
+hd/this.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:90:889
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+ih/c/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:131:320
+Xa@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:49:339
+Ua.prototype.flush@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:49:127
+Wa@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:483
+ih/c/</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:131:292
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+qg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:515
+Ta.prototype.Ub/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:315
+qg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:524
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+qg/</</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:515
+Ta.prototype.Ub/<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:48:315
+qg/</</<@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:121:524
+tc.prototype.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:81:218
+n.Ed@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:756
+n.next@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:80:523
+h@https://pagead2.googlesyndication.com/pagead/managed/js/activeview/current/ufs_web_display.js:93:477
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742754611959	Marionette	INFO	Stopped listening on port 38053
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742754764302	geckodriver	INFO	Listening on 127.0.0.1:54527
+1742754764809	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "36749" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileeHtxDs"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742754766872	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742754767348	Marionette	INFO	Listening on port 44301
+WebDriver BiDi listening on ws://127.0.0.1:36749
+Read port: 44301
+1742754767692	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742754896277	Marionette	INFO	Stopped listening on port 44301
+JavaScript warning: https://au-script.dotmetrics.net/Scripts/script.js?v=334, line 1: Script terminated by timeout at:
+b</this.startIntervalFunctions/this.timeBufferIntervalInstanceId<@https://au-script.dotmetrics.net/Scripts/script.js?v=334:1:59851
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742755549520	geckodriver	INFO	Listening on 127.0.0.1:51593
+1742755550027	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "50527" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilejuaInK"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742755552006	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742755552474	Marionette	INFO	Listening on port 43519
+WebDriver BiDi listening on ws://127.0.0.1:50527
+Read port: 43519
+1742755553101	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742755586553	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742755929247	Marionette	INFO	Stopped listening on port 43519
+1742755945045	geckodriver	INFO	Listening on 127.0.0.1:48335
+1742755945550	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "56611" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile7vdzAk"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742755947567	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742755948047	Marionette	INFO	Listening on port 40519
+Read port: 40519
+WebDriver BiDi listening on ws://127.0.0.1:56611
+1742755948358	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742755983226	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742756175343	Marionette	INFO	Stopped listening on port 40519
+1742756203335	geckodriver	INFO	Listening on 127.0.0.1:59281
+1742756203350	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37497" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileG3Qcpz"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742756205338	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742756205834	Marionette	INFO	Listening on port 38447
+Read port: 38447
+WebDriver BiDi listening on ws://127.0.0.1:37497
+1742756206254	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742756640332	Marionette	INFO	Stopped listening on port 38447
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742756665283	geckodriver	INFO	Listening on 127.0.0.1:45589
+1742756665791	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "52481" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVn9JT4"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742756667749	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742756668228	Marionette	INFO	Listening on port 37691
+WebDriver BiDi listening on ws://127.0.0.1:52481
+Read port: 37691
+1742756668880	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742756995764	Marionette	INFO	Stopped listening on port 37691
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742757527133	geckodriver	INFO	Listening on 127.0.0.1:36571
+1742757527641	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "32833" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqKol2g"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742757529635	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742757530098	Marionette	INFO	Listening on port 40975
+Read port: 40975
+WebDriver BiDi listening on ws://127.0.0.1:32833
+1742757530403	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742757683056	Marionette	INFO	Stopped listening on port 40975
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 174: Script terminated by timeout at:
+297/i/./src/demux/transmuxer-interface.ts/e.onWorkerMessage@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:174:3883
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742757885054	geckodriver	INFO	Listening on 127.0.0.1:60107
+1742757885563	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "34217" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqSvzdu"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742757887546	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742757888026	Marionette	INFO	Listening on port 38845
+Read port: 38845
+WebDriver BiDi listening on ws://127.0.0.1:34217
+1742757888311	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742757921378	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742758096122	Marionette	INFO	Stopped listening on port 38845
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1124: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1124:112
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742759448599	geckodriver	INFO	Listening on 127.0.0.1:53967
+1742759448611	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "44399" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileJj6qfl"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742759450855	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742759451468	Marionette	INFO	Listening on port 41925
+Read port: 41925
+WebDriver BiDi listening on ws://127.0.0.1:44399
+1742759451780	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742759598153	Marionette	INFO	Stopped listening on port 41925
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742760483311	geckodriver	INFO	Listening on 127.0.0.1:53629
+1742760483819	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "56629" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelJ4Xxn"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742760485774	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742760486247	Marionette	INFO	Listening on port 36257
+WebDriver BiDi listening on ws://127.0.0.1:56629
+Read port: 36257
+1742760486881	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742760518068	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742760761595	geckodriver	INFO	Listening on 127.0.0.1:53255
+1742760762103	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "59601" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilePgt0pb"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742760764220	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742760764735	Marionette	INFO	Listening on port 42841
+WebDriver BiDi listening on ws://127.0.0.1:59601
+Read port: 42841
+1742760765422	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742760821276	Marionette	INFO	Stopped listening on port 42841
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1742760870308	Marionette	INFO	Stopped listening on port 36257
+[Parent 4808, IPC I/O Parent] WARNING: process 5021 exited on signal 9: file ./ipc/chromium/src/chrome/common/process_watcher_posix_sigchld.cc:132
+1742760875950	geckodriver	INFO	Listening on 127.0.0.1:37723
+1742760876446	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "43071" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileSFY8pz"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742760878394	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742760878910	Marionette	INFO	Listening on port 36183
+Read port: 36183
+WebDriver BiDi listening on ws://127.0.0.1:43071
+1742760879206	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742760910269	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742762141149	Marionette	INFO	Stopped listening on port 36183
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742762312266	geckodriver	INFO	Listening on 127.0.0.1:44769
+1742762312277	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "44097" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileyYwoZn"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742762314247	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742762314792	Marionette	INFO	Listening on port 43961
+WebDriver BiDi listening on ws://127.0.0.1:44097
+Read port: 43961
+1742762315449	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742762351864	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742762588090	Marionette	INFO	Stopped listening on port 43961
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742762594721	geckodriver	INFO	Listening on 127.0.0.1:37851
+1742762594734	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "47203" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZIcOm5"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742762596932	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742762597433	Marionette	INFO	Listening on port 35349
+WebDriver BiDi listening on ws://127.0.0.1:47203
+Read port: 35349
+1742762598087	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742762630213	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742762970290	Marionette	INFO	Stopped listening on port 35349
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1123: Script terminated by timeout at:
+gB.prototype.HR@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1123:433
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742762982322	geckodriver	INFO	Listening on 127.0.0.1:54155
+1742762982831	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "49649" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileW4fTAP"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742762985043	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742762985540	Marionette	INFO	Listening on port 44057
+WebDriver BiDi listening on ws://127.0.0.1:49649
+Read port: 44057
+1742762986195	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742763296214	Marionette	INFO	Stopped listening on port 44057
+1742763309660	geckodriver	INFO	Listening on 127.0.0.1:34785
+1742763309674	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45733" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiledZSF35"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742763311719	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742763312250	Marionette	INFO	Listening on port 41421
+Read port: 41421
+WebDriver BiDi listening on ws://127.0.0.1:45733
+1742763312603	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742765254943	Marionette	INFO	Stopped listening on port 41421
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742765822224	geckodriver	INFO	Listening on 127.0.0.1:54661
+1742765822737	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "38755" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileTpXaig"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742765824762	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742765825239	Marionette	INFO	Listening on port 42159
+WebDriver BiDi listening on ws://127.0.0.1:38755
+Read port: 42159
+1742765825870	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742765859392	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742766222832	Marionette	INFO	Stopped listening on port 42159
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742766778105	geckodriver	INFO	Listening on 127.0.0.1:38211
+1742766778613	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "54973" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileNfX1sx"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742766780619	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742766781102	Marionette	INFO	Listening on port 40105
+Read port: 40105
+WebDriver BiDi listening on ws://127.0.0.1:54973
+1742766781409	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742766947104	Marionette	INFO	Stopped listening on port 40105
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742767090931	geckodriver	INFO	Listening on 127.0.0.1:35859
+1742767091438	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "46485" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilecNC7jm"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742767093328	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742767094130	Marionette	INFO	Listening on port 36673
+Read port: 36673
+WebDriver BiDi listening on ws://127.0.0.1:46485
+1742767094437	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742767132997	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742767618030	Marionette	INFO	Stopped listening on port 36673
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742767630810	geckodriver	INFO	Listening on 127.0.0.1:45915
+1742767630821	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "57153" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile729bKE"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742767632665	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742767633143	Marionette	INFO	Listening on port 35539
+WebDriver BiDi listening on ws://127.0.0.1:57153
+Read port: 35539
+1742767633779	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742767664883	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742767959421	Marionette	INFO	Stopped listening on port 35539
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742767966383	geckodriver	INFO	Listening on 127.0.0.1:36715
+1742767966397	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45817" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileILtQ3Z"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742767968332	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742767968808	Marionette	INFO	Listening on port 45269
+WebDriver BiDi listening on ws://127.0.0.1:45817
+Read port: 45269
+1742767969443	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742768000801	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742772653122	Marionette	INFO	Stopped listening on port 45269
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 94: Script terminated by timeout at:
+297/i/./src/controller/level-helper.ts/<@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:94:796
+297/i/./src/controller/base-stream-controller.ts/A.getCurrentContext@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:46:11074
+297/i/./src/controller/base-stream-controller.ts/A._handleTransmuxerFlush@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:46:10534
+297/i/./src/demux/transmuxer-interface.ts/e.onWorkerMessage@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:174:4074
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742772659662	geckodriver	INFO	Listening on 127.0.0.1:57765
+1742772660169	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37123" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileIQyREy"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742772662116	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742772662632	Marionette	INFO	Listening on port 41043
+Read port: 41043
+WebDriver BiDi listening on ws://127.0.0.1:37123
+1742772662925	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742772694552	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742773788331	Marionette	INFO	Stopped listening on port 41043
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742773811865	geckodriver	INFO	Listening on 127.0.0.1:37649
+1742773811879	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "54381" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilea4sUQZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742773813822	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742773815198	Marionette	INFO	Listening on port 38293
+WebDriver BiDi listening on ws://127.0.0.1:54381
+Read port: 38293
+1742773815863	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742774155549	Marionette	INFO	Stopped listening on port 38293
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.core.controls.js, line 10: Script terminated by timeout at:
+playerSetup/C.trigger@https://ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.core.controls.js:10:115870
+P@https://ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.core.controls.js:10:116172
+f@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2079:25
+window.jwplayer</e.trigger@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2030:45
+y@https://ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.core.controls.js:10:45341
+f@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2079:25
+window.jwplayer</e.trigger@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2030:45
+window.jwplayer</r/</t[e]@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:6170:30
+v@https://ssl.p.jwpcdn.com/player/v/8.24.0/jwplayer.core.controls.js:10:44720
+f@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2079:25
+window.jwplayer</e.trigger@https://www.abc.net.au/core-assets/jwplayer-8.24.0/jwplayer.js:2030:45
+timeupdate@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:10:13850
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742774163096	geckodriver	INFO	Listening on 127.0.0.1:48153
+1742774163603	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "52243" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQCyoSP"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742774165628	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742774166091	Marionette	INFO	Listening on port 45169
+Read port: 45169
+WebDriver BiDi listening on ws://127.0.0.1:52243
+1742774166385	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742774198034	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742774292499	geckodriver	INFO	Listening on 127.0.0.1:45813
+1742774293006	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "56043" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileiTLGX2"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742774295041	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742774295634	Marionette	INFO	Listening on port 40655
+WebDriver BiDi listening on ws://127.0.0.1:56043
+Read port: 40655
+1742774296346	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742774789980	geckodriver	INFO	Listening on 127.0.0.1:41293
+1742774790487	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "53181" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUxJX6T"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742774792429	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742774792897	Marionette	INFO	Listening on port 39475
+WebDriver BiDi listening on ws://127.0.0.1:53181
+Read port: 39475
+1742774793578	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://static.chartbeat.com/js/chartbeat.js, line 32: Script terminated by timeout at:
+L.create@https://static.chartbeat.com/js/chartbeat.js:32:271
+n.create@https://static.chartbeat.com/js/chartbeat.js:33:543
+n.update@https://static.chartbeat.com/js/chartbeat.js:34:287
+X.prototype.ya@https://static.chartbeat.com/js/chartbeat.js:62:34
+r/<@https://static.chartbeat.com/js/chartbeat.js:8:431
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+1742786846630	geckodriver	INFO	Listening on 127.0.0.1:35083
+1742786846642	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "57387" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilezkq8Qd"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742786848753	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742786849254	Marionette	INFO	Listening on port 44077
+WebDriver BiDi listening on ws://127.0.0.1:57387
+Read port: 44077
+1742786849895	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742787028364	Marionette	INFO	Stopped listening on port 44077
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742787051147	geckodriver	INFO	Listening on 127.0.0.1:57831
+1742787051163	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37551" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFEbsbe"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742787053628	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742787054119	Marionette	INFO	Listening on port 38867
+Read port: 38867
+WebDriver BiDi listening on ws://127.0.0.1:37551
+1742787054427	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742787091881	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742787166663	Marionette	INFO	Stopped listening on port 38867
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742787175055	geckodriver	INFO	Listening on 127.0.0.1:37995
+1742787175562	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "50133" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilemWyanG"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742787177604	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742787178110	Marionette	INFO	Listening on port 33097
+Read port: 33097
+WebDriver BiDi listening on ws://127.0.0.1:50133
+1742787178528	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742787216464	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742787390548	Marionette	INFO	Stopped listening on port 33097
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742787407493	geckodriver	INFO	Listening on 127.0.0.1:40165
+1742787407507	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "57689" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileXGr25I"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742787409482	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742787409999	Marionette	INFO	Listening on port 44449
+Read port: 44449
+WebDriver BiDi listening on ws://127.0.0.1:57689
+1742787410268	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742787448454	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742788607454	Marionette	INFO	Stopped listening on port 44449
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1124: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1124:112
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742788619132	geckodriver	INFO	Listening on 127.0.0.1:60603
+1742788619639	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37607" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileKO2ktS"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742788621655	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742788622139	Marionette	INFO	Listening on port 44573
+Read port: 44573
+WebDriver BiDi listening on ws://127.0.0.1:37607
+1742788622451	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742788822118	Marionette	INFO	Stopped listening on port 44573
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742788838055	geckodriver	INFO	Listening on 127.0.0.1:47725
+1742788838563	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45623" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilesN0uSd"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742788840563	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742788841049	Marionette	INFO	Listening on port 45819
+Read port: 45819
+WebDriver BiDi listening on ws://127.0.0.1:45623
+1742788841363	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742788945104	Marionette	INFO	Stopped listening on port 45819
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1124: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1124:112
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742788954188	geckodriver	INFO	Listening on 127.0.0.1:38655
+1742788954695	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "58679" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileffVDI1"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742788956571	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742788957057	Marionette	INFO	Listening on port 36599
+Read port: 36599
+WebDriver BiDi listening on ws://127.0.0.1:58679
+1742788957355	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742788988266	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742789009407	Marionette	INFO	Stopped listening on port 36599
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742789025073	geckodriver	INFO	Listening on 127.0.0.1:54659
+1742789025580	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "54089" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUZCkuv"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742789027543	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742789028029	Marionette	INFO	Listening on port 42871
+WebDriver BiDi listening on ws://127.0.0.1:54089
+Read port: 42871
+1742789028343	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742789060060	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js, line 6: Script terminated by timeout at:
+l@https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js:6:13006
+r@https://www.abc.net.au/_next/static/chunks/main-0db6d4c744131bf3.js:6:8359
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+1742789880263	Marionette	INFO	Stopped listening on port 42871
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742789933793	geckodriver	INFO	Listening on 127.0.0.1:53833
+1742789933806	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "40491" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileXJz2iQ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742789935748	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742789936260	Marionette	INFO	Listening on port 45455
+WebDriver BiDi listening on ws://127.0.0.1:40491
+Read port: 45455
+1742789936561	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js, line 1: Script terminated by timeout at:
+o@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6054
+X/</u<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6156
+m/<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1487
+n@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1358
+
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742790983752	Marionette	INFO	Stopped listening on port 45455
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742791058083	geckodriver	INFO	Listening on 127.0.0.1:33555
+1742791058592	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "48325" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileONWRjB"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742791060473	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742791062216	Marionette	INFO	Listening on port 45431
+WebDriver BiDi listening on ws://127.0.0.1:48325
+Read port: 45431
+1742791062871	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742791100213	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742791238455	Marionette	INFO	Stopped listening on port 45431
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742791248486	geckodriver	INFO	Listening on 127.0.0.1:50623
+1742791248992	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "48201" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileBS1GhA"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742791251112	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742791251621	Marionette	INFO	Listening on port 39863
+WebDriver BiDi listening on ws://127.0.0.1:48201
+Read port: 39863
+1742791252264	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742791288638	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742791422114	Marionette	INFO	Stopped listening on port 39863
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742792107169	geckodriver	INFO	Listening on 127.0.0.1:52471
+1742792107685	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "38243" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebksqHk"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742792109666	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742792110383	Marionette	INFO	Listening on port 43037
+WebDriver BiDi listening on ws://127.0.0.1:38243
+Read port: 43037
+1742792111050	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742792148350	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742792337151	Marionette	INFO	Stopped listening on port 43037
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742792348884	geckodriver	INFO	Listening on 127.0.0.1:41323
+1742792349392	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "34081" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile8pb8qf"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742792351367	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742792351839	Marionette	INFO	Listening on port 38755
+Read port: 38755
+WebDriver BiDi listening on ws://127.0.0.1:34081
+1742792352173	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742792542277	Marionette	INFO	Stopped listening on port 38755
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1123: Script terminated by timeout at:
+gB.prototype.HR@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1123:433
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742792551036	geckodriver	INFO	Listening on 127.0.0.1:34239
+1742792551048	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "39147" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2hKWJ5"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742792553005	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742792553495	Marionette	INFO	Listening on port 39009
+Read port: 39009
+WebDriver BiDi listening on ws://127.0.0.1:39147
+1742792553805	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1742792591511	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1742793365159	Marionette	INFO	Stopped listening on port 39009
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1742793376811	geckodriver	INFO	Listening on 127.0.0.1:58623
+1742793377319	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "39149" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileXOcPzg"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742793379286	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742793379824	Marionette	INFO	Listening on port 38371
+WebDriver BiDi listening on ws://127.0.0.1:39149
+Read port: 38371
+1742793380192	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js, line 24: Script terminated by timeout at:
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:50137
+85049/l9/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:89608
+85049/sG/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:49947
+sl@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43107
+85049/su/<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43053
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js, line 1: Script terminated by timeout at:
+o@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6054
+X/</u<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6156
+m/<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1487
+n@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1358
+
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js, line 1: Script terminated by timeout at:
+o@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6054
+X/</u<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:6156
+m/<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1487
+n@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1358
+
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js, line 1: Script terminated by timeout at:
+v@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:4063
+x/</<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:4146
+m/<@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1487
+n@https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js:1:1358
+
+JavaScript warning: https://sdk.listenlive.co/web/2.9/td-sdk.min.js, line 1: This error message will be blank when privacy.resistFingerprinting = true.  If it is really necessary, please add it to the whitelist in MediaError::GetMessage: 
+JavaScript warning: https://novafm.com.au/_next/static/chunks/main-570809bbb11c6b17.js, line 1: Script terminated by timeout at:
+86590/v/<@https://novafm.com.au/_next/static/chunks/main-570809bbb11c6b17.js:1:95655
+r@https://novafm.com.au/_next/static/chunks/main-570809bbb11c6b17.js:1:95151
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/ErmbWlE-kTRg-2prXDDd2s1ZxwRTgxUadDitJptamoY.js line 2 > eval line 7196 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    1742857913900	geckodriver	INFO	Listening on 127.0.0.1:57285
+1742857914407	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "51731" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileWxBvxc"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742857916431	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742857916903	Marionette	INFO	Listening on port 43449
+Read port: 43449
+WebDriver BiDi listening on ws://127.0.0.1:51731
+1742857917194	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742860813946	Marionette	INFO	Stopped listening on port 43449
+1742860824208	geckodriver	INFO	Listening on 127.0.0.1:52485
+1742860824724	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "47481" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileeY0smZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742860826762	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742860827283	Marionette	INFO	Listening on port 32947
+Read port: 32947
+WebDriver BiDi listening on ws://127.0.0.1:47481
+1742860827587	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742860896181	Marionette	INFO	Stopped listening on port 32947
+1742862405100	geckodriver	INFO	Listening on 127.0.0.1:39099
+1742862405113	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60887" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileYvtmMN"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742862406993	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742862407492	Marionette	INFO	Listening on port 46809
+Read port: 46809
+WebDriver BiDi listening on ws://127.0.0.1:60887
+1742862407798	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742862628102	Marionette	INFO	Stopped listening on port 46809
+1742862640132	geckodriver	INFO	Listening on 127.0.0.1:43629
+1742862640641	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "53699" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileb7nFtG"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742862642615	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742862643097	Marionette	INFO	Listening on port 44817
+Read port: 44817
+WebDriver BiDi listening on ws://127.0.0.1:53699
+1742862643403	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742862690674	Marionette	INFO	Stopped listening on port 44817
+1742862707642	geckodriver	INFO	Listening on 127.0.0.1:51433
+1742862707657	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "54085" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilewpFlJX"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742862709723	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742862710287	Marionette	INFO	Listening on port 40377
+WebDriver BiDi listening on ws://127.0.0.1:54085
+Read port: 40377
+1742862710668	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1742862769430	Marionette	INFO	Stopped listening on port 40377
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1742862775876	geckodriver	INFO	Listening on 127.0.0.1:54813
+1742862776401	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "41547" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileafbhNB"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742862778445	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742862778929	Marionette	INFO	Listening on port 45263
+WebDriver BiDi listening on ws://127.0.0.1:41547
+Read port: 45263
+1742862779568	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement

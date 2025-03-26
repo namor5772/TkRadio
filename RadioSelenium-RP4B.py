@@ -1,22 +1,13 @@
 import subprocess
 import inspect
 import tkinter as tk
+
 import time
 import urllib.request
 import requests
 import os
 import csv
-#import bluetooth
-
-# Checks if the program is running on a Raspberry Pi 4B
-# (by having RPi.GPIO library) and thus set flag
-flagRPi = False
-try:
-    import RPi.GPIO as GPIO
-    print("RPi.GPIO module loaded!")
-    flagRPi = True
-except ImportError:
-    print("Not running on a Raspberry Pi. Skipping RPi.GPIO.")    
+import RPi.GPIO as GPIO
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -35,144 +26,156 @@ from selenium.webdriver.support import expected_conditions as EC
 # START #######################################################
 # SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B AND THEIR ACTIONS
 
-if flagRPi:
-    # Set up GPIO
-    GPIO.setmode(GPIO.BCM)
-    LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
-    RightButton = 20 # scrolls right through horizontal list of possible keys you can press
-    KeypressButton = 16 # simulates the key press of the currently selected key
-    GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-    GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
-    GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+# Set up GPIO
+GPIO.setmode(GPIO.BCM)
+LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
+RightButton = 20 # scrolls right through horizontal list of possible keys you can press
+KeypressButton = 16 # simulates the key press of the currently selected key
+GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
-    # keyList index
-    # horizontal list of keys you can press (in a simulated fashion)
-    numberKeyList = 7 # number of keys
-    indexKeyList = 1 # currently selected key
-    KeyList = [
-        "Shift-Tab",
-        "Tab",
-        "Enter",
-        "Down",
-        "Up",
-        "Delete",
-        "Insert"]
+# KeyList index
+# horizontal list of keys you can press (in a simulated fashion)
+numVisibleKeys = 15                  
+numberKeyList = 15 # number of keys
+indexKeyList = 1 # currently selected key
+offsetList = 0 # bank of numVisibleKeys keys visible
+KeyList = ["<-Tab","Tab","Enter","Down","Up","Del","Ins","a","b","c","d","e","f","g","h"]
 
-    def on_LeftButton_press(channel):
-        print("LeftButton Pressed!")
-        global indexKeyList
-        if indexKeyList == 0:
-            indexKeyList = numberKeyList-1
-        else:
-            indexKeyList -= 1
-        label_Key.config(text=KeyList[indexKeyList])
-        print(f"Selected key: {KeyList[indexKeyList]}")
+def on_LeftButton_press(channel):
+    global indexKeyList
+#    print("LeftButton Pressed!")
+#    print(f"indexKeyList={indexKeyList}")
+    labels_main[indexKeyList].config(bg="darkgray")
+    if indexKeyList == 0:
+        indexKeyList = numberKeyList-1
+    else:
+        indexKeyList -= 1
+#    print(f"indexKeyList={indexKeyList}")
+    labels_main[indexKeyList].config(bg="lightblue")
+#    print(f"Selected key: {KeyList[indexKeyList]}")
 
-    def on_RightButton_press(channel):
-        print("RightButton Pressed!")    
-        global indexKeyList
-        if indexKeyList == numberKeyList-1:
-            indexKeyList = 0
-        else:
-            indexKeyList += 1
-        label_Key.config(text=KeyList[indexKeyList])
-        print(f"Selected key: {KeyList[indexKeyList]}")
 
-    def on_KeypressButton_press(channel):
-        print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")    
-        match indexKeyList:
-            case 0: # Shift-Tab
-                try:
-                    if rootFlag:
-                        focused_widget = root.focus_get()
-                    else:
-                        focused_widget = setup.focus_get()
-                    focused_widget.event_generate("<Shift-Tab>")
-                    print("Shift-Tab key pressed!")
-                except KeyError as e:
-                    # mysterious stuff I have to do to precisely simulate the behaviour
-                    # of pressing the <Shift-Tab> key within a combobox popup
-                    print(f"error {e}")
-                    if rootFlag:
-                        combobox.event_generate("<Return>")
-                        focused_widget = root.focus_get()
-                        print("Shift-Tab key pressed inside combobox popup!")
-                    else:    
-                        combobox_bt.event_generate("<Return>")
-                        focused_widget = setup.focus_get()
-                        print("Shift-Tab key pressed inside combobox_bt popup!")
-                    focused_widget.event_generate("<Shift-Tab>")
-            case 1: # Tab
-                try:
-                    if rootFlag:
-                        focused_widget = root.focus_get()
-                    else:
-                        focused_widget = setup.focus_get()
-                    focused_widget.event_generate("<Tab>")
-                    print("Tab key pressed!")
-                except KeyError as e:
-                    # mysterious stuff I have to do to precisely simulate the behaviour
-                    # of pressing the <Tab> key within a combobox popup
-                    print(f"error {e}")
-                    if rootFlag:
-                        combobox.event_generate("<Return>")
-                        focused_widget = root.focus_get()
-                        print("Tab key pressed inside combobox popup!")
-                    else:
-                        combobox_bt.event_generate("<Return>")
-                        focused_widget = setup.focus_get()
-                        print("Tab key pressed inside combobox_bt popup!")
-                    focused_widget.event_generate("<Tab>")
-            case 2: # Enter
-                try:
-                    if rootFlag:
-                        focused_widget = root.focus_get()
-                    else:
-                        focused_widget = setup.focus_get()
-                    focused_widget.event_generate("<Return>")
-                    print("Enter key pressed!")
-                except KeyError as e:
-                    # mysterious stuff I have to do to precisely simulate the behaviour
-                    # of pressing the <Enter> key within a combobox popup
-                    print(f"error {e}")
-                    if rootFlag:
-                        combobox.event_generate("<Return>")
-                        print("Enter key pressed inside combobox popup!")
-                    else:    
-                        combobox_bt.event_generate("<Return>")
-                        print("Enter key pressed inside combobox_bt popup!")
-            case 3: # Down
-                # does nothing (no errors) if pressed outside of combobox
-                if rootFlag:
-                    combobox.event_generate("<Down>")
-                else:
-                    combobox_bt.event_generate("<Down>")
-                print("Down key pressed!")
-            case 4: # Up
-                # does nothing (no errors) if pressed outside of combobox
-                if rootFlag:
-                    combobox.event_generate("<Up>")
-                else:
-                    combobox_bt.event_generate("<Up>")
-                print("Up key pressed!")
-            case 5: # Delete
+def on_RightButton_press(channel):
+    global indexKeyList
+#    print("RightButton Pressed!")    
+#    print(f"indexKeyList={indexKeyList}")
+    labels_main[indexKeyList].config(bg="darkgray")
+    if indexKeyList == numberKeyList-1:
+        indexKeyList = 0
+    else:
+        indexKeyList += 1
+#    print(f"indexKeyList={indexKeyList}")
+    labels_main[indexKeyList].config(bg="lightblue")
+#    print(f"Selected key: {KeyList[indexKeyList]}")
+
+
+def on_KeypressButton_press(channel):
+    print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")
+    sKey = KeyList[indexKeyList]
+    match indexKeyList:
+        case 0: # <-Tab
+            try:
                 if rootFlag:
                     focused_widget = root.focus_get()
                 else:
                     focused_widget = setup.focus_get()
-                focused_widget.event_generate("<Delete>")
-                print("Delete key pressed!")
-            case 6: # Insert
+                focused_widget.event_generate("<Shift-Tab>")
+                print("Shift-Tab key pressed!")
+            except KeyError as e:
+                # mysterious stuff I have to do to precisely simulate the behaviour
+                # of pressing the <Shift-Tab> key within a combobox popup
+                print(f"error {e}")
+                if rootFlag:
+                    combobox.event_generate("<Return>")
+                    focused_widget = root.focus_get()
+                    print("Shift-Tab key pressed inside combobox popup!")
+                else:    
+                    combobox_bt.event_generate("<Return>")
+                    focused_widget = setup.focus_get()
+                    print("Shift-Tab key pressed inside combobox_bt popup!")
+                focused_widget.event_generate("<Shift-Tab>")
+        case 1: # Tab
+            try:
                 if rootFlag:
                     focused_widget = root.focus_get()
                 else:
                     focused_widget = setup.focus_get()
-                focused_widget.event_generate("<Insert>")
-                print("Insert key pressed!")
+                focused_widget.event_generate("<Tab>")
+                print("Tab key pressed!")
+            except KeyError as e:
+                # mysterious stuff I have to do to precisely simulate the behaviour
+                # of pressing the <Tab> key within a combobox popup
+                print(f"error {e}")
+                if rootFlag:
+                    combobox.event_generate("<Return>")
+                    focused_widget = root.focus_get()
+                    print("Tab key pressed inside combobox popup!")
+                else:
+                    combobox_bt.event_generate("<Return>")
+                    focused_widget = setup.focus_get()
+                    print("Tab key pressed inside combobox_bt popup!")
+                focused_widget.event_generate("<Tab>")
+        case 2: # Enter
+            try:
+                if rootFlag:
+                    focused_widget = root.focus_get()
+                else:
+                    focused_widget = setup.focus_get()
+                focused_widget.event_generate("<Return>")
+                print("Enter key pressed!")
+            except KeyError as e:
+                # mysterious stuff I have to do to precisely simulate the behaviour
+                # of pressing the <Enter> key within a combobox popup
+                print(f"error {e}")
+                if rootFlag:
+                    combobox.event_generate("<Return>")
+                    print("Enter key pressed inside combobox popup!")
+                else:    
+                    combobox_bt.event_generate("<Return>")
+                    print("Enter key pressed inside combobox_bt popup!")
+        case 3: # Down
+            # does nothing (no errors) if pressed outside of combobox
+            if rootFlag:
+                combobox.event_generate("<Down>")
+            else:
+                combobox_bt.event_generate("<Down>")
+            print("Down key pressed!")
+        case 4: # Up
+            # does nothing (no errors) if pressed outside of combobox
+            if rootFlag:
+                combobox.event_generate("<Up>")
+            else:
+                combobox_bt.event_generate("<Up>")
+            print("Up key pressed!")
+        case 5: # Del
+            if rootFlag:
+                focused_widget = root.focus_get()
+            else:
+                focused_widget = setup.focus_get()
+            focused_widget.event_generate("<Delete>")
+            print("Delete key pressed!")
+        case 6: # Ins
+            if rootFlag:
+                focused_widget = root.focus_get()
+            else:
+                focused_widget = setup.focus_get()
+            focused_widget.event_generate("<Insert>")
+            print("Insert key pressed!")
+        case _ if 7<=indexKeyList<=14:
+            if rootFlag:
+                focused_widget = root.focus_get()
+            else:
+                focused_widget = setup.focus_get()
+            focused_widget.event_generate(f"<Key-{sKey}>")
+            print(f"<Key-{sKey}> pressed!")
 
-    GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
-    GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
-    GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
+            
+
+GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
+GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
+GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
 
 
 # START #######################################################
@@ -213,7 +216,6 @@ Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
 
 # global variables related to bluetooth
-
 onBluetooth = True
 currentPair = "No bluetooth speakers paired" # details of currently paired speakers
 aPairable = [] # used to list bluetooth visible devices for pairing a speaker
@@ -328,14 +330,14 @@ def Radio1(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station == "ABC_Classic2":
-        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+        label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
     else:
-        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+        label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -423,11 +425,11 @@ def Radio2(br,Num,sPath):
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
     width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
+    scaled_image2 = image2.resize((width-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+    label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
     
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -521,14 +523,14 @@ def Radio3(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-0))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station_short == "ABC_Classic":
-        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+        label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
     else:
-        label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+        label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -612,11 +614,11 @@ def Radio4(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap2, y=Ygap2)  # Adjust the position
+    label2.place(x=Xgap2+30, y=Ygap2+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -697,11 +699,11 @@ def Radio5(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+    label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -779,11 +781,11 @@ def Radio6(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+    label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -858,11 +860,11 @@ def Radio7(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+    label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
         
     # Find program details
     ht = be.get_attribute('innerHTML')
@@ -977,11 +979,11 @@ def Commercial1(br,sPath,sClass,nType):
     width2, height2 = image2.size;
     print(f"Pic width: {width2}, Pic height: {height2}")
     width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width, Xprog))  # Adjust the size as needed
+    scaled_image2 = image2.resize((width-30, Xprog-30))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+    label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
  
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -1057,11 +1059,11 @@ def Commercial2(br,sPath):
         width2, height2 = image.size;
         print(f"Pic width: {width2}, Pic height: {height2}")
         width = int(Xprog*width2/height2)
-        scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
+        scaled_image = image.resize((width-30, Xprog-30))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+        label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
         print("=====> /div/a/img")
     except NoSuchElementException:
         try:
@@ -1074,21 +1076,21 @@ def Commercial2(br,sPath):
             width2, height2 = image.size;
             print(f"Pic width: {width2}, Pic height: {height2}")
             width = int(Xprog*width2/height2)
-            scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
+            scaled_image = image.resize((width-30, Xprog-30))  # Adjust the size as needed
             photo = ImageTk.PhotoImage(scaled_image)
             label2.config(image=photo)
             label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+            label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
             print("=====>  /div/img")
         except NoSuchElementException:
             # failed to find image so display a blank image
             image_path = pathImages + "/Blank.png"
             image = Image.open(image_path)
-            scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
+            scaled_image = image.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
             photo = ImageTk.PhotoImage(scaled_image)
             label2.config(image=photo)
             label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+            label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
             print("=====> No /img")
 
     # get station and program details (if available)
@@ -1638,8 +1640,7 @@ def after_GUI_started():
 
 # do this when closing the window/app
 def on_closing():
-    if flagRPi:
-        GPIO.cleanup()
+    GPIO.cleanup()
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
@@ -1898,11 +1899,11 @@ def on_select2(event):
             photo = ImageTk.PhotoImage(scaled_image)
             label.config(image=photo)
             label.image = photo  # Keep a reference to avoid garbage collection
-            scaled_image2 = image.resize((Xprog, Xprog))  # Adjust the size as needed
+            scaled_image2 = image.resize((Xprog+30, Xprog+30))  # Adjust the size as needed
             photo2 = ImageTk.PhotoImage(scaled_image2)
             label2.config(image=photo2)
             label2.image = photo2  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap, y=Ygap2)  # Adjust the position
+            label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
             print("BLANK END")
             print("")
 
@@ -2020,7 +2021,7 @@ def on_button_insert(event, i):
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
 def on_focus(event, i):
-    buttons[i].config(relief="raised", bg="darkgray")  # Simulate button press
+    buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     # global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
@@ -2037,15 +2038,17 @@ def on_focus_out(event, i):
 # called when station combobox receives focus.
 # makes sure its display is updated.
 def on_focus_combobox(event):
+    #combobox.config(style="ComboFocusOn")    
     combobox.update_idletasks()  # Force update
     print("on_focus_combobox")
 
 
-# called when bluetooth device selection combobox_bt loses focus.
+# called when station combobox loses focus.
 # makes sure its display is updated.
-def on_focus_out_combobox_bt(event):
-    combobox_bt.update_idletasks()  # Force update
-    print("on_focus_out_combobox_bt")
+def on_focus_out_combobox(event):
+    #combobox.config(style="ComboFocusOff")
+    combobox.update_idletasks()  # Force update
+    print("on_focus_out_combobox")
 
 
 # called when bluetooth device selection combobox_bt receives focus.
@@ -2055,11 +2058,25 @@ def on_focus_combobox_bt(event):
     print("on_focus_combobox_bt")
 
 
-# called when station combobox loses focus.
+# called when bluetooth device selection combobox_bt loses focus.
 # makes sure its display is updated.
-def on_focus_out_combobox(event):
-    combobox.update_idletasks()  # Force update
-    print("on_focus_out_combobox")
+def on_focus_out_combobox_bt(event):
+    combobox_bt.update_idletasks()  # Force update
+    print("on_focus_out_combobox_bt")
+
+
+# called when wifi connection device selection combobox_wifi receives focus.
+# makes sure its display is updated.
+def on_focus_combobox_wifi(event):
+    combobox_wifi.update_idletasks()  # Force update
+    print("on_focus_combobox_wifi")
+
+
+# called when wifi connection device selection combobox_wifi loses focus.
+# makes sure its display is updated.
+def on_focus_out_combobox_wifi(event):
+    combobox_wifi.update_idletasks()  # Force update
+    print("on_focus_out_combobox_wifi")
 
 
 
@@ -2281,10 +2298,34 @@ def on_select_bluetooth(event):
     print(f"Default file created {filepath3}")
     root.after(100,lambda: mainButton.focus_set()) 
 
-    
 
-####################################
-# THIS IS WHERE THE CORE CODE STARTS
+def process_wifiPassword(event):
+    user_input = wifiPassword.get()
+    print(f"You entered: {user_input}")
+    wifiPassword.delete(0, tk.END)  # Clears this widget
+    #wifiPassword.config(state=tk.DISABLED)  # Disables this widget after processing
+    event.widget.tk_focusNext().focus()
+
+
+# Use current selection from the combobox_wifi to connect to the internet
+def on_select_wifi(event):
+    pass
+
+
+# populates the combobox_wifi with the possible wifi connections
+def find_wifi(event):
+    command = "sudo iwlist wlan0 scan | grep -E 'SSID|Signal'"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    returnCode = result.returncode
+    if returnCode == 0: print(f"Command '{command}' succeeded")
+    else: print(f"Command '{command}' FAILED")
+    print(result)
+
+
+##########################################
+### THIS IS WHERE THE CORE CODE STARTS ###
+
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
@@ -2293,19 +2334,22 @@ root.geometry("800x480+0+0")
 root.resizable(False, False)
 root.update_idletasks()
 
-if flagRPi:
-    # create label which displays the current key that can be pressed using the one GPIO linked button
-    label_Key = tk.Label(root, text=KeyList[indexKeyList], font=("Arial", 12), bg="darkgray")
-    label_Key.place(x=720, y=0, width=80, height=20)
-
+# Create a list of labels for the root/main form to display pressable keys
+# they are at the top of the app form
+labels_main = []
+for i in range(numVisibleKeys):
+    label_main = tk.Label(root, text=KeyList[i], font=("Arial", 12), bg="darkgray")
+    label_main.place(x=10+52*i, y=0, width=50, height=20)
+    labels_main.append(label_main)
+labels_main[indexKeyList].config(bg="lightblue")    
 
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations
 aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
-combobox = ttk.Combobox(root, values=aStringArray, height=20*0+25, width=33)
-combobox.place(x=130+(sizeButton+5), y=2*0+0)  # Adjust the position
+combobox = ttk.Combobox(root, values=aStringArray, height=20*0+25, width=32)
+combobox.place(x=130+(sizeButton+5), y=2+30)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)
 combobox.bind("<FocusOut>", on_focus_out_combobox)
 combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
@@ -2320,28 +2364,24 @@ except FileNotFoundError:
     # will just use the default aStation2[] array created above
     print(f'Error: The file {filepath2} does not exist.')
 
-
 # Create a text box, position and size it
 # used to display the program and song details
 text_box = tk.Text(root)
-text_box.place(x=10, y=110+Ydown, width=Xgap-20, height=Xprog)
+text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30, height=Xprog-30)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-
 # Create a button on the root form to display the secondary setup form
-setupButton = tk.Button(root, text="SETUP")
-setupButton.place(x=500, y=0, height=25)
+setupButton = tk.Button(root, text="x")
+setupButton.place(x=775, y=26, width=20, height=20)
 setupButton.config(takefocus=True)
 setupButton.bind("<Return>", show_setup_form)  
 setupButton.bind("<ButtonPress>", show_setup_form)  
-
    
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
-label.place(x=15, y=2)
+label.place(x=15, y=2+30)
 label2 = tk.Label(root)
-
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
@@ -2350,9 +2390,9 @@ for i in range(numButtons):
 
     # positioning buttons in 2 rows of 9
     if (i<9):
-        button.place(x=128+(sizeButton+5)*(i+1), y=35, width=sizeButton, height=sizeButton)
+        button.place(x=128+(sizeButton+5)*(i+1), y=35+30, width=sizeButton, height=sizeButton)
     else:
-        button.place(x=128+(sizeButton+5)*(i-8), y=35+sizeButton+5, width=sizeButton, height=sizeButton)
+        button.place(x=128+(sizeButton+5)*(i-8), y=35+30+sizeButton+5, width=sizeButton, height=sizeButton)
 
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
@@ -2377,14 +2417,14 @@ for i in range(numButtons):
 # Create a secondary setup form without title bar and close buttons
 # It will be used for examining and configuring setup settings
 setup = tk.Toplevel(root)
-setup.geometry("800x480+0+26")
+#setup.geometry("800x480+0+26")
+setup.geometry("800x454+0+52")
 setup.overrideredirect(True)
-#setup.configure(bg="lightblue")
 setup.withdraw() # Hide the form initially
 
 # button which returns focus and visibility back to the main/root form
-mainButton = tk.Button(setup, text="MAIN")
-mainButton.place(x=500, y=0, height=25)
+mainButton = tk.Button(setup, text="x")
+mainButton.place(x=775, y=0, width=20, height=20)
 mainButton.config(takefocus=True)
 mainButton.bind("<Return>", show_root_form)  
 mainButton.bind("<ButtonPress>", show_root_form)  
@@ -2407,7 +2447,7 @@ label4 = tk.Label(setup, text="")
 label4.place(x=cX+100, y=cY+2)
 
 # Create a Combobox for bluetooth connection selection & related information label
-cX = 15; cY = 10+25+30+30+30
+cX = 15; cY = 125
 label3 = tk.Label(setup, text="")
 label3.place(x=cX+1, y=cY)
 options = [""]
@@ -2425,6 +2465,36 @@ pairButton.place(x=cX, y=cY+60, height=25)
 pairButton.config(takefocus=True)
 pairButton.bind("<Return>", pair_bluetooth)  
 pairButton.bind("<ButtonPress>", pair_bluetooth)
+
+# vertical separator, between bluetooth an dwifi setup sections
+separator = ttk.Separator(setup, orient="vertical")
+separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
+
+# Create a Combobox for wifi connection selection
+options2 = [""]
+label5 = tk.Label(setup, text="********")
+label5.place(x=cX+1+400, y=cY-30)
+combobox_wifi = ttk.Combobox(setup, values=options2, height=25, width=40)
+combobox_wifi.place(x = cX+400, y = cY)
+combobox_wifi.current(0)
+combobox_wifi.bind("<FocusIn>", on_focus_combobox_wifi)
+combobox_wifi.bind("<FocusOut>", on_focus_out_combobox_wifi)
+combobox_wifi.bind("<<ComboboxSelected>>", lambda e: on_select_wifi(CustomEvent("Auto", combobox_wifi, "ComboBox Event")))
+combobox_wifi.config(state="readonly")
+
+# text entry for wifi, and its info label
+wifiPassword = tk.Entry(setup, width=30)
+wifiPassword.place(x=cX+400+75, y=cY+30)
+wifiPassword.bind("<Return>", process_wifiPassword)
+label_wifiPassword = tk.Label(setup, text="Password:")
+label_wifiPassword.place(x=cX+400, y=cY+30)
+
+# button to enable scanning for wifi devices (which will appear in above combobox)
+wifiButton = tk.Button(setup, text="SEE WIFI") 
+wifiButton.place(x=cX+400, y=cY+60, height=25)
+wifiButton.config(takefocus=True)
+wifiButton.bind("<Return>", find_wifi)  
+wifiButton.bind("<ButtonPress>", find_wifi)
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** END ********************************

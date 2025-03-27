@@ -1,13 +1,13 @@
 import subprocess
 import inspect
 import tkinter as tk
-
 import time
 import urllib.request
 import requests
 import os
 import csv
 import RPi.GPIO as GPIO
+import re
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -365,6 +365,8 @@ onBluetooth = True
 currentPair = "No bluetooth speakers paired" # details of currently paired speakers
 aPairable = [] # used to list bluetooth visible devices for pairing a speaker
 numPairable = 0; # number of pairable devices visible
+aWIFI = [] # used to list of visible wifi networks
+numWIFI = 0; # number of visible wifi networks
 
 # Create the full filepath to the bluetooth status text file
 filename3 = 'bluetooth.txt'
@@ -2468,9 +2470,35 @@ def find_wifi(event):
 
     print(result.stdout)
     sLines = (result.stdout).splitlines()
-#    print(sLines)
+
+    global aWIFI; aWIFI = []
+    sQuality = ""; sSSID = ""
     for line in sLines:
-        print(line)
+        if "Quality" in line:
+            match = re.search(r'=(.+?)/', line)
+            sQuality = match.group(1) 
+            sQuality = f"Q{sQuality}"
+        elif "ESSID" in line:
+            match = re.search(r'"([^"]*)"', line)
+            sSSID = match.group(1)
+            if sSSID != "":
+                aWIFI.append(f"{sSSID} - {sQuality}")
+                print(f"{sSSID} - {sQuality}")
+    print("have extracted visible wifi networks into aWIFI")
+
+    combobox_wifi['values'] = aWIFI
+    global numWIFI; numWIFI = len(aWIFI)
+    if numWIFI==0:
+        label5.config(text="No visible wifi networks found")
+    else:    
+        combobox_wifi.current(0)
+        combobox_wifi.focus_set()
+        if numWIFI==1:
+            label5.config(text=f"Found 1 visible wifi network")
+        else:
+            label5.config(text=f"Found {numPairable} visible wifi networks")
+    print(f"Found {numWIFI} visible wifi network(s)\n")
+    
 
 def key_handler(event):
     print(f"Key pressed: {event.keysym}")

@@ -23772,3 +23772,59 @@ interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mj
 webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
 1743066309999	Marionette	INFO	Stopped listening on port 40009
 JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743106392749	geckodriver	INFO	Listening on 127.0.0.1:33725
+1743106392761	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "43039" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiletef21W"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743106394648	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743106395144	Marionette	INFO	Listening on port 44503
+Read port: 44503
+WebDriver BiDi listening on ws://127.0.0.1:43039
+1743106395460	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743107259081	Marionette	INFO	Stopped listening on port 44503
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743107266431	geckodriver	INFO	Listening on 127.0.0.1:60501
+1743107266444	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "38533" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqIiJfR"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743107268395	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743107268872	Marionette	INFO	Listening on port 33371
+WebDriver BiDi listening on ws://127.0.0.1:38533
+Read port: 33371
+1743107269504	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743107645871	Marionette	INFO	Stopped listening on port 33371
+JavaScript warning: https://login.abc.net.au/js/gigya.js?apikey=3_fA1lYde7bHFw4kAQ_VLT37l-OacxV6xOkYAn0KOPFjrXyrlrovPpV1toELQLABDp, line 55: Script terminated by timeout at:
+e.get@https://login.abc.net.au/js/gigya.js?apikey=3_fA1lYde7bHFw4kAQ_VLT37l-OacxV6xOkYAn0KOPFjrXyrlrovPpV1toELQLABDp:55:20160
+get@https://login.abc.net.au/js/gigya.js?apikey=3_fA1lYde7bHFw4kAQ_VLT37l-OacxV6xOkYAn0KOPFjrXyrlrovPpV1toELQLABDp:55:13876
+c<@https://login.abc.net.au/js/gigya.js?apikey=3_fA1lYde7bHFw4kAQ_VLT37l-OacxV6xOkYAn0KOPFjrXyrlrovPpV1toELQLABDp:55:262619
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743107656654	geckodriver	INFO	Listening on 127.0.0.1:34251
+1743107657160	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45635" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQK02wO"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743107659101	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743107659570	Marionette	INFO	Listening on port 34997
+WebDriver BiDi listening on ws://127.0.0.1:45635
+Read port: 34997
+1743107660212	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743107886386	Marionette	INFO	Stopped listening on port 34997
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment

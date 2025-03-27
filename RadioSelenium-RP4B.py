@@ -35,45 +35,205 @@ GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 
-# KeyList index
+# KeyList array & related global variables
 # horizontal list of keys you can press (in a simulated fashion)
-numVisibleKeys = 15                  
-numberKeyList = 15 # number of keys
-indexKeyList = 1 # currently selected key
-offsetList = 0 # bank of numVisibleKeys keys visible
-KeyList = ["<-Tab","Tab","Enter","Down","Up","Del","Ins","a","b","c","d","e","f","g","h"]
+sizeKeyList = 120 # number of keys
+indexKeyList = 1 # currently selected key (= indexBank*sizeBank+indexVisibleKey) 
+indexVisibleKey = 1 # index of selected key within current bank
+sizeBank = 15 # number of keys in a bank                  
+indexBank = 0 # bank containing currently selected Key
+numBanks = 8 # number of banks (thus numBanks*sizeBank = sizeKeyList)
 
+# In ["what is displayed","actual Python key code"] format 
+KeyList = [
+    ["<-Tab","ISO_Left_Tab"],
+    ["Tab","Tab"],
+    ["Enter","Return"],
+    ["Down","Down"],
+    ["Up","Up"],
+    ["Del","Delete"],
+    ["Ins","Insert"],
+    ["Left","Left"],
+    ["Right","Right"],
+    ["Home","Home"],
+    ["End","End"],
+    ["PgUp","Prior"],
+    ["PgDn","Next"],
+    ["Esc","Escape"],
+    ["Back","BackSpace"],
+    
+    ["a","a"],
+    ["b","b"],
+    ["c","c"],
+    ["d","d"],
+    ["e","e"],
+    ["f","f"],
+    ["g","g"],
+    ["h","h"],
+    ["i","i"],
+    ["j","j"],
+    ["k","k"],
+    ["l","l"],
+    ["m","m"],
+    ["n","n"],
+    ["o","o"],
+
+    ["p","p"],
+    ["q","q"],
+    ["r","r"],
+    ["s","s"],
+    ["t","t"],
+    ["u","u"],
+    ["v","v"],
+    ["w","w"],
+    ["x","x"],
+    ["y","y"],
+    ["z","z"],
+    ["A","A"],
+    ["B","B"],
+    ["C","C"],
+    ["D","D"],
+    
+    ["E","E"],
+    ["F","F"],
+    ["G","G"],
+    ["H","H"],
+    ["I","I"],
+    ["J","J"],
+    ["K","K"],
+    ["L","L"],
+    ["M","M"],
+    ["N","N"],
+    ["O","O"],
+    ["P","P"],
+    ["Q","Q"],
+    ["R","R"],
+    ["S","S"],
+
+    ["T","T"],
+    ["U","U"],
+    ["V","V"],
+    ["W","W"],
+    ["X","X"],
+    ["Z","Z"],
+    ["0","0"],
+    ["1","1"],
+    ["2","2"],
+    ["3","3"],
+    ["4","4"],
+    ["5","5"],
+    ["6","6"],
+    ["7","7"],
+    ["8","8"],
+
+    ["9","9"],
+    ["~","asciitilde"],
+    ["!","exclam"],
+    ["@","at"],
+    ["#","numbersign"],
+    ["$","dollar"],
+    ["%","percent"],
+    ["^","asciicircum"],
+    ["&","ampersand"],
+    ["*","asterisk"],
+    ["(","parenleft"],
+    [")","parenright"],
+    ["_","underscore"],
+    ["+","plus"],
+    ["{","braceleft"],
+
+    ["}","braceright"],
+    ["|","bar"],
+    [":","colon"],
+    ["\"","quotedbl"], # "
+    ["<","less"],
+    [">","greater"],
+    ["?","question"],
+    ["`","grave"],
+    ["-","minus"],
+    ["=","equal"],
+    ["[","bracketleft"],
+    ["]","bracketright"],
+    ["\\","backslash"], # \
+    [";","semicolon"],
+    ["'","apostrophe"],
+
+    [",","comma"],
+    [".","period"],
+    ["/","slash"],
+    ["Space","space"],
+    ["F1","F1"],
+    ["F2","F2"],
+    ["F3","F3"],
+    ["F4","F4"],
+    ["F5","F5"],
+    ["F6","F6"],
+    ["F7","F7"],
+    ["F8","F8"],
+    ["F9","F9"],
+    ["F10","F10"],
+    ["F11","F11"]
+]
+
+'''
+sizeKeyList = 120 # number of keys
+indexKeyList = 1 # currently selected key (= indexBank*sizeBank+indexVisibleKey) 
+indexVisibleKey = 1 # index of selected key within current bank
+sizeBank = 15 # number of keys in a bank                  
+indexBank = 0 # bank containing currently selected Key
+numBanks = 8 # number of banks (thus numBanks*sizeBank = sizeKeyList)
+'''
+
+# GPIO button 21 pressed
 def on_LeftButton_press(channel):
-    global indexKeyList
-#    print("LeftButton Pressed!")
-#    print(f"indexKeyList={indexKeyList}")
-    labels_main[indexKeyList].config(bg="darkgray")
-    if indexKeyList == 0:
-        indexKeyList = numberKeyList-1
+    global indexKeyList, indexBank, indexVisibleKey
+    labels_main[indexVisibleKey].config(bg="darkgray")
+    if indexVisibleKey == 0:
+        if indexBank == 0:
+            indexKeyList = sizeKeyList-1
+            indexBank = numBanks-1
+        else:
+            indexKeyList -= 1
+            indexBank -= 1
+        indexVisibleKey = sizeBank-1
+        
+        # adjust bank of keys visible on top of main form
+        for i in range(sizeBank):
+            labels_main[i].config(text=KeyList[sizeBank*indexBank+i][0])
     else:
         indexKeyList -= 1
-#    print(f"indexKeyList={indexKeyList}")
-    labels_main[indexKeyList].config(bg="lightblue")
-#    print(f"Selected key: {KeyList[indexKeyList]}")
+      # indexBank unchanged
+        indexVisibleKey -= 1
+    labels_main[indexVisibleKey].config(bg="lightblue")
 
 
+# GPIO button 20 pressed
 def on_RightButton_press(channel):
-    global indexKeyList
-#    print("RightButton Pressed!")    
-#    print(f"indexKeyList={indexKeyList}")
-    labels_main[indexKeyList].config(bg="darkgray")
-    if indexKeyList == numberKeyList-1:
-        indexKeyList = 0
+    global indexKeyList, indexBank, indexVisibleKey
+    labels_main[indexVisibleKey].config(bg="darkgray")
+    if indexVisibleKey == sizeBank-1:
+        if indexBank == numBanks-1:
+            indexKeyList = 0
+            indexBank = 0
+        else:
+            indexKeyList += 1
+            indexBank += 1
+        indexVisibleKey = 0
+
+        # adjust bank of keys visible on top of main form
+        for i in range(sizeBank):
+            labels_main[i].config(text=KeyList[sizeBank*indexBank+i][0])
     else:
         indexKeyList += 1
-#    print(f"indexKeyList={indexKeyList}")
-    labels_main[indexKeyList].config(bg="lightblue")
-#    print(f"Selected key: {KeyList[indexKeyList]}")
+      # indexBank unchanged
+        indexVisibleKey += 1
+    labels_main[indexVisibleKey].config(bg="lightblue")
 
 
+# GPIO button 16 pressed
 def on_KeypressButton_press(channel):
-    print(f"KeypressButton {KeyList[indexKeyList]} Pressed!")
-    sKey = KeyList[indexKeyList]
+    print(f"KeypressButton {KeyList[indexKeyList][1]} Pressed!")
+    sKey = KeyList[indexKeyList][1]
     match indexKeyList:
         case 0: # <-Tab
             try:
@@ -149,21 +309,7 @@ def on_KeypressButton_press(channel):
             else:
                 combobox_bt.event_generate("<Up>")
             print("Up key pressed!")
-        case 5: # Del
-            if rootFlag:
-                focused_widget = root.focus_get()
-            else:
-                focused_widget = setup.focus_get()
-            focused_widget.event_generate("<Delete>")
-            print("Delete key pressed!")
-        case 6: # Ins
-            if rootFlag:
-                focused_widget = root.focus_get()
-            else:
-                focused_widget = setup.focus_get()
-            focused_widget.event_generate("<Insert>")
-            print("Insert key pressed!")
-        case _ if 7<=indexKeyList<=14:
+        case _ if 5<=indexKeyList<sizeKeyList:
             if rootFlag:
                 focused_widget = root.focus_get()
             else:
@@ -171,7 +317,6 @@ def on_KeypressButton_press(channel):
             focused_widget.event_generate(f"<Key-{sKey}>")
             print(f"<Key-{sKey}> pressed!")
 
-            
 
 GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
 GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
@@ -2320,7 +2465,15 @@ def find_wifi(event):
     returnCode = result.returncode
     if returnCode == 0: print(f"Command '{command}' succeeded")
     else: print(f"Command '{command}' FAILED")
-    print(result)
+
+    print(result.stdout)
+    sLines = (result.stdout).splitlines()
+#    print(sLines)
+    for line in sLines:
+        print(line)
+
+def key_handler(event):
+    print(f"Key pressed: {event.keysym}")
 
 
 ##########################################
@@ -2334,11 +2487,11 @@ root.geometry("800x480+0+0")
 root.resizable(False, False)
 root.update_idletasks()
 
-# Create a list of labels for the root/main form to display pressable keys
-# they are at the top of the app form
+# Create a list of labels for the root/main form to display pressable keys. They are
+# at the top of the main form (one bank of sizeBank keys is displayed at a time)
 labels_main = []
-for i in range(numVisibleKeys):
-    label_main = tk.Label(root, text=KeyList[i], font=("Arial", 12), bg="darkgray")
+for i in range(sizeBank):
+    label_main = tk.Label(root, text=KeyList[i][0], font=("Arial", 12), bg="darkgray")
     label_main.place(x=10+52*i, y=0, width=50, height=20)
     labels_main.append(label_main)
 labels_main[indexKeyList].config(bg="lightblue")    
@@ -2495,6 +2648,13 @@ wifiButton.place(x=cX+400, y=cY+60, height=25)
 wifiButton.config(takefocus=True)
 wifiButton.bind("<Return>", find_wifi)  
 wifiButton.bind("<ButtonPress>", find_wifi)
+
+tButton = tk.Button(setup, text="TEST") 
+tButton.place(x=cX+400, y=cY+60+60, height=25)
+tButton.config(takefocus=True)
+tButton.bind("<Key>", key_handler)  
+
+
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** END ********************************

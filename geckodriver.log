@@ -21410,3 +21410,2365 @@ mh.prototype.C@https://s0.2mdn.net/879366/html_inpage_rendering_lib_200_281.js:1
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1742972814692	geckodriver	INFO	Listening on 127.0.0.1:55815
+1742972815200	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "51787" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQasSh5"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1742972817407	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1742972818014	Marionette	INFO	Listening on port 36897
+WebDriver BiDi listening on ws://127.0.0.1:51787
+Read port: 36897
+1742972818694	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2112: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2112 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7751 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 740: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 740 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6937 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://media.adcanvas.com/FbOoZbgLjct4/adcanvas.min.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://media.adcanvas.com/FbOoZbgLjct4/adcanvas.min.js, line 1: WebGL context was lost.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 957 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Failed to allocate a surface due to invalid size (DSS) Size(0,0)
+JavaScript warning: , line 0: WebGL warning: tex(Sub)Image[23]D: Resource has no data (yet?). Uploading zeros.
+JavaScript warning: , line 0: WebGL warning: drawArraysInstanced: TEXTURE_2D at unit 0 is incomplete: The dimensions of `level_base` are not all positive.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7503 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3291 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5455 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://s0.2mdn.net/879366/Enabler_01_253.js, line 46: Script terminated by timeout at:
+Cb@https://s0.2mdn.net/879366/Enabler_01_253.js:46:460
+Bb@https://s0.2mdn.net/879366/Enabler_01_253.js:46:392
+dh@https://s0.2mdn.net/879366/Enabler_01_253.js:114:67
+th@https://s0.2mdn.net/879366/Enabler_01_253.js:117:473
+rh@https://s0.2mdn.net/879366/Enabler_01_253.js:118:353
+b@https://s0.2mdn.net/879366/Enabler_01_253.js:116:289
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://media.adcanvas.com/53jTy8qklH2P/adcanvas.min.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://media.adcanvas.com/53jTy8qklH2P/adcanvas.min.js, line 1: WebGL context was lost.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2049 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: , line 0: WebGL warning: tex(Sub)Image[23]D: Resource has no data (yet?). Uploading zeros.
+JavaScript warning: , line 0: WebGL warning: drawArraysInstanced: TEXTURE_2D at unit 0 is incomplete: The dimensions of `level_base` are not all positive.
+[GFX1-]: Failed to allocate a surface due to invalid size (DSS) Size(0,0)
+JavaScript warning: , line 0: WebGL warning: tex(Sub)Image[23]D: Resource has no data (yet?). Uploading zeros.
+JavaScript warning: , line 0: WebGL warning: drawArraysInstanced: TEXTURE_2D at unit 0 is incomplete: The dimensions of `level_base` are not all positive.
+[GFX1-]: Failed to allocate a surface due to invalid size (DSS) Size(0,0)
+JavaScript warning: , line 0: WebGL warning: tex(Sub)Image[23]D: Resource has no data (yet?). Uploading zeros.
+JavaScript warning: , line 0: WebGL warning: drawArraysInstanced: TEXTURE_2D at unit 0 is incomplete: The dimensions of `level_base` are not all positive.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1130 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1153 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3999 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2700 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1561 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+1742973033575	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'loading'.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1598 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3256 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2864 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4969 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4490: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4490 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+1742973138429	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'loading'.
+1742973165725	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'loading'.
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 157 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1869 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4207 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4653 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4908 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6725 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3080 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3418 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4929 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2820 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3077 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2843 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3413 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1060 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7637 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3881 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2021: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2021 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3206 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3123 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5775 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6584 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1544 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3819 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7271 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 4153: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 4153 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 2415: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 2415 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4279 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3446: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3446 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 6180: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 6180 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1883 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1071 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5714 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2345 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2701 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4662 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6389 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1319 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5000 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5994 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+Missing chrome or resource URL: chrome://browser/skin/aboutSessionRestore-window-icon.png
+Missing chrome or resource URL: chrome://browser/skin/abyss/img/waterfox-abyss-preview.svg
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4542 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval, line 3502: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/PPXyiGzX4UD35fxDh5C0a6k0o89CM7_iAGPvu6GRcxE.js line 2 > eval line 3502 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4547 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 769 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3770 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6953 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4778 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://obs.cheqzone.com/placement_invocation?id=105699&idx=0&ch=%7B%22tag_id%22%3A%22305861514%22%2C%22page_url%22%3A%22https%3A%2F%2Fwww.internetradio-horen.de%2Fepic-piano-chopin%22%2C%22z_pub_id%22%3A%22www.internetradio-horen.de%22%2C%22z_ad_id%22%3A%22156064694%22%2C%22ob_ad_id%22%3A%22339507043%22%2C%22ssp%22%3A%22medianet%22%2C%22Request_id%22%3A%22340cd90f0a1411f08451822376999970%22%2C%22source_id%22%3A%2210193802%22%2C%22app%22%3A%220%22%7D, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://obs.cheqzone.com/placement_invocation?id=105699&idx=0&ch=%7B%22tag_id%22%3A%22305861514%22%2C%22page_url%22%3A%22https%3A%2F%2Fwww.internetradio-horen.de%2Fepic-piano-chopin%22%2C%22z_pub_id%22%3A%22www.internetradio-horen.de%22%2C%22z_ad_id%22%3A%22191605513%22%2C%22ob_ad_id%22%3A%22513611390%22%2C%22ssp%22%3A%22medianet%22%2C%22Request_id%22%3A%2263ab944b0a1411f089a91247b9398b53%22%2C%22source_id%22%3A%2210193802%22%2C%22app%22%3A%220%22%7D, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2499 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7329 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2712 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1810 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3624 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6601 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2813 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4593 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6174 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4149 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5497 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6032 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4351 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3562 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7214 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5070 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6225 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7126 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4810 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5608 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4523 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4826 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1277 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 357 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5746 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 223 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7286 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 916 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5096 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6648 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2106 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3005 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5552 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6354 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7203 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 704 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4905 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6177 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4382 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2068 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7431 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5708 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1349 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3582 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1917 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6193 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3615 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4149 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 192 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 637 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 796 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5429 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4089 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5755 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4828 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3232 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4991 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1309 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4784 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6843 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1570 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3749 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 280 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/zOdlzACpdQyPxEPqeiDOa3DBW2z25BcW40ltTo8Fydg.js line 2 > eval line 7108 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1420 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://obs.cheqzone.com/placement_invocation?id=105699&idx=0&ch=%7B%22tag_id%22%3A%22305861514%22%2C%22page_url%22%3A%22https%3A%2F%2Fwww.internetradio-horen.de%2Fepic-piano-chopin%22%2C%22z_pub_id%22%3A%22www.internetradio-horen.de%22%2C%22z_ad_id%22%3A%22147868390%22%2C%22ob_ad_id%22%3A%22339507046%22%2C%22ssp%22%3A%22medianet%22%2C%22Request_id%22%3A%2225f48fe50a2011f09a2992f433b2500b%22%2C%22source_id%22%3A%2210193802%22%2C%22app%22%3A%220%22%7D, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1170 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6603 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 146 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3481 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3739 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7260 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2641 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3658 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6702 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4835 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3771 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6830 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5830 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6830 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 338 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard, line 170: Script terminated by timeout at:
+d.element@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:170:487
+d.destroy@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:198:271
+d.clear@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:172:358
+e.bind/<@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:17:42
+e.emit@https://s2.adform.net/mink/634/s2.adform.net/bootstrap.js:68:410
+z.destroy@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:149:283
+e.destroy@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:200:452
+y@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:186:68
+e.bind/<@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:17:42
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6675 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5262 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 799 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard, line 64: Script terminated by timeout at:
+p.toUnloadString@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:64:54
+h.query@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:72:301
+B@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:68:275
+e@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:67:201
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2261 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7774 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6956 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3726 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4485 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6846 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5120 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4639 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6158 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 5736 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3433 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6021 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 4792 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 2418 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 6264 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 892 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 7083 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 1652 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 838 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/Zv0L38YddXW9wiqJScK7fRDzy4Tmksx5FdiQqlYU_Xk.js line 2 > eval line 3908 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://s2.adform.net/mink/634/s2.adform.net/bootstrap.js, line 61: Script terminated by timeout at:
+@https://s2.adform.net/mink/634/s2.adform.net/bootstrap.js:61:210
+h.sendQuery@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:73:193
+B@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:68:260
+e@https://s2.adform.net/mink/634/s2.adform.net/load/v/0.0.256/e/igBBwCDC/i/uEAv-wgAAAAAoAA/r:AdConstructor:contents/ImageTag:types/Standard:67:201
+
+1742981813757	Marionette	INFO	Stopped listening on port 36897
+JavaScript warning: https://cdn.fuseplatform.net/publift/tags/2/3135/fuse.js, line 8: Script terminated by timeout at:
+value/<@https://cdn.fuseplatform.net/publift/tags/2/3135/fuse.js:8:197126
+
+1743016147038	geckodriver	INFO	Listening on 127.0.0.1:59727
+1743016147547	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "51469" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebNfHWU"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743016149382	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743016149859	Marionette	INFO	Listening on port 34753
+WebDriver BiDi listening on ws://127.0.0.1:51469
+Read port: 34753
+1743016150515	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743017477460	Marionette	INFO	Stopped listening on port 34753
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743017494114	geckodriver	INFO	Listening on 127.0.0.1:57273
+1743017494622	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "33569" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileznXHFX"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743017496533	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743017497007	Marionette	INFO	Listening on port 37371
+Read port: 37371
+WebDriver BiDi listening on ws://127.0.0.1:33569
+1743017497275	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743017535070	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1743018030267	Marionette	INFO	Stopped listening on port 37371
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743018041298	geckodriver	INFO	Listening on 127.0.0.1:59631
+1743018041806	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "39473" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2OIRn5"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743018043772	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743018044246	Marionette	INFO	Listening on port 33547
+WebDriver BiDi listening on ws://127.0.0.1:39473
+Read port: 33547
+1743018044869	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743018266240	Marionette	INFO	Stopped listening on port 33547
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743018272297	geckodriver	INFO	Listening on 127.0.0.1:54285
+1743018272805	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "34147" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile6Df2Uh"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743018274803	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743018275331	Marionette	INFO	Listening on port 38309
+WebDriver BiDi listening on ws://127.0.0.1:34147
+Read port: 38309
+1743018275641	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743018750359	Marionette	INFO	Stopped listening on port 38309
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1123: Script terminated by timeout at:
+gB.prototype.HR@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1123:433
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743018761318	geckodriver	INFO	Listening on 127.0.0.1:57259
+1743018761825	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60857" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile2sVwla"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743018763772	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743018764251	Marionette	INFO	Listening on port 36107
+WebDriver BiDi listening on ws://127.0.0.1:60857
+Read port: 36107
+1743018764920	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743018802529	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1743019134932	Marionette	INFO	Stopped listening on port 36107
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743019166923	geckodriver	INFO	Listening on 127.0.0.1:53207
+1743019167431	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "33837" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile8JPENG"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743019169397	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743019170297	Marionette	INFO	Listening on port 34375
+Read port: 34375
+WebDriver BiDi listening on ws://127.0.0.1:33837
+1743019170595	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743019857329	Marionette	INFO	Stopped listening on port 34375
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743019917111	geckodriver	INFO	Listening on 127.0.0.1:48871
+1743019917619	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "50453" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileW7L9vm"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743019919609	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743019920090	Marionette	INFO	Listening on port 43717
+Read port: 43717
+WebDriver BiDi listening on ws://127.0.0.1:50453
+1743019920378	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743019958073	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1743023782578	Marionette	INFO	Stopped listening on port 43717
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743023825821	geckodriver	INFO	Listening on 127.0.0.1:48393
+1743023825834	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "46353" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile78Ulxf"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743023827765	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743023828238	Marionette	INFO	Listening on port 46337
+WebDriver BiDi listening on ws://127.0.0.1:46353
+Read port: 46337
+1743023828874	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743023866926	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1743023938912	Marionette	INFO	Stopped listening on port 46337
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 258: Script terminated by timeout at:
+297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743023948413	geckodriver	INFO	Listening on 127.0.0.1:55619
+1743023948426	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "47315" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilenosDiq"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743023950391	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743023950918	Marionette	INFO	Listening on port 37669
+Read port: 37669
+WebDriver BiDi listening on ws://127.0.0.1:47315
+1743023951253	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743029672057	Marionette	INFO	Stopped listening on port 37669
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js, line 1124: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/bUO1BXI8H9PgjAPSW9hwuSeI/recaptcha__en.js:1124:112
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743029776396	geckodriver	INFO	Listening on 127.0.0.1:33829
+1743029776405	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "37795" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileCzDC1p"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743029778352	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743029778895	Marionette	INFO	Listening on port 36811
+Read port: 36811
+WebDriver BiDi listening on ws://127.0.0.1:37795
+1743029779173	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743048336714	Marionette	INFO	Stopped listening on port 36811
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743048342948	geckodriver	INFO	Listening on 127.0.0.1:55475
+1743048342957	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "35521" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFRd9qj"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743048344850	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743048345344	Marionette	INFO	Listening on port 34343
+Read port: 34343
+WebDriver BiDi listening on ws://127.0.0.1:35521
+1743048345632	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743048383106	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js, line 24: Script terminated by timeout at:
+sS@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:44420
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:50109
+85049/l9/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:89608
+85049/sG/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:49947
+sl@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43107
+85049/su/<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43053
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js, line 24: Script terminated by timeout at:
+p@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:50137
+85049/l9/r<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:89608
+85049/sG/u<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:49947
+sl@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43107
+85049/su/<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43053
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+1743054436841	Marionette	INFO	Stopped listening on port 34343
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743054511141	geckodriver	INFO	Listening on 127.0.0.1:51131
+1743054511152	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... 17" "--remote-debugging-port" "48431" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileL7Ro4W"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743054514018	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743054514571	Marionette	INFO	Listening on port 44347
+Read port: 44347
+WebDriver BiDi listening on ws://127.0.0.1:48431
+1743054515012	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+1743055471894	Marionette	INFO	Stopped listening on port 44347
+JavaScript warning: https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js, line 258: Script terminated by timeout at:
+297/i/./src/task-loop.ts/e.tick@https://ssl.p.jwpcdn.com/player/v/8.24.0/provider.hlsjs.js:258:946
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743055500010	geckodriver	INFO	Listening on 127.0.0.1:38543
+1743055500022	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "42875" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile1JHNNi"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743055502020	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743055502496	Marionette	INFO	Listening on port 42255
+Read port: 42255
+WebDriver BiDi listening on ws://127.0.0.1:42875
+1743055502802	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+1743055738708	Marionette	INFO	Stopped listening on port 42255
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743055863020	geckodriver	INFO	Listening on 127.0.0.1:39639
+1743055863527	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "36041" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilei9hd5p"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743055865436	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743055865964	Marionette	INFO	Listening on port 36685
+WebDriver BiDi listening on ws://127.0.0.1:36041
+Read port: 36685
+1743055866615	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+1743056730017	Marionette	INFO	Stopped listening on port 36685
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743056737281	geckodriver	INFO	Listening on 127.0.0.1:47455
+1743056737789	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "58797" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilequpQcr"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743056739774	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743056740257	Marionette	INFO	Listening on port 46877
+Read port: 46877
+WebDriver BiDi listening on ws://127.0.0.1:58797
+1743056740542	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13765, line 264: unreachable code after return statement
+1743065470630	geckodriver	INFO	Listening on 127.0.0.1:37251
+1743065471137	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "57345" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileA0gwfC"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743065473078	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743065473572	Marionette	INFO	Listening on port 42435
+WebDriver BiDi listening on ws://127.0.0.1:57345
+Read port: 42435
+1743065474201	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743065700273	Marionette	INFO	Stopped listening on port 42435
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/hbAq-YhJxOnlU-7cpgBoAJHb/recaptcha__en.js, line 1124: Script terminated by timeout at:
+x.pW@https://www.gstatic.com/recaptcha/releases/hbAq-YhJxOnlU-7cpgBoAJHb/recaptcha__en.js:1124:286
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743065706384	geckodriver	INFO	Listening on 127.0.0.1:41803
+1743065706893	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "48109" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileW44VrY"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743065708926	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743065709433	Marionette	INFO	Listening on port 41765
+WebDriver BiDi listening on ws://127.0.0.1:48109
+Read port: 41765
+1743065710112	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743065870801	Marionette	INFO	Stopped listening on port 41765
+JavaScript warning: https://www.gstatic.com/recaptcha/releases/hbAq-YhJxOnlU-7cpgBoAJHb/recaptcha__en.js, line 1123: Script terminated by timeout at:
+@https://www.gstatic.com/recaptcha/releases/hbAq-YhJxOnlU-7cpgBoAJHb/recaptcha__en.js:1123:409
+
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743065878040	geckodriver	INFO	Listening on 127.0.0.1:42193
+1743065878048	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "55729" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiledakIl9"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743065879998	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743065880461	Marionette	INFO	Listening on port 37375
+WebDriver BiDi listening on ws://127.0.0.1:55729
+Read port: 37375
+1743065881092	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743065997273	Marionette	INFO	Stopped listening on port 37375
+1743066131960	geckodriver	INFO	Listening on 127.0.0.1:51779
+1743066132586	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "45945" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilenblTrN"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743066134617	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743066135147	Marionette	INFO	Listening on port 40009
+Read port: 40009
+WebDriver BiDi listening on ws://127.0.0.1:45945
+1743066135518	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13775, line 264: unreachable code after return statement
+1743066199650	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:205:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:189:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:467:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:220:33
+1743066309999	Marionette	INFO	Stopped listening on port 40009
+JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment

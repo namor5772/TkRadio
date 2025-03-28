@@ -477,14 +477,14 @@ def Radio1(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station == "ABC_Classic2":
-        label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
+        label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
     else:
-        label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
+        label2.place(x=Xgap+55, y=Ygap2+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -572,11 +572,11 @@ def Radio2(br,Num,sPath):
     width2, height2 = image2.size;
     print(f"width: {width2}, height: {height2}")
     width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = image2.resize((width-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
+    label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
     
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -670,14 +670,14 @@ def Radio3(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-0))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-25))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if station_short == "ABC_Classic":
-        label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
+        label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
     else:
-        label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
+        label2.place(x=Xgap+55, y=Ygap2+30)  # Adjust the position
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -761,11 +761,11 @@ def Radio4(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap2+30, y=Ygap2+30)  # Adjust the position
+    label2.place(x=Xgap2+55, y=Ygap2+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -846,11 +846,11 @@ def Radio5(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
+    label2.place(x=Xgap+55, y=Ygap2+30)  # Adjust the position
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -928,11 +928,11 @@ def Radio6(br,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
+    label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -1007,11 +1007,11 @@ def Radio7(br,Num,sPath):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
+    label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
         
     # Find program details
     ht = be.get_attribute('innerHTML')
@@ -1126,11 +1126,11 @@ def Commercial1(br,sPath,sClass,nType):
     width2, height2 = image2.size;
     print(f"Pic width: {width2}, Pic height: {height2}")
     width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width-30, Xprog-30))  # Adjust the size as needed
+    scaled_image2 = image2.resize((width-55, Xprog-55))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
+    label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
  
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -1223,11 +1223,11 @@ def Commercial2(br,sPath):
             width2, height2 = image.size;
             print(f"Pic width: {width2}, Pic height: {height2}")
             width = int(Xprog*width2/height2)
-            scaled_image = image.resize((width-30, Xprog-30))  # Adjust the size as needed
+            scaled_image = image.resize((width-55, Xprog-55))  # Adjust the size as needed
             photo = ImageTk.PhotoImage(scaled_image)
             label2.config(image=photo)
             label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
+            label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
             print("=====>  /div/img")
         except NoSuchElementException:
             # failed to find image so display a blank image
@@ -1237,7 +1237,7 @@ def Commercial2(br,sPath):
             photo = ImageTk.PhotoImage(scaled_image)
             label2.config(image=photo)
             label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap+30, y=Ygap3+30)  # Adjust the position
+            label2.place(x=Xgap+55, y=Ygap3+55)  # Adjust the position
             print("=====> No /img")
 
     # get station and program details (if available)
@@ -2496,7 +2496,7 @@ def find_wifi(event):
         if numWIFI==1:
             label5.config(text=f"Found 1 visible wifi network")
         else:
-            label5.config(text=f"Found {numPairable} visible wifi networks")
+            label5.config(text=f"Found {numWIFI} visible wifi networks")
     print(f"Found {numWIFI} visible wifi network(s)\n")
     
 
@@ -2511,7 +2511,8 @@ def key_handler(event):
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
-root.geometry("800x480+0+0")
+root.geometry("800x455+0+0")
+#root.overrideredirect(True)
 root.resizable(False, False)
 root.update_idletasks()
 
@@ -2548,12 +2549,12 @@ except FileNotFoundError:
 # Create a text box, position and size it
 # used to display the program and song details
 text_box = tk.Text(root)
-text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30, height=Xprog-30)
+text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # Create a button on the root form to display the secondary setup form
-setupButton = tk.Button(root, text="x")
-setupButton.place(x=775, y=26, width=20, height=20)
+setupButton = tk.Button(root, text="+")
+setupButton.place(x=775, y=24, width=20, height=20)
 setupButton.config(takefocus=True)
 setupButton.bind("<Return>", show_setup_form)  
 setupButton.bind("<ButtonPress>", show_setup_form)  
@@ -2599,12 +2600,12 @@ for i in range(numButtons):
 # It will be used for examining and configuring setup settings
 setup = tk.Toplevel(root)
 #setup.geometry("800x480+0+26")
-setup.geometry("800x454+0+52")
+setup.geometry("800x430+0+50")
 setup.overrideredirect(True)
 setup.withdraw() # Hide the form initially
 
 # button which returns focus and visibility back to the main/root form
-mainButton = tk.Button(setup, text="x")
+mainButton = tk.Button(setup, text="+")
 mainButton.place(x=775, y=0, width=20, height=20)
 mainButton.config(takefocus=True)
 mainButton.bind("<Return>", show_root_form)  

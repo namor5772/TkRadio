@@ -360,13 +360,14 @@ Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
 Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
 Xprog = 300
 
-# global variables related to bluetooth
+# global variables related to bluetooth and wifi
 onBluetooth = True
 currentPair = "No bluetooth speakers paired" # details of currently paired speakers
 aPairable = [] # used to list bluetooth visible devices for pairing a speaker
 numPairable = 0; # number of pairable devices visible
 aWIFI = [] # used to list of visible wifi networks
 numWIFI = 0; # number of visible wifi networks
+sSSID = "NONE" # SSID of considered wifi network
 
 # Create the full filepath to the bluetooth status text file
 filename3 = 'bluetooth.txt'
@@ -1747,7 +1748,7 @@ def after_GUI_started():
         print(f"File not found: {filepath3}")
         # create a bluetooth status file and give it default values
         onBluetooth = False; line1 = "0"  
-        currentPair = "00:00:00:00:00:00 NOTHING"; line2 = currentPair
+        currentPair = "00:00:00:00:00:00 - NOTHING"; line2 = currentPair
         with open(filepath3, 'w') as file:
             file.write(line1 + '\n')  # Write the first line with a newline character
             file.write(line2 + '\n')  # Write the second line with a newline character
@@ -2260,20 +2261,6 @@ def run_bluetoothctl_command(command):
     return stdout
 
 
-# restart bluetooth interface.
-# if a previously paired set of bluetooth speakers is turned and then this function is run
-# if will connect and play though them even if Bluetootch was originally turned off  
-def connect_bluetooth():
-    mac_address = currentPair.split(" - ")[0]
-    device_name = currentPair.split(" - ")[1]
-    print(f"Restarting Bluetooth interface with currently paired device: {device_name}")
-    subprocess_run("sudo systemctl enable bluetooth")                        
-    subprocess_run("sudo systemctl start bluetooth")
-    subprocess_run("rfkill unblock bluetooth")
-    returnCode = subprocess_run(f"sudo bluetoothctl connect {mac_address}")
-    return returnCode
-
-
 # if BlueTooth is off then restart interface, If it is on then turn it off.
 # Also appropriately adjust the onBluetooth flag in thet bluetooth.txt config file
 def toggle_bluetooth(event):
@@ -2310,10 +2297,102 @@ def _connect_bluetooth(event):
         label4.config(text=f"TURN ON BT")
 
 
-# populates the combobox_bt with the pairable devices, but first removes all previously paired ones.
-# which here should be just one.
+# Press [CONNECT] button to restart bluetooth interface.
+# if a previously paired set of bluetooth speakers is turned and then this function is run
+# if will connect and play though them even if Bluetootch was originally turned off  
+def connect_bluetooth():
+    mac_address = currentPair.split(" - ")[0]
+    device_name = currentPair.split(" - ")[1]
+    print(f"Restarting Bluetooth interface with currently paired device: {device_name}")
+    subprocess_run("sudo systemctl enable bluetooth")                        
+    subprocess_run("sudo systemctl start bluetooth")
+    subprocess_run("rfkill unblock bluetooth")
+    returnCode = subprocess_run(f"sudo bluetoothctl connect {mac_address}")
+    return returnCode
+
+
+# pres Enter key in [combobox_bt]
+# Pair and connect to the current selection from the bluetooth combobox
+def on_select_bluetooth(event):
+    try:
+        print("ACTUAL PAIRING STARTS HERE")
+        label3.config(text=f"WAITING TO PAIR - please be patient!")
+        setup.update_idletasks()
+        selected_device = combobox_bt.get()
+        mac_address = selected_device.split(" - ")[0]
+        device_name = selected_device.split(" - ")[1]
+    except IndexError as e:
+        print("SELECTION DOES NOT EXIST - CANNOT PAIR")
+        label3.config(text=f"NOT A VALID SELECTION - TRY AGAIN?")
+        setup.update_idletasks()
+        root.after(100,lambda: mainButton.focus_set()) 
+        return # all code below is ignored
+        
+    loop=0
+    while True:
+        # does the actual pairing to selected mac address - need previous actions else not connectable?   
+        process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+        process.stdin.write("discoverable on\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write("scan on\n")
+        process.stdin.flush()
+        time.sleep(15)
+        process.stdin.write("scan off\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write(f"pair {mac_address}\n")
+        process.stdin.flush()
+        time.sleep(3)
+        process.stdin.write(f"connect {mac_address}\n")
+        process.stdin.flush()
+        time.sleep(5)
+        output, _ = process.communicate()
+        process.stdin.close()  # Close the input stream
+        process.terminate()    # Politely terminate the process
+        process.wait()         # Ensure the process finishes
+        print("**** OUTPUT START ******")
+        print(output)
+        print("**** OUTPUT FINISH *****")
+        position = output.find("Connection successful")
+        loop += 1
+        if position == -1 and loop < 3 :
+            print(f"Failed to Pair try {loop}")
+        else:
+            break
+    if position == -1:
+        print("GAVE UP TRYING TO PAIR - TRY AGAIN!")
+        label3.config(text=f"GAVE UP TRYING TO PAIR - TRY AGAIN?")
+    else:
+        print("SUCESSFULLY PAIRED AND CONNECTED!")
+        label3.config(text=f"Paired with: {mac_address} - {device_name}")
+
+    # update the bluetooth.txt config file
+    global onBluetooth
+    if position == -1:
+        if onBluetooth:
+            line1 = "1"
+        else:
+            line1 = "0"
+        line2 = "00:00:00:00:00:00 - NOTHING"
+    else:    
+        onBluetooth = True; line1 = "1"  
+        global currentPair; currentPair= f"{mac_address} - {device_name}"; line2 = currentPair
+        BTstatusButton.config(text="BT ON")
+    with open(filepath3, 'w') as file:
+        file.write(line1 + '\n')  # Write the first line with a newline character
+        file.write(line2 + '\n')  # Write the second line with a newline character
+    print(f"Default file created {filepath3}")
+    root.after(100,lambda: mainButton.focus_set()) 
+
+
+# when [SEE BT DEVICES] button pressed.
+# populates the combobox_bt with the pairable devices, but first removes all
+# previously paired ones which here should be just one.
 def pair_bluetooth(event):
     print("Start Bluetooth PAIRING")
+    label6.config(text="WAITING - please be patient!")
+    setup.update_idletasks()
     
     # restarts bluetooth so that we can remove all paired devices
     subprocess_run("rfkill unblock bluetooth")
@@ -2373,94 +2452,78 @@ def pair_bluetooth(event):
         else:
             label3.config(text=f"Found {numPairable} devices")
     print(f"Found {numPairable} device(s)\n")
+    label6.config(text="")
     
 
-# Pair and connect to the current selection from the bluetooth combobox
-def on_select_bluetooth(event):
+# when [combobox_wifi] selected
+# Use current selection from the combobox to connect to the internet
+def on_select_wifi(event):
+    global sSSID
     try:
-        print("ACTUAL PAIRING STARTS HERE")
-        selected_device = combobox_bt.get()
-        mac_address = selected_device.split(" - ")[0]
-        device_name = selected_device.split(" - ")[1]
-        time.sleep(5)
+        print("ACTUAL WIFI CONNECTING STARTS HERE")
+        label5.config(text=f"WAITING TO CONNECT - please be patient!")
+        setup.update_idletasks()
+        selected_wifi = combobox_wifi.get()
+        sSSID = selected_wifi.split(" - ")[0]
+        sQuality = selected_wifi.split(" - ")[1]
     except IndexError as e:
         print("SELECTION DOES NOT EXIST - CANNOT PAIR")
+        label5.config(text=f"NOT A VALID SELECTION - TRY AGAIN?")
+        setup.update_idletasks()
         root.after(100,lambda: mainButton.focus_set()) 
         return # all code below is ignored
-        
-    loop=0
-    while True:
-        # does the actual pairing to selected mac address - need previous actions else not connectable?   
-        process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-        process.stdin.write("discoverable on\n")
-        process.stdin.flush()
-        time.sleep(3)
-        process.stdin.write("scan on\n")
-        process.stdin.flush()
-        time.sleep(15)
-        process.stdin.write("scan off\n")
-        process.stdin.flush()
-        time.sleep(3)
-        process.stdin.write(f"pair {mac_address}\n")
-        process.stdin.flush()
-        time.sleep(3)
-        process.stdin.write(f"connect {mac_address}\n")
-        process.stdin.flush()
-        time.sleep(5)
-        output, _ = process.communicate()
-        process.stdin.close()  # Close the input stream
-        process.terminate()    # Politely terminate the process
-        process.wait()         # Ensure the process finishes
-        print("**** OUTPUT START ******")
-        print(output)
-        print("**** OUTPUT FINISH *****")
-        position = output.find("Connection successful")
-        loop += 1
-        if position == -1 and loop < 3 :
-            print(f"Failed to Pair try {loop}")
-        else:
-            break
-    if position == -1:
-        print("GAVE UP TRYING TO PAIR - TRY AGAIN!")
-        label3.config(text=f"GAVE UP TRYING TO PAIR - TRY AGAIN!")
-    else:
-        print("SUCESSFULLY PAIRED AND CONNECTED!")
-        label3.config(text=f"Paired with: {mac_address} - {device_name}")
 
-    # update the bluetooth.txt config file
-    global onBluetooth
-    if position == -1:
-        if onBluetooth:
-            line1 = "1"
-        else:
-            line1 = "0"
-        line2 = "00:00:00:00:00:00 NOTHING"
-    else:    
-        onBluetooth = True; line1 = "1"  
-        global currentPair; currentPair= f"{mac_address} - {device_name}"; line2 = currentPair
-        BTstatusButton.config(text="BT ON")
-    with open(filepath3, 'w') as file:
-        file.write(line1 + '\n')  # Write the first line with a newline character
-        file.write(line2 + '\n')  # Write the second line with a newline character
-    print(f"Default file created {filepath3}")
-    root.after(100,lambda: mainButton.focus_set()) 
+    # assumes credentials for this network have previously been stored, ie. its
+    # password & SSID is known and it has previously been connected to
+    command = f'sudo nmcli con up id "{sSSID}"'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    returnCode = result.returncode
+    if returnCode == 0:      # success
+        print(f"Command '{command}' succeeded")
+        label5.config(text=f"Just connected to: {sSSID}")
+
+        # need to reload last streaming station 
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+        root.after(100,lambda: mainButton.focus_set()) 
+    else: # fail, so try with password
+        print(f"Command '{command}' FAILED, need password")
+        label5.config(text=f"NEED password for {sSSID}")
+        root.after(100,lambda: wifiPassword.focus_set()) 
 
 
+# when the Enter key is pressed after text has been keyed into the
+# [wifiPassword] Entry widget  
 def process_wifiPassword(event):
-    user_input = wifiPassword.get()
-    print(f"You entered: {user_input}")
+    global sSSID
+    sPassword = wifiPassword.get()
+    print(f"You entered: {sPassword}")
     wifiPassword.delete(0, tk.END)  # Clears this widget
-    #wifiPassword.config(state=tk.DISABLED)  # Disables this widget after processing
-    event.widget.tk_focusNext().focus()
+
+    command = f'sudo nmcli dev wifi connect "{sSSID}" password "{sPassword}"'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    time.sleep(2)
+    returnCode = result.returncode
+    if returnCode == 0:      # success
+        print(f"Command '{command}' succeeded")
+        label5.config(text=f"Just connected to: {sSSID}")
+
+        # need to reload last streaming station 
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+        root.after(100,lambda: mainButton.focus_set()) 
+    else: # fail, can try with a new password or not
+        print(f"Command '{command}' FAILED, need password")
+        label5.config(text=f"Incorrect password for {sSSID} - try again?")
+        root.after(100,lambda: wifiPassword.focus_set()) 
 
 
-# Use current selection from the combobox_wifi to connect to the internet
-def on_select_wifi(event):
-    pass
-
-
+# when [SEE WIFI] button pressed.
 # populates the combobox_wifi with the possible wifi connections
 def find_wifi(event):
+    print("Start WIFI connecting")
+    label7.config(text="WAITING - please be patient!")
+    setup.update_idletasks()
+
     command = "sudo iwlist wlan0 scan | grep -E 'SSID|Signal'"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     time.sleep(2)
@@ -2498,7 +2561,8 @@ def find_wifi(event):
         else:
             label5.config(text=f"Found {numWIFI} visible wifi networks")
     print(f"Found {numWIFI} visible wifi network(s)\n")
-    
+    label6.config(text="")
+
 
 def key_handler(event):
     print(f"Key pressed: {event.keysym}")
@@ -2642,11 +2706,13 @@ combobox_bt.bind("<<ComboboxSelected>>", lambda e: on_select_bluetooth(CustomEve
 combobox_bt.config(state="readonly")
 
 # button to enable scanning for bluetooth devices (which will appear in above combobox)
-pairButton = tk.Button(setup, text="SEE DEVICES") 
+pairButton = tk.Button(setup, text="SEE BT DEVICES") 
 pairButton.place(x=cX, y=cY+60, height=25)
 pairButton.config(takefocus=True)
 pairButton.bind("<Return>", pair_bluetooth)  
 pairButton.bind("<ButtonPress>", pair_bluetooth)
+label6 = tk.Label(setup, text="")
+label6.place(x=cX+150, y=cY+62)
 
 # vertical separator, between bluetooth an dwifi setup sections
 separator = ttk.Separator(setup, orient="vertical")
@@ -2664,7 +2730,7 @@ combobox_wifi.bind("<FocusOut>", on_focus_out_combobox_wifi)
 combobox_wifi.bind("<<ComboboxSelected>>", lambda e: on_select_wifi(CustomEvent("Auto", combobox_wifi, "ComboBox Event")))
 combobox_wifi.config(state="readonly")
 
-# text entry for wifi, and its info label
+# text entry for wifi password, and its info label
 wifiPassword = tk.Entry(setup, width=30)
 wifiPassword.place(x=cX+400+75, y=cY+30)
 wifiPassword.bind("<Return>", process_wifiPassword)
@@ -2677,12 +2743,13 @@ wifiButton.place(x=cX+400, y=cY+60, height=25)
 wifiButton.config(takefocus=True)
 wifiButton.bind("<Return>", find_wifi)  
 wifiButton.bind("<ButtonPress>", find_wifi)
+label7 = tk.Label(setup, text="")
+label7.place(x=cX+400+100, y=cY+62)
 
 tButton = tk.Button(setup, text="TEST") 
 tButton.place(x=cX+400, y=cY+60+60, height=25)
 tButton.config(takefocus=True)
 tButton.bind("<Key>", key_handler)  
-
 
 
 # SECONDARY setup FORM RELATED DEFINITIONS

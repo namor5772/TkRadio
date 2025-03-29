@@ -175,6 +175,14 @@ KeyList = [
     ["F11","F11"]
 ]
 
+'''
+sizeKeyList = 120 # number of keys
+indexKeyList = 1 # currently selected key (= indexBank*sizeBank+indexVisibleKey) 
+indexVisibleKey = 1 # index of selected key within current bank
+sizeBank = 15 # number of keys in a bank                  
+indexBank = 0 # bank containing currently selected Key
+numBanks = 8 # number of banks (thus numBanks*sizeBank = sizeKeyList)
+'''
 
 # GPIO button 21 pressed
 def on_LeftButton_press(channel):
@@ -1714,6 +1722,7 @@ aStation2 = []
 for i in range(numButtons):
     station = ["-- EMPTY " + str(i) +" --", -1]
     aStation2.append(station)
+
 
 
 # after gui is initialised and we are running in the root thread

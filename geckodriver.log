@@ -26035,3 +26035,231 @@ JavaScript error: , line 0: NS_ERROR_UNEXPECTED:
 JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
 1743245111854	Marionette	INFO	Stopped listening on port 46065
 JavaScript error: resource://gre/actors/AudioPlaybackChild.sys.mjs, line 17: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+1743245463902	geckodriver	INFO	Listening on 127.0.0.1:60589
+1743245463912	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "50627" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile4YWXue"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743245465977	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743245466566	Marionette	INFO	Listening on port 35971
+WebDriver BiDi listening on ws://127.0.0.1:50627
+Read port: 35971
+1743245467214	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1743245522918	Marionette	INFO	Stopped listening on port 35971
+1743245530189	geckodriver	INFO	Listening on 127.0.0.1:51021
+1743245530696	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "60239" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVNLwwb"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743245532719	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743245533194	Marionette	INFO	Listening on port 41897
+WebDriver BiDi listening on ws://127.0.0.1:60239
+Read port: 41897
+1743245533847	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+1743245551867	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://au-script.dotmetrics.net/door.js?id=13734, line 264: unreachable code after return statement
+JavaScript warning: https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js, line 24: Script terminated by timeout at:
+85049/su/<@https://www.abc.net.au/_next/static/chunks/pages/_app-a69ab9a587d8050d.js:24:43043
+
+JavaScript error: , line 0: NS_ERROR_UNEXPECTED: 
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 117 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 4612: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval line 4612 > eval line 1 > eval line 1 > eval, line 1: unreachable code after return statement
+1743245651033	Marionette	INFO	Stopped listening on port 41897
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 7287 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+JavaScript warning: https://cdn.id5-sync.com/api/1.0/id5-api.js, line 7: Script terminated by timeout at:
+t@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:50291
+t@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:50307
+_postMessage@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:50371
+broadcastMessage@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:49592
+register@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:87452
+init/<@https://cdn.id5-sync.com/api/1.0/id5-api.js:7:43258
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 7287 > eval line 1 > eval line 1 > eval, line 1: Script terminated by timeout at:
+@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 7287 > eval line 1 > eval line 1 > eval:1:40
+Rg@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 7287 > eval line 1 > eval line 1 > eval:1:203
+ON@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 7287 > eval line 1 > eval line 1 > eval:1:47
+B.h</<@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:49896
+k$@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:23142
+M@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:9551
+pY@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:14140
+M/<@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:9806
+Uo</<@https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval:7287:48610
+
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js, line 3699: unreachable code after return statement
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/SqLpVpn9jy55TssTm700nX3kPD-BE6qtH0pj6QFOnH0.js line 2 > eval, line 3699: unreachable code after return statement
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1743245808206	geckodriver	INFO	Listening on 127.0.0.1:37371
+1743245808709	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "56573" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileNQ2aKQ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1743245810647	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-width"
+console.error: "Warning: unrecognized command line flag" "-height"
+1743245811208	Marionette	INFO	Listening on port 36983
+WebDriver BiDi listening on ws://127.0.0.1:56573
+Read port: 36983
+1743245811837	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+GetShaderInfoLog() ->
+0:2(12): error: extension `GL_EXT_shader_texture_lod' unsupported in fragment shader
+
+GetShaderSource() ->
+
+#extension GL_EXT_shader_texture_lod: require
+void main() {}
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/0D1qcigoaeglT_kPdSNSt_YNz7aylG7ZGkWA7PuuKFY.js line 2 > eval line 3071 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize GL_RENDERER "V3D 4.2.14.0"
+1743245851665	Marionette	INFO	Stopped listening on port 36983
+JavaScript warning: https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js, line 12: Script terminated by timeout at:
+e@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:166561
+value@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:168080
+10613/s/T/c</<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:171761
+T@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:171980
+10613/s/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:172116
+t@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:80219
+52021/n.emit@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:80737
+25686/j/ie/run/y/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:43693
+y@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:43643
+25686/j/ie/run/adapterDone/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:43953
+68792/value/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:167268
+c@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:167043
+68792/value/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:167093
+e@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:166755
+value@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:166896
+value@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:167239
+adapterDone@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:43924
+S@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:31393
+99128/f/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:164133
+64358/Le/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:154266
+14699/R</</g<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:32768
+j@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:65660
+3193/callbackWithBidder/b/b@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:66675
+48928/v/<@https://cdn.fuseplatform.net/prebid/prebid-af43e4892657b8d9d3874d5f5f7fa958.js:12:40003
+
+JavaScript warning: https://ep2.adtrafficquality.google/sodar/sodar2/232/runner.html, line 25: Script terminated by timeout at:
+pa/</<@https://ep2.adtrafficquality.google/sodar/sodar2/232/runner.html:25:1449
+
+console.error: services.settings: 
+  Message: NetworkError: Network error: TypeError: NetworkError: Network request failed
+  Stack:
+    APIError@resource://services-settings/RemoteSettingsClient.sys.mjs:108:1
+NetworkError@resource://services-settings/RemoteSettingsClient.sys.mjs:112:5
+_adjustedError@resource://services-settings/RemoteSettingsClient.sys.mjs:930:14
+maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:835:38
+
+JavaScript error: resource://gre/modules/PictureInPicture.sys.mjs, line 607: TypeError: browser is null
+console.warn: services.settings: main/urlbar-persisted-search-terms sync interrupted by shutdown
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.warn: services.settings: main/search-config-icons sync interrupted by shutdown
+console.warn: services.settings: main/message-groups sync interrupted by shutdown
+console.warn: services.settings: main/fingerprinting-protection-overrides sync interrupted by shutdown
+console.warn: services.settings: main/search-config-overrides-v2 sync interrupted by shutdown
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+console.warn: services.settings: main/addons-manager-settings sync interrupted by shutdown
+console.warn: services.settings: main/fxmonitor-breaches sync interrupted by shutdown
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.warn: services.settings: main/devtools-devices sync interrupted by shutdown
+console.warn: services.settings: main/doh-config sync interrupted by shutdown
+console.warn: services.settings: main/doh-providers sync interrupted by shutdown
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.warn: services.settings: main/hijack-blocklists sync interrupted by shutdown
+console.warn: services.settings: main/anti-tracking-url-decoration sync interrupted by shutdown
+console.warn: services.settings: main/sites-classification sync interrupted by shutdown
+console.error: (new NetworkError("Network error: TypeError: NetworkError: Network request failed", "resource://services-settings/RemoteSettingsClient.sys.mjs", 108))

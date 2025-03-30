@@ -1,3 +1,10 @@
+'''
+1. pollFlag implement with button and config poll.txt file
+2. Get rid of TEST button
+3. find some way to indicate graphically when a combobox has focus
+'''
+
+
 import subprocess
 import inspect
 import tkinter as tk
@@ -346,7 +353,7 @@ browser = webdriver.Firefox(options=firefox_options)
 #refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 refresh_http = "https://www.blank.org/" # use a basic "empty" website
 
-# global graphis position variables
+# global graphic position variables
 Ydown = 63
 Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
 Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
@@ -385,7 +392,10 @@ stationShort = ""
 station = ""
 needSleep = 5 # can be less on faster machines
 pressButton = True # flag for how stream is started
+
+# other global variables
 rootFlag = True # False indicates that you are in the secondary window
+pollFlag = True # if true then poll website for program text and picture changes 
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1199,11 +1209,11 @@ def Commercial2(br,sPath):
         width2, height2 = image.size;
         print(f"Pic width: {width2}, Pic height: {height2}")
         width = int(Xprog*width2/height2)
-        scaled_image = image.resize((width-30, Xprog-30))  # Adjust the size as needed
+        scaled_image = image.resize((width-30-25, Xprog-30-25))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog)+30, y=Ygap2+30)  # Adjust the position
+        label2.place(x=Xgap3-(width-Xprog)+30+25, y=Ygap2+30)  # Adjust the position
         print("=====> /div/a/img")
     except NoSuchElementException:
         try:
@@ -1226,11 +1236,11 @@ def Commercial2(br,sPath):
             # failed to find image so display a blank image
             image_path = pathImages + "/Blank.png"
             image = Image.open(image_path)
-            scaled_image = image.resize((Xprog-30, Xprog-30))  # Adjust the size as needed
+            scaled_image = image.resize((Xprog-30-25, Xprog-30-25))  # Adjust the size as needed
             photo = ImageTk.PhotoImage(scaled_image)
             label2.config(image=photo)
             label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap+55, y=Ygap3+55)  # Adjust the position
+            label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
             print("=====> No /img")
 
     # get station and program details (if available)
@@ -1859,18 +1869,12 @@ def on_select(event):
             # Disable the text box to make it read-only
             text_box.config(state=tk.DISABLED)
 
-            # hide the annoying blinking cursor though the fudge
-            # of selective focus setting
-            #combobox.focus_set()
-            #combobox.selection_clear()
-            #buttons[buttonIndex].focus_set()
-            #root.update_idletasks()
-
             # on_select() schedules itself to run in nominally refreshTime seconds.
             # this updates the program text and grapic while the selected radio station is streaming
             print("JUST ABOUT TO RUN ROOT")
             eventFlag = False
-            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+            if pollFlag:
+                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
             print("FINISHED RUNNING ROOT")
             print("")
 
@@ -1991,7 +1995,8 @@ def on_select2(event):
                 
                 print("JUST ABOUT TO RUN ROOT")
                 eventFlag = False
-                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+                if pollFlag:
+                    root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
                 print("FINISHED RUNNING ROOT")
                 print("")
 
@@ -2038,11 +2043,11 @@ def on_select2(event):
             photo = ImageTk.PhotoImage(scaled_image)
             label.config(image=photo)
             label.image = photo  # Keep a reference to avoid garbage collection
-            scaled_image2 = image.resize((Xprog+30, Xprog+30))  # Adjust the size as needed
+            scaled_image2 = image.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
             photo2 = ImageTk.PhotoImage(scaled_image2)
             label2.config(image=photo2)
             label2.image = photo2  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap+30, y=Ygap2+30)  # Adjust the position
+            label2.place(x=Xgap+55, y=Ygap2+30)  # Adjust the position
             print("BLANK END")
             print("")
 
@@ -2741,7 +2746,6 @@ tButton = tk.Button(setup, text="TEST")
 tButton.place(x=cX+400, y=cY+60+60, height=25)
 tButton.config(takefocus=True)
 tButton.bind("<Key>", key_handler)  
-
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** END ********************************

@@ -4,7 +4,6 @@
 3. find some way to indicate graphically when a combobox has focus
 '''
 
-
 import subprocess
 import inspect
 import tkinter as tk

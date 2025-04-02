@@ -5,7 +5,7 @@ ABC Classic LIVE,71
 ABC Classic2,76
 ABC Jazz,77
 nova THROWBACKS,129
-nova 90s,128
+GOLD 80s,86
 smooth VINTAGE,122
 GOLD101.7,82
 Cruise 1323,103

@@ -7,6 +7,7 @@
 import subprocess
 import inspect
 import tkinter as tk
+
 import time
 import urllib.request
 import requests
@@ -2178,49 +2179,70 @@ def on_focus_out(event, i):
     print(f"on focus out: {i}")
 
 
+
 # called when station combobox receives focus.
 # makes sure its display is updated.
 def on_focus_combobox(event):
-    #combobox.config(style="ComboFocusOn")    
-    combobox.update_idletasks()  # Force update
+    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
+    event.widget.configure(style="Focused.TCombobox")
+    combobox.event_generate("<Right>")
+    combobox.update_idletasks()
     print("on_focus_combobox")
-
 
 # called when station combobox loses focus.
 # makes sure its display is updated.
 def on_focus_out_combobox(event):
-    #combobox.config(style="ComboFocusOff")
-    combobox.update_idletasks()  # Force update
+    event.widget.configure(style="TCombobox")
+    combobox.update_idletasks()
     print("on_focus_out_combobox")
 
 
 # called when bluetooth device selection combobox_bt receives focus.
 # makes sure its display is updated.
 def on_focus_combobox_bt(event):
+    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
+    event.widget.configure(style="Focused.TCombobox")
+    combobox_bt.event_generate("<Right>")
     combobox_bt.update_idletasks()  # Force update
     print("on_focus_combobox_bt")
-
 
 # called when bluetooth device selection combobox_bt loses focus.
 # makes sure its display is updated.
 def on_focus_out_combobox_bt(event):
-    combobox_bt.update_idletasks()  # Force update
+    event.widget.configure(style="TCombobox")
+    combobox_bt.update_idletasks()
     print("on_focus_out_combobox_bt")
 
 
 # called when wifi connection device selection combobox_wifi receives focus.
 # makes sure its display is updated.
 def on_focus_combobox_wifi(event):
-    combobox_wifi.update_idletasks()  # Force update
+    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
+    event.widget.configure(style="Focused.TCombobox")
+    combobox_wifi.event_generate("<Right>")
+    combobox_wifi.update_idletasks()
     print("on_focus_combobox_wifi")
-
 
 # called when wifi connection device selection combobox_wifi loses focus.
 # makes sure its display is updated.
 def on_focus_out_combobox_wifi(event):
-    combobox_wifi.update_idletasks()  # Force update
+    event.widget.configure(style="TCombobox")
+    event.widget.update_idletasks()
     print("on_focus_out_combobox_wifi")
 
+
+# called when wifiPassword Entry widget receives focus.
+def on_focus_wifiPassword(event):
+    style.map("Focused.TEntry",fieldbackground=[("focus", "lightblue")])
+    wifiPassword.event_generate("<Right>")
+    event.widget.update_idletasks()
+    print("on_focus_wifiPassword")
+
+# called when wifiPassword Entry widget loses focus.
+def on_focus_out_wifiPassword(event):
+    style.map("Focused.TEntry",fieldbackground=[("!focus", "white")])    
+    event.widget.update_idletasks()
+    print("on_focus_out_wifiPassword")
 
 
 # show the setup form (over the top of the main window)
@@ -2355,6 +2377,7 @@ def on_select_bluetooth(event):
             print(f"Failed to Pair try {loop}")
         else:
             break
+        
     if position == -1:
         print("GAVE UP TRYING TO PAIR - TRY AGAIN!")
         label3.config(text=f"GAVE UP TRYING TO PAIR - TRY AGAIN?")
@@ -2470,13 +2493,13 @@ def on_select_wifi(event):
 
     # assumes credentials for this network have previously been stored, ie. its
     # password & SSID is known and it has previously been connected to
-    command = f'sudo nmcli con up id "{sSSID}"'
+    command = f'nmcli con up id "{sSSID}"'
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     time.sleep(2)
     returnCode = result.returncode
     if returnCode == 0:      # success
         print(f"Command '{command}' succeeded")
-        label5.config(text=f"Just connected to: {sSSID}")
+        label5.config(text=f"Connected to: {sSSID} - wait for focus")
 
         # need to reload last streaming station 
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
@@ -2495,21 +2518,29 @@ def process_wifiPassword(event):
     print(f"You entered: {sPassword}")
     wifiPassword.delete(0, tk.END)  # Clears this widget
 
-    command = f'sudo nmcli dev wifi connect "{sSSID}" password "{sPassword}"'
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time.sleep(2)
-    returnCode = result.returncode
-    if returnCode == 0:      # success
+    loop=0
+    while True:
+        command = f'nmcli dev wifi connect "{sSSID}" password "{sPassword}"'
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+#        time.sleep(2)
+        if (loop==3) or (result.returncode==0):
+            # give up or success
+            break
+        else: # fail, can try with a new password or not
+            loop += 1
+            print(f"Attempt {loop}: FAILED")
+            
+    if loop==3:
+        label5.config(text=f"Failed connect for {sSSID} - try again?")
+        root.after(100,lambda: wifiPassword.focus_set())
+    else:
         print(f"Command '{command}' succeeded")
-        label5.config(text=f"Just connected to: {sSSID}")
-
+        label5.config(text=f"Connected to: {sSSID} - wait for focus")
         # need to reload last streaming station 
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
-        root.after(100,lambda: mainButton.focus_set()) 
-    else: # fail, can try with a new password or not
-        print(f"Command '{command}' FAILED, need password")
-        label5.config(text=f"Incorrect password for {sSSID} - try again?")
-        root.after(100,lambda: wifiPassword.focus_set()) 
+        root.after(100,lambda: mainButton.focus_set())
+        
+
 
 
 # when [SEE WIFI] button pressed.
@@ -2556,11 +2587,99 @@ def find_wifi(event):
         else:
             label5.config(text=f"Found {numWIFI} visible wifi networks")
     print(f"Found {numWIFI} visible wifi network(s)\n")
-    label6.config(text="")
+    label7.config(text="")
 
 
 def key_handler(event):
     print(f"Key pressed: {event.keysym}")
+
+
+
+class CustomCombobox(tk.Frame):
+    def __init__(self, master, values, dropdown_height=5, **kwargs):
+        """
+        CustomCombobox creates a combobox-like widget.
+
+        :param master: Parent widget.
+        :param values: List of string values.
+        :param dropdown_height: Number of rows visible in the dropdown.
+        :param kwargs: Additional options for the Frame.
+        """
+        super().__init__(master, **kwargs)
+        self.values = values
+        self.dropdown_height = dropdown_height
+
+        # Variable to store the current selection
+        self.var = tk.StringVar()
+        
+        # Create an entry widget to display the selection.
+        self.entry = tk.Entry(self, textvariable=self.var, relief="sunken", bd=2)
+        self.entry.pack(side="left", fill="x", expand=True)
+        
+        # Create a button that will trigger the dropdown.
+        self.button = tk.Button(self, text="▼", command=self.toggle_dropdown, padx=2)
+        self.button.pack(side="left")
+        
+        # Dropdown is a Toplevel widget; initially, it’s not created.
+        self.dropdown = None
+
+    def toggle_dropdown(self):
+        """Toggle the dropdown: open it if it’s closed, close if it’s open."""
+        if self.dropdown and tk.Toplevel.winfo_exists(self.dropdown):
+            self.close_dropdown()
+        else:
+            self.open_dropdown()
+
+    def open_dropdown(self):
+        """Open the dropdown Toplevel with the Listbox."""
+        # Create the Toplevel as a child of the root window.
+        self.dropdown = tk.Toplevel(self)
+        self.dropdown.wm_overrideredirect(True)  # Remove window decorations.
+        self.dropdown.wm_attributes("-topmost", True)
+        
+        # Position the dropdown just below the combobox.
+        x = self.winfo_rootx()
+        y = self.winfo_rooty() + self.winfo_height()
+        self.dropdown.geometry(f"+{x}+{y}")
+        
+        # Create a Listbox within the dropdown.
+        self.listbox = tk.Listbox(self.dropdown, height=self.dropdown_height)
+        self.listbox.pack(side="left", fill="both", expand=True)
+        
+        # Insert values.
+        for item in self.values:
+            self.listbox.insert("end", item)
+        
+        # If there are more items than visible rows, add a scrollbar.
+        if len(self.values) > self.dropdown_height:
+            scrollbar = tk.Scrollbar(self.dropdown, orient="vertical", command=self.listbox.yview)
+            scrollbar.pack(side="right", fill="y")
+            self.listbox.config(yscrollcommand=scrollbar.set)
+        
+        # When an item is selected, update the entry.
+        self.listbox.bind("<<ListboxSelect>>", self.on_select)
+        
+        # If the dropdown loses focus, close it.
+        self.dropdown.bind("<FocusOut>", lambda event: self.close_dropdown())
+        self.dropdown.focus_set()
+
+    def on_select(self, event):
+        """Handle selection from the Listbox."""
+        # Get the current selection.
+        selection = self.listbox.curselection()
+        if selection:
+            index = selection[0]
+            value = self.listbox.get(index)
+            self.var.set(value)
+        self.close_dropdown()
+
+    def close_dropdown(self):
+        """Close and destroy the dropdown Toplevel."""
+        if self.dropdown:
+            self.dropdown.destroy()
+            self.dropdown = None
+
+
 
 
 ##########################################
@@ -2584,6 +2703,20 @@ for i in range(sizeBank):
     labels_main.append(label_main)
 labels_main[indexKeyList].config(bg="lightblue")    
 
+
+
+
+# Create our custom combobox with 4 rows visible in the dropdown.
+values = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"]
+custom_combo = CustomCombobox(root, values, dropdown_height=4)
+custom_combo.pack(padx=10, pady=10, fill="x")
+
+
+
+# Create a style object
+combobox_style = ttk.Style()
+combobox_style.configure("TCombobox", fieldbackground="white")
+
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations
 aStringArray = []
@@ -2594,7 +2727,6 @@ combobox.place(x=130+(sizeButton+5), y=2+30)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)
 combobox.bind("<FocusOut>", on_focus_out_combobox)
 combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
-combobox.config(state="readonly")
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
@@ -2687,6 +2819,15 @@ connectButton.bind("<ButtonPress>", _connect_bluetooth)
 label4 = tk.Label(setup, text="")
 label4.place(x=cX+100, y=cY+2)
 
+# button to enable scanning for bluetooth devices (which will appear in above combobox)
+pairButton = tk.Button(setup, text="SEE BT DEVICES") 
+pairButton.place(x=cX, y=cY+30, height=25)
+pairButton.config(takefocus=True)
+pairButton.bind("<Return>", pair_bluetooth)  
+pairButton.bind("<ButtonPress>", pair_bluetooth)
+label6 = tk.Label(setup, text="")
+label6.place(x=cX+150, y=cY+32)
+
 # Create a Combobox for bluetooth connection selection & related information label
 cX = 15; cY = 125
 label3 = tk.Label(setup, text="")
@@ -2698,20 +2839,19 @@ combobox_bt.current(0)
 combobox_bt.bind("<FocusIn>", on_focus_combobox_bt)
 combobox_bt.bind("<FocusOut>", on_focus_out_combobox_bt)
 combobox_bt.bind("<<ComboboxSelected>>", lambda e: on_select_bluetooth(CustomEvent("Auto", combobox_bt, "ComboBox Event")))
-combobox_bt.config(state="readonly")
-
-# button to enable scanning for bluetooth devices (which will appear in above combobox)
-pairButton = tk.Button(setup, text="SEE BT DEVICES") 
-pairButton.place(x=cX, y=cY+60, height=25)
-pairButton.config(takefocus=True)
-pairButton.bind("<Return>", pair_bluetooth)  
-pairButton.bind("<ButtonPress>", pair_bluetooth)
-label6 = tk.Label(setup, text="")
-label6.place(x=cX+150, y=cY+62)
 
 # vertical separator, between bluetooth an dwifi setup sections
 separator = ttk.Separator(setup, orient="vertical")
 separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
+
+# button to enable scanning for wifi devices (which will appear in above combobox)
+wifiButton = tk.Button(setup, text="SEE WIFI") 
+wifiButton.place(x=cX+400, y=cY-60, height=25)
+wifiButton.config(takefocus=True)
+wifiButton.bind("<Return>", find_wifi)  
+wifiButton.bind("<ButtonPress>", find_wifi)
+label7 = tk.Label(setup, text="")
+label7.place(x=cX+400+100, y=cY+62-120)
 
 # Create a Combobox for wifi connection selection
 options2 = [""]
@@ -2723,23 +2863,18 @@ combobox_wifi.current(0)
 combobox_wifi.bind("<FocusIn>", on_focus_combobox_wifi)
 combobox_wifi.bind("<FocusOut>", on_focus_out_combobox_wifi)
 combobox_wifi.bind("<<ComboboxSelected>>", lambda e: on_select_wifi(CustomEvent("Auto", combobox_wifi, "ComboBox Event")))
-combobox_wifi.config(state="readonly")
 
-# text entry for wifi password, and its info label
-wifiPassword = tk.Entry(setup, width=30)
+# text entry for wifi password, and its info label, also styles for focus visibility
+style = ttk.Style()
+style.theme_use("default")
+style.configure("Focused.TEntry",fieldbackground="white", foreground="black")
+wifiPassword = ttk.Entry(setup, style="Focused.TEntry", width=30)
 wifiPassword.place(x=cX+400+75, y=cY+30)
 wifiPassword.bind("<Return>", process_wifiPassword)
+wifiPassword.bind("<FocusIn>", on_focus_wifiPassword)
+wifiPassword.bind("<FocusOut>", on_focus_out_wifiPassword)
 label_wifiPassword = tk.Label(setup, text="Password:")
 label_wifiPassword.place(x=cX+400, y=cY+30)
-
-# button to enable scanning for wifi devices (which will appear in above combobox)
-wifiButton = tk.Button(setup, text="SEE WIFI") 
-wifiButton.place(x=cX+400, y=cY+60, height=25)
-wifiButton.config(takefocus=True)
-wifiButton.bind("<Return>", find_wifi)  
-wifiButton.bind("<ButtonPress>", find_wifi)
-label7 = tk.Label(setup, text="")
-label7.place(x=cX+400+100, y=cY+62)
 
 tButton = tk.Button(setup, text="TEST") 
 tButton.place(x=cX+400, y=cY+60+60, height=25)

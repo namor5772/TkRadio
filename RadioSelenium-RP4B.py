@@ -2703,14 +2703,15 @@ for i in range(sizeBank):
     labels_main.append(label_main)
 labels_main[indexKeyList].config(bg="lightblue")    
 
-
+# create a list of all the available station names
+aStringArray = []
+for element in aStation:
+    aStringArray.append(element[0])
 
 
 # Create our custom combobox with 4 rows visible in the dropdown.
-values = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"]
-custom_combo = CustomCombobox(root, values, dropdown_height=4)
-custom_combo.pack(padx=10, pady=10, fill="x")
-
+custom_combo = CustomCombobox(root, aStringArray, dropdown_height=8)
+custom_combo.place(x=130+(sizeButton+5)+275, y=26)
 
 
 # Create a style object
@@ -2719,9 +2720,6 @@ combobox_style.configure("TCombobox", fieldbackground="white")
 
 # Create a combobox (dropdown list)
 # Used to display all avialable radio stations
-aStringArray = []
-for element in aStation:
-    aStringArray.append(element[0])
 combobox = ttk.Combobox(root, values=aStringArray, height=20*0+25, width=32)
 combobox.place(x=130+(sizeButton+5), y=2+30)  # Adjust the position
 combobox.bind("<FocusIn>", on_focus_combobox)

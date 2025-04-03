@@ -1,7 +1,8 @@
 '''
 1. pollFlag implement with button and config poll.txt file
 2. Get rid of TEST button
-3. find some way to indicate graphically when a combobox has focus
+3. DONE - find some way to indicate graphically when a combobox has focus
+4. form shift button change colour to plane blue when in focu & increase size?
 '''
 
 import subprocess
@@ -247,11 +248,11 @@ def on_KeypressButton_press(channel):
                 # of pressing the <Shift-Tab> key within a combobox popup
                 print(f"error {e}")
                 if rootFlag:
-                    combobox.event_generate("<Return>")
+                    #combobox.event_generate("<Return>")
                     focused_widget = root.focus_get()
                     print("Shift-Tab key pressed inside combobox popup!")
                 else:    
-                    combobox_bt.event_generate("<Return>")
+                    #combobox_bt.event_generate("<Return>")
                     focused_widget = setup.focus_get()
                     print("Shift-Tab key pressed inside combobox_bt popup!")
                 focused_widget.event_generate("<Shift-Tab>")
@@ -268,11 +269,11 @@ def on_KeypressButton_press(channel):
                 # of pressing the <Tab> key within a combobox popup
                 print(f"error {e}")
                 if rootFlag:
-                    combobox.event_generate("<Return>")
+                    #combobox.event_generate("<Return>")
                     focused_widget = root.focus_get()
                     print("Tab key pressed inside combobox popup!")
                 else:
-                    combobox_bt.event_generate("<Return>")
+                    #combobox_bt.event_generate("<Return>")
                     focused_widget = setup.focus_get()
                     print("Tab key pressed inside combobox_bt popup!")
                 focused_widget.event_generate("<Tab>")
@@ -289,24 +290,26 @@ def on_KeypressButton_press(channel):
                 # of pressing the <Enter> key within a combobox popup
                 print(f"error {e}")
                 if rootFlag:
-                    combobox.event_generate("<Return>")
+                    #combobox.event_generate("<Return>")
                     print("Enter key pressed inside combobox popup!")
                 else:    
-                    combobox_bt.event_generate("<Return>")
+                    #combobox_bt.event_generate("<Return>")
                     print("Enter key pressed inside combobox_bt popup!")
         case 3: # Down
             # does nothing (no errors) if pressed outside of combobox
             if rootFlag:
-                combobox.event_generate("<Down>")
+                focused_widget = root.focus_get()
             else:
-                combobox_bt.event_generate("<Down>")
+                focused_widget = setup.focus_get()
+            focused_widget.event_generate("<Down>")
             print("Down key pressed!")
         case 4: # Up
             # does nothing (no errors) if pressed outside of combobox
             if rootFlag:
-                combobox.event_generate("<Up>")
+                focused_widget = root.focus_get()
             else:
-                combobox_bt.event_generate("<Up>")
+                focused_widget = setup.focus_get()
+            focused_widget.event_generate("<Up>")
             print("Up key pressed!")
         case _ if 5<=indexKeyList<sizeKeyList:
             if rootFlag:
@@ -1725,7 +1728,6 @@ for i in range(numButtons):
     station = ["-- EMPTY " + str(i) +" --", -1]
     aStation2.append(station)
 
-
 # after gui is initialised and we are running in the root thread
 def after_GUI_started():
    
@@ -1786,14 +1788,12 @@ def after_GUI_started():
     print("")    
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
-
 # do this when closing the window/app
 def on_closing():
     GPIO.cleanup()
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
-
 
 # do this when a radio station is selected from combobox
 def on_select(event):
@@ -1817,8 +1817,9 @@ def on_select(event):
         stopFlag = False # if this call of on_select() should be implemented
       # parameters relating to how this funtion was called
         selected_value_last = selected_value
-        selected_value = combobox.get()
-        combobox_index = combobox.current()
+        selected_value = custom_combo.get()
+        combobox_index = custom_combo.current()
+
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
 
@@ -1874,7 +1875,7 @@ def on_select(event):
             print("JUST ABOUT TO RUN ROOT")
             eventFlag = False
             if pollFlag:
-                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from combobox")))
             print("FINISHED RUNNING ROOT")
             print("")
 
@@ -1900,7 +1901,6 @@ def on_select(event):
         print("selected_value:",selected_value_last)
         print("DID STOPPING BIT")
         print("")
-
 
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
@@ -1988,9 +1988,12 @@ def on_select2(event):
                 # hide the annoying blinking cursor though the fudge
                 # of selective focus setting
                 if event.type=="Auto":
-                    combobox.set(fullStationName)
-                    combobox.focus_set()
-                    combobox.selection_clear()
+                    #combobox.set(fullStationName)
+                    #combobox.focus_set()
+                    #combobox.selection_clear()
+                    custom_combo.set(fullStationName)
+                    custom_combo.focus_set()
+                    custom_combo.selection_clear()
                     buttons[buttonIndex].focus_set()
                 
                 print("JUST ABOUT TO RUN ROOT")
@@ -2061,7 +2064,6 @@ def on_select2(event):
         print("DID STOPPING BIT")
         print("")
 
-
 # called when playlist button i is in focus and the Enter key is pressed.
 # visually simulates a physical button press and initiates the station stream by
 # calling the on_select2    () function
@@ -2076,7 +2078,6 @@ def on_button_press(event, i):
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
-
 
 # called when playlist button i is in focus and the Delete key is pressed.
 # deletes the station from the playlist.
@@ -2120,7 +2121,6 @@ def on_button_delete(event, i):
         print("No station to delete")    
     print(f"space button {i} pressed")
 
-
 # called when playlist button i is in focus and the Insert key is pressed.
 # Inserts the last station played from the combobox into the playlist.
 # If the playlist button is already occupied, the station is replaced.
@@ -2160,7 +2160,6 @@ def on_button_insert(event, i):
         print("No station added")    
     print("")
 
-
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
@@ -2170,66 +2169,12 @@ def on_focus(event, i):
     # global buttonIndex; buttonIndex = i
     print(f"on focus: {i}")
 
-
 # called when a playlist button loses focus.
 # returns the button is a visually "unfocused" state. 
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
     print(f"on focus out: {i}")
-
-
-
-# called when station combobox receives focus.
-# makes sure its display is updated.
-def on_focus_combobox(event):
-    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
-    event.widget.configure(style="Focused.TCombobox")
-    combobox.event_generate("<Right>")
-    combobox.update_idletasks()
-    print("on_focus_combobox")
-
-# called when station combobox loses focus.
-# makes sure its display is updated.
-def on_focus_out_combobox(event):
-    event.widget.configure(style="TCombobox")
-    combobox.update_idletasks()
-    print("on_focus_out_combobox")
-
-
-# called when bluetooth device selection combobox_bt receives focus.
-# makes sure its display is updated.
-def on_focus_combobox_bt(event):
-    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
-    event.widget.configure(style="Focused.TCombobox")
-    combobox_bt.event_generate("<Right>")
-    combobox_bt.update_idletasks()  # Force update
-    print("on_focus_combobox_bt")
-
-# called when bluetooth device selection combobox_bt loses focus.
-# makes sure its display is updated.
-def on_focus_out_combobox_bt(event):
-    event.widget.configure(style="TCombobox")
-    combobox_bt.update_idletasks()
-    print("on_focus_out_combobox_bt")
-
-
-# called when wifi connection device selection combobox_wifi receives focus.
-# makes sure its display is updated.
-def on_focus_combobox_wifi(event):
-    combobox_style.configure("Focused.TCombobox", fieldbackground="lightblue")
-    event.widget.configure(style="Focused.TCombobox")
-    combobox_wifi.event_generate("<Right>")
-    combobox_wifi.update_idletasks()
-    print("on_focus_combobox_wifi")
-
-# called when wifi connection device selection combobox_wifi loses focus.
-# makes sure its display is updated.
-def on_focus_out_combobox_wifi(event):
-    event.widget.configure(style="TCombobox")
-    event.widget.update_idletasks()
-    print("on_focus_out_combobox_wifi")
-
 
 # called when wifiPassword Entry widget receives focus.
 def on_focus_wifiPassword(event):
@@ -2335,7 +2280,7 @@ def on_select_bluetooth(event):
         print("ACTUAL PAIRING STARTS HERE")
         label3.config(text=f"WAITING TO PAIR - please be patient!")
         setup.update_idletasks()
-        selected_device = combobox_bt.get()
+        selected_device = custom_combo_bt.get()
         mac_address = selected_device.split(" - ")[0]
         device_name = selected_device.split(" - ")[1]
     except IndexError as e:
@@ -2458,13 +2403,13 @@ def pair_bluetooth(event):
             print(f"device mac: {device_mac}, name: {device_name}")
     print("have extracted discoverable devices into aPairable")
 
-    combobox_bt['values'] = aPairable
+    custom_combo_bt.set_values(aPairable)
     global numPairable; numPairable = len(aPairable)
     if numPairable==0:
         label3.config(text="No Bluetooth devices found")
     else:    
-        combobox_bt.current(0)
-        combobox_bt.focus_set()
+        custom_combo_bt.current(0)
+        custom_combo_bt.entry.focus_set()
         if len(aPairable)==1:
             label3.config(text=f"Found 1 device")
         else:
@@ -2473,7 +2418,7 @@ def pair_bluetooth(event):
     label6.config(text="")
     
 
-# when [combobox_wifi] selected
+# when [custom_combo_wifi] selected
 # Use current selection from the combobox to connect to the internet
 def on_select_wifi(event):
     global sSSID
@@ -2481,7 +2426,7 @@ def on_select_wifi(event):
         print("ACTUAL WIFI CONNECTING STARTS HERE")
         label5.config(text=f"WAITING TO CONNECT - please be patient!")
         setup.update_idletasks()
-        selected_wifi = combobox_wifi.get()
+        selected_wifi = custom_combo_wifi.get()
         sSSID = selected_wifi.split(" - ")[0]
         sQuality = selected_wifi.split(" - ")[1]
     except IndexError as e:
@@ -2522,7 +2467,6 @@ def process_wifiPassword(event):
     while True:
         command = f'nmcli dev wifi connect "{sSSID}" password "{sPassword}"'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
-#        time.sleep(2)
         if (loop==3) or (result.returncode==0):
             # give up or success
             break
@@ -2539,8 +2483,6 @@ def process_wifiPassword(event):
         # need to reload last streaming station 
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
         root.after(100,lambda: mainButton.focus_set())
-        
-
 
 
 # when [SEE WIFI] button pressed.
@@ -2575,13 +2517,13 @@ def find_wifi(event):
                 print(f"{sSSID} - {sQuality}")
     print("have extracted visible wifi networks into aWIFI")
 
-    combobox_wifi['values'] = aWIFI
+    custom_combo_wifi.set_values(aWIFI)
     global numWIFI; numWIFI = len(aWIFI)
     if numWIFI==0:
         label5.config(text="No visible wifi networks found")
     else:    
-        combobox_wifi.current(0)
-        combobox_wifi.focus_set()
+        custom_combo_wifi.current(0)
+        custom_combo_wifi.entry.focus_set()
         if numWIFI==1:
             label5.config(text=f"Found 1 visible wifi network")
         else:
@@ -2595,90 +2537,260 @@ def key_handler(event):
 
 
 
+# Thanks to Copilot (Think Deeper) AI 
 class CustomCombobox(tk.Frame):
-    def __init__(self, master, values, dropdown_height=5, **kwargs):
+    def __init__(self, master, values, name, visible_items=5, width=25, *args, **kwargs):
         """
-        CustomCombobox creates a combobox-like widget.
-
-        :param master: Parent widget.
-        :param values: List of string values.
-        :param dropdown_height: Number of rows visible in the dropdown.
-        :param kwargs: Additional options for the Frame.
+        Initialize a custom combobox.
+        
+        Parameters:
+            master      : Parent widget.
+            values      : List of item strings.
+            visible_items: Number of items visible in the dropdown.
         """
-        super().__init__(master, **kwargs)
+        super().__init__(master, *args, **kwargs)
         self.values = values
-        self.dropdown_height = dropdown_height
+        self.name = name # Assign a unique name to the instance
+        self.visible_items = visible_items
+        self.selected_index = 0  # default selection index
+        self.width = width  # Store the width
 
-        # Variable to store the current selection
-        self.var = tk.StringVar()
+        # Variable for the displayed item.
+        self.var = tk.StringVar(value=self.values[self.selected_index])
         
-        # Create an entry widget to display the selection.
-        self.entry = tk.Entry(self, textvariable=self.var, relief="sunken", bd=2)
-        self.entry.pack(side="left", fill="x", expand=True)
-        
-        # Create a button that will trigger the dropdown.
-        self.button = tk.Button(self, text="▼", command=self.toggle_dropdown, padx=2)
-        self.button.pack(side="left")
-        
-        # Dropdown is a Toplevel widget; initially, it’s not created.
+        # This entry acts as the combobox display field.
+        self.entry = tk.Entry(self, textvariable=self.var, width=self.width)
+        self.entry.pack(fill="x", expand=True)
+
+        # Store the original background color.
+        self.default_bg = self.entry.cget("background")  
+
+        # Initialize the dropdown-related attributes.
         self.dropdown = None
+        self.listbox = None  # Make sure self.listbox always exists
 
-    def toggle_dropdown(self):
-        """Toggle the dropdown: open it if it’s closed, close if it’s open."""
-        if self.dropdown and tk.Toplevel.winfo_exists(self.dropdown):
-            self.close_dropdown()
+        # Bind key events on the entry.
+        self.entry.bind("<Down>", self.on_down)
+        self.entry.bind("<Up>", self.on_up)
+        self.entry.bind("<Return>", self.on_return)
+        self.entry.bind("<Escape>", self.on_escape)
+        self.entry.bind("<FocusIn>", self.on_focus_combobox)   # Change background on focus in
+        self.entry.bind("<FocusOut>", self.on_focus_out)   # Restore background on focus out
+
+    def set_values(self, new_values):
+        """
+        Updates the list of options in the combobox.
+        """
+        self.values = new_values  # Update the internal values list
+
+        # If the dropdown is already open, update the Listbox.
+        if self.dropdown and self.listbox:
+            self.listbox.delete(0, "end")  # Clear the current items
+            for value in self.values:
+                self.listbox.insert("end", value)
+        
+        # Reset the current selection if necessary.
+        if self.values:
+            self.selected_index = 0
+            self.var.set(self.values[0])  # Set the first item as the default
         else:
-            self.open_dropdown()
+            self.selected_index = -1
+            self.var.set("")  # Clear the display if there are no values
+
+    def get(self):
+        """
+        Returns the current value from the combobox.
+        Now you can call custom_combo.get() to retrieve the text.
+        """
+        return self.var.get()
+
+    def set(self, value):
+        """
+        Sets the combobox display to the provided value.
+        If the value exists in the list of options, update the selected index
+        and, if the dropdown is open, the Listbox selection.
+        """
+        if value in self.values:
+            self.selected_index = self.values.index(value)
+            self.var.set(self.values[self.selected_index])
+            if self.dropdown:
+                self.listbox.select_clear(0, "end")
+                self.listbox.select_set(self.selected_index)
+                self.listbox.activate(self.selected_index)
+                self.listbox.see(self.selected_index)
+        else:
+            # If the provided value is not in the option list,
+            # simply update the display text.
+            self.var.set(value)
+
+    def current(self, index=None):
+        """
+        If no index is provided, return the current selection index.
+        If an index is provided, update the current selection to that index.
+        """
+        if index is None:
+            return self.selected_index
+        else:
+            if index < 0 or index >= len(self.values):
+                raise IndexError("Selection index out of range.")
+            self.selected_index = index
+            self.var.set(self.values[index])
+            # If the dropdown is open, update the Listbox selection.
+            if self.dropdown:
+                self.listbox.select_clear(0, "end")
+                self.listbox.select_set(index)
+                self.listbox.activate(index)
+                self.listbox.see(index)
+            return index
 
     def open_dropdown(self):
-        """Open the dropdown Toplevel with the Listbox."""
-        # Create the Toplevel as a child of the root window.
+        """Opens the dropdown Toplevel with a Listbox of items."""
+        if self.dropdown:
+            return  # Already open
+
+        # Create a borderless Toplevel widget to act as the dropdown
         self.dropdown = tk.Toplevel(self)
-        self.dropdown.wm_overrideredirect(True)  # Remove window decorations.
-        self.dropdown.wm_attributes("-topmost", True)
+        self.dropdown.wm_overrideredirect(True)  # Remove window decorations
         
-        # Position the dropdown just below the combobox.
-        x = self.winfo_rootx()
-        y = self.winfo_rooty() + self.winfo_height()
-        self.dropdown.geometry(f"+{x}+{y}")
-        
-        # Create a Listbox within the dropdown.
-        self.listbox = tk.Listbox(self.dropdown, height=self.dropdown_height)
-        self.listbox.pack(side="left", fill="both", expand=True)
-        
-        # Insert values.
+        # Position the dropdown right below the entry widget.
+        x = self.entry.winfo_rootx()
+        y = self.entry.winfo_rooty() + self.entry.winfo_height()
+        self.dropdown.wm_geometry(f"+{x}+{y}")
+
+        # Create a Listbox to display items.
+        self.listbox = tk.Listbox(self.dropdown, height=self.visible_items, width=self.width)
+        self.listbox.pack(side="left", fill="both")
+
+        # If there are more items than visible, add a vertical scrollbar.
+        if len(self.values) > self.visible_items:
+            self.scrollbar = tk.Scrollbar(self.dropdown, orient="vertical", command=self.listbox.yview)
+            self.scrollbar.pack(side="right", fill="y")
+            self.listbox.configure(yscrollcommand=self.scrollbar.set)
+
+        # Load the values into the listbox.
         for item in self.values:
             self.listbox.insert("end", item)
-        
-        # If there are more items than visible rows, add a scrollbar.
-        if len(self.values) > self.dropdown_height:
-            scrollbar = tk.Scrollbar(self.dropdown, orient="vertical", command=self.listbox.yview)
-            scrollbar.pack(side="right", fill="y")
-            self.listbox.config(yscrollcommand=scrollbar.set)
-        
-        # When an item is selected, update the entry.
-        self.listbox.bind("<<ListboxSelect>>", self.on_select)
-        
-        # If the dropdown loses focus, close it.
-        self.dropdown.bind("<FocusOut>", lambda event: self.close_dropdown())
-        self.dropdown.focus_set()
 
-    def on_select(self, event):
-        """Handle selection from the Listbox."""
-        # Get the current selection.
-        selection = self.listbox.curselection()
-        if selection:
-            index = selection[0]
-            value = self.listbox.get(index)
-            self.var.set(value)
-        self.close_dropdown()
+        # Set the current selection in the listbox to the saved index.
+        self.listbox.select_set(self.selected_index)
+        self.listbox.activate(self.selected_index)
+        self.listbox.see(self.selected_index)
+
+        # Bind mouse click selection in the listbox.
+        self.listbox.bind("<ButtonRelease-1>", self.on_listbox_click)
 
     def close_dropdown(self):
-        """Close and destroy the dropdown Toplevel."""
+        """Destroys the dropdown if it exists."""
         if self.dropdown:
             self.dropdown.destroy()
             self.dropdown = None
 
+    def on_down(self, event):
+        """
+        If the dropdown is closed, open it.
+        Otherwise, move selection down in the listbox.
+        """
+        if not self.dropdown:
+            self.open_dropdown()
+        else:
+            current = self.listbox.curselection()
+            if current:
+                index = current[0]
+                if index < self.listbox.size() - 1:
+                    self.listbox.select_clear(0, "end")
+                    index += 1
+                    self.listbox.select_set(index)
+                    self.listbox.activate(index)
+                    self.listbox.see(index)
+            else:
+                # If no selection exists, select the first item.
+                self.listbox.select_set(0)
+                self.listbox.activate(0)
+        return "break"  # Prevent default behavior
+
+    def on_up(self, event):
+        """
+        If the dropdown is open, move the selection up.
+        """
+        if self.dropdown:
+            current = self.listbox.curselection()
+            if current:
+                index = current[0]
+                if index > 0:
+                    self.listbox.select_clear(0, "end")
+                    index -= 1
+                    self.listbox.select_set(index)
+                    self.listbox.activate(index)
+                    self.listbox.see(index)
+        return "break"
+
+    def on_return(self, event):
+        """
+        When Enter is pressed, confirm the selection, update the value,
+        close the dropdown, and maintain focus on the entry.
+        """
+        if self.dropdown:
+            current = self.listbox.curselection()
+            if current:
+                self.selected_index = current[0]
+                selected_value = self.values[self.selected_index]
+                self.var.set(selected_value)
+            self.close_dropdown()
+            self.entry.focus_set()
+            if self.name=="custom_combo":
+                on_select(CustomEvent("Auto", self, "ComboBox Event"))
+            elif self.name=="custom_combo_bt":    
+                on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
+            elif self.name=="custom_combo_wifi":
+                on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
+        return "break"
+
+    def on_escape(self, event):
+        """
+        Pressing Escape will close the dropdown if it is open.
+        """
+        if self.dropdown:
+            self.close_dropdown()
+            return "break"
+
+    def on_focus_combobox(self, event):
+        """
+        Change the background color to light blue when the entry gains focus.
+        If the default background is not set, initialize it.
+        """
+        if not hasattr(self, "default_bg") or self.default_bg is None:
+            self.default_bg = self.entry.cget("background")
+        self.entry.config(background="light blue")
+
+    def on_focus_out(self, event):
+        """
+        Restore the background color to its default value and 
+        check if we need to close the dropdown.
+        """
+        self.entry.config(background=self.default_bg)
+        self.after(100, self.check_focus)
+
+    def check_focus(self):
+        """
+        Checks focus of the current widget. Closes the dropdown if focus has moved
+        away from both the entry and the dropdown.
+        """
+        if self.dropdown:
+            current_focus = self.focus_get()
+            if current_focus not in (self.entry, self.listbox) and not str(current_focus).startswith(str(self.dropdown)):
+                self.close_dropdown()
+
+    def on_listbox_click(self, event):
+        """
+        Handles mouse selection from the listbox.
+        """
+        index = self.listbox.curselection()
+        if index:
+            self.selected_index = index[0]
+            selected_value = self.values[self.selected_index]
+            self.var.set(selected_value)
+        self.close_dropdown()
+        self.entry.focus_set()
 
 
 
@@ -2709,22 +2821,14 @@ for element in aStation:
     aStringArray.append(element[0])
 
 
-# Create our custom combobox with 4 rows visible in the dropdown.
-custom_combo = CustomCombobox(root, aStringArray, dropdown_height=8)
-custom_combo.place(x=130+(sizeButton+5)+275, y=26)
+# Create our custom combobox with 8 rows visible in the dropdown.
+custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=8, width=30)
+custom_combo.place(x=130+(sizeButton+5), y=26)
 
 
 # Create a style object
 combobox_style = ttk.Style()
 combobox_style.configure("TCombobox", fieldbackground="white")
-
-# Create a combobox (dropdown list)
-# Used to display all avialable radio stations
-combobox = ttk.Combobox(root, values=aStringArray, height=20*0+25, width=32)
-combobox.place(x=130+(sizeButton+5), y=2+30)  # Adjust the position
-combobox.bind("<FocusIn>", on_focus_combobox)
-combobox.bind("<FocusOut>", on_focus_out_combobox)
-combobox.bind("<<ComboboxSelected>>", lambda e: on_select(CustomEvent("Auto", combobox, "ComboBox Event")))
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
@@ -2831,12 +2935,8 @@ cX = 15; cY = 125
 label3 = tk.Label(setup, text="")
 label3.place(x=cX+1, y=cY)
 options = [""]
-combobox_bt = ttk.Combobox(setup, values=options, height=25, width=40)
-combobox_bt.place(x = cX, y = cY+30)
-combobox_bt.current(0)
-combobox_bt.bind("<FocusIn>", on_focus_combobox_bt)
-combobox_bt.bind("<FocusOut>", on_focus_out_combobox_bt)
-combobox_bt.bind("<<ComboboxSelected>>", lambda e: on_select_bluetooth(CustomEvent("Auto", combobox_bt, "ComboBox Event")))
+custom_combo_bt = CustomCombobox(setup, options, "custom_combo_bt", visible_items=4, width=44)
+custom_combo_bt.place(x=cX, y=cY+30)
 
 # vertical separator, between bluetooth an dwifi setup sections
 separator = ttk.Separator(setup, orient="vertical")
@@ -2855,12 +2955,8 @@ label7.place(x=cX+400+100, y=cY+62-120)
 options2 = [""]
 label5 = tk.Label(setup, text="")
 label5.place(x=cX+1+400, y=cY-30)
-combobox_wifi = ttk.Combobox(setup, values=options2, height=25, width=40)
-combobox_wifi.place(x = cX+400, y = cY)
-combobox_wifi.current(0)
-combobox_wifi.bind("<FocusIn>", on_focus_combobox_wifi)
-combobox_wifi.bind("<FocusOut>", on_focus_out_combobox_wifi)
-combobox_wifi.bind("<<ComboboxSelected>>", lambda e: on_select_wifi(CustomEvent("Auto", combobox_wifi, "ComboBox Event")))
+custom_combo_wifi = CustomCombobox(setup, options2, "custom_combo_wifi", visible_items=6, width=44)
+custom_combo_wifi.place(x=cX+400, y=cY)
 
 # text entry for wifi password, and its info label, also styles for focus visibility
 style = ttk.Style()

@@ -2546,7 +2546,9 @@ class CustomCombobox(tk.Frame):
         Parameters:
             master      : Parent widget.
             values      : List of item strings.
+            name        : string used to identify actual created object to distinguish function calls
             visible_items: Number of items visible in the dropdown.
+            width       : Width of the entry and dropdown fields (in average characters).            
         """
         super().__init__(master, *args, **kwargs)
         self.values = values

@@ -1,13 +1,11 @@
 # TkRadio
 
-An Internet Radio that uses Python with tkinter & selenium.
-The best way to load this software is to Clone this Git Repository using Visual Studio Code.
+Here the building of an Internet Radio will be described in detail.
+The software uses Python with tkinter and selenium, while the hardware is based on a Raspberry Pi 5. The best way to load this software is to Clone this Git Repository using Visual Studio Code.
 
-Here the implementation of this software and building the hardware and enclosure for a dedicated Raspberry Pi 4B will be described in detail.
+As a standalone app (RadioSelenium-Windows11.py) the gui it can also be run under the Windows 11 OS (or other Linux versions). In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. RadioSelenium-RP5.py is the file for the Raspberry Pi hardware.
 
-As a standalone app in the gui it can also be run under the Windows 11 OS or other Linux versions. In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. The RadioSelenium-Windows11.py is the file for running on Windows 11 or Linux GUI as "just" an app, while RadioSelenium-RP4B.py is the file for the Raspberry Pi hardware
-
-It has access to 146 radio stations (currently) mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition if available the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). The default is for this program information to be refreshed approximately every 22 seconds while the stream is playing.
+The radio software has access to 146 radio stations (currently) mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition if available the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). The default is for this program information to be refreshed approximately every 22 seconds while the stream is playing.
 
 For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. When a playlist button is selected pressing the [Delete] key deletes the radio station assigned to that playlist button leaving the graphic blank. Similarily when the [Insert] key is pressed the station that was previously selected from the combobox is assigned to the playlist button overwiting the previous graphic.
 
@@ -15,9 +13,11 @@ Occasionally internet/website issues might cause a station to fail to stream or 
 
 Details of the station (from the playlist) currently playing is saved to a file so that if the program is restarted it will automatically start streaming that station. The current playlist is also saved to file after any changes so that it is displayed after restart.
 
-The RadioSelenium-RP4B.py python file can be launched from any directory as long as it contains the Images subdirectory and its files from the GitHub repository. The playlist.txt, savedRadioStation.txt, bluetooth.txt and pollflag.txt files are assumed to be in the same directory as well.
+The RadioSelenium-RP5.py python file (or RadioSelenium-Windows11.py) can be launched from any directory as long as it contains the Images subdirectory and its files from the GitHub repository. The playlist.txt, savedRadioStation.txt, bluetooth.txt and pollflag.txt files are assumed to be in the same directory as well.
 
-Below is an image of the applications GUI with the selected (from playlist) ABC Classic station streaming:
+In the Raspberry Pi case the softwares gui also has a secondary form for pairing/connecting to bluetooth speakers (the default being external speakers attached to the 3.5mm stereo jack of the Raspberry Pi). In addition the connection to the wifi network can also be explicitly made through this apps form. The above is necessary since the app is dedicated solely to the Raspberry Pi and is the only interface to the physical internet radio. We can only use buttons and no mouse or keyboard is assumed to be connected.
+
+Below is an image of the applications main and setup forms.
 ![app GUI image](Images/imageGUI.png)
 
 ## Hardware

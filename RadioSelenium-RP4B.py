@@ -1,8 +1,8 @@
 '''
-1. pollFlag implement with button and config poll.txt file
-2. Get rid of TEST button
+1. DONE - pollFlag implement
+2. DONE - Get rid of TEST button
 3. DONE - find some way to indicate graphically when a combobox has focus
-4. form shift button change colour to plane blue when in focu & increase size?
+4. DONE - form shift button change colour to plane blue when in focus & increase size?
 '''
 
 import subprocess
@@ -183,7 +183,6 @@ KeyList = [
     ["F11","F11"]
 ]
 
-
 # GPIO button 21 pressed
 def on_LeftButton_press(channel):
     global indexKeyList, indexBank, indexVisibleKey
@@ -232,93 +231,14 @@ def on_RightButton_press(channel):
 
 # GPIO button 16 pressed
 def on_KeypressButton_press(channel):
-    print(f"KeypressButton {KeyList[indexKeyList][1]} Pressed!")
-    sKey = KeyList[indexKeyList][1]
-    match indexKeyList:
-        case 0: # <-Tab
-            try:
-                if rootFlag:
-                    focused_widget = root.focus_get()
-                else:
-                    focused_widget = setup.focus_get()
-                focused_widget.event_generate("<Shift-Tab>")
-                print("Shift-Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Shift-Tab> key within a combobox popup
-                print(f"error {e}")
-                if rootFlag:
-                    #combobox.event_generate("<Return>")
-                    focused_widget = root.focus_get()
-                    print("Shift-Tab key pressed inside combobox popup!")
-                else:    
-                    #combobox_bt.event_generate("<Return>")
-                    focused_widget = setup.focus_get()
-                    print("Shift-Tab key pressed inside combobox_bt popup!")
-                focused_widget.event_generate("<Shift-Tab>")
-        case 1: # Tab
-            try:
-                if rootFlag:
-                    focused_widget = root.focus_get()
-                else:
-                    focused_widget = setup.focus_get()
-                focused_widget.event_generate("<Tab>")
-                print("Tab key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Tab> key within a combobox popup
-                print(f"error {e}")
-                if rootFlag:
-                    #combobox.event_generate("<Return>")
-                    focused_widget = root.focus_get()
-                    print("Tab key pressed inside combobox popup!")
-                else:
-                    #combobox_bt.event_generate("<Return>")
-                    focused_widget = setup.focus_get()
-                    print("Tab key pressed inside combobox_bt popup!")
-                focused_widget.event_generate("<Tab>")
-        case 2: # Enter
-            try:
-                if rootFlag:
-                    focused_widget = root.focus_get()
-                else:
-                    focused_widget = setup.focus_get()
-                focused_widget.event_generate("<Return>")
-                print("Enter key pressed!")
-            except KeyError as e:
-                # mysterious stuff I have to do to precisely simulate the behaviour
-                # of pressing the <Enter> key within a combobox popup
-                print(f"error {e}")
-                if rootFlag:
-                    #combobox.event_generate("<Return>")
-                    print("Enter key pressed inside combobox popup!")
-                else:    
-                    #combobox_bt.event_generate("<Return>")
-                    print("Enter key pressed inside combobox_bt popup!")
-        case 3: # Down
-            # does nothing (no errors) if pressed outside of combobox
-            if rootFlag:
-                focused_widget = root.focus_get()
-            else:
-                focused_widget = setup.focus_get()
-            focused_widget.event_generate("<Down>")
-            print("Down key pressed!")
-        case 4: # Up
-            # does nothing (no errors) if pressed outside of combobox
-            if rootFlag:
-                focused_widget = root.focus_get()
-            else:
-                focused_widget = setup.focus_get()
-            focused_widget.event_generate("<Up>")
-            print("Up key pressed!")
-        case _ if 5<=indexKeyList<sizeKeyList:
-            if rootFlag:
-                focused_widget = root.focus_get()
-            else:
-                focused_widget = setup.focus_get()
-            focused_widget.event_generate(f"<Key-{sKey}>")
-            print(f"<Key-{sKey}> pressed!")
-
+    sKey0 = KeyList[indexKeyList][0]
+    sKey1 = KeyList[indexKeyList][1]
+    if rootFlag:
+        focused_widget = root.focus_get()
+    else:
+        focused_widget = setup.focus_get()
+    focused_widget.event_generate(f"<Key-{sKey1}>")
+    print(f"sKey0: <Key-{sKey1}> pressed")
 
 GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
 GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
@@ -376,6 +296,11 @@ filename3 = 'bluetooth.txt'
 filepath3 = os.path.join(script_dir, filename3)
 print(f'The file {filepath3} stores bluetooth status before shutdown.')
 
+# Create the full filepath to the pollflag status text file
+filename4 = 'pollflag.txt'
+filepath4 = os.path.join(script_dir, filename4)
+print(f'The file {filepath4} stores the pollFlag when it is changed.')
+
 # global variables for combobox selection indexes & button related
 numButtons = 18
 sizeButton = 62
@@ -398,7 +323,7 @@ pressButton = True # flag for how stream is started
 
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
-pollFlag = True # if true then poll website for program text and picture changes 
+pollFlag = False # if true then poll website for program text and picture changes 
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1260,313 +1185,172 @@ def Commercial2(br,sPath):
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 
 
-
 # START **********************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
 #
 # Each one calls a particular core function defined above with specific parameters,
 # dependant on the structure of a specific stations website layout
 
-def ABC_Radio_Sydney_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/sydney")
-def ABC_Broken_Hill_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/brokenhill")
-def ABC_Central_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralcoast")
-def ABC_Central_West_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralwest")
-def ABC_Coffs_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/coffscoast")
-def ABC_Illawarra_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/illawarra")
-def ABC_Mid_North_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/midnorthcoast")
-def ABC_New_England_North_West_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/newengland")
-def ABC_Newcastle_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/newcastle")
-def ABC_North_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northcoast")
-def ABC_Riverina_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/riverina")
-def ABC_South_East_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southeastnsw")
-def ABC_Upper_Hunter_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/upperhunter")
-def ABC_Western_Plains_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/westernplains")
-def ABC_Radio_Canberra_ACT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/canberra")
-def ABC_Radio_Darwin_NT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/darwin")
-def ABC_Alice_Springs_NT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/alicesprings")
-def ABC_Radio_Melbourne_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/melbourne")
-def ABC_Ballarat_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/ballarat")
-def ABC_Central_Victoria_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralvic")
-def ABC_Gippsland_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/gippsland")
-def ABC_Goulburn_Murray_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goulburnmurray")
-def ABC_Mildura_Swan_Hill_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/milduraswanhill")
-def ABC_Shepparton_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/shepparton")
-def ABC_South_West_Victoria_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southwestvic")
-def ABC_Wimmera_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/wimmera")
-def ABC_Radio_Adelaide_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/adelaide")
-def ABC_Eyre_Peninsula_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/eyre")
-def ABC_North_and_West_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northandwest")
-def ABC_Riverland_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/riverland")
-def ABC_South_East_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southeastsa")
-def ABC_Radio_Hobart_TAS():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/hobart")
-def ABC_Northern_Tasmania_TAS():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northtas")
-def ABC_Radio_Brisbane_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/brisbane")
-def ABC_Capricornia_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/capricornia")
-def ABC_Far_North_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/farnorth")
-def ABC_Gold_Coast_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goldcoast")
-def ABC_North_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northqld")
-def ABC_North_West_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northwest")
-def ABC_Southern_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southqld")
-def ABC_Sunshine_Coast_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/sunshine")
-def ABC_Tropical_North_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/tropic")
-def ABC_Western_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/westqld")
-def ABC_Wide_Bay_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/widebay")
-def ABC_Radio_Perth_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/perth")
-def ABC_Esperance_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/esperance")
-def ABC_Goldfields_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goldfields")
-def ABC_Great_Southern_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/greatsouthern")
-def ABC_Kimberley_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/kimberley")
-def ABC_Midwest_and_Wheatbelt_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/wheatbelt")
-def ABC_Pilbara_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/pilbara")
-def ABC_South_West_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
-def ABC_NewsRadio():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/news")
-def ABC_Radio_National_LIVE():
-    return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_QLD():
-    return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_WA():
-    return Radio2(browser,2,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_SA():
-    return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_NT():
-    return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
-def ABC_SPORT(): # *************************************************************** FIX ****
-    return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
-def ABC_triple_j_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_Hottest():
-    return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
-def ABC_triple_j_Unearthed():
-    return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
-def ABC_Double_j_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Classic_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic2():
-    return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
-def ABC_Jazz():
-    return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
-def ABC_Country():
-    return Radio5(browser,"https://www.abc.net.au/listen/live/country")
-def ABC_Kids_listen():
-    return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
-def ABC_Radio_Australia():
-    return Radio5(browser,"https://www.abc.net.au/pacific/live")
-def KIIS1065():
-    return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
-def GOLD1017():
-    return Commercial1(browser,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0)
-def CADA():
-    return Commercial1(browser,"https://www.iheart.com/live/cada-6179/","css-1jnehb1 e1aypx0f0",0)
-def iHeartCountry_Australia():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartcountry-australia-7222/","css-1jnehb1 e1aypx0f0",0)
-def KIIS_90s():
-    return Commercial1(browser,"https://www.iheart.com/live/kiis-90s-10069/","css-1jnehb1 e1aypx0f0",0)
-def GOLD_80s():
-    return Commercial1(browser,"https://www.iheart.com/live/gold-80s-10073/","css-1jnehb1 e1aypx0f0",0)    
-def iHeartRadio_Countdown_AUS():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartradio-countdown-aus-6902/","css-1jnehb1 e1aypx0f0",0)
-def TikTok_Trending_on_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/","css-1jnehb1 e1aypx0f0",0)
-def iHeartDance():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartdance-6941/","css-1jnehb1 e1aypx0f0",0)
-def The_Bounce():
-    return Commercial1(browser,"https://www.iheart.com/live/the-bounce-6327/","css-1jnehb1 e1aypx0f0",0)
-def iHeartAustralia():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartaustralia-7050/","css-1jnehb1 e1aypx0f0",0)
-def fbi_radio():
-    return Commercial1(browser,"https://www.iheart.com/live/fbiradio-6311/","css-1jnehb1 e1aypx0f0",0)
-def _2SER():
-    return Commercial1(browser,"https://www.iheart.com/live/2ser-6324/","css-1jnehb1 e1aypx0f0",0)
-def _2MBS_Fine_Music_Sydney():
-    return Commercial1(browser,"https://www.iheart.com/live/2mbs-fine-music-sydney-6312/","css-1jnehb1 e1aypx0f0",0)
-def KIX_Country():
-    return Commercial1(browser,"https://www.iheart.com/live/kix-country-9315/","css-1jnehb1 e1aypx0f0",0)
-def SBS_Chill():
-    return Commercial1(browser,"https://www.iheart.com/live/sbs-chill-7029/","css-1jnehb1 e1aypx0f0",0)
-def Vintage_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/vintage-fm-8865/","css-1jnehb1 e1aypx0f0",0)
-def My88_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/my88-fm-8866/","css-1jnehb1 e1aypx0f0",0)
-def Hope_103_2():
-    return Commercial1(browser,"https://www.iheart.com/live/hope-1032-6314/","css-1jnehb1 e1aypx0f0",0)
-def The_90s_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/the-90s-iheartradio-6793/","css-1jnehb1 e1aypx0f0",0)
-def The_80s_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/the-80s-iheartradio-6794/","css-1jnehb1 e1aypx0f0",0)
-def Mix_102_3():
-    return Commercial1(browser,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0)
-def Cruise_1323():
-    return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0)
-def Mix_80s():
-    return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
-def Mix_90s():
-    return Commercial1(browser,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0)
-def ABC_Sport():
-    return Commercial1(browser,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0)
-def ABC_Sport_Extra():
-    return Commercial1(browser,"https://www.iheart.com/live/abc-sport-extra-10233/","css-1jnehb1 e1aypx0f0",0)
-def Energy_Groove():
-    return Commercial1(browser,"https://www.iheart.com/live/energy-groove-6329/","css-1jnehb1 e1aypx0f0",0)
-def Vision_Christian_Radio():
-    return Commercial1(browser,"https://www.iheart.com/live/vision-christian-radio-9689/","css-1jnehb1 e1aypx0f0",0)
-def Starter_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/starter-fm-9353/","css-1jnehb1 e1aypx0f0",0)
-def _2ME():
-    return Commercial1(browser,"https://www.iheart.com/live/2me-10143/","css-1jnehb1 e1aypx0f0",0)
-def SBS_PopAsia():
-    return Commercial1(browser,"https://www.iheart.com/live/sbs-popasia-7028/","css-1jnehb1 e1aypx0f0",0)
-def _3MBS_Fine_Music_Melbourne():
-    return Commercial1(browser,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/","css-1jnehb1 e1aypx0f0",0)
-def Golden_Days_Radio():
-    return Commercial1(browser,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0)
-def PBS_106_7FM():
-    return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0)
-def smoothfm_953_Sydney():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_VINTAGE():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothvintage","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_relax():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothrelax","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_80s():
-    return Commercial1(browser,"https://smooth.com.au/station/smooth80s","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Adelaide():
-    return Commercial1(browser,"https://smooth.com.au/station/adelaide","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_915_Melbourne():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothfm915","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Brisbane():
-    return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Perth():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def nova_969_Sydney():
-    return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_90s():
-    return Commercial1(browser,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_THROWBACKS():
-    return Commercial1(browser,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_FreshCOUNTRY():
-    return Commercial1(browser,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_NATION():
-    return Commercial1(browser,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_919_Adelaide():
-    return Commercial1(browser,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_100_Melbourne():
-    return Commercial1(browser,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_1069_Brisbane():
-    return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_937_Perth():
-    return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
-def _2GB_SYDNEY():
-    return Commercial2(browser,"https://www.radio-australia.org/2gb")
-def _2GN_GOULBURN():
-    return Commercial2(browser,"https://www.radio-australia.org/2gn")
-def bbc_radio_1():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
-def bbc_radio_2():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
-def bbc_radio_3():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
-def bbc_radio_4():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
-def bbc_radio_5_live():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
-def _1000_hits_classical_music():
-    return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
-def classic_fm():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
-def klassik_radio():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
-def klassik_radio_pure_bach():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
-def klassik_radio_pure_beethoven():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
-def klassik_radio_pure_mozart():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
-def klassik_radio_pure_verdi():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
-def epic_piano_chopin():
-    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
+def ABC_Classic2():          return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
+def ABC_Jazz():              return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
+def ABC_triple_j_Hottest():  return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
+def ABC_triple_j_Unearthed():return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
+
+def ABC_Radio_National_LIVE():return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_QLD(): return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_WA():  return Radio2(browser,2,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_SA():  return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_NT():  return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
+
+def ABC_triple_j_LIVE():return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_QLD(): return Radio3(browser,1,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_WA():  return Radio3(browser,2,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_SA():  return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_NT():  return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
+def ABC_Double_j_LIVE():return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_QLD(): return Radio3(browser,1,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_WA():  return Radio3(browser,2,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_SA():  return Radio3(browser,3,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_NT():  return Radio3(browser,4,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Classic_LIVE(): return Radio3(browser,0,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_QLD():  return Radio3(browser,1,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_WA():   return Radio3(browser,2,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_SA():   return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_NT():   return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
+
+def ABC_Radio_Sydney_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/sydney")
+def ABC_Broken_Hill_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/brokenhill")
+def ABC_Central_Coast_NSW():         return Radio4(browser,"https://www.abc.net.au/listen/live/centralcoast")
+def ABC_Central_West_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/centralwest")
+def ABC_Coffs_Coast_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/coffscoast")
+def ABC_Illawarra_NSW():             return Radio4(browser,"https://www.abc.net.au/listen/live/illawarra")
+def ABC_Mid_North_Coast_NSW():       return Radio4(browser,"https://www.abc.net.au/listen/live/midnorthcoast")
+def ABC_New_England_North_West_NSW():return Radio4(browser,"https://www.abc.net.au/listen/live/newengland")
+def ABC_Newcastle_NSW():             return Radio4(browser,"https://www.abc.net.au/listen/live/newcastle")
+def ABC_North_Coast_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/northcoast")
+def ABC_Riverina_NSW():              return Radio4(browser,"https://www.abc.net.au/listen/live/riverina")
+def ABC_South_East_NSW():            return Radio4(browser,"https://www.abc.net.au/listen/live/southeastnsw")
+def ABC_Upper_Hunter_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/upperhunter")
+def ABC_Western_Plains_NSW():        return Radio4(browser,"https://www.abc.net.au/listen/live/westernplains")
+def ABC_Radio_Canberra_ACT():        return Radio4(browser,"https://www.abc.net.au/listen/live/canberra")
+def ABC_Radio_Darwin_NT():           return Radio4(browser,"https://www.abc.net.au/listen/live/darwin")
+def ABC_Alice_Springs_NT():          return Radio4(browser,"https://www.abc.net.au/listen/live/alicesprings")
+def ABC_Radio_Melbourne_VIC():       return Radio4(browser,"https://www.abc.net.au/listen/live/melbourne")
+def ABC_Ballarat_VIC():              return Radio4(browser,"https://www.abc.net.au/listen/live/ballarat")
+def ABC_Central_Victoria_VIC():      return Radio4(browser,"https://www.abc.net.au/listen/live/centralvic")
+def ABC_Gippsland_VIC():             return Radio4(browser,"https://www.abc.net.au/listen/live/gippsland")
+def ABC_Goulburn_Murray_VIC():       return Radio4(browser,"https://www.abc.net.au/listen/live/goulburnmurray")
+def ABC_Mildura_Swan_Hill_VIC():     return Radio4(browser,"https://www.abc.net.au/listen/live/milduraswanhill")
+def ABC_Shepparton_VIC():            return Radio4(browser,"https://www.abc.net.au/listen/live/shepparton")
+def ABC_South_West_Victoria_VIC():   return Radio4(browser,"https://www.abc.net.au/listen/live/southwestvic")
+def ABC_Wimmera_VIC():               return Radio4(browser,"https://www.abc.net.au/listen/live/wimmera")
+def ABC_Radio_Adelaide_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/adelaide")
+def ABC_Eyre_Peninsula_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/eyre")
+def ABC_North_and_West_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/northandwest")
+def ABC_Riverland_SA():              return Radio4(browser,"https://www.abc.net.au/listen/live/riverland")
+def ABC_South_East_SA():             return Radio4(browser,"https://www.abc.net.au/listen/live/southeastsa")
+def ABC_Radio_Hobart_TAS():          return Radio4(browser,"https://www.abc.net.au/listen/live/hobart")
+def ABC_Northern_Tasmania_TAS():     return Radio4(browser,"https://www.abc.net.au/listen/live/northtas")
+def ABC_Radio_Brisbane_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/brisbane")
+def ABC_Capricornia_QLD():           return Radio4(browser,"https://www.abc.net.au/listen/live/capricornia")
+def ABC_Far_North_QLD():             return Radio4(browser,"https://www.abc.net.au/listen/live/farnorth")
+def ABC_Gold_Coast_QLD():            return Radio4(browser,"https://www.abc.net.au/listen/live/goldcoast")
+def ABC_North_Queensland_QLD():      return Radio4(browser,"https://www.abc.net.au/listen/live/northqld")
+def ABC_North_West_Queensland_QLD(): return Radio4(browser,"https://www.abc.net.au/listen/live/northwest")
+def ABC_Southern_Queensland_QLD():   return Radio4(browser,"https://www.abc.net.au/listen/live/southqld")
+def ABC_Sunshine_Coast_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/sunshine")
+def ABC_Tropical_North_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/tropic")
+def ABC_Western_Queensland_QLD():    return Radio4(browser,"https://www.abc.net.au/listen/live/westqld")
+def ABC_Wide_Bay_QLD():              return Radio4(browser,"https://www.abc.net.au/listen/live/widebay")
+def ABC_Radio_Perth_WA():            return Radio4(browser,"https://www.abc.net.au/listen/live/perth")
+def ABC_Esperance_WA():              return Radio4(browser,"https://www.abc.net.au/listen/live/esperance")
+def ABC_Goldfields_WA():             return Radio4(browser,"https://www.abc.net.au/listen/live/goldfields")
+def ABC_Great_Southern_WA():         return Radio4(browser,"https://www.abc.net.au/listen/live/greatsouthern")
+def ABC_Kimberley_WA():              return Radio4(browser,"https://www.abc.net.au/listen/live/kimberley")
+def ABC_Midwest_and_Wheatbelt_WA():  return Radio4(browser,"https://www.abc.net.au/listen/live/wheatbelt")
+def ABC_Pilbara_WA():                return Radio4(browser,"https://www.abc.net.au/listen/live/pilbara")
+def ABC_South_West_WA():             return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
+def ABC_NewsRadio():                 return Radio4(browser,"https://www.abc.net.au/listen/live/news")
+
+def ABC_Country():        return Radio5(browser,"https://www.abc.net.au/listen/live/country")
+def ABC_Radio_Australia():return Radio5(browser,"https://www.abc.net.au/pacific/live")
+
+def ABC_Kids_listen():return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
+
+# **** FIX ****
+def ABC_SPORT():return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
+
+def KIIS1065():                      return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
+def GOLD1017():                      return Commercial1(browser,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0)
+def CADA():                          return Commercial1(browser,"https://www.iheart.com/live/cada-6179/","css-1jnehb1 e1aypx0f0",0)
+def iHeartCountry_Australia():       return Commercial1(browser,"https://www.iheart.com/live/iheartcountry-australia-7222/","css-1jnehb1 e1aypx0f0",0)
+def KIIS_90s():                      return Commercial1(browser,"https://www.iheart.com/live/kiis-90s-10069/","css-1jnehb1 e1aypx0f0",0)
+def GOLD_80s():                      return Commercial1(browser,"https://www.iheart.com/live/gold-80s-10073/","css-1jnehb1 e1aypx0f0",0)    
+def iHeartRadio_Countdown_AUS():     return Commercial1(browser,"https://www.iheart.com/live/iheartradio-countdown-aus-6902/","css-1jnehb1 e1aypx0f0",0)
+def TikTok_Trending_on_iHeartRadio():return Commercial1(browser,"https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/","css-1jnehb1 e1aypx0f0",0)
+def iHeartDance():                   return Commercial1(browser,"https://www.iheart.com/live/iheartdance-6941/","css-1jnehb1 e1aypx0f0",0)
+def The_Bounce():                    return Commercial1(browser,"https://www.iheart.com/live/the-bounce-6327/","css-1jnehb1 e1aypx0f0",0)
+def iHeartAustralia():               return Commercial1(browser,"https://www.iheart.com/live/iheartaustralia-7050/","css-1jnehb1 e1aypx0f0",0)
+def fbi_radio():                     return Commercial1(browser,"https://www.iheart.com/live/fbiradio-6311/","css-1jnehb1 e1aypx0f0",0)
+def _2SER():                         return Commercial1(browser,"https://www.iheart.com/live/2ser-6324/","css-1jnehb1 e1aypx0f0",0)
+def _2MBS_Fine_Music_Sydney():       return Commercial1(browser,"https://www.iheart.com/live/2mbs-fine-music-sydney-6312/","css-1jnehb1 e1aypx0f0",0)
+def KIX_Country():                   return Commercial1(browser,"https://www.iheart.com/live/kix-country-9315/","css-1jnehb1 e1aypx0f0",0)
+def SBS_Chill():                     return Commercial1(browser,"https://www.iheart.com/live/sbs-chill-7029/","css-1jnehb1 e1aypx0f0",0)
+def Vintage_FM():                    return Commercial1(browser,"https://www.iheart.com/live/vintage-fm-8865/","css-1jnehb1 e1aypx0f0",0)
+def My88_FM():                       return Commercial1(browser,"https://www.iheart.com/live/my88-fm-8866/","css-1jnehb1 e1aypx0f0",0)
+def Hope_103_2():                    return Commercial1(browser,"https://www.iheart.com/live/hope-1032-6314/","css-1jnehb1 e1aypx0f0",0)
+def The_90s_iHeartRadio():           return Commercial1(browser,"https://www.iheart.com/live/the-90s-iheartradio-6793/","css-1jnehb1 e1aypx0f0",0)
+def The_80s_iHeartRadio():           return Commercial1(browser,"https://www.iheart.com/live/the-80s-iheartradio-6794/","css-1jnehb1 e1aypx0f0",0)
+def Mix_102_3():                     return Commercial1(browser,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0)
+def Cruise_1323():                   return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0)
+def Mix_80s():                       return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
+def Mix_90s():                       return Commercial1(browser,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0)
+def ABC_Sport():                     return Commercial1(browser,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0)
+def ABC_Sport_Extra():               return Commercial1(browser,"https://www.iheart.com/live/abc-sport-extra-10233/","css-1jnehb1 e1aypx0f0",0)
+def Energy_Groove():                 return Commercial1(browser,"https://www.iheart.com/live/energy-groove-6329/","css-1jnehb1 e1aypx0f0",0)
+def Vision_Christian_Radio():        return Commercial1(browser,"https://www.iheart.com/live/vision-christian-radio-9689/","css-1jnehb1 e1aypx0f0",0)
+def Starter_FM():                    return Commercial1(browser,"https://www.iheart.com/live/starter-fm-9353/","css-1jnehb1 e1aypx0f0",0)
+def _2ME():                          return Commercial1(browser,"https://www.iheart.com/live/2me-10143/","css-1jnehb1 e1aypx0f0",0)
+def SBS_PopAsia():                   return Commercial1(browser,"https://www.iheart.com/live/sbs-popasia-7028/","css-1jnehb1 e1aypx0f0",0)
+def _3MBS_Fine_Music_Melbourne():    return Commercial1(browser,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/","css-1jnehb1 e1aypx0f0",0)
+def Golden_Days_Radio():             return Commercial1(browser,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0)
+def PBS_106_7FM():                   return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0)
+def smoothfm_953_Sydney():           return Commercial1(browser,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_VINTAGE():                return Commercial1(browser,"https://smooth.com.au/station/smoothvintage","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_relax():                  return Commercial1(browser,"https://smooth.com.au/station/smoothrelax","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_80s():                    return Commercial1(browser,"https://smooth.com.au/station/smooth80s","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Adelaide():             return Commercial1(browser,"https://smooth.com.au/station/adelaide","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_915_Melbourne():        return Commercial1(browser,"https://smooth.com.au/station/smoothfm915","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Brisbane():             return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Perth():                return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def nova_969_Sydney():               return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_90s():                      return Commercial1(browser,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_THROWBACKS():               return Commercial1(browser,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_FreshCOUNTRY():             return Commercial1(browser,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_NATION():                   return Commercial1(browser,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_919_Adelaide():             return Commercial1(browser,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_100_Melbourne():            return Commercial1(browser,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_1069_Brisbane():            return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_937_Perth():                return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
+
+def _2GB_SYDNEY():                 return Commercial2(browser,"https://www.radio-australia.org/2gb")
+def _2GN_GOULBURN():               return Commercial2(browser,"https://www.radio-australia.org/2gn")
+def bbc_radio_1():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
+def bbc_radio_2():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
+def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
+def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
+def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
+def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
+def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
+def klassik_radio():               return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
+def klassik_radio_pure_bach():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
+def klassik_radio_pure_beethoven():return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
+def klassik_radio_pure_mozart():   return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
+def klassik_radio_pure_verdi():    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
+def epic_piano_chopin():           return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
-
 
 
 # 2D array of radio station information in [long name, calling function] format
@@ -1728,8 +1512,39 @@ for i in range(numButtons):
     station = ["-- EMPTY " + str(i) +" --", -1]
     aStation2.append(station)
 
+
 # after gui is initialised and we are running in the root thread
 def after_GUI_started():
+    # load pollFlag status file and use it to populate this global variable
+    global pollFlag
+    try:
+        with open(filepath4, 'r') as file:
+            int_pollFlag = int(file.read())
+    except FileNotFoundError:
+        int_pollFlag = 1 # set to True as default
+        print(f'Error: The file {filepath4} does not exist.')
+    if int_pollFlag==0:
+        pollFlag = False
+        pollStatusButton.config(text="Polling is OFF")
+        pollStatusButton.config(bg="light coral")
+    else: #if int_pollFlag==1
+        pollFlag = True
+        pollStatusButton.config(text="Polling is ON")
+        pollStatusButton.config(bg="light green")
+    print(f'pollFlag : {pollFlag}')
+
+    # select to stream last station that was streaming just before radio was powered down
+    global buttonIndex, buttonFlag; buttonFlag = True
+    try:
+        with open(filepath, 'r') as file:
+            buttonIndex = int(file.read())
+    except FileNotFoundError:
+        print(f'Error: The file {filepath} does not exist.')
+        buttonIndex = 0
+    buttons[buttonIndex].focus_set()    
+    print(f'Button of last station played in playlist is {buttonIndex}')    
+    print("")
+    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
    
     # load bluetooth status file and use it to populate global variables
     global onBluetooth
@@ -1767,26 +1582,13 @@ def after_GUI_started():
     # connect and play though them.
     if onBluetooth:
         connect_bluetooth()
-        BTstatusButton.config(text="BT ON")
+        BTstatusButton.config(text="BT is ON")
         BTstatusButton.config(bg="light green")
     else: # onBluetooth==False
         subprocess_run("sudo systemctl disable bluetooth")                        
         subprocess_run("sudo systemctl stop bluetooth")                        
-        BTstatusButton.config(text="BT OFF")
+        BTstatusButton.config(text="BT is OFF")
         BTstatusButton.config(bg="light coral")
-      
-    # select to stream last station that was streaming just before radio was powered down
-    global buttonIndex, buttonFlag; buttonFlag = True
-    try:
-        with open(filepath, 'r') as file:
-            buttonIndex = int(file.read())
-    except FileNotFoundError:
-        print(f'Error: The file {filepath} does not exist.')
-        buttonIndex = 0
-    buttons[buttonIndex].focus_set()    
-    print(f'Button of last station played in playlist is {buttonIndex}')    
-    print("")    
-    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
 
 # do this when closing the window/app
 def on_closing():
@@ -1794,6 +1596,7 @@ def on_closing():
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
+
 
 # do this when a radio station is selected from combobox
 def on_select(event):
@@ -1901,6 +1704,7 @@ def on_select(event):
         print("selected_value:",selected_value_last)
         print("DID STOPPING BIT")
         print("")
+
 
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
@@ -2064,9 +1868,10 @@ def on_select2(event):
         print("DID STOPPING BIT")
         print("")
 
+
 # called when playlist button i is in focus and the Enter key is pressed.
 # visually simulates a physical button press and initiates the station stream by
-# calling the on_select2    () function
+# calling the on_select2() function
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
@@ -2077,7 +1882,9 @@ def on_button_press(event, i):
 
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
+    # global PollFlag; pollFlag = True
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+
 
 # called when playlist button i is in focus and the Delete key is pressed.
 # deletes the station from the playlist.
@@ -2111,6 +1918,7 @@ def on_button_delete(event, i):
         buttons[buttonIndex].update_idletasks() 
 
         # This will "play" the blank station for the real purpose of shutting down the current station
+        #global PollFlag; pollFlag = True
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"))
 
         # save the playlist to file
@@ -2120,6 +1928,7 @@ def on_button_delete(event, i):
     else:        
         print("No station to delete")    
     print(f"space button {i} pressed")
+
 
 # called when playlist button i is in focus and the Insert key is pressed.
 # Inserts the last station played from the combobox into the playlist.
@@ -2141,6 +1950,7 @@ def on_button_insert(event, i):
 
         # This will play the newly added station (from the combobox) as well as saving the icon
         # to its playlist button number
+        #global PollFlag; PollFlag = True
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Insert Key"))
 
         # now need to update the icon on the buttonIndex button
@@ -2160,21 +1970,33 @@ def on_button_insert(event, i):
         print("No station added")    
     print("")
 
+
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
 def on_focus(event, i):
     buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-    # global buttonIndex; buttonIndex = i
-    print(f"on focus: {i}")
+
+    # fudge to make losing focus work with pollFlag
+#    global pollFlag, lastFocusOut 
+#    if lastFocusOut==i:
+#        print("*** POLLING REINSTATED ***")
+#        pollFlag = True
+#    print(f"on lastFocusOut -->: {lastFocusOut}")
+    print(f"on focus -->: {i}")
+
 
 # called when a playlist button loses focus.
-# returns the button is a visually "unfocused" state. 
+# returns the button to a visually "unfocused" state. 
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
+#    global pollFlag; pollFlag = False
+#    global lastFocusOut; lastFocusOut = i
+#    print("*** POLLING SUSPENDED ***")
     print(f"on focus out: {i}")
+
 
 # called when wifiPassword Entry widget receives focus.
 def on_focus_wifiPassword(event):
@@ -2182,6 +2004,7 @@ def on_focus_wifiPassword(event):
     wifiPassword.event_generate("<Right>")
     event.widget.update_idletasks()
     print("on_focus_wifiPassword")
+
 
 # called when wifiPassword Entry widget loses focus.
 def on_focus_out_wifiPassword(event):
@@ -2244,6 +2067,24 @@ def toggle_bluetooth(event):
         file.write(line1 + '\n')
         file.write(currentPair + '\n')
     print(f"updated: {filepath3}")        
+
+
+# if pollFlag is True then set it to False, and vica-versa.
+# Also appropriately adjust the pollflag.txt config file
+def toggle_pollStatus(event):
+    global pollFlag
+    sText = pollStatusButton.cget("text")
+    if sText=="Polling is ON":
+        pollStatusButton.config(text="Polling is OFF")
+        pollStatusButton.config(bg="light coral")
+        pollFlag = False; line = "0"
+    else: #if sText=="Polling is OFF"
+        pollStatusButton.config(text="Polling is ON")
+        pollStatusButton.config(bg="light green")
+        pollFlag = True; line = "1"
+    with open(filepath4, 'w') as file:
+        file.write(line + '\n')
+    print(f"updated: {filepath4}")        
 
 
 def _connect_bluetooth(event):
@@ -2416,7 +2257,7 @@ def pair_bluetooth(event):
             label3.config(text=f"Found {numPairable} devices")
     print(f"Found {numPairable} device(s)\n")
     label6.config(text="")
-    
+   
 
 # when [custom_combo_wifi] selected
 # Use current selection from the combobox to connect to the internet
@@ -2446,7 +2287,8 @@ def on_select_wifi(event):
         print(f"Command '{command}' succeeded")
         label5.config(text=f"Connected to: {sSSID} - wait for focus")
 
-        # need to reload last streaming station 
+        # need to reload last streaming station
+        #global PollFlag; pollFlag=True
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
         root.after(100,lambda: mainButton.focus_set()) 
     else: # fail, so try with password
@@ -2480,7 +2322,8 @@ def process_wifiPassword(event):
     else:
         print(f"Command '{command}' succeeded")
         label5.config(text=f"Connected to: {sSSID} - wait for focus")
-        # need to reload last streaming station 
+      # need to reload last streaming station
+        #global PollFlag; pollFlag=True
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
         root.after(100,lambda: mainButton.focus_set())
 
@@ -2532,9 +2375,18 @@ def find_wifi(event):
     label7.config(text="")
 
 
-def key_handler(event):
-    print(f"Key pressed: {event.keysym}")
+def on_focus_dostuff(event):
+    widget = event.widget
+    widget.config(bg="lightblue")
+    widget_name = widget.winfo_name()
+    print(f"{widget_name} got focus!")
 
+
+def on_focus_out_dostuff(event):
+    widget = event.widget
+    widget.config(bg=widget.default_bg)
+    widget_name = widget.winfo_name()
+    print(f"{widget_name} lost focus!")
 
 
 # Thanks to Copilot (Think Deeper) AI 
@@ -2740,6 +2592,7 @@ class CustomCombobox(tk.Frame):
             self.close_dropdown()
             self.entry.focus_set()
             if self.name=="custom_combo":
+                #global PollFlag; pollFlag = True
                 on_select(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_bt":    
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
@@ -2771,6 +2624,8 @@ class CustomCombobox(tk.Frame):
         """
         self.entry.config(background=self.default_bg)
         self.after(100, self.check_focus)
+        #global PollFlag; pollFlag = False
+        #print("*** POLLING SUSPENDED ***")
 
     def check_focus(self):
         """
@@ -2793,7 +2648,6 @@ class CustomCombobox(tk.Frame):
             self.var.set(selected_value)
         self.close_dropdown()
         self.entry.focus_set()
-
 
 
 ##########################################
@@ -2822,15 +2676,9 @@ aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
 
-
 # Create our custom combobox with 8 rows visible in the dropdown.
 custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=8, width=30)
 custom_combo.place(x=130+(sizeButton+5), y=26)
-
-
-# Create a style object
-combobox_style = ttk.Style()
-combobox_style.configure("TCombobox", fieldbackground="white")
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
@@ -2838,21 +2686,23 @@ try:
         reader = csv.reader(file)
         aStation2 = [row for row in reader]             
 except FileNotFoundError:
-    # will just use the default aStation2[] array created above
+    # will just use the default aStation2[] array created previously
     print(f'Error: The file {filepath2} does not exist.')
 
-# Create a text box, position and size it
-# used to display the program and song details
+# Create a text box, position and size it, used to display the program and song details
 text_box = tk.Text(root)
 text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # Create a button on the root form to display the secondary setup form
-setupButton = tk.Button(root, text="+")
-setupButton.place(x=775, y=24, width=20, height=20)
+setupButton = tk.Button(root, text="+", name="setupButton")
+setupButton.default_bg = setupButton.cget("bg") 
+setupButton.place(x=768 , y=24, width=25, height=25)
 setupButton.config(takefocus=True)
 setupButton.bind("<Return>", show_setup_form)  
 setupButton.bind("<ButtonPress>", show_setup_form)  
+setupButton.bind("<FocusIn>", on_focus_dostuff)
+setupButton.bind("<FocusOut>", on_focus_out_dostuff)
    
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
@@ -2900,11 +2750,14 @@ setup.overrideredirect(True)
 setup.withdraw() # Hide the form initially
 
 # button which returns focus and visibility back to the main/root form
-mainButton = tk.Button(setup, text="+")
-mainButton.place(x=775, y=0, width=20, height=20)
+mainButton = tk.Button(setup, text="+", name="mainButton")
+mainButton.default_bg = mainButton.cget("bg") 
+mainButton.place(x=768, y=0, width=25, height=25)
 mainButton.config(takefocus=True)
 mainButton.bind("<Return>", show_root_form)  
 mainButton.bind("<ButtonPress>", show_root_form)  
+mainButton.bind("<FocusIn>", on_focus_dostuff)
+mainButton.bind("<FocusOut>", on_focus_out_dostuff)
 
 # button to toggle bluetooth connection on/off
 BTstatusButton = tk.Button(setup, text="NONE") 
@@ -2915,25 +2768,31 @@ BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)
 
 # button & label to connect to currently paired bluetooth speakers
 cX = 15; cY = 10+25+30
-connectButton = tk.Button(setup, text="CONNECT") 
+connectButton = tk.Button(setup, text="CONNECT", name="connectButton") 
+connectButton.default_bg = connectButton.cget("bg") 
 connectButton.place(x=cX, y=cY, height=25)
 connectButton.config(takefocus=True)
 connectButton.bind("<Return>", _connect_bluetooth)  
 connectButton.bind("<ButtonPress>", _connect_bluetooth)  
+connectButton.bind("<FocusIn>", on_focus_dostuff)
+connectButton.bind("<FocusOut>", on_focus_out_dostuff)
 label4 = tk.Label(setup, text="")
 label4.place(x=cX+100, y=cY+2)
 
 # button to enable scanning for bluetooth devices (which will appear in above combobox)
-pairButton = tk.Button(setup, text="SEE BT DEVICES") 
-pairButton.place(x=cX, y=cY+30, height=25)
+pairButton = tk.Button(setup, text="SEE BT DEVICES", name="pairButton") 
+pairButton.default_bg = pairButton.cget("bg") 
+pairButton.place(x=cX, y=cY+60, height=25)
 pairButton.config(takefocus=True)
 pairButton.bind("<Return>", pair_bluetooth)  
 pairButton.bind("<ButtonPress>", pair_bluetooth)
+pairButton.bind("<FocusIn>", on_focus_dostuff)
+pairButton.bind("<FocusOut>", on_focus_out_dostuff)
 label6 = tk.Label(setup, text="")
-label6.place(x=cX+150, y=cY+32)
+label6.place(x=cX+150, y=cY+62)
 
 # Create a Combobox for bluetooth connection selection & related information label
-cX = 15; cY = 125
+cX = 15; cY = 155
 label3 = tk.Label(setup, text="")
 label3.place(x=cX+1, y=cY)
 options = [""]
@@ -2944,45 +2803,50 @@ custom_combo_bt.place(x=cX, y=cY+30)
 separator = ttk.Separator(setup, orient="vertical")
 separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
 
+# button to toggle bluetooth connection on/off
+pollStatusButton = tk.Button(setup, text="NONE") 
+pollStatusButton.place(x=cX+400, y=10+25, height=25)
+pollStatusButton.config(takefocus=True)
+pollStatusButton.bind("<Return>", toggle_pollStatus)  
+pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
+
 # button to enable scanning for wifi devices (which will appear in above combobox)
-wifiButton = tk.Button(setup, text="SEE WIFI") 
-wifiButton.place(x=cX+400, y=cY-60, height=25)
+wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
+wifiButton.default_bg = wifiButton.cget("bg") 
+wifiButton.place(x=cX+400, y=cY-30, height=25)
 wifiButton.config(takefocus=True)
 wifiButton.bind("<Return>", find_wifi)  
 wifiButton.bind("<ButtonPress>", find_wifi)
+wifiButton.bind("<FocusIn>", on_focus_dostuff)
+wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
 label7 = tk.Label(setup, text="")
-label7.place(x=cX+400+100, y=cY+62-120)
+label7.place(x=cX+400+100, y=cY+2-30)
 
 # Create a Combobox for wifi connection selection
 options2 = [""]
 label5 = tk.Label(setup, text="")
-label5.place(x=cX+1+400, y=cY-30)
+label5.place(x=cX+1+400, y=cY)
 custom_combo_wifi = CustomCombobox(setup, options2, "custom_combo_wifi", visible_items=6, width=44)
-custom_combo_wifi.place(x=cX+400, y=cY)
+custom_combo_wifi.place(x=cX+400, y=cY+30)
 
 # text entry for wifi password, and its info label, also styles for focus visibility
 style = ttk.Style()
 style.theme_use("default")
 style.configure("Focused.TEntry",fieldbackground="white", foreground="black")
 wifiPassword = ttk.Entry(setup, style="Focused.TEntry", width=30)
-wifiPassword.place(x=cX+400+75, y=cY+30)
+wifiPassword.place(x=cX+400+75, y=cY+60)
 wifiPassword.bind("<Return>", process_wifiPassword)
 wifiPassword.bind("<FocusIn>", on_focus_wifiPassword)
 wifiPassword.bind("<FocusOut>", on_focus_out_wifiPassword)
 label_wifiPassword = tk.Label(setup, text="Password:")
-label_wifiPassword.place(x=cX+400, y=cY+30)
-
-tButton = tk.Button(setup, text="TEST") 
-tButton.place(x=cX+400, y=cY+60+60, height=25)
-tButton.config(takefocus=True)
-tButton.bind("<Key>", key_handler)  
+label_wifiPassword.place(x=cX+400, y=cY+60)
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** END ********************************
 
 
 # doing stuff just after the gui is initialised and we are running in the root thread
-root.after(1000, after_GUI_started)
+root.after(5000, after_GUI_started) # need 5sec lag to make sure things work
 print("Radio stream interface")
 
 # Bind the closing event to the on_closing function

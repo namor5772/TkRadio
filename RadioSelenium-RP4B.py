@@ -1,10 +1,3 @@
-'''
-1. DONE - pollFlag implement
-2. DONE - Get rid of TEST button
-3. DONE - find some way to indicate graphically when a combobox has focus
-4. DONE - form shift button change colour to plane blue when in focus & increase size?
-'''
-
 import subprocess
 import inspect
 import tkinter as tk
@@ -1878,11 +1871,10 @@ def on_button_press(event, i):
     time.sleep(1)
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-    print("Button " + str(i) +" pressed")
+  # print("Button " + str(i) +" pressed")
 
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
-    # global PollFlag; pollFlag = True
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
 
 
@@ -1891,7 +1883,7 @@ def on_button_press(event, i):
 def on_button_delete(event, i):
     global buttonIndex; buttonIndex = i
 
-     # change aStation2[] to reflect the deletion
+    # change aStation2[] to reflect the deletion
     global aStation2
     index = aStation2[buttonIndex][1]
     print("deleting station:", index, "with playlist index:", buttonIndex)
@@ -1927,7 +1919,7 @@ def on_button_delete(event, i):
             writer.writerows(aStation2)
     else:        
         print("No station to delete")    
-    print(f"space button {i} pressed")
+  # print(f"space button {i} pressed")
 
 
 # called when playlist button i is in focus and the Insert key is pressed.
@@ -1977,14 +1969,7 @@ def on_button_insert(event, i):
 def on_focus(event, i):
     buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-
-    # fudge to make losing focus work with pollFlag
-#    global pollFlag, lastFocusOut 
-#    if lastFocusOut==i:
-#        print("*** POLLING REINSTATED ***")
-#        pollFlag = True
-#    print(f"on lastFocusOut -->: {lastFocusOut}")
-    print(f"on focus -->: {i}")
+  # print(f"on focus -->: {i}")
 
 
 # called when a playlist button loses focus.
@@ -1992,10 +1977,7 @@ def on_focus(event, i):
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-#    global pollFlag; pollFlag = False
-#    global lastFocusOut; lastFocusOut = i
-#    print("*** POLLING SUSPENDED ***")
-    print(f"on focus out: {i}")
+  # print(f"on focus out: {i}")
 
 
 # called when wifiPassword Entry widget receives focus.
@@ -2003,14 +1985,14 @@ def on_focus_wifiPassword(event):
     style.map("Focused.TEntry",fieldbackground=[("focus", "lightblue")])
     wifiPassword.event_generate("<Right>")
     event.widget.update_idletasks()
-    print("on_focus_wifiPassword")
+  # print("on_focus_wifiPassword")
 
 
 # called when wifiPassword Entry widget loses focus.
 def on_focus_out_wifiPassword(event):
     style.map("Focused.TEntry",fieldbackground=[("!focus", "white")])    
     event.widget.update_idletasks()
-    print("on_focus_out_wifiPassword")
+  # print("on_focus_out_wifiPassword")
 
 
 # show the setup form (over the top of the main window)
@@ -2379,14 +2361,14 @@ def on_focus_dostuff(event):
     widget = event.widget
     widget.config(bg="lightblue")
     widget_name = widget.winfo_name()
-    print(f"{widget_name} got focus!")
+  # print(f"{widget_name} got focus!")
 
 
 def on_focus_out_dostuff(event):
     widget = event.widget
     widget.config(bg=widget.default_bg)
     widget_name = widget.winfo_name()
-    print(f"{widget_name} lost focus!")
+  # print(f"{widget_name} lost focus!")
 
 
 # Thanks to Copilot (Think Deeper) AI 
@@ -2592,7 +2574,6 @@ class CustomCombobox(tk.Frame):
             self.close_dropdown()
             self.entry.focus_set()
             if self.name=="custom_combo":
-                #global PollFlag; pollFlag = True
                 on_select(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_bt":    
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
@@ -2624,8 +2605,6 @@ class CustomCombobox(tk.Frame):
         """
         self.entry.config(background=self.default_bg)
         self.after(100, self.check_focus)
-        #global PollFlag; pollFlag = False
-        #print("*** POLLING SUSPENDED ***")
 
     def check_focus(self):
         """

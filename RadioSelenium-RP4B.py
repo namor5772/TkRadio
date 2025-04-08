@@ -29,12 +29,31 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Set up GPIO
 GPIO.setmode(GPIO.BCM)
+
+# Define GPIO pins for the rotary encoder and push button.
+CLK_PIN = 16   # Connect to CLK (A) of the encoder
+DT_PIN  = 20   # Connect to DT (B) of the encoder
+SW_PIN  = 21  # Connect to the push button
+
+# Setup pins with internal pull-ups.
+GPIO.setup(CLK_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(DT_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SW_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+
+# Global counter for rotation steps
+counter = 0
+last_counter = 0
+# Record the initial state of the CLK pin.
+last_clk_state = GPIO.input(CLK_PIN)
+
+'''
 LeftButton = 21 # scrolls left through horizontal list of possible keys you can press
 RightButton = 20 # scrolls right through horizontal list of possible keys you can press
 KeypressButton = 16 # simulates the key press of the currently selected key
 GPIO.setup(LeftButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 GPIO.setup(RightButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 GPIO.setup(KeypressButton, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+'''
 
 # KeyList array & related global variables
 # horizontal list of keys you can press (in a simulated fashion)
@@ -176,6 +195,7 @@ KeyList = [
     ["F11","F11"]
 ]
 
+'''
 # GPIO button 21 pressed
 def on_LeftButton_press(channel):
     global indexKeyList, indexBank, indexVisibleKey
@@ -220,6 +240,80 @@ def on_RightButton_press(channel):
       # indexBank unchanged
         indexVisibleKey += 1
     labels_main[indexVisibleKey].config(bg="lightblue")
+'''
+
+# To update the label from the GPIO callbacks (which run on a different thread),
+# we define a safe update function that uses `after()` to schedule GUI updates.
+def safe_update(new_text):
+    labelRE.config(text=new_text)
+
+
+def update_label(new_text):
+    # Use root.after to safely update the GUI from outside the main thread.
+    root.after(0, safe_update, new_text)
+
+
+# --- Callback Functions ---
+def rotary_callback(channel):
+    """Callback for rotary encoder rotation."""
+    global indexKeyList, indexBank, indexVisibleKey
+
+    global last_counter, counter, last_clk_state
+    current_clk = GPIO.input(CLK_PIN)
+    current_dt  = GPIO.input(DT_PIN)
+
+    # When the state of CLK changes, determine rotation direction.
+    # This simple method checks the state of DT relative to CLK.
+    if current_clk != last_clk_state:
+        # If DT is different from current CLK state, rotation is clockwise.
+        if current_dt != current_clk:
+            counter += 1
+            update_label("Clockwise: " + str(counter))
+            rightFlag = True
+        else:
+            counter -= 1
+            update_label("Counter-clockwise: " + str(counter))
+            rightFlag = False
+
+        # only actually do stuff if counter is even    
+        if counter % 2 == 0: # counter is even
+            labels_main[indexVisibleKey].config(bg="darkgray")
+            if rightFlag: # go right
+                if indexVisibleKey == sizeBank-1:
+                    if indexBank == numBanks-1:
+                        indexKeyList = 0
+                        indexBank = 0
+                    else:
+                        indexKeyList += 1
+                        indexBank += 1
+                    indexVisibleKey = 0
+
+                    # adjust bank of keys visible on top of main form
+                    for i in range(sizeBank):
+                        labels_main[i].config(text=KeyList[sizeBank*indexBank+i][0])
+                else:
+                    indexKeyList += 1
+                  # indexBank unchanged
+                    indexVisibleKey += 1
+            else: # if righFlag == False (ie. go left)            
+                if indexVisibleKey == 0:
+                    if indexBank == 0:
+                        indexKeyList = sizeKeyList-1
+                        indexBank = numBanks-1
+                    else:
+                        indexKeyList -= 1
+                        indexBank -= 1
+                    indexVisibleKey = sizeBank-1
+                    
+                    # adjust bank of keys visible on top of main form
+                    for i in range(sizeBank):
+                        labels_main[i].config(text=KeyList[sizeBank*indexBank+i][0])
+                else:
+                    indexKeyList -= 1
+                  # indexBank unchanged
+                    indexVisibleKey -= 1
+            labels_main[indexVisibleKey].config(bg="lightblue")
+    last_clk_state = current_clk
 
 
 # GPIO button 16 pressed
@@ -233,10 +327,17 @@ def on_KeypressButton_press(channel):
     focused_widget.event_generate(f"<Key-{sKey1}>")
     print(f"sKey0: <Key-{sKey1}> pressed")
 
+# --- GPIO Event Detection ---
+# Detect state changes on the CLK pin for rotational events.
+GPIO.add_event_detect(CLK_PIN, GPIO.BOTH, callback=rotary_callback, bouncetime=3)
+# Detect a falling edge on the switch pin for button press.
+GPIO.add_event_detect(SW_PIN, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
+
+'''
 GPIO.add_event_detect(LeftButton, GPIO.FALLING, callback=on_LeftButton_press, bouncetime=200)    
 GPIO.add_event_detect(RightButton, GPIO.FALLING, callback=on_RightButton_press, bouncetime=200)    
 GPIO.add_event_detect(KeypressButton, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
-
+'''
 
 # START #######################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -2640,6 +2741,12 @@ root.geometry("800x455+0+0")
 #root.overrideredirect(True)
 root.resizable(False, False)
 root.update_idletasks()
+
+
+# Create a label to display actions or the counter value.
+labelRE = tk.Label(root, text="Counter: 0")
+labelRE.place(x=500, y=26)
+
 
 # Create a list of labels for the root/main form to display pressable keys. They are
 # at the top of the main form (one bank of sizeBank keys is displayed at a time)

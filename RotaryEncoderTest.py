@@ -10,9 +10,9 @@ DT_PIN  = 20   # Connect to DT (B) of the encoder
 SW_PIN  = 21  # Connect to the push button
 
 # Setup pins with internal pull-ups.
-GPIO.setup(CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(SW_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(CLK_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(DT_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SW_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
 
 # Global counter for rotation steps
 counter = 0
@@ -61,7 +61,7 @@ def button_callback(channel):
 
 # --- GPIO Event Detection ---
 # Detect state changes on the CLK pin for rotational events.
-GPIO.add_event_detect(CLK_PIN, GPIO.BOTH, callback=rotary_callback, bouncetime=10)
+GPIO.add_event_detect(CLK_PIN, GPIO.BOTH, callback=rotary_callback, bouncetime=3)
 # Detect a falling edge on the switch pin for button press.
 GPIO.add_event_detect(SW_PIN, GPIO.FALLING, callback=button_callback, bouncetime=200)
 

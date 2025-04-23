@@ -1,10 +1,10 @@
 ABC Radio Sydney NSW,0
-ABC Radio National LIVE,53
-ABC NewsRadio,52
+ABC Radio Adelaide SA,26
+-- EMPTY 2 --,-1
 ABC Classic LIVE,71
 ABC Classic2,76
 ABC Jazz,77
-nova THROWBACKS,129
+klassik radio,141
 GOLD 80s,86
 smooth VINTAGE,122
 GOLD101.7,82
@@ -13,7 +13,7 @@ Cruise 1323,103
 klassik radio pure mozart,144
 epic piano chopin,146
 1000 hits classical music,139
-KIIS 1065,81
+The Bounce,90
 smooth relax,121
 iHeartRadio Countdown AUS,87
 ABC Jazz,79

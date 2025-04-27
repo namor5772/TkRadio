@@ -4,7 +4,7 @@ ABC Radio Adelaide SA,26
 ABC Classic LIVE,71
 ABC Classic2,76
 ABC Jazz,77
-klassik radio,141
+ABC triple j LIVE,59
 GOLD 80s,86
 smooth VINTAGE,122
 GOLD101.7,82

@@ -1,7 +1,9 @@
 # TkRadio
 
+**The best way to load this software is to Clone this Git Repository using Visual Studio Code.**
+
 Here the building of an Internet Radio will be described in detail.
-The software uses Python with tkinter and selenium, while the hardware is based on a Raspberry Pi 5. The best way to load this software is to Clone this Git Repository using Visual Studio Code.
+The software uses Python with tkinter and selenium, while the hardware is based on a Raspberry Pi 5.
 
 As a standalone app (RadioSelenium-Windows11.py) it can also be run under the Windows 11 OS (or other Linux versions). In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. Wifi/internet connections and bluetooth speakers have to be managed explicitly through the OS. RadioSelenium-RP5.py is the file for the Raspberry Pi hardware.
 
@@ -22,12 +24,11 @@ Below is an image of the applications main and setup forms.
 
 ## Hardware
 
-1.  We use a Raspberry Pi 4B with 4GB of memory
-1.  We use an aluminium case with fans since the Raspberry Pi gets hot 
-1.  We use USB powered (by the Raspberry Pi) stereo speakers that are plugged into the 3.5mm socket.
-1.  We use a wireless keyboard and mouse to control the software. The dongle is plugged into a USB port.
-1.  We use a monitor that is plugged in into the micro HDMI port of the Raspberry Pi. Use an adaptor if the HDMI cable has a standard connector.
-
+1. We use a Raspberry Pi 4B with 4GB of memory
+1. We use an aluminium case with fans since the Raspberry Pi gets hot
+1. We use USB powered (by the Raspberry Pi) stereo speakers that are plugged into the 3.5mm socket.
+1. We use a wireless keyboard and mouse to control the software. The dongle is plugged into a USB port.
+1. We use a monitor that is plugged in into the micro HDMI port of the Raspberry Pi. Use an adaptor if the HDMI cable has a standard connector.
 
 *** COMPLETE
 
@@ -35,7 +36,7 @@ Below is an image of the applications main and setup forms.
 
 Here we detail ALL the software needed for this project. Starting with the blank micro SD card that will contain all the software running on the Raspberry Pi.
 
-1. Install the OS on a 32GB SanDisk Ultra 10 micro SD card (or equivalent). I used a Windows 11 PC with the __Raspberry Pi Imager v1.8.5__ app, selecting the Raspberry Pi OS (64-bit) Debian GNU/Linux 12 (bookworm) OS. In the setup use:
+1. Install the OS on a 32GB SanDisk Ultra 10 micro SD card (or equivalent). I used a Windows 11 PC with the **Raspberry Pi Imager v1.8.5** app, selecting the Raspberry Pi OS (64-bit) Debian GNU/Linux 12 (bookworm) OS. In the setup use:
 
     ```text
     hostname:             rpi
@@ -60,7 +61,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
         sudo reboot        
         ```
 
-1. Download the GitHub repository directory TkRadio and all its contents (including subdirectories) to your /__home/{username)/__ directory. You can do that via a USB stick or using Visual Studio Code to clone this repository directly to the Raspberry Pi you are using.
+1. Download the GitHub repository directory TkRadio and all its contents (including subdirectories) to your /**home/{username)/** directory. You can do that via a USB stick or using Visual Studio Code to clone this repository directly to the Raspberry Pi you are using.
 1. Install latest versions of Idle & Python
    - Python already installed with OS - Version 3.11.2
    - Install Idle from a terminal window with this command:
@@ -96,7 +97,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
 
 1. Install the gekodriver (necessary for selenium to operate with the FireFox browser), Note: FireFox is already installed with the OS:
 
-    From the <https://github.com/mozilla/gekodriver/releases> repository or otherwise (from this repository) download the tar.gz file __gekodriver-v0.36.0-linux-aarch64.tar.gz__ file to the __/home/{username}/Downloads__ directory and then from a terminal window run:
+    From the <https://github.com/mozilla/gekodriver/releases> repository or otherwise (from this repository) download the tar.gz file **gekodriver-v0.36.0-linux-aarch64.tar.gz** file to the **/home/{username}/Downloads** directory and then from a terminal window run:
 
     ```sh
     cd /
@@ -105,7 +106,8 @@ Here we detail ALL the software needed for this project. Starting with the blank
     sudo mv gekodriver /usr/local/bin
     gekodriver --version
     ```
-1. Open the terminal and use __alsamixer__ to adjust the audio level to max. This is needed when using a Bluetooth speaker. 
+
+1. Open the terminal and use **alsamixer** to adjust the audio level to max. This is needed when using a Bluetooth speaker.
 
 1. Set audio control system to PulseAudio as follows:
     run "sudo raspo-config" from a terminal
@@ -127,22 +129,25 @@ Here we detail ALL the software needed for this project. Starting with the blank
     related actions. They take focus away from the app windows which causes problems and is annoying!
 
 1. NOT NECESSARY: Install the Python pybluez module with:
+
     ```sh
     sudo apt install bluetooth libbluetooth-dev
     sudo apt autoremove
     sudo apt install python3-bluez
     ```
-    In a Python script it is then accessed as: __import bluetooth__
 
-1. NOT NECESSARY: Install the Python pynput module with: 
+    In a Python script it is then accessed as: **import bluetooth**
+
+1. NOT NECESSARY: Install the Python pynput module with:
 
     ``` sh
     cd /
     sudo apt install python3-pynput 
     ```
+
 1. Setup auto-start:
-    - create a directory named __autostart__ in the directory __/home/{username}/.config__ (which is hidden, so you need to use __ls -al__ to see its contents from the /home/{username} directory)  
-    - in that __autostart__ directory use __sudo nano__ via a terminal to create a file called __autoRadio.desktop__ with the following content:
+    - create a directory named **autostart** in the directory **/home/{username}/.config** (which is hidden, so you need to use **ls -al** to see its contents from the /home/{username} directory)  
+    - in that **autostart** directory use **sudo nano** via a terminal to create a file called **autoRadio.desktop** with the following content:
 
     ```sh
     [Desktop Entry]
@@ -152,11 +157,20 @@ Here we detail ALL the software needed for this project. Starting with the blank
 
     You could also just use file available in the repository, but off course you will need to replace {username} with the text relevant to your system.
 
-1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type __sudo reboot__ in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
+1. Restart the Raspberry Pi by unplugging power and plugging it back in after a short delay, OR just type **sudo reboot** in a terminal window. If everything was correctly done then after about a minute delay the Radio App should start streaming a station (Make sure the volume is turned up on the speakers!)
 
-1. To make this application more immmersive change the display resolution to 800x600 which matches the size of the apps form and then position the task bar at the bottom of the screen and make its icon size very large (ie. 48x48). 
+1. To make this application more immmersive change the display resolution to 800x600 which matches the size of the apps form and then position the task bar at the bottom of the screen and make its icon size very large (ie. 48x48).
 
 ## Windows setup
+
+1. installing the **selenium** Python module:
+
+    In a terminal window type:
+
+    ``` sh
+    cd /
+    pip install selenium 
+    ```
 
 He we describe how to setup the launch of this app through a desktop shortcut.
 
@@ -164,7 +178,7 @@ On GUI Right click mouse to open popup menu, select: New => Shortcut
 A dialog box appears. Into the "Type the location of the item:" text box paste the following:
 
 ```text
-C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-RP4B.py"
+C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-Windows11.py"
 ```
 
 Press the [Next] button.
@@ -174,7 +188,7 @@ This new shortcut then appears on the desktop with the Python icon. This can be 
 
 ```text
 Target location: Python312
-Target: C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-RP4B.py"
+Target: C:\Users\grobl\AppData\Local\Programs\Python\Python312\pythonw.exe "C:\Users\grobl\OneDrive\GitRepos\TkRadio\RadioSelenium-Windows11.py"
 Start in: C:\Users\grobl\AppData\Local\Programs\Python\Python312
 ```
 

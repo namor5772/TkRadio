@@ -1,0 +1,8 @@
+====+  Parts List for C:\Users\roman\OneDrive\GitRepos\TkRadio\Hardware\SchmittEncoder.dsn  +====
+
+C4                            1   100nF ceramic
+C1,C2,C3                      3   100nF poly
+U1                            1   74HC14
+J1                            1   Conn_2
+J2                            1   Conn_3
+U2                            1   KY-040

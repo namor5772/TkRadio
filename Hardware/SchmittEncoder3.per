@@ -1,0 +1,231 @@
+[Version]
+Product,2
+File,19
+{
+"Config" : {
+  "NetImportFormat" : "Protel"
+},
+"Board" : {
+  "Width" : 24,
+  "Height" : 18,
+  "Pattern" : "Strip"
+},
+"CelledOutlines" : [
+  { "Name" : "DIP14", "Locked" : false,
+    "Rows" : [
+    [{"Pin" : "1"},"Free","Free",{"Pin" : "14"}],
+    [{"Pin" : "2"},"Body","Body",{"Pin" : "13"}],
+    [{"Pin" : "3"},"Body","Body",{"Pin" : "12"}],
+    [{"Pin" : "4"},"Body","Body",{"Pin" : "11"}],
+    [{"Pin" : "5"},"Body","Body",{"Pin" : "10"}],
+    [{"Pin" : "6"},"Body","Body",{"Pin" : "9"}],
+    [{"Pin" : "7"},"Body","Body",{"Pin" : "8"}]
+    ]
+  },
+  { "Name" : "SIP2", "Locked" : false,
+    "Rows" : [
+    [{"Pin" : "1"}],
+    [{"Pin" : "2"}]
+    ]
+  },
+  { "Name" : "SIP3", "Locked" : false,
+    "Rows" : [
+    [{"Pin" : "1"}],
+    [{"Pin" : "2"}],
+    [{"Pin" : "3"}]
+    ]
+  },
+  { "Name" : "SIP5", "Locked" : false,
+    "Rows" : [
+    [{"Pin" : "1"}],
+    [{"Pin" : "2"}],
+    [{"Pin" : "3"}],
+    [{"Pin" : "4"}],
+    [{"Pin" : "5"}]
+    ]
+  }
+],
+"LeadedOutlines" : [
+],
+"RadialOutlines" : [
+],
+"CustomOutlines" : [
+  { "Name" : "BOX2_1", "Locked" : false,
+    "Pins" : [
+    { "Name" : "1", "X5" : 12, "Y5" : 7 },
+    { "Name" : "2", "X5" : 12, "Y5" : 17 }
+    ],
+    "Lines" : [
+    { "X5" : 10, "Y5" : 4, "DX5" : 4, "DY5" : 0},
+    { "X5" : 14, "Y5" : 4, "DX5" : 0, "DY5" : 16},
+    { "X5" : 14, "Y5" : 20, "DX5" : -4, "DY5" : 0},
+    { "X5" : 10, "Y5" : 20, "DX5" : 0, "DY5" : -16}
+    ]
+  }
+],
+"SmdOutlines" : [
+],
+"Components" : [
+  { "Designator" : "C3", "Value" : "100nF poly", "Outline" : "BOX2_1",
+  "X1000" : 8000, "Y1000" : 10000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 2, "Y" : 4, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "C2", "Value" : "100nF poly", "Outline" : "BOX2_1",
+  "X1000" : 6000, "Y1000" : 10000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 2, "Y" : 4, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "C1", "Value" : "100nF poly", "Outline" : "BOX2_1",
+  "X1000" : 3000, "Y1000" : 10000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 2, "Y" : 4, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "J1", "Value" : "Conn_2", "Outline" : "SIP2",
+  "X1000" : 0, "Y1000" : 1000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 0, "Y" : -1, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "J2", "Value" : "Conn_3", "Outline" : "SIP3",
+  "X1000" : 0, "Y1000" : 4000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 0, "Y" : -1, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "C4", "Value" : "100nF ceramic", "Outline" : "BOX2_1",
+  "X1000" : 18000, "Y1000" : 5000, "EndDeltaX" : 0, "EndDeltaY" : -1,
+  "Text" : { "X" : 2, "Y" : 4, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "U2", "Value" : "KY-040", "Outline" : "SIP5",
+  "X1000" : 23000, "Y1000" : 5000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 0, "Y" : -1, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  },
+  { "Designator" : "U1", "Value" : "74HC14", "Outline" : "DIP14",
+  "X1000" : 12000, "Y1000" : 4000, "EndDeltaX" : 0, "EndDeltaY" : 1,
+  "Text" : { "X" : 0, "Y" : -1, "Angle" : 0, "Visible" : true },
+  "Group" : 0
+  }
+],
+"Links" : [
+  { "X" : 20, "Y" : 4, "EndDeltaX" : 0, "EndDeltaY" : 4, "Group" : 0 },
+  { "X" : 10, "Y" : 2, "EndDeltaX" : 0, "EndDeltaY" : 8, "Group" : 0 },
+  { "X" : 20, "Y" : 9, "EndDeltaX" : 0, "EndDeltaY" : 4, "Group" : 0 },
+  { "X" : 11, "Y" : 8, "EndDeltaX" : 0, "EndDeltaY" : 3, "Group" : 0 },
+  { "X" : 4, "Y" : 4, "EndDeltaX" : 0, "EndDeltaY" : 7, "Group" : 0 },
+  { "X" : 19, "Y" : 3, "EndDeltaX" : 0, "EndDeltaY" : 2, "Group" : 0 },
+  { "X" : 9, "Y" : 3, "EndDeltaX" : 0, "EndDeltaY" : 1, "Group" : 0 },
+  { "X" : 6, "Y" : 10, "EndDeltaX" : 0, "EndDeltaY" : 3, "Group" : 0 },
+  { "X" : 7, "Y" : 6, "EndDeltaX" : 0, "EndDeltaY" : 5, "Group" : 0 },
+  { "X" : 11, "Y" : 0, "EndDeltaX" : 0, "EndDeltaY" : 6, "Group" : 0 },
+  { "X" : 18, "Y" : 0, "EndDeltaX" : 0, "EndDeltaY" : 6, "Group" : 0 },
+  { "X" : 9, "Y" : 8, "EndDeltaX" : 0, "EndDeltaY" : 6, "Group" : 0 },
+  { "X" : 19, "Y" : 7, "EndDeltaX" : 0, "EndDeltaY" : 7, "Group" : 0 },
+  { "X" : 16, "Y" : 6, "EndDeltaX" : 0, "EndDeltaY" : 9, "Group" : 0 },
+  { "X" : 1, "Y" : 4, "EndDeltaX" : 0, "EndDeltaY" : 11, "Group" : 0 },
+  { "X" : 2, "Y" : 5, "EndDeltaX" : 0, "EndDeltaY" : 11, "Group" : 0 },
+  { "X" : 17, "Y" : 8, "EndDeltaX" : 0, "EndDeltaY" : 8, "Group" : 0 },
+  { "X" : 3, "Y" : 6, "EndDeltaX" : 0, "EndDeltaY" : 11, "Group" : 0 },
+  { "X" : 18, "Y" : 10, "EndDeltaX" : 0, "EndDeltaY" : 7, "Group" : 0 },
+  { "X" : 17, "Y" : 1, "EndDeltaX" : 0, "EndDeltaY" : 3, "Group" : 0 }
+],
+"Breaks" : [
+  { "X" : 14, "Y" : 4, "Shift" : "none", "Group" : 0 },
+  { "X" : 14, "Y" : 6, "Shift" : "none", "Group" : 0 },
+  { "X" : 14, "Y" : 8, "Shift" : "none", "Group" : 0 },
+  { "X" : 17, "Y" : 5, "Shift" : "none", "Group" : 0 },
+  { "X" : 17, "Y" : 7, "Shift" : "none", "Group" : 0 },
+  { "X" : 19, "Y" : 9, "Shift" : "none", "Group" : 0 },
+  { "X" : 18, "Y" : 8, "Shift" : "none", "Group" : 0 },
+  { "X" : 17, "Y" : 6, "Shift" : "none", "Group" : 0 },
+  { "X" : 3, "Y" : 5, "Shift" : "none", "Group" : 0 },
+  { "X" : 4, "Y" : 6, "Shift" : "none", "Group" : 0 },
+  { "X" : 9, "Y" : 11, "Shift" : "none", "Group" : 0 },
+  { "X" : 2, "Y" : 4, "Shift" : "none", "Group" : 0 },
+  { "X" : 6, "Y" : 11, "Shift" : "none", "Group" : 0 },
+  { "X" : 21, "Y" : 4, "Shift" : "none", "Group" : 0 },
+  { "X" : 18, "Y" : 1, "Shift" : "none", "Group" : 0 },
+  { "X" : 21, "Y" : 13, "Shift" : "none", "Group" : 0 },
+  { "X" : 4, "Y" : 13, "Shift" : "none", "Group" : 0 },
+  { "X" : 5, "Y" : 10, "Shift" : "none", "Group" : 0 },
+  { "X" : 13, "Y" : 10, "Shift" : "none", "Group" : 0 },
+  { "X" : 17, "Y" : 2, "Shift" : "none", "Group" : 0 },
+  { "X" : 17, "Y" : 15, "Shift" : "none", "Group" : 0 },
+  { "X" : 0, "Y" : 15, "Shift" : "none", "Group" : 0 },
+  { "X" : 1, "Y" : 16, "Shift" : "none", "Group" : 0 },
+  { "X" : 18, "Y" : 16, "Shift" : "none", "Group" : 0 },
+  { "X" : 2, "Y" : 17, "Shift" : "none", "Group" : 0 },
+  { "X" : 19, "Y" : 17, "Shift" : "none", "Group" : 0 },
+  { "X" : 19, "Y" : 10, "Shift" : "none", "Group" : 0 },
+  { "X" : 14, "Y" : 10, "Shift" : "none", "Group" : 0 },
+  { "X" : 19, "Y" : 8, "Shift" : "none", "Group" : 0 }
+],
+"Wires" : [
+],
+"Text" : [
+],
+"Nets" : [
+    { "Node" : "N000001", "Components" : [
+    { "Name" : "C1", "Pins" : ["2"] },
+    { "Name" : "C2", "Pins" : ["2"] },
+    { "Name" : "C3", "Pins" : ["2"] },
+    { "Name" : "C4", "Pins" : ["2"] },
+    { "Name" : "J1", "Pins" : ["2"] },
+    { "Name" : "U1", "Pins" : ["7"] },
+    { "Name" : "U2", "Pins" : ["5"] }
+    ] },
+    { "Node" : "N000003", "Components" : [
+    { "Name" : "U1", "Pins" : ["13", "2"] }
+    ] },
+    { "Node" : "N000004", "Components" : [
+    { "Name" : "C1", "Pins" : ["1"] },
+    { "Name" : "U1", "Pins" : ["1"] },
+    { "Name" : "U2", "Pins" : ["1"] }
+    ] },
+    { "Node" : "N000006", "Components" : [
+    { "Name" : "C4", "Pins" : ["1"] },
+    { "Name" : "J1", "Pins" : ["1"] },
+    { "Name" : "U1", "Pins" : ["14"] },
+    { "Name" : "U2", "Pins" : ["4"] }
+    ] },
+    { "Node" : "N000007", "Components" : [
+    { "Name" : "U1", "Pins" : ["11", "4"] }
+    ] },
+    { "Node" : "N000008", "Components" : [
+    { "Name" : "C2", "Pins" : ["1"] },
+    { "Name" : "U1", "Pins" : ["3"] },
+    { "Name" : "U2", "Pins" : ["2"] }
+    ] },
+    { "Node" : "N000009", "Components" : [
+    { "Name" : "U1", "Pins" : ["6", "9"] }
+    ] },
+    { "Node" : "N000010", "Components" : [
+    { "Name" : "C3", "Pins" : ["1"] },
+    { "Name" : "U1", "Pins" : ["5"] },
+    { "Name" : "U2", "Pins" : ["3"] }
+    ] },
+    { "Node" : "N000011", "Components" : [
+    { "Name" : "J2", "Pins" : ["3"] },
+    { "Name" : "U1", "Pins" : ["8"] }
+    ] },
+    { "Node" : "N000012", "Components" : [
+    { "Name" : "J2", "Pins" : ["2"] },
+    { "Name" : "U1", "Pins" : ["10"] }
+    ] },
+    { "Node" : "N000013", "Components" : [
+    { "Name" : "J2", "Pins" : ["1"] },
+    { "Name" : "U1", "Pins" : ["12"] }
+    ] }
+],
+"NetColors" : [
+    { "Node" : "" },
+    { "Node" : "" },
+    { "Node" : "" },
+    { "Node" : "" },
+    { "Node" : "" },
+    { "Node" : "" }
+],
+"Notes" : {
+  "Lines" : ""
+}
+}

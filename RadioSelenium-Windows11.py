@@ -934,11 +934,11 @@ def Commercial2(br,sPath):
         fe1 = "No program information"
     return fe1
 
-
-
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 
+
+# COMMON BLOCK START *********************************************
 
 # START **********************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -946,303 +946,163 @@ def Commercial2(br,sPath):
 # Each one calls a particular core function defined above with specific parameters,
 # dependant on the structure of a specific stations website layout
 
-def ABC_Radio_Sydney_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/sydney")
-def ABC_Broken_Hill_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/brokenhill")
-def ABC_Central_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralcoast")
-def ABC_Central_West_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralwest")
-def ABC_Coffs_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/coffscoast")
-def ABC_Illawarra_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/illawarra")
-def ABC_Mid_North_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/midnorthcoast")
-def ABC_New_England_North_West_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/newengland")
-def ABC_Newcastle_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/newcastle")
-def ABC_North_Coast_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northcoast")
-def ABC_Riverina_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/riverina")
-def ABC_South_East_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southeastnsw")
-def ABC_Upper_Hunter_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/upperhunter")
-def ABC_Western_Plains_NSW():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/westernplains")
-def ABC_Radio_Canberra_ACT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/canberra")
-def ABC_Radio_Darwin_NT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/darwin")
-def ABC_Alice_Springs_NT():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/alicesprings")
-def ABC_Radio_Melbourne_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/melbourne")
-def ABC_Ballarat_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/ballarat")
-def ABC_Central_Victoria_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/centralvic")
-def ABC_Gippsland_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/gippsland")
-def ABC_Goulburn_Murray_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goulburnmurray")
-def ABC_Mildura_Swan_Hill_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/milduraswanhill")
-def ABC_Shepparton_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/shepparton")
-def ABC_South_West_Victoria_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southwestvic")
-def ABC_Wimmera_VIC():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/wimmera")
-def ABC_Radio_Adelaide_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/adelaide")
-def ABC_Eyre_Peninsula_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/eyre")
-def ABC_North_and_West_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northandwest")
-def ABC_Riverland_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/riverland")
-def ABC_South_East_SA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southeastsa")
-def ABC_Radio_Hobart_TAS():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/hobart")
-def ABC_Northern_Tasmania_TAS():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northtas")
-def ABC_Radio_Brisbane_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/brisbane")
-def ABC_Capricornia_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/capricornia")
-def ABC_Far_North_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/farnorth")
-def ABC_Gold_Coast_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goldcoast")
-def ABC_North_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northqld")
-def ABC_North_West_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/northwest")
-def ABC_Southern_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southqld")
-def ABC_Sunshine_Coast_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/sunshine")
-def ABC_Tropical_North_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/tropic")
-def ABC_Western_Queensland_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/westqld")
-def ABC_Wide_Bay_QLD():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/widebay")
-def ABC_Radio_Perth_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/perth")
-def ABC_Esperance_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/esperance")
-def ABC_Goldfields_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/goldfields")
-def ABC_Great_Southern_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/greatsouthern")
-def ABC_Kimberley_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/kimberley")
-def ABC_Midwest_and_Wheatbelt_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/wheatbelt")
-def ABC_Pilbara_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/pilbara")
-def ABC_South_West_WA():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
-def ABC_NewsRadio():
-    return Radio4(browser,"https://www.abc.net.au/listen/live/news")
-def ABC_Radio_National_LIVE():
-    return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_QLD():
-    return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_WA():
-    return Radio2(browser,2,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_SA():
-    return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
-def ABC_Radio_National_NT():
-    return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
-def ABC_SPORT(): # *************************************************************** FIX ****
-    return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
-def ABC_triple_j_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
-def ABC_triple_j_Hottest():
-    return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
-def ABC_triple_j_Unearthed():
-    return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
-def ABC_Double_j_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Double_j_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/doublej")
-def ABC_Classic_LIVE():
-    return Radio3(browser,0,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_QLD():
-    return Radio3(browser,1,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_WA():
-    return Radio3(browser,2,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_SA():
-    return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic_NT():
-    return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
-def ABC_Classic2():
-    return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
-def ABC_Jazz():
-    return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
-def ABC_Country():
-    return Radio5(browser,"https://www.abc.net.au/listen/live/country")
-def ABC_Kids_listen():
-    return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
-def ABC_Radio_Australia():
-    return Radio5(browser,"https://www.abc.net.au/pacific/live")
-def KIIS1065():
-    return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
-def GOLD1017():
-    return Commercial1(browser,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0)
-def CADA():
-    return Commercial1(browser,"https://www.iheart.com/live/cada-6179/","css-1jnehb1 e1aypx0f0",0)
-def iHeartCountry_Australia():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartcountry-australia-7222/","css-1jnehb1 e1aypx0f0",0)
-def KIIS_90s():
-    return Commercial1(browser,"https://www.iheart.com/live/kiis-90s-10069/","css-1jnehb1 e1aypx0f0",0)
-def GOLD_80s():
-    return Commercial1(browser,"https://www.iheart.com/live/gold-80s-10073/","css-1jnehb1 e1aypx0f0",0)    
-def iHeartRadio_Countdown_AUS():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartradio-countdown-aus-6902/","css-1jnehb1 e1aypx0f0",0)
-def TikTok_Trending_on_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/","css-1jnehb1 e1aypx0f0",0)
-def iHeartDance():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartdance-6941/","css-1jnehb1 e1aypx0f0",0)
-def The_Bounce():
-    return Commercial1(browser,"https://www.iheart.com/live/the-bounce-6327/","css-1jnehb1 e1aypx0f0",0)
-def iHeartAustralia():
-    return Commercial1(browser,"https://www.iheart.com/live/iheartaustralia-7050/","css-1jnehb1 e1aypx0f0",0)
-def fbi_radio():
-    return Commercial1(browser,"https://www.iheart.com/live/fbiradio-6311/","css-1jnehb1 e1aypx0f0",0)
-def _2SER():
-    return Commercial1(browser,"https://www.iheart.com/live/2ser-6324/","css-1jnehb1 e1aypx0f0",0)
-def _2MBS_Fine_Music_Sydney():
-    return Commercial1(browser,"https://www.iheart.com/live/2mbs-fine-music-sydney-6312/","css-1jnehb1 e1aypx0f0",0)
-def KIX_Country():
-    return Commercial1(browser,"https://www.iheart.com/live/kix-country-9315/","css-1jnehb1 e1aypx0f0",0)
-def SBS_Chill():
-    return Commercial1(browser,"https://www.iheart.com/live/sbs-chill-7029/","css-1jnehb1 e1aypx0f0",0)
-def Vintage_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/vintage-fm-8865/","css-1jnehb1 e1aypx0f0",0)
-def My88_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/my88-fm-8866/","css-1jnehb1 e1aypx0f0",0)
-def Hope_103_2():
-    return Commercial1(browser,"https://www.iheart.com/live/hope-1032-6314/","css-1jnehb1 e1aypx0f0",0)
-def The_90s_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/the-90s-iheartradio-6793/","css-1jnehb1 e1aypx0f0",0)
-def The_80s_iHeartRadio():
-    return Commercial1(browser,"https://www.iheart.com/live/the-80s-iheartradio-6794/","css-1jnehb1 e1aypx0f0",0)
-def Mix_102_3():
-    return Commercial1(browser,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0)
-def Cruise_1323():
-    return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0)
-def Mix_80s():
-    return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
-def Mix_90s():
-    return Commercial1(browser,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0)
-def ABC_Sport():
-    return Commercial1(browser,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0)
-def ABC_Sport_Extra():
-    return Commercial1(browser,"https://www.iheart.com/live/abc-sport-extra-10233/","css-1jnehb1 e1aypx0f0",0)
-def Energy_Groove():
-    return Commercial1(browser,"https://www.iheart.com/live/energy-groove-6329/","css-1jnehb1 e1aypx0f0",0)
-def Vision_Christian_Radio():
-    return Commercial1(browser,"https://www.iheart.com/live/vision-christian-radio-9689/","css-1jnehb1 e1aypx0f0",0)
-def Starter_FM():
-    return Commercial1(browser,"https://www.iheart.com/live/starter-fm-9353/","css-1jnehb1 e1aypx0f0",0)
-def _2ME():
-    return Commercial1(browser,"https://www.iheart.com/live/2me-10143/","css-1jnehb1 e1aypx0f0",0)
-def SBS_PopAsia():
-    return Commercial1(browser,"https://www.iheart.com/live/sbs-popasia-7028/","css-1jnehb1 e1aypx0f0",0)
-def _3MBS_Fine_Music_Melbourne():
-    return Commercial1(browser,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/","css-1jnehb1 e1aypx0f0",0)
-def Golden_Days_Radio():
-    return Commercial1(browser,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0)
-def PBS_106_7FM():
-    return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0)
-def smoothfm_953_Sydney():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_VINTAGE():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothvintage","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_relax():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothrelax","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smooth_80s():
-    return Commercial1(browser,"https://smooth.com.au/station/smooth80s","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Adelaide():
-    return Commercial1(browser,"https://smooth.com.au/station/adelaide","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_915_Melbourne():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothfm915","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Brisbane():
-    return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def smoothfm_Perth():
-    return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
-def nova_969_Sydney():
-    return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_90s():
-    return Commercial1(browser,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_THROWBACKS():
-    return Commercial1(browser,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_FreshCOUNTRY():
-    return Commercial1(browser,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_NATION():
-    return Commercial1(browser,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_919_Adelaide():
-    return Commercial1(browser,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_100_Melbourne():
-    return Commercial1(browser,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_1069_Brisbane():
-    return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
-def nova_937_Perth():
-    return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
-def _2GB_SYDNEY():
-    return Commercial2(browser,"https://www.radio-australia.org/2gb")
-def _2GN_GOULBURN():
-    return Commercial2(browser,"https://www.radio-australia.org/2gn")
-def bbc_radio_1():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
-def bbc_radio_2():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
-def bbc_radio_3():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
-def bbc_radio_4():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
-def bbc_radio_5_live():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
-def _1000_hits_classical_music():
-    return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
-def classic_fm():
-    return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
-def klassik_radio():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
-def klassik_radio_pure_bach():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
-def klassik_radio_pure_beethoven():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
-def klassik_radio_pure_mozart():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
-def klassik_radio_pure_verdi():
-    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
-def epic_piano_chopin():
-    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
+def ABC_Classic2():          return Radio1(browser,7,"https://www.abc.net.au/listen/live/classic2")
+def ABC_Jazz():              return Radio1(browser,7,"https://www.abc.net.au/listen/live/jazz")
+def ABC_triple_j_Hottest():  return Radio1(browser,7,"https://www.abc.net.au/triplej/live/triplejhottest")
+def ABC_triple_j_Unearthed():return Radio1(browser,7,"https://www.abc.net.au/triplej/live/unearthed")
 
+def ABC_Radio_National_LIVE():return Radio2(browser,0,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_QLD(): return Radio2(browser,1,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_WA():  return Radio2(browser,2,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_SA():  return Radio2(browser,3,"https://www.abc.net.au/listen/live/radionational")
+def ABC_Radio_National_NT():  return Radio2(browser,4,"https://www.abc.net.au/listen/live/radionational")
+
+def ABC_triple_j_LIVE():return Radio3(browser,0,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_QLD(): return Radio3(browser,1,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_WA():  return Radio3(browser,2,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_SA():  return Radio3(browser,3,"https://www.abc.net.au/listen/live/triplej")
+def ABC_triple_j_NT():  return Radio3(browser,4,"https://www.abc.net.au/listen/live/triplej")
+def ABC_Double_j_LIVE():return Radio3(browser,0,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_QLD(): return Radio3(browser,1,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_WA():  return Radio3(browser,2,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_SA():  return Radio3(browser,3,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Double_j_NT():  return Radio3(browser,4,"https://www.abc.net.au/listen/live/doublej")
+def ABC_Classic_LIVE(): return Radio3(browser,0,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_QLD():  return Radio3(browser,1,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_WA():   return Radio3(browser,2,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_SA():   return Radio3(browser,3,"https://www.abc.net.au/listen/live/classic")
+def ABC_Classic_NT():   return Radio3(browser,4,"https://www.abc.net.au/listen/live/classic")
+
+def ABC_Radio_Sydney_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/sydney")
+def ABC_Broken_Hill_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/brokenhill")
+def ABC_Central_Coast_NSW():         return Radio4(browser,"https://www.abc.net.au/listen/live/centralcoast")
+def ABC_Central_West_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/centralwest")
+def ABC_Coffs_Coast_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/coffscoast")
+def ABC_Illawarra_NSW():             return Radio4(browser,"https://www.abc.net.au/listen/live/illawarra")
+def ABC_Mid_North_Coast_NSW():       return Radio4(browser,"https://www.abc.net.au/listen/live/midnorthcoast")
+def ABC_New_England_North_West_NSW():return Radio4(browser,"https://www.abc.net.au/listen/live/newengland")
+def ABC_Newcastle_NSW():             return Radio4(browser,"https://www.abc.net.au/listen/live/newcastle")
+def ABC_North_Coast_NSW():           return Radio4(browser,"https://www.abc.net.au/listen/live/northcoast")
+def ABC_Riverina_NSW():              return Radio4(browser,"https://www.abc.net.au/listen/live/riverina")
+def ABC_South_East_NSW():            return Radio4(browser,"https://www.abc.net.au/listen/live/southeastnsw")
+def ABC_Upper_Hunter_NSW():          return Radio4(browser,"https://www.abc.net.au/listen/live/upperhunter")
+def ABC_Western_Plains_NSW():        return Radio4(browser,"https://www.abc.net.au/listen/live/westernplains")
+def ABC_Radio_Canberra_ACT():        return Radio4(browser,"https://www.abc.net.au/listen/live/canberra")
+def ABC_Radio_Darwin_NT():           return Radio4(browser,"https://www.abc.net.au/listen/live/darwin")
+def ABC_Alice_Springs_NT():          return Radio4(browser,"https://www.abc.net.au/listen/live/alicesprings")
+def ABC_Radio_Melbourne_VIC():       return Radio4(browser,"https://www.abc.net.au/listen/live/melbourne")
+def ABC_Ballarat_VIC():              return Radio4(browser,"https://www.abc.net.au/listen/live/ballarat")
+def ABC_Central_Victoria_VIC():      return Radio4(browser,"https://www.abc.net.au/listen/live/centralvic")
+def ABC_Gippsland_VIC():             return Radio4(browser,"https://www.abc.net.au/listen/live/gippsland")
+def ABC_Goulburn_Murray_VIC():       return Radio4(browser,"https://www.abc.net.au/listen/live/goulburnmurray")
+def ABC_Mildura_Swan_Hill_VIC():     return Radio4(browser,"https://www.abc.net.au/listen/live/milduraswanhill")
+def ABC_Shepparton_VIC():            return Radio4(browser,"https://www.abc.net.au/listen/live/shepparton")
+def ABC_South_West_Victoria_VIC():   return Radio4(browser,"https://www.abc.net.au/listen/live/southwestvic")
+def ABC_Wimmera_VIC():               return Radio4(browser,"https://www.abc.net.au/listen/live/wimmera")
+def ABC_Radio_Adelaide_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/adelaide")
+def ABC_Eyre_Peninsula_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/eyre")
+def ABC_North_and_West_SA():         return Radio4(browser,"https://www.abc.net.au/listen/live/northandwest")
+def ABC_Riverland_SA():              return Radio4(browser,"https://www.abc.net.au/listen/live/riverland")
+def ABC_South_East_SA():             return Radio4(browser,"https://www.abc.net.au/listen/live/southeastsa")
+def ABC_Radio_Hobart_TAS():          return Radio4(browser,"https://www.abc.net.au/listen/live/hobart")
+def ABC_Northern_Tasmania_TAS():     return Radio4(browser,"https://www.abc.net.au/listen/live/northtas")
+def ABC_Radio_Brisbane_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/brisbane")
+def ABC_Capricornia_QLD():           return Radio4(browser,"https://www.abc.net.au/listen/live/capricornia")
+def ABC_Far_North_QLD():             return Radio4(browser,"https://www.abc.net.au/listen/live/farnorth")
+def ABC_Gold_Coast_QLD():            return Radio4(browser,"https://www.abc.net.au/listen/live/goldcoast")
+def ABC_North_Queensland_QLD():      return Radio4(browser,"https://www.abc.net.au/listen/live/northqld")
+def ABC_North_West_Queensland_QLD(): return Radio4(browser,"https://www.abc.net.au/listen/live/northwest")
+def ABC_Southern_Queensland_QLD():   return Radio4(browser,"https://www.abc.net.au/listen/live/southqld")
+def ABC_Sunshine_Coast_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/sunshine")
+def ABC_Tropical_North_QLD():        return Radio4(browser,"https://www.abc.net.au/listen/live/tropic")
+def ABC_Western_Queensland_QLD():    return Radio4(browser,"https://www.abc.net.au/listen/live/westqld")
+def ABC_Wide_Bay_QLD():              return Radio4(browser,"https://www.abc.net.au/listen/live/widebay")
+def ABC_Radio_Perth_WA():            return Radio4(browser,"https://www.abc.net.au/listen/live/perth")
+def ABC_Esperance_WA():              return Radio4(browser,"https://www.abc.net.au/listen/live/esperance")
+def ABC_Goldfields_WA():             return Radio4(browser,"https://www.abc.net.au/listen/live/goldfields")
+def ABC_Great_Southern_WA():         return Radio4(browser,"https://www.abc.net.au/listen/live/greatsouthern")
+def ABC_Kimberley_WA():              return Radio4(browser,"https://www.abc.net.au/listen/live/kimberley")
+def ABC_Midwest_and_Wheatbelt_WA():  return Radio4(browser,"https://www.abc.net.au/listen/live/wheatbelt")
+def ABC_Pilbara_WA():                return Radio4(browser,"https://www.abc.net.au/listen/live/pilbara")
+def ABC_South_West_WA():             return Radio4(browser,"https://www.abc.net.au/listen/live/southwestwa")
+def ABC_NewsRadio():                 return Radio4(browser,"https://www.abc.net.au/listen/live/news")
+
+def ABC_Country():        return Radio5(browser,"https://www.abc.net.au/listen/live/country")
+def ABC_Radio_Australia():return Radio5(browser,"https://www.abc.net.au/pacific/live")
+
+def ABC_Kids_listen():return Radio6(browser,"https://www.abc.net.au/listenlive/kidslisten")
+
+# **** FIX ****
+def ABC_SPORT():return Radio7(browser,0,"https://www.abc.net.au/news/sport/audio")
+
+def KIIS1065():                      return Commercial1(browser,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0)
+def GOLD1017():                      return Commercial1(browser,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0)
+def CADA():                          return Commercial1(browser,"https://www.iheart.com/live/cada-6179/","css-1jnehb1 e1aypx0f0",0)
+def iHeartCountry_Australia():       return Commercial1(browser,"https://www.iheart.com/live/iheartcountry-australia-7222/","css-1jnehb1 e1aypx0f0",0)
+def KIIS_90s():                      return Commercial1(browser,"https://www.iheart.com/live/kiis-90s-10069/","css-1jnehb1 e1aypx0f0",0)
+def GOLD_80s():                      return Commercial1(browser,"https://www.iheart.com/live/gold-80s-10073/","css-1jnehb1 e1aypx0f0",0)    
+def iHeartRadio_Countdown_AUS():     return Commercial1(browser,"https://www.iheart.com/live/iheartradio-countdown-aus-6902/","css-1jnehb1 e1aypx0f0",0)
+def TikTok_Trending_on_iHeartRadio():return Commercial1(browser,"https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/","css-1jnehb1 e1aypx0f0",0)
+def iHeartDance():                   return Commercial1(browser,"https://www.iheart.com/live/iheartdance-6941/","css-1jnehb1 e1aypx0f0",0)
+def The_Bounce():                    return Commercial1(browser,"https://www.iheart.com/live/the-bounce-6327/","css-1jnehb1 e1aypx0f0",0)
+def iHeartAustralia():               return Commercial1(browser,"https://www.iheart.com/live/iheartaustralia-7050/","css-1jnehb1 e1aypx0f0",0)
+def fbi_radio():                     return Commercial1(browser,"https://www.iheart.com/live/fbiradio-6311/","css-1jnehb1 e1aypx0f0",0)
+def _2SER():                         return Commercial1(browser,"https://www.iheart.com/live/2ser-6324/","css-1jnehb1 e1aypx0f0",0)
+def _2MBS_Fine_Music_Sydney():       return Commercial1(browser,"https://www.iheart.com/live/2mbs-fine-music-sydney-6312/","css-1jnehb1 e1aypx0f0",0)
+def KIX_Country():                   return Commercial1(browser,"https://www.iheart.com/live/kix-country-9315/","css-1jnehb1 e1aypx0f0",0)
+def SBS_Chill():                     return Commercial1(browser,"https://www.iheart.com/live/sbs-chill-7029/","css-1jnehb1 e1aypx0f0",0)
+def Vintage_FM():                    return Commercial1(browser,"https://www.iheart.com/live/vintage-fm-8865/","css-1jnehb1 e1aypx0f0",0)
+def My88_FM():                       return Commercial1(browser,"https://www.iheart.com/live/my88-fm-8866/","css-1jnehb1 e1aypx0f0",0)
+def Hope_103_2():                    return Commercial1(browser,"https://www.iheart.com/live/hope-1032-6314/","css-1jnehb1 e1aypx0f0",0)
+def The_90s_iHeartRadio():           return Commercial1(browser,"https://www.iheart.com/live/the-90s-iheartradio-6793/","css-1jnehb1 e1aypx0f0",0)
+def The_80s_iHeartRadio():           return Commercial1(browser,"https://www.iheart.com/live/the-80s-iheartradio-6794/","css-1jnehb1 e1aypx0f0",0)
+def Mix_102_3():                     return Commercial1(browser,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0)
+def Cruise_1323():                   return Commercial1(browser,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0)
+def Mix_80s():                       return Commercial1(browser,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0)
+def Mix_90s():                       return Commercial1(browser,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0)
+def ABC_Sport():                     return Commercial1(browser,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0)
+def ABC_Sport_Extra():               return Commercial1(browser,"https://www.iheart.com/live/abc-sport-extra-10233/","css-1jnehb1 e1aypx0f0",0)
+def Energy_Groove():                 return Commercial1(browser,"https://www.iheart.com/live/energy-groove-6329/","css-1jnehb1 e1aypx0f0",0)
+def Vision_Christian_Radio():        return Commercial1(browser,"https://www.iheart.com/live/vision-christian-radio-9689/","css-1jnehb1 e1aypx0f0",0)
+def Starter_FM():                    return Commercial1(browser,"https://www.iheart.com/live/starter-fm-9353/","css-1jnehb1 e1aypx0f0",0)
+def _2ME():                          return Commercial1(browser,"https://www.iheart.com/live/2me-10143/","css-1jnehb1 e1aypx0f0",0)
+def SBS_PopAsia():                   return Commercial1(browser,"https://www.iheart.com/live/sbs-popasia-7028/","css-1jnehb1 e1aypx0f0",0)
+def _3MBS_Fine_Music_Melbourne():    return Commercial1(browser,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/","css-1jnehb1 e1aypx0f0",0)
+def Golden_Days_Radio():             return Commercial1(browser,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0)
+def PBS_106_7FM():                   return Commercial1(browser,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0)
+def smoothfm_953_Sydney():           return Commercial1(browser,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_VINTAGE():                return Commercial1(browser,"https://smooth.com.au/station/smoothvintage","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_relax():                  return Commercial1(browser,"https://smooth.com.au/station/smoothrelax","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smooth_80s():                    return Commercial1(browser,"https://smooth.com.au/station/smooth80s","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Adelaide():             return Commercial1(browser,"https://smooth.com.au/station/adelaide","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_915_Melbourne():        return Commercial1(browser,"https://smooth.com.au/station/smoothfm915","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Brisbane():             return Commercial1(browser,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def smoothfm_Perth():                return Commercial1(browser,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1)
+def nova_969_Sydney():               return Commercial1(browser,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_90s():                      return Commercial1(browser,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_THROWBACKS():               return Commercial1(browser,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_FreshCOUNTRY():             return Commercial1(browser,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_NATION():                   return Commercial1(browser,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_919_Adelaide():             return Commercial1(browser,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_100_Melbourne():            return Commercial1(browser,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_1069_Brisbane():            return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
+def nova_937_Perth():                return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
+
+def _2GB_SYDNEY():                 return Commercial2(browser,"https://www.radio-australia.org/2gb")
+def _2GN_GOULBURN():               return Commercial2(browser,"https://www.radio-australia.org/2gn")
+def bbc_radio_1():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
+def bbc_radio_2():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
+def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
+def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
+def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
+def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
+def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
+def klassik_radio():               return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
+def klassik_radio_pure_bach():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
+def klassik_radio_pure_beethoven():return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
+def klassik_radio_pure_mozart():   return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
+def klassik_radio_pure_verdi():    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
+def epic_piano_chopin():           return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1399,6 +1259,9 @@ aStation = [
     ["klassik radio pure verdi",klassik_radio_pure_verdi],
     ["epic piano chopin",epic_piano_chopin]
 ] 
+
+# COMMON BLOCK END ***********************************************
+
 
 # 2D array of preset radio stations, in long name and index (to aStation[]) format.
 # this is the default, but is actually copied from file at statup and saved to file on exit!

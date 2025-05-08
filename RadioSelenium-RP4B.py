@@ -31,9 +31,9 @@ from selenium.webdriver.support import expected_conditions as EC
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO pins for the rotary encoder and push button.
-CLK_PIN = 16   # Connect to CLK (A) of the encoder
-DT_PIN  = 20   # Connect to DT (B) of the encoder
-SW_PIN  = 21  # Connect to the push button
+CLK_PIN = 2 #16   # Connect to CLK (A) of the encoder
+DT_PIN  = 3 #20   # Connect to DT (B) of the encoder
+SW_PIN  = 4 #21  # Connect to the push button
 
 # Setup pins with internal pull-ups.
 GPIO.setup(CLK_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)

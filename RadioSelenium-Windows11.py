@@ -45,7 +45,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -1092,17 +1092,35 @@ def _2GB_SYDNEY():                 return Commercial2(browser,"https://www.radio
 def _2GN_GOULBURN():               return Commercial2(browser,"https://www.radio-australia.org/2gn")
 def bbc_radio_1():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
 def bbc_radio_2():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
-def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")
+def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")         
 def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
 def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
 def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
 def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
+def classical_california_KUSC():   return Commercial2(browser,"https://www.internetradio-horen.de/us/kusc-classical-915-fm-kdb")
+#def classical_mood():              return Commercial2(browser,"https://www.internetradio-horen.de/ae/classical-mood")
+
 def klassik_radio():               return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
 def klassik_radio_pure_bach():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
 def klassik_radio_pure_beethoven():return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
 def klassik_radio_pure_mozart():   return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
 def klassik_radio_pure_verdi():    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
-def epic_piano_chopin():           return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
+def klassik_radio_barock():        return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-barock")
+def klassik_radio_klavier_solo():  return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano")
+def klassik_radio_new_piano():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano-new-classics")
+
+def epic_piano_solo():         return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-solo-piano")
+def epic_piano_coverhits():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-coverhits")
+def epic_piano_greatconcerts():return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-great-concerts")
+def epic_piano_chillout():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chillout-piano")
+def epic_piano_modern():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-modern-piano")
+def epic_piano_romantic():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-romantic-piano")
+def epic_piano_christmas():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-christmas")
+def epic_piano_chopin():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
+def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-tschaikowski")
+def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg")
+def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt")
+
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1252,12 +1270,29 @@ aStation = [
     ["bbc radio 5 live",bbc_radio_5_live],
     ["1000 hits classical music",_1000_hits_classical_music],
     ["classic fm",classic_fm],
+    ["classical california KUSC",classical_california_KUSC],
+    #["classical mood",classical_mood],
+
     ["klassik radio",klassik_radio],
     ["klassik radio pure bach",klassik_radio_pure_bach],
     ["klassik radio pure beethoven",klassik_radio_pure_beethoven],
     ["klassik radio pure mozart",klassik_radio_pure_mozart],
     ["klassik radio pure verdi",klassik_radio_pure_verdi],
-    ["epic piano chopin",epic_piano_chopin]
+    ["klassik radio barock",klassik_radio_barock],
+    ["klassik radio klavier solo",klassik_radio_klavier_solo],
+    ["klassik radio piano new classics",klassik_radio_new_piano],
+
+    ["epic piano solo",epic_piano_solo],
+    ["epic piano coverhits",epic_piano_coverhits],
+    ["epic piano great concerts",epic_piano_greatconcerts],
+    ["epic piano chillout",epic_piano_chillout],
+    ["epic piano modern",epic_piano_modern],
+    ["epic piano romantic",epic_piano_romantic],
+    ["epic piano christmas",epic_piano_christmas],
+    ["epic piano Chopin",epic_piano_chopin],
+    ["epic piano Tschaikowski",epic_piano_tschaikowski],
+    ["epic piano Grieg",epic_piano_grieg],
+    ["epic piano Liszt",epic_piano_liszt]
 ] 
 
 # COMMON BLOCK END ***********************************************

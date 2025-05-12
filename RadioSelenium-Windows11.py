@@ -1780,6 +1780,7 @@ label2 = tk.Label(root)
 label2.pack()
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
+# the button icons may fall out of sink with the playlist station values!
 buttons = []
 for i in range(numButtons):
     # HELP

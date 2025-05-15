@@ -1135,7 +1135,7 @@ def Commercial2(br,sPath):
         height = window_size['height']         
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
         widthPx =280
-        heightPx = 390
+        heightPx = 330#390
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
@@ -1159,50 +1159,64 @@ def Commercial2(br,sPath):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
+
     # Stations with program image
+    image_path = pathImages + "/presenter.jpg"
+    foundImage = True
     try:
         # try to find a particular image element by path
-        img_element = be.find_element(By.XPATH, '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img')
+        xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
+        img_element = be.find_element(By.XPATH, xpath)
         img_url = img_element.get_attribute("src")
-        image_path = pathImages + "/presenter.jpg"
         urllib.request.urlretrieve(img_url, image_path)
+        print("=====> xpath #1")
+    except NoSuchElementException:
+        try:
+            # if failed above try a slightly different path
+            xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
+            img_element = be.find_element(By.XPATH, xpath)
+            img_url = img_element.get_attribute("src")
+            urllib.request.urlretrieve(img_url, image_path)
+            print("=====> xpath #2")
+        except NoSuchElementException:
+            try:
+                # if failed above try a slightly different path
+                xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
+                img_element = be.find_element(By.XPATH, xpath)
+                img_url = img_element.get_attribute("src")
+                urllib.request.urlretrieve(img_url, image_path)
+                print("=====> xpath #3")
+            except NoSuchElementException:
+                try:
+                    # if failed above try a slightly different path
+                    xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
+                    img_element = be.find_element(By.XPATH, xpath)
+                    img_url = img_element.get_attribute("src")
+                    urllib.request.urlretrieve(img_url, image_path)
+                    print("=====> xpath #4")
+                except NoSuchElementException:
+                    # failed to find image so display a blank image
+                    foundImage = False
+                    print("=====> xpath NONE")
+    
+    if foundImage:
         image = Image.open(image_path)
         width2, height2 = image.size;
         print(f"Pic width: {width2}, Pic height: {height2}")
         width = int(Xprog*width2/height2)
-        scaled_image = image.resize((width-30-25, Xprog-30-25))  # Adjust the size as needed
+        scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog)+30+25, y=Ygap2+30)  # Adjust the position
-        print("=====> /div/a/img")
-    except NoSuchElementException:
-        try:
-            # if failed above try a slightly different path
-            img_element = be.find_element(By.XPATH, '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img')
-            img_url = img_element.get_attribute("src")
-            image_path = pathImages + "/presenter.jpg"
-            urllib.request.urlretrieve(img_url, image_path)
-            image = Image.open(image_path)
-            width2, height2 = image.size;
-            print(f"Pic width: {width2}, Pic height: {height2}")
-            width = int(Xprog*width2/height2)
-            scaled_image = image.resize((width-55, Xprog-55))  # Adjust the size as needed
-            photo = ImageTk.PhotoImage(scaled_image)
-            label2.config(image=photo)
-            label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
-            print("=====>  /div/img")
-        except NoSuchElementException:
-            # failed to find image so display a blank image
-            image_path = pathImages + "/Blank.png"
-            image = Image.open(image_path)
-            scaled_image = image.resize((Xprog-30-25, Xprog-30-25))  # Adjust the size as needed
-            photo = ImageTk.PhotoImage(scaled_image)
-            label2.config(image=photo)
-            label2.image = photo  # Keep a reference to avoid garbage collection
-            label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
-            print("=====> No /img")
+        label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+    else:    
+        image_path = pathImages + "/Blank.png"
+        image = Image.open(image_path)
+        scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
+        photo = ImageTk.PhotoImage(scaled_image)
+        label2.config(image=photo)
+        label2.image = photo  # Keep a reference to avoid garbage collection
+        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
 
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')
@@ -1366,39 +1380,42 @@ def nova_100_Melbourne():            return Commercial1(browser,"https://novafm.
 def nova_1069_Brisbane():            return Commercial1(browser,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1)
 def nova_937_Perth():                return Commercial1(browser,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1)
 
-def _2GB_SYDNEY():                 return Commercial2(browser,"https://www.radio-australia.org/2gb")
-def _2GN_GOULBURN():               return Commercial2(browser,"https://www.radio-australia.org/2gn")
-def bbc_radio_1():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1")
-def bbc_radio_2():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2")
-def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3")         
-def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4")
-def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live")
-def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music")
-def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm")
-def classical_california_KUSC():   return Commercial2(browser,"https://www.internetradio-horen.de/us/kusc-classical-915-fm-kdb")
-#def classical_mood():              return Commercial2(browser,"https://www.internetradio-horen.de/ae/classical-mood")
+def _2GB_SYDNEY():                 return Commercial2(browser,"https://www.radio-australia.org/2gb") #77 0
+def _2GN_GOULBURN():               return Commercial2(browser,"https://www.radio-australia.org/2gn") #77 0
+def totally_radio_80s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-80s") #65 4
 
-def klassik_radio():               return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio")
-def klassik_radio_pure_bach():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach")
-def klassik_radio_pure_beethoven():return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven")
-def klassik_radio_pure_mozart():   return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart")
-def klassik_radio_pure_verdi():    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi")
-def klassik_radio_barock():        return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-barock")
-def klassik_radio_klavier_solo():  return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano")
-def klassik_radio_new_piano():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano-new-classics")
+def bbc_radio_1():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-1") #77 1
+def bbc_radio_2():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-2") #77 1
+def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3") #77 2         
+def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4") #77 0
+def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live") #77 0
+def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music") #77 0
+def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm") #77 1
+def classical_california_KUSC():   return Commercial2(browser,"https://www.internetradio-horen.de/us/kusc-classical-915-fm-kdb") #65 4
+def classical_mood():              return Commercial2(browser,"https://www.internetradio-horen.de/ae/classical-mood") #65 4
+def classical_ultra_quiet_radio(): return Commercial2(browser,"https://www.internetradio-horen.de/ca/ultra-quiet-radio") #65 4
+def classic_radio_swiss():         return Commercial2(browser,"https://www.internetradio-horen.de/ch/radio-swiss-classic-fr") #65 4
 
-def epic_piano_solo():         return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-solo-piano")
-def epic_piano_coverhits():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-coverhits")
-def epic_piano_greatconcerts():return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-great-concerts")
-def epic_piano_chillout():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chillout-piano")
-def epic_piano_modern():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-modern-piano")
-def epic_piano_romantic():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-romantic-piano")
-def epic_piano_christmas():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-christmas")
-def epic_piano_chopin():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin")
-def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-tschaikowski")
-def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg")
-def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt")
+def klassik_radio():               return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio") #77 2
+def klassik_radio_pure_bach():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-bach") #77 0
+def klassik_radio_pure_beethoven():return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven") #77 0
+def klassik_radio_pure_mozart():   return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-mozart") #77 0
+def klassik_radio_pure_verdi():    return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-pure-verdi") #77 0
+def klassik_radio_barock():        return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-barock") #77 0
+def klassik_radio_piano():         return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano") #77 0
+def klassik_radio_new_piano():     return Commercial2(browser,"https://www.internetradio-horen.de/klassik-radio-piano-new-classics") #77 0
 
+def epic_piano_solo():         return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-solo-piano") #77 0
+def epic_piano_coverhits():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-coverhits") #77 0
+def epic_piano_greatconcerts():return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-great-concerts") #77 0
+def epic_piano_chillout():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chillout-piano") #77 0
+def epic_piano_modern():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-modern-piano") #77 0
+def epic_piano_romantic():     return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-romantic-piano") #77 0
+def epic_piano_christmas():    return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-piano-christmas") #77 0
+def epic_piano_chopin():       return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-chopin") #77 0
+def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-tschaikowski") #77 0
+def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg") #77 0
+def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt") #77 0
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1539,8 +1556,11 @@ aStation = [
     ["nova THROWBACKS",nova_THROWBACKS],
     ["nova FreshCOUNTRY",nova_FreshCOUNTRY],
     ["nova NATION",nova_NATION],
+
     ["2GB SYDNEY",_2GB_SYDNEY],
     ["2GN GOULBURN",_2GN_GOULBURN],
+    ["totally radio 80s",totally_radio_80s],
+
     ["bbc radio 1",bbc_radio_1],
     ["bbc radio 2",bbc_radio_2],
     ["bbc radio 3",bbc_radio_3],
@@ -1549,7 +1569,11 @@ aStation = [
     ["1000 hits classical music",_1000_hits_classical_music],
     ["classic fm",classic_fm],
     ["classical california KUSC",classical_california_KUSC],
-    #["classical mood",classical_mood],
+    ["classical mood",classical_mood],
+    ["classical ultra quiet radio",classical_ultra_quiet_radio],
+    ["classic radio swiss",classic_radio_swiss],
+    
+    #["",],
 
     ["klassik radio",klassik_radio],
     ["klassik radio pure bach",klassik_radio_pure_bach],
@@ -1557,7 +1581,7 @@ aStation = [
     ["klassik radio pure mozart",klassik_radio_pure_mozart],
     ["klassik radio pure verdi",klassik_radio_pure_verdi],
     ["klassik radio barock",klassik_radio_barock],
-    ["klassik radio klavier solo",klassik_radio_klavier_solo],
+    ["klassik radio piano",klassik_radio_piano],
     ["klassik radio piano new classics",klassik_radio_new_piano],
 
     ["epic piano solo",epic_piano_solo],

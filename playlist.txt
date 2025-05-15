@@ -1,6 +1,6 @@
 ABC Radio Sydney NSW,0
-ABC Radio Adelaide SA,26
 ABC Radio National LIVE,53
+ABC NewsRadio,52
 ABC Classic LIVE,71
 ABC Classic2,76
 ABC Jazz,77
@@ -10,11 +10,11 @@ smooth VINTAGE,122
 GOLD101.7,82
 Cruise 1323,103
 2GB SYDNEY,132
-klassik radio pure mozart,144
-epic piano chopin,146
-1000 hits classical music,139
-klassik radio,141
 totally radio 80s,134
 classical california KUSC,142
+epic piano Chopin,161
+klassik radio barock,151
+epic piano great concerts,156
+-- EMPTY 17 --,-1
 ABC Jazz,79
 ABC Country,80

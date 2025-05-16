@@ -1134,7 +1134,7 @@ def Commercial2(br,sPath):
         width = window_size['width']
         height = window_size['height']         
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-        widthPx =280
+        widthPx =110#280
         heightPx = 330#390
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
@@ -1195,9 +1195,17 @@ def Commercial2(br,sPath):
                     urllib.request.urlretrieve(img_url, image_path)
                     print("=====> xpath #4")
                 except NoSuchElementException:
-                    # failed to find image so display a blank image
-                    foundImage = False
-                    print("=====> xpath NONE")
+                    try:
+                        # if failed above try a slightly different path
+                        xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[2]/div[1]/a/img'
+                        img_element = be.find_element(By.XPATH, xpath)
+                        img_url = img_element.get_attribute("src")
+                        urllib.request.urlretrieve(img_url, image_path)
+                        print("=====> xpath #5")
+                    except NoSuchElementException:
+                        # failed to find image so display a blank image
+                        foundImage = False
+                        print("=====> xpath NONE")
     
     if foundImage:
         image = Image.open(image_path)
@@ -1231,6 +1239,8 @@ def Commercial2(br,sPath):
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 
+
+# COMMON BLOCK START *********************************************
 
 # START **********************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1417,6 +1427,20 @@ def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetr
 def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg") #77 0
 def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt") #77 0
 
+#http://e.internetradio-horen.de/embed/antenne-bayern-402283
+def antenne_bayern_live():         return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern")
+def antenne_bayern_schlagersahne():return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-schlagersahne")
+def antenne_bayern_top40():        return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-top-40")
+def antenne_bayern_80er_kulthits():return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-80er-kulthits")
+def antenne_bayern_90er_hits():    return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-90er-hits")
+def antenne_bayern_lovesongs():    return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-lovesongs")
+def antenne_bayern_70er_hits():    return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-70er-hits")
+def antenne_bayern_classic_rock(): return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-classic-rock-live")
+def antenne_bayern_greatest_hits():return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-greatest-hits")
+def antenne_bayern_coffeemusic():  return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-coffeemusic")
+def antenne_bayern_relax():        return Commercial2(browser,"https://www.internetradio-horen.de/anja-kurz")
+def antenne_bayern_lounge():       return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-country")
+
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
 
@@ -1594,7 +1618,20 @@ aStation = [
     ["epic piano Chopin",epic_piano_chopin],
     ["epic piano Tschaikowski",epic_piano_tschaikowski],
     ["epic piano Grieg",epic_piano_grieg],
-    ["epic piano Liszt",epic_piano_liszt]
+    ["epic piano Liszt",epic_piano_liszt],
+
+    ["antenne bayern live",antenne_bayern_live],
+    ["antenne bayern schlagersahne",antenne_bayern_schlagersahne],
+    ["antenne bayern top40",antenne_bayern_top40],
+    ["antenne bayern 80er kulthits",antenne_bayern_80er_kulthits],
+    ["antenne bayern 90er hits",antenne_bayern_90er_hits],
+    ["antenne bayern lovesongs",antenne_bayern_lovesongs],
+    ["antenne bayern 70er hits",antenne_bayern_70er_hits],
+    ["antenne bayern classic rock",antenne_bayern_classic_rock],
+    ["antenne bayern greatest hits",antenne_bayern_greatest_hits],
+    ["antenne bayern coffeemusic",antenne_bayern_coffeemusic],
+    ["antenne bayern relax",antenne_bayern_relax],
+    ["antenne bayern lounge",antenne_bayern_lounge]
 ] 
 
 # COMMON BLOCK END ***********************************************

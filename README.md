@@ -1,15 +1,15 @@
 # TkRadio
 
-**The best way to load this software is to Clone this Git Repository using Visual Studio Code.**
+### **The best way to load this software and build instructions is to Clone this Git Repository using Visual Studio Code.**
 
 Here the building of an Internet Radio will be described in detail.
 The software uses Python with tkinter and selenium, while the hardware is based on a Raspberry Pi 5.
 
 As a standalone app (RadioSelenium-Windows11.py) it can also be run under the Windows 11 OS (or other Linux versions). In those cases the installation of additional Python modules and other software setup will be significantly different and not described here (though somewhat in the [Windows setup](#windows-setup) section). The best way to do this in these cases is to try to run it and then correct errors by installing required modules or adjusting settings. Wifi/internet connections and bluetooth speakers have to be managed explicitly through the OS. RadioSelenium-RP5.py is the file for the Raspberry Pi hardware.
 
-The radio software has access to 146 radio stations (currently) mainly available in Australia. It accesses these streams via the stations websites in FireFox using selenium for automation. When a station is streamed its logo is displayed. In addition if available the station and program text are displayed together with the program graphic (eg. the record sleeve for the album from which the current song is playing). The default is for this program information to be refreshed approximately every 22 seconds while the stream is playing.
+The radio software has access to 178 radio stations (currently) with about half from Australia. It accesses these streams via the stations websites via the FireFox browser using selenium for automation. When a station is streamed its logo is displayed. In addition if available the stations program text is displayed together with the programs graphic (eg. the record sleeve for the album from which the current song is playing). The default is for this program information to be refreshed approximately every 22 seconds while the stream is playing.
 
-For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. When a playlist button is selected pressing the [Delete] key deletes the radio station assigned to that playlist button leaving the graphic blank. Similarily when the [Insert] key is pressed the station that was previously selected from the combobox is assigned to the playlist button overwiting the previous graphic.
+For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. With a playlist button is selected/in focus pressing the [Delete] key deletes the radio station assigned to that playlist button leaving the graphic blank. Similarily when the [Insert] key is pressed the station that was previously selected from the combobox is assigned to the playlist button overwiting the previous graphic.
 
 Occasionally internet/website issues might cause a station to fail to stream or not correctly refresh the program text and graphic. This can almost always be resolved by just selecting the station again.
 
@@ -17,16 +17,16 @@ Details of the station (from the playlist) currently playing is saved to a file 
 
 The RadioSelenium-RP5.py python file (or RadioSelenium-Windows11.py) can be launched from any directory as long as it contains the Images subdirectory and its files from the GitHub repository. The playlist.txt, savedRadioStation.txt, bluetooth.txt and pollflag.txt files are assumed to be in the same directory as well.
 
-In the Raspberry Pi case the softwares gui also has a secondary form for pairing/connecting to bluetooth speakers (the default being external speakers attached to the 3.5mm stereo jack of the Raspberry Pi). In addition the connection to the wifi network can also be explicitly made through this apps form. The above is necessary since the app is dedicated solely to the Raspberry Pi and is the only interface to the physical internet radio. We can only use buttons and no mouse or keyboard is assumed to be connected.
+In the Raspberry Pi case the softwares gui also has a secondary form for pairing/connecting to bluetooth speakers (the default being external speakers attached to the 3.5mm stereo jack of the Raspberry Pi). In addition the connection to the wifi network can also be explicitly made through this apps form. This is necessary since the app is dedicated solely to the Raspberry Pi and is the only interface to the physical internet radio. As such can only use buttons since no mouse or keyboard is assumed to be connected.
 
 Below is an image of the applications main and setup forms.
-![app GUI image](Images/imageGUI.png)
+![app GUI image](ImagesDocs/imageGUI.png)
 
 ## Hardware
 
-1. We use a Raspberry Pi 4B with 4GB of memory
-1. We use an aluminium case with fans since the Raspberry Pi gets hot
-1. We use USB powered (by the Raspberry Pi) stereo speakers that are plugged into the 3.5mm socket.
+1. We use a Raspberry Pi 5B with 4GB of memory
+1. We use an custom heatsink with  fans since the Raspberry Pi gets hot
+1. We use USB powered (by the Raspberry Pi) stereo speakers that are plugged into the USB socket (if the speakers have a 3.5mm plug you must use a converter cable).
 1. We use a wireless keyboard and mouse to control the software. The dongle is plugged into a USB port.
 1. We use a monitor that is plugged in into the micro HDMI port of the Raspberry Pi. Use an adaptor if the HDMI cable has a standard connector.
 
@@ -42,8 +42,7 @@ Here we detail ALL the software needed for this project. Starting with the blank
     hostname:             rpi
     username:             {username}
     password:             {password}
-    SSID:                 {SSID}
-    password:             {SSID password}
+    SSID:                 {SSID}    password:             {SSID password}
     Wireless LAN country: AU
     locale:               Australia/Sydney
     keyboard:             us
@@ -2133,7 +2132,7 @@ You will also need a soldering iron and solder, some sellotape and a glue gun wi
 | 1 | [RP-SC1150](https://raspberry.piaustralia.com.au/products/raspberry-pi-27w-usb-c-power-supply?_pos=1&_psq=RP-SC1150&_ss=e&_v=1.0&variant=44207871328480) | Raspberry Pi 27W USB-C [Power Supply](ImagesDocs/PowerSupply.png) | $25.37 | Needed for power hungry Raspberry Pi5 | |
 | 1 | [HD-203-0.3M](https://www.amazon.com.au/Thsucords-Micro-Flexible-Supports-18gbps/dp/B0BP29QTJ6/ref=sr_1_1?crid=XOGLPO6XRAKS&dib=eyJ2IjoiMSJ9.5fVBWJr2pX5EGbrBqtl4Rg.0vgcHY3JenNL7yyp8PRcAsHz90e8YfWwQgfYZRkr6tA&dib_tag=se&keywords=hd-203-0.3m&qid=1747122135&sprefix=%2Caps%2C238&sr=8-1&th=1) | Micro HDMI to HDMI [Cable](ImagesDocs/HDMIcable.png) 0.3M | $11.99 | Shortest cable needed for constrained space | |
 | 1 | [XC3736](https://www.jaycar.com.au/p/XC3736) | Arduino Compatible Rotary [Encoder Module](ImagesDocs/EncoderModule.png) | $9.95 | Based on model KY-040, see [this](Hardware/XC3736_manualMain_94604.pdf), [this](Hardware/ky-040-datasheet.pdf) and [this](Hardware/KY-040.pdf)| U2 |
-| 1 | [HK7741](https://jaycar.com.au/p/HK7741) | 32mm [Knob](ImagesDocs/Knob.png) - Black Plastic Aluminium Insert | $3.45 | used on above Rotary Encoder Module | |
+| 1 | [HK7011](https://jaycar.com.au/p/HK7011) | 29mm Black Anodised [Knob](ImagesDocs/KnobAnodised.png) | $9.95 | used on above Rotary Encoder Module | |
 | 1 | [ZC4821](https://jaycar.com.au/p/ZC4821) | [74HC14](ImagesDocs/74HC14.png) Hex Schmitt trigger Inverter CMOS IC | $1.45 | Used in debouncing circuit, see [datasheet](Hardware/ZC4821_datasheetMain_40327.pdf) | U1 |
 | 3 | [RM7125](https://jaycar.com.au/p/RM7125) | 100nF 100VDC MKT Polyester [Capacitor](ImagesDocs/PolyCap.png) | $1.20 | Used in debouncing circuit | C1, C2, C3 |
 | 1 | [RC5324](https://jaycar.com.au/p/RC5324) | 100pF 50VDC Ceramic [Capacitors](ImagesDocs/CeramicCap.png) - Pack of 2 | $0.45 | Used in debouncing circuit | C4, $0.23 cost used |

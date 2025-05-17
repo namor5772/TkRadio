@@ -1399,6 +1399,7 @@ def bbc_radio_2():                 return Commercial2(browser,"https://www.radio
 def bbc_radio_3():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-3") #77 2         
 def bbc_radio_4():                 return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4") #77 0
 def bbc_radio_5_live():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-5-live") #77 0
+
 def _1000_hits_classical_music():  return Commercial2(browser,"https://www.fmradiofree.com/1000-hits-classical-music") #77 0
 def classic_fm():                  return Commercial2(browser,"https://www.radio-uk.co.uk/classic-fm") #77 1
 def classical_california_KUSC():   return Commercial2(browser,"https://www.internetradio-horen.de/us/kusc-classical-915-fm-kdb") #65 4
@@ -1440,6 +1441,11 @@ def antenne_bayern_greatest_hits():return Commercial2(browser,"https://www.inter
 def antenne_bayern_coffeemusic():  return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-coffeemusic")
 def antenne_bayern_relax():        return Commercial2(browser,"https://www.internetradio-horen.de/anja-kurz")
 def antenne_bayern_lounge():       return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-country")
+
+def bbc_world_service():           return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-world-service")
+def bbc_radio_4_extra():           return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4-extra")
+def bbc_radio_london():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-london")
+def bbc_radio_1xtra():             return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-1xtra")
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1631,8 +1637,13 @@ aStation = [
     ["antenne bayern greatest hits",antenne_bayern_greatest_hits],
     ["antenne bayern coffeemusic",antenne_bayern_coffeemusic],
     ["antenne bayern relax",antenne_bayern_relax],
-    ["antenne bayern lounge",antenne_bayern_lounge]
-] 
+    ["antenne bayern lounge",antenne_bayern_lounge],
+
+    ["bbc world service",bbc_world_service],
+    ["bbc radio 4 extra",bbc_radio_4_extra],
+    ["bbc radio london",bbc_radio_london],
+    ["bbc radio 1xtra",bbc_radio_1xtra]
+]
 
 # COMMON BLOCK END ***********************************************
 

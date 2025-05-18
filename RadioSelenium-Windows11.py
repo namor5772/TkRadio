@@ -885,6 +885,17 @@ def Commercial2(br,sPath):
     foundImage = True
     try:
         # try to find a particular image element by path
+        #xpath = '//*[@id="player_image"]'
+        #img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        #img_url = img_element.get_attribute("src")
+        #print("Found image URL:", img_url)
+        #try:
+        #    urllib.request.urlretrieve(img_url, image_path)
+        #except Exception as e:
+        #    print(f"Failed to download the image: {e}")
+        #print("=====> xpath #1---")
+
+        # try to find a particular image element by path
         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
         img_element = be.find_element(By.XPATH, xpath)
         img_url = img_element.get_attribute("src")
@@ -949,11 +960,30 @@ def Commercial2(br,sPath):
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
+
+    # get general station details
+    fe = soup.find(attrs={"class": "mdc-typography--display1 primary-span-color"})
+    fe1 = ""
+    if fe is not None:
+        fe1 = fe.get_text(separator="*", strip=True)+"*"
+
+    fe = soup.find(attrs={"class": "slogan secondary-span-color"})
+    if fe is not None:
+        fe1 = fe1+fe.get_text(separator="*", strip=True)+"*"
+
+    fe = soup.find(attrs={"class": "secondary-span-color radio-description"})
+    if fe is not None:
+        fe1 = fe1+fe.get_text(separator="*", strip=True)+"* *"
+    else:
+        fe1 = fe1+" *"        
+
+    # get program details
     fe = soup.find(attrs={"class": "history-song"})
     if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
+        fe1 = "*"+fe1+fe.get_text(separator="*", strip=True)
     else:
-        fe1 = "No program information"
+        fe1 = "*"+fe1+"No program information"
+
     return fe1
 
 
@@ -1237,6 +1267,10 @@ def bbc_world_service():           return Commercial2(browser,"https://www.radio
 def bbc_radio_4_extra():           return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4-extra")
 def bbc_radio_london():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-london")
 def bbc_radio_1xtra():             return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-1xtra")
+def totally_radio_hits():          return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-hits")
+def totally_radio_90s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-90s")
+def totally_radio_70s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-70s")
+def totally_radio_60s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-60s")
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1433,8 +1467,12 @@ aStation = [
     ["bbc world service",bbc_world_service],
     ["bbc radio 4 extra",bbc_radio_4_extra],
     ["bbc radio london",bbc_radio_london],
-    ["bbc radio 1xtra",bbc_radio_1xtra]
-]     
+    ["bbc radio 1xtra",bbc_radio_1xtra],
+    ["totally radio hits",totally_radio_hits],
+    ["totally radio 90s",totally_radio_90s],
+    ["totally radio 70s",totally_radio_70s],
+    ["totally radio 60s",totally_radio_60s]
+]    
 
 # COMMON BLOCK END ***********************************************
 

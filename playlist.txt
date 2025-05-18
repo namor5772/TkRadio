@@ -6,15 +6,15 @@ ABC Classic2,76
 ABC Jazz,77
 ABC triple j LIVE,59
 GOLD 80s,86
-smooth VINTAGE,122
+bbc world service,177
 GOLD101.7,82
 Cruise 1323,103
 2GB SYDNEY,132
+totally radio hits,181
+totally radio 90s,182
 totally radio 80s,134
-classical california KUSC,142
-epic piano Chopin,161
-klassik radio barock,151
-antenne bayern live,165
-bbc radio 4,138
+totally radio 70s,183
+totally radio 60s,184
+-- EMPTY 17 --,-1
 ABC Jazz,79
 ABC Country,80

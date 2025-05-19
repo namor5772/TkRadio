@@ -15,6 +15,6 @@ totally radio 90s,182
 totally radio 80s,134
 totally radio 70s,183
 totally radio 60s,184
--- EMPTY 17 --,-1
+classic radio swiss,145
 ABC Jazz,79
 ABC Country,80

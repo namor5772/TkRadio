@@ -45,12 +45,13 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
 #refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 refresh_http = "https://www.blank.org/" # use a basic "empty" website
+browser.get(refresh_http)
 
 # global graphis position variables
 Ydown = 63
@@ -77,6 +78,13 @@ stationShort = ""
 station = ""
 needSleep = 5 # can be less on faster machines
 pressButton = True # flag for how stream is started
+
+# new browser tab related variables
+img_url_g = ""
+oh = 0
+nh = 0
+tabNum = 0
+
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -829,6 +837,8 @@ def Commercial1(br,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,sPath):
+    global img_url_g, oh, nh, tabNum
+
     if eventFlag:
         # use inspect to get the name of the calling function
         stack = inspect.stack()
@@ -879,21 +889,54 @@ def Commercial2(br,sPath):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"
     foundImage = True
     try:
-        # try to find a particular image element by path
-        #xpath = '//*[@id="player_image"]'
-        #img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-        #img_url = img_element.get_attribute("src")
-        #print("Found image URL:", img_url)
-        #try:
-        #    urllib.request.urlretrieve(img_url, image_path)
-        #except Exception as e:
-        #    print(f"Failed to download the image: {e}")
-        #print("=====> xpath #1---")
+        if eventFlag:
+            tabNum = 0
+
+            # try to find a particular image element by path
+            xpath = '//*[@id="player_image"]'
+            img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+            img_url_g = img_element.get_attribute("src")
+            print("Found image URL:", img_url_g)
+            oh = br.current_window_handle
+            print("Current window handle:", oh)
+            br.switch_to.new_window('tab')
+            nh = br.current_window_handle
+            print("New window handle:", nh)
+            br.switch_to.window(oh)
+        else:
+            if tabNum == 0:
+                br.switch_to.window(nh)
+                br.get(img_url_g)
+                print("Switching 2")
+
+                inspect.stack()
+                station2 = inspect.stack()[1].function
+                logo2 = "XXX_" + station2 + ".png"
+                image_path2 = pathImages + "/" + logo2
+                print(image_path2)
+
+                try:
+                    headers = {"User-Agent": "Mozilla/5.0"}
+                    response = requests.get(img_url_g, headers=headers, stream=True)
+                    print(response.headers["Content-Type"])
+
+                    #response = requests.get(img_url_g, stream=True)
+                    with open(image_path2, 'wb') as file:
+                        for chunk in response.iter_content(chunk_size=8192):
+                            file.write(chunk)
+                    print("Image downloaded successfully.")
+                except Exception as e:
+                    print(f"Failed to download the image: {e}")
+                print("Switching 3")
+                br.close()
+                br.switch_to.window(oh)
+                tabNum = 1
+            else: # tabNum == 1
+                print("No more downloading!")     
 
         # try to find a particular image element by path
         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'

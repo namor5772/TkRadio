@@ -84,7 +84,7 @@ img_url_g = ""
 oh = 0
 nh = 0
 tabNum = 0
-
+logo = ""
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -760,7 +760,7 @@ def Commercial1(br,sPath,sClass,nType):
 
     if eventFlag:
         # This where the streaming of the radio station is accomplished
-        # the position of the "Listen Live" button depends on he nType integer parameter
+        # the position of the "Listen Live" button depends on the nType integer parameter
         match nType:
             case 0:
                 # iHeart stations
@@ -840,14 +840,6 @@ def Commercial2(br,sPath):
     global img_url_g, oh, nh, tabNum
 
     if eventFlag:
-        # use inspect to get the name of the calling function
-        stack = inspect.stack()
-        print("----------")
-        station = inspect.stack()[1].function
-        logo = station + ".png"
-        print(logo)
-        print("----------")
-        
         # go to the station website
         br.get(refresh_http)
         time.sleep(2)
@@ -855,6 +847,9 @@ def Commercial2(br,sPath):
         time.sleep(needSleep) # bigger on slow machines
 
     # always runs
+    print("--------------------------------------")
+    logo = (inspect.stack()[1].function) + ".png"
+    image_path_logo = pathImages + "/" + logo
     be = br.find_element(By.TAG_NAME, 'body')
     time.sleep(1)
 
@@ -872,8 +867,14 @@ def Commercial2(br,sPath):
         time.sleep(3)
 
         # get station logo
-        image_path = pathImages + "/" + logo
-        image = Image.open(image_path)
+        try:
+            # logo is *.png file with station function name
+            image = Image.open(image_path_logo)
+        except Exception as e:
+            # create generic placeholder station logo
+            print(f"No station logo file: {e}")
+            image_path = pathImages + "/noLogo.png"
+            image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
         # saving button icon if adding station to playlist 
@@ -889,10 +890,21 @@ def Commercial2(br,sPath):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # Stations with program image
-    image_path = pathImages + "/presenter.jpg"
-    foundImage = True
-    try:
+    # always runs, get and then display station logo if one does not yet exist
+    logoFlag = os.path.exists(image_path_logo)
+    if logoFlag and (tabNum == 1):
+        print(f"Display just created station logo file: {image_path_logo}")
+        image = Image.open(image_path_logo)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+        # Display the station logo as given in the scaled_image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+        tabNum = 0
+    elif logoFlag:
+        print(f"Logo file exists: {image_path_logo}")
+    else:
+        print("Logo file does not exist, so creating one")
         if eventFlag:
             tabNum = 0
 
@@ -912,12 +924,7 @@ def Commercial2(br,sPath):
                 br.switch_to.window(nh)
                 br.get(img_url_g)
                 print("Switching 2")
-
-                inspect.stack()
-                station2 = inspect.stack()[1].function
-                logo2 = "XXX_" + station2 + ".png"
-                image_path2 = pathImages + "/" + logo2
-                print(image_path2)
+                print(image_path_logo)
 
                 try:
                     headers = {"User-Agent": "Mozilla/5.0"}
@@ -925,7 +932,7 @@ def Commercial2(br,sPath):
                     print(response.headers["Content-Type"])
 
                     #response = requests.get(img_url_g, stream=True)
-                    with open(image_path2, 'wb') as file:
+                    with open(image_path_logo, 'wb') as file:
                         for chunk in response.iter_content(chunk_size=8192):
                             file.write(chunk)
                     print("Image downloaded successfully.")
@@ -936,8 +943,12 @@ def Commercial2(br,sPath):
                 br.switch_to.window(oh)
                 tabNum = 1
             else: # tabNum == 1
-                print("No more downloading!")     
-
+                print("display downloaded station logo!")
+    
+    # Stations with program image
+    image_path = pathImages + "/presenter.jpg"
+    foundImage = True
+    try:
         # try to find a particular image element by path
         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
         img_element = be.find_element(By.XPATH, xpath)
@@ -1007,12 +1018,10 @@ def Commercial2(br,sPath):
     # get general station details
     fe = soup.find(attrs={"class": "mdc-typography--display1 primary-span-color"})
     fe1 = ""
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)+"*"
+    if fe is not None: fe1 = fe.get_text(separator="*", strip=True)+"*"
 
     fe = soup.find(attrs={"class": "slogan secondary-span-color"})
-    if fe is not None:
-        fe1 = fe1+fe.get_text(separator="*", strip=True)+"*"
+    if fe is not None: fe1 = fe1+fe.get_text(separator="*", strip=True)+"*"
 
     fe = soup.find(attrs={"class": "secondary-span-color radio-description"})
     if fe is not None:

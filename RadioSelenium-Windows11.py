@@ -45,7 +45,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -84,7 +84,6 @@ img_url_g = ""
 oh = 0
 nh = 0
 tabNum = 0
-logo = ""
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1039,76 +1038,6 @@ def Commercial2(br,sPath):
     return fe1
 
 
-# format used by the radio-australia.org and related stations format
-def Commercial3(br,sPath):
-    if eventFlag:
-        # use inspect to get the name of the calling function
-        stack = inspect.stack()
-        print("----------")
-        station = inspect.stack()[1].function
-        logo = station + ".png"
-        print(logo)
-        print("----------")
-        
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(2)
-        br.get(sPath)
-        time.sleep(needSleep) # bigger on slow machines
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
-
-    if eventFlag:
-        # press button with virtual mouse to play stream
-        window_size = br.get_window_size()
-        width = window_size['width']
-        height = window_size['height']         
-        print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-        #widthPx =970#1215
-        #heightPx = 100#157
-        widthPx =110
-        heightPx = 330
-
-
-        print(f"Move size: width = {widthPx}, height = {heightPx}")
-        actions = ActionChains(br)
-        actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(3)
-
-        # get station logo
-        image_path = pathImages + "/" + logo
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-        
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # No program image    
-    image_path = pathImages + "/Blank.png"
-    image = Image.open(image_path)
-    scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
-    photo = ImageTk.PhotoImage(scaled_image)
-    label2.config(image=photo)
-    label2.image = photo  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap, y=Ygap3)  # Adjust the position
-
-    # get station and program details (if available)
-    fe1 = "No program information"
-    return fe1
-
-
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 
@@ -1301,7 +1230,6 @@ def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetr
 def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg") #77 0
 def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt") #77 0
 
-#http://e.internetradio-horen.de/embed/antenne-bayern-402283
 def antenne_bayern_live():         return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern")
 def antenne_bayern_schlagersahne():return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-schlagersahne")
 def antenne_bayern_top40():        return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-top-40")
@@ -1479,8 +1407,6 @@ aStation = [
     ["classical mood",classical_mood],
     ["classical ultra quiet radio",classical_ultra_quiet_radio],
     ["classic radio swiss",classic_radio_swiss],
-    
-    #["",],
 
     ["klassik radio",klassik_radio],
     ["klassik radio pure bach",klassik_radio_pure_bach],

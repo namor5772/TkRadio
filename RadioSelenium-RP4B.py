@@ -354,6 +354,12 @@ station = ""
 needSleep = 5 # can be less on faster machines
 pressButton = True # flag for how stream is started
 
+# new browser tab related variables
+img_url_g = ""
+oh = 0
+nh = 0
+tabNum = 0
+
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
 pollFlag = False # if true then poll website for program text and picture changes 
@@ -1109,15 +1115,9 @@ def Commercial1(br,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,sPath):
+    global img_url_g, oh, nh, tabNum
+
     if eventFlag:
-        # use inspect to get the name of the calling function
-        stack = inspect.stack()
-        print("----------")
-        station = inspect.stack()[1].function
-        logo = station + ".png"
-        print(logo)
-        print("----------")
-        
         # go to the station website
         br.get(refresh_http)
         time.sleep(2)
@@ -1125,6 +1125,9 @@ def Commercial2(br,sPath):
         time.sleep(needSleep) # bigger on slow machines
 
     # always runs
+    print("--------------------------------------")
+    logo = (inspect.stack()[1].function) + ".png"
+    image_path_logo = pathImages + "/" + logo
     be = br.find_element(By.TAG_NAME, 'body')
     time.sleep(1)
 
@@ -1134,7 +1137,7 @@ def Commercial2(br,sPath):
         width = window_size['width']
         height = window_size['height']         
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-        widthPx =110#280
+        widthPx =110
         heightPx = 330#390
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
@@ -1142,8 +1145,14 @@ def Commercial2(br,sPath):
         time.sleep(3)
 
         # get station logo
-        image_path = pathImages + "/" + logo
-        image = Image.open(image_path)
+        try:
+            # logo is *.png file with station function name
+            image = Image.open(image_path_logo)
+        except Exception as e:
+            # create generic placeholder station logo
+            print(f"No station logo file: {e}")
+            image_path = pathImages + "/noLogo.png"
+            image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
         # saving button icon if adding station to playlist 
@@ -1159,7 +1168,61 @@ def Commercial2(br,sPath):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
+    # always runs, get and then display station logo if one does not yet exist
+    logoFlag = os.path.exists(image_path_logo)
+    if logoFlag and (tabNum == 1):
+        print(f"Display just created station logo file: {image_path_logo}")
+        image = Image.open(image_path_logo)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+        # Display the station logo as given in the scaled_image
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+        tabNum = 0
+    elif logoFlag:
+        print(f"Logo file exists: {image_path_logo}")
+    else:
+        print("Logo file does not exist, so creating one")
+        if eventFlag:
+            tabNum = 0
 
+            # try to find a particular image element by path
+            xpath = '//*[@id="player_image"]'
+            img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+            img_url_g = img_element.get_attribute("src")
+            print("Found image URL:", img_url_g)
+            oh = br.current_window_handle
+            print("Current window handle:", oh)
+            br.switch_to.new_window('tab')
+            nh = br.current_window_handle
+            print("New window handle:", nh)
+            br.switch_to.window(oh)
+        else:
+            if tabNum == 0:
+                br.switch_to.window(nh)
+                br.get(img_url_g)
+                print("Switching 2")
+                print(image_path_logo)
+
+                try:
+                    headers = {"User-Agent": "Mozilla/5.0"}
+                    response = requests.get(img_url_g, headers=headers, stream=True)
+                    print(response.headers["Content-Type"])
+
+                    #response = requests.get(img_url_g, stream=True)
+                    with open(image_path_logo, 'wb') as file:
+                        for chunk in response.iter_content(chunk_size=8192):
+                            file.write(chunk)
+                    print("Image downloaded successfully.")
+                except Exception as e:
+                    print(f"Failed to download the image: {e}")
+                print("Switching 3")
+                br.close()
+                br.switch_to.window(oh)
+                tabNum = 1
+            else: # tabNum == 1
+                print("display downloaded station logo!")
+    
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"
     foundImage = True
@@ -1206,35 +1269,53 @@ def Commercial2(br,sPath):
                         # failed to find image so display a blank image
                         foundImage = False
                         print("=====> xpath NONE")
-    
+        
     if foundImage:
         image = Image.open(image_path)
         width2, height2 = image.size;
         print(f"Pic width: {width2}, Pic height: {height2}")
         width = int(Xprog*width2/height2)
-        scaled_image = image.resize((width-55, Xprog-55))  # Adjust the size as needed
+        scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
+        label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
     else:    
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
-        scaled_image = image.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
+        scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
+        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
 
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
+
+    # get general station details
+    fe = soup.find(attrs={"class": "mdc-typography--display1 primary-span-color"})
+    fe1 = ""
+    if fe is not None: fe1 = fe.get_text(separator="*", strip=True)+"*"
+
+    fe = soup.find(attrs={"class": "slogan secondary-span-color"})
+    if fe is not None: fe1 = fe1+fe.get_text(separator="*", strip=True)+"*"
+
+    fe = soup.find(attrs={"class": "secondary-span-color radio-description"})
+    if fe is not None:
+        fe1 = fe1+fe.get_text(separator="*", strip=True)+"* *"
+    else:
+        fe1 = fe1+" *"        
+
+    # get program details
     fe = soup.find(attrs={"class": "history-song"})
     if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
+        fe1 = "*"+fe1+fe.get_text(separator="*", strip=True)
     else:
-        fe1 = "No program information"
+        fe1 = "*"+fe1+"No program information"
+
     return fe1
+
 
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
@@ -1428,7 +1509,6 @@ def epic_piano_tschaikowski(): return Commercial2(browser,"https://www.internetr
 def epic_piano_grieg():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-grieg") #77 0
 def epic_piano_liszt():        return Commercial2(browser,"https://www.internetradio-horen.de/epic-piano-liszt") #77 0
 
-#http://e.internetradio-horen.de/embed/antenne-bayern-402283
 def antenne_bayern_live():         return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern")
 def antenne_bayern_schlagersahne():return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-schlagersahne")
 def antenne_bayern_top40():        return Commercial2(browser,"https://www.internetradio-horen.de/antenne-bayern-top-40")
@@ -1446,6 +1526,11 @@ def bbc_world_service():           return Commercial2(browser,"https://www.radio
 def bbc_radio_4_extra():           return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-radio-4-extra")
 def bbc_radio_london():            return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-london")
 def bbc_radio_1xtra():             return Commercial2(browser,"https://www.radio-uk.co.uk/bbc-1xtra")
+def totally_radio_hits():          return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-hits")
+def totally_radio_90s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-90s")
+def totally_radio_70s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-70s")
+def totally_radio_60s():           return Commercial2(browser,"https://www.internetradio-horen.de/au/totally-radio-60s")
+
 
 # END ************************************************************
 # INDIVIDUAL FUNCTION DEFINITIONS FOR EACH AVAILABLE RADIO STATION
@@ -1602,8 +1687,6 @@ aStation = [
     ["classical mood",classical_mood],
     ["classical ultra quiet radio",classical_ultra_quiet_radio],
     ["classic radio swiss",classic_radio_swiss],
-    
-    #["",],
 
     ["klassik radio",klassik_radio],
     ["klassik radio pure bach",klassik_radio_pure_bach],
@@ -1642,8 +1725,12 @@ aStation = [
     ["bbc world service",bbc_world_service],
     ["bbc radio 4 extra",bbc_radio_4_extra],
     ["bbc radio london",bbc_radio_london],
-    ["bbc radio 1xtra",bbc_radio_1xtra]
-]
+    ["bbc radio 1xtra",bbc_radio_1xtra],
+    ["totally radio hits",totally_radio_hits],
+    ["totally radio 90s",totally_radio_90s],
+    ["totally radio 70s",totally_radio_70s],
+    ["totally radio 60s",totally_radio_60s]
+]   
 
 # COMMON BLOCK END ***********************************************
 

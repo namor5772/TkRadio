@@ -1275,19 +1275,19 @@ def Commercial2(br,sPath):
         width2, height2 = image.size;
         print(f"Pic width: {width2}, Pic height: {height2}")
         width = int(Xprog*width2/height2)
-        scaled_image = image.resize((width, Xprog))  # Adjust the size as needed
+        scaled_image = image.resize((width-55, Xprog-55))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog), y=Ygap2)  # Adjust the position
+        label2.place(x=Xgap3-(width-Xprog)+55, y=Ygap2+30)  # Adjust the position
     else:    
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
-        scaled_image = image.resize((Xprog, Xprog))  # Adjust the size as needed
+        scaled_image = image.resize((Xprog-55, Xprog-55))  # Adjust the size as needed
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap, y=Ygap3)  # Adjust the position
+        label2.place(x=Xgap+55, y=Ygap3+30)  # Adjust the position
 
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')

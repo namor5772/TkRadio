@@ -1,20 +1,20 @@
-ABC Radio Sydney NSW,0
-ABC Radio National LIVE,53
-ABC NewsRadio,52
-ABC Classic LIVE,71
-ABC Classic2,76
-ABC Jazz,77
--- EMPTY 6 --,-1
-bbc radio 4 extra,178
-bbc world service,177
+ABC Radio Sydney NSW,24
+bayern 1,190
+us the big 80s station,191
+antenne bayern oldies but goldies,192
+br radio 80 fm,193
+au its 80s,194
+nl 80s alive,195
+ae wonder 80s,196
+nl joe 70s 80s,197
+2GB SYDNEY,133
+2GN GOULBURN,134
 GOLD101.7,82
 Cruise 1323,103
-2GB SYDNEY,132
-totally radio hits,181
-totally radio 90s,182
-totally radio 80s,134
-totally radio 70s,183
-totally radio 60s,184
-classic radio swiss,145
+totally radio 70s,184
+Golden Days Radio,114
+it venice classic radio,187
+fr radio classique,188
+us whisperings solo piano radio,189
 ABC Jazz,79
 ABC Country,80

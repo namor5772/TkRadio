@@ -7,8 +7,12 @@ import urllib.request
 import requests
 import os
 import csv
-import RPi.GPIO as GPIO
 import re
+
+try:
+    import RPi.GPIO as GPIO
+except ModuleNotFoundError:
+    GPIO = None
 
 from PIL import Image, ImageTk
 from tkinter import ttk
@@ -28,7 +32,8 @@ from selenium.webdriver.support import expected_conditions as EC
 # SETUP GPIO BUTTONS FOR THE RASPBERRY PI 4B AND THEIR ACTIONS
 
 # Set up GPIO
-GPIO.setmode(GPIO.BCM)
+if GPIO:
+    GPIO.setmode(GPIO.BCM)
 
 # Define GPIO pins for the rotary encoder and push button.
 CLK_PIN = 2 #16   # Connect to CLK (A) of the encoder
@@ -36,15 +41,17 @@ DT_PIN  = 3 #20   # Connect to DT (B) of the encoder
 SW_PIN  = 4 #21  # Connect to the push button
 
 # Setup pins with internal pull-ups.
-GPIO.setup(CLK_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(DT_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(SW_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+if GPIO:
+    GPIO.setup(CLK_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(DT_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(SW_PIN, GPIO.IN)#, pull_up_down=GPIO.PUD_UP)
 
 # Global counter for rotation steps
 counter = 0
 last_counter = 0
 # Record the initial state of the CLK pin.
-last_clk_state = GPIO.input(CLK_PIN)
+if GPIO:
+    last_clk_state = GPIO.input(CLK_PIN)
 
 # KeyList array & related global variables
 # horizontal list of keys you can press (in a simulated fashion)
@@ -272,10 +279,11 @@ def on_KeypressButton_press(channel):
     print(f"sKey0: <Key-{sKey1}> pressed")
 
 # --- GPIO Event Detection ---
-# Detect state changes on the CLK pin for rotational events.
-GPIO.add_event_detect(CLK_PIN, GPIO.BOTH, callback=rotary_callback, bouncetime=3)
-# Detect a falling edge on the switch pin for button press.
-GPIO.add_event_detect(SW_PIN, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
+if GPIO:
+    # Detect state changes on the CLK pin for rotational events.
+    GPIO.add_event_detect(CLK_PIN, GPIO.BOTH, callback=rotary_callback, bouncetime=3)
+    # Detect a falling edge on the switch pin for button press.
+    GPIO.add_event_detect(SW_PIN, GPIO.FALLING, callback=on_KeypressButton_press, bouncetime=200)
 
 
 # START #######################################################
@@ -1554,12 +1562,20 @@ def after_GUI_started():
         print(f'Error: The file {filepath4} does not exist.')
     if int_pollFlag==0:
         pollFlag = False
-        pollStatusButton.config(text="Polling is OFF")
-        pollStatusButton.config(bg="light coral")
+        if GPIO:
+            pollStatusButton.config(text="Polling is OFF")
+            pollStatusButton.config(bg="light coral")
+        else:
+            setupButton.config(text="OFF")
+            setupButton.config(bg="light coral")
     else: #if int_pollFlag==1
         pollFlag = True
-        pollStatusButton.config(text="Polling is ON")
-        pollStatusButton.config(bg="light green")
+        if GPIO:
+            pollStatusButton.config(text="Polling is ON")
+            pollStatusButton.config(bg="light green")
+        else:
+            setupButton.config(text="ON")
+            setupButton.config(bg="light green")
     print(f'pollFlag : {pollFlag}')
 
     # select to stream last station that was streaming just before radio was powered down
@@ -1575,53 +1591,55 @@ def after_GUI_started():
     print("")
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
    
-    # load bluetooth status file and use it to populate global variables
-    global onBluetooth
-    global currentPair
-    try:
-        # read the two assumed lines from filepath3 & and strip newlines
-        with open(filepath3, 'r') as file:
-            lines = file.readlines()
-        text_array = [line.strip() for line in lines]
+    if GPIO:    
+        # load bluetooth status file and use it to populate global variables
+        global onBluetooth
+        global currentPair
+        try:
+            # read the two assumed lines from filepath3 & and strip newlines
+            with open(filepath3, 'r') as file:
+                lines = file.readlines()
+            text_array = [line.strip() for line in lines]
 
-        # determine the onBluetooth and currentPair global variables
-        intMy = int(text_array[0])
-        if intMy==0:
-            onBluetooth = False
-        else: #if intMy==1
-            onBluetooth = True
-        currentPair = text_array[1]
-    except FileNotFoundError:
-        print(f"File not found: {filepath3}")
-        # create a bluetooth status file and give it default values
-        onBluetooth = False; line1 = "0"  
-        currentPair = "00:00:00:00:00:00 - NOTHING"; line2 = currentPair
-        with open(filepath3, 'w') as file:
-            file.write(line1 + '\n')  # Write the first line with a newline character
-            file.write(line2 + '\n')  # Write the second line with a newline character
-        print(f"Default file created {filepath3}")        
-    print(f"onBluetooth: {str(onBluetooth)}")
-    print(f"currentPair: {currentPair}")
+            # determine the onBluetooth and currentPair global variables
+            intMy = int(text_array[0])
+            if intMy==0:
+                onBluetooth = False
+            else: #if intMy==1
+                onBluetooth = True
+            currentPair = text_array[1]
+        except FileNotFoundError:
+            print(f"File not found: {filepath3}")
+            # create a bluetooth status file and give it default values
+            onBluetooth = False; line1 = "0"  
+            currentPair = "00:00:00:00:00:00 - NOTHING"; line2 = currentPair
+            with open(filepath3, 'w') as file:
+                file.write(line1 + '\n')  # Write the first line with a newline character
+                file.write(line2 + '\n')  # Write the second line with a newline character
+            print(f"Default file created {filepath3}")        
+        print(f"onBluetooth: {str(onBluetooth)}")
+        print(f"currentPair: {currentPair}")
 
-    # update entries on setup form
-    label3.config(text = f"Current pairing: {currentPair}")
+        # update entries on setup form
+        label3.config(text = f"Current pairing: {currentPair}")
 
-    # restarts bluetooth interface if it was originally set to on.
-    # if a previously paired set of bluetooth speakers is turned on when this runs this will
-    # connect and play though them.
-    if onBluetooth:
-        connect_bluetooth()
-        BTstatusButton.config(text="BT is ON")
-        BTstatusButton.config(bg="light green")
-    else: # onBluetooth==False
-        subprocess_run("sudo systemctl disable bluetooth")                        
-        subprocess_run("sudo systemctl stop bluetooth")                        
-        BTstatusButton.config(text="BT is OFF")
-        BTstatusButton.config(bg="light coral")
+        # restarts bluetooth interface if it was originally set to on.
+        # if a previously paired set of bluetooth speakers is turned on when this runs this will
+        # connect and play though them.
+        if onBluetooth:
+            connect_bluetooth()
+            BTstatusButton.config(text="BT is ON")
+            BTstatusButton.config(bg="light green")
+        else: # onBluetooth==False
+            subprocess_run("sudo systemctl disable bluetooth")                        
+            subprocess_run("sudo systemctl stop bluetooth")                        
+            BTstatusButton.config(text="BT is OFF")
+            BTstatusButton.config(bg="light coral")
 
 # do this when closing the window/app
 def on_closing():
-    GPIO.cleanup()
+    if GPIO:
+        GPIO.cleanup()
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
@@ -2036,11 +2054,27 @@ def on_focus_out_wifiPassword(event):
 
 
 # show the setup form (over the top of the main window)
+# Only in RP5B version. Poll status toggle button otherwise  
 def show_setup_form(event):
-    rootFlag = False
-    setup.deiconify()
-    mainButton.focus_set()
-    print(rootFlag)
+    global pollFlag
+    if GPIO:
+        rootFlag = False
+        setup.deiconify()
+        mainButton.focus_set()
+        print(rootFlag)
+    else:    
+        sText = setupButton.cget("text")
+        if sText=="ON":
+            setupButton(text="OFF")
+            setupButton.config(bg="light coral")
+            pollFlag = False; line = "0"
+        else: #if sText=="OFF"
+            setupButton.config(text="ON")
+            setupButton.config(bg="light green")
+            pollFlag = True; line = "1"
+        with open(filepath4, 'w') as file:
+            file.write(line + '\n')
+        print(f"updated: {filepath4}")        
 
 
 # show the root form back over the setup form
@@ -2683,18 +2717,22 @@ root.update_idletasks()
 
 
 # Create a label to display actions or the counter value.
-labelRE = tk.Label(root, text="Counter: 0")
-labelRE.place(x=500, y=26)
+if GPIO:
+    labelRE = tk.Label(root, text="Counter: 0")
+    labelRE.place(x=500, y=26)
 
+    # Create a list of labels for the root/main form to display pressable keys. They are
+    # at the top of the main form (one bank of sizeBank keys is displayed at a time)
+    labels_main = []
+    for i in range(sizeBank):
+        label_main = tk.Label(root, text=KeyList[i][0], font=("Arial", 12), bg="darkgray")
+        label_main.place(x=10+52*i, y=0, width=50, height=20)
+        labels_main.append(label_main)
+    labels_main[indexKeyList].config(bg="lightblue")  
+else:
+    labelRE = tk.Label(root, text="       windows version running")
+    labelRE.place(x=0, y=0)
 
-# Create a list of labels for the root/main form to display pressable keys. They are
-# at the top of the main form (one bank of sizeBank keys is displayed at a time)
-labels_main = []
-for i in range(sizeBank):
-    label_main = tk.Label(root, text=KeyList[i][0], font=("Arial", 12), bg="darkgray")
-    label_main.place(x=10+52*i, y=0, width=50, height=20)
-    labels_main.append(label_main)
-labels_main[indexKeyList].config(bg="lightblue")    
 
 # create a list of all the available station names
 aStringArray = []
@@ -2720,9 +2758,16 @@ text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # Create a button on the root form to display the secondary setup form
-setupButton = tk.Button(root, text="+", name="setupButton")
+# Note: if windows version this button is used to toggle polling!
+if GPIO:
+    setupButton = tk.Button(root, text="+", name="setupButton")
+else:
+    setupButton = tk.Button(root, text="   ", name="setupButton")
 setupButton.default_bg = setupButton.cget("bg") 
-setupButton.place(x=768 , y=24, width=25, height=25)
+if GPIO:
+    setupButton.place(x=768 , y=24, width=25, height=25)
+else:
+    setupButton.place(x=768-25 , y=24, width=25+25, height=25)
 setupButton.config(takefocus=True)
 setupButton.bind("<Return>", show_setup_form)  
 setupButton.bind("<ButtonPress>", show_setup_form)  
@@ -2768,103 +2813,104 @@ for i in range(numButtons):
 
 # Create a secondary setup form without title bar and close buttons
 # It will be used for examining and configuring setup settings
-setup = tk.Toplevel(root)
-#setup.geometry("800x480+0+26")
-setup.geometry("800x430+0+50")
-setup.overrideredirect(True)
-setup.withdraw() # Hide the form initially
+if GPIO:
+    setup = tk.Toplevel(root)
+    #setup.geometry("800x480+0+26")
+    setup.geometry("800x430+0+50")
+    setup.overrideredirect(True)
+    setup.withdraw() # Hide the form initially
 
-# button which returns focus and visibility back to the main/root form
-mainButton = tk.Button(setup, text="+", name="mainButton")
-mainButton.default_bg = mainButton.cget("bg") 
-mainButton.place(x=768, y=0, width=25, height=25)
-mainButton.config(takefocus=True)
-mainButton.bind("<Return>", show_root_form)  
-mainButton.bind("<ButtonPress>", show_root_form)  
-mainButton.bind("<FocusIn>", on_focus_dostuff)
-mainButton.bind("<FocusOut>", on_focus_out_dostuff)
+    # button which returns focus and visibility back to the main/root form
+    mainButton = tk.Button(setup, text="+", name="mainButton")
+    mainButton.default_bg = mainButton.cget("bg") 
+    mainButton.place(x=768, y=0, width=25, height=25)
+    mainButton.config(takefocus=True)
+    mainButton.bind("<Return>", show_root_form)  
+    mainButton.bind("<ButtonPress>", show_root_form)  
+    mainButton.bind("<FocusIn>", on_focus_dostuff)
+    mainButton.bind("<FocusOut>", on_focus_out_dostuff)
 
-# button to toggle bluetooth connection on/off
-BTstatusButton = tk.Button(setup, text="NONE") 
-BTstatusButton.place(x=15, y=10+25, height=25)
-BTstatusButton.config(takefocus=True)
-BTstatusButton.bind("<Return>", toggle_bluetooth)  
-BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
+    # button to toggle bluetooth connection on/off
+    BTstatusButton = tk.Button(setup, text="NONE") 
+    BTstatusButton.place(x=15, y=10+25, height=25)
+    BTstatusButton.config(takefocus=True)
+    BTstatusButton.bind("<Return>", toggle_bluetooth)  
+    BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
 
-# button & label to connect to currently paired bluetooth speakers
-cX = 15; cY = 10+25+30
-connectButton = tk.Button(setup, text="CONNECT", name="connectButton") 
-connectButton.default_bg = connectButton.cget("bg") 
-connectButton.place(x=cX, y=cY, height=25)
-connectButton.config(takefocus=True)
-connectButton.bind("<Return>", _connect_bluetooth)  
-connectButton.bind("<ButtonPress>", _connect_bluetooth)  
-connectButton.bind("<FocusIn>", on_focus_dostuff)
-connectButton.bind("<FocusOut>", on_focus_out_dostuff)
-label4 = tk.Label(setup, text="")
-label4.place(x=cX+100, y=cY+2)
+    # button & label to connect to currently paired bluetooth speakers
+    cX = 15; cY = 10+25+30
+    connectButton = tk.Button(setup, text="CONNECT", name="connectButton") 
+    connectButton.default_bg = connectButton.cget("bg") 
+    connectButton.place(x=cX, y=cY, height=25)
+    connectButton.config(takefocus=True)
+    connectButton.bind("<Return>", _connect_bluetooth)  
+    connectButton.bind("<ButtonPress>", _connect_bluetooth)  
+    connectButton.bind("<FocusIn>", on_focus_dostuff)
+    connectButton.bind("<FocusOut>", on_focus_out_dostuff)
+    label4 = tk.Label(setup, text="")
+    label4.place(x=cX+100, y=cY+2)
 
-# button to enable scanning for bluetooth devices (which will appear in above combobox)
-pairButton = tk.Button(setup, text="SEE BT DEVICES", name="pairButton") 
-pairButton.default_bg = pairButton.cget("bg") 
-pairButton.place(x=cX, y=cY+60, height=25)
-pairButton.config(takefocus=True)
-pairButton.bind("<Return>", pair_bluetooth)  
-pairButton.bind("<ButtonPress>", pair_bluetooth)
-pairButton.bind("<FocusIn>", on_focus_dostuff)
-pairButton.bind("<FocusOut>", on_focus_out_dostuff)
-label6 = tk.Label(setup, text="")
-label6.place(x=cX+150, y=cY+62)
+    # button to enable scanning for bluetooth devices (which will appear in above combobox)
+    pairButton = tk.Button(setup, text="SEE BT DEVICES", name="pairButton") 
+    pairButton.default_bg = pairButton.cget("bg") 
+    pairButton.place(x=cX, y=cY+60, height=25)
+    pairButton.config(takefocus=True)
+    pairButton.bind("<Return>", pair_bluetooth)  
+    pairButton.bind("<ButtonPress>", pair_bluetooth)
+    pairButton.bind("<FocusIn>", on_focus_dostuff)
+    pairButton.bind("<FocusOut>", on_focus_out_dostuff)
+    label6 = tk.Label(setup, text="")
+    label6.place(x=cX+150, y=cY+62)
 
-# Create a Combobox for bluetooth connection selection & related information label
-cX = 15; cY = 155
-label3 = tk.Label(setup, text="")
-label3.place(x=cX+1, y=cY)
-options = [""]
-custom_combo_bt = CustomCombobox(setup, options, "custom_combo_bt", visible_items=4, width=44)
-custom_combo_bt.place(x=cX, y=cY+30)
+    # Create a Combobox for bluetooth connection selection & related information label
+    cX = 15; cY = 155
+    label3 = tk.Label(setup, text="")
+    label3.place(x=cX+1, y=cY)
+    options = [""]
+    custom_combo_bt = CustomCombobox(setup, options, "custom_combo_bt", visible_items=4, width=44)
+    custom_combo_bt.place(x=cX, y=cY+30)
 
-# vertical separator, between bluetooth an dwifi setup sections
-separator = ttk.Separator(setup, orient="vertical")
-separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
+    # vertical separator, between bluetooth an dwifi setup sections
+    separator = ttk.Separator(setup, orient="vertical")
+    separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
 
-# button to toggle bluetooth connection on/off
-pollStatusButton = tk.Button(setup, text="NONE") 
-pollStatusButton.place(x=cX+400, y=10+25, height=25)
-pollStatusButton.config(takefocus=True)
-pollStatusButton.bind("<Return>", toggle_pollStatus)  
-pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
+    # button to toggle bluetooth connection on/off
+    pollStatusButton = tk.Button(setup, text="NONE") 
+    pollStatusButton.place(x=cX+400, y=10+25, height=25)
+    pollStatusButton.config(takefocus=True)
+    pollStatusButton.bind("<Return>", toggle_pollStatus)  
+    pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
 
-# button to enable scanning for wifi devices (which will appear in above combobox)
-wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
-wifiButton.default_bg = wifiButton.cget("bg") 
-wifiButton.place(x=cX+400, y=cY-30, height=25)
-wifiButton.config(takefocus=True)
-wifiButton.bind("<Return>", find_wifi)  
-wifiButton.bind("<ButtonPress>", find_wifi)
-wifiButton.bind("<FocusIn>", on_focus_dostuff)
-wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
-label7 = tk.Label(setup, text="")
-label7.place(x=cX+400+100, y=cY+2-30)
+    # button to enable scanning for wifi devices (which will appear in above combobox)
+    wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
+    wifiButton.default_bg = wifiButton.cget("bg") 
+    wifiButton.place(x=cX+400, y=cY-30, height=25)
+    wifiButton.config(takefocus=True)
+    wifiButton.bind("<Return>", find_wifi)  
+    wifiButton.bind("<ButtonPress>", find_wifi)
+    wifiButton.bind("<FocusIn>", on_focus_dostuff)
+    wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
+    label7 = tk.Label(setup, text="")
+    label7.place(x=cX+400+100, y=cY+2-30)
 
-# Create a Combobox for wifi connection selection
-options2 = [""]
-label5 = tk.Label(setup, text="")
-label5.place(x=cX+1+400, y=cY)
-custom_combo_wifi = CustomCombobox(setup, options2, "custom_combo_wifi", visible_items=6, width=44)
-custom_combo_wifi.place(x=cX+400, y=cY+30)
+    # Create a Combobox for wifi connection selection
+    options2 = [""]
+    label5 = tk.Label(setup, text="")
+    label5.place(x=cX+1+400, y=cY)
+    custom_combo_wifi = CustomCombobox(setup, options2, "custom_combo_wifi", visible_items=6, width=44)
+    custom_combo_wifi.place(x=cX+400, y=cY+30)
 
-# text entry for wifi password, and its info label, also styles for focus visibility
-style = ttk.Style()
-style.theme_use("default")
-style.configure("Focused.TEntry",fieldbackground="white", foreground="black")
-wifiPassword = ttk.Entry(setup, style="Focused.TEntry", width=30)
-wifiPassword.place(x=cX+400+75, y=cY+60)
-wifiPassword.bind("<Return>", process_wifiPassword)
-wifiPassword.bind("<FocusIn>", on_focus_wifiPassword)
-wifiPassword.bind("<FocusOut>", on_focus_out_wifiPassword)
-label_wifiPassword = tk.Label(setup, text="Password:")
-label_wifiPassword.place(x=cX+400, y=cY+60)
+    # text entry for wifi password, and its info label, also styles for focus visibility
+    style = ttk.Style()
+    style.theme_use("default")
+    style.configure("Focused.TEntry",fieldbackground="white", foreground="black")
+    wifiPassword = ttk.Entry(setup, style="Focused.TEntry", width=30)
+    wifiPassword.place(x=cX+400+75, y=cY+60)
+    wifiPassword.bind("<Return>", process_wifiPassword)
+    wifiPassword.bind("<FocusIn>", on_focus_wifiPassword)
+    wifiPassword.bind("<FocusOut>", on_focus_out_wifiPassword)
+    label_wifiPassword = tk.Label(setup, text="Password:")
+    label_wifiPassword.place(x=cX+400, y=cY+60)
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** END ********************************

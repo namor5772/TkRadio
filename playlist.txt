@@ -1,7 +1,7 @@
 ABC Radio Sydney NSW,24
-bayern 1,190
-us the big 80s station,191
-antenne bayern oldies but goldies,192
+ABC Radio National LIVE,4
+ABC NewsRadio,76
+ABC Classic2,0
 br radio 80 fm,193
 au its 80s,194
 nl 80s alive,195

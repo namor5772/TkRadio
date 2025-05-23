@@ -1649,8 +1649,8 @@ def on_select(event):
         stopFlag = False # if this call of on_select() should be implemented
       # parameters relating to how this funtion was called
         selected_value_last = selected_value
-        selected_value = combobox.get()
-        combobox_index = combobox.current()
+        selected_value = custom_combo.get()
+        combobox_index = custom_combo.current()
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
 
@@ -1834,9 +1834,9 @@ def on_select2(event):
                 # hide the annoying blinking cursor though the fudge
                 # of selective focus setting
                 if event.type=="Auto":
-                    combobox.set(StationName)
-                    combobox.focus_set()
-                    combobox.selection_clear()
+                    custom_combo.set(StationName)
+                    custom_combo.focus_set()
+                    custom_combo.selection_clear()
                     buttons[buttonIndex].focus_set()
                 
                 print("JUST ABOUT TO RUN ROOT")

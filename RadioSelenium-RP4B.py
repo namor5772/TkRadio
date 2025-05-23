@@ -1852,7 +1852,6 @@ def on_select(event):
         selected_value_last = selected_value
         selected_value = custom_combo.get()
         combobox_index = custom_combo.current()
-
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
 

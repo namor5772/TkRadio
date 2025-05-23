@@ -2056,25 +2056,10 @@ def on_focus_out_wifiPassword(event):
 # show the setup form (over the top of the main window)
 # Only in RP5B version. Poll status toggle button otherwise  
 def show_setup_form(event):
-    global pollFlag
-    if GPIO:
-        rootFlag = False
-        setup.deiconify()
-        mainButton.focus_set()
-        print(rootFlag)
-    else:    
-        sText = setupButton.cget("text")
-        if sText=="ON":
-            setupButton(text="OFF")
-            setupButton.config(bg="light coral")
-            pollFlag = False; line = "0"
-        else: #if sText=="OFF"
-            setupButton.config(text="ON")
-            setupButton.config(bg="light green")
-            pollFlag = True; line = "1"
-        with open(filepath4, 'w') as file:
-            file.write(line + '\n')
-        print(f"updated: {filepath4}")        
+    rootFlag = False
+    setup.deiconify()
+    mainButton.focus_set()
+    print(rootFlag)
 
 
 # show the root form back over the setup form
@@ -2127,20 +2112,33 @@ def toggle_bluetooth(event):
 
 # if pollFlag is True then set it to False, and vica-versa.
 # Also appropriately adjust the pollflag.txt config file
+# behaves differently on whether Linux or WIN varsion
+# as determined by the GPIO global variable
 def toggle_pollStatus(event):
     global pollFlag
-    sText = pollStatusButton.cget("text")
-    if sText=="Polling is ON":
-        pollStatusButton.config(text="Polling is OFF")
-        pollStatusButton.config(bg="light coral")
-        pollFlag = False; line = "0"
-    else: #if sText=="Polling is OFF"
-        pollStatusButton.config(text="Polling is ON")
-        pollStatusButton.config(bg="light green")
-        pollFlag = True; line = "1"
+    if GPIO:
+        sText = pollStatusButton.cget("text")
+        if sText=="Polling is ON":
+            pollStatusButton.config(text="Polling is OFF")
+            pollStatusButton.config(bg="light coral")
+            pollFlag = False; line = "0"
+        else: #if sText=="Polling is OFF"
+            pollStatusButton.config(text="Polling is ON")
+            pollStatusButton.config(bg="light green")
+            pollFlag = True; line = "1"
+    else:    
+        sText = setupButton.cget("text")
+        if sText=="ON":
+            setupButton.config(text="OFF")
+            setupButton.config(bg="light coral")
+            pollFlag = False; line = "0"
+        else: #if sText=="OFF"
+            setupButton.config(text="ON")
+            setupButton.config(bg="light green")
+            pollFlag = True; line = "1"
     with open(filepath4, 'w') as file:
         file.write(line + '\n')
-    print(f"updated: {filepath4}")        
+    print(f"toggling poll status in file: {filepath4}")
 
 
 def _connect_bluetooth(event):
@@ -2433,16 +2431,26 @@ def find_wifi(event):
 
 def on_focus_dostuff(event):
     widget = event.widget
-    widget.config(bg="lightblue")
     widget_name = widget.winfo_name()
-  # print(f"{widget_name} got focus!")
+    print(f"{widget_name} got focus!")
+    if GPIO:
+        widget.config(bg="lightblue")
+    elif (widget_name == "setupButton"):
+        pass
+    else:
+        widget.config(bg="lightblue")
 
 
 def on_focus_out_dostuff(event):
     widget = event.widget
-    widget.config(bg=widget.default_bg)
     widget_name = widget.winfo_name()
-  # print(f"{widget_name} lost focus!")
+    print(f"{widget_name} lost focus!")
+    if GPIO:
+        widget.config(bg="widget.default_bg")
+    elif (widget_name == "setupButton"):
+        pass
+    else:
+        widget.config(bg="widget.default_bg")
 
 
 # Thanks to Copilot (Think Deeper) AI 
@@ -2759,18 +2767,19 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!
-if GPIO:
-    setupButton = tk.Button(root, text="+", name="setupButton")
-else:
-    setupButton = tk.Button(root, text="   ", name="setupButton")
+setupButton = tk.Button(root, text="+", name="setupButton")
 setupButton.default_bg = setupButton.cget("bg") 
 if GPIO:
     setupButton.place(x=768 , y=24, width=25, height=25)
 else:
     setupButton.place(x=768-25 , y=24, width=25+25, height=25)
 setupButton.config(takefocus=True)
-setupButton.bind("<Return>", show_setup_form)  
-setupButton.bind("<ButtonPress>", show_setup_form)  
+if GPIO:
+    setupButton.bind("<Return>", show_setup_form)  
+    setupButton.bind("<ButtonPress>", show_setup_form)  
+else:
+    setupButton.bind("<Return>", toggle_pollStatus)  
+    setupButton.bind("<ButtonPress>", toggle_pollStatus)  
 setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
    

@@ -2446,11 +2446,11 @@ def on_focus_out_dostuff(event):
     widget_name = widget.winfo_name()
     print(f"{widget_name} lost focus!")
     if GPIO:
-        widget.config(bg="widget.default_bg")
+        widget.config(bg="default_bg")
     elif (widget_name == "setupButton"):
         pass
     else:
-        widget.config(bg="widget.default_bg")
+        widget.config(bg="default_bg")
 
 
 # Thanks to Copilot (Think Deeper) AI 

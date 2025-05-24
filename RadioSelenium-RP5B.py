@@ -1731,7 +1731,7 @@ def on_select(event):
             print("JUST ABOUT TO RUN ROOT")
             eventFlag = False
             if pollFlag:
-                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", combobox, "Manual from combobox")))
+                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
             print("FINISHED RUNNING ROOT")
             print("")
 
@@ -2772,7 +2772,7 @@ setupButton.default_bg = setupButton.cget("bg")
 if GPIO:
     setupButton.place(x=768 , y=24, width=25, height=25)
 else:
-    setupButton.place(x=768-25 , y=24, width=25+25, height=25)
+    setupButton.place(x=768-7 , y=0, width=25+7, height=25)
 setupButton.config(takefocus=True)
 if GPIO:
     setupButton.bind("<Return>", show_setup_form)  

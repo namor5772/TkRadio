@@ -310,7 +310,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -379,6 +379,9 @@ img_url_g = ""
 oh = 0
 nh = 0
 tabNum = 0
+oh2 = 0
+nh2 = 0
+ExtraWindowFlag = False
 
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
@@ -1120,7 +1123,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
-    global img_url_g, oh, nh, tabNum
+    global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag
 
     if eventFlag:
         # go to the station website
@@ -1139,12 +1142,28 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
-        widthPx =110
-        heightPx = 330#390
+        if nType == 0:
+            widthPx =110
+        else: # if nType == 1:
+            widthPx = 250    
+        heightPx = 330
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(3)
+        time.sleep(6)
+
+        if nType == 1:
+            # another window is opened with button that actually starts the stream
+            print(br.window_handles)  # Lists all open windows/tabs
+            oh2 = br.window_handles[0]  # Original window handle
+            nh2 = br.window_handles[1]  # New window handle after clicking the first button
+            br.switch_to.window(nh2)  # Switch to the new window
+            # press the button with virtual mouse to play stream
+            actions = ActionChains(br)
+            actions.move_by_offset(widthPx, heightPx).click().perform()
+            time.sleep(6)
+            br.switch_to.window(oh2) # Switch back to the original window
+            ExtraWindowFlag = True
 
         # get station logo
         try:
@@ -1525,7 +1544,7 @@ aStation = [
     ["totally radio 70s","totally_radio_70s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-70s","",0],
     ["totally radio 60s","totally_radio_60s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-60s","",0],
 
-    ["us adagiofm","us_adagiofm",Commercial2,0,"https://www.internetradio-horen.de/us/adagiofm","",0], # PROBLEM
+    ["us adagiofm","us_adagiofm",Commercial2,0,"https://www.internetradio-horen.de/us/adagiofm","",1], # PROBLEM
     ["it venice classic radio","it_venice_classic_radio",Commercial2,0,"https://www.internetradio-horen.de/it/venice-classic-radio","",0],
     ["fr radio classique","fr_radio_classique",Commercial2,0,"https://www.internetradio-horen.de/fr/radio-classique","",0],
     ["us whisperings solo piano radio","us_whisperings_solo_piano_radio",Commercial2,0,"https://www.internetradio-horen.de/us/whisperings-solo-piano-radio","",0],
@@ -1536,7 +1555,21 @@ aStation = [
     ["au its 80s","au_its_80s",Commercial2,0,"https://www.internetradio-horen.de/au/its-80s","",0],
     ["nl 80s alive","nl_80s_alive",Commercial2,0,"https://www.internetradio-horen.de/nl/80s-alive","",0],
     ["ae wonder 80s","ae_wonder_80s",Commercial2,0,"https://www.internetradio-horen.de/ae/wonder-80s","",0],
-    ["nl joe 70s 80s","nl_joe_70s_80s",Commercial2,0,"https://www.internetradio-horen.de/nl/joe-70s-80s","",0]
+    ["nl joe 70s 80s","nl_joe_70s_80s",Commercial2,0,"https://www.internetradio-horen.de/nl/joe-70s-80s","",0],
+
+    ["on 70s","on_70s",Commercial2,0,"https://www.internetradio-horen.de/on-70s","",0],
+    ["ca classichitsonline","ca_classichitsonline",Commercial2,0,"https://www.internetradio-horen.de/ca/classichitsonline","",0],
+    ["us all oldies 247","us_all_oldies_247",Commercial2,0,"https://www.internetradio-horen.de/us/all-oldies-247","",0],
+    ["ch 1fm absolute 70s pop","ch_1fm_absolute_70s_pop",Commercial2,0,"https://www.internetradio-horen.de/ch/1fm-absolute-70s-pop","",0],
+    ["gb golden oldies","gb_golden_oldies",Commercial2,0,"https://www.internetradio-horen.de/gb/golden-oldies","",1],
+    ["us oldies america","us_oldies_america",Commercial2,0,"https://www.internetradio-horen.de/us/oldies-america","",0],
+    ["us planet oldies radio","us_planet_oldies_radio",Commercial2,0,"https://www.internetradio-horen.de/us/planet-oldies-radio","",0],
+    ["us 977 oldies","us_977_oldies",Commercial2,0,"https://www.internetradio-horen.de/us/977-oldies","",0],
+    ["ch skuizz hits 50s 70s","ch_skuizz_hits_50s_70s",Commercial2,0,"https://www.internetradio-horen.de/ch/skuizz-hits-50s-70s","",0],
+    ["ca abc 50s","ca_abc_50s",Commercial2,0,"https://www.internetradio-horen.de/ca/abc-50s","",0],
+    ["ca radio addictive 50s","ca_radio_addictive_50s",Commercial2,0,"https://www.internetradio-horen.de/ca/radio-addictive-50s","",0],
+    ["ca abc 60s","ca_abc_60s",Commercial2,0,"https://www.internetradio-horen.de/ca/abc-60s","",0],
+    ["on 60s","on_60s",Commercial2,0,"https://www.internetradio-horen.de/on-60s","",0]
 ]    
 
 # COMMON BLOCK END ***********************************************
@@ -1647,7 +1680,15 @@ def on_closing():
 
 # do this when a radio station is selected from combobox
 def on_select(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType 
+    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType, ExtraWindowFlag
+
+    if ExtraWindowFlag:
+        # if the extra window is open, close it
+        ExtraWindowFlag = False
+        browser.switch_to.window(nh2)
+        browser.close()
+        browser.switch_to.window(oh2)
+        print("Extra window closed")
 
     # determine the timeInterval between calling on_select() or on_select2()
     global startTime, finishTime
@@ -1762,7 +1803,7 @@ def on_select(event):
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType 
+    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType, ExtraWindowFlag 
 
     global startTime, finishTime
     finishTime = time.time()
@@ -1776,6 +1817,14 @@ def on_select2(event):
 
     global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
     if event.type=="Auto":
+        if ExtraWindowFlag:
+            # if the extra window is open, close it
+            ExtraWindowFlag = False
+            browser.switch_to.window(nh2)
+            browser.close()
+            browser.switch_to.window(oh2)
+            print("Extra window closed")
+
         eventFlag = True
         selected_value_last = selected_value
         selected_value = aStation2[buttonIndex][0]
@@ -2717,7 +2766,7 @@ class CustomCombobox(tk.Frame):
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
-root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio")  
+root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio - RadioSelenium-RP5B.py")  
 root.geometry("800x455+0+0")
 #root.overrideredirect(True)
 root.resizable(False, False)

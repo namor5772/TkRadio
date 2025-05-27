@@ -6,7 +6,7 @@ br radio 80 fm,193
 au its 80s,194
 nl 80s alive,195
 ae wonder 80s,196
--- EMPTY 8 --,-1
+us adagiofm,186
 2GB SYDNEY,133
 2GN GOULBURN,134
 GOLD101.7,82
@@ -15,6 +15,6 @@ totally radio 70s,184
 Golden Days Radio,114
 it venice classic radio,187
 fr radio classique,188
--- EMPTY 17 --,-1
+gb golden oldies,202
 ABC Jazz,79
 ABC Country,80

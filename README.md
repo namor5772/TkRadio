@@ -2115,11 +2115,10 @@ root.mainloop()
 print("out of GUI loop..")
 ```
 
-
 ## Parts list
-  
 
 ### Core components
+
 Pricing and availability as of 27-Jan-2025. Total cost is $221.47, but clearly some of the items will be usable in many other projects or you will already have them. The pro rata cost is __$138.66__
 
 You will also need a soldering iron and solder, some sellotape and a glue gun with glue sticks. Also some super glue.
@@ -2137,7 +2136,6 @@ You will also need a soldering iron and solder, some sellotape and a glue gun wi
 | 3 | [RM7125](https://jaycar.com.au/p/RM7125) | 100nF 100VDC MKT Polyester [Capacitor](ImagesDocs/PolyCap.png) | $1.20 | Used in debouncing circuit | C1, C2, C3 |
 | 1 | [RC5324](https://jaycar.com.au/p/RC5324) | 100pF 50VDC Ceramic [Capacitors](ImagesDocs/CeramicCap.png) - Pack of 2 | $0.45 | Used in debouncing circuit | C4, $0.23 cost used |
 
-
 ### Other parts
 
 | Qty | Product | Description | AUD Cost | Comment | Designator |
@@ -2151,4 +2149,3 @@ You will also need a soldering iron and solder, some sellotape and a glue gun wi
 | 1 | [HP0425](https://jaycar.com.au/p/HP0425) | M3 Steel [Nuts](Images/Nuts.png) - Pk.25 (only need 4)| $2.95 | For mounting screen to Jiffy case | $0.48 cost used |
 | 1 | [HP0148](https://jaycar.com.au/p/HP0148) | 3mm Nylon [Washers](Images/Washers.png) - Pk.10 (only need 0)| $2.50 | For mounting screen to Jiffy case | $0.00 cost used |
 | 1 | [HM3230](https://jaycar.com.au/p/HM3230) | 40 Pin Female Header [Strip](Images/FemaleStrip.png) (only 8 used) | $2.50 | For mounting screen to Jiffy case | $0.50 cost used |
-

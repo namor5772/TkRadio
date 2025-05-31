@@ -14,7 +14,7 @@ Cruise 1323,103
 totally radio 70s,184
 Golden Days Radio,114
 it venice classic radio,187
-fr radio classique,188
+-- EMPTY 16 --,-1
 gb golden oldies,202
 ABC Jazz,79
 ABC Country,80

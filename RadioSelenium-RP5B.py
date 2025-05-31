@@ -310,7 +310,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -351,6 +351,7 @@ combobox_index = -1
 buttonIndex = -1
 addFlag = False
 iconSize = 160
+
 eventFlag = True # if on_select & on_select2 are called from event
 stopFlag = False
 selected_value = "INITIAL"
@@ -382,6 +383,7 @@ tabNum = 0
 oh2 = 0
 nh2 = 0
 ExtraWindowFlag = False
+Streaming = True # if streaming is working
 
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
@@ -1123,7 +1125,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
-    global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag
+    global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag, Streaming
 
     if eventFlag:
         # go to the station website
@@ -1143,20 +1145,21 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         window_size = br.get_window_size()
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
         if nType == 0:
-            widthPx =110
+            widthPx = 270 #110
         else: # if nType == 1:
-            widthPx = 250    
+            widthPx = 270 #250    
         heightPx = 330
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
         time.sleep(6)
 
-        if nType == 1:
+        if len(br.window_handles) > 1:
+            # this is a multiple windows case (old nType == 1 example)
             # another window is opened with button that actually starts the stream
             print(br.window_handles)  # Lists all open windows/tabs
             oh2 = br.window_handles[0]  # Original window handle
-            nh2 = br.window_handles[1]  # New window handle after clicking the first button
+            nh2 = br.window_handles[1]  # New window handle a fter clicking the first button
             br.switch_to.window(nh2)  # Switch to the new window
             # press the button with virtual mouse to play stream
             actions = ActionChains(br)
@@ -1164,6 +1167,20 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             time.sleep(6)
             br.switch_to.window(oh2) # Switch back to the original window
             ExtraWindowFlag = True
+
+        # identify whether streaming works using identifiers on a path element
+        # that display an error in playing graphic on the play button
+        Streaming = True
+        ht = be.get_attribute('innerHTML')
+        soup = BeautifulSoup(ht, 'lxml')
+        div_element = soup.find("div", id="play_pause_container")
+        path_element = div_element.find("path")
+        path_element_str = str(path_element)
+        print(f"path element: {path_element_str}")
+        flagChar = path_element_str[10]
+        if flagChar == "4":
+            Streaming = False
+            print("<<< Streaming is not working>>>")
 
         # get station logo
         try:
@@ -1254,7 +1271,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         img_url = img_element.get_attribute("src")
         urllib.request.urlretrieve(img_url, image_path)
         print("=====> xpath #1")
-    except NoSuchElementException:
+    except Exception as e: #NoSuchElementException:
         try:
             # if failed above try a slightly different path
             xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
@@ -1262,7 +1279,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             img_url = img_element.get_attribute("src")
             urllib.request.urlretrieve(img_url, image_path)
             print("=====> xpath #2")
-        except NoSuchElementException:
+        except Exception as e: #NoSuchElementException:
             try:
                 # if failed above try a slightly different path
                 xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
@@ -1270,7 +1287,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                 img_url = img_element.get_attribute("src")
                 urllib.request.urlretrieve(img_url, image_path)
                 print("=====> xpath #3")
-            except NoSuchElementException:
+            except Exception as e: #NoSuchElementException:
                 try:
                     # if failed above try a slightly different path
                     xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
@@ -1278,7 +1295,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     img_url = img_element.get_attribute("src")
                     urllib.request.urlretrieve(img_url, image_path)
                     print("=====> xpath #4")
-                except NoSuchElementException:
+                except Exception as e: #NoSuchElementException:
                     try:
                         # if failed above try a slightly different path
                         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[2]/div[1]/a/img'
@@ -1286,7 +1303,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                         img_url = img_element.get_attribute("src")
                         urllib.request.urlretrieve(img_url, image_path)
                         print("=====> xpath #5")
-                    except NoSuchElementException:
+                    except Exception as e: #NoSuchElementException:
                         # failed to find image so display a blank image
                         foundImage = False
                         print("=====> xpath NONE")
@@ -1331,10 +1348,17 @@ def Commercial2(br,nNum,sPath,sClass,nType):
     # get program details
     fe = soup.find(attrs={"class": "history-song"})
     if fe is not None:
-        fe1 = "*"+fe1+fe.get_text(separator="*", strip=True)
+        if foundImage:
+            fe1 = "*"+fe1+fe.get_text(separator="*", strip=True)
+        else:
+            fe1 = "*"+fe1+fe.get_text(separator="*", strip=True)+"*No program image"
     else:
-        fe1 = "*"+fe1+"No program information"
-
+        if foundImage:
+            fe1 = "*"+fe1+"No program information"
+        else:
+            fe1 = "*"+fe1+"No program information and image"
+    if not Streaming:
+        fe1 = fe1 + "*"+"<<< Streaming is not working>>>"
     return fe1
 
 # END ####################################################
@@ -1343,7 +1367,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
 
 # COMMON BLOCK START *********************************************
 
-# 2D array of radio station information in [long name, station icon name, nNum, sPath, sClass, nType] format
+# 2D array of radio station information in [long name, station icon name, Streamer Function, nNum, sPath, sClass, nType] format
 # where nNum, sPath, sClass & nType are arguments for the Radio1, Radio2, Radio3, Radio4, Radio5, Radio6,
 # Radio7, Commercial1 & Commercial2 station calling functions. 
 # Clearly this can be varied if you wish to listen to different stations
@@ -1544,7 +1568,7 @@ aStation = [
     ["totally radio 70s","totally_radio_70s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-70s","",0],
     ["totally radio 60s","totally_radio_60s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-60s","",0],
 
-    ["us adagiofm","us_adagiofm",Commercial2,0,"https://www.internetradio-horen.de/us/adagiofm","",1], # PROBLEM
+    ["us adagiofm","us_adagiofm",Commercial2,0,"https://www.internetradio-horen.de/us/adagiofm","",0], # PROBLEM
     ["it venice classic radio","it_venice_classic_radio",Commercial2,0,"https://www.internetradio-horen.de/it/venice-classic-radio","",0],
     ["fr radio classique","fr_radio_classique",Commercial2,0,"https://www.internetradio-horen.de/fr/radio-classique","",0],
     ["us whisperings solo piano radio","us_whisperings_solo_piano_radio",Commercial2,0,"https://www.internetradio-horen.de/us/whisperings-solo-piano-radio","",0],
@@ -1561,7 +1585,7 @@ aStation = [
     ["ca classichitsonline","ca_classichitsonline",Commercial2,0,"https://www.internetradio-horen.de/ca/classichitsonline","",0],
     ["us all oldies 247","us_all_oldies_247",Commercial2,0,"https://www.internetradio-horen.de/us/all-oldies-247","",0],
     ["ch 1fm absolute 70s pop","ch_1fm_absolute_70s_pop",Commercial2,0,"https://www.internetradio-horen.de/ch/1fm-absolute-70s-pop","",0],
-    ["gb golden oldies","gb_golden_oldies",Commercial2,0,"https://www.internetradio-horen.de/gb/golden-oldies","",1],
+    ["gb golden oldies","gb_golden_oldies",Commercial2,0,"https://www.internetradio-horen.de/gb/golden-oldies","",0],
     ["us oldies america","us_oldies_america",Commercial2,0,"https://www.internetradio-horen.de/us/oldies-america","",0],
     ["us planet oldies radio","us_planet_oldies_radio",Commercial2,0,"https://www.internetradio-horen.de/us/planet-oldies-radio","",0],
     ["us 977 oldies","us_977_oldies",Commercial2,0,"https://www.internetradio-horen.de/us/977-oldies","",0],
@@ -1766,16 +1790,7 @@ def on_select(event):
                 text_box.insert(tk.END, row + "\n")
             # Disable the text box to make it read-only
             text_box.config(state=tk.DISABLED)
-
-            # on_select() schedules itself to run in nominally refreshTime seconds.
-            # this updates the program text and grapic while the selected radio station is streaming
-            print("JUST ABOUT TO RUN ROOT")
-            eventFlag = False
-            if pollFlag:
-                root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
-            print("FINISHED RUNNING ROOT")
-            print("")
-
+            
         except urllib.error.HTTPError as e:
             event.type = "Manual" # to prevent saving of buttonIndex
 
@@ -1791,6 +1806,15 @@ def on_select(event):
             text_box.config(state=tk.DISABLED)
             root.update_idletasks()
 
+        # on_select() schedules itself to run in nominally refreshTime seconds.
+        # this updates the program text and grapic while the selected radio station is streaming
+        print("JUST ABOUT TO RUN ROOT")
+        eventFlag = False
+        if pollFlag:
+            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
+        print("FINISHED RUNNING ROOT")
+        print("")
+
     else: #if stopFlag==True
         # Makes the scheduled call to on_select() do nothing if
         # it occurs after another station stream has been started
@@ -1798,6 +1822,7 @@ def on_select(event):
         print("selected_value:",selected_value_last)
         print("DID STOPPING BIT")
         print("")
+
 
 
 # do this when a radio station is selected via playlist buttons,
@@ -2768,10 +2793,8 @@ class CustomCombobox(tk.Frame):
 root = tk.Tk()
 root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio - RadioSelenium-RP5B.py")  
 root.geometry("800x455+0+0")
-#root.overrideredirect(True)
 root.resizable(False, False)
 root.update_idletasks()
-
 
 # Create a label to display actions or the counter value.
 if GPIO:
@@ -2789,7 +2812,6 @@ if GPIO:
 else:
     labelRE = tk.Label(root, text="       windows version running")
     labelRE.place(x=0, y=0)
-
 
 # create a list of all the available station names
 aStringArray = []
@@ -2864,7 +2886,6 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
-
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** START ******************************

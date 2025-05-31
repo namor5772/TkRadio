@@ -28,7 +28,7 @@ script_dir = script_dir.replace("\\","/")
 print(f"This script path is: {script_dir}")
 
 # Create the full filepath to the station websites text file
-filename = 'StationWebsites.csv'
+filename = 'auStationWebsites.csv'
 filepath = os.path.join(script_dir, filename)
 print(f'The file {filepath} stores a list of station websites')
 
@@ -45,11 +45,13 @@ browser = webdriver.Firefox(options=firefox_options)
 refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 
 total_anchor_tags = 0
-for i in range (1,357+1):
+for i in range (1,4+1):
     time.sleep(3)
     browser.get(refresh_http)
     time.sleep(3)
-    sPath = "https://www.fmradiofree.com/?page="+str(i)
+    #sCore = "https://www.fmradiofree.com/?page="
+    sCore = "https://www.radio-australia.org/?page="
+    sPath = sCore+str(i)
     browser.get(sPath)
     time.sleep(5)
 
@@ -62,7 +64,7 @@ for i in range (1,357+1):
     num_anchor_tags = len(anchor_tags)
 
     # Open or create a CSV file to append the results
-    with open(filepath, "a", newline="", encoding="utf-8") as csvfile:
+    with open(filepath, "a", newline="", encoding="utf-8-sig") as csvfile:
         writer = csv.writer(csvfile)
         for j, anchor in enumerate(anchor_tags):
             if j >= 60:
@@ -73,7 +75,7 @@ for i in range (1,357+1):
             # Use get_attribute('href') if you want the URL
             anchor_href = anchor.get_attribute('href')
             writer.writerow([anchor_text, anchor_href])  # Write to CSV file
-            #print(f"Link text: {anchor_text}, URL: {anchor_href}")
+            print(f"Link text: {anchor_text}, URL: {anchor_href}")
 
     total_anchor_tags = total_anchor_tags + j+1
     print(f"{j+1} links from page {sPath} have been written to {filepath}")

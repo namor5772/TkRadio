@@ -32,9 +32,12 @@ print(f"The Images path is: {pathImages}")
 
 # Create the full filepath to the station websites csv file
 filename = 'auStationWebsites.csv'
-filepath = os.path.join(script_dir, filename)
-print(f'The file {filepath} stores a list of station websites')
+basicStations_filepath = os.path.join(script_dir, filename)
+print(f'The file {basicStations_filepath} stores a basic list of station websites')
 
+filename = 'au_Stations.csv'
+au_Stations_filepath = os.path.join(script_dir, filename)
+print(f'The file {au_Stations_filepath} stores a full list of station websites')
 
 # Open and setup FireFox browser
 firefox_options = Options()
@@ -65,9 +68,9 @@ nNum = 0
 sPath = ""
 sClass = ""
 nType = 0
-eventFlag = True # if on_select & on_select2 are called from event
+eventFlag = True # if on_select are called from event (and not just to update the text box and program image)
 needSleep = 5 # can be less on faster machines
-refreshTime = 15.0 # seconds between updating station info
+refreshTime = 7.0 # seconds between updating station info
 pollFlag = True # if true then poll website for program text and picture changes 
 selectedStationIndex = 0
 selectedStationName = ""
@@ -92,6 +95,8 @@ Streaming = True # if streaming is working
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
     global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag, Streaming
+    global StationName, StationLogo, StationFunction
+
     if eventFlag:
         # go to the station website
         br.get(refresh_http)
@@ -136,16 +141,31 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         # identify whether streaming works using identifiers on a path element
         # that display an error in playing graphic on the play button
         Streaming = True
+        nType = 0
         ht = be.get_attribute('innerHTML')
         soup = BeautifulSoup(ht, 'lxml')
         div_element = soup.find("div", id="play_pause_container")
         path_element = div_element.find("path")
         path_element_str = str(path_element)
         print(f"path element: {path_element_str}")
-        flagChar = path_element_str[10]
-        if flagChar == "4":
+
+        try:
+            flagChar = path_element_str[10]
+            if flagChar == "4":
+                Streaming = False
+                nType = 1
+                print("<<< Streaming is not working >>>")
+        except IndexError:
             Streaming = False
-            print("<<< Streaming is not working>>>")
+            nType = 2
+            print("<<< Streaming is not working - IndexError >>>")
+
+        # Open or create a CSV file to append the station array row  to the ststioan list
+        #global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
+        with open(au_Stations_filepath, "a", newline="", encoding="utf-8-sig") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType])  # Write to CSV file
+            print(f"Station array element created: {selectedStationIndex}")
 
         # get station logo
         try:
@@ -329,7 +349,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
 
 
 aStationCSV = []
-with open(filepath, "r", encoding="utf-8-sig") as csvfile:
+with open(basicStations_filepath, "r", encoding="utf-8-sig") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         aStationCSV.append(row)
@@ -410,7 +430,7 @@ def on_select(event):
             TimeNum = 0
             selectedStationIndex += 1
             selectedStationName = aStation[selectedStationIndex][0]
-            root.after(int(refreshTime*2300), lambda: on_select(CustomEvent("Auto", root, "ComboBox Event")))
+            root.after(int(refreshTime*500), lambda: on_select(CustomEvent("Auto", root, "ComboBox Event")))
             print("")
             print(f"<<< SELECTED STATION: {selectedStationIndex} >>>")
 
@@ -442,7 +462,7 @@ def on_select(event):
         if stopFlag:
             stopFlag=False
             print("SECOND STOP FAIL")
-        elif (timeInterval < refreshTime-0.5):
+        elif (timeInterval < refreshTime-3.0):
             stopFlag = True    
             print("FIRST STOP")
     print("stopFlag:",stopFlag)
@@ -506,7 +526,7 @@ def on_select(event):
 def after_GUI_started():
     global selectedStationIndex, selectedStationName, TimeNum
     TimeNum = 0
-    selectedStationIndex = 38
+    selectedStationIndex = 0
     selectedStationName = aStation[selectedStationIndex][0]
     on_select(CustomEvent("Auto", root, "ComboBox Event"))
 

@@ -45,7 +45,7 @@ browser = webdriver.Firefox(options=firefox_options)
 refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 
 total_anchor_tags = 0
-for i in range (1,4+1):
+for i in range (1,16+1):
     time.sleep(3)
     browser.get(refresh_http)
     time.sleep(3)
@@ -74,7 +74,7 @@ for i in range (1,4+1):
             anchor_text = anchor.text  
             # Use get_attribute('href') if you want the URL
             anchor_href = anchor.get_attribute('href')
-            writer.writerow([anchor_text, anchor_href])  # Write to CSV file
+            writer.writerow(["au "+anchor_text, anchor_href])  # Write to CSV file
             print(f"Link text: {anchor_text}, URL: {anchor_href}")
 
     total_anchor_tags = total_anchor_tags + j+1

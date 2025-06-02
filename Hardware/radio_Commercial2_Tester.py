@@ -21,6 +21,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoAlertPresentException, UnexpectedAlertPresentException
 
 
 # Get the directory of the current script & images
@@ -79,6 +80,9 @@ selected_value = "INITIAL"
 selected_value_last = "INITIAL"
 selected_index = -1
 startTime = time.time()
+finishTime = time.time()
+startTime2 = time.time()
+finishTime2 = time.time()
 TimeNum = 0
 
 img_url_g = ""
@@ -96,6 +100,8 @@ Streaming = True # if streaming is working
 def Commercial2(br,nNum,sPath,sClass,nType):
     global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag, Streaming
     global StationName, StationLogo, StationFunction
+    print("")
+    print("---- Commercial2() entered ---------------------------------------------")
 
     if eventFlag:
         # go to the station website
@@ -103,9 +109,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         time.sleep(2)
         br.get(sPath)
         time.sleep(needSleep) # bigger on slow machines
+        print("---- ENTERED STATION WEBSITE ------------------------------------------")
 
     # always runs
-    print("-------------------------------------------------")
     image_path_logo = pathImages + "/" + StationLogo + ".png"
     be = br.find_element(By.TAG_NAME, 'body')
     time.sleep(1)
@@ -124,8 +130,18 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         actions.move_by_offset(widthPx, heightPx).click().perform()
         time.sleep(6)
 
+        # this is needed to dismiss any alert that may appear (unwanted login popup)
+        try:
+            alert = br.switch_to.alert  # Switch to alert if present
+            print(f"Alert detected: {alert.text}")  # Print alert text for debugging
+            alert.dismiss()  # Dismiss or accept as needed
+        except NoAlertPresentException:
+            print("No alert detected.")
+        except UnexpectedAlertPresentException as e:
+            print(f"Unexpected alert encountered: {e}")
+
+        # this is a multiple windows case (old nType == 1 example)
         if len(br.window_handles) > 1:
-            # this is a multiple windows case (old nType == 1 example)
             # another window is opened with button that actually starts the stream
             print(br.window_handles)  # Lists all open windows/tabs
             oh2 = br.window_handles[0]  # Original window handle
@@ -136,6 +152,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             actions.move_by_offset(widthPx, heightPx).click().perform()
             time.sleep(6)
             br.switch_to.window(oh2) # Switch back to the original window
+            nNum = 1 # indicate multiple windows case
             ExtraWindowFlag = True
 
         # identify whether streaming works using identifiers on a path element
@@ -148,7 +165,6 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         path_element = div_element.find("path")
         path_element_str = str(path_element)
         print(f"path element: {path_element_str}")
-
         try:
             flagChar = path_element_str[10]
             if flagChar == "4":
@@ -160,12 +176,14 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             nType = 2
             print("<<< Streaming is not working - IndexError >>>")
 
-        # Open or create a CSV file to append the station array row  to the ststioan list
+        # Open or create a CSV file to append the station array row  to the station list
         #global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
         with open(au_Stations_filepath, "a", newline="", encoding="utf-8-sig") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType])  # Write to CSV file
-            print(f"Station array element created: {selectedStationIndex}")
+            print("")
+            print(f"**************** Station array element created: {selectedStationIndex},{nType}")
+            print("")
 
         # get station logo
         try:
@@ -178,15 +196,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon if adding station to playlist 
-#        global addFlag
-#        if addFlag:
-#            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-#            scaled_image.save(buttonImagePath)
-#            addFlag = False
-#            print(f"saving button icon {buttonImagePath}")
-        
-        # Display the station logo as given in the scaled_image
+         # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
@@ -343,13 +353,13 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         else:
             fe1 = "*"+fe1+"No program information and image"
     if not Streaming:
-        fe1 = fe1 + "*"+"<<< Streaming is not working>>>"
+        fe1 = fe1 + "*"+"<<< Streaming is not working >>>"
     return fe1
 
 
 
 aStationCSV = []
-with open(basicStations_filepath, "r", encoding="utf-8-sig") as csvfile:
+with open(basicStations_filepath, "r", encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         aStationCSV.append(row)
@@ -364,6 +374,8 @@ for row in aStationCSV:
 aStation = []
 for row in aStationCSV:
     stationName = row[0]
+    stationName = stationName.replace("/", "v")
+    stationName = stationName.replace(",", "")
     stationLogo = stationName.replace(" ", "_")
     nNum = 0
     sPath = row[1]
@@ -389,7 +401,8 @@ class CustomEvent:
 def on_select(event):
     global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
-
+    print("---- on_select() entered ---------------------------------------------")
+ 
     if ExtraWindowFlag:
         # if the extra window is open, close it
         ExtraWindowFlag = False
@@ -433,6 +446,12 @@ def on_select(event):
             root.after(int(refreshTime*500), lambda: on_select(CustomEvent("Auto", root, "ComboBox Event")))
             print("")
             print(f"<<< SELECTED STATION: {selectedStationIndex} >>>")
+            global startTime2, finishTime2
+            finishTime2 = time.time()
+            timeInterval2 = finishTime2-startTime2
+            timeIntervalStr2 = f"{timeInterval2:.2f}"
+            startTime2 = finishTime2
+            print(f"Time interval between selections: {timeIntervalStr2} seconds")               
 
     # extract all parameters for the selected radio station
     StationName = aStation[combobox_index][0]
@@ -526,7 +545,7 @@ def on_select(event):
 def after_GUI_started():
     global selectedStationIndex, selectedStationName, TimeNum
     TimeNum = 0
-    selectedStationIndex = 0
+    selectedStationIndex = 823
     selectedStationName = aStation[selectedStationIndex][0]
     on_select(CustomEvent("Auto", root, "ComboBox Event"))
 

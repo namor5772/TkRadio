@@ -21,11 +21,12 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoAlertPresentException
 
 
 # START #######################################################
@@ -299,6 +300,12 @@ print(f"The Images path is: {pathImages}")
 filename = 'savedRadioStation.txt'
 filepath = os.path.join(script_dir, filename)
 print(f'The file {filepath} stores the last streamed station before shutdown.')
+
+# Create the full filepath to the list of ALL available radio stations
+filename = 'AllRadioStations.csv'
+allStations_filepath = os.path.join(script_dir, filename)
+print(f'The file {allStations_filepath} stores csv table of all available radio stations')
+
 
 # Create the full filepath to the saved playlist file
 filename2 = 'playlist.txt'
@@ -1126,6 +1133,8 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
     global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag, Streaming
+    print("")
+    print("---- Commercial2() entered ---------------------------------------------")
 
     if eventFlag:
         # go to the station website
@@ -1133,9 +1142,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         time.sleep(2)
         br.get(sPath)
         time.sleep(needSleep) # bigger on slow machines
+        print("---- ENTERED STATION WEBSITE ------------------------------------------")
 
     # always runs
-    print("--------------------------------------")
     image_path_logo = pathImages + "/" + StationLogo + ".png"
     be = br.find_element(By.TAG_NAME, 'body')
     time.sleep(1)
@@ -1145,15 +1154,25 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         window_size = br.get_window_size()
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
         if nType == 0:
-            widthPx = 270 #110
+            widthPx = 250 #110
         else: # if nType == 1:
-            widthPx = 270 #250    
+            widthPx = 250 #250    
         heightPx = 330
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
         time.sleep(6)
 
+        # this is needed to dismiss any alert that may appear (unwanted login popup)
+        try:
+            alert = br.switch_to.alert  # Switch to alert if present
+            print(f"Alert detected: {alert.text}")  # Print alert text for debugging
+            alert.dismiss()  # Dismiss or accept as needed
+        except NoAlertPresentException:
+            print("No alert detected.")
+        except UnexpectedAlertPresentException as e:
+            print(f"Unexpected alert encountered: {e}")
+      
         if len(br.window_handles) > 1:
             # this is a multiple windows case (old nType == 1 example)
             # another window is opened with button that actually starts the stream
@@ -1177,10 +1196,14 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         path_element = div_element.find("path")
         path_element_str = str(path_element)
         print(f"path element: {path_element_str}")
-        flagChar = path_element_str[10]
-        if flagChar == "4":
+        try:
+            flagChar = path_element_str[10]
+            if flagChar == "4":
+                Streaming = False
+                print("<<< Streaming is not working >>>")
+        except IndexError:
             Streaming = False
-            print("<<< Streaming is not working>>>")
+            print("<<< Streaming is not working - IndexError >>>")
 
         # get station logo
         try:
@@ -1358,245 +1381,61 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         else:
             fe1 = "*"+fe1+"No program information and image"
     if not Streaming:
-        fe1 = fe1 + "*"+"<<< Streaming is not working>>>"
+        fe1 = fe1 + "*"+"<<< Streaming is not working >>>"
     return fe1
 
 # END ####################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 
 
-# COMMON BLOCK START *********************************************
+# ALL STATIONS LOAD BLOCK START *********************************************
 
 # 2D array of radio station information in [long name, station icon name, Streamer Function, nNum, sPath, sClass, nType] format
 # where nNum, sPath, sClass & nType are arguments for the Radio1, Radio2, Radio3, Radio4, Radio5, Radio6,
 # Radio7, Commercial1 & Commercial2 station calling functions. 
 # Clearly this can be varied if you wish to listen to different stations
 # Currently we Have all 83 ABC stations (included time shifted versions) and 186 in total.
-aStation = [
-    ["ABC Classic2","ABC_Classic2",Radio1,7,"https://www.abc.net.au/listen/live/classic2","",0],
-    ["ABC Jazz","ABC_Jazz",Radio1,7,"https://www.abc.net.au/listen/live/jazz","",0],
-    ["ABC triple j Hottest","ABC_triple_j_Hottest",Radio1,7,"https://www.abc.net.au/triplej/live/triplejhottest","",0],
-    ["ABC triple j Unearthed","ABC_triple_j_Unearthed",Radio1,7,"https://www.abc.net.au/triplej/live/unearthed","",0],
+# This 2D array used to be explicitly populated here:
+# eg:
+#    aStation = [
+#        ["ABC Classic2","ABC_Classic2",Radio1,7,"https://www.abc.net.au/listen/live/classic2","",0],
+#        ["ABC Jazz","ABC_Jazz",Radio1,7,"https://www.abc.net.au/listen/live/jazz","",0],
+#        ["ABC triple j Hottest","ABC_triple_j_Hottest",Radio1,7,"https://www.abc.net.au/triplej/live/triplejhottest","",0],
+#        ["ABC triple j Unearthed","ABC_triple_j_Unearthed",Radio1,7,"https://www.abc.net.au/triplej/live/unearthed","",0],
+#        ["ABC Radio Australia","ABC_Radio_Australia",Radio1,7,"https://www.abc.net.au/radio-australia/live/","",0]
+#   ]  
 
-    ["ABC Radio National LIVE","ABC_Radio_National_LIVE",Radio2,0,"https://www.abc.net.au/listen/live/radionational","",0],
-    ["ABC Radio National QLD","ABC_Radio_National_QLD",Radio2,1,"https://www.abc.net.au/listen/live/radionational","",0],
-    ["ABC Radio National WA","ABC_Radio_National_WA",Radio2,2,"https://www.abc.net.au/listen/live/radionational","",0],
-    ["ABC Radio National SA","ABC_Radio_National_SA",Radio2,3,"https://www.abc.net.au/listen/live/radionational","",0],
-    ["ABC Radio National NT","ABC_Radio_National_NT",Radio2,4,"https://www.abc.net.au/listen/live/radionational","",0],
+# Prepare a mapping from function names (as strings) to actual function objects
+# this enables us to load the aStation list from a CSV file with the function names as strings
+function_map = {
+    'Radio1': Radio1,
+    'Radio2': Radio2,
+    'Radio3': Radio3,
+    'Radio4': Radio4,
+    'Radio5': Radio5,
+    'Radio6': Radio6,
+    'Radio7': Radio7,
+    'Commercial1': Commercial1,
+    'Commercial2': Commercial2
+}
 
-    ["ABC triple j LIVE","ABC_triple_j_LIVE",Radio3,0,"https://www.abc.net.au/listen/live/triplej","",0],
-    ["ABC triple j QLD","ABC_triple_j_QLD",Radio3,1,"https://www.abc.net.au/listen/live/triplej","",0],
-    ["ABC triple j WA","ABC_triple_j_WA",Radio3,2,"https://www.abc.net.au/listen/live/triplej","",0],
-    ["ABC triple j SA","ABC_triple_j_SA",Radio3,3,"https://www.abc.net.au/listen/live/triplej","",0],
-    ["ABC triple j NT","ABC_triple_j_NT",Radio3,4,"https://www.abc.net.au/listen/live/triplej","",0],
-    ["ABC Double j LIVE","ABC_Double_j_LIVE",Radio3,0,"https://www.abc.net.au/listen/live/doublej","",0],
-    ["ABC Double j QLD","ABC_Double_j_QLD",Radio3,1,"https://www.abc.net.au/listen/live/doublej","",0],
-    ["ABC Double j WA","ABC_Double_j_WA",Radio3,2,"https://www.abc.net.au/listen/live/doublej","",0],
-    ["ABC Double j SA","ABC_Double_j_SA",Radio3,3,"https://www.abc.net.au/listen/live/doublej","",0],
-    ["ABC Double j NT","ABC_Double_j_NT",Radio3,4,"https://www.abc.net.au/listen/live/doublej","",0],
-    ["ABC Classic LIVE","ABC_Classic_LIVE",Radio3,0,"https://www.abc.net.au/listen/live/classic","",0],
-    ["ABC Classic QLD","ABC_Classic_QLD",Radio3,1,"https://www.abc.net.au/listen/live/classic","",0],
-    ["ABC Classic WA","ABC_Classic_WA",Radio3,2,"https://www.abc.net.au/listen/live/classic","",0],
-    ["ABC Classic SA","ABC_Classic_SA",Radio3,3,"https://www.abc.net.au/listen/live/classic","",0],
-    ["ABC Classic NT","ABC_Classic_NT",Radio3,4,"https://www.abc.net.au/listen/live/classic","",0],
+# load the aStation list from a CSV file allStations_filepath
+aStation = []
+with open(allStations_filepath, mode="r", newline="", encoding="utf-8") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        row = [function_map.get(cell, cell) for cell in row]  # Replace function names with actual references
+        row[3] = int(row[3]) if row[3].isdigit() else row[3]  # Convert column 3 to integer 
+        row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer 
+        aStation.append(row)
+widths = [33, 33, 44, 1, 68, 17, 1]  # Adjust these values for your needs
+for row in aStation:
+    formatted_row = " | ".join(f"{str(cell):{widths[i]}}" for i, cell in enumerate(row))
+    formatted_row = formatted_row[:215]  # Get first 215 characters, to fit in the console without wrapping
+    print(formatted_row)
 
-    ["ABC Radio Sydney NSW","ABC_Radio_Sydney_NSW",Radio4,0,"https://www.abc.net.au/listen/live/sydney","",0],
-    ["ABC Broken Hill NSW","ABC_Broken_Hill_NSW",Radio4,0,"https://www.abc.net.au/listen/live/brokenhill","",0],
-    ["ABC Central Coast NSW","ABC_Central_Coast_NSW",Radio4,0,"https://www.abc.net.au/listen/live/centralcoast","",0],
-    ["ABC Central West NSW","ABC_Central_West_NSW",Radio4,0,"https://www.abc.net.au/listen/live/centralwest","",0],
-    ["ABC Coffs Coast NSW","ABC_Coffs_Coast_NSW",Radio4,0,"https://www.abc.net.au/listen/live/coffscoast","",0],
-    ["ABC Illawarra NSW","ABC_Illawarra_NSW",Radio4,0,"https://www.abc.net.au/listen/live/illawarra","",0],
-    ["ABC Mid North Coast NSW","ABC_Mid_North_Coast_NSW",Radio4,0,"https://www.abc.net.au/listen/live/midnorthcoast","",0],
-    ["ABC New England North West NSW","ABC_New_England_North_West_NSW",Radio4,0,"https://www.abc.net.au/listen/live/newengland","",0],
-    ["ABC Newcastle NSW","ABC_Newcastle_NSW",Radio4,0,"https://www.abc.net.au/listen/live/newcastle","",0],
-    ["ABC North Coast NSW","ABC_North_Coast_NSW",Radio4,0,"https://www.abc.net.au/listen/live/northcoast","",0],
-    ["ABC Riverina NSW","ABC_Riverina_NSW",Radio4,0,"https://www.abc.net.au/listen/live/riverina","",0],
-    ["ABC South East NSW","ABC_South_East_NSW",Radio4,0,"https://www.abc.net.au/listen/live/southeastnsw","",0],
-    ["ABC Upper Hunter NSW","ABC_Upper_Hunter_NSW",Radio4,0,"https://www.abc.net.au/listen/live/upperhunter","",0],
-    ["ABC Western Plains NSW","ABC_Western_Plains_NSW",Radio4,0,"https://www.abc.net.au/listen/live/westernplains","",0],
-    ["ABC Radio Canberra ACT","ABC_Radio_Canberra_ACT",Radio4,0,"https://www.abc.net.au/listen/live/canberra","",0],
-    ["ABC Radio Darwin NT","ABC_Radio_Darwin_NT",Radio4,0,"https://www.abc.net.au/listen/live/darwin","",0],
-    ["ABC Alice Springs NT","ABC_Alice_Springs_NT",Radio4,0,"https://www.abc.net.au/listen/live/alicesprings","",0],
-    ["ABC Radio Melbourne VIC","ABC_Radio_Melbourne_VIC",Radio4,0,"https://www.abc.net.au/listen/live/melbourne","",0],
-    ["ABC Ballarat VIC","ABC_Ballarat_VIC",Radio4,0,"https://www.abc.net.au/listen/live/ballarat","",0],
-    ["ABC Central Victoria VIC","ABC_Central_Victoria_VIC",Radio4,0,"https://www.abc.net.au/listen/live/centralvic","",0],
-    ["ABC Gippsland VIC","ABC_Gippsland_VIC",Radio4,0,"https://www.abc.net.au/listen/live/gippsland","",0],
-    ["ABC Goulburn Murray VIC","ABC_Goulburn_Murray_VIC",Radio4,0,"https://www.abc.net.au/listen/live/goulburnmurray","",0],
-    ["ABC Mildura-Swan Hill VIC","ABC_Mildura_Swan_Hill_VIC",Radio4,0,"https://www.abc.net.au/listen/live/milduraswanhill","",0],
-    ["ABC Shepparton VIC","ABC_Shepparton_VIC",Radio4,0,"https://www.abc.net.au/listen/live/shepparton","",0],
-    ["ABC South West Victoria VIC","ABC_South_West_Victoria_VIC",Radio4,0,"https://www.abc.net.au/listen/live/southwestvic","",0],
-    ["ABC Wimmera VIC","ABC_Wimmera_VIC",Radio4,0,"https://www.abc.net.au/listen/live/wimmera","",0],
-    ["ABC Radio Adelaide SA","ABC_Radio_Adelaide_SA",Radio4,0,"https://www.abc.net.au/listen/live/adelaide","",0],
-    ["ABC Eyre Peninsula SA","ABC_Eyre_Peninsula_SA",Radio4,0,"https://www.abc.net.au/listen/live/eyre","",0],
-    ["ABC North and West SA","ABC_North_and_West_SA",Radio4,0,"https://www.abc.net.au/listen/live/northandwest","",0],
-    ["ABC Riverland SA","ABC_Riverland_SA",Radio4,0,"https://www.abc.net.au/listen/live/riverland","",0],
-    ["ABC South East SA","ABC_South_East_SA",Radio4,0,"https://www.abc.net.au/listen/live/southeastsa","",0],
-    ["ABC Radio Hobart TAS","ABC_Radio_Hobart_TAS",Radio4,0,"https://www.abc.net.au/listen/live/hobart","",0],
-    ["ABC Northern Tasmania TAS","ABC_Northern_Tasmania_TAS",Radio4,0,"https://www.abc.net.au/listen/live/northtas","",0],
-    ["ABC Radio Brisbane QLD","ABC_Radio_Brisbane_QLD",Radio4,0,"https://www.abc.net.au/listen/live/brisbane","",0],
-    ["ABC Capricornia QLD","ABC_Capricornia_QLD",Radio4,0,"https://www.abc.net.au/listen/live/capricornia","",0],
-    ["ABC Far North QLD","ABC_Far_North_QLD",Radio4,0,"https://www.abc.net.au/listen/live/farnorth","",0],
-    ["ABC Gold Coast QLD","ABC_Gold_Coast_QLD",Radio4,0,"https://www.abc.net.au/listen/live/goldcoast","",0],
-    ["ABC North Queensland QLD","ABC_North_Queensland_QLD",Radio4,0,"https://www.abc.net.au/listen/live/northqld","",0],
-    ["ABC North West Queensland QLD","ABC_North_West_Queensland_QLD",Radio4,0,"https://www.abc.net.au/listen/live/northwest","",0],
-    ["ABC Southern Queensland QLD","ABC_Southern_Queensland_QLD",Radio4,0,"https://www.abc.net.au/listen/live/southqld","",0],
-    ["ABC Sunshine Coast QLD","ABC_Sunshine_Coast_QLD",Radio4,0,"https://www.abc.net.au/listen/live/sunshine","",0],
-    ["ABC Tropical North QLD","ABC_Tropical_North_QLD",Radio4,0,"https://www.abc.net.au/listen/live/tropic","",0],
-    ["ABC Western Queensland QLD","ABC_Western_Queensland_QLD",Radio4,0,"https://www.abc.net.au/listen/live/westqld","",0],
-    ["ABC Wide Bay QLD","ABC_Wide_Bay_QLD",Radio4,0,"https://www.abc.net.au/listen/live/widebay","",0],
-    ["ABC Radio Perth WA","ABC_Radio_Perth_WA",Radio4,0,"https://www.abc.net.au/listen/live/perth","",0],
-    ["ABC Esperance WA","ABC_Esperance_WA",Radio4,0,"https://www.abc.net.au/listen/live/esperance","",0],
-    ["ABC Goldfields WA","ABC_Goldfields_WA",Radio4,0,"https://www.abc.net.au/listen/live/goldfields","",0],
-    ["ABC Great Southern WA","ABC_Great_Southern_WA",Radio4,0,"https://www.abc.net.au/listen/live/greatsouthern","",0],
-    ["ABC Kimberley WA","ABC_Kimberley_WA",Radio4,0,"https://www.abc.net.au/listen/live/kimberley","",0],
-    ["ABC Midwest & Wheatbelt WA","ABC_Midwest_and_Wheatbelt_WA",Radio4,0,"","",0],
-    ["ABC Pilbara WA","ABC_Pilbara_WA",Radio4,0,"https://www.abc.net.au/listen/live/pilbara","",0],
-    ["ABC South West WA","ABC_South_West_WA",Radio4,0,"https://www.abc.net.au/listen/live/southwestwa","",0],
-    ["ABC NewsRadio","ABC_NewsRadio",Radio4,0,"https://www.abc.net.au/listen/live/news","",0],
+# ALL STATIONS LOAD BLOCK END ***********************************************
 
-    ["ABC Country","ABC_Country",Radio5,0,"https://www.abc.net.au/listen/live/country","",0],
-    ["ABC Radio Australia","ABC_Radio_Australia",Radio5,0,"https://www.abc.net.au/pacific/live","",0],
-
-    ["ABC Kids listen","ABC_Kids_listen",Radio6,0,"https://www.abc.net.au/listenlive/kidslisten","",0],
-
-    ["ABC SPORT","ABC_SPORT",Radio7,0,"https://www.abc.net.au/news/sport/audio","",0], # FIX
-    
-    ["KIIS 1065","KIIS1065",Commercial1,0,"https://www.iheart.com/live/kiis-1065-6185/","css-1jnehb1 e1aypx0f0",0],
-    ["GOLD101.7","GOLD1017",Commercial1,0,"https://www.iheart.com/live/gold1017-6186/","css-1jnehb1 e1aypx0f0",0],
-    ["CADA","CADA",Commercial1,0,"https://www.iheart.com/live/cada-6179/","css-1jnehb1 e1aypx0f0",0],
-    ["iHeartCountry Australia","iHeartCountry_Australia",Commercial1,0,"https://www.iheart.com/live/iheartcountry-australia-7222/","css-1jnehb1 e1aypx0f0",0],
-    ["KIIS 90s","KIIS_90s",Commercial1,0,"https://www.iheart.com/live/kiis-90s-10069/","css-1jnehb1 e1aypx0f0",0],
-    ["GOLD 80s","GOLD_80s",Commercial1,0,"https://www.iheart.com/live/gold-80s-10073/","css-1jnehb1 e1aypx0f0",0],
-    ["iHeartRadio Countdown AUS","iHeartRadio_Countdown_AUS",Commercial1,0,"https://www.iheart.com/live/iheartradio-countdown-aus-6902/","css-1jnehb1 e1aypx0f0",0],
-    ["TikTok Trending on iHeartRadio","TikTok_Trending_on_iHeartRadio",Commercial1,0,"https://www.iheart.com/live/tiktok-trending-on-iheartradio-8876/","css-1jnehb1 e1aypx0f0",0],
-    ["iHeartDance","iHeartDance",Commercial1,0,"https://www.iheart.com/live/iheartdance-6941/","css-1jnehb1 e1aypx0f0",0],
-    ["The Bounce","The_Bounce",Commercial1,0,"https://www.iheart.com/live/the-bounce-6327/","css-1jnehb1 e1aypx0f0",0],
-    ["iHeartAustralia","iHeartAustralia",Commercial1,0,"https://www.iheart.com/live/iheartaustralia-7050/","css-1jnehb1 e1aypx0f0",0],
-    ["fbi.radio","fbi_radio",Commercial1,0,"https://www.iheart.com/live/fbiradio-6311/","css-1jnehb1 e1aypx0f0",0],
-    ["2SER","_2SER",Commercial1,0,"https://www.iheart.com/live/2ser-6324/","css-1jnehb1 e1aypx0f0",0],
-    ["2MBS Fine Music Sydney","_2MBS_Fine_Music_Sydney",Commercial1,0,"https://www.iheart.com/live/2mbs-fine-music-sydney-6312/","css-1jnehb1 e1aypx0f0",0],
-    ["KIX Country","KIX_Country",Commercial1,0,"https://www.iheart.com/live/kix-country-9315/","css-1jnehb1 e1aypx0f0",0],
-    ["SBS Chill","SBS_Chill",Commercial1,0,"https://www.iheart.com/live/sbs-chill-7029/","css-1jnehb1 e1aypx0f0",0],
-    ["Vintage FM","Vintage_FM",Commercial1,0,"https://www.iheart.com/live/vintage-fm-8865/","css-1jnehb1 e1aypx0f0",0],
-    ["My88 FM","My88_FM",Commercial1,0,"https://www.iheart.com/live/my88-fm-8866/","css-1jnehb1 e1aypx0f0",0],
-    ["Hope 103.2","Hope_103_2",Commercial1,0,"https://www.iheart.com/live/hope-1032-6314/","css-1jnehb1 e1aypx0f0",0],
-    ["The 90s iHeartRadio","The_90s_iHeartRadio",Commercial1,0,"https://www.iheart.com/live/the-90s-iheartradio-6793/","css-1jnehb1 e1aypx0f0",0],
-    ["The 80s iHeartRadio","The_80s_iHeartRadio",Commercial1,0,"https://www.iheart.com/live/the-80s-iheartradio-6794/","css-1jnehb1 e1aypx0f0",0],
-    ["Mix 102.3","Mix_102_3",Commercial1,0,"https://www.iheart.com/live/mix1023-6184/","css-1jnehb1 e1aypx0f0",0],
-    ["Cruise 1323","Cruise_1323",Commercial1,0,"https://www.iheart.com/live/cruise-1323-6177/","css-1jnehb1 e1aypx0f0",0],
-    ["Mix 80s","Mix_80s",Commercial1,0,"https://www.iheart.com/live/mix-80s-10076/","css-1jnehb1 e1aypx0f0",0],
-    ["Mix 90s","Mix_90s",Commercial1,0,"https://www.iheart.com/live/mix-90s-10072/","css-1jnehb1 e1aypx0f0",0],
-    ["ABC Sport","ABC_Sport",Commercial1,0,"https://www.iheart.com/live/abc-sport-7112/","css-1jnehb1 e1aypx0f0",0],
-    ["ABC Sport Extra","ABC_Sport_Extra",Commercial1,0,"https://www.iheart.com/live/abc-sport-extra-10233/","css-1jnehb1 e1aypx0f0",0],
-    ["Energy Groove","Energy_Groove",Commercial1,0,"https://www.iheart.com/live/energy-groove-6329/","css-1jnehb1 e1aypx0f0",0],
-    ["Vision Christian Radio","Vision_Christian_Radio",Commercial1,0,"https://www.iheart.com/live/vision-christian-radio-9689/","css-1jnehb1 e1aypx0f0",0],
-    ["Starter FM","Starter_FM",Commercial1,0,"https://www.iheart.com/live/starter-fm-9353/","css-1jnehb1 e1aypx0f0",0],
-    ["2ME","_2ME",Commercial1,0,"https://www.iheart.com/live/2me-10143/","css-1jnehb1 e1aypx0f0",0],
-    ["SBS PopAsia","SBS_PopAsia",Commercial1,0,"https://www.iheart.com/live/sbs-popasia-7028/","css-1jnehb1 e1aypx0f0",0],
-    ["3MBS Fine Music Melbourne","_3MBS_Fine_Music_Melbourne",Commercial1,0,"https://www.iheart.com/live/3mbs-fine-music-melbourne-6183/","css-1jnehb1 e1aypx0f0",0],
-    ["Golden Days Radio","Golden_Days_Radio",Commercial1,0,"https://www.iheart.com/live/golden-days-radio-8676/","css-1jnehb1 e1aypx0f0",0],
-    ["PBS 106.7FM","PBS_106_7FM",Commercial1,0,"https://www.iheart.com/live/pbs-1067fm-6316/","css-1jnehb1 e1aypx0f0",0],
-    ["smoothfm 95.3 Sydney","smoothfm_953_Sydney",Commercial1,0,"https://smooth.com.au/station/smoothsydney","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smoothfm 91.5 Melbourne","smoothfm_915_Melbourne",Commercial1,0,"https://smooth.com.au/station/smoothfm915","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smoothfm Adelaide","smoothfm_Adelaide",Commercial1,0,"https://smooth.com.au/station/adelaide","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smoothfm Brisbane","smoothfm_Brisbane",Commercial1,0,"https://smooth.com.au/station/brisbane","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smoothfm Perth","smoothfm_Perth",Commercial1,0,"https://smooth.com.au/station/smoothfmperth","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smooth 80s","smooth_80s",Commercial1,0,"https://smooth.com.au/station/smooth80s","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smooth relax","smooth_relax",Commercial1,0,"https://smooth.com.au/station/smoothrelax","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["smooth VINTAGE","smooth_VINTAGE",Commercial1,0,"https://smooth.com.au/station/smoothvintage","index_smooth_info-wrapper-desktop__6ZYTT",1],
-    ["nova 969 Sydney","nova_969_Sydney",Commercial1,0,"https://novafm.com.au/station/nova969","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova 100 Melbourne","nova_100_Melbourne",Commercial1,0,"https://novafm.com.au/station/nova100","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova 919 Adelaide","nova_919_Adelaide",Commercial1,0,"https://novafm.com.au/station/nova919","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova 1069 Brisbane","nova_1069_Brisbane",Commercial1,0,"https://novafm.com.au/station/nova1069","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova 937 Perth","nova_937_Perth",Commercial1,0,"https://novafm.com.au/station/nova937","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova 90s","nova_90s",Commercial1,0,"https://novafm.com.au/station/nova90s","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova THROWBACKS","nova_THROWBACKS",Commercial1,0,"https://novafm.com.au/station/throwbacks","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova FreshCOUNTRY","nova_FreshCOUNTRY",Commercial1,0,"https://novafm.com.au/station/novafreshcountry","index_nova_info-wrapper-desktop__CWW5R",1],
-    ["nova NATION","nova_NATION",Commercial1,0,"https://novafm.com.au/station/novanation","index_nova_info-wrapper-desktop__CWW5R",1],
-
-    ["2GB SYDNEY","2GB_SYDNEY",Commercial2,0,"https://www.radio-australia.org/2gb","",0],
-    ["2GN GOULBURN","2GN_GOULBURN",Commercial2,0,"https://www.radio-australia.org/2gn","",0],
-    ["bbc radio 1","bbc_radio_1",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-1","",0],
-    ["bbc radio 2","bbc_radio_2",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-2","",0],
-    ["bbc radio 3","bbc_radio_3",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-3","",0],
-    ["bbc radio 4","bbc_radio_4",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-4","",0],
-    ["bbc radio 5 live","bbc_radio_5_live",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-5-live","",0],
-    ["bbc world service","bbc_world_service",Commercial2,0,"https://www.radio-uk.co.uk/bbc-world-service","",0],
-    ["bbc radio 4 extra","bbc_radio_4_extra",Commercial2,0,"https://www.radio-uk.co.uk/bbc-radio-4-extra","",0],
-    ["bbc radio london","bbc_radio_london",Commercial2,0,"https://www.radio-uk.co.uk/bbc-london","",0],
-    ["bbc radio 1xtra","bbc_radio_1xtra",Commercial2,0,"https://www.radio-uk.co.uk/bbc-1xtra","",0],
-    ["1000 hits classical music","_1000_hits_classical_music",Commercial2,0,"https://www.fmradiofree.com/1000-hits-classical-music","",0],
-    ["classic fm","classic_fm",Commercial2,0,"https://www.radio-uk.co.uk/classic-fm","",0],
-    ["classical california KUSC","classical_california_KUSC",Commercial2,0,"https://www.internetradio-horen.de/us/kusc-classical-915-fm-kdb","",0],
-    ["classical mood","classical_mood",Commercial2,0,"https://www.internetradio-horen.de/ae/classical-mood","",0],
-    ["classical ultra quiet radio","classical_ultra_quiet_radio",Commercial2,0,"https://www.internetradio-horen.de/ca/ultra-quiet-radio","",0],
-    ["classic radio swiss","classic_radio_swiss",Commercial2,0,"https://www.internetradio-horen.de/ch/radio-swiss-classic-fr","",0],
-    ["klassik radio","klassik_radio",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio","",0],
-    ["klassik radio pure bach","klassik_radio_pure_bach",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-pure-bach","",0],
-    ["klassik radio pure beethoven","klassik_radio_pure_beethoven",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-pure-beethoven","",0],
-    ["klassik radio pure mozart","klassik_radio_pure_mozart",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-pure-mozart","",0],
-    ["klassik radio pure verdi","klassik_radio_pure_verdi",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-pure-verdi","",0],
-    ["klassik radio barock","klassik_radio_barock",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-barock","",0],
-    ["klassik radio piano","klassik_radio_piano",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-piano","",0],
-    ["klassik radio piano new classics","klassik_radio_new_piano",Commercial2,0,"https://www.internetradio-horen.de/klassik-radio-piano-new-classics","",0],
-    ["epic piano solo","epic_piano_solo",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-solo-piano","",0],
-    ["epic piano coverhits","epic_piano_coverhits",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-piano-coverhits","",0],
-    ["epic piano great concerts","epic_piano_greatconcerts",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-great-concerts","",0],
-    ["epic piano chillout","epic_piano_chillout",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-chillout-piano","",0],
-    ["epic piano modern","epic_piano_modern",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-modern-piano","",0],
-    ["epic piano romantic","epic_piano_romantic",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-romantic-piano","",0],
-    ["epic piano christmas","epic_piano_christmas",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-piano-christmas","",0],
-    ["epic piano Chopin","epic_piano_chopin",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-chopin","",0],
-    ["epic piano Tschaikowski","epic_piano_tschaikowski",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-tschaikowski","",0],
-    ["epic piano Grieg","epic_piano_grieg",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-grieg","",0],
-    ["epic piano Liszt","epic_piano_liszt",Commercial2,0,"https://www.internetradio-horen.de/epic-piano-liszt","",0],
-    ["antenne bayern live","antenne_bayern_live",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern","",0],
-    ["antenne bayern schlagersahne","antenne_bayern_schlagersahne",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-schlagersahne","",0],
-    ["antenne bayern top40","antenne_bayern_top40",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-top-40","",0],
-    ["antenne bayern 80er kulthits","antenne_bayern_80er_kulthits",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-80er-kulthits","",0],
-    ["antenne bayern 90er hits","antenne_bayern_90er_hits",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-90er-hits","",0],
-    ["antenne bayern lovesongs","antenne_bayern_lovesongs",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-lovesongs","",0],
-    ["antenne bayern 70er hits","antenne_bayern_70er_hits",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-70er-hits","",0],
-    ["antenne bayern classic rock","antenne_bayern_classic_rock",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-classic-rock-live","",0],
-    ["antenne bayern greatest hits","antenne_bayern_greatest_hits",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-greatest-hits","",0],
-    ["antenne bayern coffeemusic","antenne_bayern_coffeemusic",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-coffeemusic","",0],
-    ["antenne bayern relax","antenne_bayern_relax",Commercial2,0,"https://www.internetradio-horen.de/anja-kurz","",0],
-    ["antenne bayern lounge","antenne_bayern_lounge",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-country","",0],
-    ["totally radio hits","totally_radio_hits",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-hits","",0],
-    ["totally radio 90s","totally_radio_90s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-90s","",0],
-    ["totally radio 80s","totally_radio_80s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-80s","",0],
-    ["totally radio 70s","totally_radio_70s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-70s","",0],
-    ["totally radio 60s","totally_radio_60s",Commercial2,0,"https://www.internetradio-horen.de/au/totally-radio-60s","",0],
-
-    ["us adagiofm","us_adagiofm",Commercial2,0,"https://www.internetradio-horen.de/us/adagiofm","",0], # PROBLEM
-    ["it venice classic radio","it_venice_classic_radio",Commercial2,0,"https://www.internetradio-horen.de/it/venice-classic-radio","",0],
-    ["fr radio classique","fr_radio_classique",Commercial2,0,"https://www.internetradio-horen.de/fr/radio-classique","",0],
-    ["us whisperings solo piano radio","us_whisperings_solo_piano_radio",Commercial2,0,"https://www.internetradio-horen.de/us/whisperings-solo-piano-radio","",0],
-    ["bayern 1","bayern_1",Commercial2,0,"https://www.internetradio-horen.de/bayern-1","",0],
-    ["us the big 80s station","us_the_big_80s_station",Commercial2,0,"https://www.internetradio-horen.de/us/the-big-80s-station","",0],
-    ["antenne bayern oldies but goldies","antenne_bayern_oldies_but_goldies",Commercial2,0,"https://www.internetradio-horen.de/antenne-bayern-oldies-but-goldies","",0],
-    ["br radio 80 fm","br_radio_80_fm",Commercial2,0,"https://www.internetradio-horen.de/br/radio-80-fm","",0],
-    ["au its 80s","au_its_80s",Commercial2,0,"https://www.internetradio-horen.de/au/its-80s","",0],
-    ["nl 80s alive","nl_80s_alive",Commercial2,0,"https://www.internetradio-horen.de/nl/80s-alive","",0],
-    ["ae wonder 80s","ae_wonder_80s",Commercial2,0,"https://www.internetradio-horen.de/ae/wonder-80s","",0],
-    ["nl joe 70s 80s","nl_joe_70s_80s",Commercial2,0,"https://www.internetradio-horen.de/nl/joe-70s-80s","",0],
-
-    ["on 70s","on_70s",Commercial2,0,"https://www.internetradio-horen.de/on-70s","",0],
-    ["ca classichitsonline","ca_classichitsonline",Commercial2,0,"https://www.internetradio-horen.de/ca/classichitsonline","",0],
-    ["us all oldies 247","us_all_oldies_247",Commercial2,0,"https://www.internetradio-horen.de/us/all-oldies-247","",0],
-    ["ch 1fm absolute 70s pop","ch_1fm_absolute_70s_pop",Commercial2,0,"https://www.internetradio-horen.de/ch/1fm-absolute-70s-pop","",0],
-    ["gb golden oldies","gb_golden_oldies",Commercial2,0,"https://www.internetradio-horen.de/gb/golden-oldies","",0],
-    ["us oldies america","us_oldies_america",Commercial2,0,"https://www.internetradio-horen.de/us/oldies-america","",0],
-    ["us planet oldies radio","us_planet_oldies_radio",Commercial2,0,"https://www.internetradio-horen.de/us/planet-oldies-radio","",0],
-    ["us 977 oldies","us_977_oldies",Commercial2,0,"https://www.internetradio-horen.de/us/977-oldies","",0],
-    ["ch skuizz hits 50s 70s","ch_skuizz_hits_50s_70s",Commercial2,0,"https://www.internetradio-horen.de/ch/skuizz-hits-50s-70s","",0],
-    ["ca abc 50s","ca_abc_50s",Commercial2,0,"https://www.internetradio-horen.de/ca/abc-50s","",0],
-    ["ca radio addictive 50s","ca_radio_addictive_50s",Commercial2,0,"https://www.internetradio-horen.de/ca/radio-addictive-50s","",0],
-    ["ca abc 60s","ca_abc_60s",Commercial2,0,"https://www.internetradio-horen.de/ca/abc-60s","",0],
-    ["on 60s","on_60s",Commercial2,0,"https://www.internetradio-horen.de/on-60s","",0]
-]    
-
-# COMMON BLOCK END ***********************************************
 
 
 # 2D array of preset radio stations, in long name and index (to aStation[]) format.
@@ -1704,15 +1543,9 @@ def on_closing():
 
 # do this when a radio station is selected from combobox
 def on_select(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType, ExtraWindowFlag
-
-    if ExtraWindowFlag:
-        # if the extra window is open, close it
-        ExtraWindowFlag = False
-        browser.switch_to.window(nh2)
-        browser.close()
-        browser.switch_to.window(oh2)
-        print("Extra window closed")
+    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
+    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
+    print("---- on_select() entered ---------------------------------------------")
 
     # determine the timeInterval between calling on_select() or on_select2()
     global startTime, finishTime
@@ -1720,6 +1553,7 @@ def on_select(event):
     timeInterval = finishTime-startTime
     timeIntervalStr = f"{timeInterval:.2f}"
     print(f"Time interval: {timeIntervalStr} seconds")
+    
     startTime = time.time()
     print(f"Type: {event.type}")
     print(f"Widget: {event.widget}")
@@ -1728,9 +1562,16 @@ def on_select(event):
     # set various flags and parameters related to starting a station stream or accesing its website
     global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
+        if ExtraWindowFlag:
+            # if the extra window is open, close it
+            ExtraWindowFlag = False
+            browser.switch_to.window(nh2)
+            browser.close()
+            browser.switch_to.window(oh2)
+            print("Extra window closed")
+
         eventFlag = True # if on_select() is called by selecting a combobox entry
         stopFlag = False # if this call of on_select() should be implemented
-      # parameters relating to how this funtion was called
         selected_value_last = selected_value
         selected_value = custom_combo.get()
         combobox_index = custom_combo.current()
@@ -1828,13 +1669,18 @@ def on_select(event):
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType, ExtraWindowFlag 
+    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType  
+    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
+    print("")
+    print("---- on_select2() entered ---------------------------------------------")
 
+    # determine the timeInterval between calling on_select()
     global startTime, finishTime
     finishTime = time.time()
     timeInterval = finishTime-startTime
     timeIntervalStr = f"{timeInterval:.2f}"
     print(f"Time interval: {timeIntervalStr} seconds")
+
     startTime = time.time()
     print(f"Type: {event.type}")
     print(f"Widget: {event.widget}")
@@ -2819,7 +2665,7 @@ for element in aStation:
     aStringArray.append(element[0])
 
 # Create our custom combobox with 8 rows visible in the dropdown.
-custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=8, width=30)
+custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=20, width=30)
 custom_combo.place(x=130+(sizeButton+5), y=26)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown

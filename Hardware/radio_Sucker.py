@@ -64,7 +64,7 @@ for i in range (1,16+1):
     num_anchor_tags = len(anchor_tags)
 
     # Open or create a CSV file to append the results
-    with open(filepath, "a", newline="", encoding="utf-8-sig") as csvfile:
+    with open(filepath, "a", newline="", encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
         for j, anchor in enumerate(anchor_tags):
             if j >= 60:

@@ -1,6 +1,7 @@
 import subprocess
 import inspect
 import tkinter as tk
+import sys
 
 import time
 import urllib.request
@@ -32,13 +33,19 @@ pathImages = script_dir + "/Images"
 print(f"The Images path is: {pathImages}")
 
 # Create the full filepath to the station websites csv file
-filename = 'auStationWebsites.csv'
-basicStations_filepath = os.path.join(script_dir, filename)
-print(f'The file {basicStations_filepath} stores a basic list of station websites')
+filename = 'plStationWebsites.csv'
+Stations_filepath = os.path.join(script_dir, filename)
+print(f'The file {Stations_filepath} stores a basic list of station websites')
 
-filename = 'au_Stations.csv'
-au_Stations_filepath = os.path.join(script_dir, filename)
-print(f'The file {au_Stations_filepath} stores a full list of station websites')
+# Create the full filepath to the station websites csv file
+filename = 'plStationWebsites_new.csv'
+Stations_filepath_new = os.path.join(script_dir, filename)
+print(f'The file {Stations_filepath} stores a basic list of station websites')
+
+
+#filename = 'au_Stations.csv'
+#au_Stations_filepath = os.path.join(script_dir, filename)
+#print(f'The file {au_Stations_filepath} stores a full list of station websites')
 
 # Open and setup FireFox browser
 firefox_options = Options()
@@ -178,7 +185,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
 
         # Open or create a CSV file to append the station array row  to the station list
         #global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
-        with open(au_Stations_filepath, "a", newline="", encoding="utf-8-sig") as csvfile:
+        with open(Stations_filepath_new, "a", newline="", encoding="utf-8-sig") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow([StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType])  # Write to CSV file
             print("")
@@ -357,7 +364,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
     return fe1
 
 
-
+'''
 aStationCSV = []
 with open(basicStations_filepath, "r", encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)
@@ -385,7 +392,34 @@ for row in aStationCSV:
     aStation.append(station)
 for row in aStation:
     print(row)
+'''
 
+# STATIONS LOAD BLOCK START *********************************************
+
+# Prepare a mapping from function names (as strings) to actual function objects
+# this enables us to load the aStation list from a CSV file with the function names as strings
+function_map = {
+    'Commercial2': Commercial2
+}
+
+# load the aStation list from a CSV file allStations_filepath
+aStation = []
+with open(Stations_filepath, mode="r", newline="", encoding="utf-8") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        row = [function_map.get(cell, cell) for cell in row]  # Replace function names with actual references
+        row[3] = int(row[3]) if row[3].isdigit() else row[3]  # Convert column 3 to integer 
+        row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer 
+        aStation.append(row)
+widths = [33, 33, 44, 1, 68, 17, 1]  # Adjust these values for your needs
+for row in aStation:
+    formatted_row = " | ".join(f"{str(cell):{widths[i]}}" for i, cell in enumerate(row))
+    formatted_row = formatted_row[:215]  # Get first 215 characters, to fit in the console without wrapping
+    print(formatted_row)
+
+# STATIONS LOAD BLOCK END ***********************************************
+
+#sys.exit()
 
 
 # Define a custom event class
@@ -403,15 +437,7 @@ def on_select(event):
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
     print("---- on_select() entered ---------------------------------------------")
  
-    if ExtraWindowFlag:
-        # if the extra window is open, close it
-        ExtraWindowFlag = False
-        browser.switch_to.window(nh2)
-        browser.close()
-        browser.switch_to.window(oh2)
-        print("Extra window closed")
-
-    # determine the timeInterval between calling on_select()
+     # determine the timeInterval between calling on_select()
     global startTime, finishTime
     finishTime = time.time()
     timeInterval = finishTime-startTime
@@ -426,9 +452,16 @@ def on_select(event):
     # set various flags and parameters related to starting a station stream or accesing its website
     global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
+        if ExtraWindowFlag:
+            # if the extra window is open, close it
+            ExtraWindowFlag = False
+            browser.switch_to.window(nh2)
+            browser.close()
+            browser.switch_to.window(oh2)
+            print("Extra window closed")
+
         eventFlag = True # if on_select() is called by selecting a combobox entry
         stopFlag = False # if this call of on_select() should be implemented
-      # parameters relating to how this funtion was called
         selected_value_last = selected_value
         selected_value = selectedStationName
         combobox_index = selectedStationIndex
@@ -545,7 +578,7 @@ def on_select(event):
 def after_GUI_started():
     global selectedStationIndex, selectedStationName, TimeNum
     TimeNum = 0
-    selectedStationIndex = 823
+    selectedStationIndex = 0
     selectedStationName = aStation[selectedStationIndex][0]
     on_select(CustomEvent("Auto", root, "ComboBox Event"))
 

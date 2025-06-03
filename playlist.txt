@@ -1,11 +1,11 @@
 ABC Radio Sydney NSW,24
 ABC Radio National LIVE,4
 ABC NewsRadio,76
-ABC Classic2,0
-br radio 80 fm,193
+uk BBC World Service,1933
+uk BBC World Service Global News,1937
 au its 80s,194
 nl 80s alive,195
-ae wonder 80s,196
+pl Toksyna FM Classic,1556
 us adagiofm,186
 2GB SYDNEY,133
 2GN GOULBURN,134
@@ -14,7 +14,7 @@ Cruise 1323,103
 totally radio 70s,184
 Golden Days Radio,114
 it venice classic radio,187
-au West Bremer Radio,949
-gb golden oldies,202
+uk 20th Century Classical Music,1614
+uk 24-7 Classical Radio,1622
 ABC Jazz,79
 ABC Country,80

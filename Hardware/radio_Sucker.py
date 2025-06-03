@@ -25,6 +25,7 @@ from selenium.webdriver.support import expected_conditions as EC
 #sCore = "https://www.fmradiofree.com/?page=" # USD
 #sCore = "https://www.radio-australia.org/?page=" # AUSTRALIA"
 #sCore = "https://www.radio-polska.pl/?page=" # POLAND
+#sCore = "https://www.radio-polska.pl/?page=" # POLAND
 
 # Get the directory of the current script & then assumed directory for Images
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,11 +45,12 @@ refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 
 
 # ***** VARIABLES NEEDED TO CUSTOMIZE THE SCRAPER *******
-sCore = "https://www.radio-polska.pl/?page=" # POLAND
-nPages = 12 # number of pages to scrape
+
+sCore = "https://www.radio-uk.co.uk/?page=" # UK
+nPages = 61 # number of pages to scrape
 # Create the full filepath to the station websites text file
-filename = 'plStationWebsites.csv' # filename of the station list csv file
-aCountry = "pl" # country code for the station list
+filename = 'ukStationWebsites.csv' # filename of the station list csv file
+aCountry = "uk" # country code for the station list
 # *******************************************************
 
 
@@ -84,22 +86,23 @@ with open(filepath, "w", newline="", encoding="utf-8") as csvfile:
             anchor_href = anchor.get_attribute('href')
 
             stationName = aCountry+" "+anchor_text
-            stationName = stationName.replace("/", "v")
-            stationName = stationName.replace(",", "")
+            stationName = stationName.replace("/", "-")
+            stationName = stationName.replace("\\", "-")
+            stationName = stationName.replace(",", "-")
             stationLogo = stationName.replace(" ", "_")
             stationFunctionStr = "Commercial2"
             nNum = 0
-            sPath = anchor_href
+            sPath2 = anchor_href
             sClass = ""
             nType = 0
    
-            stationRow = [stationName, stationLogo, stationFunctionStr, nNum, sPath, sClass, nType]
+            stationRow = [stationName, stationLogo, stationFunctionStr, nNum, sPath2, sClass, nType]
             writer.writerow(stationRow)
               # Write to CSV file
             print(f"{stationRow}")
 
         total_anchor_tags = total_anchor_tags + j+1
-        print(f"{j+1} links from page {sPath} have been written to {filepath}")
+        print(f"page: {i}, {j+1} links from page {sPath} have been written to {filepath}")
 print(f"**** A total of {total_anchor_tags} links have been written to {filepath}")
 
 print("Press Ctrl+C to stop.")

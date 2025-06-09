@@ -84,7 +84,7 @@ with open(allstations_filepath, "w", newline="", encoding="utf-8") as csvfile:
             time.sleep(2)
             sPath = sCore+str(i) # construct the URL for the current page
             browser.get(sPath) # open the URL in the browser
-            time.sleep(5)
+            time.sleep(3)
 
             # Wait for the page to load and find the div with class "content-column"
             wait = WebDriverWait(browser, 10)

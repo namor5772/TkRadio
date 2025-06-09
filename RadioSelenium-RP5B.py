@@ -1429,10 +1429,11 @@ with open(allStations_filepath, mode="r", newline="", encoding="utf-8") as csvfi
         row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer 
         aStation.append(row)
 widths = [33, 33, 44, 1, 68, 17, 1]  # Adjust these values for your needs
-for row in aStation:
-    formatted_row = " | ".join(f"{str(cell):{widths[i]}}" for i, cell in enumerate(row))
-    formatted_row = formatted_row[:215]  # Get first 215 characters, to fit in the console without wrapping
-    print(formatted_row)
+#for row in aStation:
+#    formatted_row = " | ".join(f"{str(cell):{widths[i]}}" for i, cell in enumerate(row))
+#    formatted_row = formatted_row[:215]  # Get first 215 characters, to fit in the console without wrapping
+#    print(formatted_row)
+print("---- aStation loaded from file: " + allStations_filepath + " ----")
 
 # ALL STATIONS LOAD BLOCK END ***********************************************
 
@@ -2678,7 +2679,7 @@ except FileNotFoundError:
     print(f'Error: The file {filepath2} does not exist.')
 
 # Create a text box, position and size it, used to display the program and song details
-text_box = tk.Text(root)
+text_box = tk.Text(root, wrap="word")
 text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 

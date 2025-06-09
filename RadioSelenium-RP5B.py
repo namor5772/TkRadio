@@ -1,3 +1,13 @@
+'''
+1. In Commercial2 pick up feed error on 2 tab stations
+2. implement delete station button with adjustment for playlist buttons
+3. inplement random station selection button
+4. Think about easier searching of the very large station list
+    Fast scroll or filters
+5. Investigate false positive detection of <<< Streaming is not working >>> 
+    "No such element" exception    
+'''
+
 import subprocess
 import inspect
 import tkinter as tk
@@ -317,7 +327,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites

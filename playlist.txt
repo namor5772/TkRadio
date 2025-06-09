@@ -6,13 +6,13 @@ au ABC Classic FM,4212
 de Klassik Radio,20515
 de Epic Piano - CHOPIN,20051
 de Klassik Radio Barock,20520
--- EMPTY 8 --,-1
+de ON Klassik,20982
 au 2GB Sydney,4078
 au 2GN Goulburn,4081
 au Gold 101-7 FM,4419
 au Cruise 1323 Adelaide,4373
 au Totally Radio 70s,4859
 de ON 70s,20949
--- EMPTY 15 --,-1
--- EMPTY 16 --,-1
--- EMPTY 17 --,-1
+de Radio Gong 96-3 - Oldies,21440
+de Radio Bochum - Top40 Radio,21290
+de M1-FM Oldies,20653

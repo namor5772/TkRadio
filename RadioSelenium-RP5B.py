@@ -1,11 +1,14 @@
 '''
-1. In Commercial2 pick up feed error on 2 tab stations
+DONE - 1. In Commercial2 pick up feed error on 2 tab stations
 2. implement delete station button with adjustment for playlist buttons
-3. inplement random station selection button
+DONE - 3. inplement random station selection button
 4. Think about easier searching of the very large station list
-    Fast scroll or filters
-5. Investigate false positive detection of <<< Streaming is not working >>> 
+    Fast scroll or filters mainly in RPI version
+DONE - 5. Investigate false positive detection of <<< Streaming is not working >>> 
     "No such element" exception    
+6. Save program text on demand with time stamp to text file, via SAVE button
+7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2
+8. Russian and China originating internet stations?     
 '''
 
 import subprocess
@@ -18,6 +21,7 @@ import requests
 import os
 import csv
 import re
+import random
 
 try:
     import RPi.GPIO as GPIO
@@ -1159,6 +1163,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
     be = br.find_element(By.TAG_NAME, 'body')
     time.sleep(1)
 
+    MaybeStreaming = False
     if eventFlag:
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()
@@ -1171,7 +1176,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
         actions.move_by_offset(widthPx, heightPx).click().perform()
-        time.sleep(6)
+        time.sleep(16)
 
         # this is needed to dismiss any alert that may appear (unwanted login popup)
         try:
@@ -1182,7 +1187,8 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             print("No alert detected.")
         except UnexpectedAlertPresentException as e:
             print(f"Unexpected alert encountered: {e}")
-      
+
+        # identify whether streaming works using identifiers on a path element
         if len(br.window_handles) > 1:
             # this is a multiple windows case (old nType == 1 example)
             # another window is opened with button that actually starts the stream
@@ -1194,26 +1200,46 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             actions = ActionChains(br)
             actions.move_by_offset(widthPx, heightPx).click().perform()
             time.sleep(6)
+
+            # identify whether streaming works using identifiers on a path element
+            # that display an error in playing graphic on the play button
+            Streaming = True
+            ht = br.page_source  # Get the full HTML content of the page
+            soup = BeautifulSoup(ht, 'lxml')
+            div_element = soup.find("div", id="play_pause_container")
+            path_element = div_element.find("path")
+            path_element_str = str(path_element)
+            print(f"path element: {path_element_str}")
+            try:
+                flagChar = path_element_str[10]
+                if flagChar == "4":
+                    Streaming = False
+                    print("<<< 2 window streaming is not working >>>")
+            except IndexError:
+                Streaming = False
+                MaybeStreaming = True
+                print("<<< 2 window streaming might not be working - IndexError >>>")
             br.switch_to.window(oh2) # Switch back to the original window
             ExtraWindowFlag = True
-
-        # identify whether streaming works using identifiers on a path element
-        # that display an error in playing graphic on the play button
-        Streaming = True
-        ht = be.get_attribute('innerHTML')
-        soup = BeautifulSoup(ht, 'lxml')
-        div_element = soup.find("div", id="play_pause_container")
-        path_element = div_element.find("path")
-        path_element_str = str(path_element)
-        print(f"path element: {path_element_str}")
-        try:
-            flagChar = path_element_str[10]
-            if flagChar == "4":
+        else:
+            # identify whether streaming works using identifiers on a path element
+            # that display an error in playing graphic on the play button
+            Streaming = True
+            ht = be.get_attribute('innerHTML')
+            soup = BeautifulSoup(ht, 'lxml')
+            div_element = soup.find("div", id="play_pause_container")
+            path_element = div_element.find("path")
+            path_element_str = str(path_element)
+            print(f"path element: {path_element_str}")
+            try:
+                flagChar = path_element_str[10]
+                if flagChar == "4":
+                    Streaming = False
+                    print("<<< Streaming is not working >>>")
+            except IndexError:
                 Streaming = False
-                print("<<< Streaming is not working >>>")
-        except IndexError:
-            Streaming = False
-            print("<<< Streaming is not working - IndexError >>>")
+                MaybeStreaming = True
+                print("<<< Streaming might not be working - IndexError >>>")
 
         # get station logo
         try:
@@ -1391,7 +1417,16 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         else:
             fe1 = "*"+fe1+"No program information and image"
     if not Streaming:
-        fe1 = fe1 + "*"+"<<< Streaming is not working >>>"
+        if MaybeStreaming:
+            if ExtraWindowFlag:
+                fe1 = fe1 + "*"+"<<< Maybe 2 window streaming is not working >>>"
+            else:
+                fe1 = fe1 + "*"+"<<< Maybe streaming is not working >>>"
+        else:
+            if ExtraWindowFlag:
+                fe1 = fe1 + "*"+"<<< 2 window streaming is not working >>>"
+            else:
+                fe1 = fe1 + "*"+"<<< Streaming is not working >>>"
     return fe1
 
 # END ####################################################
@@ -2384,6 +2419,24 @@ def on_focus_out_dostuff(event):
         widget.config(bg="gray90")
 
 
+def random_button_pressed(event):
+    numStations = len(aStation)
+    randomStation = random.randint(0, numStations - 1)
+    custom_combo.set(aStation[randomStation][0])  # Set the combobox to a random station
+    custom_combo.on_return(None) # and trigger the on_select function (as if you had pressed Enter in the combobox)  )
+
+    print(f"Number of stations: {numStations}")
+    print(f"Randomly selected station index: {randomStation}")
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    print(f"Event argument: {event}")
+
+
+def delete_button_pressed(event):
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    print(f"Event argument: {event}")
+
+
+
 # Thanks to Copilot (Think Deeper) AI 
 class CustomCombobox(tk.Frame):
     def __init__(self, master, values, name, visible_items=5, width=25, *args, **kwargs):
@@ -2592,6 +2645,9 @@ class CustomCombobox(tk.Frame):
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_wifi":
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
+        else: # dropdown selection was not selected with the Enter key
+            print("*** VIRTUAL ENTER PRESSED***")
+            on_select(CustomEvent("Auto", self, "ComboBox Event"))
         return "break"
 
     def on_escape(self, event):
@@ -2676,7 +2732,7 @@ for element in aStation:
     aStringArray.append(element[0])
 
 # Create our custom combobox with 8 rows visible in the dropdown.
-custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=20, width=30)
+custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=30)
 custom_combo.place(x=130+(sizeButton+5), y=26)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
@@ -2692,6 +2748,39 @@ except FileNotFoundError:
 text_box = tk.Text(root, wrap="word")
 text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
+
+
+# button used to select and play a station at random (from all those available)
+randomButton = tk.Button(root, text="RND", name="randomButton")
+#randomButton.default_bg = randomButton.cget("bg")
+if GPIO:
+    randomButton.place(x=500 , y=24, width=25, height=25)
+else:
+    randomButton.place(x=500-7 , y=0, width=25+7, height=25)
+randomButton.config(takefocus=True)
+randomButton.config(bg="gray90")
+randomButton.bind("<Return>", random_button_pressed)  
+randomButton.bind("<ButtonPress>", random_button_pressed)  
+randomButton.bind("<FocusIn>", on_focus_dostuff)
+randomButton.bind("<FocusOut>", on_focus_out_dostuff)
+
+
+# button used to delete the currently playing station from the station list.
+# this will be saved to the file at shutdown and the playlist button references
+# will be adjusted if necessary
+deleteButton = tk.Button(root, text="DEL", name="deleteButton")
+#deleteButton.default_bg = deleteButton.cget("bg") 
+if GPIO:
+    deleteButton.place(x=550 , y=24, width=25, height=25)
+else:
+    deleteButton.place(x=550-7 , y=0, width=25+7, height=25)
+deleteButton.config(takefocus=True)
+deleteButton.config(bg="gray90")
+deleteButton.bind("<Return>", delete_button_pressed)  
+deleteButton.bind("<ButtonPress>", delete_button_pressed)  
+deleteButton.bind("<FocusIn>", on_focus_dostuff)
+deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
+
 
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!

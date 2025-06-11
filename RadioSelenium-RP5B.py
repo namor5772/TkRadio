@@ -1265,60 +1265,64 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # always runs, get and then display station logo if one does not yet exist
-    logoFlag = os.path.exists(image_path_logo)
-    if logoFlag and (tabNum == 1):
-        print(f"Display just created station logo file: {image_path_logo}")
-        image = Image.open(image_path_logo)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-        tabNum = 0
-    elif logoFlag:
-        print(f"Logo file exists: {image_path_logo}")
-    else:
-        print("Logo file does not exist, so creating one")
-        if eventFlag:
+
+    # always runs if pollFlag=True. Get and then display station logo if one does not yet exist
+    if pollFlag:
+        logoFlag = os.path.exists(image_path_logo)
+        if logoFlag and (tabNum == 1):
+            print(f"Display just created station logo file: {image_path_logo}")
+            image = Image.open(image_path_logo)
+            scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+            # Display the station logo as given in the scaled_image
+            photo = ImageTk.PhotoImage(scaled_image)
+            label.config(image=photo)
+            label.image = photo  # Keep a reference to avoid garbage collection
             tabNum = 0
-
-            # try to find a particular image element by path
-            xpath = '//*[@id="player_image"]'
-            img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-            img_url_g = img_element.get_attribute("src")
-            print("Found image URL:", img_url_g)
-            oh = br.current_window_handle
-            print("Current window handle:", oh)
-            br.switch_to.new_window('tab')
-            nh = br.current_window_handle
-            print("New window handle:", nh)
-            br.switch_to.window(oh)
+        elif logoFlag:
+            print(f"Logo file exists: {image_path_logo}")
         else:
-            if tabNum == 0:
-                br.switch_to.window(nh)
-                br.get(img_url_g)
-                print("Switching 2")
-                print(image_path_logo)
+            print("Logo file does not exist, so creating one")
+            if eventFlag:
+                tabNum = 0
 
-                try:
-                    headers = {"User-Agent": "Mozilla/5.0"}
-                    response = requests.get(img_url_g, headers=headers, stream=True)
-                    print(response.headers["Content-Type"])
-
-                    #response = requests.get(img_url_g, stream=True)
-                    with open(image_path_logo, 'wb') as file:
-                        for chunk in response.iter_content(chunk_size=8192):
-                            file.write(chunk)
-                    print("Image downloaded successfully.")
-                except Exception as e:
-                    print(f"Failed to download the image: {e}")
-                print("Switching 3")
-                br.close()
+                # try to find a particular image element by path
+                xpath = '//*[@id="player_image"]'
+                img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                img_url_g = img_element.get_attribute("src")
+                print("Found image URL:", img_url_g)
+                oh = br.current_window_handle
+                print("Current window handle:", oh)
+                br.switch_to.new_window('tab')
+                nh = br.current_window_handle
+                print("New window handle:", nh)
                 br.switch_to.window(oh)
-                tabNum = 1
-            else: # tabNum == 1
-                print("display downloaded station logo!")
+            else:
+                if tabNum == 0:
+                    br.switch_to.window(nh)
+                    br.get(img_url_g)
+                    print("Switching 2")
+                    print(image_path_logo)
+
+                    try:
+                        headers = {"User-Agent": "Mozilla/5.0"}
+                        response = requests.get(img_url_g, headers=headers, stream=True)
+                        print(response.headers["Content-Type"])
+
+                        #response = requests.get(img_url_g, stream=True)
+                        with open(image_path_logo, 'wb') as file:
+                            for chunk in response.iter_content(chunk_size=8192):
+                                file.write(chunk)
+                        print("Image downloaded successfully.")
+                    except Exception as e:
+                        print(f"Failed to download the image: {e}")
+                    print("Switching 3")
+                    br.close()
+                    br.switch_to.window(oh)
+                    tabNum = 1
+                else: # tabNum == 1
+                    print("display downloaded station logo!")
+
+
     
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"

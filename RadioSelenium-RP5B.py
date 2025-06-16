@@ -1,13 +1,14 @@
 '''
 DONE - 1. In Commercial2 pick up feed error on 2 tab stations
-2. implement delete station button with adjustment for playlist buttons
+DONE - 2. implement delete station button with adjustment for playlist buttons
+    Some strange bugs that cause no problem but need to be fixed !
 DONE - 3. inplement random station selection button
 4. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
 DONE - 5. Investigate false positive detection of <<< Streaming is not working >>> 
     "No such element" exception    
 DONE - 6. Save program text on demand with time stamp to text file, via SAVE button
-7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2, prevent 
+DONE - 7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2, prevent 
     errors or identify and handle
 8. Russian and China originating internet stations?   
 '''
@@ -346,8 +347,8 @@ firefox_options.add_argument("--height=917")
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
-refresh_http = "http://www.ri.com.au" # use my basic "empty" website
-#refresh_http = "https://www.blank.org/" # use a basic "empty" website
+#refresh_http = "http://www.ri.com.au" # use my basic "empty" website
+refresh_http = "https://www.blank.org/" # use a basic "empty" website
 
 # global graphic position variables
 Ydown = 63
@@ -391,15 +392,16 @@ selected_value_last = "INITIAL"
 selected_index = -1
 startTime = time.time()
 endTime = 0.0
-refreshTime = 20.0 # seconds between updating station info
+refreshTime = 10.0 # seconds between updating station info
 stationShort = ""
 station = ""
-needSleep = 5 # can be less on faster machines
+needSleep = 4 # can be less on faster machines
 pressButton = True # flag for how stream is started
 
 # global variables for radio station calling functions
 def SomeFunction(): pass    
 StationName = ""
+CountryCode = ""
 StationLogo = ""
 StationFunction = SomeFunction
 nNum = 0
@@ -1179,6 +1181,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
     if eventFlag:
         # press button with virtual mouse to play stream
         window_size = br.get_window_size()
+        winWidth = window_size['width']
         print(f"Window size: width = {window_size['width']}, height = {window_size['height']}")
         if nType == 0:
             widthPx = 250 #110
@@ -1187,7 +1190,14 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         heightPx = 330
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
-        actions.move_by_offset(widthPx, heightPx).click().perform()
+        if CountryCode in {"ab","il"} :
+            # makes sure that the click is on the right side of the screen
+            # beacause we are dealing with countries that write right to left
+            actions.move_by_offset(winWidth-widthPx, heightPx).click().perform()
+            print(f"RTL country {CountryCode} detected, moving to the right side of the screen")
+            pass
+        else:    
+            actions.move_by_offset(widthPx, heightPx).click().perform()
         time.sleep(16)
 
         # this is needed to dismiss any alert that may appear (unwanted login popup)
@@ -1277,7 +1287,6 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-
     # always runs if pollFlag=True. Get and then display station logo if one does not yet exist
     if pollFlag:
         logoFlag = os.path.exists(image_path_logo)
@@ -1333,8 +1342,6 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     tabNum = 1
                 else: # tabNum == 1
                     print("display downloaded station logo!")
-
-
     
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"
@@ -1622,7 +1629,7 @@ def on_closing():
 
 # do this when a radio station is selected from combobox
 def on_select(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType
+    global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
     print("---- on_select() entered ---------------------------------------------")
 
@@ -1658,7 +1665,13 @@ def on_select(event):
         print("combobox_index:", combobox_index)
 
     # extract all parameters for the selected radio station
-    StationName = aStation[combobox_index][0]
+    try:
+        StationName = aStation[combobox_index][0]
+        CountryCode = StationName[:2]
+        print("CountryCode:", CountryCode)
+    except IndexError:
+        print(f"IndexError: {combobox_index} is out of range!")
+        return
     StationLogo = aStation[combobox_index][1]
     StationFunction = aStation[combobox_index][2]
     nNum = aStation[combobox_index][3]
@@ -1685,7 +1698,7 @@ def on_select(event):
         if stopFlag:
             stopFlag=False
             print("SECOND STOP FAIL")
-        elif (timeInterval < refreshTime-0.5):
+        elif (timeInterval < refreshTime-2.0):
             stopFlag = True    
             print("FIRST STOP")
     print("stopFlag:",stopFlag)
@@ -1748,7 +1761,7 @@ def on_select(event):
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
-    global StationName, StationLogo, StationFunction, nNum, sPath, sClass, nType  
+    global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType  
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
     print("")
     print("---- on_select2() entered ---------------------------------------------")
@@ -1783,7 +1796,13 @@ def on_select2(event):
         print("selected_index:",selected_index)
 
     # extract all parameters for the selected radio station
-    StationName = aStation[selected_index][0]
+    try:
+        StationName = aStation[selected_index][0]
+        CountryCode = StationName[:2]
+        print("CountryCode:", CountryCode)
+    except IndexError:
+        print(f"IndexError: {selected_index} is out of range!")
+        return
     StationLogo = aStation[selected_index][1]
     StationFunction = aStation[selected_index][2]
     nNum = aStation[selected_index][3]
@@ -1811,7 +1830,7 @@ def on_select2(event):
         if stopFlag:
             stopFlag=False
             print("SECOND STOP FAIL")
-        elif (timeInterval < refreshTime-0.5):
+        elif (timeInterval < refreshTime-2.0):
             stopFlag = True    
             print("FIRST STOP")
     print("stopFlag:",stopFlag)

@@ -6,9 +6,10 @@ DONE - 3. inplement random station selection button
     Fast scroll or filters mainly in RPI version
 DONE - 5. Investigate false positive detection of <<< Streaming is not working >>> 
     "No such element" exception    
-6. Save program text on demand with time stamp to text file, via SAVE button
-7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2
-8. Russian and China originating internet stations?     
+DONE - 6. Save program text on demand with time stamp to text file, via SAVE button
+7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2, prevent 
+    errors or identify and handle
+8. Russian and China originating internet stations?   
 '''
 
 import subprocess
@@ -22,6 +23,7 @@ import os
 import csv
 import re
 import random
+from datetime import datetime
 
 try:
     import RPi.GPIO as GPIO
@@ -320,6 +322,15 @@ filename = 'AllRadioStations.csv'
 allStations_filepath = os.path.join(script_dir, filename)
 print(f'The file {allStations_filepath} stores csv table of all available radio stations')
 
+# Create the full filepath to the list of ALL available radio stations
+#filename = 'AllRadioStationsTEST.csv'
+#allStationsTEST_filepath = os.path.join(script_dir, filename)
+#print(f'The file {allStationsTEST_filepath} stores TEST csv table of all available radio stations')
+
+# Create the full filepath to the list of saved station information from the text box
+filename = 'StationLogs.txt'
+StationLogs_filepath = os.path.join(script_dir, filename)
+print(f'The file {StationLogs_filepath} stores txt of station logs')
 
 # Create the full filepath to the saved playlist file
 filename2 = 'playlist.txt'
@@ -409,6 +420,7 @@ Streaming = True # if streaming is working
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
 pollFlag = False # if true then poll website for program text and picture changes 
+saveStationsFlag = False # if true then save stations to file (at shutdown)
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1582,10 +1594,27 @@ def after_GUI_started():
             BTstatusButton.config(text="BT is OFF")
             BTstatusButton.config(bg="light coral")
 
+
+
+# Define a reverse lookup dictionary to convert function references back to strings
+reverse_function_map = {v: k for k, v in function_map.items()}  # Assuming function_map is available
+
+
 # do this when closing the window/app
 def on_closing():
     if GPIO:
         GPIO.cleanup()
+
+    print("---- on_closing() entered ---------------------------------------------")
+    if saveStationsFlag:
+        # save the modifed aStation list back to a csv file
+        print("---- Saving the modified aStation list to file: " + allStations_filepath + " ----")
+        with open(allStations_filepath, mode="w", newline="", encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile)
+            for row in aStation:
+                row = [reverse_function_map.get(cell, cell) for cell in row]  # Convert function references to strings
+                writer.writerow(row)  # Write row to CSV
+
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
     print("Closing the app...")
@@ -2438,8 +2467,71 @@ def random_button_pressed(event):
 def delete_button_pressed(event):
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
+    delIndex = custom_combo.current()  # Get the current index of the combobox
+
+    print(f"Deleting station at index: {delIndex}")
+    global saveStationsFlag
+    saveStationsFlag = True # if true then save stations to file (at shutdown)
+    del aStation[delIndex] # Remove the station from the aStation list
+
+    # Update the combobox values (so the deleted station is no longer shown)
+    global aStringArray
+    aStringArray = []
+    for element in aStation:
+        aStringArray.append(element[0])
+    custom_combo.set_values(aStringArray)
+    custom_combo.current(0)
+
+    # update the playlist to reflect the deletion (if necessary)
+    changeFlag = False
+    for i in range(numButtons):
+        ix = int(aStation2[i][1]) # int to str conversion issues
+        print(f"Checking button {i} for deletion, index: {ix}")
+        if ix > delIndex:
+            # decrement the index of all stations greater than delIndex
+            ix -= 1
+            aStation2[i][1] = ix
+            changeFlag = True                
+        if ix == delIndex:
+            # if the station is the one deleted, set it to empty
+            aStation2[i][0] = "-- EMPTY " + str(i) + " --"
+            aStation2[i][1] = -1     
+            changeFlag = True                
+
+            # get blank station logo
+            image_path = pathImages + "/Blank.png"
+            image = Image.open(image_path)
+
+            # saving blank button icon
+            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+            image.save(buttonImagePath)
+
+            # now need to update the icon on the buttonIndex button
+            image_resized = image.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
+            photo = ImageTk.PhotoImage(image_resized)
+            buttons[i].config(image=photo)
+            buttons[i].image = photo
+            buttons[i].update_idletasks()
+
+    # if modified save the playlist to file         
+    if changeFlag:
+        with open(filepath2, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(aStation2)
 
 
+
+def save_button_pressed(event):
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    print(f"Event argument: {event}")
+    text_content = text_box.get("1.0", "end-1c")  # Get all text from the textbox
+    with open(StationLogs_filepath, "a", encoding="utf-8") as file:
+        file.write("*******************************************************\n")
+        file.write(f"--- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
+        file.write(f"Station index: {custom_combo.current()}\n")  
+        file.write(text_content)
+        file.write("\n")
+     
 
 # Thanks to Copilot (Think Deeper) AI 
 class CustomCombobox(tk.Frame):
@@ -2753,14 +2845,13 @@ text_box = tk.Text(root, wrap="word")
 text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
-
 # button used to select and play a station at random (from all those available)
-randomButton = tk.Button(root, text="RND", name="randomButton")
+randomButton = tk.Button(root, text=" RND ", name="randomButton")
 #randomButton.default_bg = randomButton.cget("bg")
 if GPIO:
-    randomButton.place(x=500 , y=24, width=25, height=25)
+    randomButton.place(x=500 , y=24, height=25)
 else:
-    randomButton.place(x=500-7 , y=0, width=25+7, height=25)
+    randomButton.place(x=500-7 , y=0, height=25)
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
 randomButton.bind("<Return>", random_button_pressed)  
@@ -2768,16 +2859,15 @@ randomButton.bind("<ButtonPress>", random_button_pressed)
 randomButton.bind("<FocusIn>", on_focus_dostuff)
 randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 
-
 # button used to delete the currently playing station from the station list.
 # this will be saved to the file at shutdown and the playlist button references
 # will be adjusted if necessary
 deleteButton = tk.Button(root, text="DEL", name="deleteButton")
 #deleteButton.default_bg = deleteButton.cget("bg") 
 if GPIO:
-    deleteButton.place(x=550 , y=24, width=25, height=25)
+    deleteButton.place(x=550 , y=24, height=25)
 else:
-    deleteButton.place(x=550-7 , y=0, width=25+7, height=25)
+    deleteButton.place(x=550-7 , y=0, height=25)
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
 deleteButton.bind("<Return>", delete_button_pressed)  
@@ -2785,6 +2875,20 @@ deleteButton.bind("<ButtonPress>", delete_button_pressed)
 deleteButton.bind("<FocusIn>", on_focus_dostuff)
 deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 
+# button used to save the current contents of textbox that shows the station details and program
+# to a txt file
+saveButton = tk.Button(root, text="SAVE", name="saveButton")
+#saveButton.default_bg = saveButton.cget("bg") 
+if GPIO:
+    saveButton.place(x=590, y=24, height=25)
+else:
+    saveButton.place(x=590-7, y=0, height=25)
+saveButton.config(takefocus=True)
+saveButton.config(bg="gray90")
+saveButton.bind("<Return>", save_button_pressed)  
+saveButton.bind("<ButtonPress>", save_button_pressed)  
+saveButton.bind("<FocusIn>", on_focus_dostuff)
+saveButton.bind("<FocusOut>", on_focus_out_dostuff)
 
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!

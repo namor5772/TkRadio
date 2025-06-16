@@ -1,18 +1,18 @@
-ABC Radio Sydney NSW,24
-ABC Radio National LIVE,4
-ABC NewsRadio,76
-au ABC Classic 2,4211
-au ABC Classic FM,4212
-de Klassik Radio,20515
-pl Polskie Radio Chopin,51303
+-- EMPTY 0 --,-1
+-- EMPTY 1 --,-1
+-- EMPTY 2 --,-1
+-- EMPTY 3 --,-1
+-- EMPTY 4 --,-1
+-- EMPTY 5 --,-1
+-- EMPTY 6 --,-1
 -- EMPTY 7 --,-1
-us Powerhitz-com - Timeblender,67967
-au 2GB Sydney,4078
-au 2GN Goulburn,4081
-au Gold 101-7 FM,4419
-au Cruise 1323 Adelaide,4373
-au Totally Radio 70s,4859
-us Oldies America,67526
-bo Radio Inca 1100 AM,6066
-us TJS Japanese Radio Interview Channel,70977
-br Stereo Mix,11634
+-- EMPTY 8 --,-1
+-- EMPTY 9 --,-1
+-- EMPTY 10 --,-1
+-- EMPTY 11 --,-1
+-- EMPTY 12 --,-1
+-- EMPTY 13 --,-1
+-- EMPTY 14 --,-1
+-- EMPTY 15 --,-1
+-- EMPTY 16 --,-1
+-- EMPTY 17 --,-1

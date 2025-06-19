@@ -1,7 +1,7 @@
 '''
 DONE - 1. In Commercial2 pick up feed error on 2 tab stations
 DONE - 2. implement delete station button with adjustment for playlist buttons
-    Some strange bugs that cause no problem but need to be fixed !
+    DONE - Some strange bugs that cause no problem but need to be fixed !
 DONE - 3. inplement random station selection button
 4. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
@@ -319,6 +319,7 @@ filepath = os.path.join(script_dir, filename)
 print(f'The file {filepath} stores the last streamed station before shutdown.')
 
 # Create the full filepath to the list of ALL available radio stations
+# as of 19/6/2025 have a file with 79468 radio stations of which 79336 are urls from the Commercial2 aggregator!
 filename = 'AllRadioStations.csv'
 allStations_filepath = os.path.join(script_dir, filename)
 print(f'The file {allStations_filepath} stores csv table of all available radio stations')
@@ -423,6 +424,7 @@ Streaming = True # if streaming is working
 rootFlag = True # False indicates that you are in the secondary window
 pollFlag = False # if true then poll website for program text and picture changes 
 saveStationsFlag = False # if true then save stations to file (at shutdown)
+justDeletedFlag = False # if true then just deleted a station from the aStation[] list
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1506,7 +1508,6 @@ print("---- aStation loaded from file: " + allStations_filepath + " ----")
 # ALL STATIONS LOAD BLOCK END ***********************************************
 
 
-
 # 2D array of preset radio stations, in long name and index (to aStation[]) format.
 # this is the default, but is actually copied from file at statup and saved to file on exit!
 aStation2 = []
@@ -1630,8 +1631,8 @@ def on_closing():
 # do this when a radio station is selected from combobox
 def on_select(event):
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
-    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
-    print("---- on_select() entered ---------------------------------------------")
+    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
+    print("\n---- on_select() entered ---------------------------------------------")
 
     # determine the timeInterval between calling on_select() or on_select2()
     global startTime, finishTime
@@ -1645,6 +1646,19 @@ def on_select(event):
     print(f"Widget: {event.widget}")
     print(f"Data: {event.data}")
     
+    # prevent crashing if aStation is deleted
+    if pollFlag:
+        if justDeletedFlag:
+            if ExtraWindowFlag:
+                # if the extra window is open, close it
+                ExtraWindowFlag = False
+                browser.switch_to.window(nh2)
+                browser.close()
+                browser.switch_to.window(oh2)
+                print("Extra window closed")
+            justDeletedFlag = False;    
+            return    
+
     # set various flags and parameters related to starting a station stream or accesing its website
     global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
@@ -1707,6 +1721,7 @@ def on_select(event):
     if stopFlag==False:
         # run selected radio station stream, and return associated textual information 
         try:
+            print("\nWill run:", StationFunction)
             text = StationFunction(browser,nNum,sPath,sClass,nType)
             text = StationName + "*" + text + "* *[" + timeIntervalStr + "]"
             text_rows = text.split("*")
@@ -1725,6 +1740,7 @@ def on_select(event):
             text_box.config(state=tk.DISABLED)
             
         except urllib.error.HTTPError as e:
+            print(f"\nCrashed in on_select(), HTTPError: {e.code} - {e.reason}")
             event.type = "Manual" # to prevent saving of buttonIndex
 
             # inform user that starting station has failed in some way
@@ -1762,9 +1778,8 @@ def on_select(event):
 # similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType  
-    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName
-    print("")
-    print("---- on_select2() entered ---------------------------------------------")
+    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
+    print("\n---- on_select2() entered ---------------------------------------------")
 
     # determine the timeInterval between calling on_select()
     global startTime, finishTime
@@ -1777,6 +1792,19 @@ def on_select2(event):
     print(f"Type: {event.type}")
     print(f"Widget: {event.widget}")
     print(f"Data: {event.data}")
+
+    # prevent crashing if aStation is deleted
+    if pollFlag:
+        if justDeletedFlag:
+            if ExtraWindowFlag:
+                # if the extra window is open, close it
+                ExtraWindowFlag = False
+                browser.switch_to.window(nh2)
+                browser.close()
+                browser.switch_to.window(oh2)
+                print("Extra window closed")
+            justDeletedFlag = False;    
+            return    
 
     global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
     if event.type=="Auto":
@@ -1846,6 +1874,7 @@ def on_select2(event):
 
             # run selected radio station stream, and return associated textual information 
             try:
+                print("\nWill run:", StationFunction)
                 text = StationFunction(browser,nNum,sPath,sClass,nType)
                 text = StationName + "*" + text + "* *[" + timeIntervalStr + "]"
                 text_rows = text.split("*")
@@ -1883,6 +1912,8 @@ def on_select2(event):
                 print("")
 
             except urllib.error.HTTPError as e:
+                print(f"\nCrashed in on_select2(), HTTPError: {e.code} - {e.reason}")
+
                 event.type = "Manual" # to prevent saving of buttonIndex
 
                 # inform user that starting station has failed in some way
@@ -2489,7 +2520,8 @@ def delete_button_pressed(event):
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
     print(f"Deleting station at index: {delIndex}")
-    global saveStationsFlag
+    global saveStationsFlag,justDeletedFlag
+    justDeletedFlag = True # to prevent on_select or on_select2 from fully running again (but with correct processing!)
     saveStationsFlag = True # if true then save stations to file (at shutdown)
     del aStation[delIndex] # Remove the station from the aStation list
 
@@ -2761,7 +2793,7 @@ class CustomCombobox(tk.Frame):
             elif self.name=="custom_combo_wifi":
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
         else: # dropdown selection was not selected with the Enter key
-            print("*** VIRTUAL ENTER PRESSED***")
+            print("\n*** VIRTUAL ENTER PRESSED ***")
             on_select(CustomEvent("Auto", self, "ComboBox Event"))
         return "break"
 

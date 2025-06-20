@@ -1,5 +1,5 @@
 '''
-DONE - 1. In Commercial2 pick up feed error on 2 tab stations
+    DONE - 1. In Commercial2 pick up feed error on 2 tab stations
 DONE - 2. implement delete station button with adjustment for playlist buttons
     DONE - Some strange bugs that cause no problem but need to be fixed !
 DONE - 3. inplement random station selection button
@@ -326,11 +326,6 @@ filename = 'AllRadioStations.csv'
 allStations_filepath = os.path.join(script_dir, filename)
 print(f'The file {allStations_filepath} stores csv table of all available radio stations')
 
-# Create the full filepath to the list of ALL available radio stations
-#filename = 'AllRadioStationsTEST.csv'
-#allStationsTEST_filepath = os.path.join(script_dir, filename)
-#print(f'The file {allStationsTEST_filepath} stores TEST csv table of all available radio stations')
-
 # Create the full filepath to the list of saved station information from the text box
 filename = 'StationLogs.txt'
 StationLogs_filepath = os.path.join(script_dir, filename)
@@ -346,7 +341,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -2920,14 +2915,16 @@ class CustomCombobox(tk.Frame):
 class ConfirmDeleteDialog(tk.Toplevel):
     def __init__(self, parent, on_confirm, del_button):
         super().__init__(parent)
-        self.title("Confirn deletion?")
+        self.title(" Confirn deletion?")
         self.transient(parent)
         self.grab_set()
         self.resizable(False, False)
         self.del_button = del_button
         self.on_confirm = on_confirm
-        self.geometry("155x32+480+60")
-
+        if GPIO:
+            self.geometry("210x1+491+108")
+        else:
+            self.geometry("155x32+480+60")
         self.bind("<Escape>", lambda e: self.cancel())
 
         self.ok_btn = tk.Button(self, text="OK", width=8, command=self.ok)
@@ -2944,9 +2941,13 @@ class ConfirmDeleteDialog(tk.Toplevel):
             btn.bind("<FocusOut>", lambda e, b=btn: b.config(bg="gray90"))
 
         # Place the buttons in the dialog
-        self.ok_btn.place(x=10, y=2)
-        self.cancel_btn.place(x=80, y=2)
-
+        if GPIO:
+            self.ok_btn.place(x=10, y=14)
+            self.cancel_btn.place(x=110, y=14)
+        else:
+            self.ok_btn.place(x=10, y=2)
+            self.cancel_btn.place(x=80, y=2)
+        
         self.cancel_btn.focus_set()
         self.protocol("WM_DELETE_WINDOW", self.cancel)
         self.wait_window()
@@ -3015,11 +3016,11 @@ text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # button used to select and play a station at random (from all those available)
-randomButton = tk.Button(root, text=" RND ", name="randomButton")
-#randomButton.default_bg = randomButton.cget("bg")
 if GPIO:
+    randomButton = tk.Button(root, text="RND", name="randomButton")
     randomButton.place(x=500 , y=24, height=25)
 else:
+    randomButton = tk.Button(root, text=" RND ", name="randomButton")
     randomButton.place(x=500-7 , y=0, height=25)
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
@@ -3031,12 +3032,13 @@ randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 # button used to delete the currently playing station from the station list.
 # this will be saved to the file at shutdown and the playlist button references
 # will be adjusted if necessary
-deleteButton = tk.Button(root, text="DEL", name="deleteButton")
-#deleteButton.default_bg = deleteButton.cget("bg") 
 if GPIO:
-    deleteButton.place(x=550 , y=24, height=25)
+    deleteButton = tk.Button(root, text="DEL", name="deleteButton")
+    deleteButton.place(x=559 , y=24, height=25)
 else:
+    deleteButton = tk.Button(root, text="DEL", name="deleteButton")
     deleteButton.place(x=550-7 , y=0, height=25)
+
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
 deleteButton.config(command=delete_button_pressed)
@@ -3047,11 +3049,11 @@ deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 
 # button used to save the current contents of textbox that shows the station details and program
 # to a txt file
-saveButton = tk.Button(root, text="SAVE", name="saveButton")
-#saveButton.default_bg = saveButton.cget("bg") 
 if GPIO:
-    saveButton.place(x=590, y=24, height=25)
+    saveButton = tk.Button(root, text="SAVE", name="saveButton")
+    saveButton.place(x=614, y=24, height=25)
 else:
+    saveButton = tk.Button(root, text="SAVE", name="saveButton")
     saveButton.place(x=590-7, y=0, height=25)
 saveButton.config(takefocus=True)
 saveButton.config(bg="gray90")

@@ -25,6 +25,8 @@ import csv
 import re
 import random
 from datetime import datetime
+#from tkinter import simpledialog
+
 
 try:
     import RPi.GPIO as GPIO
@@ -1647,15 +1649,9 @@ def on_select(event):
     print(f"Data: {event.data}")
     
     # prevent crashing if aStation is deleted
+    # prevent crashing if aStation is deleted
     if pollFlag:
         if justDeletedFlag:
-            if ExtraWindowFlag:
-                # if the extra window is open, close it
-                ExtraWindowFlag = False
-                browser.switch_to.window(nh2)
-                browser.close()
-                browser.switch_to.window(oh2)
-                print("Extra window closed")
             justDeletedFlag = False;    
             return    
 
@@ -1677,6 +1673,20 @@ def on_select(event):
         combobox_index = custom_combo.current()
         print("selected_value:", selected_value)
         print("combobox_index:", combobox_index)
+
+        # clear the icon and program graphic from the last selected station
+        # to prevent confusion when loading a new station.
+        image_path = pathImages + "/Blank.png"
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+        scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
+        photo2 = ImageTk.PhotoImage(scaled_image2)
+        label2.config(image=photo2)
+        label2.image = photo2  # Keep a reference to avoid garbage collection
+        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
 
     # extract all parameters for the selected radio station
     try:
@@ -1723,7 +1733,7 @@ def on_select(event):
         try:
             print("\nWill run:", StationFunction)
             text = StationFunction(browser,nNum,sPath,sClass,nType)
-            text = StationName + "*" + text + "* *[" + timeIntervalStr + "]"
+            text = sPath + "*" + StationName + "*" + text + "* *[" + timeIntervalStr + "]"
             text_rows = text.split("*")
             if len(text_rows)>1:
                 if text_rows[0]==text_rows[1]:
@@ -1796,13 +1806,6 @@ def on_select2(event):
     # prevent crashing if aStation is deleted
     if pollFlag:
         if justDeletedFlag:
-            if ExtraWindowFlag:
-                # if the extra window is open, close it
-                ExtraWindowFlag = False
-                browser.switch_to.window(nh2)
-                browser.close()
-                browser.switch_to.window(oh2)
-                print("Extra window closed")
             justDeletedFlag = False;    
             return    
 
@@ -1822,6 +1825,20 @@ def on_select2(event):
         selected_index = int(aStation2[buttonIndex][1])
         print("selected_value:",selected_value)
         print("selected_index:",selected_index)
+
+        # clear the icon and program graphic from the last selected station
+        # to prevent confusion when loading a new station.
+        image_path = pathImages + "/Blank.png"
+        image = Image.open(image_path)
+        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+        photo = ImageTk.PhotoImage(scaled_image)
+        label.config(image=photo)
+        label.image = photo  # Keep a reference to avoid garbage collection
+        scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
+        photo2 = ImageTk.PhotoImage(scaled_image2)
+        label2.config(image=photo2)
+        label2.image = photo2  # Keep a reference to avoid garbage collection
+        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
 
     # extract all parameters for the selected radio station
     try:
@@ -1876,7 +1893,7 @@ def on_select2(event):
             try:
                 print("\nWill run:", StationFunction)
                 text = StationFunction(browser,nNum,sPath,sClass,nType)
-                text = StationName + "*" + text + "* *[" + timeIntervalStr + "]"
+                text = sPath + "*" + StationName + "*" + text + "* *[" + timeIntervalStr + "]"
                 text_rows = text.split("*")
                 if len(text_rows)>1:
                     if text_rows[0]==text_rows[1]:
@@ -2514,14 +2531,22 @@ def random_button_pressed(event):
     print(f"Event argument: {event}")
 
 
-def delete_button_pressed(event):
-    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
-    print(f"Event argument: {event}")
+# the actual delete action when the [Delete] button is pressed AND confirmed
+def delete_action2():
+    print("Deletion confirmed!")  # Replace with your actual deletion logic
+
+
+# the actual delete action when the [Delete] button is pressed AND confirmed
+def delete_action():
+    print("Deletion confirmed!")  # Replace with your actual deletion logic
+    global ExtraWindowFlag
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
     print(f"Deleting station at index: {delIndex}")
-    global saveStationsFlag,justDeletedFlag
-    justDeletedFlag = True # to prevent on_select or on_select2 from fully running again (but with correct processing!)
+    global StationName, saveStationsFlag,justDeletedFlag
+    if pollFlag:
+        # to prevent on_select or on_select2 from fully running again (but with correct processing!)
+        justDeletedFlag = True 
     saveStationsFlag = True # if true then save stations to file (at shutdown)
     del aStation[delIndex] # Remove the station from the aStation list
 
@@ -2570,8 +2595,55 @@ def delete_button_pressed(event):
             writer = csv.writer(file)
             writer.writerows(aStation2)
 
+    # properly shut down the deleted station
+    if ExtraWindowFlag:
+        # if the extra window is open, close it
+        ExtraWindowFlag = False
+        browser.switch_to.window(nh2)
+        browser.close()
+        browser.switch_to.window(oh2)
+        print("Extra window closed")
+
+    # There is no station streaming so refresh the browser 
+    # and clear icon and program image  and display the "No station playing" message
+    # in the text box.
+    browser.get(refresh_http)
+    time.sleep(2)
+    text = "Just deleted the radio station:*" + StationName + "* *NO STATION CURRENTLY PLAYING!"
+    text_rows = text.split("*")
+
+    # Make text box editable, so contents can be deleted and rewritten
+    text_box.config(state=tk.NORMAL)
+    text_box.delete('1.0', tk.END)
+    print(text_rows)
+
+    # Insert each row of text into the text box
+    for row in text_rows:
+        text_box.insert(tk.END, row + "\n")
+
+    # Disable the text box to make it read-only
+    text_box.config(state=tk.DISABLED)
+    root.update_idletasks()
+
+    # Display the station logo and program graphic as blank
+    image_path = pathImages + "/Blank.png"
+    image = Image.open(image_path)
+    scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    photo = ImageTk.PhotoImage(scaled_image)
+    label.config(image=photo)
+    label.image = photo  # Keep a reference to avoid garbage collection
+    scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
+    photo2 = ImageTk.PhotoImage(scaled_image2)
+    label2.config(image=photo2)
+    label2.image = photo2  # Keep a reference to avoid garbage collection
+    label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
 
 
+def delete_button_pressed(event):
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    ConfirmDeleteDialog(root, delete_action, deleteButton)
+
+  
 def save_button_pressed(event):
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
@@ -2579,7 +2651,6 @@ def save_button_pressed(event):
     with open(StationLogs_filepath, "a", encoding="utf-8") as file:
         file.write("*******************************************************\n")
         file.write(f"--- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
-        file.write(f"Station index: {custom_combo.current()}\n")  
         file.write(text_content)
         file.write("\n")
      
@@ -2845,6 +2916,53 @@ class CustomCombobox(tk.Frame):
         self.entry.focus_set()
 
 
+# Thanks to Copilot (Think Deeper) AI, not perfect since had to make some changes
+class ConfirmDeleteDialog(tk.Toplevel):
+    def __init__(self, parent, on_confirm, del_button):
+        super().__init__(parent)
+        self.title("Confirn deletion?")
+        self.transient(parent)
+        self.grab_set()
+        self.resizable(False, False)
+        self.del_button = del_button
+        self.on_confirm = on_confirm
+        self.geometry("155x32+480+60")
+
+        self.bind("<Escape>", lambda e: self.cancel())
+
+        self.ok_btn = tk.Button(self, text="OK", width=8, command=self.ok)
+        self.ok_btn.config(bg="gray90")
+        self.ok_btn.bind("<Return>", lambda e: self.ok())
+
+        self.cancel_btn = tk.Button(self, text="Cancel", width=8, command=self.cancel)
+        self.cancel_btn.config(bg="gray90")
+        self.cancel_btn.bind("<Return>", lambda e: self.cancel())
+
+        # Bind focus events
+        for btn in (self.ok_btn, self.cancel_btn):
+            btn.bind("<FocusIn>", lambda e, b=btn: b.config(bg="lightblue"))
+            btn.bind("<FocusOut>", lambda e, b=btn: b.config(bg="gray90"))
+
+        # Place the buttons in the dialog
+        self.ok_btn.place(x=10, y=2)
+        self.cancel_btn.place(x=80, y=2)
+
+        self.cancel_btn.focus_set()
+        self.protocol("WM_DELETE_WINDOW", self.cancel)
+        self.wait_window()
+     
+    def ok(self):
+        self.destroy()
+        print("Deletion CONFIRMED.")
+        self.on_confirm()
+        self.del_button.focus_set()
+
+    def cancel(self):
+        self.destroy()
+        print("Deletion CANCELED.")
+        self.del_button.focus_set()
+
+
 ##########################################
 ### THIS IS WHERE THE CORE CODE STARTS ###
 
@@ -2879,7 +2997,7 @@ for element in aStation:
     aStringArray.append(element[0])
 
 # Create our custom combobox with 8 rows visible in the dropdown.
-custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=30)
+custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
 custom_combo.place(x=130+(sizeButton+5), y=26)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
@@ -2921,6 +3039,7 @@ else:
     deleteButton.place(x=550-7 , y=0, height=25)
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
+deleteButton.config(command=delete_button_pressed)
 deleteButton.bind("<Return>", delete_button_pressed)  
 deleteButton.bind("<ButtonPress>", delete_button_pressed)  
 deleteButton.bind("<FocusIn>", on_focus_dostuff)

@@ -16,7 +16,6 @@ DONE - 7. Think about right to left text stations, like in Arabic or Hebrew? wit
 import subprocess
 import inspect
 import tkinter as tk
-
 import time
 import urllib.request
 import requests
@@ -25,9 +24,6 @@ import csv
 import re
 import random
 from datetime import datetime
-#from tkinter import simpledialog
-
-
 try:
     import RPi.GPIO as GPIO
 except ModuleNotFoundError:
@@ -391,7 +387,8 @@ selected_index = -1
 startTime = time.time()
 endTime = 0.0
 refreshTime = 10.0 # seconds between updating station info
-stationShort = ""
+stopLastStream = False # if true then stop current stream call
+firstRun = True # if true then first run a station stream
 station = ""
 needSleep = 4 # can be less on faster machines
 pressButton = True # flag for how stream is started
@@ -1629,7 +1626,13 @@ def on_closing():
 def on_select(event):
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
+    global stopLastStream, firstRun
     print("\n---- on_select() entered ---------------------------------------------")
+
+    if stopLastStream:
+        stopLastStream = False
+        print("stopLastStream is True, so returning")
+        return
 
     # determine the timeInterval between calling on_select() or on_select2()
     global startTime, finishTime
@@ -1647,12 +1650,18 @@ def on_select(event):
     # prevent crashing if aStation is deleted
     if pollFlag:
         if justDeletedFlag:
+            print("justDeletedFlag is True, so returning")
             justDeletedFlag = False;    
+            firstRun = True # next         
             return    
 
     # set various flags and parameters related to starting a station stream or accesing its website
     global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
     if event.type=="Auto":
+
+        if pollFlag:
+            stopLastStream = True
+
         if ExtraWindowFlag:
             # if the extra window is open, close it
             ExtraWindowFlag = False
@@ -1762,11 +1771,12 @@ def on_select(event):
 
         # on_select() schedules itself to run in nominally refreshTime seconds.
         # this updates the program text and grapic while the selected radio station is streaming
-        print("JUST ABOUT TO RUN ROOT")
         eventFlag = False
         if pollFlag:
+            print("JUST ABOUT to schedule on_select to run in the future")
             root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
-        print("FINISHED RUNNING ROOT")
+        else:
+            print("DID NOT schedule on_select to run in the future")
         print("")
 
     else: #if stopFlag==True
@@ -1784,7 +1794,13 @@ def on_select(event):
 def on_select2(event):
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType  
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
+    global stopLastStream, firstRun
     print("\n---- on_select2() entered ---------------------------------------------")
+
+    if stopLastStream:
+        stopLastStream = False
+        print("stopLastStream is True, so returning")
+        return
 
     # determine the timeInterval between calling on_select()
     global startTime, finishTime
@@ -1801,11 +1817,18 @@ def on_select2(event):
     # prevent crashing if aStation is deleted
     if pollFlag:
         if justDeletedFlag:
+            print("justDeletedFlag is True, so returning")
             justDeletedFlag = False;    
             return    
 
     global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
     if event.type=="Auto":
+
+        if pollFlag:
+            if not firstRun:
+                stopLastStream = True
+        firstRun = False        
+
         if ExtraWindowFlag:
             # if the extra window is open, close it
             ExtraWindowFlag = False
@@ -1916,11 +1939,12 @@ def on_select2(event):
                     custom_combo.selection_clear()
                     buttons[buttonIndex].focus_set()
                 
-                print("JUST ABOUT TO RUN ROOT")
                 eventFlag = False
                 if pollFlag:
+                    print("JUST ABOUT to schedule on_select2 to run in the future")
                     root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
-                print("FINISHED RUNNING ROOT")
+                else:    
+                    print("DID NOT schedule on_select2 to run in the future")
                 print("")
 
             except urllib.error.HTTPError as e:
@@ -1974,6 +1998,14 @@ def on_select2(event):
             label2.image = photo2  # Keep a reference to avoid garbage collection
             label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
             print("BLANK END")
+            print("")
+
+            eventFlag = False
+            if pollFlag:
+                print("JUST ABOUT to schedule on_select2 to run for NO station in the future")
+                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+            else:    
+                print("DID NOT schedule on_select2 to run in the future")
             print("")
 
         if event.type=="Auto":

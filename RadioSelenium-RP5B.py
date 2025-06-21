@@ -2915,7 +2915,7 @@ class CustomCombobox(tk.Frame):
 class ConfirmDeleteDialog(tk.Toplevel):
     def __init__(self, parent, on_confirm, del_button):
         super().__init__(parent)
-        self.title(" Confirn deletion?")
+        self.title(" Confirm deletion?")
         self.transient(parent)
         self.grab_set()
         self.resizable(False, False)
@@ -2924,7 +2924,7 @@ class ConfirmDeleteDialog(tk.Toplevel):
         if GPIO:
             self.geometry("210x1+491+108")
         else:
-            self.geometry("155x32+480+60")
+            self.geometry("163x37+478+62")
         self.bind("<Escape>", lambda e: self.cancel())
 
         self.ok_btn = tk.Button(self, text="OK", width=8, command=self.ok)
@@ -2945,8 +2945,8 @@ class ConfirmDeleteDialog(tk.Toplevel):
             self.ok_btn.place(x=10, y=14)
             self.cancel_btn.place(x=110, y=14)
         else:
-            self.ok_btn.place(x=10, y=2)
-            self.cancel_btn.place(x=80, y=2)
+            self.ok_btn.place(x=11, y=2)
+            self.cancel_btn.place(x=84, y=2)
         
         self.cancel_btn.focus_set()
         self.protocol("WM_DELETE_WINDOW", self.cancel)

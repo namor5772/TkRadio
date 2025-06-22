@@ -337,7 +337,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -1225,20 +1225,32 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             ht = br.page_source  # Get the full HTML content of the page
             soup = BeautifulSoup(ht, 'lxml')
             div_element = soup.find("div", id="play_pause_container")
-            path_element = div_element.find("path")
-            path_element_str = str(path_element)
-            print(f"path element: {path_element_str}")
             try:
-                flagChar = path_element_str[10]
-                if flagChar == "4":
+                path_element = div_element.find("path")
+                path_element_str = str(path_element)
+                print(f"path element: {path_element_str}")
+                try:
+                    flagChar = path_element_str[10]
+                    if flagChar == "4":
+                        Streaming = False
+                        print("<<< 2 window streaming is not working >>>")
+                except IndexError:
                     Streaming = False
-                    print("<<< 2 window streaming is not working >>>")
-            except IndexError:
+                    MaybeStreaming = True
+                    br.switch_to.window(nh2)
+                    br.close()
+                    br.switch_to.window(oh2)
+                    print("<<< 2 window streaming might not be working - IndexError >>>")
+                br.switch_to.window(oh2) # Switch back to the original window
+                ExtraWindowFlag = True
+            except AttributeError:
+                # if the div_element is not found, it means the streaming is not working
                 Streaming = False
                 MaybeStreaming = True
-                print("<<< 2 window streaming might not be working - IndexError >>>")
-            br.switch_to.window(oh2) # Switch back to the original window
-            ExtraWindowFlag = True
+                br.switch_to.window(nh2)
+                br.close()
+                br.switch_to.window(oh2)
+                print("<<< Shut down second window >>>")    
         else:
             # identify whether streaming works using identifiers on a path element
             # that display an error in playing graphic on the play button
@@ -3002,7 +3014,7 @@ class ConfirmDeleteDialog(tk.Toplevel):
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
-root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio - RadioSelenium-RP5B.py")  
+root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio/RadioSelenium.py")  
 root.geometry("800x455+0+0")
 root.resizable(False, False)
 root.update_idletasks()

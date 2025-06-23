@@ -1787,6 +1787,7 @@ def on_select(event):
     if pollFlag:
         print("JUST ABOUT to schedule on_select to run in the future")
         root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
+        print("DID SCHEDULE on_select to run in the future")
     else:
         print("DID NOT schedule on_select to run in the future")
     print("")
@@ -2083,7 +2084,7 @@ def on_button_delete(event, i):
         on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"))
 
         # save the playlist to file
-        with open(filepath2, 'w', newline='') as file:
+        with open(filepath2, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(aStation2)
     else:        
@@ -2122,7 +2123,7 @@ def on_button_insert(event, i):
         buttons[buttonIndex].update_idletasks()
 
         # save the playlist to file
-        with open(filepath2, 'w', newline='') as file:
+        with open(filepath2, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(aStation2)
     else:
@@ -2630,7 +2631,7 @@ def delete_action():
 
     # if modified save the playlist to file         
     if changeFlag:
-        with open(filepath2, 'w', newline='') as file:
+        with open(filepath2, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(aStation2)
 
@@ -2903,7 +2904,7 @@ class CustomCombobox(tk.Frame):
             elif self.name=="custom_combo_wifi":
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
         else: # dropdown selection was not selected with the Enter key
-            print("\n*** VIRTUAL ENTER PRESSED ***")
+            print("\n*** RND BUTTON PRESSED ***")
             on_select(CustomEvent("Auto", self, "ComboBox Event"))
         return "break"
 
@@ -3047,7 +3048,7 @@ custom_combo.place(x=130+(sizeButton+5), y=26)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
-    with open(filepath2, 'r') as file:
+    with open(filepath2,'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         aStation2 = [row for row in reader]             
 except FileNotFoundError:
@@ -3077,10 +3078,10 @@ randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 # this will be saved to the file at shutdown and the playlist button references
 # will be adjusted if necessary
 if GPIO:
-    deleteButton = tk.Button(root, text="DEL", name="deleteButton")
+    deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=559 , y=24, height=25)
 else:
-    deleteButton = tk.Button(root, text="DEL", name="deleteButton")
+    deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=550-7 , y=0, height=25)
 
 deleteButton.config(takefocus=True)

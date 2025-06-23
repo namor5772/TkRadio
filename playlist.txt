@@ -4,15 +4,15 @@ ABC NewsRadio,76
 ABC Classic LIVE,19
 ABC Classic2,0
 -- EMPTY 5 --,-1
--- EMPTY 6 --,-1
--- EMPTY 7 --,-1
-fr R2V - La Radio 2 Valenciennes,29487
--- EMPTY 9 --,-1
--- EMPTY 10 --,-1
+ec Radio Sucre,24401
+ab Positively 70's,1528
+fr R2V - La Radio 2 Valenciennes,29485
+au 2GB Sydney,4077
+de Hits4you.fm,20421
 -- EMPTY 11 --,-1
-au ABC Classic FM,4212
-au ABC Classic 2,4211
+au ABC Classic FM,4211
+au ABC Classic 2,4210
 -- EMPTY 14 --,-1
--- EMPTY 15 --,-1
--- EMPTY 16 --,-1
--- EMPTY 17 --,-1
+br Líder FM,7530
+de Radio Zoom,21897
+ab Alf lila wlila - Cairo (راديو الف ليلة وليلة),217

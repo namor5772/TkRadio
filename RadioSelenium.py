@@ -1,8 +1,8 @@
 '''
-    DONE - 1. In Commercial2 pick up feed error on 2 tab stations
+DONE - 1. In Commercial2 pick up feed error on 2 tab stations
 DONE - 2. implement delete station button with adjustment for playlist buttons
     DONE - Some strange bugs that cause no problem but need to be fixed !
-DONE - 3. inplement random station selection button
+DONE - 3. implement random station selection button
 4. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
 DONE - 5. Investigate false positive detection of <<< Streaming is not working >>> 
@@ -387,8 +387,6 @@ selected_index = -1
 startTime = time.time()
 endTime = 0.0
 refreshTime = 10.0 # seconds between updating station info
-stopLastStream = False # if true then stop current stream call
-firstRun = True # if true then first run a station stream
 station = ""
 needSleep = 4 # can be less on faster machines
 pressButton = True # flag for how stream is started
@@ -420,6 +418,8 @@ rootFlag = True # False indicates that you are in the secondary window
 pollFlag = False # if true then poll website for program text and picture changes 
 saveStationsFlag = False # if true then save stations to file (at shutdown)
 justDeletedFlag = False # if true then just deleted a station from the aStation[] list
+stopLastStream = False # if true then stop current stream call
+firstRun = True # if true then first run of a station stream
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1157,7 +1157,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
-    global img_url_g, oh, nh, tabNum, oh2, nh2, nh3, ExtraWindowFlag, Streaming
+    global img_url_g, oh, nh, tabNum, oh2, nh2, nh3, ExtraWindowFlag, Streaming, stopOnce
     print("")
     print("---- Commercial2() entered ---------------------------------------------")
 
@@ -1296,64 +1296,65 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         label.config(image=photo)
         label.image = photo  # Keep a reference to avoid garbage collection
 
-    # always runs if pollFlag=True. Get and then display station logo if one does not yet exist
-    if pollFlag:
-        logoFlag = os.path.exists(image_path_logo)
-        if logoFlag and (tabNum == 1):
-            print(f"Display just created station logo file: {image_path_logo}")
-            image = Image.open(image_path_logo)
-            scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-            # Display the station logo as given in the scaled_image
-            photo = ImageTk.PhotoImage(scaled_image)
-            label.config(image=photo)
-            label.image = photo  # Keep a reference to avoid garbage collection
-            tabNum = 0
-        elif logoFlag:
-            print(f"Logo file exists: {image_path_logo}")
-        else:
-            print("Logo file does not exist, so creating one")
-            if eventFlag:
+    # always runs if Streaming and pollFlag are True. Get and then display station logo if one does not yet exist
+    if Streaming:
+        if pollFlag:
+            logoFlag = os.path.exists(image_path_logo)
+            if logoFlag and (tabNum == 1):
+                print(f"Display just created station logo file: {image_path_logo}")
+                image = Image.open(image_path_logo)
+                scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+                # Display the station logo as given in the scaled_image
+                photo = ImageTk.PhotoImage(scaled_image)
+                label.config(image=photo)
+                label.image = photo  # Keep a reference to avoid garbage collection
                 tabNum = 0
-
-                # try to find a particular image element by path
-                xpath = '//*[@id="player_image"]'
-                img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-                img_url_g = img_element.get_attribute("src")
-                print("Found image URL:", img_url_g)
-                oh = br.current_window_handle
-                print("Current window handle:", oh)
-                br.switch_to.new_window('Picture')
-                nh3 = br.current_window_handle
-                print("New window handle:", nh3)
-                br.switch_to.window(oh)
-                print(" At this point have an extra tab named [Picture] created" )
-                # At this point have an extra tab named [Picture] created - will be used next time Command2() is called!"
+            elif logoFlag:
+                print(f"Logo file exists: {image_path_logo}")
             else:
-                if tabNum == 0:
-                    br.switch_to.window(nh3)
-                    br.get(img_url_g)
-                    print("Switching 2")
-                    print(image_path_logo)
+                print("Logo file does not exist, so creating one")
+                if eventFlag:
+                    tabNum = 0
 
-                    try:
-                        headers = {"User-Agent": "Mozilla/5.0"}
-                        response = requests.get(img_url_g, headers=headers, stream=True)
-                        print(response.headers["Content-Type"])
-
-                        #response = requests.get(img_url_g, stream=True)
-                        with open(image_path_logo, 'wb') as file:
-                            for chunk in response.iter_content(chunk_size=8192):
-                                file.write(chunk)
-                        print("Image downloaded successfully.")
-                    except Exception as e:
-                        print(f"Failed to download the image: {e}")
-                    print("Switching 3")
-                    br.close()
+                    # try to find a particular image element by path
+                    xpath = '//*[@id="player_image"]'
+                    img_element = WebDriverWait(be, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                    img_url_g = img_element.get_attribute("src")
+                    print("Found image URL:", img_url_g)
+                    oh = br.current_window_handle
+                    print("Current window handle:", oh)
+                    br.switch_to.new_window('Picture')
+                    nh3 = br.current_window_handle
+                    print("New window handle:", nh3)
                     br.switch_to.window(oh)
-                    tabNum = 1
-                else: # tabNum == 1
-                    print("display downloaded station logo!")
-    
+                    print(" At this point have an extra tab named [Picture] created" )
+                    # At this point have an extra tab named [Picture] created - will be used next time Command2() is called!"
+                else:
+                    if tabNum == 0:
+                        br.switch_to.window(nh3)
+                        br.get(img_url_g)
+                        print("Switching 2")
+                        print(image_path_logo)
+
+                        try:
+                            headers = {"User-Agent": "Mozilla/5.0"}
+                            response = requests.get(img_url_g, headers=headers, stream=True)
+                            print(response.headers["Content-Type"])
+
+                            #response = requests.get(img_url_g, stream=True)
+                            with open(image_path_logo, 'wb') as file:
+                                for chunk in response.iter_content(chunk_size=8192):
+                                    file.write(chunk)
+                            print("Image downloaded successfully.")
+                        except Exception as e:
+                            print(f"Failed to download the image: {e}")
+                        print("Switching 3")
+                        br.close()
+                        br.switch_to.window(oh)
+                        tabNum = 1
+                    else: # tabNum == 1
+                        print("display downloaded station logo!")
+        
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"
     foundImage = True
@@ -1634,10 +1635,10 @@ def on_closing():
 
 # do this when a radio station is selected from combobox
 def on_select(event):
+    print("\n---- on_select() entered ---------------------------------------------")
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
-    global stopLastStream, firstRun
-    print("\n---- on_select() entered ---------------------------------------------")
+    global stopLastStream, firstRun, Streaming 
 
     if stopLastStream:
         stopLastStream = False
@@ -1661,7 +1662,7 @@ def on_select(event):
         if justDeletedFlag:
             print("justDeletedFlag is True, so returning")
             justDeletedFlag = False;    
-            firstRun = True # next         
+            print("---- on_select() finished ---------------------------------------------\n")
             return    
 
     # set various flags and parameters related to starting a station stream or accesing its website
@@ -1669,7 +1670,9 @@ def on_select(event):
     if event.type=="Auto":
 
         if pollFlag:
-            stopLastStream = True
+            if not firstRun:
+                stopLastStream = True
+        firstRun = False
 
         if ExtraWindowFlag:
             # if the extra window is open, close it
@@ -1738,7 +1741,7 @@ def on_select(event):
         text_rows = text.split("*")
         if len(text_rows)>1:
             if text_rows[0]==text_rows[1]:
-                    del text_rows[0]
+                del text_rows[0]
 
         # Make text box editable, so contents can be deleted and rewritten
         text_box.config(state=tk.NORMAL)
@@ -1770,26 +1773,33 @@ def on_select(event):
     # this updates the program text and grapic while the selected radio station is streaming
     eventFlag = False
     if pollFlag:
-        print("JUST ABOUT to schedule on_select to run in the future")
-        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
-        print("DID SCHEDULE on_select to run in the future")
+        if Streaming:
+            print("JUST ABOUT to schedule on_select to run in the future")
+            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
+            print("DID SCHEDULE on_select to run in the future")
+        else:
+  #          justDeletedFlag = True
+            print("Streaming==FALSE so DID NOT schedule on_select to run in the future")
     else:
-        print("DID NOT schedule on_select to run in the future")
-    print("")
+        print("pollFlag==False so DID NOT schedule on_select to run in the future")
+
+    Streaming = True # always reset this to True
+    print("---- on_select() finished ---------------------------------------------\n")
 
 
 
 # do this when a radio station is selected via playlist buttons,
 # similar in structure to on_select(), but the way the radio station stream is called differs.
 def on_select2(event):
+    print("\n---- on_select2() entered ---------------------------------------------")
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType  
     global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
-    global stopLastStream, firstRun
-    print("\n---- on_select2() entered ---------------------------------------------")
+    global stopLastStream, firstRun, Streaming
 
     if stopLastStream:
         stopLastStream = False
         print("stopLastStream is True, so returning")
+        print("---- on_select2() finished ---------------------------------------------\n")
         return
 
     # determine the timeInterval between calling on_select()
@@ -1809,6 +1819,7 @@ def on_select2(event):
         if justDeletedFlag:
             print("justDeletedFlag is True, so returning")
             justDeletedFlag = False;    
+            print("---- on_select2() finished ---------------------------------------------\n")
             return    
 
     global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
@@ -1920,11 +1931,15 @@ def on_select2(event):
             
             eventFlag = False
             if pollFlag:
-                print("JUST ABOUT to schedule on_select2 to run in the future")
-                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+                if Streaming:
+                    print("JUST ABOUT to schedule on_select2 to run in the future")
+                    root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+                    print("DID SCHEDULE on_select2 to run in the future")
+                else:    
+#                    justDeletedFlag = True
+                    print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
             else:    
-                print("DID NOT schedule on_select2 to run in the future")
-            print("")
+                print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
 
         except urllib.error.HTTPError as e:
             print(f"\nCrashed in on_select2(), HTTPError: {e.code} - {e.reason}")
@@ -1942,7 +1957,6 @@ def on_select2(event):
                 text_box.insert(tk.END, row + "\n")
             text_box.config(state=tk.DISABLED)
             root.update_idletasks()
-
     else:
         # There is nothing to stream
         browser.get(refresh_http)
@@ -1981,16 +1995,23 @@ def on_select2(event):
 
         eventFlag = False
         if pollFlag:
-            print("JUST ABOUT to schedule on_select2 to run for NO station in the future")
-            root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+            if Streaming:
+                print("JUST ABOUT to schedule on_select2 to run for NO station in the future")
+                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
+                print("DID SCHEDULE on_select2 to run in the future")
+            else:    
+ #               justDeletedFlag = True
+                print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
         else:    
-            print("DID NOT schedule on_select2 to run in the future")
-        print("")
+            print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
 
     if event.type=="Auto":
         # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
         with open(filepath, 'w') as file:
             file.write(str(buttonIndex))
+
+    Streaming = True # always reset this to True
+    print("---- on_select2() finished ---------------------------------------------\n")
 
 
 

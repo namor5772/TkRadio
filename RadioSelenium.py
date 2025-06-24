@@ -337,7 +337,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -411,6 +411,7 @@ nh = 0
 tabNum = 0
 oh2 = 0
 nh2 = 0
+nh3 = 0
 ExtraWindowFlag = False
 Streaming = True # if streaming is working
 
@@ -1156,7 +1157,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
-    global img_url_g, oh, nh, tabNum, oh2, nh2, ExtraWindowFlag, Streaming
+    global img_url_g, oh, nh, tabNum, oh2, nh2, nh3, ExtraWindowFlag, Streaming
     print("")
     print("---- Commercial2() entered ---------------------------------------------")
 
@@ -1234,6 +1235,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     if flagChar == "4":
                         Streaming = False
                         print("<<< 2 window streaming is not working >>>")
+                    ExtraWindowFlag = True
                 except IndexError:
                     Streaming = False
                     MaybeStreaming = True
@@ -1242,7 +1244,6 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     br.switch_to.window(oh2)
                     print("<<< 2 window streaming might not be working - IndexError >>>")
                 br.switch_to.window(oh2) # Switch back to the original window
-                ExtraWindowFlag = True
             except AttributeError:
                 # if the div_element is not found, it means the streaming is not working
                 Streaming = False
@@ -1321,13 +1322,15 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                 print("Found image URL:", img_url_g)
                 oh = br.current_window_handle
                 print("Current window handle:", oh)
-                br.switch_to.new_window('tab')
-                nh = br.current_window_handle
-                print("New window handle:", nh)
+                br.switch_to.new_window('Picture')
+                nh3 = br.current_window_handle
+                print("New window handle:", nh3)
                 br.switch_to.window(oh)
+                print(" At this point have an extra tab named [Picture] created" )
+                # At this point have an extra tab named [Picture] created - will be used next time Command2() is called!"
             else:
                 if tabNum == 0:
-                    br.switch_to.window(nh)
+                    br.switch_to.window(nh3)
                     br.get(img_url_g)
                     print("Switching 2")
                     print(image_path_logo)
@@ -1504,11 +1507,6 @@ with open(allStations_filepath, mode="r", newline="", encoding="utf-8") as csvfi
         row[3] = int(row[3]) if row[3].isdigit() else row[3]  # Convert column 3 to integer 
         row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer 
         aStation.append(row)
-widths = [33, 33, 44, 1, 68, 17, 1]  # Adjust these values for your needs
-#for row in aStation:
-#    formatted_row = " | ".join(f"{str(cell):{widths[i]}}" for i, cell in enumerate(row))
-#    formatted_row = formatted_row[:215]  # Get first 215 characters, to fit in the console without wrapping
-#    print(formatted_row)
 print("---- aStation loaded from file: " + allStations_filepath + " ----")
 
 # ALL STATIONS LOAD BLOCK END ***********************************************
@@ -1659,7 +1657,6 @@ def on_select(event):
     print(f"Data: {event.data}")
     
     # prevent crashing if aStation is deleted
-    # prevent crashing if aStation is deleted
     if pollFlag:
         if justDeletedFlag:
             print("justDeletedFlag is True, so returning")
@@ -1683,7 +1680,6 @@ def on_select(event):
             print("Extra window closed")
 
         eventFlag = True # if on_select() is called by selecting a combobox entry
-#        stopFlag = False # if this call of on_select() should be implemented
         selected_value_last = selected_value
         selected_value = custom_combo.get()
         combobox_index = custom_combo.current()
@@ -1722,8 +1718,6 @@ def on_select(event):
     # setting stop flag, this prevents on_select() from running again
     # "mysterious" code due to timing issues
     if eventFlag:
-#        stopFlag = False
-
         # inform user that a station is being started
         text = "Please be patient, the station *" +  StationName + "*is being started"
         text_rows = text.split("*")
@@ -1734,18 +1728,9 @@ def on_select(event):
         text_box.config(state=tk.DISABLED)
         root.update_idletasks()
 
-#    else: # if (not eventFlag)   
-#        if stopFlag:
-#            stopFlag=False
-#            print("SECOND STOP FAIL")
-#        elif (timeInterval < refreshTime-2.0):
-#            stopFlag = True    
-#            print("FIRST STOP")
-#    print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
 
- #   if stopFlag==False:
- #       # run selected radio station stream, and return associated textual information 
+    # run selected radio station stream, and return associated textual information 
     try:
         print("\nWill run:", StationFunction)
         text = StationFunction(browser,nNum,sPath,sClass,nType)
@@ -1791,14 +1776,6 @@ def on_select(event):
     else:
         print("DID NOT schedule on_select to run in the future")
     print("")
-
- #   else: #if stopFlag==True
-        # Makes the scheduled call to on_select() do nothing if
-        # it occurs after another station stream has been started
-#        stopFlag = False
-#        print("selected_value:",selected_value_last)
-#        print("DID STOPPING BIT")
-#        print("")
 
 
 
@@ -1889,8 +1866,6 @@ def on_select2(event):
     # setting stop flag, this prevents on_select2 from running again
     # "mysterious" code due to timing issues
     if eventFlag:
- #       stopFlag = False
-
         if selected_index != -1:
             # inform user that a station is being started
             text = "Please be patient, the station *" +  StationName + "*is being started"
@@ -1902,17 +1877,8 @@ def on_select2(event):
             text_box.config(state=tk.DISABLED)
             root.update_idletasks()
 
-#    else: # if (not eventFlag)   
-#        if stopFlag:
-#            stopFlag=False
-#            print("SECOND STOP FAIL")
-#        elif (timeInterval < refreshTime-2.0):
-#            stopFlag = True    
-#            print("FIRST STOP")
-#    print("stopFlag:",stopFlag)
     print("eventFlag:",eventFlag)
 
- #   if stopFlag==False:
     print("Selected:", selected_value)
     print("Index:", selected_index)
     print("Button index:", buttonIndex)
@@ -2026,10 +1992,6 @@ def on_select2(event):
         with open(filepath, 'w') as file:
             file.write(str(buttonIndex))
 
-#    else: #if stopFlag==True
-#        print("selected_value:",selected_value_last)
-#        print("DID STOPPING BIT")
-#        print("")
 
 
 # called when playlist button i is in focus and the Enter key is pressed.
@@ -2041,7 +2003,6 @@ def on_button_press(event, i):
     time.sleep(1)
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-  # print("Button " + str(i) +" pressed")
 
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i

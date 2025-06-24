@@ -8,9 +8,9 @@ ec Radio Sucre,24401
 ab Positively 70's,1528
 fr R2V - La Radio 2 Valenciennes,29485
 au Cruise 1323 Adelaide,4371
-de Hits4you.fm,20421
-us Romantica Stereo Dj Pajaro Herrera,69783
-pe Radio Celestial,49258
+it Radio Club 91,41384
+us Romantica Stereo Dj Pajaro Herrera,69780
+pe Radio Celestial,49256
 cr Radio Extrema,18707
 de STAR FM Berlin,22326
 br Líder FM,7530

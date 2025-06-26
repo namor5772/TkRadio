@@ -1643,6 +1643,7 @@ def on_select(event):
     if stopLastStream:
         stopLastStream = False
         print("stopLastStream is True, so returning")
+        print("---- on_select2() finished ---------------------------------------------\n")
         return
 
     # determine the timeInterval between calling on_select() or on_select2()
@@ -1661,7 +1662,8 @@ def on_select(event):
     if pollFlag:
         if justDeletedFlag:
             print("justDeletedFlag is True, so returning")
-            justDeletedFlag = False;    
+            justDeletedFlag = False;
+            firstRun = True    
             print("---- on_select() finished ---------------------------------------------\n")
             return    
 
@@ -1778,8 +1780,8 @@ def on_select(event):
             root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
             print("DID SCHEDULE on_select to run in the future")
         else:
-  #          justDeletedFlag = True
             print("Streaming==FALSE so DID NOT schedule on_select to run in the future")
+            firstRun = True 
     else:
         print("pollFlag==False so DID NOT schedule on_select to run in the future")
 
@@ -1818,7 +1820,8 @@ def on_select2(event):
     if pollFlag:
         if justDeletedFlag:
             print("justDeletedFlag is True, so returning")
-            justDeletedFlag = False;    
+            justDeletedFlag = False;
+            firstRun = True    
             print("---- on_select2() finished ---------------------------------------------\n")
             return    
 
@@ -1936,8 +1939,8 @@ def on_select2(event):
                     root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
                     print("DID SCHEDULE on_select2 to run in the future")
                 else:    
-#                    justDeletedFlag = True
                     print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
+                    firstRun = True
             else:    
                 print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
 
@@ -2000,8 +2003,8 @@ def on_select2(event):
                 root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
                 print("DID SCHEDULE on_select2 to run in the future")
             else:    
- #               justDeletedFlag = True
                 print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
+                firstRun = True
         else:    
             print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
 
@@ -2191,7 +2194,7 @@ def toggle_bluetooth(event):
         BTstatusButton.config(bg="light green")
         onBluetooth = True; line1 = "1"
         connect_bluetooth()
-        label4.config(text=f"")
+    label4.config(text=f"")
     with open(filepath3, 'w') as file:
         file.write(line1 + '\n')
         file.write(currentPair + '\n')
@@ -2213,6 +2216,7 @@ def toggle_pollStatus(event):
         else: #if sText=="Polling is OFF"
             pollStatusButton.config(text="Polling is ON")
             pollStatusButton.config(bg="light green")
+            firstRun = True
             pollFlag = True; line = "1"
     else:    
         sText = setupButton.cget("text")
@@ -2223,6 +2227,7 @@ def toggle_pollStatus(event):
         else: #if sText=="OFF"
             setupButton.config(text="ON")
             setupButton.config(bg="light green")
+            firstRun = True
             pollFlag = True; line = "1"
     with open(filepath4, 'w') as file:
         file.write(line + '\n')
@@ -2560,18 +2565,19 @@ def delete_action2():
 
 # the actual delete action when the [Delete] button is pressed AND confirmed
 def delete_action():
-    print("Deletion confirmed!")  # Replace with your actual deletion logic
+    print("********** delete_action() started\n")
     global ExtraWindowFlag
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
     print(f"Deleting station at index: {delIndex}")
     global StationName, saveStationsFlag,justDeletedFlag
+    StationName = aStation[delIndex][0]  # Get the station name to be deleted
     if pollFlag:
         # to prevent on_select or on_select2 from fully running again (but with correct processing!)
-        justDeletedFlag = True 
+        justDeletedFlag = True
     saveStationsFlag = True # if true then save stations to file (at shutdown)
     del aStation[delIndex] # Remove the station from the aStation list
-
+ 
     # Update the combobox values (so the deleted station is no longer shown)
     global aStringArray
     aStringArray = []
@@ -2659,6 +2665,7 @@ def delete_action():
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+    print("********** delete_action() finished\n")
 
 
 def delete_button_pressed(event):

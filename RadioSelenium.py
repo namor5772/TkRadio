@@ -2024,13 +2024,22 @@ def on_select2(event):
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-    time.sleep(1)
+    time.sleep(1) 
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
 
     global buttonFlag;  buttonFlag = True
     global buttonIndex; buttonIndex = i
+    print(f"\nPlaylist button {buttonIndex} pressed")
+    global justDeletedFlag
+    copyFlag = justDeletedFlag
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+    if copyFlag:
+        # forces pressing this playlist button twice if necessary
+        print(f"Playlist button {buttonIndex} pressed AGAIN")
+        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+    print(f"COMPLETED pressing the Playlist button {buttonIndex}")
+
 
 
 # called when playlist button i is in focus and the Delete key is pressed.
@@ -2879,7 +2888,13 @@ class CustomCombobox(tk.Frame):
             self.close_dropdown()
             self.entry.focus_set()
             if self.name=="custom_combo":
+                print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
+                copyFlag = justDeletedFlag
                 on_select(CustomEvent("Auto", self, "ComboBox Event"))
+                if copyFlag:
+                    # to force pressing the RETURN button twice if necessary
+                    print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION - AGAIN ***")
+                    on_select(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_bt":    
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_wifi":
@@ -3076,7 +3091,7 @@ for i in range(numButtons):
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
     button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
-    button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  
+#    button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  

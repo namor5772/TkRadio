@@ -1,18 +1,18 @@
-de Mardin,20702
-es Limite FM,25574
-ABC NewsRadio,65
-de Klassik Radio SCHILLER Berlin,20594
-us KICP 105.9,62873
-sv Radio Sensacional El Salvador,54471
-ec Radio Sucre,24378
-ab Positively 70's,1517
-fr R2V - La Radio 2 Valenciennes,29459
-au Cruise 1323 Adelaide,4357
-it Radio Club 91,41356
-us Romantica Stereo Dj Pajaro Herrera,69736
-pl RMF Love,51793
-cr Radio Extrema,18686
-br Radio Nordestina,10899
-br Líder FM,7515
-gb 24-7 Reggae,31032
-pl ESKA2 Nowy Sącz,51323
+de FFH FRÜHLINGS FEELING,20152
+-- EMPTY 1 --,-1
+-- EMPTY 2 --,-1
+-- EMPTY 3 --,-1
+-- EMPTY 4 --,-1
+-- EMPTY 5 --,-1
+-- EMPTY 6 --,-1
+-- EMPTY 7 --,-1
+tw 24/7 Jazz Radio 當代爵士音樂,55983
+us a.m. ambient,57323
+bg Радио Бумеранг (Bumerang FM),5733
+gr Coffee Web Radio,35307
+br GFM Salvador,7233
+pt Radio Gospel Da Covilha,52554
+au Coles Radio,4343
+us KKDA Dallas Korean Radio,63216
+fr alefamusic,27389
+tt Woods Hit Radio AC,55979

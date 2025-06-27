@@ -2558,13 +2558,9 @@ def random_button_pressed(event):
     print(f"Event argument: {event}")
 
 
-# the actual delete action when the [Delete] button is pressed AND confirmed
-def delete_action2():
-    print("Deletion confirmed!")  # Replace with your actual deletion logic
-
-
-# the actual delete action when the [Delete] button is pressed AND confirmed
-def delete_action():
+# The actual delete action undertaken when the Delete key is pressed
+# when the [DEL] button has focus
+def delete_key_pressed(event):
     print("********** delete_action() started\n")
     global ExtraWindowFlag
     delIndex = custom_combo.current()  # Get the current index of the combobox
@@ -2668,11 +2664,6 @@ def delete_action():
     print("********** delete_action() finished\n")
 
 
-def delete_button_pressed(event):
-    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
-    ConfirmDeleteDialog(root, delete_action, deleteButton)
-
-  
 def save_button_pressed(event):
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
@@ -2878,6 +2869,7 @@ class CustomCombobox(tk.Frame):
         When Enter is pressed, confirm the selection, update the value,
         close the dropdown, and maintain focus on the entry.
         """
+        global justDeletedFlag
         if self.dropdown:
             current = self.listbox.curselection()
             if current:
@@ -2894,7 +2886,12 @@ class CustomCombobox(tk.Frame):
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
         else: # dropdown selection was not selected with the Enter key
             print("\n*** RND BUTTON PRESSED ***")
+            copyFlag = justDeletedFlag
             on_select(CustomEvent("Auto", self, "ComboBox Event"))
+            if copyFlag:
+                # to force pressing the RND button twice if necessary
+                print("\n*** RND BUTTON PRESSED AGAIN ***")
+                on_select(CustomEvent("Auto", self, "ComboBox Event"))
         return "break"
 
     def on_escape(self, event):
@@ -2943,59 +2940,6 @@ class CustomCombobox(tk.Frame):
             self.var.set(selected_value)
         self.close_dropdown()
         self.entry.focus_set()
-
-
-# Thanks to Copilot (Think Deeper) AI, not perfect since had to make some changes
-class ConfirmDeleteDialog(tk.Toplevel):
-    def __init__(self, parent, on_confirm, del_button):
-        super().__init__(parent)
-        self.title(" Confirm deletion?")
-        self.transient(parent)
-        self.grab_set()
-        self.resizable(False, False)
-        self.del_button = del_button
-        self.on_confirm = on_confirm
-        if GPIO:
-            self.geometry("210x1+491+108")
-        else:
-            self.geometry("163x37+478+62")
-        self.bind("<Escape>", lambda e: self.cancel())
-
-        self.ok_btn = tk.Button(self, text="OK", width=8, command=self.ok)
-        self.ok_btn.config(bg="gray90")
-        self.ok_btn.bind("<Return>", lambda e: self.ok())
-
-        self.cancel_btn = tk.Button(self, text="Cancel", width=8, command=self.cancel)
-        self.cancel_btn.config(bg="gray90")
-        self.cancel_btn.bind("<Return>", lambda e: self.cancel())
-
-        # Bind focus events
-        for btn in (self.ok_btn, self.cancel_btn):
-            btn.bind("<FocusIn>", lambda e, b=btn: b.config(bg="lightblue"))
-            btn.bind("<FocusOut>", lambda e, b=btn: b.config(bg="gray90"))
-
-        # Place the buttons in the dialog
-        if GPIO:
-            self.ok_btn.place(x=10, y=14)
-            self.cancel_btn.place(x=110, y=14)
-        else:
-            self.ok_btn.place(x=11, y=2)
-            self.cancel_btn.place(x=84, y=2)
-        
-        self.cancel_btn.focus_set()
-        self.protocol("WM_DELETE_WINDOW", self.cancel)
-        self.wait_window()
-     
-    def ok(self):
-        self.destroy()
-        print("Deletion CONFIRMED.")
-        self.on_confirm()
-        self.del_button.focus_set()
-
-    def cancel(self):
-        self.destroy()
-        print("Deletion CANCELED.")
-        self.del_button.focus_set()
 
 
 ##########################################
@@ -3059,7 +3003,7 @@ else:
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
 randomButton.bind("<Return>", random_button_pressed)  
-randomButton.bind("<ButtonPress>", random_button_pressed)  
+#randomButton.bind("<ButtonPress>", random_button_pressed)  
 randomButton.bind("<FocusIn>", on_focus_dostuff)
 randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 
@@ -3075,9 +3019,7 @@ else:
 
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
-deleteButton.config(command=delete_button_pressed)
-deleteButton.bind("<Return>", delete_button_pressed)  
-deleteButton.bind("<ButtonPress>", delete_button_pressed)  
+deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button 
 deleteButton.bind("<FocusIn>", on_focus_dostuff)
 deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 

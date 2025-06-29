@@ -2556,6 +2556,7 @@ def on_focus_out_dostuff(event):
 
 
 def random_button_pressed(event):
+    print("\n*** REAL [RND] BUTTON PRESSED ***")
     numStations = len(aStation)
     randomStation = random.randint(0, numStations - 1)
     custom_combo.set(aStation[randomStation][0])  # Set the combobox to a random station
@@ -2565,12 +2566,13 @@ def random_button_pressed(event):
     print(f"Randomly selected station index: {randomStation}")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
+    print("\n*** COMPLETED - REAL [RND] BUTTON PRESSED ***\n")
 
 
 # The actual delete action undertaken when the Delete key is pressed
 # when the [DEL] button has focus
 def delete_key_pressed(event):
-    print("********** delete_action() started\n")
+    print("\n*** [DEL] BUTTON PRESSED ***")
     global ExtraWindowFlag
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
@@ -2670,10 +2672,11 @@ def delete_key_pressed(event):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
-    print("********** delete_action() finished\n")
+    print("*** COMPLETED - [DEL] BUTTON PRESSED ***\n")
 
 
 def save_button_pressed(event):
+    print("\n*** [SAVE] BUTTON PRESSED ***")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
     text_content = text_box.get("1.0", "end-1c")  # Get all text from the textbox
@@ -2682,6 +2685,7 @@ def save_button_pressed(event):
         file.write(f"--- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
         file.write(text_content)
         file.write("\n")
+    print("*** COMPLETED - [SAVE] BUTTON PRESSED ***\n")
      
 
 # Thanks to Copilot (Think Deeper) AI 
@@ -2895,18 +2899,20 @@ class CustomCombobox(tk.Frame):
                     # to force pressing the RETURN button twice if necessary
                     print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION - AGAIN ***")
                     on_select(CustomEvent("Auto", self, "ComboBox Event"))
+                print("\n*** COMPLETED - RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
             elif self.name=="custom_combo_bt":    
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_wifi":
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
         else: # dropdown selection was not selected with the Enter key
-            print("\n*** RND BUTTON PRESSED ***")
+            print("\n*** Return key pressed on unopened combobox ***")
             copyFlag = justDeletedFlag
             on_select(CustomEvent("Auto", self, "ComboBox Event"))
             if copyFlag:
                 # to force pressing the RND button twice if necessary
-                print("\n*** RND BUTTON PRESSED AGAIN ***")
+                print("\n*** Return key pressed on unopened combobox AGAIN ***")
                 on_select(CustomEvent("Auto", self, "ComboBox Event"))
+            print("*** COMPLETED - Return key pressed on unopened combobox ***\n")
         return "break"
 
     def on_escape(self, event):
@@ -3031,7 +3037,6 @@ if GPIO:
 else:
     deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=550-7 , y=0, height=25)
-
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
 deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button 
@@ -3049,7 +3054,7 @@ else:
 saveButton.config(takefocus=True)
 saveButton.config(bg="gray90")
 saveButton.bind("<Return>", save_button_pressed)  
-saveButton.bind("<ButtonPress>", save_button_pressed)  
+#saveButton.bind("<ButtonPress>", save_button_pressed)  
 saveButton.bind("<FocusIn>", on_focus_dostuff)
 saveButton.bind("<FocusOut>", on_focus_out_dostuff)
 
@@ -3064,10 +3069,10 @@ else:
 setupButton.config(takefocus=True)
 if GPIO:
     setupButton.bind("<Return>", show_setup_form)  
-    setupButton.bind("<ButtonPress>", show_setup_form)  
+#    setupButton.bind("<ButtonPress>", show_setup_form)  
 else:
     setupButton.bind("<Return>", toggle_pollStatus)  
-    setupButton.bind("<ButtonPress>", toggle_pollStatus)  
+#    setupButton.bind("<ButtonPress>", toggle_pollStatus)  
 setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
    
@@ -3122,7 +3127,7 @@ if GPIO:
     mainButton.place(x=768, y=0, width=25, height=25)
     mainButton.config(takefocus=True)
     mainButton.bind("<Return>", show_root_form)  
-    mainButton.bind("<ButtonPress>", show_root_form)  
+    #mainButton.bind("<ButtonPress>", show_root_form)  
     mainButton.bind("<FocusIn>", on_focus_dostuff)
     mainButton.bind("<FocusOut>", on_focus_out_dostuff)
 
@@ -3131,7 +3136,7 @@ if GPIO:
     BTstatusButton.place(x=15, y=10+25, height=25)
     BTstatusButton.config(takefocus=True)
     BTstatusButton.bind("<Return>", toggle_bluetooth)  
-    BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
+    #BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
 
     # button & label to connect to currently paired bluetooth speakers
     cX = 15; cY = 10+25+30
@@ -3140,7 +3145,7 @@ if GPIO:
     connectButton.place(x=cX, y=cY, height=25)
     connectButton.config(takefocus=True)
     connectButton.bind("<Return>", _connect_bluetooth)  
-    connectButton.bind("<ButtonPress>", _connect_bluetooth)  
+    #connectButton.bind("<ButtonPress>", _connect_bluetooth)  
     connectButton.bind("<FocusIn>", on_focus_dostuff)
     connectButton.bind("<FocusOut>", on_focus_out_dostuff)
     label4 = tk.Label(setup, text="")
@@ -3152,7 +3157,7 @@ if GPIO:
     pairButton.place(x=cX, y=cY+60, height=25)
     pairButton.config(takefocus=True)
     pairButton.bind("<Return>", pair_bluetooth)  
-    pairButton.bind("<ButtonPress>", pair_bluetooth)
+    #pairButton.bind("<ButtonPress>", pair_bluetooth)
     pairButton.bind("<FocusIn>", on_focus_dostuff)
     pairButton.bind("<FocusOut>", on_focus_out_dostuff)
     label6 = tk.Label(setup, text="")
@@ -3175,7 +3180,7 @@ if GPIO:
     pollStatusButton.place(x=cX+400, y=10+25, height=25)
     pollStatusButton.config(takefocus=True)
     pollStatusButton.bind("<Return>", toggle_pollStatus)  
-    pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
+    #pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
 
     # button to enable scanning for wifi devices (which will appear in above combobox)
     wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
@@ -3183,7 +3188,7 @@ if GPIO:
     wifiButton.place(x=cX+400, y=cY-30, height=25)
     wifiButton.config(takefocus=True)
     wifiButton.bind("<Return>", find_wifi)  
-    wifiButton.bind("<ButtonPress>", find_wifi)
+    #wifiButton.bind("<ButtonPress>", find_wifi)
     wifiButton.bind("<FocusIn>", on_focus_dostuff)
     wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
     label7 = tk.Label(setup, text="")

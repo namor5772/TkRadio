@@ -337,7 +337,7 @@ firefox_options = Options()
 # below is the headless width and height, if not headless +15 & 8 respectively
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 # 'cleans' browser between opening station websites
@@ -2091,9 +2091,11 @@ def on_button_delete(event, i):
 # In particular it displays the station logo on the button and links it to the station.
 def on_button_insert(event, i):
     global buttonIndex; buttonIndex = i
-    
+
     # change aStation2[] list to reflect the addition
-    global aStation2
+    global combobox_index, aStation2
+    combobox_index = custom_combo.current()
+    print(f"combobox_index: {combobox_index}")
     if (combobox_index != -1):
         print("station added")    
         global addFlag
@@ -2102,6 +2104,7 @@ def on_button_insert(event, i):
         lastStation = aStation[combobox_index][0]
         aStation2[buttonIndex][0] = lastStation
         aStation2[buttonIndex][1] = combobox_index
+        print("Adding station:", lastStation, "with combobox index:", combobox_index)
 
         # This will play the newly added station (from the combobox) as well as saving the icon
         # to its playlist button number
@@ -2574,10 +2577,11 @@ def random_button_pressed(event):
 def delete_key_pressed(event):
     print("\n*** [DEL] BUTTON PRESSED ***")
     global ExtraWindowFlag
+    global StationName, saveStationsFlag, justDeletedFlag
+    global aStation, aStation2
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
     print(f"Deleting station at index: {delIndex}")
-    global StationName, saveStationsFlag,justDeletedFlag
     StationName = aStation[delIndex][0]  # Get the station name to be deleted
     if pollFlag:
         # to prevent on_select or on_select2 from fully running again (but with correct processing!)

@@ -1,13 +1,13 @@
--- EMPTY 0 --,-1
--- EMPTY 1 --,-1
--- EMPTY 2 --,-1
--- EMPTY 3 --,-1
--- EMPTY 4 --,-1
+ABC Radio Sydney NSW,24
+ABC Radio National LIVE,4
+ABC NewsRadio,76
+ABC Classic LIVE,19
+ABC Classic2,0
 -- EMPTY 5 --,-1
 -- EMPTY 6 --,-1
 -- EMPTY 7 --,-1
 -- EMPTY 8 --,-1
--- EMPTY 9 --,-1
+Cruise 1323,87
 -- EMPTY 10 --,-1
 -- EMPTY 11 --,-1
 -- EMPTY 12 --,-1

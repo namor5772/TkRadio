@@ -3,10 +3,10 @@ ABC Radio National LIVE,4
 ABC NewsRadio,76
 ABC Classic LIVE,19
 ABC Classic2,0
--- EMPTY 5 --,-1
+hu Papageno,38138
 -- EMPTY 6 --,-1
 -- EMPTY 7 --,-1
--- EMPTY 8 --,-1
+au Switch Energy,4820
 Cruise 1323,87
 -- EMPTY 10 --,-1
 -- EMPTY 11 --,-1

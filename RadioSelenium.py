@@ -416,7 +416,6 @@ Streaming = True # if streaming is working
 # other global variables
 rootFlag = True # False indicates that you are in the secondary window
 pollFlag = False # if true then poll website for program text and picture changes 
-saveStationsFlag = False # if true then save stations to file (at shutdown)
 justDeletedFlag = False # if true then just deleted a station from the aStation[] list
 stopLastStream = False # if true then stop current stream call
 firstRun = True # if true then first run of a station stream
@@ -1615,18 +1614,9 @@ reverse_function_map = {v: k for k, v in function_map.items()}  # Assuming funct
 
 # do this when closing the window/app
 def on_closing():
+    print("\n---- on_closing() entered ---------------------------------------------")
     if GPIO:
         GPIO.cleanup()
-
-    print("---- on_closing() entered ---------------------------------------------")
-    if saveStationsFlag:
-        # save the modifed aStation list back to a csv file
-        print("---- Saving the modified aStation list to file: " + allStations_filepath + " ----")
-        with open(allStations_filepath, mode="w", newline="", encoding="utf-8") as csvfile:
-            writer = csv.writer(csvfile)
-            for row in aStation:
-                row = [reverse_function_map.get(cell, cell) for cell in row]  # Convert function references to strings
-                writer.writerow(row)  # Write row to CSV
 
     browser.quit() # close the WebDriver
     root.destroy() # destroy GUI   
@@ -1897,10 +1887,8 @@ def on_select2(event):
     print("Index:", selected_index)
     print("Button index:", buttonIndex)
 
+    # run selected radio station stream, and return associated textual information 
     if selected_index != -1:
-        print("selected_index != -1")
-
-        # run selected radio station stream, and return associated textual information 
         try:
             print("\nWill run:", StationFunction)
             text = StationFunction(browser,nNum,sPath,sClass,nType)
@@ -2577,7 +2565,7 @@ def random_button_pressed(event):
 def delete_key_pressed(event):
     print("\n*** [DEL] BUTTON PRESSED ***")
     global ExtraWindowFlag
-    global StationName, saveStationsFlag, justDeletedFlag
+    global StationName, justDeletedFlag
     global aStation, aStation2
     delIndex = custom_combo.current()  # Get the current index of the combobox
 
@@ -2586,8 +2574,16 @@ def delete_key_pressed(event):
     if pollFlag:
         # to prevent on_select or on_select2 from fully running again (but with correct processing!)
         justDeletedFlag = True
-    saveStationsFlag = True # if true then save stations to file (at shutdown)
-    del aStation[delIndex] # Remove the station from the aStation list
+
+    # Remove the station from the aStation list & save the modifed list back to a csv file
+    del aStation[delIndex]
+    print("---- Saving the modified aStation list to file: " + allStations_filepath + " ----")
+    with open(allStations_filepath, mode="w", newline="", encoding="utf-8") as csvfile:
+        writer = csv.writer(csvfile)
+        for row in aStation:
+            row = [reverse_function_map.get(cell, cell) for cell in row]  # Convert function references to strings
+            writer.writerow(row)  # Write row to CSV
+    print("---- COMPLETED Saving the modified aStation list file")
  
     # Update the combobox values (so the deleted station is no longer shown)
     global aStringArray

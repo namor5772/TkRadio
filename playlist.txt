@@ -3,10 +3,10 @@ ABC Radio National LIVE,4
 ABC NewsRadio,76
 ABC Classic LIVE,19
 ABC Classic2,0
-hu Papageno,38138
+-- EMPTY 5 --,-1
 -- EMPTY 6 --,-1
--- EMPTY 7 --,-1
-au Switch Energy,4820
+hu Papageno,38133
+au Switch Energy,4819
 Cruise 1323,87
 -- EMPTY 10 --,-1
 -- EMPTY 11 --,-1
@@ -15,4 +15,4 @@ Cruise 1323,87
 -- EMPTY 14 --,-1
 -- EMPTY 15 --,-1
 -- EMPTY 16 --,-1
--- EMPTY 17 --,-1
+fr Radio Bon Sens,29590

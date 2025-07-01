@@ -23,12 +23,12 @@ import os
 import csv
 import re
 import random
-from datetime import datetime
 try:
     import RPi.GPIO as GPIO
 except ModuleNotFoundError:
     GPIO = None
 
+from datetime import datetime
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
@@ -235,11 +235,11 @@ def rotary_callback(channel):
         # If DT is different from current CLK state, rotation is clockwise.
         if current_dt != current_clk:
             counter += 1
-            update_label("Clockwise: " + str(counter))
+            update_label("R" + str(counter))
             rightFlag = True
         else:
             counter -= 1
-            update_label("Counter-clockwise: " + str(counter))
+            update_label("L" + str(counter))
             rightFlag = False
 
         # only actually do stuff if counter is even    
@@ -2976,8 +2976,8 @@ root.update_idletasks()
 
 # Create a label to display actions or the counter value.
 if GPIO:
-    labelRE = tk.Label(root, text="Counter: 0")
-    labelRE.place(x=500, y=26)
+    labelRE = tk.Label(root, text="  0")
+    labelRE.place(x=700, y=26)
 
     # Create a list of labels for the root/main form to display pressable keys. They are
     # at the top of the main form (one bank of sizeBank keys is displayed at a time)

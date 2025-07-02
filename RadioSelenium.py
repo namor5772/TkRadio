@@ -1,16 +1,7 @@
 '''
-DONE - 1. In Commercial2 pick up feed error on 2 tab stations
-DONE - 2. implement delete station button with adjustment for playlist buttons
-    DONE - Some strange bugs that cause no problem but need to be fixed !
-DONE - 3. implement random station selection button
-4. Think about easier searching of the very large station list
+1. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
-DONE - 5. Investigate false positive detection of <<< Streaming is not working >>> 
-    "No such element" exception    
-DONE - 6. Save program text on demand with time stamp to text file, via SAVE button
-DONE - 7. Think about right to left text stations, like in Arabic or Hebrew? within Commercial2, prevent 
-    errors or identify and handle
-8. Russian and China originating internet stations?   
+2. Russian and China originating internet stations?   
 '''
 
 import subprocess

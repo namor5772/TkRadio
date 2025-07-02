@@ -5,7 +5,7 @@ ABC Classic LIVE,19
 ABC Classic2,0
 -- EMPTY 5 --,-1
 -- EMPTY 6 --,-1
-hu Papageno,38133
+hu Papageno,38132
 au Switch Energy,4819
 Cruise 1323,87
 -- EMPTY 10 --,-1
@@ -15,4 +15,4 @@ Cruise 1323,87
 -- EMPTY 14 --,-1
 -- EMPTY 15 --,-1
 -- EMPTY 16 --,-1
-fr Radio Bon Sens,29590
+fr Radio Bon Sens,29589

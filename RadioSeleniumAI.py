@@ -2,6 +2,8 @@
 1. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
 2. Russian and China originating internet stations?   
+
+FIX program image size for ABC CLASSIC and ABC Classic2
 '''
 
 import subprocess
@@ -2572,6 +2574,12 @@ def random_button_pressed(event):
 # when the [DEL] button has focus
 def delete_key_pressed(event):
     print("\n*** [DEL] BUTTON PRESSED ***")
+    if not GPIO:
+        text_box_ai.config(state=tk.NORMAL)      # unlock it
+        text_box_ai.delete("1.0", tk.END)        # clear all content
+        text_box_ai.config(state=tk.DISABLED)    # lock it again
+        print("DELETED text_box_ai contents")
+
     global ExtraWindowFlag
     global StationName, justDeletedFlag
     global aStation, aStation2
@@ -2707,7 +2715,14 @@ def ai_button_pressed(event):
     print(f"Current station: {currentStationName} - URL: {currentStationURL}")
 
     inputStr = currentStationName + " with URL " + currentStationURL
-    inputStr = "Please tell me in detail in English and under 450 words about the internet radio station "+inputStr
+    inputStr = (
+        "Please tell me in detail in English and under 500 words about the internet radio station "
+        + inputStr +
+        "make sure to mention what language it broadcasts in and a Summary Table at the end" +
+        "which should definately fit in 95 characters or less per line " +
+        "and have two columns - Feature and Description, " +
+        "make sure the column dividers line up vertically"
+    )    
 
     def worker():
         try:
@@ -2718,11 +2733,14 @@ def ai_button_pressed(event):
             text = response.output_text
         except Exception as e:
             text = f"Error: {e}"
+        print(f"\n*** AI response generated ***\n")    
 
         # Schedule update on the main thread
         text_box_ai.after(0, lambda: display_text(text))
 
+    print("Starting AI processing in a separate thread...")    
     threading.Thread(target=worker, daemon=True).start()
+
     print("*** COMPLETED - [AI] BUTTON PRESSED ***\n")
 
 

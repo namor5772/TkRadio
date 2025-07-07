@@ -1734,7 +1734,7 @@ def on_select(event):
     try:
         print("\nWill run:", StationFunction)
         text = StationFunction(browser,nNum,sPath,sClass,nType)
-        text = sPath + "*" + StationName + "*" + text + "* *[" + timeIntervalStr + "]"
+        text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
         text_rows = text.split("*")
         if len(text_rows)>1:
             if text_rows[0]==text_rows[1]:
@@ -1902,7 +1902,7 @@ def on_select2(event):
         try:
             print("\nWill run:", StationFunction)
             text = StationFunction(browser,nNum,sPath,sClass,nType)
-            text = sPath + "*" + StationName + "*" + text + "* *[" + timeIntervalStr + "]"
+            text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
             text_rows = text.split("*")
             if len(text_rows)>1:
                 if text_rows[0]==text_rows[1]:
@@ -1963,7 +1963,7 @@ def on_select2(event):
         browser.get(refresh_http)
         time.sleep(2)
         text = selected_value + "*No station playing"
-        text = text + "* *[" + timeIntervalStr + "]"
+        #text = text + "* *[" + timeIntervalStr + "]"
         text_rows = text.split("*")
 
         # Make text box editable, so contents can be deleted and rewritten
@@ -2714,26 +2714,43 @@ def ai_button_pressed(event):
     currentStationURL = aStation[currentIndex][4]
     print(f"Current station: {currentStationName} - URL: {currentStationURL}")
 
-    inputStr = currentStationName + " with URL " + currentStationURL
+    text_box_content = text_box.get("1.0", tk.END)   # "1.0" means line 1, character 0
+    text_box_content = text_box_content.strip()  # remove trailing newline
+ 
     inputStr = (
-        "Please tell me in detail in English and under 500 words about the internet radio station "
-        + inputStr +
-        "make sure to mention what language it broadcasts in and a Summary Table at the end" +
-        "which should definately fit in 95 characters or less per line " +
-        "and have two columns - Feature and Description, " +
-        "make sure the column dividers line up vertically"
+        text_box_content + 
+        ": Using the above info tell me about this streaming radio Station in plaintext format and under 400 words. " +
+        "Include a summary table with two columns: Feature and Description " +
+        "It should fit in 95 characters or less per line. " +
+        "Make sure the column dividers line up vertically." +
+        "Mention the language it broadcasts in. " +
+        "Translate the response to English if necessary."
     )    
+
+    print(f"input into AI:\n{inputStr}\n")
 
     def worker():
         try:
-            response = client.responses.create(
-                model="gpt-4.1",
-                input=inputStr
+            messages = [
+                # 1. System prompt: sets overall behavior
+                {"role": "system",
+                "content": "You are ChatGPT, a large language model trained by OpenAI. "
+                            "Answer concisely and helpfully."},
+
+                # 2. First user message
+                {"role": "user",
+                "content": inputStr}
+            ]
+
+            response =  client.chat.completions.create(
+                model="gpt-4o-mini",  # or gpt-4.1, gpt-4o, gpt-4o-128k, etc.
+                messages=messages,
+                temperature=0.7,
+                top_p=1.0
             )
-            text = response.output_text
+            text = response.choices[0].message.content
         except Exception as e:
             text = f"Error: {e}"
-        print(f"\n*** AI response generated ***\n")    
 
         # Schedule update on the main thread
         text_box_ai.after(0, lambda: display_text(text))
@@ -2745,10 +2762,10 @@ def ai_button_pressed(event):
 
 
 def display_text(s: str):
-    text_box_ai.config(state=tk.NORMAL)          # allow editing
-    text_box_ai.delete("1.0", tk.END)            # clear old content
-    text_box_ai.insert(tk.END, s)             # insert new content
-    text_box_ai.config(state=tk.DISABLED)        # make read-only again
+    text_box_ai.config(state=tk.NORMAL)   # allow editing
+    text_box_ai.delete("1.0", tk.END)     # clear old content
+    text_box_ai.insert(tk.END, s)         # insert new content
+    text_box_ai.config(state=tk.DISABLED) # make read-only again
     root.update_idletasks()
 
 

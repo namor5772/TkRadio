@@ -2718,13 +2718,7 @@ def ai_button_pressed(event):
     text_box_content = text_box_content.strip()  # remove trailing newline
  
     inputStr = (
-        text_box_content + 
-        ": Using the above info tell me about this streaming radio Station in plaintext format and under 400 words. " +
-        "Include a summary table with two columns: Feature and Description " +
-        "It should fit in 95 characters or less per line. " +
-        "Make sure the column dividers line up vertically." +
-        "Mention the language it broadcasts in. " +
-        "Translate the response to English if necessary."
+        text_box_content
     )    
 
     print(f"input into AI:\n{inputStr}\n")
@@ -2734,19 +2728,18 @@ def ai_button_pressed(event):
             messages = [
                 # 1. System prompt: sets overall behavior
                 {"role": "system",
-                "content": "You are ChatGPT, a large language model trained by OpenAI. "
-                            "Answer concisely and helpfully."},
+                 "content": "You are a broadcast historian and researcher. Respond in clean plaintext format, under 400 words. "
+                 "Always include a well-aligned summary table, with 2 columns: Feature and Description. "
+                 "The table must fit within 95 characters per line."},
 
                 # 2. First user message
                 {"role": "user",
-                "content": inputStr}
+                 "content": inputStr}
             ]
 
             response =  client.chat.completions.create(
-                model="gpt-4o-mini",  # or gpt-4.1, gpt-4o, gpt-4o-128k, etc.
+                model="gpt-4.1",
                 messages=messages,
-                temperature=0.7,
-                top_p=1.0
             )
             text = response.choices[0].message.content
         except Exception as e:

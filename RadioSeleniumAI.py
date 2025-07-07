@@ -2696,10 +2696,13 @@ def save_button_pressed(event):
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
     text_content = text_box.get("1.0", "end-1c")  # Get all text from the textbox
+    text_content_ai = text_box_ai.get("1.0", "end-1c")  # Get all text from the AI textbox
+    if text_content_ai.strip() != "": text_content_ai = "\nAI Generated Content:\n" + text_content_ai+"\n"
     with open(StationLogs_filepath, "a", encoding="utf-8") as file:
         file.write("*******************************************************\n")
         file.write(f"--- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
         file.write(text_content)
+        if text_content_ai.strip() != "": file.write(text_content_ai)
         file.write("\n")
     print("*** COMPLETED - [SAVE] BUTTON PRESSED ***\n")
      

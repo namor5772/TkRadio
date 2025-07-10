@@ -589,7 +589,8 @@ def Radio2(br,nNum,sPath,sClass,nType):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1)  # Adjust the position
-    
+    label2.update_idletasks()  # Force update the layout        
+       
     # get station and program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')

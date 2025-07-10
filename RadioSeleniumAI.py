@@ -2,8 +2,6 @@
 1. Think about easier searching of the very large station list
     Fast scroll or filters mainly in RPI version
 2. Russian and China originating internet stations?   
-
-FIX program image size for ABC CLASSIC and ABC Classic2
 '''
 
 import subprocess
@@ -347,7 +345,7 @@ refresh_http = "https://www.blank.org/" # use a basic "empty" website
 # global graphic position variables
 Ydown = 63
 Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
-Xgap = 560-70; Xgap2 = 560-70; Xgap3 = 560-70
+Xgap = 560-70; Xgap2 = 490; Xgap3 = 490
 Xprog = 300
 X1 = 55 # 55 for RP version
 Y1 = 30 # 30 for RP version
@@ -372,7 +370,7 @@ filepath4 = os.path.join(script_dir, filename4)
 print(f'The file {filepath4} stores the pollFlag when it is changed.')
 
 # global variables for combobox selection indexes & button related
-numButtons = 18
+numButtons = 54 # 6 rows of 9 playlist buttons
 sizeButton = 62
 combobox_index = -1
 buttonIndex = -1
@@ -419,6 +417,10 @@ pollFlag = False # if true then poll website for program text and picture change
 justDeletedFlag = False # if true then just deleted a station from the aStation[] list
 stopLastStream = False # if true then stop current stream call
 firstRun = True # if true then first run of a station stream
+HiddenFlag = False # if true then text_box & label2 are hidden
+text_box_pos = {0,0,0,0}
+label2_pos = {0,0,0,0} 
+firstRun_select2 = True # if true then first run of select2
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -498,14 +500,16 @@ def Radio1(br,nNum,sPath,sClass,nType):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog, Xprog))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    if station == "ABC_Classic2":
-        label2.place(x=Xgap+X1, y=Ygap3+Y1)  # Adjust the position
-    else:
-        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        if station == "ABC_Classic2":
+            label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        else:
+            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -597,7 +601,9 @@ def Radio2(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
     
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -688,14 +694,16 @@ def Radio3(br,nNum,sPath,sClass,nType):
     print(f"width: {width2}, height: {height2}")
     crop_box2 = (width2-height2,0,width2,height2)
     cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-Y1))  # Adjust the size as needed
+    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    if station_short == "ABC_Classic":
-        label2.place(x=Xgap+X1, y=Ygap3+Y1)  # Adjust the position
-    else:
-        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        if station_short == "ABC_Classic":
+            label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        else:
+            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -783,7 +791,9 @@ def Radio4(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap2+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap2+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -868,7 +878,9 @@ def Radio5(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
 
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -950,7 +962,9 @@ def Radio6(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+X1, y=Ygap3+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
     
     # get station details
     ht = be.get_attribute('innerHTML')
@@ -1026,7 +1040,9 @@ def Radio7(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap+X1, y=Ygap3+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
         
     # Find program details
     ht = be.get_attribute('innerHTML')
@@ -1141,7 +1157,9 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
-    label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1)  # Adjust the position
+    if not HiddenFlag:
+        label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
  
     # get station and program details
     ht = be.get_attribute('innerHTML')
@@ -1410,7 +1428,8 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1)  # Adjust the position
+        if not HiddenFlag:
+            label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
     else:    
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
@@ -1418,7 +1437,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         photo = ImageTk.PhotoImage(scaled_image)
         label2.config(image=photo)
         label2.image = photo  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap+X1, y=Ygap3+Y1)  # Adjust the position
+        if not HiddenFlag:
+            label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    root.update_idletasks()  # Force update the layout        
 
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')
@@ -1698,7 +1719,9 @@ def on_select(event):
         photo2 = ImageTk.PhotoImage(scaled_image2)
         label2.config(image=photo2)
         label2.image = photo2  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+        if not HiddenFlag:
+            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        root.update_idletasks()  # Force update the layout
 
     # extract all parameters for the selected radio station
     try:
@@ -1860,8 +1883,10 @@ def on_select2(event):
         photo2 = ImageTk.PhotoImage(scaled_image2)
         label2.config(image=photo2)
         label2.image = photo2  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
-
+        if not HiddenFlag:
+            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        root.update_idletasks()  # Force update the layout       
+    
     # extract all parameters for the selected radio station
     try:
         StationName = aStation[selected_index][0]
@@ -1990,7 +2015,10 @@ def on_select2(event):
         photo2 = ImageTk.PhotoImage(scaled_image2)
         label2.config(image=photo2)
         label2.image = photo2  # Keep a reference to avoid garbage collection
-        label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+        if not HiddenFlag:
+            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        root.update_idletasks()
+
         print("BLANK END")
         print("")
 
@@ -2013,6 +2041,14 @@ def on_select2(event):
 
     Streaming = True # always reset this to True
     print("---- on_select2() finished ---------------------------------------------\n")
+    
+    global firstRun_select2
+    if firstRun_select2:
+        firstRun_select2 = False
+        view_button_pressed(None)
+        print("First run of on_select2() completed, view_button_pressed() the first time")
+        view_button_pressed(None)
+        print("First run of on_select2() completed, view_button_pressed() a second time")
 
 
 
@@ -2719,7 +2755,6 @@ def ai_button_pressed(event):
 
     text_box_content = text_box.get("1.0", tk.END)   # "1.0" means line 1, character 0
     text_box_content = text_box_content.strip()  # remove trailing newline
- 
     inputStr = (
         text_box_content
     )    
@@ -2731,8 +2766,9 @@ def ai_button_pressed(event):
             messages = [
                 # 1. System prompt: sets overall behavior
                 {"role": "system",
-                 "content": "You are a broadcast historian and researcher. Respond in clean plaintext format, under 400 words. "
-                 "Always include a well-aligned summary table, with 2 columns: Feature and Description. "
+                 "content": "You are a radio station broadcast historian and researcher. Respond in clean plaintext format, under 600 words. "
+                 "Provide a detailed analysis of the radio station, including its history, "
+                 "Always include a well-aligned summary table of the station, with 2 columns: Feature and Description. "
                  "The table must fit within 95 characters per line."},
 
                 # 2. First user message
@@ -2765,11 +2801,62 @@ def display_text(s: str):
     root.update_idletasks()
 
 
+def view_button_pressed(event):
+    print("\n*** [VIEW] BUTTON PRESSED ***")
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    print(f"Event argument: {event}")
+
+    # toggle the visibility of the text_box & label2, it is initially assumed
+    # that they are visible so that their positions can be saved
+    global HiddenFlag, text_box_pos, label2_pos
+    if HiddenFlag:
+        text_box.place(x=text_box_pos['x'], y=text_box_pos['y'],
+            width=text_box_pos['width'], height=text_box_pos['height'])
+        
+        label2.place(x=label2_pos['x'], y=label2_pos['y'],
+            width=label2_pos['width'], height=label2_pos['height'])
+        
+        for i in range(18, numButtons):
+            buttons[i].place_forget()  # Hide the buttons
+
+        HiddenFlag = False
+    else: 
+        text_box_pos = {'x': text_box.winfo_x(), 'y': text_box.winfo_y(),
+            'width': text_box.winfo_width(), 'height': text_box.winfo_height()}
+        text_box.place_forget()
+
+        label2_pos = {'x': label2.winfo_x(), 'y': label2.winfo_y(),
+            'width': label2.winfo_width(), 'height': label2.winfo_height()}
+        label2.place_forget()
+
+        for i in range(18, numButtons):
+            if (i<9*1):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
+            elif (i<9*2):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*1), y=b+(sizeButton+5)*1, width=sizeButton, height=sizeButton)
+            elif (i<9*3):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*2), y=b+(sizeButton+5)*2, width=sizeButton, height=sizeButton)
+            elif (i<9*4):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
+            elif (i<9*5):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
+            else: # (i<9*6):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
+
+        HiddenFlag = True
+
+    text_box.update_idletasks()  # Force update the layout
+    label2.update_idletasks()  # Force update the layout        
+    print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
+
+    print("*** COMPLETED - [VIEW] BUTTON PRESSED ***\n")
+
+
 # Thanks to Copilot (Think Deeper) AI 
 class CustomCombobox(tk.Frame):
     def __init__(self, master, values, name, visible_items=5, width=25, *args, **kwargs):
         """
-        Initialize a custom combobox.
+    Initialize a custom combobox.
         
         Parameters:
             master      : Parent widget.
@@ -3077,7 +3164,6 @@ else:
     text_box_ai.place(x=10, y=460, width=800-20, height=900-460-10)
     text_box_ai.config(state=tk.NORMAL, takefocus=False)
 
-
 # create a list of all the available station names
 aStringArray = []
 for element in aStation:
@@ -3098,8 +3184,12 @@ except FileNotFoundError:
 
 # Create a text box, position and size it, used to display the program and song details
 text_box = tk.Text(root, wrap="word")
-text_box.place(x=10, y=110+30+Ydown, width=Xgap-20+30+25, height=Xprog-30-25)
+text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
+#text_box_pos = {'x': text_box.winfo_x(), 'y': text_box.winfo_y(),
+#                'width': text_box.winfo_width(), 'height': text_box.winfo_height()}
+#text_box.place_forget()
+#root.update_idletasks()  # Force update the layout
 
 # button used to select and play a station at random (from all those available)
 if GPIO:
@@ -3157,6 +3247,18 @@ if not GPIO:
     aiButton.bind("<FocusIn>", on_focus_dostuff)
     aiButton.bind("<FocusOut>", on_focus_out_dostuff)
 
+# button used to run toggle between station and playlist views
+viewButton = tk.Button(root, text="VIEW", name="viewButton")
+if GPIO:
+    viewButton.place(x=630, y=24, height=25)
+else:
+    viewButton.place(x=667-7, y=0, height=25)    
+viewButton.config(takefocus=True)
+viewButton.config(bg="gray90")
+viewButton.bind("<Return>", view_button_pressed)  
+#viewButton.bind("<ButtonPress>", view_button_pressed)  
+viewButton.bind("<FocusIn>", on_focus_dostuff)
+viewButton.bind("<FocusOut>", on_focus_out_dostuff)
 
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!
@@ -3179,19 +3281,36 @@ setupButton.bind("<FocusOut>", on_focus_out_dostuff)
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
-label.place(x=15, y=2+30)
+label.place(x=15, y=26)
 label2 = tk.Label(root)
+
+label2.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
+label2.config(state=tk.NORMAL) # Enable the text box to insert text
+#label2_pos = {'x': label2.winfo_x(), 'y': label2.winfo_y(),
+#              'width': label2.winfo_width(), 'height': label2.winfo_height()}+
+#label2.place_forget()
+#root.update_idletasks()  # Force update the layout
+
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
+b = 55  
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
 
     # positioning buttons in 2 rows of 9
-    if (i<9):
-        button.place(x=128+(sizeButton+5)*(i+1), y=35+30, width=sizeButton, height=sizeButton)
-    else:
-        button.place(x=128+(sizeButton+5)*(i-8), y=35+30+sizeButton+5, width=sizeButton, height=sizeButton)
+    if (i<9*1):
+        button.place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
+    elif (i<9*2):
+        button.place(x=128+(sizeButton+5)*(i+1-9*1), y=b+(sizeButton+5)*1, width=sizeButton, height=sizeButton)
+    elif (i<9*3):
+        button.place(x=128+(sizeButton+5)*(i+1-9*2), y=b+(sizeButton+5)*2, width=sizeButton, height=sizeButton)
+    elif (i<9*4):
+        button.place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
+    elif (i<9*5):
+        button.place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
+    else: # (i<9*6):
+        button.place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
 
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))

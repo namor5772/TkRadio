@@ -2789,7 +2789,6 @@ def ai_button_pressed(event):
 
     print("Starting AI processing in a separate thread...")    
     threading.Thread(target=worker, daemon=True).start()
-
     print("*** COMPLETED - [AI] BUTTON PRESSED ***\n")
 
 
@@ -3186,10 +3185,6 @@ except FileNotFoundError:
 text_box = tk.Text(root, wrap="word")
 text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 text_box.config(state=tk.NORMAL) # Enable the text box to insert text
-#text_box_pos = {'x': text_box.winfo_x(), 'y': text_box.winfo_y(),
-#                'width': text_box.winfo_width(), 'height': text_box.winfo_height()}
-#text_box.place_forget()
-#root.update_idletasks()  # Force update the layout
 
 # button used to select and play a station at random (from all those available)
 if GPIO:
@@ -3286,10 +3281,6 @@ label2 = tk.Label(root)
 
 label2.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 label2.config(state=tk.NORMAL) # Enable the text box to insert text
-#label2_pos = {'x': label2.winfo_x(), 'y': label2.winfo_y(),
-#              'width': label2.winfo_width(), 'height': label2.winfo_height()}+
-#label2.place_forget()
-#root.update_idletasks()  # Force update the layout
 
 
 # Create the playlist buttons (fully) and add them to the buttons[] list

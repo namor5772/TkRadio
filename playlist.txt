@@ -2,31 +2,31 @@ ABC Radio Sydney NSW,24
 ABC Radio National LIVE,4
 ABC NewsRadio,76
 ABC Jazz,1
-au ABC Jazz,4225
+au ABC Jazz,4224
 -- EMPTY 5 --,-1
 -- EMPTY 6 --,-1
 -- EMPTY 7 --,-1
 -- EMPTY 8 --,-1
-au ABC Classic FM,4211
-au ABC Classic 2,4210
-us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61592
-hu Papageno,38122
-ab Classical - Chopin,366
-de Epic Piano - CHOPIN,20094
+au ABC Classic FM,4210
+au ABC Classic 2,4209
+us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61591
+hu Papageno,38121
+ab Classical - Chopin,365
+de Epic Piano - CHOPIN,20093
 -- EMPTY 15 --,-1
 -- EMPTY 16 --,-1
 -- EMPTY 17 --,-1
 Cruise 1323,87
-au Gold 101.7 FM,4418
-au Totally Radio 70s,4857
-au 2GN Goulburn,4080
+au Gold 101.7 FM,4417
+au Totally Radio 70s,4856
+au 2GN Goulburn,4079
 -- EMPTY 22 --,-1
 -- EMPTY 23 --,-1
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
 -- EMPTY 26 --,-1
-pl msRadio 90s,51414
-pl ESKA2 Nowy Sącz,51337
+pl msRadio 90s,51413
+pl ESKA2 Nowy Sącz,51336
 -- EMPTY 29 --,-1
 -- EMPTY 30 --,-1
 -- EMPTY 31 --,-1
@@ -34,21 +34,21 @@ pl ESKA2 Nowy Sącz,51337
 -- EMPTY 33 --,-1
 -- EMPTY 34 --,-1
 -- EMPTY 35 --,-1
--- EMPTY 36 --,-1
--- EMPTY 37 --,-1
--- EMPTY 38 --,-1
--- EMPTY 39 --,-1
--- EMPTY 40 --,-1
--- EMPTY 41 --,-1
--- EMPTY 42 --,-1
--- EMPTY 43 --,-1
--- EMPTY 44 --,-1
--- EMPTY 45 --,-1
--- EMPTY 46 --,-1
--- EMPTY 47 --,-1
--- EMPTY 48 --,-1
--- EMPTY 49 --,-1
--- EMPTY 50 --,-1
--- EMPTY 51 --,-1
--- EMPTY 52 --,-1
+gb BBC London,31285
+gb BBC Radio 1,31286
+gb BBC Radio 2,31288
+gb BBC Radio 3,31289
+gb BBC Radio 4,31290
+gb BBC Radio 4 Extra,31291
+gb BBC Radio 5 live,31292
+gb BBC World Service,31331
+gb BBC World Service - Hourly Bulletin,31332
+gb BBC World Service - Newshour,31333
+gb BBC World Service Global News,31335
+gb BritCom 1 - Pumpkin FM,31529
+gb BritCom 2 - Pumpkin FM,31530
+gb BritCom 3 - Pumpkin FM,31531
+gb British Comedy 1 - ROKiT Radio Network,31532
+gb British Comedy 2 - ROKiT Radio Network,31533
+gb Comedy Gold - ROKiT Radio Network,31755
 -- EMPTY 53 --,-1

@@ -2732,13 +2732,15 @@ def save_button_pressed(event):
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
     text_content = text_box.get("1.0", "end-1c")  # Get all text from the textbox
-    text_content_ai = text_box_ai.get("1.0", "end-1c")  # Get all text from the AI textbox
-    if text_content_ai.strip() != "": text_content_ai = "\nAI Generated Content:\n" + text_content_ai+"\n"
+    if not GPIO:
+        text_content_ai = text_box_ai.get("1.0", "end-1c")  # Get all text from the AI textbox
+        if text_content_ai.strip() != "": text_content_ai = "\nAI Generated Content:\n" + text_content_ai+"\n"
     with open(StationLogs_filepath, "a", encoding="utf-8") as file:
         file.write("*******************************************************\n")
         file.write(f"--- {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---\n")
         file.write(text_content)
-        if text_content_ai.strip() != "": file.write(text_content_ai)
+        if not GPIO:
+            if text_content_ai.strip() != "": file.write(text_content_ai)
         file.write("\n")
     print("*** COMPLETED - [SAVE] BUTTON PRESSED ***\n")
      
@@ -3144,7 +3146,7 @@ root.update_idletasks()
 # Create a label to display actions or the counter value.
 if GPIO:
     labelRE = tk.Label(root, text="  0")
-    labelRE.place(x=700, y=26)
+    labelRE.place(x=740, y=26)
 
     # Create a list of labels for the root/main form to display pressable keys. They are
     # at the top of the main form (one bank of sizeBank keys is displayed at a time)
@@ -3170,7 +3172,7 @@ for element in aStation:
 
 # Create our custom combobox with 8 rows visible in the dropdown.
 custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
-custom_combo.place(x=130+(sizeButton+5), y=26)
+custom_combo.place(x=130+(sizeButton+5), y=26-2)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
@@ -3189,7 +3191,7 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 # button used to select and play a station at random (from all those available)
 if GPIO:
     randomButton = tk.Button(root, text="RND", name="randomButton")
-    randomButton.place(x=500 , y=24, height=25)
+    randomButton.place(x=500-12 , y=24, height=25)
 else:
     randomButton = tk.Button(root, text=" RND ", name="randomButton")
     randomButton.place(x=500-7 , y=0, height=25)
@@ -3205,7 +3207,7 @@ randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 # will be adjusted if necessary
 if GPIO:
     deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
-    deleteButton.place(x=559 , y=24, height=25)
+    deleteButton.place(x=559-12 , y=24, height=25)
 else:
     deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=550-7 , y=0, height=25)
@@ -3219,7 +3221,7 @@ deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 # to a txt file
 if GPIO:
     saveButton = tk.Button(root, text="SAVE", name="saveButton")
-    saveButton.place(x=614, y=24, height=25)
+    saveButton.place(x=614-12, y=24, height=25)
 else:
     saveButton = tk.Button(root, text="SAVE", name="saveButton")
     saveButton.place(x=590-7, y=0, height=25)
@@ -3245,7 +3247,7 @@ if not GPIO:
 # button used to run toggle between station and playlist views
 viewButton = tk.Button(root, text="VIEW", name="viewButton")
 if GPIO:
-    viewButton.place(x=630, y=24, height=25)
+    viewButton.place(x=678-12, y=24, height=25)
 else:
     viewButton.place(x=667-7, y=0, height=25)    
 viewButton.config(takefocus=True)
@@ -3278,7 +3280,6 @@ setupButton.bind("<FocusOut>", on_focus_out_dostuff)
 label = tk.Label(root)
 label.place(x=15, y=26)
 label2 = tk.Label(root)
-
 label2.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 label2.config(state=tk.NORMAL) # Enable the text box to insert text
 
@@ -3310,7 +3311,6 @@ for i in range(numButtons):
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
-
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
     photo = ImageTk.PhotoImage(buttonImage_resized)
@@ -3318,6 +3318,7 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
+
 
 # SECONDARY setup FORM RELATED DEFINITIONS
 # *** START ******************************

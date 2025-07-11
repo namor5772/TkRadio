@@ -2818,8 +2818,9 @@ def view_button_pressed(event):
         label2.place(x=label2_pos['x'], y=label2_pos['y'],
             width=label2_pos['width'], height=label2_pos['height'])
         
-        text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
-            width=text_box_ai_pos['width'], height=text_box_ai_pos['height'])
+        if not GPIO:
+            text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
+                width=text_box_ai_pos['width'], height=text_box_ai_pos['height'])
 
         for i in range(18, numButtons):
             buttons[i].place_forget()  # Hide the buttons
@@ -2834,9 +2835,10 @@ def view_button_pressed(event):
             'width': label2.winfo_width(), 'height': label2.winfo_height()}
         label2.place_forget()
 
-        text_box_ai_pos = {'x': text_box_ai.winfo_x(), 'y': text_box_ai.winfo_y(),
-            'width': text_box_ai.winfo_width(), 'height': text_box_ai.winfo_height()}
-        text_box_ai.place_forget()
+        if not GPIO:
+            text_box_ai_pos = {'x': text_box_ai.winfo_x(), 'y': text_box_ai.winfo_y(),
+                'width': text_box_ai.winfo_width(), 'height': text_box_ai.winfo_height()}
+            text_box_ai.place_forget()
 
         b = 55  
         for i in range(18, numButtons):
@@ -2869,7 +2871,8 @@ def view_button_pressed(event):
 
     text_box.update_idletasks()  # Force update the layout
     label2.update_idletasks()  # Force update the layout        
-    text_box_ai.update_idletasks()  # Force update the layout
+    if not GPIO:
+        text_box_ai.update_idletasks()  # Force update the layout
     print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
     print("*** COMPLETED - [VIEW] BUTTON PRESSED ***\n")
 

@@ -370,7 +370,7 @@ filepath4 = os.path.join(script_dir, filename4)
 print(f'The file {filepath4} stores the pollFlag when it is changed.')
 
 # global variables for combobox selection indexes & button related
-numButtons = 54 # 6 rows of 9 playlist buttons
+numButtons = 108 # 12 rows of 9 playlist buttons
 sizeButton = 62
 combobox_index = -1
 buttonIndex = -1
@@ -419,6 +419,7 @@ stopLastStream = False # if true then stop current stream call
 firstRun = True # if true then first run of a station stream
 HiddenFlag = False # if true then text_box & label2 are hidden
 text_box_pos = {0,0,0,0}
+text_box_ai_pos = {0,0,0,0}
 label2_pos = {0,0,0,0} 
 firstRun_select2 = True # if true then first run of select2
 
@@ -2809,7 +2810,7 @@ def view_button_pressed(event):
 
     # toggle the visibility of the text_box & label2, it is initially assumed
     # that they are visible so that their positions can be saved
-    global HiddenFlag, text_box_pos, label2_pos
+    global HiddenFlag, text_box_pos, text_box_ai_pos, label2_pos
     if HiddenFlag:
         text_box.place(x=text_box_pos['x'], y=text_box_pos['y'],
             width=text_box_pos['width'], height=text_box_pos['height'])
@@ -2817,6 +2818,9 @@ def view_button_pressed(event):
         label2.place(x=label2_pos['x'], y=label2_pos['y'],
             width=label2_pos['width'], height=label2_pos['height'])
         
+        text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
+            width=text_box_ai_pos['width'], height=text_box_ai_pos['height'])
+
         for i in range(18, numButtons):
             buttons[i].place_forget()  # Hide the buttons
 
@@ -2830,6 +2834,11 @@ def view_button_pressed(event):
             'width': label2.winfo_width(), 'height': label2.winfo_height()}
         label2.place_forget()
 
+        text_box_ai_pos = {'x': text_box_ai.winfo_x(), 'y': text_box_ai.winfo_y(),
+            'width': text_box_ai.winfo_width(), 'height': text_box_ai.winfo_height()}
+        text_box_ai.place_forget()
+
+        b = 55  
         for i in range(18, numButtons):
             if (i<9*1):
                 buttons[i].place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
@@ -2841,15 +2850,27 @@ def view_button_pressed(event):
                 buttons[i].place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
             elif (i<9*5):
                 buttons[i].place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
-            else: # (i<9*6):
+            elif (i<9*6):
                 buttons[i].place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
+            elif (i<9*7):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*6), y=b+(sizeButton+5)*6, width=sizeButton, height=sizeButton)
+            elif (i<9*8):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*7), y=b+(sizeButton+5)*7, width=sizeButton, height=sizeButton)
+            elif (i<9*9):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*8), y=b+(sizeButton+5)*8, width=sizeButton, height=sizeButton)
+            elif (i<9*10):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*9), y=b+(sizeButton+5)*9, width=sizeButton, height=sizeButton)
+            elif (i<9*11):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*10), y=b+(sizeButton+5)*10, width=sizeButton, height=sizeButton)
+            else: # (i<9*12):
+                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*11), y=b+(sizeButton+5)*11, width=sizeButton, height=sizeButton)
 
         HiddenFlag = True
 
     text_box.update_idletasks()  # Force update the layout
     label2.update_idletasks()  # Force update the layout        
+    text_box_ai.update_idletasks()  # Force update the layout
     print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
-
     print("*** COMPLETED - [VIEW] BUTTON PRESSED ***\n")
 
 
@@ -3139,7 +3160,7 @@ if GPIO:
     root.geometry("800x455+0+0")
 else:    
     # more space for windows ai version
-    root.geometry("800x900+0+0")
+    root.geometry("800x861+0+0")
 root.resizable(False, False)
 root.update_idletasks()
 
@@ -3162,7 +3183,7 @@ else:
 
     # Create a text box to display the results of ai queries, position and size it
     text_box_ai = tk.Text(root, wrap="word")
-    text_box_ai.place(x=10, y=460, width=800-20, height=900-460-10)
+    text_box_ai.place(x=10, y=460, width=780, height=392)
     text_box_ai.config(state=tk.NORMAL, takefocus=False)
 
 # create a list of all the available station names
@@ -3290,7 +3311,7 @@ b = 55
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
 
-    # positioning buttons in 2 rows of 9
+    # positioning buttons in 12 rows of 9
     if (i<9*1):
         button.place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
     elif (i<9*2):
@@ -3301,8 +3322,20 @@ for i in range(numButtons):
         button.place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
     elif (i<9*5):
         button.place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
-    else: # (i<9*6):
+    elif (i<9*6):
         button.place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
+    elif (i<9*7):
+        button.place(x=128+(sizeButton+5)*(i+1-9*6), y=b+(sizeButton+5)*6, width=sizeButton, height=sizeButton)
+    elif (i<9*8):
+        button.place(x=128+(sizeButton+5)*(i+1-9*7), y=b+(sizeButton+5)*7, width=sizeButton, height=sizeButton)
+    elif (i<9*9):
+        button.place(x=128+(sizeButton+5)*(i+1-9*8), y=b+(sizeButton+5)*8, width=sizeButton, height=sizeButton)
+    elif (i<9*10):
+        button.place(x=128+(sizeButton+5)*(i+1-9*9), y=b+(sizeButton+5)*9, width=sizeButton, height=sizeButton)
+    elif (i<9*11):
+        button.place(x=128+(sizeButton+5)*(i+1-9*10), y=b+(sizeButton+5)*10, width=sizeButton, height=sizeButton)
+    else: # (i<9*12):
+        button.place(x=128+(sizeButton+5)*(i+1-9*11), y=b+(sizeButton+5)*11, width=sizeButton, height=sizeButton)
 
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))

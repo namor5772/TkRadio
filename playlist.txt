@@ -42,9 +42,9 @@ gb BBC Radio 4,31290
 gb BBC Radio 4 Extra,31291
 gb BBC Radio 5 live,31292
 gb BBC World Service,31331
-gb BBC World Service - Hourly Bulletin,31332
-gb BBC World Service - Newshour,31333
 gb BBC World Service Global News,31335
+-- EMPTY 45 --,-1
+-- EMPTY 46 --,-1
 gb BritCom 1 - Pumpkin FM,31529
 gb BritCom 2 - Pumpkin FM,31530
 gb BritCom 3 - Pumpkin FM,31531

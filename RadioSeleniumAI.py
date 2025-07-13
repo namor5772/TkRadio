@@ -2807,6 +2807,11 @@ def view_button_pressed(event):
     print("\n*** [VIEW] BUTTON PRESSED ***")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
+ 
+    # differentiate between GPIO and non-GPIO versions on what playlist buttons can be displayed
+    hideRange = numButtons
+    if GPIO: 
+        hideRange = numButtons - 54
 
     # toggle the visibility of the text_box & label2, it is initially assumed
     # that they are visible so that their positions can be saved
@@ -2822,7 +2827,7 @@ def view_button_pressed(event):
             text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
                 width=text_box_ai_pos['width'], height=text_box_ai_pos['height'])
 
-        for i in range(18, numButtons):
+        for i in range(18, hideRange):
             buttons[i].place_forget()  # Hide the buttons
 
         HiddenFlag = False
@@ -2841,7 +2846,7 @@ def view_button_pressed(event):
             text_box_ai.place_forget()
 
         b = 55  
-        for i in range(18, numButtons):
+        for i in range(18, hideRange):
             if (i<9*1):
                 buttons[i].place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
             elif (i<9*2):
@@ -3314,7 +3319,7 @@ b = 55
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
 
-    # positioning buttons in 12 rows of 9
+    # positioning buttons in 12 rows of 9 (only 6 rows if GPIO is True)
     if (i<9*1):
         button.place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
     elif (i<9*2):
@@ -3329,16 +3334,22 @@ for i in range(numButtons):
         button.place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
     elif (i<9*7):
         button.place(x=128+(sizeButton+5)*(i+1-9*6), y=b+(sizeButton+5)*6, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
     elif (i<9*8):
         button.place(x=128+(sizeButton+5)*(i+1-9*7), y=b+(sizeButton+5)*7, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
     elif (i<9*9):
         button.place(x=128+(sizeButton+5)*(i+1-9*8), y=b+(sizeButton+5)*8, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
     elif (i<9*10):
         button.place(x=128+(sizeButton+5)*(i+1-9*9), y=b+(sizeButton+5)*9, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
     elif (i<9*11):
         button.place(x=128+(sizeButton+5)*(i+1-9*10), y=b+(sizeButton+5)*10, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
     else: # (i<9*12):
         button.place(x=128+(sizeButton+5)*(i+1-9*11), y=b+(sizeButton+5)*11, width=sizeButton, height=sizeButton)
+        if GPIO: button.place_forget()
 
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))

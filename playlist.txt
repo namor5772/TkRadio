@@ -12,7 +12,7 @@ au ABC Classic 2,4209
 us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61591
 hu Papageno,38121
 ab Classical - Chopin,365
--- EMPTY 14 --,-1
+de BR Klassik,19741
 -- EMPTY 15 --,-1
 -- EMPTY 16 --,-1
 -- EMPTY 17 --,-1
@@ -64,7 +64,7 @@ gb Comedy Gold - ROKiT Radio Network,31755
 de Epic Piano - CHOPIN,20093
 de Epic Piano - GRIEG,20094
 de Epic Piano - LISZT,20095
--- EMPTY 66 --,-1
+de Epic Piano - TSCHAIKOWSKI,20101
 -- EMPTY 67 --,-1
 -- EMPTY 68 --,-1
 -- EMPTY 69 --,-1

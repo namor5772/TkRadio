@@ -16,6 +16,7 @@ import re
 import random
 import threading
 
+
 try:
     import RPi.GPIO as GPIO
 except ModuleNotFoundError:
@@ -25,6 +26,7 @@ from datetime import datetime
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter import font
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
@@ -2168,6 +2170,17 @@ def on_button_insert(event, i):
 # saves the buttonIndex in a global variable
 def on_focus(event, i):
     buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
+
+    print(f"\nPlaylist button {i} focused")
+    focused_widget = root.focus_get()  # Get the currently focused widget
+    if focused_widget:
+        print(f"Focused widget: {focused_widget}")
+        print(f"Station name: {aStation2[i][0]}")
+        labelPlaylistFocus.config(text=aStation2[i][0])  # Update the label with the focused station name
+    else:
+        print("No widget is currently focused") 
+
+
     buttons[i].update_idletasks()  # Force update
 
 
@@ -2175,6 +2188,7 @@ def on_focus(event, i):
 # returns the button to a visually "unfocused" state. 
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
+    labelPlaylistFocus.config(text="")
     buttons[i].update_idletasks()  # Force update
 
 
@@ -3148,6 +3162,7 @@ class CustomCombobox(tk.Frame):
         """
         Handles mouse selection from the listbox.
         """
+       
         index = self.listbox.curselection()
         if index:
             self.selected_index = index[0]
@@ -3199,9 +3214,30 @@ aStringArray = []
 for element in aStation:
     aStringArray.append(element[0])
 
-# Create our custom combobox with 8 rows visible in the dropdown.
-custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
-custom_combo.place(x=130+(sizeButton+5), y=26-2)
+# Just for info
+default_font = font.nametofont("TkDefaultFont")
+print("Default font family:", default_font.actual()["family"])
+
+textdefault_font = font.nametofont("TkTextFont")
+print("Text Default font family:", textdefault_font.actual()["family"])
+
+fixeddefault_font = font.nametofont("TkFixedFont")
+print("Fixed Default font family:", fixeddefault_font.actual()["family"])
+
+menudefault_font = font.nametofont("TkMenuFont")
+print("Menu Default font family:", menudefault_font.actual()["family"])
+
+# Create our custom combobox and label that shows the current playlist button in focus
+if GPIO:
+    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
+    custom_combo.place(x=130+(sizeButton+5), y=24)
+    labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 9), bg="gray90")
+    labelPlaylistFocus.place(x=488, y=24, width=150, height=20)      
+else: # if windows version    
+    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=50, width=45)
+    custom_combo.place(x=130+(sizeButton+5), y=30)
+    labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 9), bg="gray90")
+    labelPlaylistFocus.place(x=478, y=30, width=275, height=20)      
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
@@ -3220,10 +3256,10 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 # button used to select and play a station at random (from all those available)
 if GPIO:
     randomButton = tk.Button(root, text="RND", name="randomButton")
-    randomButton.place(x=500-12 , y=24, height=25)
+    randomButton.place(x=488 , y=24, height=25)
 else:
     randomButton = tk.Button(root, text=" RND ", name="randomButton")
-    randomButton.place(x=500-7 , y=0, height=25)
+    randomButton.place(x=493 , y=0, height=25)
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
 randomButton.bind("<Return>", random_button_pressed)  

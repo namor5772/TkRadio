@@ -1590,11 +1590,8 @@ def after_GUI_started():
     print(f'Button of last station played in playlist is {buttonIndex}')    
     print("")
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
-
-    if GPIO:
-        # hide buttons that will be covered by label used to display to station name in focus  
-        pass
-
+    setupButton.focus_set()  # set focus to the setup button
+    setupButton.update_idletasks()
 
     if GPIO:    
         # load bluetooth status file and use it to populate global variables
@@ -2181,14 +2178,34 @@ def on_button_insert(event, i):
 def button_move_focus_vertically(event, i, d):
     print(f"button_move_focus_vertically() called with i={i} and d={d}")
     if d == -1:  # Up arrow key pressed
-        if i > 8: # assume button is not in first row
+        if i > 8:  # assume button is not in first row
             i -= 9
+            buttons[i].focus_set()  
+            buttons[i].update_idletasks()
+        else:  # if i <= 8, then button is in the first row
+            # move focus off playlist button grid to rightmost button
+            i = 0  # wrap to the first button    
+            setupButton.focus_set()  # set focus to the setup button
+            setupButton.update_idletasks()
     else:  # Down arrow key pressed
-        if i < numButtons-9: # assume button is not in last visible 
-            i += 9
+        if i < numButtons-9:
+            i += 9 # assume button is not in last visible 
+            buttons[i].focus_set()  
+            buttons[i].update_idletasks()
+
+
+# called when a playlist button is in focus and the Left or Right arrow key is pressed.
+# It moves the focus to the playlist button left or right to the current one.
+def button_move_focus_horizontally(event, i, d):
+    print(f"button_move_focus_horizontally() called with i={i} and d={d}")
+    if d == -1:  # Left arrow key pressed
+        if i%9 > 0: # assume button is not in first column 
+            i -= 1 
+    else:  # Right arrow key pressed
+        if i%9 < 8: # assume button is not in last (rightmost) column 
+            i += 1 
     buttons[i].focus_set()  
     buttons[i].update_idletasks()  # Force update
-
 
 
 # called when a playlist button receives focus.
@@ -3489,8 +3506,8 @@ for i in range(numButtons):
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
     button.bind('<Down>', lambda event, i=i, d=1: button_move_focus_vertically(event, i, d))
     button.bind('<Up>', lambda event, i=i, d=-1: button_move_focus_vertically(event, i, d))
-#    button.bind('<Right>', lambda event, i=i, d=1: button_move_focus_horizontally(event, i, d))
-#    button.bind('<Left>', lambda event, i=i, d=-1: button_move_focus_horizontally(event, i, d))
+    button.bind('<Right>', lambda event, i=i, d=1: button_move_focus_horizontally(event, i, d))
+    button.bind('<Left>', lambda event, i=i, d=-1: button_move_focus_horizontally(event, i, d))
 
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)

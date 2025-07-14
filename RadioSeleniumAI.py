@@ -2176,6 +2176,21 @@ def on_button_insert(event, i):
     print("")
 
 
+# called when a playlist button is in focus and the Up or Down arrow key is pressed.
+# It moves the focus to the playlist button above or below the current one.
+def button_move_focus_vertically(event, i, d):
+    print(f"button_move_focus_vertically() called with i={i} and d={d}")
+    if d == -1:  # Up arrow key pressed
+        if i > 8: # assume button is not in first row
+            i -= 9
+    else:  # Down arrow key pressed
+        if i < numButtons-9: # assume button is not in last visible 
+            i += 9
+    buttons[i].focus_set()  
+    buttons[i].update_idletasks()  # Force update
+
+
+
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
@@ -2202,8 +2217,6 @@ def on_focus(event, i):
                 StationHiddenFlag = False
     else:
         print("No widget is currently focused") 
-
-
     buttons[i].update_idletasks()  # Force update
 
 
@@ -2825,7 +2838,8 @@ def ai_button_pressed(event):
                  "content": "You are a radio station broadcast historian and researcher. Respond in clean plaintext format, under 600 words. "
                  "Provide a detailed analysis of the radio station, including its history, "
                  "Always include a well-aligned summary table of the station, with 2 columns: Feature and Description. "
-                 "The table must fit within 95 characters per line."},
+                 "The table must fit within 95 characters per line."
+                 "Initially translate content to English if it is not already in English."},
 
                 # 2. First user message
                 {"role": "user",
@@ -3473,6 +3487,11 @@ for i in range(numButtons):
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
+    button.bind('<Down>', lambda event, i=i, d=1: button_move_focus_vertically(event, i, d))
+    button.bind('<Up>', lambda event, i=i, d=-1: button_move_focus_vertically(event, i, d))
+#    button.bind('<Right>', lambda event, i=i, d=1: button_move_focus_horizontally(event, i, d))
+#    button.bind('<Left>', lambda event, i=i, d=-1: button_move_focus_horizontally(event, i, d))
+
     buttonImage = Image.open(pathImages + "/button" + str(i) +".png")
     buttonImage_resized = buttonImage.resize((sizeButton-5,sizeButton-5), Image.Resampling.LANCZOS)
     photo = ImageTk.PhotoImage(buttonImage_resized)

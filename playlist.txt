@@ -20,7 +20,7 @@ Cruise 1323,87
 au Gold 101.7 FM,4417
 au Totally Radio 70s,4856
 au 2GN Goulburn,4079
--- EMPTY 22 --,-1
+de Bayern 1,19587
 -- EMPTY 23 --,-1
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
@@ -65,9 +65,9 @@ de Epic Piano - CHOPIN,20093
 de Epic Piano - GRIEG,20094
 de Epic Piano - LISZT,20095
 de Epic Piano - TSCHAIKOWSKI,20101
--- EMPTY 67 --,-1
--- EMPTY 68 --,-1
--- EMPTY 69 --,-1
+de Epic Piano - ROMANTIC PIANO,20099
+de Epic Piano - SOLO PIANO,20100
+de Epic-Piano - GREAT CONCERTS,20107
 -- EMPTY 70 --,-1
 -- EMPTY 71 --,-1
 -- EMPTY 72 --,-1

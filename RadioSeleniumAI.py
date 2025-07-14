@@ -16,7 +16,6 @@ import re
 import random
 import threading
 
-
 try:
     import RPi.GPIO as GPIO
 except ModuleNotFoundError:
@@ -420,8 +419,15 @@ justDeletedFlag = False # if true then just deleted a station from the aStation[
 stopLastStream = False # if true then stop current stream call
 firstRun = True # if true then first run of a station stream
 HiddenFlag = False # if true then text_box & label2 are hidden
+StationHiddenFlag = False # if true then station name label is hidden
 text_box_pos = {0,0,0,0}
 text_box_ai_pos = {0,0,0,0}
+randomButton_pos = {0,0,0,0}
+deleteButton_pos = {0,0,0,0}
+saveButton_pos = {0,0,0,0}
+viewButton_pos = {0,0,0,0}
+labelRE_pos = {0,0,0,0}
+labelPlaylistFocus_pos = {0,0,0,0}
 label2_pos = {0,0,0,0} 
 firstRun_select2 = True # if true then first run of select2
 
@@ -1584,7 +1590,12 @@ def after_GUI_started():
     print(f'Button of last station played in playlist is {buttonIndex}')    
     print("")
     on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
-   
+
+    if GPIO:
+        # hide buttons that will be covered by label used to display to station name in focus  
+        pass
+
+
     if GPIO:    
         # load bluetooth status file and use it to populate global variables
         global onBluetooth
@@ -2169,6 +2180,7 @@ def on_button_insert(event, i):
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
 def on_focus(event, i):
+    global StationHiddenFlag
     buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
 
     print(f"\nPlaylist button {i} focused")
@@ -2177,6 +2189,17 @@ def on_focus(event, i):
         print(f"Focused widget: {focused_widget}")
         print(f"Station name: {aStation2[i][0]}")
         labelPlaylistFocus.config(text=aStation2[i][0])  # Update the label with the focused station name
+        if GPIO:
+            # Hide the action buttons and show labelPlayListFocus
+            if StationHiddenFlag == True:
+                randomButton.place_forget()
+                deleteButton.place_forget()
+                saveButton.place_forget()
+                viewButton.place_forget()
+                labelRE.place_forget()
+                labelPlaylistFocus.place(x=labelPlaylistFocus_pos['x'], y=labelPlaylistFocus_pos['y'],
+                                         width=labelPlaylistFocus_pos['width'], height=labelPlaylistFocus_pos['height'])
+                StationHiddenFlag = False
     else:
         print("No widget is currently focused") 
 
@@ -2587,8 +2610,24 @@ def on_focus_dostuff(event):
     widget = event.widget
     widget_name = widget.winfo_name()
     print(f"{widget_name} got focus!")
+    global StationHiddenFlag
     if GPIO:
         widget.config(bg="lightblue")
+        # Show the action buttons since they are hidden
+        if StationHiddenFlag == False:
+            randomButton.place(x=randomButton_pos['x'], y=randomButton_pos['y'],
+                                width=randomButton_pos['width'], height=randomButton_pos['height'])
+            deleteButton.place(x=deleteButton_pos['x'], y=deleteButton_pos['y'],
+                                width=deleteButton_pos['width'], height=deleteButton_pos['height'])
+            saveButton.place(x=saveButton_pos['x'], y=saveButton_pos['y'],
+                                width=saveButton_pos['width'], height=saveButton_pos['height'])
+            viewButton.place(x=viewButton_pos['x'], y=viewButton_pos['y'],
+                            width=viewButton_pos['width'], height=viewButton_pos['height'])
+            labelRE.place(x=labelRE_pos['x'], y=labelRE_pos['y'],
+                            width=labelRE_pos['width'], height=labelRE_pos['height'])
+            labelPlaylistFocus.place_forget()
+            StationHiddenFlag = True
+
     elif (widget_name == "setupButton"):
         pass
     else:
@@ -3140,6 +3179,24 @@ class CustomCombobox(tk.Frame):
             self.default_bg = self.entry.cget("background")
         self.entry.config(background="light blue")
 
+        global StationHiddenFlag
+        print(f"{self.name} got focus, So can show buttons ")
+        if GPIO:
+            # Show the action buttons since they are hidden
+            if StationHiddenFlag == False:
+                randomButton.place(x=randomButton_pos['x'], y=randomButton_pos['y'],
+                                   width=randomButton_pos['width'], height=randomButton_pos['height'])
+                deleteButton.place(x=deleteButton_pos['x'], y=deleteButton_pos['y'],
+                                   width=deleteButton_pos['width'], height=deleteButton_pos['height'])
+                saveButton.place(x=saveButton_pos['x'], y=saveButton_pos['y'],
+                                 width=saveButton_pos['width'], height=saveButton_pos['height'])
+                viewButton.place(x=viewButton_pos['x'], y=viewButton_pos['y'],
+                                width=viewButton_pos['width'], height=viewButton_pos['height'])
+                labelRE.place(x=labelRE_pos['x'], y=labelRE_pos['y'],
+                              width=labelRE_pos['width'], height=labelRE_pos['height'])
+                labelPlaylistFocus.place_forget()
+                StationHiddenFlag = True
+
     def on_focus_out(self, event):
         """
         Restore the background color to its default value and 
@@ -3191,6 +3248,10 @@ root.update_idletasks()
 if GPIO:
     labelRE = tk.Label(root, text="  0")
     labelRE.place(x=740, y=26)
+    labelRE.update_idletasks()
+    labelRE_pos = {'x': labelRE.winfo_x(), 'y': labelRE.winfo_y(),
+                        'width': labelRE.winfo_width(), 'height': labelRE.winfo_height()}
+    labelRE.place_forget()
 
     # Create a list of labels for the root/main form to display pressable keys. They are
     # at the top of the main form (one bank of sizeBank keys is displayed at a time)
@@ -3230,9 +3291,12 @@ print("Menu Default font family:", menudefault_font.actual()["family"])
 # Create our custom combobox and label that shows the current playlist button in focus
 if GPIO:
     custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
-    custom_combo.place(x=130+(sizeButton+5), y=24)
-    labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 9), bg="gray90")
-    labelPlaylistFocus.place(x=488, y=24, width=150, height=20)      
+    custom_combo.place(x=127+(sizeButton+5), y=24)
+    labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 10), bg="gray90")
+    labelPlaylistFocus.place(x=487, y=26, width=275, height=20)      
+    labelPlaylistFocus.update_idletasks()
+    labelPlaylistFocus_pos = {'x': labelPlaylistFocus.winfo_x(), 'y': labelPlaylistFocus.winfo_y(),
+                              'width': labelPlaylistFocus.winfo_width(), 'height': labelPlaylistFocus.winfo_height()}
 else: # if windows version    
     custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=50, width=45)
     custom_combo.place(x=130+(sizeButton+5), y=30)
@@ -3257,6 +3321,10 @@ text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 if GPIO:
     randomButton = tk.Button(root, text="RND", name="randomButton")
     randomButton.place(x=488 , y=24, height=25)
+    randomButton.update_idletasks()
+    randomButton_pos = {'x': randomButton.winfo_x(), 'y': randomButton.winfo_y(),
+                        'width': randomButton.winfo_width(), 'height': randomButton.winfo_height()}
+    randomButton.place_forget()
 else:
     randomButton = tk.Button(root, text=" RND ", name="randomButton")
     randomButton.place(x=493 , y=0, height=25)
@@ -3273,6 +3341,10 @@ randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 if GPIO:
     deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=559-12 , y=24, height=25)
+    deleteButton.update_idletasks()
+    deleteButton_pos = {'x': deleteButton.winfo_x(), 'y': deleteButton.winfo_y(),
+                        'width': deleteButton.winfo_width(), 'height': deleteButton.winfo_height()}
+    deleteButton.place_forget()
 else:
     deleteButton = tk.Button(root, text="DEL", name="deleteButton", relief=tk.RAISED,)
     deleteButton.place(x=550-7 , y=0, height=25)
@@ -3287,6 +3359,10 @@ deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 if GPIO:
     saveButton = tk.Button(root, text="SAVE", name="saveButton")
     saveButton.place(x=614-12, y=24, height=25)
+    saveButton.update_idletasks()
+    saveButton_pos = {'x': saveButton.winfo_x(), 'y': saveButton.winfo_y(),
+                      'width': saveButton.winfo_width(), 'height': saveButton.winfo_height()}
+    saveButton.place_forget()
 else:
     saveButton = tk.Button(root, text="SAVE", name="saveButton")
     saveButton.place(x=590-7, y=0, height=25)
@@ -3313,6 +3389,10 @@ if not GPIO:
 viewButton = tk.Button(root, text="VIEW", name="viewButton")
 if GPIO:
     viewButton.place(x=678-12, y=24, height=25)
+    viewButton.update_idletasks()
+    viewButton_pos = {'x': viewButton.winfo_x(), 'y': viewButton.winfo_y(),
+                      'width': viewButton.winfo_width(), 'height': viewButton.winfo_height()}
+    viewButton.place_forget()
 else:
     viewButton.place(x=667-7, y=0, height=25)    
 viewButton.config(takefocus=True)
@@ -3347,7 +3427,6 @@ label.place(x=15, y=26)
 label2 = tk.Label(root)
 label2.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 label2.config(state=tk.NORMAL) # Enable the text box to insert text
-
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []

@@ -13,8 +13,8 @@ us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61591
 hu Papageno,38121
 ab Classical - Chopin,365
 de BR Klassik,19741
--- EMPTY 15 --,-1
--- EMPTY 16 --,-1
+de Klassik Radio,20557
+de Klassik 1,20556
 -- EMPTY 17 --,-1
 Cruise 1323,87
 au Gold 101.7 FM,4417
@@ -70,15 +70,15 @@ de Epic Piano - SOLO PIANO,20100
 de Epic-Piano - GREAT CONCERTS,20107
 -- EMPTY 70 --,-1
 -- EMPTY 71 --,-1
--- EMPTY 72 --,-1
--- EMPTY 73 --,-1
--- EMPTY 74 --,-1
--- EMPTY 75 --,-1
--- EMPTY 76 --,-1
--- EMPTY 77 --,-1
--- EMPTY 78 --,-1
--- EMPTY 79 --,-1
--- EMPTY 80 --,-1
+de Klassik Radio Bach,20560
+de Klassik Radio Barock,20562
+de Klassik Radio Barock2,20563
+de Klassik Radio Beethoven,20564
+de Klassik Radio Best of Oper,20565
+de Klassik Radio Classic Dreams,20571
+de Klassik Radio Klassik Dreams,20587
+de Klassik Radio Mozart,20596
+de Klassik Radio Verdi,20611
 -- EMPTY 81 --,-1
 -- EMPTY 82 --,-1
 -- EMPTY 83 --,-1
@@ -97,10 +97,10 @@ de Epic-Piano - GREAT CONCERTS,20107
 -- EMPTY 96 --,-1
 -- EMPTY 97 --,-1
 -- EMPTY 98 --,-1
--- EMPTY 99 --,-1
--- EMPTY 100 --,-1
--- EMPTY 101 --,-1
--- EMPTY 102 --,-1
+pe Peru Cumbia,49099
+br Estação 104 FM,7044
+de NOSTALGIE New Wave,20946
+de رادیو شاه میهن آبادی,20964
 -- EMPTY 103 --,-1
 -- EMPTY 104 --,-1
 -- EMPTY 105 --,-1

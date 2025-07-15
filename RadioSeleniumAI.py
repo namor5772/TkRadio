@@ -430,6 +430,7 @@ labelRE_pos = {0,0,0,0}
 labelPlaylistFocus_pos = {0,0,0,0}
 label2_pos = {0,0,0,0} 
 firstRun_select2 = True # if true then first run of select2
+visibleItemsNum = 0 # number of items visible in the combobox
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -2208,6 +2209,12 @@ def button_move_focus_horizontally(event, i, d):
     buttons[i].update_idletasks()  # Force update
 
 
+# to get shift-tab to work in Text widgets
+def on_shift_tab(event):
+    event.widget.tk_focusPrev().focus()
+    print("Shift-Tab pressed, focus moved to previous widget")
+
+
 # called when a playlist button receives focus.
 # visually indicates that the button has focus and
 # saves the buttonIndex in a global variable
@@ -2855,8 +2862,7 @@ def ai_button_pressed(event):
                  "content": "You are a radio station broadcast historian and researcher. Respond in clean plaintext format, under 600 words. "
                  "Provide a detailed analysis of the radio station, including its history, "
                  "Always include a well-aligned summary table of the station, with 2 columns: Feature and Description. "
-                 "The table must fit within 95 characters per line."
-                 "Initially translate content to English if it is not already in English."},
+                 "The table must fit within 95 characters per line."},
 
                 # 2. First user message
                 {"role": "user",
@@ -3003,6 +3009,8 @@ class CustomCombobox(tk.Frame):
         # Bind key events on the entry.
         self.entry.bind("<Down>", self.on_down)
         self.entry.bind("<Up>", self.on_up)
+        self.entry.bind("<Prior>", self.on_page_up)
+        self.entry.bind("<Next>", self.on_page_down)
         self.entry.bind("<Return>", self.on_return)
         self.entry.bind("<Escape>", self.on_escape)
         self.entry.bind("<FocusIn>", self.on_focus_combobox)   # Change background on focus in
@@ -3119,8 +3127,9 @@ class CustomCombobox(tk.Frame):
     def on_down(self, event):
         """
         If the dropdown is closed, open it.
-        Otherwise, move selection down in the listbox.
+        Otherwise, move selection down one in the listbox.
         """
+        print("\n*** Down key pressed on combobox dropdown selection ***")        
         if not self.dropdown:
             self.open_dropdown()
         else:
@@ -3141,8 +3150,9 @@ class CustomCombobox(tk.Frame):
 
     def on_up(self, event):
         """
-        If the dropdown is open, move the selection up.
+        If the dropdown is open, move the selection up one in thr listbox.
         """
+        print("\n*** Up key pressed on combobox dropdown selection ***")        
         if self.dropdown:
             current = self.listbox.curselection()
             if current:
@@ -3153,7 +3163,47 @@ class CustomCombobox(tk.Frame):
                     self.listbox.select_set(index)
                     self.listbox.activate(index)
                     self.listbox.see(index)
-        return "break"
+        return "break"  # Prevent default behavior
+
+    def on_page_down(self, event):
+        """
+        If the dropdown is open, move selection down one page.
+        """
+        print("\n*** Page Down pressed on combobox dropdown selection ***")        
+        global visibleItemsNum
+        if self.dropdown:
+            current = self.listbox.curselection()
+            if current:
+                index = current[0] + visibleItemsNum
+                if index >= self.listbox.size():
+                    index = self.listbox.size() - 1
+            else:
+                index = 0  # Start from the first item if no selection exists
+        self.listbox.select_clear(0, "end")
+        self.listbox.select_set(index)
+        self.listbox.activate(index)
+        self.listbox.see(index)
+        return "break"  # Prevent default behavior
+
+    def on_page_up(self, event):
+        """
+        If the dropdown is open, move the selection up one page.
+        """
+        print("\n*** Page Up pressed on combobox dropdown selection ***")        
+        global visibleItemsNum
+        if self.dropdown:
+            current = self.listbox.curselection()
+            if current:
+                index = current[0] - visibleItemsNum
+                if index <0:
+                    index = 0
+            else:
+                index = self.listbox.size() - 1  # Start from last item if no selection exists
+        self.listbox.select_clear(0, "end")
+        self.listbox.select_set(index)
+        self.listbox.activate(index)
+        self.listbox.see(index)
+        return "break"  # Prevent default behavior
 
     def on_return(self, event):
         """
@@ -3239,7 +3289,7 @@ class CustomCombobox(tk.Frame):
     def check_focus(self):
         """
         Checks focus of the current widget. Closes the dropdown if focus has moved
-        away from both the entry and the dropdown.
+        away from both the  entry and the dropdown.
         """
         if self.dropdown:
             current_focus = self.focus_get()
@@ -3296,11 +3346,6 @@ else:
     labelRE = tk.Label(root, text="       windows ai version running")
     labelRE.place(x=0, y=0)
 
-    # Create a text box to display the results of ai queries, position and size it
-    text_box_ai = tk.Text(root, wrap="word")
-    text_box_ai.place(x=10, y=460, width=780, height=392)
-    text_box_ai.config(state=tk.NORMAL, takefocus=False)
-
 # create a list of all the available station names
 aStringArray = []
 for element in aStation:
@@ -3321,15 +3366,17 @@ print("Menu Default font family:", menudefault_font.actual()["family"])
 
 # Create our custom combobox and label that shows the current playlist button in focus
 if GPIO:
-    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=22, width=35)
+    visibleItemsNum = 22
+    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=visibleItemsNum, width=35)
     custom_combo.place(x=127+(sizeButton+5), y=24)
     labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 10), bg="gray90")
     labelPlaylistFocus.place(x=487, y=26, width=275, height=20)      
     labelPlaylistFocus.update_idletasks()
     labelPlaylistFocus_pos = {'x': labelPlaylistFocus.winfo_x(), 'y': labelPlaylistFocus.winfo_y(),
                               'width': labelPlaylistFocus.winfo_width(), 'height': labelPlaylistFocus.winfo_height()}
-else: # if windows version    
-    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=50, width=45)
+else: # if windows version
+    visibleItemsNum = 50    
+    custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=visibleItemsNum, width=45)
     custom_combo.place(x=130+(sizeButton+5), y=30)
     labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 9), bg="gray90")
     labelPlaylistFocus.place(x=478, y=30, width=275, height=20)      
@@ -3342,11 +3389,6 @@ try:
 except FileNotFoundError:
     # will just use the default aStation2[] array created previously
     print(f'Error: The file {filepath2} does not exist.')
-
-# Create a text box, position and size it, used to display the program and song details
-text_box = tk.Text(root, wrap="word")
-text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
-text_box.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # button used to select and play a station at random (from all those available)
 if GPIO:
@@ -3451,6 +3493,25 @@ else:
 setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
    
+# Create a text box, position and size it, used to display the program and song details
+text_box = tk.Text(root, wrap="word", takefocus=True)
+text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
+text_box.config(state=tk.NORMAL, takefocus=True) # Enable the text box to insert text
+text_box.bind("<FocusIn>", on_focus_dostuff)
+text_box.bind("<FocusOut>", on_focus_out_dostuff)
+text_box.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
+text_box.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
+
+# Create a text box to display the results of ai queries, position and size it
+if not GPIO:
+    text_box_ai = tk.Text(root, wrap="word", takefocus=True)  
+    text_box_ai.place(x=10, y=460, width=780, height=392)
+    text_box_ai.config(state=tk.NORMAL, takefocus=True)
+    text_box_ai.bind("<FocusIn>", on_focus_dostuff)
+    text_box_ai.bind("<FocusOut>", on_focus_out_dostuff)
+    text_box_ai.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
+    text_box_ai.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
+
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)

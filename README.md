@@ -9,7 +9,7 @@ As a standalone app (RadioSelenium.py) it can also be run under the Windows 11 O
 
 The radio software has access to about 79500 radio stations with about 132 from Australia. It accesses these streams via the stations websites via the FireFox browser using selenium for automation. When a station is streamed its logo is displayed. In addition if available the stations program text is displayed together with the programs graphic (eg. the record sleeve for the album from which the current song is playing). The default is for this program information to be refreshed approximately every 12 seconds while the stream is playing.
 
-For convenience you can create a playlist for up to 18 stations consisting of buttons that display the station logo. With a playlist button selected/in focus, pressing the [Delete] key deletes the radio station assigned to that playlist button leaving the graphic blank. Similarily when the [Insert] key is pressed the station that was previously selected from the combobox is assigned to the playlist button overwiting the previous graphic.
+For convenience you can create a playlist for up to 54 stations (Raspberry Pi or 108 for Windows) consisting of a matrix of buttons that display the station logos. With a playlist button selected/in focus, pressing the [Delete] key deletes the radio station assigned to that playlist button leaving the graphic blank. Similarily when the [Insert] key is pressed the station that was previously selected from the combobox is assigned to the playlist button overwiting the previous graphic.
 
 Occasionally internet/website issues might cause a station to fail to stream or not correctly refresh the program text and graphic. This can almost always be resolved by just selecting the station again. Rarely you might need to restart the radio.
 
@@ -18,6 +18,8 @@ Details of the station (from the playlist) currently playing is saved to a file 
 The RadioSelenium.py python file can be launched from any directory as long as it contains the Images subdirectory and its files from the GitHub repository. The playlist.txt, savedRadioStation.txt, bluetooth.txt, pollflag.txt, AllRadioStations.csv and StationLogs.txt files are assumed to be in the same directory as well.
 
 When run on a Raspberry Pi the softwares gui also has a secondary form for pairing/connecting to bluetooth speakers (the default being external speakers attached to a USB port of the Raspberry Pi). In addition the connection to the wifi network can also be explicitly made through this apps form when running on a Raspberry Pi. This is necessary since when running on a Raspberry Pi, interfacing is only available through buttons with no mouse or keyboard assumed to be connected.
+
+In the Windows case of the software we also have a text box at the bottom of the main form that can display ai generated information about the currently playing radio station. To enable this you will need to have an OpenAI account and an API Key. 
 
 Main and only form when run on a windows PC, with ai station summary available on bottom text panel.
 ![app GUI image1a](ImagesDocs/imageGUI1a.png)
@@ -201,8 +203,18 @@ Clearly the will vary depending on which directories containing the Python scrip
 
 ## Python Script
 
-Here we describe the design and use of the python script that is the interface to this web radio.
+Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that is the gui interface to this web radio.
 
+The core purpose of this python script is to stream a selected internet radio station, as well as displaying and refreshing any program details and graphics approximately every 12 seconds (while the station is streaming). The station Logo is also displayed.
+The details of the available approximately 79500 stations are maintained in the [AllRadioStations.csv](AllRadioStations.csv) file that is assumed to be in the same directory as the python script. 
+
+Below are a sample 4 rows from this csv file
+```text
+smoothfm Brisbane,smoothfm_Brisbane,Commercial1,0,https://smooth.com.au/station/brisbane,index_smooth_info-wrapper-desktop__6ZYTT,1
+smoothfm Perth,smoothfm_Perth,Commercial1,0,https://smooth.com.au/station/smoothfmperth,index_smooth_info-wrapper-desktop__6ZYTT,1
+ab 101.6 Marites FM Radio,ab_101-6_Marites_FM_Radio,Commercial2,0,https://www.radioarabic.org/sa/1016-marites-fm-radio,Arabic,0
+ab 101.8artysfm,ab_101-8artysfm,Commercial2,0,https://www.radioarabic.org/sa/rm-heart-fm,Arabic,0
+```
 
 
 ## Parts list

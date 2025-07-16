@@ -19,12 +19,14 @@ The RadioSelenium.py python file can be launched from any directory as long as i
 
 When run on a Raspberry Pi the softwares gui also has a secondary form for pairing/connecting to bluetooth speakers (the default being external speakers attached to a USB port of the Raspberry Pi). In addition the connection to the wifi network can also be explicitly made through this apps form when running on a Raspberry Pi. This is necessary since when running on a Raspberry Pi, interfacing is only available through buttons with no mouse or keyboard assumed to be connected.
 
-Main and only form when run on a windows PC.
-![app GUI image1](ImagesDocs/imageGUI1.png)
+Main and only form when run on a windows PC, with ai station summary available on bottom text panel.
+![app GUI image1a](ImagesDocs/imageGUI1a.png)
+![app GUI image1b](ImagesDocs/imageGUI1b.png)
 
-Main and secondary forms when run on a Raspberry Pi with PRi.GPIO module available.
-![app GUI image2](ImagesDocs/imageGUI2.png)
-![app GUI image3](ImagesDocs/imageGUI3.png)
+Main and secondary forms when run on a Raspberry Pi with PRi.GPIO module available, but no ai.
+![app GUI image2a](ImagesDocs/imageGUI2a.png)
+![app GUI image2b](ImagesDocs/imageGUI2b.png)
+![app GUI image2c](ImagesDocs/imageGUI2c.png)
 
 ## Hardware
 

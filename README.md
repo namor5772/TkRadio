@@ -203,10 +203,10 @@ Clearly the will vary depending on which directories containing the Python scrip
 
 ## Python Script
 
-Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that is the gui interface to this web radio.
+Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that implements the gui interface to this web radio.
 
 The core purpose of this python script is to stream a selected internet radio station, as well as displaying and refreshing any program details and graphics approximately every 12 seconds (while the station is streaming). The station Logo is also displayed.
-The details of the available approximately 79500 stations are maintained in the [AllRadioStations.csv](AllRadioStations.csv) file that is assumed to be in the same directory as the python script. 
+The details of the available approximately 79500 stations are maintained in the [TkRadio\AllRadioStations.csv](AllRadioStations.csv) file that is assumed to be in the same directory as the python script (ie. \TkRadio). 
 
 Below are a sample 4 rows from this csv file
 ```text
@@ -215,6 +215,38 @@ smoothfm Perth,smoothfm_Perth,Commercial1,0,https://smooth.com.au/station/smooth
 ab 101.6 Marites FM Radio,ab_101-6_Marites_FM_Radio,Commercial2,0,https://www.radioarabic.org/sa/1016-marites-fm-radio,Arabic,0
 ab 101.8artysfm,ab_101-8artysfm,Commercial2,0,https://www.radioarabic.org/sa/rm-heart-fm,Arabic,0
 ```
+Each row consists of 7 comma deliminated entries as follows:
+1. The unique name of the station
+2. The name of the stations logo.png file (which is stored in the \TkRadio\Images directory)
+3. Name of the python function that actually accesses the station website and runs the stream etc. (all have same arguments)
+4. 1st arg, integer, value depends on function and station (often 0)
+5. 2nd arg, radio stations website url
+6. 3rd arg, string argument, value depends on function and station (often empty)
+7. 4th arg, integer, value depends on function and station (usually 0 or 1) 
+
+The core functions that actually stream a radio station are on_select(event) and on_select2(event). The first is called when a radio station is selected from the main combobox. The second is called when a radio station is called by pressing a playlist button. They could/should be made into the same function. They also obtain the station and program details and image if available. A crucial feature is that if the PollFlag==True the on_select() or on_select2() functions are scheduled to run again repeatedly after refreshTime seconds (about 12 seconds until a new station is selected to stream). This refreshes the program details and image of the stream if any is available.
+
+The PollFlag is toggled by a button. In the Windows case it is in the top right hand corner of the main (and only screen) and has the text [ON] or [OFF]. In the Raspberry Pi case this button is on the secondary setup screen and has the text [Polling is ON] or [Polling is OFF]. The state of the PollFlag is maintained in the \TkRadio\pollflag.txt file, and enables it to be restored after the application is restarted.
+
+Even thought the script runs a gui it has been designed to be interfaced purely using the keyboard (no mouse necessary). This is to facilitate the Raspberry Pi version with its hardware setup. The [Tab] and [Shift-Tab] (also called [ISO_Left_Tab]) keys can be used to navigate focus among all available gui elements like comboboxes, comboboxes, textboxes or buttons.
+
+With focus on a combobox the dropdown list can be displayed by pressing the [Down] key, thereafter you can navigate up and down this list by pressing the [Up] or [Down] keys. To enable "faster" movement you can also press the [PgUp] or [PgDn] keys. If you want to exit out of the dropdown without doing anything just press [Tab] or [Shift-Tab].
+There are at most three comboboxes available:
+1. The most important one and on the main screen. It is used to select any of the available radio stations for streaming. Once you are on a desired Radio Station you start it by pressing the [Enter] key.
+2. The leftmost one the setup screen. This 
+
+
+With focus on textboxes there are two cases:
+1. The textboxes on the main page. These are for information only and as such they can get focus by using the [Tab] or [Shift-Tab] keys, in which case their background will be light blue. Once "inside" you can scroll up or down if necessary to see any text that does not fit in the textbox by pressing the [PgUp] or [PgDn] keys. As usual you can exit the textbox by pressing the [Tab] or [Shift-Tab] keys. One textbox is used to display station and program information. While another one (only available in the Windows version) displays detailed AI generated information about the currently streaming station.
+2. The "password" textbox on the setup page. it only available when running the script on a Raspberry Pi. It is used to input the password for a WIFI network that has not previously been used. You type the password in the usual way and then press the [Enter] key when finished.
+
+With focus on buttons we can move focus from them by pressing the [Tab] or [Shift-Tab] keys:
+1. The [RND] button. When the [Enter] key is pressed a random station from the available list (\TkRadio\AllRadioStations.csv) is streamed.
+2. The [DEL] button. When tthe [Delete] key is pressed the currently "streaming" station is permanently deleted from the available list (\TkRadio\AllRadioStations.csv). Any necessary adjustments are made to the playlist buttons. The [Enter] key is not used to cause action, because it might cause deletion by mistake!
+3. The [SAVE] button. When the [Enter] key is pressed details about the currently streaming station are appended to the [tkRadio\StationLogs.txt](StationLogs.txt) file. If Running under Windows this might include AI generated content.
+4. The [AI] button. Only available when running under Windows. When the [Enter] key is pressed detailed information about the currently streaming station are generated by AI and placed in the lower textbox.
+5. The [View] button. When the [Enter] key is pressed toggling occurs between a partial or complete view of playlist buttons. The partial view shows a 2 row by 9 column matrix of 18 playlist buttons. The complete view shows a 6 row by 9 column matrix of 54 buttons in the Raspberry Pi case but a 12 row by 9 column matrix of 108 buttons in the Winbdows case. The complete view obscures any information about the radio station currently streaming, except for the stations logo visible in the top left hand corner of the main screen.
+6. The PollFlag button. In the Windows case it is in the in the top right hand corner of the main screen and displays [ON] with a green background or [OFF] with a red background. Pressing the [Enter] key toggles between the two states as discussed previously.
 
 
 ## Parts list

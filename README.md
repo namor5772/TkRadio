@@ -233,8 +233,9 @@ The PollFlag is toggled by a button. In the Windows case it is in the top right 
 
 Even thought the script runs a gui it has been designed to be interfaced purely using the keyboard (no mouse necessary, in the Windows case and via a virtual keyboard in the Raspberry Pi case). This is to facilitate the Raspberry Pi version with its hardware setup. The [Tab] and [Shift-Tab] (also called [ISO_Left_Tab]) keys can be used to navigate focus among all available gui elements like comboboxes, comboboxes, textboxes or buttons. Below what what can be done in the gui is described in detail in terms of key presses:
 
-**With focus on a combobox** the dropdown list can be displayed by pressing the [Down] key, thereafter you can navigate up and down this list by pressing the [Up] or [Down] keys. To enable "faster" movement you can also press the [PgUp] or [PgDn] keys. If you want to exit out of the dropdown without doing anything just press [Tab] or [Shift-Tab].
-There are at most three comboboxes available:
+**With focus on a combobox** there are three cases:
+
+The dropdown list can be displayed by pressing the [Down] key, thereafter you can navigate up and down this list by pressing the [Up] or [Down] keys. To enable "faster" movement you can also press the [PgUp] or [PgDn] keys. If you want to exit out of the dropdown without doing anything just press [Tab] or [Shift-Tab].
 
 1. The most important one is on the main form. It is used to select any of the available radio stations for streaming. Once you are on a desired Radio Station you start it by pressing the [Enter] key.
 2. The leftmost one on the setup screen. Press [Enter] to select a Blue Tooth speaker to pair to.

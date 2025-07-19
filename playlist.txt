@@ -4,12 +4,12 @@ ABC NewsRadio,76
 ABC Jazz,1
 au ABC Jazz,4224
 -- EMPTY 5 --,-1
--- EMPTY 6 --,-1
+us MPIR Old Time Radio,67221
 -- EMPTY 7 --,-1
 -- EMPTY 8 --,-1
 au ABC Classic FM,4210
 au ABC Classic 2,4209
-us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61591
+us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61590
 hu Papageno,38121
 ab Classical - Chopin,365
 de BR Klassik,19741
@@ -101,7 +101,7 @@ pe Peru Cumbia,49099
 br Estação 104 FM,7044
 de NOSTALGIE New Wave,20946
 de رادیو شاه میهن آبادی,20964
--- EMPTY 103 --,-1
+us MPIR Old Time Radio,67221
 -- EMPTY 104 --,-1
 -- EMPTY 105 --,-1
 -- EMPTY 106 --,-1

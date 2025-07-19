@@ -209,13 +209,16 @@ The core purpose of this python script is to stream a selected internet radio st
 The details of the available approximately 79500 stations are maintained in the [TkRadio\AllRadioStations.csv](AllRadioStations.csv) file that is assumed to be in the same directory as the python script (ie. \TkRadio). 
 
 Below are a sample 4 rows from this csv file
+
 ```text
 smoothfm Brisbane,smoothfm_Brisbane,Commercial1,0,https://smooth.com.au/station/brisbane,index_smooth_info-wrapper-desktop__6ZYTT,1
 smoothfm Perth,smoothfm_Perth,Commercial1,0,https://smooth.com.au/station/smoothfmperth,index_smooth_info-wrapper-desktop__6ZYTT,1
 ab 101.6 Marites FM Radio,ab_101-6_Marites_FM_Radio,Commercial2,0,https://www.radioarabic.org/sa/1016-marites-fm-radio,Arabic,0
 ab 101.8artysfm,ab_101-8artysfm,Commercial2,0,https://www.radioarabic.org/sa/rm-heart-fm,Arabic,0
 ```
+
 Each row consists of 7 comma deliminated entries as follows:
+
 1. The unique name of the station
 2. The name of the stations logo.png file (which is stored in the \TkRadio\Images directory)
 3. Name of the python function that actually accesses the station website and runs the stream etc. (all have same arguments)
@@ -224,23 +227,26 @@ Each row consists of 7 comma deliminated entries as follows:
 6. 3rd arg, string argument, value depends on function and station (often empty)
 7. 4th arg, integer, value depends on function and station (usually 0 or 1) 
 
-The core functions that actually stream a radio station are on_select(event) and on_select2(event). The first is called when a radio station is selected from the main combobox. The second is called when a radio station is called by pressing a playlist button. They could/should be made into the same function. They also obtain the station and program details and image if available. A crucial feature is that if the PollFlag==True the on_select() or on_select2() functions are scheduled to run again repeatedly after refreshTime seconds (about 12 seconds until a new station is selected to stream). This refreshes the program details and image of the stream if any is available.
+The core functions that actually stream a radio station are on_select(event) and on_select2(event). The first is called when a radio station is selected from the main combobox. The second is called when a radio station is called by pressing a playlist button. They could/should be made into the same function. They also obtain the station and program details and image if available. A crucial feature is that if the PollFlag==True the on_select() or on_select2() functions are scheduled to run again repeatedly after refreshTime seconds (about 12 seconds) until a new station is selected to stream. This refreshes the program details and image of the stream if any is available.
 
 The PollFlag is toggled by a button. In the Windows case it is in the top right hand corner of the main (and only screen) and has the text [ON] or [OFF]. In the Raspberry Pi case this button is on the secondary setup screen and has the text [Polling is ON] or [Polling is OFF]. The state of the PollFlag is maintained in the \TkRadio\pollflag.txt file, and enables it to be restored after the application is restarted.
 
-Even thought the script runs a gui it has been designed to be interfaced purely using the keyboard (no mouse necessary). This is to facilitate the Raspberry Pi version with its hardware setup. The [Tab] and [Shift-Tab] (also called [ISO_Left_Tab]) keys can be used to navigate focus among all available gui elements like comboboxes, comboboxes, textboxes or buttons.
+Even thought the script runs a gui it has been designed to be interfaced purely using the keyboard (no mouse necessary, in the Windows case and via a virtual keyboard in the Raspberry Pi case). This is to facilitate the Raspberry Pi version with its hardware setup. The [Tab] and [Shift-Tab] (also called [ISO_Left_Tab]) keys can be used to navigate focus among all available gui elements like comboboxes, comboboxes, textboxes or buttons. Below what what can be done in the gui is described in detail in terms of key presses:
 
 **With focus on a combobox** the dropdown list can be displayed by pressing the [Down] key, thereafter you can navigate up and down this list by pressing the [Up] or [Down] keys. To enable "faster" movement you can also press the [PgUp] or [PgDn] keys. If you want to exit out of the dropdown without doing anything just press [Tab] or [Shift-Tab].
 There are at most three comboboxes available:
-1. The most important one and on the main screen. It is used to select any of the available radio stations for streaming. Once you are on a desired Radio Station you start it by pressing the [Enter] key.
+
+1. The most important one is on the main form. It is used to select any of the available radio stations for streaming. Once you are on a desired Radio Station you start it by pressing the [Enter] key.
 2. The leftmost one on the setup screen. Press [Enter] to select a Blue Tooth speaker to pair to.
-3. The rightmost one on the setup screen. Press [Enter] to select a Wifi network to connect to. Each one has a signal strength score, with Q70 being the strongest (go figure). 
+3. The rightmost one on the setup screen. Press [Enter] to select a Wifi network to connect to. Each one has a signal strength score, with Q70 being the strongest (go figure).
 
 **With focus on textboxes** there are two cases:
-1. The textboxes on the main page. These are for information only and as such they can get focus by using the [Tab] or [Shift-Tab] keys, in which case their background will be light blue. Once "inside" you can scroll up or down if necessary to see any text that does not fit in the textbox by pressing the [PgUp] or [PgDn] keys. As usual you can exit the textbox by pressing the [Tab] or [Shift-Tab] keys. One textbox is used to display station and program information. While another one (only available in the Windows version) displays detailed AI generated information about the currently streaming station.
+
+1. The textboxes on the main form. These are for information only and as such they can get focus by using the [Tab] or [Shift-Tab] keys, in which case their background will be light blue. Once "inside" you can scroll up or down if necessary to see any text that does not fit in the textbox by pressing the [PgUp] or [PgDn] keys. As usual you can exit the textbox by pressing the [Tab] or [Shift-Tab] keys. One textbox is used to display station and program information. While another one (only available in the Windows version) displays detailed AI generated information about the currently streaming station.
 2. The "password" textbox on the setup page. it only available when running the script on a Raspberry Pi. It is used to input the password for a WIFI network that has not previously been used. You type the password in the usual way and then press the [Enter] key when finished.
 
 **With focus on buttons** we can move focus from them by pressing the [Tab] or [Shift-Tab] keys:
+
 1. The [RND] button. When the [Enter] key is pressed a random station from the available list (\TkRadio\AllRadioStations.csv) is streamed.
 2. The [DEL] button. When tthe [Delete] key is pressed the currently "streaming" station is permanently deleted from the available list (\TkRadio\AllRadioStations.csv). Any necessary adjustments are made to the playlist buttons. The [Enter] key is not used to cause action, because it might cause deletion by mistake!
 3. The [SAVE] button. When the [Enter] key is pressed details about the currently streaming station are appended to the [tkRadio\StationLogs.txt](StationLogs.txt) file. If Running under Windows this might include AI generated content.
@@ -248,8 +254,7 @@ There are at most three comboboxes available:
 5. The [View] button. When the [Enter] key is pressed toggling occurs between a partial or complete view of playlist buttons. The partial view shows a 2 row by 9 column matrix of 18 playlist buttons. The complete view shows a 6 row by 9 column matrix of 54 buttons in the Raspberry Pi case but a 12 row by 9 column matrix of 108 buttons in the Winbdows case. The complete view obscures any information about the radio station currently streaming, except for the stations logo visible in the top left hand corner of the main screen.
 6. The PollFlag button. In the Windows case it is in the in the top right hand corner of the main screen and displays [ON] with a green background or [OFF] with a red background. In the Raspberry Pi case this button is on at the top of the right hand side of the setup screen and displays [Polling is ON] with a green background of [Polling is OFF] with a red background. Pressing the [Enter] key toggles between the two states as discussed previously.
 7. The [+] buttons. Only available in the Raspberry Pi case. They are located at the top right hand corner of the main and setup displays. When the [Enter] key is pressed on the button in the main screen, the setup screen becomes visible and focus is shifted to the button on the setup screen. Similarily when the [Enter] key is pressed on the button in the setup screen, the main screen becomes visible and focus is shifted to button on the mainm screen.
-8. The matrix of playlist buttons. If populated they display a logo for a particular radio station. For convenience on can traverse focusing among these buttons by using the [Up], [Down], [Left] and [Right] keys. This works in the obvious way, however if you press the [Down] key on a playlist button which is in the lowest row then nothing happens, similarily if you press the [Left] key on a button in the leftmost column or if you press the [Right] key on a button in the rightmost column. If you press the [Up] key on a button in the top row focus will pass to............................   
-
+8. **The matrix of playlist buttons.** If populated they display a logo for a particular radio station. For convenience on can traverse focusing among these buttons by using the [Up], [Down], [Left] and [Right] keys. This works in the obvious way, however if you press the [Down] key on a playlist button which is in the lowest row then nothing happens, similarily if you press the [Left] key on a button in the leftmost column or if you press the [Right] key on a button in the rightmost column. If you press the [Up] key on a button in the top row focus will pass to............................
 
 ## Parts list
 

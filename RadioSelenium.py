@@ -384,7 +384,9 @@ selected_value = "INITIAL"
 selected_value_last = "INITIAL"
 selected_index = -1
 startTime = time.time()
+startTime2 = time.time()
 endTime = 0.0
+endTime2 = 0.0
 refreshTime = 10.0 # seconds between updating station info
 station = ""
 needSleep = 4 # can be less on faster machines
@@ -1835,11 +1837,15 @@ def on_select2(event):
         return
 
     # determine the timeInterval between calling on_select()
-    global startTime, finishTime
+    global startTime, finishTime, startTime2
     finishTime = time.time()
     timeInterval = finishTime-startTime
     timeIntervalStr = f"{timeInterval:.2f}"
     print(f"Time interval: {timeIntervalStr} seconds")
+
+    timeInterval2 = finishTime-startTime2
+    timeIntervalStr2 = f"{timeInterval2:.2f}"
+    print(f"Time interval2: {timeIntervalStr2} seconds")
 
     startTime = time.time()
     print(f"Type: {event.type}")
@@ -1857,6 +1863,7 @@ def on_select2(event):
 
     global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
     if event.type=="Auto":
+        startTime2 = time.time()  # reset startTime2
         if not GPIO:
             text_box_ai.config(state=tk.NORMAL)      # unlock it
             text_box_ai.delete("1.0", tk.END)        # clear all content
@@ -2327,7 +2334,7 @@ def toggle_bluetooth(event):
 # behaves differently on whether Linux or WIN varsion
 # as determined by the GPIO global variable
 def toggle_pollStatus(event):
-    global pollFlag
+    global pollFlag, firstRun, stopLastStream
     if GPIO:
         sText = pollStatusButton.cget("text")
         if sText=="Polling is ON":
@@ -2338,6 +2345,7 @@ def toggle_pollStatus(event):
             pollStatusButton.config(text="Polling is ON")
             pollStatusButton.config(bg="light green")
             firstRun = True
+            stopLastStream = False
             pollFlag = True; line = "1"
     else:    
         sText = setupButton.cget("text")
@@ -2349,11 +2357,12 @@ def toggle_pollStatus(event):
             setupButton.config(text="ON")
             setupButton.config(bg="light green")
             firstRun = True
+            stopLastStream = False
             pollFlag = True; line = "1"
     with open(filepath4, 'w') as file:
         file.write(line + '\n')
     print(f"toggling poll status in file: {filepath4}")
-
+    print(f"firstRun={firstRun}, stopLastStream={stopLastStream}")
 
 def _connect_bluetooth(event):
     if onBluetooth:

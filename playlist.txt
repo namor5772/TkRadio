@@ -3,10 +3,10 @@ ABC Radio National LIVE,4
 ABC NewsRadio,76
 ABC Jazz,1
 au ABC Jazz,4224
--- EMPTY 5 --,-1
+ABC triple j Hottest,2
 au The Bunkhouse,4838
 -- EMPTY 7 --,-1
--- EMPTY 8 --,-1
+us WROX 1450 AM,75969
 au ABC Classic FM,4210
 au ABC Classic 2,4209
 us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61590

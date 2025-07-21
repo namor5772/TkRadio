@@ -8,13 +8,15 @@ import subprocess
 import inspect
 import tkinter as tk
 import time
-import urllib.request
 import requests
 import os
 import csv
 import re
 import random
 import threading
+import requests
+import urllib.request
+import urllib.error
 
 try:
     import RPi.GPIO as GPIO
@@ -28,14 +30,15 @@ from tkinter import messagebox
 from tkinter import font
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.common.exceptions import UnexpectedAlertPresentException
+from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoAlertPresentException
 
 if not GPIO:
     from openai import OpenAI
@@ -378,7 +381,7 @@ buttonIndex = -1
 addFlag = False
 iconSize = 160
 
-eventFlag = True # if on_select & on_select2 are called from event
+eventFlag = True # if on_select are called from event
 #stopFlag = False
 selected_value = "INITIAL"
 selected_value_last = "INITIAL"
@@ -500,9 +503,11 @@ def Radio1(br,nNum,sPath,sClass,nType):
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
-        urllib.request.urlretrieve(img2_url, image2_path)
-    except NoSuchElementException:
-        print("Image element not found on the webpage.")            
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
         # Display a blank image
         image2_path = pathImages + "/Blank.png"
 
@@ -599,10 +604,18 @@ def Radio2(br,nNum,sPath,sClass,nType):
         label.image = photo  # Keep a reference to avoid garbage collection
 
     # get program image
-    img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
-    img2_url = img2_element.get_attribute("src")
-    image2_path = pathImages + "/presenter.jpg"
-    urllib.request.urlretrieve(img2_url, image2_path)
+    try:
+        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
+        img2_url = img2_element.get_attribute("src")
+        image2_path = pathImages + "/presenter.jpg"
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        # Display a blank image
+        image2_path = pathImages + "/Blank.png"
+   
 
     # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
@@ -694,11 +707,13 @@ def Radio3(br,nNum,sPath,sClass,nType):
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
-        urllib.request.urlretrieve(img2_url, image2_path)
-    except NoSuchElementException:
-        print("Image element not found on the webpage.")            
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
         # Display a blank image
-        image2_path = pathImages + "/Blank.png"
+        image2_path = pathImages + "/Blank.png"    
 
     # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
@@ -760,11 +775,18 @@ def Radio4(br,nNum,sPath,sClass,nType):
         buttonStream.click()
         time.sleep(3)
         
-        # get station logo
-        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-        img_url = img_element.get_attribute("src")
-        image_path = pathImages + "/logo.png"
-        urllib.request.urlretrieve(img_url, image_path)
+        try:
+            # get station logo
+            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+            img_url = img_element.get_attribute("src")
+            image_path = pathImages + "/logo.png"
+            response = requests.get(img_url, timeout=10)
+            with open(image_path, 'wb') as f:
+                f.write(response.content)
+        except Exception as e:
+            print(f"Caught a problem: {e}")
+            # Display a blank image
+            image_path = pathImages + "/Blank.png"    
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
@@ -787,10 +809,12 @@ def Radio4(br,nNum,sPath,sClass,nType):
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
         print(image2_path)
-        urllib.request.urlretrieve(img2_url, image2_path)
-    except NoSuchElementException:
-        print("Image element not found on the webpage.")            
-        # Display a blank image
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        # Display a special faint image
         image2_path = pathImages + "/ABC_faint.png"
 
     # Display the program image as given in the scaled_image2
@@ -848,11 +872,18 @@ def Radio5(br,nNum,sPath,sClass,nType):
         buttonStream.click()
         time.sleep(1)
 
-        # get station logo
-        img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-        img_url = img_element.get_attribute("src")
-        image_path = pathImages + "/logo.png"
-        urllib.request.urlretrieve(img_url, image_path)
+        try:
+            # get station logo
+            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+            img_url = img_element.get_attribute("src")
+            image_path = pathImages + "/logo.png"
+            response = requests.get(img_url, timeout=10)
+            with open(image_path, 'wb') as f:
+                f.write(response.content)
+        except Exception as e:
+            print(f"Caught a problem: {e}")
+            # Display a blank image
+            image_path = pathImages + "/Blank.png"    
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
@@ -874,10 +905,13 @@ def Radio5(br,nNum,sPath,sClass,nType):
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
-        urllib.request.urlretrieve(img2_url, image2_path)
-    except NoSuchElementException:
-        print("Image element not found on the webpage.")            
-        # Display a blank image
+        print(image2_path)
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        # Display a special faint image
         image2_path = pathImages + "/ABC_faint.png"
 
     # Display the program image as given in the scaled_image2
@@ -954,15 +988,17 @@ def Radio6(br,nNum,sPath,sClass,nType):
         label.image = photo  # Keep a reference to avoid garbage collection
 
     # get program image
-    try:      
+    try:
         img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
         img2_url = img2_element.get_attribute("src")
         image2_path = pathImages + "/presenter.jpg"
-        urllib.request.urlretrieve(img2_url, image2_path)
-    except NoSuchElementException:
-        print("Image element not found on the webpage.")            
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
         # Display a blank image
-        image2_path = pathImages + "/Blank.png"
+        image2_path = pathImages + "/Blank.png"    
 
     # Display the program image as given in the scaled_image2
     image2 = Image.open(image2_path)
@@ -1125,11 +1161,18 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
         # get station logo
         if nType==0:
-            # for iHeart stations
-            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
-            img_url = img_element.get_attribute("src")
-            image_path = pathImages + "/logo.png"
-            urllib.request.urlretrieve(img_url, image_path)
+            try:
+                # for iHeart stations
+                img_element = be.find_element(By.XPATH, '/html/body/div[1]/div[4]/div[1]/div/div/div[1]/div/div/img')
+                img_url = img_element.get_attribute("src")
+                image_path = pathImages + "/logo.png"
+                response = requests.get(img_url, timeout=10)
+                with open(image_path, 'wb') as f:
+                    f.write(response.content)
+            except Exception as e:
+                print(f"Caught a problem: {e}")
+                # Display a blank image
+                image_path = pathImages + "/Blank.png"    
         else:
             # for Smooth & Nova stations
             image_path = pathImages + "/" + logo
@@ -1152,15 +1195,23 @@ def Commercial1(br,nNum,sPath,sClass,nType):
         label.image = photo  # Keep a reference to avoid garbage collection
 
     # Display the program image as given in the scaled_image2
-    if nType==0: 
-        # iHeart stations
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
-    else:
-        # Smooth & Nova stations
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
-    img2_url = img2_element.get_attribute("src")
-    image2_path = pathImages + "/presenter.jpg"
-    urllib.request.urlretrieve(img2_url, image2_path)
+    try:
+        if nType==0: 
+            # iHeart stations
+            img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
+        else:
+            # Smooth & Nova stations
+            img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div[1]/div[1]/img')
+        img2_url = img2_element.get_attribute("src")
+        image2_path = pathImages + "/presenter.jpg"
+        response = requests.get(img2_url, timeout=10)
+        with open(image2_path, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        # Display a blank image
+        image2_path = pathImages + "/Blank.png"    
+
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
     print(f"Pic width: {width2}, Pic height: {height2}")
@@ -1392,7 +1443,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
         img_element = be.find_element(By.XPATH, xpath)
         img_url = img_element.get_attribute("src")
-        urllib.request.urlretrieve(img_url, image_path)
+        response = requests.get(img_url, timeout=10)
+        with open(image_path, 'wb') as f:
+            f.write(response.content)
         print("=====> xpath #1")
     except Exception as e: #NoSuchElementException:
         try:
@@ -1400,7 +1453,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
             img_element = be.find_element(By.XPATH, xpath)
             img_url = img_element.get_attribute("src")
-            urllib.request.urlretrieve(img_url, image_path)
+            response = requests.get(img_url, timeout=10)
+            with open(image_path, 'wb') as f:
+                f.write(response.content)
             print("=====> xpath #2")
         except Exception as e: #NoSuchElementException:
             try:
@@ -1408,7 +1463,9 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                 xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
                 img_element = be.find_element(By.XPATH, xpath)
                 img_url = img_element.get_attribute("src")
-                urllib.request.urlretrieve(img_url, image_path)
+                response = requests.get(img_url, timeout=10)
+                with open(image_path, 'wb') as f:
+                    f.write(response.content)
                 print("=====> xpath #3")
             except Exception as e: #NoSuchElementException:
                 try:
@@ -1416,15 +1473,19 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
                     img_element = be.find_element(By.XPATH, xpath)
                     img_url = img_element.get_attribute("src")
-                    urllib.request.urlretrieve(img_url, image_path)
-                    print("=====> xpath #4")
+                    response = requests.get(img_url, timeout=10)
+                    with open(image_path, 'wb') as f:
+                        f.write(response.content)
+                        print("=====> xpath #4")
                 except Exception as e: #NoSuchElementException:
                     try:
                         # if failed above try a slightly different path
                         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[2]/div[1]/a/img'
                         img_element = be.find_element(By.XPATH, xpath)
                         img_url = img_element.get_attribute("src")
-                        urllib.request.urlretrieve(img_url, image_path)
+                        response = requests.get(img_url, timeout=10)
+                        with open(image_path, 'wb') as f:
+                            f.write(response.content)
                         print("=====> xpath #5")
                     except Exception as e: #NoSuchElementException:
                         # failed to find image so display a blank image
@@ -1592,7 +1653,7 @@ def after_GUI_started():
     buttons[buttonIndex].focus_set()    
     print(f'Button of last station played in playlist is {buttonIndex}')    
     print("")
-    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+    on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"),False)
     setupButton.focus_set()  # set focus to the setup button
     setupButton.update_idletasks()
 
@@ -1659,272 +1720,131 @@ def on_closing():
 
 
 # do this when a radio station is selected from combobox
-def on_select(event):
-    print("\n---- on_select() entered ---------------------------------------------")
-    global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
-    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
-    global stopLastStream, firstRun, Streaming 
-
-    if stopLastStream:
-        stopLastStream = False
-        print("stopLastStream is True, so returning")
-        print("---- on_select2() finished ---------------------------------------------\n")
-        return
-
-    # determine the timeInterval between calling on_select() or on_select2()
-    global startTime, finishTime
-    finishTime = time.time()
-    timeInterval = finishTime-startTime
-    timeIntervalStr = f"{timeInterval:.2f}"
-    print(f"Time interval: {timeIntervalStr} seconds")
-    
-    startTime = time.time()
-    print(f"Type: {event.type}")
-    print(f"Widget: {event.widget}")
-    print(f"Data: {event.data}")
-    
-    # prevent crashing if aStation is deleted
-    if pollFlag:
-        if justDeletedFlag:
-            print("justDeletedFlag is True, so returning")
-            justDeletedFlag = False;
-            firstRun = True    
-            print("---- on_select() finished ---------------------------------------------\n")
-            return    
-
-    # set various flags and parameters related to starting a station stream or accesing its website
-    global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last 
-    if event.type=="Auto":
-        if not GPIO:
-            text_box_ai.config(state=tk.NORMAL)      # unlock it
-            text_box_ai.delete("1.0", tk.END)        # clear all content
-            text_box_ai.config(state=tk.DISABLED)    # lock it again
-            print("DELETED text_box_ai contents")
-
-        if pollFlag:
-            if not firstRun:
-                stopLastStream = True
-        firstRun = False
-
-        if ExtraWindowFlag:
-            # if the extra window is open, close it
-            ExtraWindowFlag = False
-            browser.switch_to.window(nh2)
-            browser.close()
-            browser.switch_to.window(oh2)
-            print("Extra window closed")
-
-        eventFlag = True # if on_select() is called by selecting a combobox entry
-        selected_value_last = selected_value
-        selected_value = custom_combo.get()
-        combobox_index = custom_combo.current()
-        print("selected_value:", selected_value)
-        print("combobox_index:", combobox_index)
-
-        # clear the icon and program graphic from the last selected station
-        # to prevent confusion when loading a new station.
-        image_path = pathImages + "/Blank.png"
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-        scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-        photo2 = ImageTk.PhotoImage(scaled_image2)
-        label2.config(image=photo2)
-        label2.image = photo2  # Keep a reference to avoid garbage collection
-        if not HiddenFlag:
-            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        root.update_idletasks()  # Force update the layout
-
-    # extract all parameters for the selected radio station
+def on_select(event,fromCombobox):
+    global browser
+    global firstRun, stopLastStream
     try:
-        StationName = aStation[combobox_index][0]
-        CountryCode = StationName[:2]
-        print("CountryCode:", CountryCode)
-    except IndexError:
-        print(f"IndexError: {combobox_index} is out of range!")
-        return
-    StationLogo = aStation[combobox_index][1]
-    StationFunction = aStation[combobox_index][2]
-    nNum = aStation[combobox_index][3]
-    sPath = aStation[combobox_index][4]
-    sClass = aStation[combobox_index][5]
-    nType = aStation[combobox_index][6]
+        print(f"\n---- on_select(fromCombobox={fromCombobox}) entered ---------------------------------------------")
+        global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
+        global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
+        global Streaming 
 
-    # setting stop flag, this prevents on_select() from running again
-    # "mysterious" code due to timing issues
-    if eventFlag:
-        # inform user that a station is being started
-        text = "Please be patient, the station *" +  StationName + "*is being started"
-        text_rows = text.split("*")
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-        text_box.config(state=tk.DISABLED)
-        root.update_idletasks()
+        if stopLastStream:
+            stopLastStream = False
+            print("stopLastStream is True, so returning")
+            print(f"---- on_select(fromCombobox={fromCombobox}) finished ---------------------------------------------\n")
+            return
 
-    print("eventFlag:",eventFlag)
-
-    # run selected radio station stream, and return associated textual information 
-    try:
-        print("\nWill run:", StationFunction)
-        text = StationFunction(browser,nNum,sPath,sClass,nType)
-        text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
-        text_rows = text.split("*")
-        if len(text_rows)>1:
-            if text_rows[0]==text_rows[1]:
-                del text_rows[0]
-
-        # Make text box editable, so contents can be deleted and rewritten
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        print(text_rows)
-        # Insert each row of text into the text box
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-        # Disable the text box to make it read-only
-        text_box.config(state=tk.DISABLED)
+        # determine the timeInterval between calling on_select()
+        global startTime, finishTime
+        finishTime = time.time()
+        timeInterval = finishTime-startTime
+        timeIntervalStr = f"{timeInterval:.2f}"
+        print(f"Time interval: {timeIntervalStr} seconds")
         
-    except urllib.error.HTTPError as e:
-        print(f"\nCrashed in on_select(), HTTPError: {e.code} - {e.reason}")
-        event.type = "Manual" # to prevent saving of buttonIndex
+        startTime = time.time()
+        print(f"Type: {event.type}")
+        print(f"Widget: {event.widget}")
+        print(f"Data: {event.data}")
+        
+        timeInterval2 = finishTime-startTime2
+        timeIntervalStr2 = f"{timeInterval2:.2f}"
+        print(f"Time interval2: {timeIntervalStr2} seconds")
 
-        # inform user that starting station has failed in some way
-        text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
-        text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
-        text = text + "*Try again or select a different station."
-        text_rows = text.split("*")
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-        text_box.config(state=tk.DISABLED)
-        root.update_idletasks()
-
-    # on_select() schedules itself to run in nominally refreshTime seconds.
-    # this updates the program text and grapic while the selected radio station is streaming
-    eventFlag = False
-    if pollFlag:
-        if Streaming:
-            print("JUST ABOUT to schedule on_select to run in the future")
-            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo")))
-            print("DID SCHEDULE on_select to run in the future")
-        else:
-            print("Streaming==FALSE so DID NOT schedule on_select to run in the future")
-            firstRun = True 
-    else:
-        print("pollFlag==False so DID NOT schedule on_select to run in the future")
-
-    Streaming = True # always reset this to True
-    print("---- on_select() finished ---------------------------------------------\n")
-
-
-
-# do this when a radio station is selected via playlist buttons,
-# similar in structure to on_select(), but the way the radio station stream is called differs.
-def on_select2(event):
-    print("\n---- on_select2() entered ---------------------------------------------")
-    global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType  
-    global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
-    global stopLastStream, firstRun, Streaming
-
-    if stopLastStream:
-        stopLastStream = False
-        print("stopLastStream is True, so returning")
-        print("---- on_select2() finished ---------------------------------------------\n")
-        return
-
-    # determine the timeInterval between calling on_select()
-    global startTime, finishTime, startTime2
-    finishTime = time.time()
-    timeInterval = finishTime-startTime
-    timeIntervalStr = f"{timeInterval:.2f}"
-    print(f"Time interval: {timeIntervalStr} seconds")
-
-    timeInterval2 = finishTime-startTime2
-    timeIntervalStr2 = f"{timeInterval2:.2f}"
-    print(f"Time interval2: {timeIntervalStr2} seconds")
-
-    startTime = time.time()
-    print(f"Type: {event.type}")
-    print(f"Widget: {event.widget}")
-    print(f"Data: {event.data}")
-
-    # prevent crashing if aStation is deleted
-    if pollFlag:
-        if justDeletedFlag:
-            print("justDeletedFlag is True, so returning")
-            justDeletedFlag = False;
-            firstRun = True    
-            print("---- on_select2() finished ---------------------------------------------\n")
-            return    
-
-    global eventFlag, stopFlag, selected_value, selected_index, selected_value_last
-    if event.type=="Auto":
-        startTime2 = time.time()  # reset startTime2
-        if not GPIO:
-            text_box_ai.config(state=tk.NORMAL)      # unlock it
-            text_box_ai.delete("1.0", tk.END)        # clear all content
-            text_box_ai.config(state=tk.DISABLED)    # lock it again
-            print("DELETED text_box_ai contents")
-
+        # prevent crashing if aStation is deleted
         if pollFlag:
-            if not firstRun:
-                stopLastStream = True
-        firstRun = False        
+            if justDeletedFlag:
+                print("justDeletedFlag is True, so returning")
+                justDeletedFlag = False;
+                firstRun = True    
+                print(f"---- on_select(fromCombobox={fromCombobox}) finished ---------------------------------------------\n")
+                return    
 
-        if ExtraWindowFlag:
-            # if the extra window is open, close it
-            ExtraWindowFlag = False
-            browser.switch_to.window(nh2)
-            browser.close()
-            browser.switch_to.window(oh2)
-            print("Extra window closed")
+        # set various flags and parameters related to starting a station stream or accesing its website
+        global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last,selected_index 
+        if event.type=="Auto":
+            if not GPIO:
+                text_box_ai.config(state=tk.NORMAL)      # unlock it
+                text_box_ai.delete("1.0", tk.END)        # clear all content
+                text_box_ai.config(state=tk.DISABLED)    # lock it again
+                print("DELETED text_box_ai contents")
 
-        eventFlag = True
-        selected_value_last = selected_value
-        selected_value = aStation2[buttonIndex][0]
-        selected_index = int(aStation2[buttonIndex][1])
-        print("selected_value:",selected_value)
-        print("selected_index:",selected_index)
+            if pollFlag:
+                if not firstRun:
+                    stopLastStream = True
+            firstRun = False
 
-        # clear the icon and program graphic from the last selected station
-        # to prevent confusion when loading a new station.
-        image_path = pathImages + "/Blank.png"
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-        scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-        photo2 = ImageTk.PhotoImage(scaled_image2)
-        label2.config(image=photo2)
-        label2.image = photo2  # Keep a reference to avoid garbage collection
-        if not HiddenFlag:
-            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        root.update_idletasks()  # Force update the layout       
-    
-    # extract all parameters for the selected radio station
-    try:
-        StationName = aStation[selected_index][0]
-        CountryCode = StationName[:2]
-        print("CountryCode:", CountryCode)
-    except IndexError:
-        print(f"IndexError: {selected_index} is out of range!")
-        return
-    StationLogo = aStation[selected_index][1]
-    StationFunction = aStation[selected_index][2]
-    nNum = aStation[selected_index][3]
-    sPath = aStation[selected_index][4]
-    sClass = aStation[selected_index][5]
-    nType = aStation[selected_index][6]
+            if ExtraWindowFlag:
+                # if the extra window is open, close it
+                ExtraWindowFlag = False
+                browser.switch_to.window(nh2)
+                browser.close()
+                browser.switch_to.window(oh2)
+                print("Extra window closed")
 
-    # setting stop flag, this prevents on_select2 from running again
-    # "mysterious" code due to timing issues
-    if eventFlag:
-        if selected_index != -1:
+            eventFlag = True
+            if fromCombobox:
+                selected_value_last = selected_value
+                selected_value = custom_combo.get()
+                combobox_index = custom_combo.current()
+                print("selected_value:", selected_value)
+                print("combobox_index:", combobox_index)
+            else: # if not fromCombobox       
+                selected_value_last = selected_value
+                selected_value = aStation2[buttonIndex][0]
+                selected_index = int(aStation2[buttonIndex][1])
+                print("selected_value:",selected_value)
+                print("selected_index:",selected_index)
+
+            # clear the icon and program graphic from the last selected station
+            # to prevent confusion when loading a new station.
+            image_path = pathImages + "/Blank.png"
+            image = Image.open(image_path)
+            scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+            photo = ImageTk.PhotoImage(scaled_image)
+            label.config(image=photo)
+            label.image = photo  # Keep a reference to avoid garbage collection
+            scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
+            photo2 = ImageTk.PhotoImage(scaled_image2)
+            label2.config(image=photo2)
+            label2.image = photo2  # Keep a reference to avoid garbage collection
+            if not HiddenFlag:
+                label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+            root.update_idletasks()  # Force update the layout
+
+        # extract all parameters for the selected radio station
+        if fromCombobox:
+            try:
+                StationName = aStation[combobox_index][0]
+                CountryCode = StationName[:2]
+                print("CountryCode:", CountryCode)
+            except IndexError:
+                print(f"IndexError: {combobox_index} is out of range!")
+                return
+            StationLogo = aStation[combobox_index][1]
+            StationFunction = aStation[combobox_index][2]
+            nNum = aStation[combobox_index][3]
+            sPath = aStation[combobox_index][4]
+            sClass = aStation[combobox_index][5]
+            nType = aStation[combobox_index][6]
+        else: # if not fromCombobox
+            try:
+                StationName = aStation[selected_index][0]
+                CountryCode = StationName[:2]
+                print("CountryCode:", CountryCode)
+            except IndexError:
+                print(f"IndexError: {selected_index} is out of range!")
+                return
+            StationLogo = aStation[selected_index][1]
+            StationFunction = aStation[selected_index][2]
+            nNum = aStation[selected_index][3]
+            sPath = aStation[selected_index][4]
+            sClass = aStation[selected_index][5]
+            nType = aStation[selected_index][6]
+
+        # setting stop flag, this prevents on_select() from running again
+        # "mysterious" code due to timing issues
+        if eventFlag:
             # inform user that a station is being started
             text = "Please be patient, the station *" +  StationName + "*is being started"
             text_rows = text.split("*")
@@ -1935,139 +1855,207 @@ def on_select2(event):
             text_box.config(state=tk.DISABLED)
             root.update_idletasks()
 
-    print("eventFlag:",eventFlag)
+        print("eventFlag:",eventFlag)
+        print("Selected:", selected_value)
+        if not fromCombobox:
+            print("Index:", selected_index)
+            print("Button index:", buttonIndex)
 
-    print("Selected:", selected_value)
-    print("Index:", selected_index)
-    print("Button index:", buttonIndex)
-
-    # run selected radio station stream, and return associated textual information 
-    if selected_index != -1:
-        try:
-            print("\nWill run:", StationFunction)
-            text = StationFunction(browser,nNum,sPath,sClass,nType)
-            text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
-            text_rows = text.split("*")
-            if len(text_rows)>1:
-                if text_rows[0]==text_rows[1]:
+        if fromCombobox:
+            try:
+                # run selected radio station stream, and return associated textual information 
+                print("\nWill run:", StationFunction)
+                text = StationFunction(browser,nNum,sPath,sClass,nType)
+                text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
+                text_rows = text.split("*")
+                if len(text_rows)>1:
+                    if text_rows[0]==text_rows[1]:
                         del text_rows[0]
 
-            # Make text box editable, so contents can be deleted and rewritten
-            text_box.config(state=tk.NORMAL)
-            text_box.delete('1.0', tk.END)
-            print(text_rows)
+                # Make text box editable, so contents can be deleted and rewritten
+                text_box.config(state=tk.NORMAL)
+                text_box.delete('1.0', tk.END)
+                print(text_rows)
+                # Insert each row of text into the text box
+                for row in text_rows:
+                    text_box.insert(tk.END, row + "\n")
+                # Disable the text box to make it read-only
+                text_box.config(state=tk.DISABLED)
 
-            # Insert each row of text into the text box
-            for row in text_rows:
-                text_box.insert(tk.END, row + "\n")
+                # on_select() schedules itself to run in nominally refreshTime seconds.
+                # this updates the program text and grapic while the selected radio station is streaming
+                eventFlag = False
+                if pollFlag:
+                    if Streaming:
+                        print("JUST ABOUT to schedule on_select(True) to run in the future")
+                        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo"),True))
+                        print("DID SCHEDULE on_select(True) to run in the future")
+                    else:
+                        print("Streaming==FALSE so DID NOT schedule on_select(True) to run in the future")
+                        firstRun = True 
+                else:
+                    print("pollFlag==False so DID NOT schedule on_select(True) to run in the future")
 
-            # Disable the text box to make it read-only
-            text_box.config(state=tk.DISABLED)
-            root.update_idletasks()
+            except urllib.error.HTTPError as e:
+                print(f"\nCrashed in on_select({fromCombobox}), HTTPError: {e.code} - {e.reason}")
+                event.type = "Manual" # to prevent saving of buttonIndex
 
-            # make seleted button synchronize with combobox
-            # hide the annoying blinking cursor though the fudge
-            # of selective focus setting
-            if event.type=="Auto":
-                custom_combo.set(StationName)
-                custom_combo.focus_set()
-                custom_combo.selection_clear()
-                buttons[buttonIndex].focus_set()
-            
-            eventFlag = False
-            if pollFlag:
-                if Streaming:
-                    print("JUST ABOUT to schedule on_select2 to run in the future")
-                    root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
-                    print("DID SCHEDULE on_select2 to run in the future")
+                # inform user that starting station has failed in some way
+                text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
+                text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
+                text = text + "*Try again or select a different station."
+                text_rows = text.split("*")
+                text_box.config(state=tk.NORMAL)
+                text_box.delete('1.0', tk.END)
+                for row in text_rows:
+                    text_box.insert(tk.END, row + "\n")
+                text_box.config(state=tk.DISABLED)
+                root.update_idletasks()
+
+            Streaming = True # always reset this to True
+            print(f"---- on_select({fromCombobox}) finished ---------------------------------------------\n")
+
+        else: # if not fromCombobox
+            if selected_index != -1:
+                # run selected radio station stream, and return associated textual information 
+                try:
+                    print("\nWill run:", StationFunction)
+                    text = StationFunction(browser,nNum,sPath,sClass,nType)
+                    text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
+                    text_rows = text.split("*")
+                    if len(text_rows)>1:
+                        if text_rows[0]==text_rows[1]:
+                                del text_rows[0]
+
+                    # Make text box editable, so contents can be deleted and rewritten
+                    text_box.config(state=tk.NORMAL)
+                    text_box.delete('1.0', tk.END)
+                    print(text_rows)
+
+                    # Insert each row of text into the text box
+                    for row in text_rows:
+                        text_box.insert(tk.END, row + "\n")
+
+                    # Disable the text box to make it read-only
+                    text_box.config(state=tk.DISABLED)
+                    root.update_idletasks()
+
+                    # make seleted button synchronize with combobox
+                    # hide the annoying blinking cursor though the fudge
+                    # of selective focus setting
+                    if event.type=="Auto":
+                        custom_combo.set(StationName)
+                        custom_combo.focus_set()
+                        custom_combo.selection_clear()
+                        buttons[buttonIndex].focus_set()
+                    
+                    eventFlag = False
+                    if pollFlag:
+                        if Streaming:
+                            print("JUST ABOUT to schedule on_select(False) to run in the future")
+                            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons"),False))
+                            print("DID SCHEDULE on_select(False) to run in the future")
+                        else:    
+                            print("Streaming==FALSE so DID NOT schedule on_select(False) to run in the future")
+                            firstRun = True
+                    else:    
+                        print("pollFlag==False so DID NOT schedule on_select(False) to run in the future")
+
+                except urllib.error.HTTPError as e:
+                    print(f"\nCrashed in on_select({fromCombobox}), HTTPError: {e.code} - {e.reason}")
+
+                    event.type = "Manual" # to prevent saving of buttonIndex
+
+                    # inform user that starting station has failed in some way
+                    text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
+                    text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
+                    text = text + "*Try again or select a different station."
+                    text_rows = text.split("*")
+                    text_box.config(state=tk.NORMAL)
+                    text_box.delete('1.0', tk.END)
+                    for row in text_rows:
+                        text_box.insert(tk.END, row + "\n")
+                    text_box.config(state=tk.DISABLED)
+                    root.update_idletasks()
+            else:
+                # There is nothing to stream
+                browser.get(refresh_http)
+                time.sleep(2)
+                text = selected_value + "*No station playing"
+                #text = text + "* *[" + timeIntervalStr + "]"
+                text_rows = text.split("*")
+
+                # Make text box editable, so contents can be deleted and rewritten
+                text_box.config(state=tk.NORMAL)
+                text_box.delete('1.0', tk.END)
+                print(text_rows)
+
+                # Insert each row of text into the text box
+                for row in text_rows:
+                    text_box.insert(tk.END, row + "\n")
+
+                # Disable the text box to make it read-only
+                text_box.config(state=tk.DISABLED)
+                root.update_idletasks()
+
+                # Display the station logo and program graphic as blank
+                image_path = pathImages + "/Blank.png"
+                image = Image.open(image_path)
+                scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+                photo = ImageTk.PhotoImage(scaled_image)
+                label.config(image=photo)
+                label.image = photo  # Keep a reference to avoid garbage collection
+                scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
+                photo2 = ImageTk.PhotoImage(scaled_image2)
+                label2.config(image=photo2)
+                label2.image = photo2  # Keep a reference to avoid garbage collection
+                if not HiddenFlag:
+                    label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+                root.update_idletasks()
+
+                print("BLANK END")
+                print("")
+
+                eventFlag = False
+                if pollFlag:
+                    if Streaming:
+                        print("JUST ABOUT to schedule on_select(False) to run for NO station in the future")
+                        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons"),False))
+                        print("DID SCHEDULE on_select(False) to run in the future")
+                    else:    
+                        print("Streaming==FALSE so DID NOT schedule on_select(False) to run in the future")
+                        firstRun = True
                 else:    
-                    print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
-                    firstRun = True
-            else:    
-                print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
+                    print("pollFlag==False so DID NOT schedule on_select(False) to run in the future")
 
-        except urllib.error.HTTPError as e:
-            print(f"\nCrashed in on_select2(), HTTPError: {e.code} - {e.reason}")
+            if event.type=="Auto":
+                # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
+                with open(filepath, 'w') as file:
+                    file.write(str(buttonIndex))
 
-            event.type = "Manual" # to prevent saving of buttonIndex
+            Streaming = True # always reset this to True
+            print("---- on_select(False) finished ---------------------------------------------\n")
+            
+            global firstRun_select2
+            if firstRun_select2:
+                firstRun_select2 = False
+                view_button_pressed(None)
+                print("First run of on_select(False) completed, view_button_pressed() the first time")
+                view_button_pressed(None)
+                print("First run of on_select(False) completed, view_button_pressed() a second time")
 
-            # inform user that starting station has failed in some way
-            text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
-            text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
-            text = text + "*Try again or select a different station."
-            text_rows = text.split("*")
-            text_box.config(state=tk.NORMAL)
-            text_box.delete('1.0', tk.END)
-            for row in text_rows:
-                text_box.insert(tk.END, row + "\n")
-            text_box.config(state=tk.DISABLED)
-            root.update_idletasks()
-    else:
-        # There is nothing to stream
-        browser.get(refresh_http)
-        time.sleep(2)
-        text = selected_value + "*No station playing"
-        #text = text + "* *[" + timeIntervalStr + "]"
-        text_rows = text.split("*")
+    except WebDriverException as e:
+        print(f"\nCrashed in on_select({fromCombobox}), WebDriverException: {e}")
+        print("***** RESTARTING last station running *****")
 
-        # Make text box editable, so contents can be deleted and rewritten
-        text_box.config(state=tk.NORMAL)
-        text_box.delete('1.0', tk.END)
-        print(text_rows)
-
-        # Insert each row of text into the text box
-        for row in text_rows:
-            text_box.insert(tk.END, row + "\n")
-
-        # Disable the text box to make it read-only
-        text_box.config(state=tk.DISABLED)
-        root.update_idletasks()
-
-        # Display the station logo and program graphic as blank
-        image_path = pathImages + "/Blank.png"
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-        scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-        photo2 = ImageTk.PhotoImage(scaled_image2)
-        label2.config(image=photo2)
-        label2.image = photo2  # Keep a reference to avoid garbage collection
-        if not HiddenFlag:
-            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        root.update_idletasks()
-
-        print("BLANK END")
-        print("")
-
-        eventFlag = False
-        if pollFlag:
-            if Streaming:
-                print("JUST ABOUT to schedule on_select2 to run for NO station in the future")
-                root.after(int(refreshTime*1000), lambda: on_select2(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons")))
-                print("DID SCHEDULE on_select2 to run in the future")
-            else:    
-                print("Streaming==FALSE so DID NOT schedule on_select2 to run in the future")
-                firstRun = True
-        else:    
-            print("pollFlag==False so DID NOT schedule on_select2 to run in the future")
-
-    if event.type=="Auto":
-        # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
-        with open(filepath, 'w') as file:
-            file.write(str(buttonIndex))
-
-    Streaming = True # always reset this to True
-    print("---- on_select2() finished ---------------------------------------------\n")
-    
-    global firstRun_select2
-    if firstRun_select2:
-        firstRun_select2 = False
-        view_button_pressed(None)
-        print("First run of on_select2() completed, view_button_pressed() the first time")
-        view_button_pressed(None)
-        print("First run of on_select2() completed, view_button_pressed() a second time")
+        FirstRun = False
+        stopLastStream = False
+        print(f"FirstRun: {FirstRun}, stopLastStream: {stopLastStream}")
+        browser = webdriver.Firefox(options=firefox_options)
+        if fromCombobox:
+            on_select(CustomEvent("Auto", None, "ComboBox Event"),True)
+        else: # if not fromCombobox
+            on_select(CustomEvent("Auto", None, "Playlist Button Event"),False)
 
 
 
@@ -2086,11 +2074,11 @@ def on_button_press(event, i):
     print(f"\nPlaylist button {buttonIndex} pressed")
     global justDeletedFlag
     copyFlag = justDeletedFlag
-    on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+    on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)    
     if copyFlag:
         # forces pressing this playlist button twice if necessary
         print(f"Playlist button {buttonIndex} pressed AGAIN")
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"))    
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)    
     print(f"COMPLETED pressing the Playlist button {buttonIndex}")
 
 
@@ -2128,7 +2116,7 @@ def on_button_delete(event, i):
 
         # This will "play" the blank station for the real purpose of shutting down the current station
         #global PollFlag; pollFlag = True
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"))
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"),False)
 
         # save the playlist to file
         with open(filepath2, 'w', encoding='utf-8', newline='') as file:
@@ -2161,7 +2149,7 @@ def on_button_insert(event, i):
 
         # This will play the newly added station (from the combobox) as well as saving the icon
         # to its playlist button number
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from Insert Key"))
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Insert Key"),False)
 
         # now need to update the icon on the buttonIndex button
         buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -2566,7 +2554,7 @@ def on_select_wifi(event):
 
         # need to reload last streaming station
         #global PollFlag; pollFlag=True
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"),False)
         root.after(100,lambda: mainButton.focus_set()) 
     else: # fail, so try with password
         print(f"Command '{command}' FAILED, need password")
@@ -2601,7 +2589,7 @@ def process_wifiPassword(event):
         label5.config(text=f"Connected to: {sSSID} - wait for focus")
       # need to reload last streaming station
         #global PollFlag; pollFlag=True
-        on_select2(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"))
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"),False)
         root.after(100,lambda: mainButton.focus_set())
 
 
@@ -2724,7 +2712,7 @@ def delete_key_pressed(event):
     print(f"Deleting station at index: {delIndex}")
     StationName = aStation[delIndex][0]  # Get the station name to be deleted
     if pollFlag:
-        # to prevent on_select or on_select2 from fully running again (but with correct processing!)
+        # to prevent on_select from fully running again (but with correct processing!)
         justDeletedFlag = True
 
     # Remove the station from the aStation list & save the modifed list back to a csv file
@@ -3231,11 +3219,11 @@ class CustomCombobox(tk.Frame):
             if self.name=="custom_combo":
                 print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
                 copyFlag = justDeletedFlag
-                on_select(CustomEvent("Auto", self, "ComboBox Event"))
+                on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
                 if copyFlag:
                     # to force pressing the RETURN button twice if necessary
                     print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION - AGAIN ***")
-                    on_select(CustomEvent("Auto", self, "ComboBox Event"))
+                    on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
                 print("\n*** COMPLETED - RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
             elif self.name=="custom_combo_bt":    
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
@@ -3244,11 +3232,11 @@ class CustomCombobox(tk.Frame):
         else: # dropdown selection was not selected with the Enter key
             print("\n*** Return key pressed on unopened combobox ***")
             copyFlag = justDeletedFlag
-            on_select(CustomEvent("Auto", self, "ComboBox Event"))
+            on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
             if copyFlag:
                 # to force pressing the RND button twice if necessary
                 print("\n*** Return key pressed on unopened combobox AGAIN ***")
-                on_select(CustomEvent("Auto", self, "ComboBox Event"))
+                on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
             print("*** COMPLETED - Return key pressed on unopened combobox ***\n")
         return "break"
 

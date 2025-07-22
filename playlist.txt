@@ -4,53 +4,53 @@ ABC NewsRadio,76
 ABC Jazz,1
 au ABC Jazz,4224
 ABC triple j Hottest,2
-au The Bunkhouse,4838
+au The Bunkhouse,4837
 -- EMPTY 7 --,-1
-us WROX 1450 AM,75969
+-- EMPTY 8 --,-1
 au ABC Classic FM,4210
 au ABC Classic 2,4209
-us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61590
-hu Papageno,38121
+us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61588
+hu Papageno,38120
 ab Classical - Chopin,365
-de BR Klassik,19741
-de Klassik Radio,20557
-de Klassik 1,20556
+de BR Klassik,19740
+de Klassik Radio,20556
+de Klassik 1,20555
 -- EMPTY 17 --,-1
 Cruise 1323,87
 au Gold 101.7 FM,4417
-au Totally Radio 70s,4856
+au Totally Radio 70s,4855
 au 2GN Goulburn,4079
-de Bayern 1,19587
+de Bayern 1,19586
 -- EMPTY 23 --,-1
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
 -- EMPTY 26 --,-1
-pl msRadio 90s,51413
-pl ESKA2 Nowy Sącz,51336
+pl msRadio 90s,51411
+pl ESKA2 Nowy Sącz,51334
 -- EMPTY 29 --,-1
 -- EMPTY 30 --,-1
 -- EMPTY 31 --,-1
 -- EMPTY 32 --,-1
 -- EMPTY 33 --,-1
-de Radio Gong Würzburg,21504
-ph Spotlight Radio FM,51123
-gb BBC London,31285
-gb BBC Radio 1,31286
-gb BBC Radio 2,31288
-gb BBC Radio 3,31289
-gb BBC Radio 4,31290
-gb BBC Radio 4 Extra,31291
-gb BBC Radio 5 live,31292
-gb BBC World Service,31331
-gb BBC World Service Global News,31335
+-- EMPTY 34 --,-1
+-- EMPTY 35 --,-1
+gb BBC London,31284
+gb BBC Radio 1,31285
+gb BBC Radio 2,31287
+gb BBC Radio 3,31288
+gb BBC Radio 4,31289
+gb BBC Radio 4 Extra,31290
+gb BBC Radio 5 live,31291
+gb BBC World Service,31330
+gb BBC World Service Global News,31334
 -- EMPTY 45 --,-1
 -- EMPTY 46 --,-1
-gb BritCom 1 - Pumpkin FM,31529
-gb BritCom 2 - Pumpkin FM,31530
-gb BritCom 3 - Pumpkin FM,31531
-gb British Comedy 1 - ROKiT Radio Network,31532
-gb British Comedy 2 - ROKiT Radio Network,31533
-gb Comedy Gold - ROKiT Radio Network,31755
+gb BritCom 1 - Pumpkin FM,31528
+gb BritCom 2 - Pumpkin FM,31529
+gb BritCom 3 - Pumpkin FM,31530
+gb British Comedy 1 - ROKiT Radio Network,31531
+gb British Comedy 2 - ROKiT Radio Network,31532
+gb Comedy Gold - ROKiT Radio Network,31754
 -- EMPTY 53 --,-1
 -- EMPTY 54 --,-1
 -- EMPTY 55 --,-1
@@ -61,24 +61,24 @@ gb Comedy Gold - ROKiT Radio Network,31755
 -- EMPTY 60 --,-1
 -- EMPTY 61 --,-1
 -- EMPTY 62 --,-1
-de Epic Piano - CHOPIN,20093
-de Epic Piano - GRIEG,20094
-de Epic Piano - LISZT,20095
-de Epic Piano - TSCHAIKOWSKI,20101
-de Epic Piano - ROMANTIC PIANO,20099
-de Epic Piano - SOLO PIANO,20100
-de Epic-Piano - GREAT CONCERTS,20107
+de Epic Piano - CHOPIN,20092
+de Epic Piano - GRIEG,20093
+de Epic Piano - LISZT,20094
+de Epic Piano - TSCHAIKOWSKI,20100
+de Epic Piano - ROMANTIC PIANO,20098
+de Epic Piano - SOLO PIANO,20099
+de Epic-Piano - GREAT CONCERTS,20106
 -- EMPTY 70 --,-1
 -- EMPTY 71 --,-1
-de Klassik Radio Bach,20560
-de Klassik Radio Barock,20562
-de Klassik Radio Barock2,20563
-de Klassik Radio Beethoven,20564
-de Klassik Radio Best of Oper,20565
-de Klassik Radio Classic Dreams,20571
-de Klassik Radio Klassik Dreams,20587
-de Klassik Radio Mozart,20596
-de Klassik Radio Verdi,20611
+de Klassik Radio Bach,20559
+de Klassik Radio Barock,20561
+de Klassik Radio Barock2,20562
+de Klassik Radio Beethoven,20563
+de Klassik Radio Best of Oper,20564
+de Klassik Radio Classic Dreams,20570
+de Klassik Radio Klassik Dreams,20586
+de Klassik Radio Mozart,20595
+de Klassik Radio Verdi,20610
 -- EMPTY 81 --,-1
 -- EMPTY 82 --,-1
 -- EMPTY 83 --,-1
@@ -88,7 +88,7 @@ de Klassik Radio Verdi,20611
 -- EMPTY 87 --,-1
 -- EMPTY 88 --,-1
 -- EMPTY 89 --,-1
--- EMPTY 90 --,-1
+br Rádio Diocesana 960,8788
 -- EMPTY 91 --,-1
 -- EMPTY 92 --,-1
 -- EMPTY 93 --,-1
@@ -97,12 +97,12 @@ de Klassik Radio Verdi,20611
 -- EMPTY 96 --,-1
 -- EMPTY 97 --,-1
 -- EMPTY 98 --,-1
-pe Peru Cumbia,49099
-br Estação 104 FM,7044
-de NOSTALGIE New Wave,20946
-de رادیو شاه میهن آبادی,20964
-us MPIR Old Time Radio,67221
--- EMPTY 104 --,-1
--- EMPTY 105 --,-1
--- EMPTY 106 --,-1
--- EMPTY 107 --,-1
+pe Peru Cumbia,49097
+br Estação 104 FM,7043
+de NOSTALGIE New Wave,20945
+de رادیو شاه میهن آبادی,20963
+us MPIR Old Time Radio,67219
+us KANE Radio 1240 AM,61410
+us WROX 1450 AM,75966
+de Radio Gong Würzburg,21503
+ph Spotlight Radio FM,51121

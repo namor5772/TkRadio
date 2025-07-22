@@ -33,6 +33,7 @@ from selenium import webdriver
 from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -528,6 +529,7 @@ def Radio1(br,nNum,sPath,sClass,nType):
             label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
         else:
             label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    label2.lift(text_box)        
     root.update_idletasks()  # Force update the layout        
     
     # get station details
@@ -630,6 +632,7 @@ def Radio2(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
+    label2.lift(text_box)    
     root.update_idletasks()  # Force update the layout        
     
     # get station and program details
@@ -732,6 +735,7 @@ def Radio3(br,nNum,sPath,sClass,nType):
             label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
         else:
             label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+    label2.lift(text_box)        
     root.update_idletasks()  # Force update the layout        
 
     # get station details
@@ -831,6 +835,7 @@ def Radio4(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap2+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
     
     # get station details
@@ -928,6 +933,7 @@ def Radio5(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
 
     # get station details
@@ -1014,6 +1020,7 @@ def Radio6(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
     
     # get station details
@@ -1092,6 +1099,7 @@ def Radio7(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+        label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
         
     # Find program details
@@ -1224,6 +1232,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     label2.image = photo2  # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
+        label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
  
     # get station and program details
@@ -1240,7 +1249,6 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 # format used by the radio-australia.org and related stations format
 def Commercial2(br,nNum,sPath,sClass,nType):
     global img_url_g, oh, nh, tabNum, oh2, nh2, nh3, ExtraWindowFlag, Streaming, stopOnce
-    print("")
     print("---- Commercial2() entered ---------------------------------------------")
 
     if eventFlag:
@@ -1449,7 +1457,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         with open(image_path, 'wb') as f:
             f.write(response.content)
         print("=====> xpath #1")
-    except Exception as e: #NoSuchElementException:
+    except NoSuchElementException:
         try:
             # if failed above try a slightly different path
             xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
@@ -1459,7 +1467,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             with open(image_path, 'wb') as f:
                 f.write(response.content)
             print("=====> xpath #2")
-        except Exception as e: #NoSuchElementException:
+        except  NoSuchElementException:
             try:
                 # if failed above try a slightly different path
                 xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/img'
@@ -1469,7 +1477,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                 with open(image_path, 'wb') as f:
                     f.write(response.content)
                 print("=====> xpath #3")
-            except Exception as e: #NoSuchElementException:
+            except  NoSuchElementException:
                 try:
                     # if failed above try a slightly different path
                     xpath = '/html/body/div[6]/div[1]/div[2]/div/div[1]/div[1]/div[3]/div/div[1]/div/a/img'
@@ -1479,7 +1487,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                     with open(image_path, 'wb') as f:
                         f.write(response.content)
                         print("=====> xpath #4")
-                except Exception as e: #NoSuchElementException:
+                except  NoSuchElementException:
                     try:
                         # if failed above try a slightly different path
                         xpath = '/html/body/div[6]/div[1]/div[3]/div/div[1]/div[1]/div[3]/div/div[2]/div[1]/a/img'
@@ -1489,7 +1497,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                         with open(image_path, 'wb') as f:
                             f.write(response.content)
                         print("=====> xpath #5")
-                    except Exception as e: #NoSuchElementException:
+                    except  NoSuchElementException:
                         # failed to find image so display a blank image
                         foundImage = False
                         print("=====> xpath NONE")
@@ -1505,6 +1513,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         label2.image = photo  # Keep a reference to avoid garbage collection
         if not HiddenFlag:
             label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
+            label2.lift(text_box)
     else:    
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
@@ -1514,6 +1523,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         label2.image = photo  # Keep a reference to avoid garbage collection
         if not HiddenFlag:
             label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+            label2.lift(text_box)
     root.update_idletasks()  # Force update the layout        
 
     # get station and program details (if available)
@@ -1780,10 +1790,15 @@ def on_select(event,fromCombobox):
             if ExtraWindowFlag:
                 # if the extra window is open, close it
                 ExtraWindowFlag = False
-                browser.switch_to.window(nh2)
-                browser.close()
-                browser.switch_to.window(oh2)
-                print("Extra window closed")
+                try:
+                    browser.switch_to.window(nh2)
+                    browser.close()
+                    browser.switch_to.window(oh2)
+                    print("Extra window closed")
+                except Exception as e:
+                    # Need to catch the exception if the window is not open
+                    # which can happen if the browser was restarted last time
+                    print(f"Error closing extra window: {e}")   
 
             eventFlag = True
             if fromCombobox:
@@ -1813,6 +1828,7 @@ def on_select(event,fromCombobox):
             label2.image = photo2  # Keep a reference to avoid garbage collection
             if not HiddenFlag:
                 label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+                label2.lift(text_box)
             root.update_idletasks()  # Force update the layout
 
         # extract all parameters for the selected radio station
@@ -2014,6 +2030,7 @@ def on_select(event,fromCombobox):
                 label2.image = photo2  # Keep a reference to avoid garbage collection
                 if not HiddenFlag:
                     label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+                    label2.lift(text_box)
                 root.update_idletasks()
 
                 print("BLANK END")
@@ -2058,9 +2075,9 @@ def on_select(event,fromCombobox):
         stopLastStream = False
         print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
         if fromCombobox:
-            root.after(5000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
+            root.after(15000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
         else: # if not fromCombobox
-            root.after(5000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
+            root.after(15000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
 
 
 
@@ -2684,6 +2701,18 @@ def on_focus_out_dostuff(event):
         widget.config(bg="gray90")
 
 
+def focus_next(event):
+    # Move to the next widget in focus order
+    event.widget.tk_focusNext().focus_set()
+    return "break"
+ 
+
+def focus_prev(event):
+    # Move to the previous widget in focus order
+    event.widget.tk_focusPrev().focus_set()
+    return "break"
+
+
 def random_button_pressed(event):
     print("\n*** REAL [RND] BUTTON PRESSED ***")
     numStations = len(aStation)
@@ -2816,6 +2845,7 @@ def delete_key_pressed(event):
     label2.config(image=photo2)
     label2.image = photo2  # Keep a reference to avoid garbage collection
     label2.place(x=Xgap+X1, y=Ygap2+Y1)  # Adjust the position
+    label2.lift(text_box)
     print("*** COMPLETED - [DEL] BUTTON PRESSED ***\n")
 
 
@@ -2913,6 +2943,7 @@ def view_button_pressed(event):
         
         label2.place(x=label2_pos['x'], y=label2_pos['y'],
             width=label2_pos['width'], height=label2_pos['height'])
+        label2.lift(text_box)
         
         if not GPIO:
             text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
@@ -2929,6 +2960,7 @@ def view_button_pressed(event):
 
         label2_pos = {'x': label2.winfo_x(), 'y': label2.winfo_y(),
             'width': label2.winfo_width(), 'height': label2.winfo_height()}
+        label2.lift(text_box)
         label2.place_forget()
 
         if not GPIO:
@@ -3405,9 +3437,10 @@ else:
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
 randomButton.bind("<Return>", random_button_pressed)  
-#randomButton.bind("<ButtonPress>", random_button_pressed)  
 randomButton.bind("<FocusIn>", on_focus_dostuff)
 randomButton.bind("<FocusOut>", on_focus_out_dostuff)
+randomButton.bind("<Right>", focus_next)
+randomButton.bind("<Left>", focus_prev)
 
 # button used to delete the currently playing station from the station list.
 # this will be saved to the file at shutdown and the playlist button references
@@ -3427,6 +3460,8 @@ deleteButton.config(bg="gray90")
 deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button 
 deleteButton.bind("<FocusIn>", on_focus_dostuff)
 deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
+deleteButton.bind("<Right>", focus_next)
+deleteButton.bind("<Left>", focus_prev)
 
 # button used to save the current contents of textbox that shows the station details and program
 # to a txt file
@@ -3443,9 +3478,10 @@ else:
 saveButton.config(takefocus=True)
 saveButton.config(bg="gray90")
 saveButton.bind("<Return>", save_button_pressed)  
-#saveButton.bind("<ButtonPress>", save_button_pressed)  
 saveButton.bind("<FocusIn>", on_focus_dostuff)
 saveButton.bind("<FocusOut>", on_focus_out_dostuff)
+saveButton.bind("<Right>", focus_next)
+saveButton.bind("<Left>", focus_prev)
 
 # button used to run ai to obtain details about the current streaming station 
 # and display it in the text_box_ai
@@ -3455,9 +3491,10 @@ if not GPIO:
     aiButton.config(takefocus=True)
     aiButton.config(bg="gray90")
     aiButton.bind("<Return>", ai_button_pressed)  
-    #aiButton.bind("<ButtonPress>", ai_button_pressed)  
     aiButton.bind("<FocusIn>", on_focus_dostuff)
     aiButton.bind("<FocusOut>", on_focus_out_dostuff)
+    aiButton.bind("<Right>", focus_next)
+    aiButton.bind("<Left>", focus_prev)
 
 # button used to run toggle between station and playlist views
 viewButton = tk.Button(root, text="VIEW", name="viewButton")
@@ -3472,9 +3509,10 @@ else:
 viewButton.config(takefocus=True)
 viewButton.config(bg="gray90")
 viewButton.bind("<Return>", view_button_pressed)  
-#viewButton.bind("<ButtonPress>", view_button_pressed)  
 viewButton.bind("<FocusIn>", on_focus_dostuff)
 viewButton.bind("<FocusOut>", on_focus_out_dostuff)
+viewButton.bind("<Right>", focus_next)
+viewButton.bind("<Left>", focus_prev)
 
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!
@@ -3493,26 +3531,9 @@ else:
 #    setupButton.bind("<ButtonPress>", toggle_pollStatus)  
 setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
+setupButton.bind("<Right>", focus_next)
+setupButton.bind("<Left>", focus_prev)
    
-# Create a text box, position and size it, used to display the program and song details
-text_box = tk.Text(root, wrap="word", takefocus=True)
-text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
-text_box.config(state=tk.NORMAL, takefocus=True) # Enable the text box to insert text
-text_box.bind("<FocusIn>", on_focus_dostuff)
-text_box.bind("<FocusOut>", on_focus_out_dostuff)
-text_box.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
-text_box.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
-
-# Create a text box to display the results of ai queries, position and size it
-if not GPIO:
-    text_box_ai = tk.Text(root, wrap="word", takefocus=True)  
-    text_box_ai.place(x=10, y=460, width=780, height=392)
-    text_box_ai.config(state=tk.NORMAL, takefocus=True)
-    text_box_ai.bind("<FocusIn>", on_focus_dostuff)
-    text_box_ai.bind("<FocusOut>", on_focus_out_dostuff)
-    text_box_ai.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
-    text_box_ai.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
-
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
@@ -3562,7 +3583,6 @@ for i in range(numButtons):
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
     button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
-#    button.bind("<ButtonPress>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
     button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
@@ -3578,6 +3598,29 @@ for i in range(numButtons):
     button.image = photo
     button.update_idletasks()
     buttons.append(button)
+
+# Create a text box, position and size it, used to display the program and song details
+text_box = tk.Text(root, wrap="word", takefocus=True)
+text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
+text_box.config(state=tk.NORMAL, takefocus=True) # Enable the text box to insert text
+text_box.bind("<FocusIn>", on_focus_dostuff)
+text_box.bind("<FocusOut>", on_focus_out_dostuff)
+text_box.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
+text_box.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
+text_box.bind("<Right>", focus_next)
+text_box.bind("<Left>", focus_prev)
+
+# Create a text box to display the results of ai queries, position and size it
+if not GPIO:
+    text_box_ai = tk.Text(root, wrap="word", takefocus=True)  
+    text_box_ai.place(x=10, y=460, width=780, height=392)
+    text_box_ai.config(state=tk.NORMAL, takefocus=True)
+    text_box_ai.bind("<FocusIn>", on_focus_dostuff)
+    text_box_ai.bind("<FocusOut>", on_focus_out_dostuff)
+    text_box_ai.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
+    text_box_ai.bind("<Shift-Tab>", on_shift_tab)     # For completeness (Windows, X11, etc.)
+    text_box_ai.bind("<Right>", focus_next)
+    text_box_ai.bind("<Left>", focus_prev)
 
 
 # SECONDARY setup FORM RELATED DEFINITIONS
@@ -3598,16 +3641,18 @@ if GPIO:
     mainButton.place(x=768, y=0, width=25, height=25)
     mainButton.config(takefocus=True)
     mainButton.bind("<Return>", show_root_form)  
-    #mainButton.bind("<ButtonPress>", show_root_form)  
     mainButton.bind("<FocusIn>", on_focus_dostuff)
     mainButton.bind("<FocusOut>", on_focus_out_dostuff)
+    mainButton.bind("<Right>", focus_next)
+    mainButton.bind("<Left>", focus_prev)
 
     # button to toggle bluetooth connection on/off
     BTstatusButton = tk.Button(setup, text="NONE") 
     BTstatusButton.place(x=15, y=10+25, height=25)
     BTstatusButton.config(takefocus=True)
     BTstatusButton.bind("<Return>", toggle_bluetooth)  
-    #BTstatusButton.bind("<ButtonPress>", toggle_bluetooth)  
+    BTstatusButton.bind("<Right>", focus_next)
+    BTstatusButton.bind("<Left>", focus_prev)
 
     # button & label to connect to currently paired bluetooth speakers
     cX = 15; cY = 10+25+30
@@ -3615,10 +3660,10 @@ if GPIO:
     connectButton.default_bg = connectButton.cget("bg") 
     connectButton.place(x=cX, y=cY, height=25)
     connectButton.config(takefocus=True)
-    connectButton.bind("<Return>", _connect_bluetooth)  
-    #connectButton.bind("<ButtonPress>", _connect_bluetooth)  
     connectButton.bind("<FocusIn>", on_focus_dostuff)
     connectButton.bind("<FocusOut>", on_focus_out_dostuff)
+    connectButton.bind("<Right>", focus_next)
+    connectButton.bind("<Left>", focus_prev)
     label4 = tk.Label(setup, text="")
     label4.place(x=cX+100, y=cY+2)
 
@@ -3628,9 +3673,10 @@ if GPIO:
     pairButton.place(x=cX, y=cY+60, height=25)
     pairButton.config(takefocus=True)
     pairButton.bind("<Return>", pair_bluetooth)  
-    #pairButton.bind("<ButtonPress>", pair_bluetooth)
     pairButton.bind("<FocusIn>", on_focus_dostuff)
     pairButton.bind("<FocusOut>", on_focus_out_dostuff)
+    pairButton.bind("<Right>", focus_next)
+    pairButton.bind("<Left>", focus_prev)
     label6 = tk.Label(setup, text="")
     label6.place(x=cX+150, y=cY+62)
 
@@ -3651,7 +3697,8 @@ if GPIO:
     pollStatusButton.place(x=cX+400, y=10+25, height=25)
     pollStatusButton.config(takefocus=True)
     pollStatusButton.bind("<Return>", toggle_pollStatus)  
-    #pollStatusButton.bind("<ButtonPress>", toggle_pollStatus)  
+    pollStatusButton.bind("<Right>", focus_next)
+    pollStatusButton.bind("<Left>", focus_prev)
 
     # button to enable scanning for wifi devices (which will appear in above combobox)
     wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
@@ -3659,9 +3706,10 @@ if GPIO:
     wifiButton.place(x=cX+400, y=cY-30, height=25)
     wifiButton.config(takefocus=True)
     wifiButton.bind("<Return>", find_wifi)  
-    #wifiButton.bind("<ButtonPress>", find_wifi)
     wifiButton.bind("<FocusIn>", on_focus_dostuff)
     wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
+    wifiButton.bind("<Right>", focus_next)
+    wifiButton.bind("<Left>", focus_prev)
     label7 = tk.Label(setup, text="")
     label7.place(x=cX+400+100, y=cY+2-30)
 
@@ -3681,6 +3729,8 @@ if GPIO:
     wifiPassword.bind("<Return>", process_wifiPassword)
     wifiPassword.bind("<FocusIn>", on_focus_wifiPassword)
     wifiPassword.bind("<FocusOut>", on_focus_out_wifiPassword)
+    wifiButton.bind("<Right>", focus_next)
+    wifiButton.bind("<Left>", focus_prev)
     label_wifiPassword = tk.Label(setup, text="Password:")
     label_wifiPassword.place(x=cX+400, y=cY+60)
 

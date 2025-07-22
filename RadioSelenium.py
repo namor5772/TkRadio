@@ -382,7 +382,6 @@ addFlag = False
 iconSize = 160
 
 eventFlag = True # if on_select are called from event
-#stopFlag = False
 selected_value = "INITIAL"
 selected_value_last = "INITIAL"
 selected_index = -1
@@ -401,6 +400,8 @@ StationName = ""
 CountryCode = ""
 StationLogo = ""
 StationFunction = SomeFunction
+selectedStationIndex = 0
+TimeNum = 0
 nNum = 0
 sPath = ""
 sClass = ""
@@ -436,6 +437,7 @@ labelPlaylistFocus_pos = {0,0,0,0}
 label2_pos = {0,0,0,0} 
 firstRun_select2 = True # if true then first run of select2
 visibleItemsNum = 0 # number of items visible in the combobox
+
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1722,13 +1724,16 @@ def on_closing():
 # do this when a radio station is selected from combobox
 def on_select(event,fromCombobox):
     global browser
-    global firstRun, stopLastStream
-    try:
-        print(f"\n---- on_select(fromCombobox={fromCombobox}) entered ---------------------------------------------")
-        global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
-        global ExtraWindowFlag, TimeNum, selectedStationIndex, selectedStationName, justDeletedFlag
-        global Streaming 
+    global firstRun, stopLastStream, Streaming, justDeletedFlag, pollFlag
+    global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
+    global ExtraWindowFlag, TimeNum, selectedStationIndex
+    global eventFlag, selected_value, combobox_index, selected_value_last,selected_index 
+    global startTime, finishTime
+    global firstRun_select2
 
+    print(f"\n---- on_select(fromCombobox={fromCombobox}) entered ---------------------------------------------")
+    print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}, Streaming: {Streaming}, justDeletedFlag: {justDeletedFlag}, pollFlag: {pollFlag}")
+    try:
         if stopLastStream:
             stopLastStream = False
             print("stopLastStream is True, so returning")
@@ -1736,7 +1741,6 @@ def on_select(event,fromCombobox):
             return
 
         # determine the timeInterval between calling on_select()
-        global startTime, finishTime
         finishTime = time.time()
         timeInterval = finishTime-startTime
         timeIntervalStr = f"{timeInterval:.2f}"
@@ -1761,7 +1765,6 @@ def on_select(event,fromCombobox):
                 return    
 
         # set various flags and parameters related to starting a station stream or accesing its website
-        global eventFlag, stopFlag, selected_value, combobox_index, selected_value_last,selected_index 
         if event.type=="Auto":
             if not GPIO:
                 text_box_ai.config(state=tk.NORMAL)      # unlock it
@@ -1864,7 +1867,7 @@ def on_select(event,fromCombobox):
         if fromCombobox:
             try:
                 # run selected radio station stream, and return associated textual information 
-                print("\nWill run:", StationFunction)
+                print("*** Will run:", StationFunction)
                 text = StationFunction(browser,nNum,sPath,sClass,nType)
                 text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
                 text_rows = text.split("*")
@@ -1919,7 +1922,7 @@ def on_select(event,fromCombobox):
             if selected_index != -1:
                 # run selected radio station stream, and return associated textual information 
                 try:
-                    print("\nWill run:", StationFunction)
+                    print("*** Will run:", StationFunction)
                     text = StationFunction(browser,nNum,sPath,sClass,nType)
                     text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
                     text_rows = text.split("*")
@@ -2036,7 +2039,6 @@ def on_select(event,fromCombobox):
             Streaming = True # always reset this to True
             print("---- on_select(False) finished ---------------------------------------------\n")
             
-            global firstRun_select2
             if firstRun_select2:
                 firstRun_select2 = False
                 view_button_pressed(None)
@@ -2044,18 +2046,21 @@ def on_select(event,fromCombobox):
                 view_button_pressed(None)
                 print("First run of on_select(False) completed, view_button_pressed() a second time")
 
-    except WebDriverException as e:
+    except Exception as e:
+    #except WebDriverException as e:
         print(f"\nCrashed in on_select({fromCombobox}), WebDriverException: {e}")
         print("***** RESTARTING last station running *****")
 
-        FirstRun = False
-        stopLastStream = False
-        print(f"FirstRun: {FirstRun}, stopLastStream: {stopLastStream}")
+        browser.quit() # close the WebDriver
         browser = webdriver.Firefox(options=firefox_options)
+
+        firstRun = True
+        stopLastStream = False
+        print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
         if fromCombobox:
-            on_select(CustomEvent("Auto", None, "ComboBox Event"),True)
+            root.after(5000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
         else: # if not fromCombobox
-            on_select(CustomEvent("Auto", None, "Playlist Button Event"),False)
+            root.after(5000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
 
 
 
@@ -2115,7 +2120,6 @@ def on_button_delete(event, i):
         buttons[buttonIndex].update_idletasks() 
 
         # This will "play" the blank station for the real purpose of shutting down the current station
-        #global PollFlag; pollFlag = True
         on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"),False)
 
         # save the playlist to file

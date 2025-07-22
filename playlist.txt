@@ -32,8 +32,8 @@ pl ESKA2 Nowy Sącz,51336
 -- EMPTY 31 --,-1
 -- EMPTY 32 --,-1
 -- EMPTY 33 --,-1
--- EMPTY 34 --,-1
--- EMPTY 35 --,-1
+de Radio Gong Würzburg,21504
+ph Spotlight Radio FM,51123
 gb BBC London,31285
 gb BBC Radio 1,31286
 gb BBC Radio 2,31288

@@ -201,6 +201,8 @@ Start in: C:\Users\grobl\AppData\Local\Programs\Python\Python312
 
 Clearly the will vary depending on which directories containing the Python script and the Python executable.
 
+ location of firerfox.exe C:\Users\roman\.cache\selenium\firefox\win64\141.0
+
 ## Python Script
 
 Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that implements the gui interface to this web radio.

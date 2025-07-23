@@ -17,6 +17,8 @@ import threading
 import requests
 import urllib.request
 import urllib.error
+import psutil
+import tempfile
 
 try:
     import RPi.GPIO as GPIO
@@ -34,6 +36,7 @@ from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -307,12 +310,23 @@ if GPIO:
 # START #######################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
 
+def find_process_exe(process_name):
+    for proc in psutil.process_iter(['name', 'exe']):
+        try:
+            if proc.info['name'] and process_name in proc.info['name'].lower():
+                return proc.info['exe']
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    return None
+
 # Get the directory of the current script & then assumed directory for Images
 script_name = os.path.basename(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = script_dir.replace("\\","/")
 pathImages = script_dir + "/Images"
+pathProfile = script_dir + "/firefoxProfile"
 print(f"The Images path is: {pathImages}")
+print(f"The Firefox profile path is: {pathProfile}")
 
 # Create the full filepath to the saved radio station file
 filename = 'savedRadioStation.txt'
@@ -336,12 +350,21 @@ filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
+# we use an explicitly given profile since via Selenium any changes are only temprrary
+firefox_profile = FirefoxProfile(pathProfile)
 firefox_options = Options()
-# below is the headless width and height, if not headless +15 & 8 respectively
+firefox_options.profile = firefox_profile
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
 #firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
+
+firefox_exe = find_process_exe("firefox")
+geckodriver_exe = find_process_exe("geckodriver")
+
+print(f"Firefox executable: {firefox_exe}")
+print(f"GeckoDriver executable: {geckodriver_exe}")
+print(f"System temp dir: {tempfile.gettempdir()}")
 
 # 'cleans' browser between opening station websites
 #refresh_http = "http://www.ri.com.au" # use my basic "empty" website
@@ -2068,8 +2091,10 @@ def on_select(event,fromCombobox):
         print(f"\nCrashed in on_select({fromCombobox}), WebDriverException: {e}")
         print("***** RESTARTING last station running *****")
 
+        global firefox_options
         browser.quit() # close the WebDriver
-        browser = webdriver.Firefox(options=firefox_options)
+        kill_gekodrivers() # kill any running geckodriver processes
+        browser = webdriver.Firefox(options=firefox_options) # restart the WebDriver
 
         firstRun = True
         stopLastStream = False
@@ -3003,6 +3028,35 @@ def view_button_pressed(event):
         text_box_ai.update_idletasks()  # Force update the layout
     print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
     print("*** COMPLETED - [VIEW] BUTTON PRESSED ***\n")
+
+
+# Function to kill all geckodriver processes.
+# Use after browser.quit() to clean everything out before reopening Firefox.
+def kill_gekodrivers():
+    if GPIO:
+        for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
+            try:
+                name = proc.info['name'] or ''
+                # also check cmdline in case it’s renamed
+                if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in proc.info['cmdline']):
+                    pid = proc.info['pid']
+                    print(f"Killing {name} (PID {pid})")
+                    proc.kill()
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+    else: # running on Windows
+        for proc in psutil.process_iter(attrs=['pid', 'name']):
+            try:
+                name = proc.info['name']
+                if name and name.lower() == 'geckodriver.exe':
+                    pid = proc.info['pid']
+                    print(f"Killing {name} (PID {pid})")
+                    proc.kill()
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                # Process already gone or permission denied
+                continue
+    print("All geckodriver processes killed.")
+
 
 
 # Thanks to Copilot (Think Deeper) AI 

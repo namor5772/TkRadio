@@ -350,7 +350,9 @@ filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Open and setup FireFox browser
-# we use an explicitly given profile since via Selenium any changes are only temprrary
+# we use an explicitly given profile since via Selenium any changes are only temporary
+# We setup a profile that deletes cookies etc. between starting browser which should help
+# with cache overflow that might lead to system lockup?
 firefox_profile = FirefoxProfile(pathProfile)
 firefox_options = Options()
 firefox_options.profile = firefox_profile

@@ -323,7 +323,10 @@ script_name = os.path.basename(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = script_dir.replace("\\","/")
 pathImages = script_dir + "/Images"
-pathProfile = script_dir + "/firefoxProfile"
+if GPIO:
+    pathProfile = script_dir + "/firefoxProfileRPI5"
+else:
+    pathProfile = script_dir + "/firefoxProfileWindows"
 print(f"The Images path is: {pathImages}")
 print(f"The Firefox profile path is: {pathProfile}")
 

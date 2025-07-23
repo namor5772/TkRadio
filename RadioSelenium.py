@@ -309,6 +309,8 @@ if GPIO:
 # START #######################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
 
+# just a function to find the executable of a process by its name
+# for debugging and interest
 def find_process_exe(process_name):
     for proc in psutil.process_iter(['name', 'exe']):
         try:
@@ -1748,6 +1750,36 @@ def after_GUI_started():
 reverse_function_map = {v: k for k, v in function_map.items()}  # Assuming function_map is available
 
 
+
+# Function to kill all geckodriver processes.
+# Use after browser.quit() to clean everything out before reopening Firefox or quitting app.
+def kill_gekodrivers():
+    if GPIO:
+        for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
+            try:
+                name = proc.info['name'] or ''
+                # also check cmdline in case it’s renamed
+                if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in proc.info['cmdline']):
+                    pid = proc.info['pid']
+                    print(f"Killing {name} (PID {pid})")
+                    proc.kill()
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+    else: # running on Windows
+        for proc in psutil.process_iter(attrs=['pid', 'name']):
+            try:
+                name = proc.info['name']
+                if name and name.lower() == 'geckodriver.exe':
+                    pid = proc.info['pid']
+                    print(f"Killing {name} (PID {pid})")
+                    proc.kill()
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                # Process already gone or permission denied
+                continue
+    print("All geckodriver processes killed.")
+
+
+
 # do this when closing the window/app
 def on_closing():
     print("\n---- on_closing() entered ---------------------------------------------")
@@ -1755,8 +1787,34 @@ def on_closing():
         GPIO.cleanup()
 
     browser.quit() # close the WebDriver
+    kill_gekodrivers() # kill any running geckodriver processes
     root.destroy() # destroy GUI   
     print("Closing the app...")
+
+
+
+# Function to restart Firefox and the last station stream in a clean way. Used when on_select() crashes
+# as well as on a regular basis to avoid memory leaks etc.
+def RestartFirefoxAndLastStation(fromCombobox: bool, onError: bool):
+    global firefox_options, browser, firstRun, stopLastStream
+
+    browser.quit() # close the WebDriver
+    kill_gekodrivers() # kill any running geckodriver processes
+    browser = webdriver.Firefox(options=firefox_options) # restart the WebDriver
+
+    if onError:
+        firstRun = True
+        stopLastStream = False
+    else: # if not onError
+        firstRun = False
+        stopLastStream = True
+
+    print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
+    if fromCombobox:
+        root.after(15000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
+    else: # if not fromCombobox
+        root.after(15000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
+
 
 
 # do this when a radio station is selected from combobox
@@ -2094,8 +2152,11 @@ def on_select(event,fromCombobox):
     except Exception as e:
     #except WebDriverException as e:
         print(f"\nCrashed in on_select({fromCombobox}), WebDriverException: {e}")
-        print("***** RESTARTING last station running *****")
+        print("***** RESTARTING last running Station *****")
 
+        RestartFirefoxAndLastStation(fromCombobox, True)
+
+'''
         global firefox_options
         browser.quit() # close the WebDriver
         kill_gekodrivers() # kill any running geckodriver processes
@@ -2108,7 +2169,7 @@ def on_select(event,fromCombobox):
             root.after(15000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
         else: # if not fromCombobox
             root.after(15000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
-
+'''
 
 
 # called when playlist button i is in focus and the Enter key is pressed.
@@ -3033,34 +3094,6 @@ def view_button_pressed(event):
         text_box_ai.update_idletasks()  # Force update the layout
     print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
     print("*** COMPLETED - [VIEW] BUTTON PRESSED ***\n")
-
-
-# Function to kill all geckodriver processes.
-# Use after browser.quit() to clean everything out before reopening Firefox.
-def kill_gekodrivers():
-    if GPIO:
-        for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
-            try:
-                name = proc.info['name'] or ''
-                # also check cmdline in case it’s renamed
-                if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in proc.info['cmdline']):
-                    pid = proc.info['pid']
-                    print(f"Killing {name} (PID {pid})")
-                    proc.kill()
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                continue
-    else: # running on Windows
-        for proc in psutil.process_iter(attrs=['pid', 'name']):
-            try:
-                name = proc.info['name']
-                if name and name.lower() == 'geckodriver.exe':
-                    pid = proc.info['pid']
-                    print(f"Killing {name} (PID {pid})")
-                    proc.kill()
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                # Process already gone or permission denied
-                continue
-    print("All geckodriver processes killed.")
 
 
 

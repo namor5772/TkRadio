@@ -36,7 +36,6 @@ from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -353,9 +352,10 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 # we use an explicitly given profile since via Selenium any changes are only temporary
 # We setup a profile that deletes cookies etc. between starting browser which should help
 # with cache overflow that might lead to system lockup?
-firefox_profile = FirefoxProfile(pathProfile)
+#firefox_profile = FirefoxProfile(pathProfile)
 firefox_options = Options()
-firefox_options.profile = firefox_profile
+firefox_options.add_argument("-profile")
+firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
 #firefox_options.add_argument("-headless")  # Ensure this argument is correct

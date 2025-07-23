@@ -357,7 +357,6 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 # we use an explicitly given profile since via Selenium any changes are only temporary
 # We setup a profile that deletes cookies etc. between starting browser which should help
 # with cache overflow that might lead to system lockup?
-#firefox_profile = FirefoxProfile(pathProfile)
 firefox_options = Options()
 firefox_options.add_argument("-profile")
 firefox_options.add_argument(pathProfile)
@@ -421,6 +420,7 @@ startTime2 = time.time()
 endTime = 0.0
 endTime2 = 0.0
 refreshTime = 10.0 # seconds between updating station info
+resetTime = 3600.0 # seconds between resetting the browser
 station = ""
 needSleep = 4 # can be less on faster machines
 pressButton = True # flag for how stream is started
@@ -468,7 +468,7 @@ labelPlaylistFocus_pos = {0,0,0,0}
 label2_pos = {0,0,0,0} 
 firstRun_select2 = True # if true then first run of select2
 visibleItemsNum = 0 # number of items visible in the combobox
-
+gfromCombobox = True # if true then combobox is used to select a station (global version)
 
 # END #########################################################
 # SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
@@ -1744,6 +1744,11 @@ def after_GUI_started():
             BTstatusButton.config(text="BT is OFF")
             BTstatusButton.config(bg="light coral")
 
+    # This starts the regular restart of Firefox and the last station stream
+    # we do this to avoid memory leaks and other issues if running the app for a long time
+    root.after(int(resetTime*1000), lambda: RegularRestart())
+        
+
 
 
 # Define a reverse lookup dictionary to convert function references back to strings
@@ -1788,6 +1793,7 @@ def on_closing():
 
     browser.quit() # close the WebDriver
     kill_gekodrivers() # kill any running geckodriver processes
+    time.sleep(2)
     root.destroy() # destroy GUI   
     print("Closing the app...")
 
@@ -1796,36 +1802,56 @@ def on_closing():
 # Function to restart Firefox and the last station stream in a clean way. Used when on_select() crashes
 # as well as on a regular basis to avoid memory leaks etc.
 def RestartFirefoxAndLastStation(fromCombobox: bool, onError: bool):
-    global firefox_options, browser, firstRun, stopLastStream
+    global firefox_options, browser, firstRun, stopLastStream, pollFlag
 
     browser.quit() # close the WebDriver
     kill_gekodrivers() # kill any running geckodriver processes
+    time.sleep(2)
     browser = webdriver.Firefox(options=firefox_options) # restart the WebDriver
 
-    if onError:
+    if pollFlag:
+        if onError:
+            firstRun = True
+            stopLastStream = False
+        else: # if not onError
+            firstRun = True
+            stopLastStream = True
+        rTime = int(refreshTime*1500)   
+    else: # if not pollFlag
         firstRun = True
         stopLastStream = False
-    else: # if not onError
-        firstRun = False
-        stopLastStream = True
+        rTime = int(refreshTime*500)   
 
     print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
     if fromCombobox:
-        root.after(15000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
+        root.after(rTime, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
     else: # if not fromCombobox
-        root.after(15000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
+        root.after(rTime, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
+
+
+
+def RegularRestart():
+    print("\n---- RegularRestart() entered ---------------------------------------------")
+    RestartFirefoxAndLastStation(gfromCombobox, False)
+    root.after(int(resetTime*1000), lambda: RegularRestart())
+    print("---- RegularRestart() finished ---------------------------------------------")
+ 
+
 
 
 
 # do this when a radio station is selected from combobox
 def on_select(event,fromCombobox):
-    global browser
+    global browser, gfromCombobox
     global firstRun, stopLastStream, Streaming, justDeletedFlag, pollFlag
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex
     global eventFlag, selected_value, combobox_index, selected_value_last,selected_index 
     global startTime, finishTime
     global firstRun_select2
+
+    # bit of a fudge
+    gfromCombobox = fromCombobox
 
     print(f"\n---- on_select(fromCombobox={fromCombobox}) entered ---------------------------------------------")
     print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}, Streaming: {Streaming}, justDeletedFlag: {justDeletedFlag}, pollFlag: {pollFlag}")

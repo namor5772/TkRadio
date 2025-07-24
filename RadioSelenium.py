@@ -1,6 +1,4 @@
 '''
-1. Think about easier searching of the very large station list
-    Fast scroll or filters mainly in RPI version
 2. Russian and China originating internet stations?   
 '''
 
@@ -362,7 +360,7 @@ firefox_options.add_argument("-profile")
 firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # Ensure this argument is correct
+firefox_options.add_argument("-headless")  # Ensure this argument is correct
 browser = webdriver.Firefox(options=firefox_options)
 
 firefox_exe = find_process_exe("firefox")

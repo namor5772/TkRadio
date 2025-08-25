@@ -215,9 +215,9 @@ The core purpose of this python script which uses **Firefox + Selenium** under t
 - Two rich image areas: **station logo** and **program/presenter** artwork.
 - **Polling**: auto-refreshes program text/artwork every _N_ seconds while streaming.
 - **Resilience**: scheduled Firefox restarts to avoid memory leaks; geckodriver cleanup.
-- **Playlist grid** (108 buttons): insert/delete/replace stations, with per-button icons.
+- **Playlist grid** (54/RPi5 or 108/Win11 buttons): insert/delete/replace stations, with per-button icons.
 - **Raspberry Pi 5 UX**: rotary encoder scroll + push = “Enter”, Bluetooth pairing, Wi-Fi connect.
-- **Windows AI panel**: optional OpenAI summary/history table of the current station.
+- **Windows AI panel**: optional (Only Win11) OpenAI summary/history table of the current station.
 - **All state is persisted** across runs (last station, playlist, logs, poll/bluetooth status).
 
 ---
@@ -233,21 +233,21 @@ The core purpose of this python script which uses **Firefox + Selenium** under t
 
 - **Combobox** (top-left): pick a station from `AllRadioStations.csv`, press **Enter** to start streaming.
 - **Station logo** (left) + **Program image** (right): updates after the stream starts.
-- **Text panel**: station URL, name, “Live now” data, now-playing details, and status/errors.
+- **Text panel**: station URL, name, now-playing details, and status/errors.
 
-### Playlist grid (56 or 108 buttons)
+### Playlist grid (56/RPi5 or 108/Win11 buttons)
 
 - **Insert**: highlight a playlist button, choose a station in the combobox, press **Insert** → the button stores that station and gets its logo.
 - **Play**: focus a button and press **Enter**.
 - **Delete**: focus a button and press **Delete** to clear it.
-- **Move focus**: arrow keys move across the 9x6 or 9×12 grid (wrapping behavior implemented).
+- **Move focus**: arrow keys move across the 9x6/RPi5 or 9×12/Win11 grid (wrapping behavior implemented).
 
 ### Top row actions (Windows mode)
 
 - **RND** — pick a random station into the combobox and start it.
 - **DEL** — remove the currently selected combobox station from the master CSV and rewrite presets accordingly.
 - **SAVE** — append the current text panel (and AI text if any) to `StationLogs.txt`.
-- **AI** — sends the current text panel as context to the OpenAI API and renders a clean summary + a 2-column table (“Feature”/“Description”).
+- **AI** — Only for Win11 version sends the current text panel as context to the OpenAI API and renders a clean summary + a 2-column table (“Feature”/“Description”).
 - **VIEW** — toggle between **playlist grid view** and **full program/text view**.
 - **+ (poll toggle)** — turns periodic scraping on/off (writes to `pollflag.txt`).
 

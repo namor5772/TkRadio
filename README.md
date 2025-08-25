@@ -208,10 +208,10 @@ Clearly the will vary depending on which directories containing the Python scrip
 
 `RadioSelenium_refactored.py` is the Tkinter GUI front-end and Selenium automation layer for this project. It runs in two configurations with a single codebase:
 
-- **Windows 11 (standalone + AI commentary):** When no GPIO is detected, the app exposes an OpenAI-powered commentary panel that can summarise or contextualise the currently selected station.
-- **Raspberry Pi 5 (5″ touchscreen + rotary encoder):** When GPIO is present, the app treats a push-button rotary encoder as the primary input, enabling couch-friendly control without a keyboard or mouse.
+- **Windows 11 (standalone + AI commentary):** When no GPIO is detected, the app exposes an OpenAI-powered commentary panel that can describes the currently selected station and current program information if any.
+- **Raspberry Pi 5 (5″ touchscreen + rotary encoder):** When GPIO is present, the app treats a push-button rotary encoder as the primary input, enabling control without a keyboard or mouse.
 
-On startup the script detects the environment, initialises resource folders (logos and program art), loads the station database, prepares a per-platform Firefox profile, and launches headless Firefox via Selenium.
+On startup the script detects the environment, initialises resource folders, loads the station database, prepares a per-platform Firefox profile, and launches headless Firefox via Selenium.
 
 ---
 
@@ -219,23 +219,16 @@ On startup the script detects the environment, initialises resource folders (log
 
 **Core ideas:**
 
-- **Station database + driver mapping:** Stations are defined in `AllRadioStations.csv` and reference a *driver name* (e.g., `Radio3`, `Commercial2`). At load time these strings are mapped to actual Python functions via a `function_map`. This makes it easy to add or retarget stations without changing code.
+- **Station database + driver mapping:** Stations are defined in `AllRadioStations.csv` and reference a *driver name* (e.g., `Radio3`, `Commercial2`). At load time these strings are mapped to actual Python functions via a `function_map`. This makes it easy to add or retarget stations.
 - **Station-driver pattern:** Each driver encapsulates how to navigate to **Listen Live**, how to click the correct DOM element, and how to extract “now playing” metadata and imagery. There are multiple `RadioX` drivers for ABC variants and `CommercialX` drivers for commercial aggregators.
 - **Shared utilities:** A small toolkit handles navigation, HTML parsing (BeautifulSoup), image download/resize/cropping (Pillow), and consistent GUI updates.
 - **Resilience:** Firefox is periodically restarted to prevent Selenium/driver accretion and to recover from unexpected page states. On errors during a play request, the app restarts Firefox and *replays the last action* automatically.
-
-```
-AllRadioStations.csv  ─┐
-                       ├─→  aStation[] rows with { name, url, StationFunction, DOM hints, etc. }
-function_map { "Radio3": Radio3, "Commercial2": Commercial2, ... }
-                       └─→  on_select(row) → dispatch to the correct driver → update GUI
-```
 
 ---
 
 ### Files & Directories
 
-- `Images/` — cached logos, program artwork, and 108 preset-button thumbnails (`button0.png` … `button107.png`).
+- `Images/` — cached logos, program artwork, and 108 preset-button thumbnails (`button0.png` … `button107.png`). Only the first 56 are used in the RPi5 version.
 - `AllRadioStations.csv` — master station list (includes driver names).
 - `playlist.txt` — the 12×9 preset grid (each slot stores a label and an index into `aStation`).
 - `savedRadioStation.txt` — remembers the last preset played so the next launch resumes on it.
@@ -261,7 +254,7 @@ function_map { "Radio3": Radio3, "Commercial2": Commercial2, ... }
   - **+** — on RPi, opens the Setup window (Bluetooth/Wi-Fi helpers); on Windows, toggles metadata polling.
 
 **Raspberry Pi input model:**  
-The push-button rotary encoder emulates directional navigation and “Enter”. As you rotate, the focus moves through the interactive widgets; pressing clicks. The top label row acts as a “key bank” legend so the user always knows what press/rotate will do.
+The push-button rotary encoder emulates directional navigation and “Enter”. As you rotate, the focus moves through the interactive widgets; pressing clicks. The top label row acts as a “key bank” legend so the user always knows what press will do.
 
 ---
 

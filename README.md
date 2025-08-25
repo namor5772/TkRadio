@@ -205,6 +205,186 @@ Clearly the will vary depending on which directories containing the Python scrip
 
 ## Python Script
 
+
+`RadioSelenium_refactored.py` is the Tkinter GUI front-end and Selenium automation layer for this project. It runs in two configurations with a single codebase:
+
+- **Windows 11 (standalone + AI commentary):** When no GPIO is detected, the app exposes an OpenAI-powered commentary panel that can summarise or contextualise the currently selected station.
+- **Raspberry Pi 5 (5″ touchscreen + rotary encoder):** When GPIO is present, the app treats a push-button rotary encoder as the primary input, enabling couch-friendly control without a keyboard or mouse.
+
+On startup the script detects the environment, initialises resource folders (logos and program art), loads the station database, prepares a per-platform Firefox profile, and launches headless Firefox via Selenium.
+
+---
+
+### Architecture at a Glance
+
+**Core ideas:**
+
+- **Station database + driver mapping:** Stations are defined in `AllRadioStations.csv` and reference a *driver name* (e.g., `Radio3`, `Commercial2`). At load time these strings are mapped to actual Python functions via a `function_map`. This makes it easy to add or retarget stations without changing code.
+- **Station-driver pattern:** Each driver encapsulates how to navigate to **Listen Live**, how to click the correct DOM element, and how to extract “now playing” metadata and imagery. There are multiple `RadioX` drivers for ABC variants and `CommercialX` drivers for commercial aggregators.
+- **Shared utilities:** A small toolkit handles navigation, HTML parsing (BeautifulSoup), image download/resize/cropping (Pillow), and consistent GUI updates.
+- **Resilience:** Firefox is periodically restarted to prevent Selenium/driver accretion and to recover from unexpected page states. On errors during a play request, the app restarts Firefox and *replays the last action* automatically.
+
+```
+AllRadioStations.csv  ─┐
+                       ├─→  aStation[] rows with { name, url, StationFunction, DOM hints, etc. }
+function_map { "Radio3": Radio3, "Commercial2": Commercial2, ... }
+                       └─→  on_select(row) → dispatch to the correct driver → update GUI
+```
+
+---
+
+### Files & Directories
+
+- `Images/` — cached logos, program artwork, and 108 preset-button thumbnails (`button0.png` … `button107.png`).
+- `AllRadioStations.csv` — master station list (includes driver names).
+- `playlist.txt` — the 12×9 preset grid (each slot stores a label and an index into `aStation`).
+- `savedRadioStation.txt` — remembers the last preset played so the next launch resumes on it.
+- `StationLogs.txt` — appended when you press **SAVE** (may include AI commentary on Windows).
+- `bluetooth.txt`, `pollflag.txt` — Raspberry Pi persistence for Bluetooth state and polling preference.
+- **Firefox profiles** — a dedicated profile per platform (Windows vs RPi) for clean, repeatable sessions.
+
+---
+
+### GUI Layout & Controls
+
+- **Search / Select (combobox):** Type to filter; use arrows/PageUp/PageDown; press **Enter** to play. The dropdown list is optimised for very large station sets.
+- **Preset grid (“playlist”):** 108 buttons arranged in a 12×9 grid. Each shows a thumbnail image. Keyboard: **Enter** to play focused preset, **Delete** to clear that slot.
+- **Text areas:**
+  - **Program Info** (always visible): “Now playing” text scraped from the station page.
+  - **AI Commentary** (Windows only): Read-only panel updated when you press **AI**.
+- **Top-row controls:**
+  - **RND** — choose a random station.
+  - **DEL** — clear program art/text and manage preset removal when focused.
+  - **SAVE** — append a snapshot of current station/program info (and AI text on Windows) to `StationLogs.txt`.
+  - **AI** — generate a concise station summary (Windows only).
+  - **VIEW** — toggle visibility/layout of the preset grid.
+  - **+** — on RPi, opens the Setup window (Bluetooth/Wi-Fi helpers); on Windows, toggles metadata polling.
+
+**Raspberry Pi input model:**  
+The push-button rotary encoder emulates directional navigation and “Enter”. As you rotate, the focus moves through the interactive widgets; pressing clicks. The top label row acts as a “key bank” legend so the user always knows what press/rotate will do.
+
+---
+
+### Typical Usage
+
+**Windows 11**
+
+1. Run `RadioSelenium_refactored.py`.  
+2. Use the combobox to search; **Enter** to play.  
+3. Optionally press **AI** to produce an overview of the currently playing station.  
+4. **RND** for a random pick, **SAVE** to log the moment, **VIEW** to toggle playlist, **DEL** to clear a preset slot.
+
+**Raspberry Pi 5**
+
+1. Wire the rotary encoder (e.g., CLK/DT/SW to appropriate BCM pins).  
+2. Rotate to move focus; press to activate.  
+3. Press **+** to open Setup (Bluetooth/Wi-Fi) and to reflect persisted states.
+
+On both platforms the last-played preset is restored on launch and can auto-start after the GUI initialises.
+
+---
+
+### Playback Flow (What Happens When You Press Play)
+
+1. **Selection:** Either a combobox choice (`on_select(..., fromCombobox=True)`) or a preset button press.  
+2. **Routing:** The chosen station’s CSV row provides the `StationFunction` and DOM hints. The mapped driver:
+   - Navigates to the station page and finds the correct Play control.
+   - Clicks/activates the player and waits for readiness.
+   - Scrapes “now playing” text and downloads/upscales/crops artwork.
+   - Updates the GUI (logo, program art, metadata text).
+3. **Persistence:** The current preset index is written to `savedRadioStation.txt` for next time.
+
+---
+
+### AI Commentary (Windows Only)
+
+Pressing **AI** spawns a worker thread that packages the current program info and sends it to an OpenAI model (e.g., `gpt-4.1`) with a brief, purpose-built system prompt. The response is rendered into the read-only commentary panel. The threading keeps the UI responsive and avoids blocking the Selenium workflow.
+
+---
+
+### Polling & Scheduled Restarts
+
+- **Polling:** Optional periodic re-scrape of the active station page to catch changes in text/artwork. The state is remembered (`pollflag.txt`).
+- **RegularRestart():** A lightweight scheduler can restart Firefox at a configurable interval (default ~1 hour) to clear driver state and keep long-running sessions healthy.
+
+---
+
+### Extending & Maintaining
+
+- **Add a station:** Append a row to `AllRadioStations.csv`. Choose an existing driver (`Radio1`…`Radio7`, `Commercial1`…`Commercial2`) and provide any required DOM hints. No code changes needed for common cases.
+- **Add a new driver:** Implement `RadioX`-style logic using the helper utilities (navigation, soup extraction, image fetch/resize, GUI update). Register it in `function_map` so CSV rows can reference it by name.
+- **Manage presets safely:** The preset grid (labels + indices) lives in `playlist.txt`. The application updates thumbnails and indices defensively if you remove stations from the master list.
+
+---
+
+### Dependencies & Environment
+
+- **Python:** Tkinter, Pillow, Requests, BeautifulSoup (bs4), Selenium, psutil; on Raspberry Pi, `RPi.GPIO`.  
+- **Browser stack:** Mozilla **Firefox** and **geckodriver** installed and available on `PATH`. The app uses **headless** mode with an explicit per-platform profile for stability.  
+- **OpenAI (Windows only):** An API key in your environment when using AI commentary.
+
+> **Design intent:** A clear separation between *data* (CSV), *drivers* (per-site automation), and *GUI* (Tkinter + images) makes the system maintainable, portable across Windows/RPi, and resilient during long listening sessions.
+
+## Parts list
+
+### Core components
+
+Pricing and availability as of 27-Jan-2025. Total cost is $221.47, but clearly some of the items will be usable in many other projects or you will already have them. The pro rata cost is __$138.66__
+
+You will also need a soldering iron and solder, some sellotape and a glue gun with glue sticks. Also some super glue.
+
+| Qty | Product | Description | AUD Cost | Comment | Designator |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [RP-SC1111](https://raspberry.piaustralia.com.au/products/raspberry-pi-5?variant=44207825617120) | [Raspberry PI 5B](ImagesDocs/RaspberryPI5.png) 4GB | $100.98 | The brains of this project | |
+| 1 | [RP-SC1148](https://raspberry.piaustralia.com.au/products/raspberry-pi-active-cooler) | Raspberry Pi [Active Cooler](ImagesDocs/RPI5activeCooler.png) | $8.95 | Absolutely necessary to keep the RPI5 cool | |
+| 1 | [XC9024](https://www.jaycar.com.au/p/XC9024) | [5 Inch Touchscreen](ImagesDocs/5inchTouchscreen.png) with HDMI and USB | $119.00 | based on the XPT1046 Touch Controller, see [Manual](Hardware/SR1230_manualMain_94019.pdf) | |
+| 1 | [RP-SC1150](https://raspberry.piaustralia.com.au/products/raspberry-pi-27w-usb-c-power-supply?_pos=1&_psq=RP-SC1150&_ss=e&_v=1.0&variant=44207871328480) | Raspberry Pi 27W USB-C [Power Supply](ImagesDocs/PowerSupply.png) | $25.37 | Needed for power hungry Raspberry Pi5 | |
+| 1 | [HD-203-0.3M](https://www.amazon.com.au/Thsucords-Micro-Flexible-Supports-18gbps/dp/B0BP29QTJ6/ref=sr_1_1?crid=XOGLPO6XRAKS&dib=eyJ2IjoiMSJ9.5fVBWJr2pX5EGbrBqtl4Rg.0vgcHY3JenNL7yyp8PRcAsHz90e8YfWwQgfYZRkr6tA&dib_tag=se&keywords=hd-203-0.3m&qid=1747122135&sprefix=%2Caps%2C238&sr=8-1&th=1) | Micro HDMI to HDMI [Cable](ImagesDocs/HDMIcable.png) 0.3M | $11.99 | Shortest cable needed for constrained space | |
+| 1 | [XC3736](https://www.jaycar.com.au/p/XC3736) | Arduino Compatible Rotary [Encoder Module](ImagesDocs/EncoderModule.png) | $9.95 | Based on model KY-040, see [this](Hardware/XC3736_manualMain_94604.pdf), [this](Hardware/ky-040-datasheet.pdf) and [this](Hardware/KY-040.pdf)| U2 |
+| 1 | [HK7011](https://jaycar.com.au/p/HK7011) | 29mm Black Anodised [Knob](ImagesDocs/KnobAnodised.png) | $9.95 | used on above Rotary Encoder Module | |
+| 1 | [ZC4821](https://jaycar.com.au/p/ZC4821) | [74HC14](ImagesDocs/74HC14.png) Hex Schmitt trigger Inverter CMOS IC | $1.45 | Used in debouncing circuit, see [datasheet](Hardware/ZC4821_datasheetMain_40327.pdf) | U1 |
+| 3 | [RM7125](https://jaycar.com.au/p/RM7125) | 100nF 100VDC MKT Polyester [Capacitor](ImagesDocs/PolyCap.png) | $1.20 | Used in debouncing circuit | C1, C2, C3 |
+| 1 | [RC5324](https://jaycar.com.au/p/RC5324) | 100pF 50VDC Ceramic [Capacitors](ImagesDocs/CeramicCap.png) - Pack of 2 | $0.45 | Used in debouncing circuit | C4, $0.23 cost used |
+
+### Other parts
+
+| Qty | Product | Description | AUD Cost | Comment | Designator |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [WW4030](https://jaycar.com.au/p/WW4030) | Tinned Copper [Wire](Images/CopperWire.png) 22AWG - 100 gram Roll | $19.95 | for wiring up above Vero board | $0.80 cost used|
+| 1 | [HM3212](https://jaycar.com.au/p/HM3212) | 40 Pin Header Terminal [Strip](Images/TerminalStrip.png) (used most) | $1.10 | for soldering in sections to boards to attach to veroboard | |
+| 1 | [WH3004](https://jaycar.com.au/p/WH3004) | Yellow Light Duty Hook-up [Wire](Images/WireYellow.png) - 25m (less than 30cm needed) | $5.95 | used for miscellaneous connections | $0.08 cost used |
+| 1 | [WH3007](https://jaycar.com.au/p/WH3007) | White Light Duty Hook-up [Wire](Images/WireWhite.png) - 25m (less than 30cm needed) | $5.95 | used for miscellaneous connections | $0.08 cost used|
+| 1 | [HP0924](https://jaycar.com.au/p/HP0924) | M3 x 12mm Tapped Nylon [Spacers](Images/Spacers.png) - Pk.25 (only need 4x 3mm)| $9.95 | For mounting screen to Jiffy case | $0.80 cost used |
+| 1 | [HP0403](https://jaycar.com.au/p/HP0403) | M3 x 10mm Steel [Screws](Images/Screws.png) - Pk.25 (only need 4) | $2.95 | For mounting screen to Jiffy case | $0.48 cost used |
+| 1 | [HP0425](https://jaycar.com.au/p/HP0425) | M3 Steel [Nuts](Images/Nuts.png) - Pk.25 (only need 4)| $2.95 | For mounting screen to Jiffy case | $0.48 cost used |
+| 1 | [HP0148](https://jaycar.com.au/p/HP0148) | 3mm Nylon [Washers](Images/Washers.png) - Pk.10 (only need 0)| $2.50 | For mounting screen to Jiffy case | $0.00 cost used |
+| 1 | [HM3230](https://jaycar.com.au/p/HM3230) | 40 Pin Female Header [Strip](Images/FemaleStrip.png) (only 8 used) | $2.50 | For mounting screen to Jiffy case | $0.50 cost used |
+
+## Troubleshooting
+
+### Maintainers’ Notes (Station Drivers)
+
+The station drivers (`Radio1`…`Radio7` and the commercial variants) share a common flow:
+1) **Navigate** to a clean page and then the target URL, 2) **Prime/Click** the correct
+Listen/Play control (sometimes after keystroke-based timezone selection), 3) **Images**:
+logo to `label` (scaled to `iconSize`) and program art to `label2` (square or rectangular
+resize), 4) **Text**: parse “Live/Now Playing” and synopsis via BeautifulSoup and return
+the **same `*`-separated string** the GUI expects.
+
+After refactoring, the repeated steps live in small helpers (`_navigate_to_station`,
+`_fetch_image_to`, `_display_logo_from_file`, `_display_program_image_square/_rect`,
+`_lift_program_image_at`, `_soup_inner_html`, `_trim_after`). Geometry and global names
+(`pathImages`, `Xprog`, `X1`, `Xgap*`, `Ygap*`, `HiddenFlag`, `addFlag`, etc.) are
+preserved exactly to avoid visual drift on Windows and Raspberry Pi.
+
+**Order matters**: keep *helpers → driver functions → function map*. If the dispatch
+dictionary references a `RadioX` defined below it, Python will raise `NameError` at import
+time.
+
+For a short, contributor‑friendly guide (patterns, selectors, testing checklist), see:
+**[README_StationDrivers.md](README_StationDrivers.md)**.
+
+
 Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that implements the gui interface to this web radio.
 
 The core purpose of this python script which uses **Firefox + Selenium** under the hood it is to stream a selected internet radio station, as well as displaying and refreshing any program details and graphics approximately every 12 seconds (while the station is streaming). The station Logo is also displayed.
@@ -384,37 +564,3 @@ TkRadio uses Selenium to drive public “Listen Live” pages exactly as a human
 
 ---
 
-## Parts list
-
-### Core components
-
-Pricing and availability as of 27-Jan-2025. Total cost is $221.47, but clearly some of the items will be usable in many other projects or you will already have them. The pro rata cost is __$138.66__
-
-You will also need a soldering iron and solder, some sellotape and a glue gun with glue sticks. Also some super glue.
-
-| Qty | Product | Description | AUD Cost | Comment | Designator |
-| --- | --- | --- | --- | --- | --- |
-| 1 | [RP-SC1111](https://raspberry.piaustralia.com.au/products/raspberry-pi-5?variant=44207825617120) | [Raspberry PI 5B](ImagesDocs/RaspberryPI5.png) 4GB | $100.98 | The brains of this project | |
-| 1 | [RP-SC1148](https://raspberry.piaustralia.com.au/products/raspberry-pi-active-cooler) | Raspberry Pi [Active Cooler](ImagesDocs/RPI5activeCooler.png) | $8.95 | Absolutely necessary to keep the RPI5 cool | |
-| 1 | [XC9024](https://www.jaycar.com.au/p/XC9024) | [5 Inch Touchscreen](ImagesDocs/5inchTouchscreen.png) with HDMI and USB | $119.00 | based on the XPT1046 Touch Controller, see [Manual](Hardware/SR1230_manualMain_94019.pdf) | |
-| 1 | [RP-SC1150](https://raspberry.piaustralia.com.au/products/raspberry-pi-27w-usb-c-power-supply?_pos=1&_psq=RP-SC1150&_ss=e&_v=1.0&variant=44207871328480) | Raspberry Pi 27W USB-C [Power Supply](ImagesDocs/PowerSupply.png) | $25.37 | Needed for power hungry Raspberry Pi5 | |
-| 1 | [HD-203-0.3M](https://www.amazon.com.au/Thsucords-Micro-Flexible-Supports-18gbps/dp/B0BP29QTJ6/ref=sr_1_1?crid=XOGLPO6XRAKS&dib=eyJ2IjoiMSJ9.5fVBWJr2pX5EGbrBqtl4Rg.0vgcHY3JenNL7yyp8PRcAsHz90e8YfWwQgfYZRkr6tA&dib_tag=se&keywords=hd-203-0.3m&qid=1747122135&sprefix=%2Caps%2C238&sr=8-1&th=1) | Micro HDMI to HDMI [Cable](ImagesDocs/HDMIcable.png) 0.3M | $11.99 | Shortest cable needed for constrained space | |
-| 1 | [XC3736](https://www.jaycar.com.au/p/XC3736) | Arduino Compatible Rotary [Encoder Module](ImagesDocs/EncoderModule.png) | $9.95 | Based on model KY-040, see [this](Hardware/XC3736_manualMain_94604.pdf), [this](Hardware/ky-040-datasheet.pdf) and [this](Hardware/KY-040.pdf)| U2 |
-| 1 | [HK7011](https://jaycar.com.au/p/HK7011) | 29mm Black Anodised [Knob](ImagesDocs/KnobAnodised.png) | $9.95 | used on above Rotary Encoder Module | |
-| 1 | [ZC4821](https://jaycar.com.au/p/ZC4821) | [74HC14](ImagesDocs/74HC14.png) Hex Schmitt trigger Inverter CMOS IC | $1.45 | Used in debouncing circuit, see [datasheet](Hardware/ZC4821_datasheetMain_40327.pdf) | U1 |
-| 3 | [RM7125](https://jaycar.com.au/p/RM7125) | 100nF 100VDC MKT Polyester [Capacitor](ImagesDocs/PolyCap.png) | $1.20 | Used in debouncing circuit | C1, C2, C3 |
-| 1 | [RC5324](https://jaycar.com.au/p/RC5324) | 100pF 50VDC Ceramic [Capacitors](ImagesDocs/CeramicCap.png) - Pack of 2 | $0.45 | Used in debouncing circuit | C4, $0.23 cost used |
-
-### Other parts
-
-| Qty | Product | Description | AUD Cost | Comment | Designator |
-| --- | --- | --- | --- | --- | --- |
-| 1 | [WW4030](https://jaycar.com.au/p/WW4030) | Tinned Copper [Wire](Images/CopperWire.png) 22AWG - 100 gram Roll | $19.95 | for wiring up above Vero board | $0.80 cost used|
-| 1 | [HM3212](https://jaycar.com.au/p/HM3212) | 40 Pin Header Terminal [Strip](Images/TerminalStrip.png) (used most) | $1.10 | for soldering in sections to boards to attach to veroboard | |
-| 1 | [WH3004](https://jaycar.com.au/p/WH3004) | Yellow Light Duty Hook-up [Wire](Images/WireYellow.png) - 25m (less than 30cm needed) | $5.95 | used for miscellaneous connections | $0.08 cost used |
-| 1 | [WH3007](https://jaycar.com.au/p/WH3007) | White Light Duty Hook-up [Wire](Images/WireWhite.png) - 25m (less than 30cm needed) | $5.95 | used for miscellaneous connections | $0.08 cost used|
-| 1 | [HP0924](https://jaycar.com.au/p/HP0924) | M3 x 12mm Tapped Nylon [Spacers](Images/Spacers.png) - Pk.25 (only need 4x 3mm)| $9.95 | For mounting screen to Jiffy case | $0.80 cost used |
-| 1 | [HP0403](https://jaycar.com.au/p/HP0403) | M3 x 10mm Steel [Screws](Images/Screws.png) - Pk.25 (only need 4) | $2.95 | For mounting screen to Jiffy case | $0.48 cost used |
-| 1 | [HP0425](https://jaycar.com.au/p/HP0425) | M3 Steel [Nuts](Images/Nuts.png) - Pk.25 (only need 4)| $2.95 | For mounting screen to Jiffy case | $0.48 cost used |
-| 1 | [HP0148](https://jaycar.com.au/p/HP0148) | 3mm Nylon [Washers](Images/Washers.png) - Pk.10 (only need 0)| $2.50 | For mounting screen to Jiffy case | $0.00 cost used |
-| 1 | [HM3230](https://jaycar.com.au/p/HM3230) | 40 Pin Female Header [Strip](Images/FemaleStrip.png) (only 8 used) | $2.50 | For mounting screen to Jiffy case | $0.50 cost used |

@@ -5,7 +5,7 @@ gb BBC Radio 5 live,31290
 au ABC Jazz,4224
 ABC triple j Hottest,2
 au The Bunkhouse,4837
-gb BBC Radio 4,31288
+ro OneFM,52889
 ab Classical - Shostakovich,387
 au ABC Classic FM,4210
 au ABC Classic 2,4209
@@ -15,7 +15,7 @@ ab Classical - Chopin,365
 de BR Klassik,19740
 de Klassik Radio,20556
 de Klassik 1,20555
-ab Classical - Tchaikovsky,393
+de Epic Piano - CHOPIN,20092
 Cruise 1323,87
 au Gold 101.7 FM,4417
 au Totally Radio 70s,4855

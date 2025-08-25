@@ -207,61 +207,182 @@ Clearly the will vary depending on which directories containing the Python scrip
 
 Here we describe the design and use of the python script [RadioSelenium.py](RadioSelenium.py) that implements the gui interface to this web radio.
 
-The core purpose of this python script is to stream a selected internet radio station, as well as displaying and refreshing any program details and graphics approximately every 12 seconds (while the station is streaming). The station Logo is also displayed.
-The details of the available approximately 79500 stations are maintained in the [TkRadio\AllRadioStations.csv](AllRadioStations.csv) file that is assumed to be in the same directory as the python script (ie. \TkRadio). 
+The core purpose of this python script which uses **Firefox + Selenium** under the hood it is to stream a selected internet radio station, as well as displaying and refreshing any program details and graphics approximately every 12 seconds (while the station is streaming). The station Logo is also displayed.
 
-Below are a sample 4 rows from this csv file
+### Highlights
 
-```text
-smoothfm Brisbane,smoothfm_Brisbane,Commercial1,0,https://smooth.com.au/station/brisbane,index_smooth_info-wrapper-desktop__6ZYTT,1
-smoothfm Perth,smoothfm_Perth,Commercial1,0,https://smooth.com.au/station/smoothfmperth,index_smooth_info-wrapper-desktop__6ZYTT,1
-ab 101.6 Marites FM Radio,ab_101-6_Marites_FM_Radio,Commercial2,0,https://www.radioarabic.org/sa/1016-marites-fm-radio,Arabic,0
-ab 101.8artysfm,ab_101-8artysfm,Commercial2,0,https://www.radioarabic.org/sa/rm-heart-fm,Arabic,0
+- 79k+ stations supported via `AllRadioStations.csv` (plus presets/playlist buttons).
+- Two rich image areas: **station logo** and **program/presenter** artwork.
+- **Polling**: auto-refreshes program text/artwork every _N_ seconds while streaming.
+- **Resilience**: scheduled Firefox restarts to avoid memory leaks; geckodriver cleanup.
+- **Playlist grid** (108 buttons): insert/delete/replace stations, with per-button icons.
+- **Raspberry Pi 5 UX**: rotary encoder scroll + push = “Enter”, Bluetooth pairing, Wi-Fi connect.
+- **Windows AI panel**: optional OpenAI summary/history table of the current station.
+- **All state is persisted** across runs (last station, playlist, logs, poll/bluetooth status).
+
+---
+
+### Repository & entry point
+
+- Repo: `https://github.com/namor5772/TkRadio`
+- Script: `RadioSelenium.py` (run it from the repo folder)
+
+---
+
+### The main window (common)
+
+- **Combobox** (top-left): pick a station from `AllRadioStations.csv`, press **Enter** to start streaming.
+- **Station logo** (left) + **Program image** (right): updates after the stream starts.
+- **Text panel**: station URL, name, “Live now” data, now-playing details, and status/errors.
+
+### Playlist grid (56 or 108 buttons)
+
+- **Insert**: highlight a playlist button, choose a station in the combobox, press **Insert** → the button stores that station and gets its logo.
+- **Play**: focus a button and press **Enter**.
+- **Delete**: focus a button and press **Delete** to clear it.
+- **Move focus**: arrow keys move across the 9x6 or 9×12 grid (wrapping behavior implemented).
+
+### Top row actions (Windows mode)
+
+- **RND** — pick a random station into the combobox and start it.
+- **DEL** — remove the currently selected combobox station from the master CSV and rewrite presets accordingly.
+- **SAVE** — append the current text panel (and AI text if any) to `StationLogs.txt`.
+- **AI** — sends the current text panel as context to the OpenAI API and renders a clean summary + a 2-column table (“Feature”/“Description”).
+- **VIEW** — toggle between **playlist grid view** and **full program/text view**.
+- **+ (poll toggle)** — turns periodic scraping on/off (writes to `pollflag.txt`).
+
+### Raspberry Pi 5 mode (GPIO + 5″ screen)
+
+- **Rotary encoder**:
+  - Rotate to step through a bank of “virtual keys” (displayed along the top).
+  - Press to **send** that key to the focused widget (e.g., the combobox or text area).
+- **Setup panel** (press the **+** button in the title row):
+  - **Bluetooth**: toggle BT on/off, scan for devices, pair/connect (stores `bluetooth.txt`), and reconnect to last device.
+  - **Wi-Fi**: scan visible SSIDs, connect with saved credentials, or enter a password.
+  - **Polling**: toggle program/presenter auto-refresh.
+
+> Notes:
+
+> - When **Polling** is ON, TkRadio re-runs `on_select()` every *refreshTime* seconds (default 10s) to fetch text/artwork.
+> - To avoid “Selenium drift”, a **RegularRestart** triggers a clean Firefox restart every *resetTime* seconds (default 3600s). Streaming resumes automatically.
+
+---
+
+### Station catalog (`AllRadioStations.csv`)
+
+Each row defines a station and how to start it:
+
+```txt
+[LongName, StationLogoName, StationFunction, nNum, sPath, sClass, nType]
 ```
 
-Each row consists of 7 comma deliminated entries as follows:
+- **LongName**: display name; first two chars are used as a country “code”.
+- **StationLogoName**: used to find an image `Images/<StationLogoName>.png`.
+- **StationFunction**: one of:
+  - `Radio1`..`Radio7`: ABC network variants (different page layouts).
+  - `Commercial1`: iHeart + Smooth/Nova.
+  - `Commercial2`: radio-australia.org and similar aggregator pages.
+- **nNum/sPath/sClass/nType**: parameters the function uses to:
+  - open the correct URL (`sPath`),
+  - press the right “Listen” button,
+  - scrape the correct text nodes (`sClass`) and program image path,
+  - apply function-specific behavior (`nNum`, `nType`).
 
-1. The unique name of the station
-2. The name of the stations logo.png file (which is stored in the \TkRadio\Images directory)
-3. Name of the python function that actually accesses the station website and runs the stream etc. (all have same arguments)
-4. 1st arg, integer, value depends on function and station (often 0)
-5. 2nd arg, radio stations website url
-6. 3rd arg, string argument, value depends on function and station (often empty)
-7. 4th arg, integer, value depends on function and station (usually 0 or 1) 
+**Example** *(conceptual)*:
 
-The core function that actually streams a radio station is on_select(event,fromCombobox). With fromCombobox==True it is called when a radio station is selected from the main combobox. If fromCombobox==False it is called when a radio station is called by pressing a playlist button. It also obtains the station and program details and image if available. A crucial feature is that if the PollFlag==True the on_select() function is scheduled to run again repeatedly after refreshTime seconds (about 12 seconds) until a new station is selected to stream. This only refreshes the program details and image of the stream if any is available.
+```csv
+"ABC Classic2","ABC_Classic2","Radio1","7","https://www.abc.net.au/listen/live/classic2","","0"
+```
 
-The PollFlag is toggled by a button. In the Windows case it is in the top right hand corner of the main (and only window) and has the text [ON] or [OFF]. In the Raspberry Pi case this button is on the secondary setup window and has the text [Polling is ON] or [Polling is OFF]. The state of the PollFlag is maintained in the \TkRadio\pollflag.txt file and enables it to be restored after the application is restarted.
+### How the CSV is loaded
 
-Even thought the script runs a gui it has been designed to be interfaced purely using the keyboard (no mouse necessary, in the Windows case and via a virtual keyboard in the Raspberry Pi case). This is to facilitate the Raspberry Pi version with its hardware setup. The [Tab] and [Shift-Tab] (also called [ISO_Left_Tab]) keys can be used to navigate focus among all available gui elements like comboboxes, textboxes or buttons. Below what can be done in the gui is described in detail in terms of key presses:
+- The app maps the function name string (e.g., `"Radio3"`) to the actual Python function via `function_map`, then builds `aStation[]`.
+- On Windows startup it also creates a string list for the combobox labels.
 
-**With focus on a combobox** there are three cases:
+> You can remove a station line at runtime using **DEL** (Windows): the app rewrites the CSV and shifts any preset indices that pointed past the deleted row.
 
-The dropdown list can be displayed by pressing the [Down] key, thereafter you can navigate up and down this list by pressing the [Up] or [Down] keys. To enable "faster" navigation you can also press the [PgUp] or [PgDn] keys. If you want to exit out of the dropdown without doing anything just press [Tab] or [Shift-Tab].
+---
 
-1. The most important one is on the main window. It is used to select any of the available radio stations for streaming. Once you are on a desired Radio Station you start it by pressing the [Enter] key.
-2. The leftmost one on the setup window. Press [Enter] to select a Blue Tooth speaker to pair to.
-3. The rightmost one on the setup window. Press [Enter] to select a Wifi network to connect to. Each one has a signal strength score, with Q70 being the strongest (go figure!).
+### Core flow
 
-**With focus on textboxes** there are two cases:
+- **Selenium setup**  
+  The app launches Firefox in headless mode with a fixed profile folder:
+  This ensures that the browser is "clean" at startup, no cookies, cache and other garbage on startup!
+  - Windows: `./firefoxProfileWindows`
+  - Pi: `./firefoxProfileRPI5`
+- **on_select(event, fromCombobox)**  
+  The central dispatcher. It:
+  1. Reads the chosen station (from combobox or preset).
+  2. Clears images, prints a “Please be patient” message.
+  3. Runs the station’s **StationFunction** (`Radio1`..`Commercial2`) which:
+     - opens a blank page to “clean” state,
+     - opens the station page,
+     - presses the correct *Listen* button (XPaths / `ActionChains`),
+     - fetches now-playing text & artwork (BeautifulSoup over page HTML),
+     - saves/loads a logo to `Images/<StationLogoName>.png`,
+     - returns a `*`-separated text bundle (URL, title, program text…).
+  4. Renders text and images, optionally schedules another `on_select()` (polling).
+  5. Persists the last played preset (`savedRadioStation.txt`).
 
-1. The textboxes on the main window. These are for information only and can get focus by using the [Tab] or [Shift-Tab] keys in which case their background will be light blue. Once "inside" you can scroll up or down if necessary to see any text that does not fit in the textbox by pressing the [PgUp] or [PgDn] keys. As usual you can exit the textbox by pressing the [Tab] or [Shift-Tab] keys. One textbox is used to display station and program information. While another one (only available in the Windows version) displays detailed AI generated information about the currently streaming station (if that has been generated by pressing the [AI] button).
-2. The "password" textbox on the setup winbdow. it is only available when running the script on a Raspberry Pi. It is used to input the password for a WIFI network that has not been previously used. You type the password in the usual way and then press the [Enter] key when finished.
+- **RegularRestart() & RestartFirefoxAndLastStation()**  
+  Close browser, **kill geckodriver** PIDs (via `psutil`), relaunch Firefox, and resume streaming the last station.
 
-**With focus on buttons** we can move focus from them by pressing the [Tab] or [Shift-Tab] keys:
+- **Commercial2** (advanced)  
+  Handles pages that open an extra window/tab for playback; detects whether streaming is working by introspecting SVG path state; can create a throwaway tab to download a remote image if needed, then closes it.
 
-1. The [RND] button. When the [Enter] key is pressed a random station from the available list (\TkRadio\AllRadioStations.csv) is streamed. Its name becomes visible in the combobox on the left.
-2. The [DEL] button. When tthe [Delete] key is pressed the currently "streaming" station is permanently deleted from the available list (\TkRadio\AllRadioStations.csv). Any necessary adjustments are made to the playlist buttons (in particular if the station is on assigned to a playlist button, it will be removed). The [Enter] key is not used to cause action to prevent deletion by mistake!
-3. The [SAVE] button. When the [Enter] key is pressed details about the currently streaming station are appended to the [tkRadio\StationLogs.txt](StationLogs.txt) file. If Running under Windows this might include AI generated content (if thqat was explicitly generated beforehand).
-4. The [AI] button. Only available when running under Windows. When the [Enter] key is pressed detailed information about the currently streaming station are generated by AI and placed in the lower textbox.
-5. The [View] button. When the [Enter] key is pressed toggling occurs between a partial or complete view of playlist buttons. The partial view shows a 2 row by 9 column matrix of 18 playlist buttons. The complete view shows a 6 row by 9 column matrix of 54 buttons in the Raspberry Pi case but a 12 row by 9 column matrix of 108 buttons in the Winbdows case. The complete view obscures any information about the radio station currently streaming, except for the stations logo visible in the top left hand corner of the main screen. In the Windows case the AI text box is also obscured.
-6. The PollFlag button. In the Windows case it is in the top right hand corner of the main window and displays [ON] with a green background or [OFF] with a red background. In the Raspberry Pi case this button is at the top of the right hand side of the setup window and displays [Polling is ON] with a green background of [Polling is OFF] with a red background. Pressing the [Enter] key toggles between the two states as discussed previously.
-7. The [+] buttons. Only available in the Raspberry Pi case. They are located at the top right hand corner of the main and setup windows. When the [Enter] key is pressed on the button in the main window, the setup window becomes visible and focus is shifted to the button on the setup window. Similarily when the [Enter] key is pressed on the button in the setup window, the main window becomes visible and focus is shifted to button on the main window.
-8. **The matrix of playlist buttons.** They are on the main window. If populated they display a logo for a particular radio station. For convenience on can traverse focusing among these buttons by using the [Up], [Down], [Left] and [Right] keys (as well as the [Tab] or [Shift-Tab] keys). This works in the obvious way, however if you press the [Down] key on a playlist button which is in the lowest row then nothing happens, similarily if you press the [Left] key on a button in the leftmost column or if you press the [Right] key on a button in the rightmost column. If you press the [Up] key on a button in the top row focus will pass to the Pollflag button in the Windows case or the [+] button in the Raspberry Pi case.
-9. The BT button. It is on the top of the left hand side of the setup window. It displays [BT ON] with a green background of [BT OFF] with a red background. Pressing the [Enter] key toggles between the two states. If audio is streaming to Bluetooth speakers when the button is toggled to [BT OFF] the audio will stop but will be avialble through USB speakes if you connect them!
-10. The [CONNECT] button which is under the BT button. Pressing the [Enter] Key restarts/forces a Bluetooth connection to the speakers.
-11. The [SEE BT DEVICES] button. Press the [Enter] key to populate the combobox   
+- **CustomCombobox**  
+  Fully custom widget: `Up/Down`, `PgUp/PgDn`, `Enter`, `Esc`, with a borderless dropdown `Toplevel` + `Listbox`. Helps on small screens and with encoder controls.
 
+- **GPIO path**  
+  If `RPi.GPIO` imports successfully, the app:
+  - Sets up interrupts for the encoder pins.
+  - Converts rotations to index changes and the push to a `<Key-*>` event into the focused widget (the “virtual key row” shows which key will be sent next).
+
+- **State files**
+  - **Playlist**: `playlist.txt` keeps `108 × [name, index]` pairs (index into `aStation`).
+  - **Poll**: `pollflag.txt` drives the periodic re-scrape toggle.
+  - **Bluetooth**: `bluetooth.txt` stores ON/OFF and the last paired MAC/name.
+  - **Logs**: `StationLogs.txt` accumulates saved text and (Windows) AI summaries.
+
+- **Windows AI thread**
+  - The **AI** button captures the text panel, calls OpenAI Chat Completions (model `gpt-4.1`) in a background thread, then renders the result into the AI panel. (Set `OPENAI_API_KEY` to enable.)
+
+---
+
+### Keyboard & controls
+
+- **Combobox**: `Enter` to stream, `Up/Down` to move, `PgUp/PgDn` to jump.
+- **Playlist buttons**: `Enter` to play, `Insert` to assign current combobox station, `Delete` to clear, `Arrows` to navigate the grid.
+- **Text panels**: `Shift+Tab` is mapped properly across platforms.
+- **Raspberry Pi**: Use the encoder to scroll/select; press to “type” the chosen virtual key into the focused widget.
+
+---
+
+### Troubleshooting
+
+- **“Firefox/geckodriver not found”**: Ensure both are installed and on PATH.
+- **No images / broken logos**: Make sure `Images/` exists and contains `Blank.png`. The app will save per-station logos on the fly where possible.
+- **“Streaming is not working” text**: Some sites geo-block or change markup. Try again later; consider increasing `needSleep` or turning **Polling** off.
+- **Bluetooth/Wi-Fi issues (Pi)**: The app shells out to `bluetoothctl`, `nmcli`, `rfkill`, and `iwlist`. Confirm these tools work from the terminal with your permissions.
+
+---
+
+### Extending the station list
+
+1. Add a new row to `AllRadioStations.csv`.
+2. Pick the appropriate **StationFunction** and fill its parameters:
+   - For ABC variants, prefer `Radio1`..`Radio7` with the right `nNum` and XPaths already coded.
+   - For iHeart / Smooth / Nova, use `Commercial1` with the right `nType`.
+   - For radio-australia.org & similar, use `Commercial2`.
+3. Drop a logo PNG into `Images/` named exactly as `StationLogoName + ".png"` (or let the app try to fetch one, where supported).
+
+---
+
+### Notes on site automation
+
+TkRadio uses Selenium to drive public “Listen Live” pages exactly as a human would. Respect the sites’ terms of use; don’t hammer pages (Polling exists, but use sensible intervals).
+
+---
 
 ## Parts list
 

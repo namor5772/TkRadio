@@ -1,7 +1,3 @@
-'''
-2. Russian and China originating internet stations?   
-'''
-
 import subprocess
 import inspect
 import tkinter as tk
@@ -1834,7 +1830,6 @@ def RegularRestart():
     root.after(int(resetTime*1000), lambda: RegularRestart())
     print("---- RegularRestart() finished ---------------------------------------------")
  
-
 
 
 

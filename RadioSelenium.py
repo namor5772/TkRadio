@@ -484,679 +484,374 @@ class CustomEvent:
 # similar so can use the same code. Radio1...Radio7 are for the ABC stations, while Commercial1 &
 # Commercial2 are for the commercial stations.
 
-def Radio1(br,nNum,sPath,sClass,nType):
-    if eventFlag:
-        # determine file name for the station logo graphic
-        logo = StationLogo + ".png"
-        print(logo)
+# ============================================================================
+# Helpers: common Selenium/Tkinter/image utilities used by multiple Radio* funcs
+# ============================================================================
+def _navigate_to_station(br, url, refresh_url):
+    """Open a blank page to 'clean' the session, then navigate to the station."""
+    br.get(refresh_url); time.sleep(1)
+    br.get(url); time.sleep(needSleep)
 
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(1)
-        br.get(sPath)
-        time.sleep(needSleep)
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
-
-    if eventFlag:
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
-        buttonStream.click()
-        time.sleep(1)
-
-        # get station logo
-        image_path3 = pathImages
-        image_path3 = image_path3 + "/" + logo
-        image = Image.open(image_path3)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # get program image
+def _fetch_image_to(path, url, timeout=10):
+    """Download image at 'url' to local filesystem 'path'. Returns path or None."""
     try:
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
+        response = requests.get(url, timeout=timeout)
+        with open(path, "wb") as f:
             f.write(response.content)
+        return path
+    except Exception as e:
+        print(f"Caught a problem downloading image: {e}")
+        return None
+
+def _display_logo_from_image(image):
+    """Resize given PIL image to iconSize and set into the 'label' widget.
+       Optionally save the resized image into a playlist button slot if addFlag."""
+    global addFlag
+    scaled = image.resize((iconSize, iconSize))
+    if addFlag:
+        buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
+        scaled.save(buttonImagePath)
+        addFlag = False
+        print(f"saving button icon {buttonImagePath}")
+    photo = ImageTk.PhotoImage(scaled)
+    label.config(image=photo); label.image = photo
+
+def _display_logo_from_file(path):
+    """Open image at 'path' (fallback to Blank.png) and display as station logo."""
+    try:
+        image = Image.open(path)
+    except Exception:
+        image = Image.open(pathImages + "/Blank.png")
+    _display_logo_from_image(image)
+
+def _crop_square(im):
+    w, h = im.size
+    if w == h:
+        return im
+    # crop to centered square by removing the longer side's excess
+    if w > h:
+        left = w - h
+        box = (left, 0, w, h)
+    else:
+        box = (0, 0, w, w)
+    return im.crop(box)
+
+def _display_program_image_square(path):
+    """Crop to square, resize to (Xprog-X1), and display into label2."""
+    im = Image.open(path)
+    im2 = _crop_square(im).resize((Xprog - X1, Xprog - X1))
+    ph = ImageTk.PhotoImage(im2)
+    label2.config(image=ph); label2.image = ph
+
+def _display_program_image_rect(path, width_px):
+    """Resize to given width keeping station program image height at (Xprog-X1)."""
+    im = Image.open(path)
+    ph_im = im.resize((width_px - X1, Xprog - X1))
+    ph = ImageTk.PhotoImage(ph_im)
+    label2.config(image=ph); label2.image = ph
+
+def _lift_program_image_at(x, y, w, h):
+    """Place program image at given geometry if not HiddenFlag; keep above text_box."""
+    if not HiddenFlag:
+        label2.place(x=x, y=y, width=w, height=h)
+        label2.lift(text_box)
+    root.update_idletasks()
+
+def _soup_inner_html(element_or_driver):
+    """Return BeautifulSoup for the given WebElement or driver.page_source."""
+    try:
+        ht = element_or_driver.get_attribute("innerHTML")
+    except Exception:
+        ht = element_or_driver.page_source
+    return BeautifulSoup(ht, "lxml")
+
+def _trim_after(s, marker):
+    """Return substring of s up to first occurrence of marker, if present."""
+    pos = s.find(marker)
+    return s if pos == -1 else s[:pos]
+# ============================================================================
+
+
+
+def Radio1(br, nNum, sPath, sClass, nType):
+    """ABC sites pattern #1: click primary stream button, square program image right column."""
+    if eventFlag:
+        logo_path = f"{pathImages}/{StationLogo}.png"
+        print(f"{StationLogo}.png")
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
+
+    if eventFlag:
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
+        btn.click(); time.sleep(1)
+        _display_logo_from_file(f"{pathImages}/{StationLogo}.png")
+
+    # Program image
+    try:
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
     except Exception as e:
         print(f"Caught a problem: {e}")
-        # Display a blank image
-        image2_path = pathImages + "/Blank.png"
+        image2_path = f"{pathImages}/Blank.png"
 
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
+    _display_program_image_square(image2_path)
     if not HiddenFlag:
         if station == "ABC_Classic2":
-            label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
+            _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
         else:
-            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-    label2.lift(text_box)        
-    root.update_idletasks()  # Force update the layout        
-    
-    # get station details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
+            _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
     fe = soup.find(attrs={"class": "view-live-now popup"})
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
-    else:
-        fe1 = "None"
-
-    # Remove irrelevant info, starting with [*More]
-    sub = "*More"
-    pos = fe1.find(sub)
-    if pos != -1:
-        fe1 = fe1[:pos]
-    sub = "More from*"
-    fe1 = fe1.replace(sub,"")
-    sub = "*."
-    fe1 = fe1.replace(sub,"")
-        
-    # append program details to station details    
+    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
+    fe1 = _trim_after(fe1, "*More").replace("More from*", "").replace("*.", "")
     fe = soup.find(attrs={"class": "playingNow"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No specific item playing"
-    fe3 = fe1+"*"+fe2
-    return fe3
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
+    return fe1 + "*" + fe2
 
 
-def Radio2(br,nNum,sPath,sClass,nType):
+
+def Radio2(br, nNum, sPath, sClass, nType):
+    """ABC sites pattern #2: timezone selection via keyboard, then stream button."""
     if eventFlag:
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(1)
-        br.get(sPath)
-        time.sleep(needSleep)
+        _navigate_to_station(br, sPath, refresh_http)
 
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        # Select timezone for stream (specific to this actual ABC radio website)
-        for _ in range(3):
-            be.send_keys(Keys.TAB)
+        for _ in range(3): be.send_keys(Keys.TAB)
         be.send_keys(Keys.ENTER)
-        for _ in range(4):
-            be.send_keys(Keys.UP)
-        for _ in range(nNum):
-            be.send_keys(Keys.DOWN)
+        for _ in range(4): be.send_keys(Keys.UP)
+        for _ in range(nNum): be.send_keys(Keys.DOWN)
         be.send_keys(Keys.ENTER)
 
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
-        buttonStream.click()
-        time.sleep(1)
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
+        btn.click(); time.sleep(1)
+        _display_logo_from_file(f"{pathImages}/ABC_Radio_National.png")
 
-        # get station logo
-        image_path2 = pathImages + "/ABC_Radio_National.png"
-        image = Image.open(image_path2)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # get program image
+    # Program image (header img)
     try:
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
-            f.write(response.content)
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
     except Exception as e:
         print(f"Caught a problem: {e}")
-        # Display a blank image
-        image2_path = pathImages + "/Blank.png"
-   
+        image2_path = f"{pathImages}/Blank.png"
 
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    width = int(Xprog*width2/height2)
-    scaled_image2 = image2.resize((width-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
-    label2.lift(text_box)    
-    root.update_idletasks()  # Force update the layout        
-    
-    # get station and program details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
+    # Rectangular placement
+    im = Image.open(image2_path); w2, h2 = im.size
+    width = int(Xprog * w2 / h2)
+    _display_program_image_rect(image2_path, width)
+    _lift_program_image_at(Xgap3 - (width - Xprog) + X1, Ygap2 + Y1, width - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
     fe = soup.find(attrs={"class": "view-live-now popup"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No specific item playing"
-
-    # Remove irrelevant info, starting with [*.*More]
-    sub = "*.*More"
-    pos = fe2.find(sub)
-    if pos != -1:
-        fe2 = fe2[:pos]
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
+    fe2 = _trim_after(fe2, "*.*More")
     return fe2
 
 
-def Radio3(br,nNum,sPath,sClass,nType):
+
+def Radio3(br, nNum, sPath, sClass, nType):
+    """ABC pattern #3: timezone combo further to the right; logo derives from StationLogo prefix."""
     if eventFlag:
-        # determine file name for the station logo graphic
         station = StationLogo
-        first_occurrence = station.find("_")
-        second_occurrence = station.find("_", first_occurrence+1)
+        first = station.find("_")
+        second = station.find("_", first + 1)
         global station_short
-        station_short = station[:second_occurrence]
-        logo = station_short + ".png"
+        station_short = station[:second]
+        logo = f"{station_short}.png"
         print(logo)
+        _navigate_to_station(br, sPath, refresh_http)
 
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(1)
-        br.get(sPath)
-        time.sleep(needSleep)
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        # Select timezone for stream (specific to this actual ABC radio website)
-        for _ in range(5):
-            be.send_keys(Keys.TAB)
+        for _ in range(5): be.send_keys(Keys.TAB)
         be.send_keys(Keys.ENTER)
-        for _ in range(4):
-            be.send_keys(Keys.UP)
-        for _ in range(nNum):
-            be.send_keys(Keys.DOWN)
+        for _ in range(4): be.send_keys(Keys.UP)
+        for _ in range(nNum): be.send_keys(Keys.DOWN)
         be.send_keys(Keys.ENTER)
 
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
-        buttonStream.click()
-        time.sleep(1)
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
+        btn.click(); time.sleep(1)
+        _display_logo_from_file(f"{pathImages}/{station_short}.png")
 
-        # get station logo
-        image_path3 = pathImages + "/" + logo
-        image = Image.open(image_path3)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # get program image
-    try:      
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
-            f.write(response.content)
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        # Display a blank image
-        image2_path = pathImages + "/Blank.png"    
-
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        if station_short == "ABC_Classic":
-            label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        else:
-            label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-    label2.lift(text_box)        
-    root.update_idletasks()  # Force update the layout        
-
-    # get station details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    fe = soup.find(attrs={"class": "view-live-now popup"})
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
-    else:
-        fe1 = "None"
-
-    # Remove irrelevant info, starting with [*More]
-    sub = "*More"
-    pos = fe1.find(sub)
-    if pos != -1:
-        fe1 = fe1[:pos]
-
-    # append program details to station details    
-    fe = soup.find(attrs={"class": "playingNow"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No specific item playing"
-    fe3 = fe1+"*"+fe2
-    return fe3
-
-
-def Radio4(br,nNum,sPath,sClass,nType):
-    if eventFlag:
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(1)
-        br.get(sPath)
-        time.sleep(needSleep)
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
-
-    if eventFlag:
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
-        buttonStream.click()
-        time.sleep(3)
-        
-        try:
-            # get station logo
-            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-            img_url = img_element.get_attribute("src")
-            image_path = pathImages + "/logo.png"
-            response = requests.get(img_url, timeout=10)
-            with open(image_path, 'wb') as f:
-                f.write(response.content)
-        except Exception as e:
-            print(f"Caught a problem: {e}")
-            # Display a blank image
-            image_path = pathImages + "/Blank.png"    
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-        
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-       
-    # get program image
-    try:      
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        print(image2_path)
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
-            f.write(response.content)
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        # Display a special faint image
-        image2_path = pathImages + "/ABC_faint.png"
-
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        label2.place(x=Xgap2+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
-    
-    # get station details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No item playing"
-
-    # Remove irrelevant info [*-]
-    sub = "*-"
-    fe3 = fe2.replace(sub,"")
-    
-    # append program details to station details    
-    fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No Description"
-    fe3 = fe3+"* *"+fe2
-    return fe3
-
-
-def Radio5(br,nNum,sPath,sClass,nType):
-    if eventFlag:
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(1)
-        browser.get(sPath)
-        time.sleep(needSleep)
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
-
-    if eventFlag:
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
-        buttonStream.click()
-        time.sleep(1)
-
-        try:
-            # get station logo
-            img_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-            img_url = img_element.get_attribute("src")
-            image_path = pathImages + "/logo.png"
-            response = requests.get(img_url, timeout=10)
-            with open(image_path, 'wb') as f:
-                f.write(response.content)
-        except Exception as e:
-            print(f"Caught a problem: {e}")
-            # Display a blank image
-            image_path = pathImages + "/Blank.png"    
-        image = Image.open(image_path)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-        
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # get program image
-    try:      
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        print(image2_path)
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
-            f.write(response.content)
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        # Display a special faint image
-        image2_path = pathImages + "/ABC_faint.png"
-
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
-
-    # get station details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No item playing"
-
-    # Remove irrelevant info [*-]
-    sub = "*-"
-    fe3 = fe2.replace(sub,"")
-    
-    # append program details to station details    
-    fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No Description"
-    fe3 = fe3+"* *"+fe2
-    return fe3
-
-
-def Radio6(br,nNum,sPath,sClass,nType):
-    if eventFlag:
-        # go to the station website
-        br.get(refresh_http)
-        time.sleep(2)
-        br.get(sPath)
-        time.sleep(needSleep)
-
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
-
-    if eventFlag:
-        # This is where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
-        buttonStream.click()
-        time.sleep(1)
-
-        # get station logo
-        image_path3 = pathImages + "/ABC_Kids_listen.png"
-        image = Image.open(image_path3)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-
-        # saving button icon if adding station to playlist 
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-        
-        # Display the station logo as given in the scaled_image
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
-
-    # get program image
+    # Program image
     try:
-        img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
-        img2_url = img2_element.get_attribute("src")
-        image2_path = pathImages + "/presenter.jpg"
-        response = requests.get(img2_url, timeout=10)
-        with open(image2_path, 'wb') as f:
-            f.write(response.content)
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
     except Exception as e:
         print(f"Caught a problem: {e}")
-        # Display a blank image
-        image2_path = pathImages + "/Blank.png"    
+        image2_path = f"{pathImages}/Blank.png"
 
-    # Display the program image as given in the scaled_image2
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
-    
-    # get station details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
+    _display_program_image_square(image2_path)
+    if station_short == "ABC_Classic":
+        _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
+    else:
+        _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
     fe = soup.find(attrs={"class": "view-live-now popup"})
-    if fe is not None:
-        fe1 = fe.get_text(separator="*", strip=True)
-    else:
-        fe1 = "None"
-
-    # Remove irrelevant info, starting with [*More]
-    sub = "*More"
-    pos = fe1.find(sub)
-    if pos != -1:
-        fe1 = fe1[:pos]
-
-    # append program details to station details    
+    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
+    fe1 = _trim_after(fe1, "*More")
     fe = soup.find(attrs={"class": "playingNow"})
-    if fe is not None:
-        fe2 = fe.get_text(separator="*", strip=True)
-    else:
-        fe2 = "No specific item playing"
-    fe3 = fe1+"*"+fe2
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
+    return fe1 + "*" + fe2
+
+
+
+def Radio4(br, nNum, sPath, sClass, nType):
+    """ABC pattern #4: different DOM; click large primary button; program image square crop."""
+    if eventFlag:
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
+
+    if eventFlag:
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
+        btn.click(); time.sleep(3)
+        try:
+            img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+            image_path = f"{pathImages}/logo.png"
+            _fetch_image_to(image_path, img.get_attribute("src"))
+        except Exception as e:
+            print(f"Caught a problem: {e}")
+            image_path = f"{pathImages}/Blank.png"
+        _display_logo_from_file(image_path)
+
+    try:
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        image2_path = f"{pathImages}/ABC_faint.png"
+
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap2 + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
+    fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No item playing"
+    fe3 = fe2.replace("*-", "")
+    fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No Description"
+    fe3 = fe3 + "* *" + fe2
     return fe3
 
 
-# *************************** FIX FIX FIX ****************************************
-def Radio7(br,nNum,sPath,sClass,nType):
-    if eventFlag:
-        # determine file name for the station logo graphic
-        logo = StationLogo + ".png"
-        print(logo)
-        br.get(refresh_http)
-        time.sleep(1)
-        br.get(sPath)
-        time.sleep(needSleep)
 
-    # always runs
-    be = br.find_element(By.TAG_NAME, 'body')
-    time.sleep(1)
+def Radio5(br, nNum, sPath, sClass, nType):
+    """ABC pattern #5: same site family as Radio4, different placement/coords."""
+    if eventFlag:
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        # This where the streaming of the radio station is accomplished
-        buttonStream = be.find_element(By.XPATH,'/html/body/div[1]/div/div/div/div/div/main/section[2]/div/section/div/section/section/div[2]/div/div[1]/div/div[2]/button')
-        buttonStream.click()
-        time.sleep(1)
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
+        btn.click(); time.sleep(1)
+        try:
+            img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+            image_path = f"{pathImages}/logo.png"
+            _fetch_image_to(image_path, img.get_attribute("src"))
+        except Exception as e:
+            print(f"Caught a problem: {e}")
+            image_path = f"{pathImages}/Blank.png"
+        _display_logo_from_file(image_path)
 
-        # get station logo
-        image_path3 = pathImages + "/" + logo
-        image = Image.open(image_path3)
-        scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
+    try:
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        image2_path = f"{pathImages}/ABC_faint.png"
 
-        # saving button icon
-        global addFlag
-        if addFlag:
-            buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
-            scaled_image.save(buttonImagePath)
-            addFlag = False
-            print(f"saving button icon {buttonImagePath}")
-        
-        photo = ImageTk.PhotoImage(scaled_image)
-        label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
 
-    # Display a blank program image
-    image2_path = pathImages + "/Blank.png"
-    image2 = Image.open(image2_path)
-    width2, height2 = image2.size;
-    print(f"width: {width2}, height: {height2}")
-    crop_box2 = (width2-height2,0,width2,height2)
-    cropped_image2 = image2.crop(crop_box2)
-    scaled_image2 = cropped_image2.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-    photo2 = ImageTk.PhotoImage(scaled_image2)
-    label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
-    if not HiddenFlag:
-        label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-        label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
-        
-    # Find program details
-    ht = be.get_attribute('innerHTML')
-    soup = BeautifulSoup(ht, 'lxml')
-    if nNum==0:
-        xid="abc-:rb:-item-0"
-        sName = "ABC SPORT"
-    elif nNum==1:
-        xid="abc-:rb:-item-1"
-        sName = "ABC SPORT EXTRA"
-    else: # if nNum==2
-        xid="abc-:rb:-item-2"
-        sName = "ABC CRICKET"
+    soup = _soup_inner_html(be)
+    fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No item playing"
+    fe3 = fe2.replace("*-", "")
+    fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No Description"
+    fe3 = fe3 + "* *" + fe2
+    return fe3
+
+
+
+def Radio6(br, nNum, sPath, sClass, nType):
+    """ABC Kids Listen pattern: square program art from right column."""
+    if eventFlag:
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
+
+    if eventFlag:
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
+        btn.click(); time.sleep(1)
+        _display_logo_from_file(f"{pathImages}/ABC_Kids_listen.png")
+
+    try:
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        image2_path = f"{pathImages}/Blank.png"
+
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
+    fe = soup.find(attrs={"class": "view-live-now popup"})
+    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
+    fe1 = _trim_after(fe1, "*More")
+    fe = soup.find(attrs={"class": "playingNow"})
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
+    return fe1 + "*" + fe2
+
+
+
+def Radio7(br, nNum, sPath, sClass, nType):
+    """ABC Sport / Sport Extra / Cricket pattern with bespoke selectors; blank program image."""
+    if eventFlag:
+        logo = f"{StationLogo}.png"; print(logo)
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
+
+    if eventFlag:
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div/div/main/section[2]/div/section/div/section/section/div[2]/div/div[1]/div/div[2]/button')
+        btn.click(); time.sleep(1)
+        _display_logo_from_file(f"{pathImages}/{StationLogo}.png")
+
+    image2_path = f"{pathImages}/Blank.png"
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
+    if nNum == 0:
+        xid, sName = "abc-:rb:-item-0", "ABC SPORT"
+    elif nNum == 1:
+        xid, sName = "abc-:rb:-item-1", "ABC SPORT EXTRA"
+    else:
+        xid, sName = "abc-:rb:-item-2", "ABC CRICKET"
     fe = soup.find(attrs={"id": xid})
     if fe is not None:
         feX = fe.find(attrs={"class": "AudioPlayerCard_programMeta__3VqUy"})
-        if feX is not None:
-            fe2 = feX.get_text(separator="*", strip=True)
+        fe2 = feX.get_text(separator="*", strip=True) if feX is not None else sName
     else:
         fe2 = sName
-
-    # Remove irrelevant info, starting with [*.*More]
-    sub = "*Stop"
-    pos = fe2.find(sub)
-    if pos != -1:
-        fe2 = fe2[:pos]
-    else:
-        sub = "*Listen"
-        pos = fe2.find(sub)
-        if pos != -1:
-            fe2 = fe2[:pos]
+    fe2 = _trim_after(_trim_after(fe2, "*Stop"), "*Listen")
     return fe2
+
 
 
 def Commercial1(br,nNum,sPath,sClass,nType):
@@ -1268,6 +963,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     else:
         fe1 = "None"
     return fe1
+
 
 
 # format used by the radio-australia.org and related stations format
@@ -2175,21 +1871,6 @@ def on_select(event,fromCombobox):
 
         RestartFirefoxAndLastStation(fromCombobox, True)
 
-'''
-        global firefox_options
-        browser.quit() # close the WebDriver
-        kill_gekodrivers() # kill any running geckodriver processes
-        browser = webdriver.Firefox(options=firefox_options) # restart the WebDriver
-
-        firstRun = True
-        stopLastStream = False
-        print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
-        if fromCombobox:
-            root.after(15000, lambda: on_select(CustomEvent("Auto", None, "ComboBox Event"),True))
-        else: # if not fromCombobox
-            root.after(15000, lambda: on_select(CustomEvent("Auto", None, "Playlist Button Event"),False))
-'''
-
 
 # called when playlist button i is in focus and the Enter key is pressed.
 # visually simulates a physical button press and initiates the station stream by
@@ -2212,7 +1893,6 @@ def on_button_press(event, i):
         print(f"Playlist button {buttonIndex} pressed AGAIN")
         on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)    
     print(f"COMPLETED pressing the Playlist button {buttonIndex}")
-
 
 
 # called when playlist button i is in focus and the Delete key is pressed.
@@ -2976,7 +2656,7 @@ def save_button_pressed(event):
         file.write("\n")
     print("*** COMPLETED - [SAVE] BUTTON PRESSED ***\n")
      
-
+'''
 def ai_button_pressed(event):
     print("\n*** [AI] BUTTON PRESSED ***")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
@@ -3022,6 +2702,106 @@ def ai_button_pressed(event):
         text_box_ai.after(0, lambda: display_text(text))
 
     print("Starting AI processing in a separate thread...")    
+    threading.Thread(target=worker, daemon=True).start()
+    print("*** COMPLETED - [AI] BUTTON PRESSED ***\n")
+'''
+
+
+def ai_button_pressed(event):
+    print("\n*** [AI] BUTTON PRESSED ***")
+    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
+    print(f"Event argument: {event}")
+
+    currentIndex = custom_combo.current()
+    currentStationName = aStation[currentIndex][0]
+    currentStationURL = aStation[currentIndex][4]
+    print(f"Current station: {currentStationName} - URL: {currentStationURL}")
+
+    text_box_content = text_box.get("1.0", tk.END).strip()
+    inputStr = text_box_content
+
+    print(f"input into AI:\n{inputStr}\n")
+
+    # --- Helper to robustly extract text from Responses API objects ---
+    def _extract_output_text(resp):         
+        """
+        Prefer resp.output_text (SDK convenience); fall back to concatenating
+        message content if needed; last resort: str(resp).
+        """
+        try:
+            if getattr(resp, "output_text", None):
+                return resp.output_text
+        except Exception:
+            pass
+
+        # Fallback: iterate structured output
+        try:
+            parts = []
+            for item in getattr(resp, "output", []) or []:
+                if getattr(item, "type", "") == "message":
+                    for c in getattr(item, "content", []) or []:
+                        # SDKs vary between 'text' and 'output_text'
+                        if getattr(c, "type", "") in ("output_text", "text"):
+                            parts.append(getattr(c, "text", "") or "")
+            if parts:
+                return "".join(parts).strip()
+        except Exception:
+            pass
+
+        return str(resp)
+
+    def worker():
+        try:
+            # ----------------- IMPORTANT: Responses API -----------------
+            # Tools: enable hosted web_search for fresh, citable info.
+            # Model: use gpt-5; uncomment gpt-5-thinking + reasoning if you want deeper chains.
+            tools = [{"type": "web_search"}]  # model decides when/if to call the tool
+
+            system_prompt = (
+                "You are a radio station broadcast historian and researcher. "
+                "Respond in clean PLAINTEXT (no Markdown code fences), under 600 words. "
+                "Provide a detailed analysis of the station, including its history and any notable shows/hosts, "
+                "plus streaming/coverage notes if relevant. "
+                "ALWAYS include a well-aligned summary table at the end with exactly 2 columns: "
+                "Feature | Description. The table MUST be aligned and exactly 95 characters per line. "
+                "Prefer citing dates and owners; if you use web sources, reconcile conflicts and avoid speculation."
+            )
+
+            user_prompt = (
+                f"Station selection: {currentStationName}\n"
+                f"Stream/Website (if applicable): {currentStationURL}\n\n"
+                f"User question / notes:\n{inputStr}\n\n"
+                "Output format reminder: clean plaintext, ≤600 words, and end with a 2-column table "
+                "(Feature | Description) aligned and =95 chars wide."
+            )
+
+            # If you want the 'thinking' variant for harder tasks:
+            # model_name = "gpt-5-thinking"
+            model_name = "gpt-5"
+
+            # Optional: nudge depth of reasoning when using "gpt-5-thinking"
+            # reasoning = {"effort": "medium"}  # or "low" | "high"
+
+            response = client.responses.create(
+                model=model_name,
+                # reasoning=reasoning,  # enable only with gpt-5-thinking
+                tools=tools,
+                input=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+            )
+
+            text = _extract_output_text(response)
+
+        except Exception as e:
+            text = f"Error: {e}"
+
+        # Schedule update on the main thread
+        text_box_ai.after(0, lambda: display_text(text))
+
+    print("Starting AI processing in a separate thread...")
+    display_text("AI is processing, please wait for station information ...")
     threading.Thread(target=worker, daemon=True).start()
     print("*** COMPLETED - [AI] BUTTON PRESSED ***\n")
 

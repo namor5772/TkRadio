@@ -254,3 +254,467 @@ Language             | Hungarian branding; music content is international and la
 Mobile apps          | Android/iOS apps promoted in 2020 posts; current availability should be re‑checked         
 Listening tips       | If one web player fails, try another aggregator or the official Papageno site              
 
+*******************************************************
+--- 2025-08-27 10:47:59 ---
+https://www.internetradio-horen.de/klassik-radio
+de Klassik Radio
+
+Klassik Radio Live
+Klassik, Jazz und Lounge zum Entspannen und Genießen
+ 
+Serenade in C Major, Op. 48: II. Moderato, tempo di Valse
+Otmar Suitner & Staatskapelle Dresden
+LIVE
+
+AI Generated Content:
+Klassik Radio (Germany) is a privately owned, commercial classical network best known for a listener‑friendly mix of classical hits, film music, and lighter “new classics.” It began broadcasting on October 28, 1990; some trade coverage lists October 15, 1991, but the German record shows 1990 as the launch. The brand has been led since a late‑1990s turnaround by CEO Ulrich R. J. Kubak, whose Klassik Radio AG took the company public in 2004. The broadcaster’s corporate headquarters moved to Augsburg in October 2021, with studio operations historically tied to Hamburg. 
+
+Programming emphasizes single movements rather than full works—aimed at relaxed, all‑day listening. Since winter 2024 the station runs concise top‑of‑hour news briefings between 06:00 and 10:00, replacing the prior all‑day hourly newscasts. Featured presenters have included tenor Rolando Villazón, TV/radio personality Thomas Ohrner, and jazz trumpeter Till Brönner, alongside Alexandra Berger and others. 
+
+Distribution and coverage: Klassik Radio pivoted decisively to digital. It is carried nationwide in Germany on DAB+ (block 5C) and is also available via DAB+ in Austria (since May 2019) and in German‑speaking Switzerland (since May 2021). Many FM allocations outside major cities were switched off on September 1, 2015, and the company later sold a tranche of FM frequencies (2017) to fund digital expansion—so FM availability today is limited and region‑specific, while DAB+ and online are primary. 
+
+Streaming: Worldwide listening is available free via the web stream; Klassik Radio Select, launched December 14, 2017, offers ad‑free listening and 150–180 expertly curated stations (classical, film, jazz, lounge), typically at up to 320 kbit/s. XPLR reports Select reached break‑even in 2022. The live service is also accessible through third‑party platforms such as TuneIn and radio.de. For convenience, the user‑supplied page (internetradio-horen.de) embeds the live stream and track data, but for the most reliable stream and channel lineup use the official site or the Select apps. 
+
+Notable franchise: Klassik Radio live in Concert—annual tours featuring the 80‑piece Klassik Radio Pops Orchestra conducted by Nic Raine—extends the brand into concert halls and recordings. 
+
+
+Feature             | Description                                                                                
+Station name        | Klassik Radio (Germany)                                                                     
+Country/HQ          | Augsburg corporate HQ; studios historically in Hamburg                                      
+Airdate             | 28 Oct 1990 (some sources list 15 Oct 1991)                                                 
+Owner               | Klassik Radio AG; CEO Ulrich R. J. Kubak; Board includes Tina Jäger                         
+Format              | Classical hits and film music; tends to play movements, not full works                      
+News                | Top‑of‑hour briefings 06:00–10:00 since winter 2024                                          
+Notable hosts       | Rolando Villazón; Thomas Ohrner; Till Brönner; plus Alexandra Berger                         
+Signature events    | “Live in Concert” tours with an 80‑piece Pops Orchestra, conducted Nic Raine                
+Distribution        | Nationwide DAB+ Germany (block 5C); plus DAB+ in Austria and Switzerland                    
+FM status           | FM largely reduced 2015–2017; some city frequencies may persist                             
+Streaming           | Free worldwide web stream; Select adds 150–180 curated, ad‑free channels                     
+Apps/platforms      | Official site and Select apps; also available via TuneIn and radio.de                       
+
+*******************************************************
+--- 2025-08-27 11:02:23 ---
+https://www.internetradio-horen.de/klassik-radio-pure-mozart
+de Klassik Radio Mozart
+
+Klassik Radio Mozart Live
+Zeitlose Kompositionen des Popstars der Klassik.
+ 
+No program information and image
+
+AI Generated Content:
+Station overview
+Klassik Radio Mozart (often listed as “Klassik Radio Pure Mozart”) is a curated web stream in the Klassik Radio family from Germany. It plays continuous Mozart recordings and is typically presented without announcers; directory and platform pages describe it as “Zeitlose Kompositionen des Popstars der Klassik” and display now‑playing metadata but no published program grid. ([internetradio-horen.de](https://www.internetradio-horen.de/klassik-radio-pure-mozart), [radioplayer.de](https://www.radioplayer.de/radio/klassik-radio-mozart.html?utm_source=chatgpt.com))
+
+Ownership and background
+The channel sits under Klassik Radio, a private German network on air since October 28, 1990, owned by the publicly listed Klassik Radio AG (Augsburg; studios also in Hamburg). Leadership has included Ulrich R. J. Kubak and Tina Jäger. The main network expanded nationwide via DAB+ from August 1, 2011, and its online portfolio grew with the launch of the subscription streaming service Klassik Radio Select on December 14, 2017 (now offering 180+ themed streams). The Mozart stream is part of this themed‑channel ecosystem. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Klassik_Radio?utm_source=chatgpt.com), [de.wikipedia.org](https://de.wikipedia.org/wiki/Klassik_Radio_AG?utm_source=chatgpt.com), [ebu.ch](https://www.ebu.ch/news/2011/germany-launches-nationwide-dab?utm_source=chatgpt.com))
+
+Programming notes
+Klassik Radio’s editorial approach emphasizes accessible listening: selected movements/excerpts rather than complete works, and it blends core classics with film music and “New Classics.” That philosophy informs the Mozart stream, which cycles well‑known symphonic, concerto and chamber movements rather than full multi‑movement works. On the parent network, well‑known presenters have included Holger Wemhoff and Till Brönner, though the Mozart web stream itself is normally music‑only. ([de.wikipedia.org](https://de.wikipedia.org/wiki/Klassik_Radio?utm_source=chatgpt.com))
+
+Streaming and coverage
+For listeners in the United States, this is an online‑only service; there is no U.S. terrestrial carriage. You can stream via Klassik Radio’s web player and via Radioplayer apps and integrations (smart speakers, Sonos/Bose, Apple CarPlay and Android Auto). If a directory page lacks artwork or listing data, Radioplayer’s station page typically shows the logo and “now playing.” The parent network is carried on DAB+ in Germany (and later in Austria/Switzerland), and in 2021 Klassik Radio launched its movie‑music spinoff nationally on Germany’s second commercial DAB+ multiplex; the Mozart channel remains a web stream. ([radioplayer.de](https://www.radioplayer.de/radio/klassik-radio-mozart.html?utm_source=chatgpt.com), [de.wikipedia.org](https://de.wikipedia.org/wiki/Klassik_Radio?utm_source=chatgpt.com), [worlddab.org](https://www.worlddab.org/news/11866/germany%27s-klassik-radio-launches-nationwide-on-dab%2B?utm_source=chatgpt.com))
+
+Audio quality and metadata
+Free streams are ad‑supported; Klassik Radio Select offers ad‑free HD listening (up to 320 kbit/s) across its themed channels for subscribers. Availability is generally worldwide, though access is always subject to rights or platform restrictions. ([de.wikipedia.org](https://de.wikipedia.org/wiki/Klassik_Radio?utm_source=chatgpt.com))
+
+
+Feature             | Description                                                                             
+Station name        | Klassik Radio Mozart (aka “Pure Mozart”), a themed web channel of Klassik Radio.        
+Location            | Germany (Augsburg/Hamburg); stream accessible worldwide via web/app platforms.          
+Owner               | Klassik Radio AG; led by Ulrich R. J. Kubak with board member Tina Jäger.               
+Parent launch date  | Klassik Radio on air since October 28, 1990 (national private classical network).       
+Channel type        | Online-only, non-stop Mozart selections; typically no DJs or spoken features.           
+Programming style   | Movements/excerpts over complete works; listener-friendly “New Classics” approach.      
+Notable hosts (KR)  | On main network: Holger Wemhoff, Till Brönner; Mozart stream itself is music-only.      
+Platforms           | Web player and Radioplayer; apps integrate with CarPlay, Android Auto, smart speakers.  
+Audio quality       | Free ad-supported streams; Select subscription offers ad-free HD up to 320 kbit/s.      
+Terrestrial status  | No U.S. carriage; parent KR on DAB+ in DE (from Aug 1, 2011) and later AT/CH.          
+Tips                | If a directory lacks EPG/artwork, try Radioplayer’s page for logo and now-playing data.
+
+*******************************************************
+--- 2025-08-29 15:18:54 ---
+https://www.internetradio-horen.de/epic-piano-chopin
+de Epic Piano - CHOPIN
+
+Epic Piano - CHOPIN Live
+24/7 Piano Music
+ 
+No program information and image
+
+AI Generated Content:
+Epic Piano’s CHOPIN channel is a dedicated, nonstop piano stream built around Chopin’s works. It sits within the broader Epic Piano family, a RauteMusik-brand station that curates several piano-centric playlists. The channel is marketed as 24/7 piano music and is accessible in Germany (Cologne) and worldwide via streaming platforms. The official Epic Piano site presents 11 piano playlists, including CHOPIN, ROMANTIC PIANO, SOLO PIANO, and PIANO COVERHITS, underscoring the brand’s focus on instrumental piano repertoires. ([internetradio-horen.de](https://www.internetradio-horen.de/epic-piano-chopin), [epic-piano.com](https://epic-piano.com/))
+
+History and ownership. Epic Piano is a RauteMusik project; RauteMusik (RM/FM) is a long-running German internet radio network started in 2003 and expanded to dozens of channels. Epic Piano is part of this ecosystem, with the Epic Piano pages listing “RauteMusik GmbH” as the operator and © 2025 as the current year on the site. This places CHOPIN within a mature, Germany-based streaming group that distributes content globally via web radio partners. ([en.wikipedia.org](https://en.wikipedia.org/wiki/RauteMusik.FM?utm_source=openai), [epic-piano.com](https://epic-piano.com/), [de.m.wikipedia.org](https://de.m.wikipedia.org/wiki/RauteMusik?utm_source=openai))
+
+Channel specifics. The CHOPIN Live page on the RauteMusik/Hören directory explicitly shows “Epic Piano - CHOPIN Live” with the label “24/7 Piano Music” and the city listing Köln, Germany, indicating the channel’s origin within the RauteMusik network. The listing links to the official Epic Piano site (epic-piano.com), reinforcing that CHOPIN is a dedicated playlist within a larger, host-free streaming brand. Multiple third-party aggregators also present CHOPIN by Epic Piano as a nonstop Chopin-piano stream, often without announcers. ([internetradio-horen.de](https://www.internetradio-horen.de/epic-piano-chopin), [epic-piano.com](https://epic-piano.com/), [radio.net](https://www.radio.net/s/epicpiano-chopin?utm_source=openai), [tunein.com](https://tunein.com/radio/CHOPIN-by-Epic-Piano-s310030/?utm_source=openai))
+
+Programming and format. The CHOPIN channel is described as “24/7 Piano Music” with a Chopin emphasis; the Epic Piano site confirms 11 piano playlists, including CHOPIN, demonstrating a structured catalog rather than a single live show. The absence of show hosts is typical for these channels, which are designed for focused instrumental listening rather than spoken word. The official Epic Piano hub (epic-piano.com) lists CHOPIN among its playlists alongside other composers and moods, aligning with the brand’s pure-instrumental presentation. ([internetradio-horen.de](https://www.internetradio-horen.de/epic-piano-chopin), [epic-piano.com](https://epic-piano.com/))
+
+Streaming/coverage notes. Availability is global via internet streams and radio directories; CHOPIN by Epic Piano is listed on platforms like TuneIn, radio.net, and AllRadio, indicating broad distribution beyond the RauteMusik site itself. The RauteMusik network’s own footprint, including its 40+ streams and international reach, provides the framework for cross-platform accessibility of CHOPIN. For researchers, the key dates and ownership are rooted in RauteMusik’s 2003 origin and RauteMusik GmbH’s current branding. ([tunein.com](https://tunein.com/radio/CHOPIN-by-Epic-Piano-s310030/?utm_source=openai), [radio.at](https://www.radio.at/s/epicpiano-chopin?utm_source=openai), [en.wikipedia.org](https://en.wikipedia.org/wiki/RauteMusik.FM?utm_source=openai), [de.m.wikipedia.org](https://de.m.wikipedia.org/wiki/RauteMusik?utm_source=openai))
+
+Summary table (Feature | Description)
+
+Feature | Description
+Channel name               | CHOPIN Live on Epic Piano, a Chopin-focused 24/7 piano stream.
+Official site               | Epic Piano hub at epic-piano.com; part of the RauteMusik network.
+Format/Programming        | 24/7 instrumental piano, no host; CHOPIN is one of 11 playlists.
+Owner/Network              | RauteMusik GmbH (UPLINK Digital GmbH family), Cologne-based network.
+Global reach/Availability | Streams via Epic Piano pages and third-party apps (TuneIn, radio.net).
+
+*******************************************************
+--- 2025-09-02 15:54:40 ---
+https://www.onlineradiok.org/papageno
+hu Papageno
+
+Papageno online
+Papageno - Experience Guide
+ 
+Zoltán Kocsis
+Debussy: Images No.1. L 110  3. Mouvement
+2 min ago
+
+AI Generated Content:
+Papageno Rádió is the online arm of Papageno, a Budapest-based cultural platform that curates classical music, opera, and jazz for Hungarian and international audiences. The station streams 24/7 and positions itself as both a familiar shelf and a discovery engine for listeners seeking concert-hall quality in a home-stream format. The Papageno outlet emphasizes a curated mix—masterworks alongside contemporary pieces—with artist portraits and interviews threaded into its programming. Direct streaming is available via papageno.hu/papageno-radio, and the station is listed on onlineradiok.org as “Papageno online” under Budapest with a link back to Papageno’s site. ([about.papageno.hu](https://about.papageno.hu/hu/about-us-main/?utm_source=openai), [papageno.hu](https://papageno.hu/papageno-radio/?utm_source=openai), [onlineradiok.org](https://www.onlineradiok.org/papageno))
+
+Ownership and corporate footprint: Papageno Rádió operates under Papageno Consulting Kft. and is physically connected to Papageno’s broader culture platform, with a Budapest address at 1118 Budapest, Somlói út 33/A. This alignment with Papageno’s publishing and live-streaming ventures places the radio within a multi-pronged media brand focused on classical music, theater, and arts journalism. ([radiok.hu](https://radiok.hu/papageno-radio/?utm_source=openai), [about.papageno.hu](https://about.papageno.hu/hu/about-us-main/?utm_source=openai))
+
+Notable shows and hosts: The station’s musical heart lies in Papageno Klasszik and Capriccio, two ongoing programs that mix performances, artist interviews, and cultural information. Papageno Klasszik features a rotating slate of Hungarian and international guest artists and presenters, including names such as Balázs János, Haumann Máté, Harcsa Veronika, Enyedi Éva, Horváth Zsolt, and others in various episodes. Capriccio functions as a talk-and-mellow-arts showcase with guests and curated repertoire. The Capriccio program traces lineage back to early Hungarian classical radio from 2003 and has persisted in different formats, including involvement with Klasszik Rádió. Papageno has collaborated with Klasszik Rádió 92.1 as a bridge for these formats; in 2009, Papageno’s CEO was among the founders of Klasszik Rádió, reflecting a deep connect between Papageno and classical radio in Hungary. ([papageno.hu](https://papageno.hu/papageno-radio/?utm_source=openai))
+
+Historical context and brand ecosystem: Papageno.hu began as Hungary’s cultural portal and expanded into a broader ecosystem that includes Papageno Live (live streaming services for events), Papageno Magazine, and joint ventures such as Papageno Klasszik & Capriccio. The company’s public-facing history states that Klasszik & Capriccio are integral to its radio offerings, and the brand has sustained a long-running presence in Budapest’s classical music scene, interlinking media, performance venues, and publishing. This history helps explain Papageno Rádió’s continued emphasis on artist portraits, interviews, and cultural features alongside steady musical programming. ([about.papageno.hu](https://about.papageno.hu/?utm_source=openai))
+
+Streaming and coverage notes: In addition to direct streaming on Papageno’s own site, Papageno Rádió is permeable to distribution through partner platforms and radio directories. The Onlineradiok.org Papageno page confirms the station’s online presence and lists Papageno’s site as the main hub; the page also shows Papageno’s city labeling and a direct link to Papageno’s site, underscoring its trans-platform accessibility. The station’s app presence is also documented (Papageno Radio App), and streaming options appear across Radioguide.fm and Openradio.app. The combination supports 24/7 listening with cross-platform discoverability. ([onlineradiok.org](https://www.onlineradiok.org/papageno), [papageno.hu](https://papageno.hu/papageno-radio-app/?utm_source=openai))
+
+Summary table (Feature | Description)
+Feature                     | Description                                                   
+Station                     | Hungarian classical radio channel operated by Papageno, 24/7.     
+Owner                       | Papageno Consulting Kft. operates the Papageno Rádió network.   
+Region                      | Region and reach: Budapest area with online stream worldwide.   
+Notable shows             | Capriccio; Papageno Klasszik; artist portraits and guest talks.   
+Online presence           | Streaming via papageno.hu and onlineradiok.org directory.    
+Format                      | Classical, opera, and jazz; 24/7 streaming.                  
+Hosts                       | Hosts include Balázs János, Haumann Máté, Ertl Péter, etc.       
+
+*******************************************************
+--- 2025-09-02 17:12:50 ---
+https://www.onlineradiok.org/papageno
+hu Papageno
+
+Papageno online
+Papageno - Experience Guide
+ 
+Staatskapelle Dresden, Wolfgang Sawallisch
+Schumann: Symphony no. 4.
+LIVE
+
+*******************************************************
+--- 2025-09-18 07:48:16 ---
+https://www.radio-uk.co.uk/ehfm
+gb EHFM
+
+EHFM live
+Edinburgh Community Radio
+ 
+No program information and image
+
+AI Generated Content:
+EHFM is Edinburgh’s online community radio project, launched in 2018 by local DJs seeking a platform beyond nightlife to broaden representation and build a community around music and discussion. The station bills itself as a 24/7 online service with a broad programming approach and on-demand access to shows via its site. ([en.wikipedia.org](https://en.wikipedia.org/wiki/EHFM?utm_source=openai))
+
+EHFM’s early years saw it based at the Summerhall arts venue in central Edinburgh, where it operated for about six years. In 2024, the operation moved to Ground Floor, a public-facing cafe and studio complex in Leith, signaling a closer integration with the local community and a new model for audience interaction during broadcasts. The move was widely covered by local and industry outlets, noting the public-facing studio and cafe concept designed to fund the station. ([theedinburghreporter.co.uk](https://theedinburghreporter.co.uk/2024/07/ehfm-open-new-studio/?utm_source=openai))
+
+Programming at EHFM runs continuously online, with a mix of live and pre-recorded content. Shows are typically 1–2 hours and the station maintains a robust on-demand archive on its website, aligning with the broader online community radio ethos. This structure has been described in multiple overviews of the station’s format and reach. ([en.wikipedia.org](https://en.wikipedia.org/wiki/EHFM?utm_source=openai))
+
+Funding and governance are notable aspects of EHFM. The station operates a Patreon subscription model (described as a three-tier system) while also using cafe profits from Ground Floor to support its activities, illustrating a diversified community-finance approach common to station-run nonprofits. These elements are documented in both the station’s own materials and in coverage of its 2024 relocation. ([en.wikipedia.org](https://en.wikipedia.org/wiki/EHFM?utm_source=openai))
+
+Notable people and the station’s broader ethos are captured in media coverage. Clash Magazine reported EHFM’s move to Ground Floor and quoted co-founder and director Jamie Pettinger, underscoring the leadership and the station’s community-first focus. The roster of presenters is described as diverse, including local DJs, journalists, and labels, reflecting EHFM’s aim to foster local talent. ([clashmusic.com](https://www.clashmusic.com/news/edinburgh-community-radio-station-ehfm-launches-new-cafe-studio/?utm_source=openai))
+
+The Ground Floor move has also been framed as a public-facing evolution, with outlets like The Edinburgh Reporter and RadioToday highlighting the café-studio concept and public interaction with broadcasts in Leith. This aligns with EHFM’s stated goal of expanding audience engagement and providing a space where listeners can observe and participate in real time. ([theedinburghreporter.co.uk](https://theedinburghreporter.co.uk/2024/07/ehfm-open-new-studio/?utm_source=openai))
+
+Streaming and online presence remain central to EHFM. The station streams via ehfm.live, with mobile apps and social-media clips feeding a growing archive (including SoundCloud uploads), reinforcing accessibility for listeners both locally and globally. The EHFM page, the Radio-UK listing, and SoundCloud activity corroborate this multi-channel approach. ([radio-uk.co.uk](https://www.radio-uk.co.uk/ehfm?utm_source=openai))
+
+Summary table (2-column, 95-char wide lines)
+
+Feature | Description
+Foundation | Edinburgh-based online community radio, launched in 2018 by local DJs.          
+Base / Studio History | Originally based at Summerhall (2018–2024); moved to Ground Floor, Leith. 
+Broadcast Model | 24/7 online streaming; mix of live and pre-recorded shows; on-demand archives
+Notable Hosts | Co-founder and Director Jamie Pettinger; diverse local presenter roster.         
+Public Access / Café Studio | Ground Floor cafe/studio opened 2024; viewing during broadcasts.  
+Streaming Platform | Stream via ehfm.live; apps; SoundCloud clips and on-demand.                
+Recent Milestones | 2024 move; public-facing studio; cafe Ground Floor opens.                
+
+*******************************************************
+--- 2025-09-18 07:50:48 ---
+https://www.radios-bolivia.com/radio-pueblo-1280-am
+bo Radio Alternativa
+
+Radio Alternativa en vivo
+!Hoy Estudiantes, Mañana Lideres¡
+Conocida cariñosamente por su audiencia como 'la voz del pueblo', Radio Alternativa es el corazón de la comunidad boliviana. Esta emisora se ha ganado el cariño de sus oyentes a través de una programación que refleja las vivencias y el espíritu de Bolivia. Desde segmentos de música folclórica hasta espacios de diálogo sobre temas sociales, la radio crea un espacio de conexión y representación de la diversidad cultural boliviana.
+La interacción con la comunidad es un pilar fundamental para Radio Alternativa, donde la opinión y participación del público son altamente valoradas. Los programas no solo entretienen, sino que también educan e informan, estableciendo un diálogo constante con la audiencia que se siente representada y escuchada en cada transmisión.
+ 
+No program information and image
+
+AI Generated Content:
+Radio Alternativa is the community-anchored radio initiative associated with Casa de la Mujer Bolivia, based in Santa Cruz de la Sierra. It operates as a feminist, rights-focused broadcaster with a mission to empower women, indigenous communities, and urban peripheries through talk, information, and cultural programming. Public references place the station on the Santa Cruz scene as a locally rooted, socially oriented outlet. Frequency and public presence point to 103.0 FM in Santa Cruz, with informal online content (e.g., program segments) shared via SoundCloud. ([casadelamujer.org.bo](https://casadelamujer.org.bo/index.php/radio?utm_source=openai))
+
+History and identity
+Radio Alternativa emerged as the radio arm of Casa de la Mujer, a Santa Cruz feminist organization founded in 1990. The station first aired on October 11, 1998, described as an “alternativa/alter-activa” platform designed to amplify voices of women, indigenous groups, and peri-urban communities. The organization frames the station as a deliberate tool for democratizing speech, advancing human rights, and challenging patriarchal norms within Bolivia’s pluricultural context. The Casa de la Mujer’s public materials outline this long-running mission and its reach across the Santa Cruz area. ([casadelamujer.org.bo](https://casadelamujer.org.bo/index.php/radio?utm_source=openai))
+
+Ownership, mission, and reach
+Radio Alternativa is presented by Casa de la Mujer as a core component of its broader social mandate. The station’s stated vision and medical of empowerment emphasize gender equality, intercultural inclusion, and the prevention of gender-based violence, aligning with the organization’s broader programs and advocacy. Additional materials indicate the network’s claimed regional reach—about 30 kilometers around Santa Cruz—highlighting its role as a community broadcaster rather than a commercial operation. ([casadelamujer.org.bo](https://casadelamujer.org.bo/?utm_source=openai))
+
+Notable shows, hosts, and programming
+Radio Alternativa’s programming profile emphasizes a mix of information, community reporting, and cultural content, with several named programs and hosts:
+
+- Sin Fronteras: information-driven slot anchored by Joaquín Matías Vaca (SCZ), with networked inputs from ERBOL and satellite feed sources. 
+- Bolivia en Contacto: a nationwide-news format with a cross-city team (Ramiro García, Augusto Peña, Joaquín Matías, Deysi Ponce, Jesús Cardozo) contributing from their locales (CBBA, LPZ, SCZ, Chuq, TJ).
+- La Tarde en Directo: afternoon magazine hosted by Pamela Moreno and Jhonny Escobar (Dj. Fax) focusing on culture, sports, tech, and interviews.
+- Mujeres en Acción: a program dedicated to women’s issues, hosted by Miriam Suarez (Miércoles slot).
+
+These program notes appear on Casa de la Mujer’s materials and local histories of Radio Alternativa, reflecting the station’s emphasis on gender, social justice, and community debate. ([casadelamujersantacruz.wordpress.com](https://casadelamujersantacruz.wordpress.com/radio-alternatvia/?utm_source=openai))
+
+Streaming, access, and coverage notes
+Public streaming for Radio Alternativa is not prominently advertised on the official site; the station is described primarily as a 103.0 FM signal serving Santa Cruz with a ~30 km radius. Content and segments appear in online formats (notably SoundCloud) as examples of produced programs, but there is no widely publicized, single-stream live feed linked from the main Casa de la Mujer pages. This pattern—strong local FM presence with ancillary online content—fits a community station model focused on local impact rather than nationwide online distribution. ([casadelamujer.org.bo](https://casadelamujer.org.bo/index.php/radio?utm_source=openai))
+
+Summary
+- Identity: Radio Alternativa, the Casa de la Mujer Bolivia radio arm, Santa Cruz, 103.0 FM, community-focused.
+- History: On air since Oct 11, 1998; rooted in feminist, intercultural advocacy.
+- Programming: Notable shows include Sin Fronteras, Bolivia en Contacto, La Tarde en Directo, Mujeres en Acción; hosts cited above.
+- Reach: ~30 km radius around Santa Cruz; streaming exists in ancillary formats rather than a centralized live feed.
+- Mission: Empower women and marginalized groups, democratize speech, promote human rights and gender equality.
+
+Feature | Description
+Identity / Ownership           | Radio Alternativa is the broadcast arm of Casa de la Mujer Bolivia (Santa Cruz), a feminist NGO.
+Launch date                   | First aired on October 11, 1998; established to serve women, Indigenous communities, and peripheral urban voices.
+Location / Frequency          | Santa Cruz de la Sierra, Bolivia; FM 103.0 (publicly noted in program material; local reach ~30 km).
+Notable programs / hosts     | Sin Fronteras (Joaquín Matías Vaca); Bolivia en Contacto (multi-city team); La Tarde en Directo (Pamela Moreno, Jhonny Escobar); Mujeres en Acción (Miriam Suarez).
+Streaming / access            | No widely publicized live stream on official site; content appears on SoundCloud as program clips; FM-focused with regional reach.
+
+*******************************************************
+--- 2025-10-08 17:26:32 ---
+https://www.fmradiofree.com/wufe-lite
+us 96.7 The Big WUFE
+
+96.7 The Big WUFE live
+The Greatest Hits
+ 
+No program information and image
+
+*******************************************************
+--- 2025-10-08 17:33:38 ---
+https://www.fmradiofree.com/kyfr-family-radio
+us KYFR Family Radio
+
+KYFR Family Radio live
+ 
+No program information and image
+
+AI Generated Content:
+KYFR Family Radio is the Shenandoah, Iowa AM outlet on 920 kHz, part of the
+Family Radio network. Public records show KYFR is licensed to Family Stations,
+Inc., with the main studio listed in Franklin, Tennessee (4057 Rural Plains Circle,
+Suite 300B, Franklin, TN 37064). The station operates as a non-commercial religious
+broadcaster within the Family Radio system. ([publicfiles.fcc.gov](https://publicfiles.fcc.gov/am-profile/kyfr?utm_source=openai))
+
+History and lineage: The 920 AM frequency in Shenandoah was originally KFNF, a seed‑company
+station operated by Henry Field Seed Co. In the 1970s KFNF was acquired by Family
+Radio and became KYFR, bringing the network’s religious programming to the region.
+This KFNF-to-KYFR transition is documented by radio historians noting the retirement
+of KFNF and the arrival of Family Radio on KYFR. ([fybush.com](https://www.fybush.com/site-011024.html))
+
+Ownership and market context: The Shenandoah cluster has a rich local radio lineage tied
+to the Earl May Seed Company (KMA) and Henry Field Seed Co. Public histories note that
+the KFNF/KYFR shift occurred in the 1970s, and that the May family’s Shenandoah assets
+were later sold in December 2019 (the sale involved the Shenandoah group; KYFR itself
+remained a Family Radio outlet). This sale is cited in the KMA history article, which
+references KYFR’s existence as the post‑KFNF occupant. ([en.wikipedia.org](https://en.wikipedia.org/wiki/KMA_%28AM%29))
+
+Technical/coverage notes: KYFR’s license is for 920 kHz with daytime power around 5 kW
+and nighttime power about 2.5 kW (class B AM service). A 2022 Iowa Media News item notes
+KYFR operating at reduced daytime power due to equipment issues, but the station’s licensed
+parameters remain the 5 kW day/2.5 kW night configuration when conditions permit. Contour
+maps and FCC materials confirm the Shenandoah site and the Franklin, TN address for the
+license holder. ([iowamedianews.com](https://iowamedianews.com/2022-archive/?utm_source=openai))
+
+Programming and hosts: KYFR carries the Family Radio network schedule, a Christian
+teaching format originating in KEAR/San Francisco and distributed nationwide by Family
+Stations, Inc. The network emphasizes Calvinist teaching and religious programming, with
+historical programs like Open Forum hosted by Harold Camping; after Camping’s era and
+the network’s 2010s changes, Family Radio continued with Bible teaching programs and
+companions from notable theologians (RC Sproul, Alistair Begg, Ken Ham, John MacArthur, etc.)
+as part of the network’s long-running lineup. The network’s programming is described in
+summary by Family Radio and related sources as primarily teaching and worship content. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Family_Radio))
+
+Streaming and access: KYFR is listed on the Family Radio network’s site, and the feed is
+accessible via familyradio.org. Third‑party aggregators also present KYFR’s stream, such as
+the fmradiofree listing for KYFR on 920 AM Shenandoah. Listeners can typically use the
+Family Radio “Listen Live” option or the affiliate streams to hear KYFR online. ([publicfiles.fcc.gov](https://publicfiles.fcc.gov/am-profile/kyfr?utm_source=openai))
+
+In short, KYFR is a long‑standing Family Radio AM outlet whose identity reflects the classic
+KFNF/KYFR Shenandoah rivalry turned network affiliation, with official Family Radio programming
+and online streaming that ties back to the network’s Franklin, Tennessee base and broader
+national ministry. ([fybush.com](https://www.fybush.com/site-011024.html))
+
+
+Feature | Description
+Feature                     | Description                                                         
+Station identity            | KYFR 920 AM Shenandoah, IA; Family Radio network, religious.       
+Ownership & history         | KFNF era; became KYFR after sale to Family Radio in the 1970s.       
+Technical/coverage          | Licensed 920 kHz; day 5 kW, night 2.5 kW; ShenandoahOmaha fringe.  
+Programming & hosts         | Christian teaching network; Open Forum era; Bible‑study programs.     
+Streaming availability      | Streaming via familyradio.org; KYFR covers ShenandoahOmaha fringe.  
+Sources: FCC Public Files, Tower/Radio History, Family Radio pages, and industry notes cited above.
+
+*******************************************************
+--- 2025-10-08 17:35:54 ---
+https://www.fmradiofree.com/kyfr-family-radio
+us KYFR Family Radio
+
+KYFR Family Radio live
+ 
+No program information and image
+
+AI Generated Content:
+KYFR Family Radio is the Shenandoah, Iowa AM outlet on 920 kHz, part of the
+Family Radio network. Public records show KYFR is licensed to Family Stations,
+Inc., with the main studio listed in Franklin, Tennessee (4057 Rural Plains Circle,
+Suite 300B, Franklin, TN 37064). The station operates as a non-commercial religious
+broadcaster within the Family Radio system. ([publicfiles.fcc.gov](https://publicfiles.fcc.gov/am-profile/kyfr?utm_source=openai))
+
+History and lineage: The 920 AM frequency in Shenandoah was originally KFNF, a seed‑company
+station operated by Henry Field Seed Co. In the 1970s KFNF was acquired by Family
+Radio and became KYFR, bringing the network’s religious programming to the region.
+This KFNF-to-KYFR transition is documented by radio historians noting the retirement
+of KFNF and the arrival of Family Radio on KYFR. ([fybush.com](https://www.fybush.com/site-011024.html))
+
+Ownership and market context: The Shenandoah cluster has a rich local radio lineage tied
+to the Earl May Seed Company (KMA) and Henry Field Seed Co. Public histories note that
+the KFNF/KYFR shift occurred in the 1970s, and that the May family’s Shenandoah assets
+were later sold in December 2019 (the sale involved the Shenandoah group; KYFR itself
+remained a Family Radio outlet). This sale is cited in the KMA history article, which
+references KYFR’s existence as the post‑KFNF occupant. ([en.wikipedia.org](https://en.wikipedia.org/wiki/KMA_%28AM%29))
+
+Technical/coverage notes: KYFR’s license is for 920 kHz with daytime power around 5 kW
+and nighttime power about 2.5 kW (class B AM service). A 2022 Iowa Media News item notes
+KYFR operating at reduced daytime power due to equipment issues, but the station’s licensed
+parameters remain the 5 kW day/2.5 kW night configuration when conditions permit. Contour
+maps and FCC materials confirm the Shenandoah site and the Franklin, TN address for the
+license holder. ([iowamedianews.com](https://iowamedianews.com/2022-archive/?utm_source=openai))
+
+Programming and hosts: KYFR carries the Family Radio network schedule, a Christian
+teaching format originating in KEAR/San Francisco and distributed nationwide by Family
+Stations, Inc. The network emphasizes Calvinist teaching and religious programming, with
+historical programs like Open Forum hosted by Harold Camping; after Camping’s era and
+the network’s 2010s changes, Family Radio continued with Bible teaching programs and
+companions from notable theologians (RC Sproul, Alistair Begg, Ken Ham, John MacArthur, etc.)
+as part of the network’s long-running lineup. The network’s programming is described in
+summary by Family Radio and related sources as primarily teaching and worship content. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Family_Radio))
+
+Streaming and access: KYFR is listed on the Family Radio network’s site, and the feed is
+accessible via familyradio.org. Third‑party aggregators also present KYFR’s stream, such as
+the fmradiofree listing for KYFR on 920 AM Shenandoah. Listeners can typically use the
+Family Radio “Listen Live” option or the affiliate streams to hear KYFR online. ([publicfiles.fcc.gov](https://publicfiles.fcc.gov/am-profile/kyfr?utm_source=openai))
+
+In short, KYFR is a long‑standing Family Radio AM outlet whose identity reflects the classic
+KFNF/KYFR Shenandoah rivalry turned network affiliation, with official Family Radio programming
+and online streaming that ties back to the network’s Franklin, Tennessee base and broader
+national ministry. ([fybush.com](https://www.fybush.com/site-011024.html))
+
+
+Feature | Description
+Feature                     | Description                                                         
+Station identity            | KYFR 920 AM Shenandoah, IA; Family Radio network, religious.       
+Ownership & history         | KFNF era; became KYFR after sale to Family Radio in the 1970s.       
+Technical/coverage          | Licensed 920 kHz; day 5 kW, night 2.5 kW; ShenandoahOmaha fringe.  
+Programming & hosts         | Christian teaching network; Open Forum era; Bible‑study programs.     
+Streaming availability      | Streaming via familyradio.org; KYFR covers ShenandoahOmaha fringe.  
+Sources: FCC Public Files, Tower/Radio History, Family Radio pages, and industry notes cited above.
+
+*******************************************************
+--- 2025-10-08 17:48:39 ---
+https://www.radio-australia.org/totally-radio-70s
+au Totally Radio 70s
+
+Totally Radio 70s live
+Just for Hits & Giggles
+Totally Radio
+70's
+is a Australian digital radio station owned and operated by Totally Media. Best known for musical genres such as 70s and oldies.
+ 
+I Do, I Do, I Do, I Do, I Do
+ABBA
+LIVE
+
+AI Generated Content:
+Totally Radio 70s is the Australian digital channel devoted to 1970s hits and classic oldies, run by Totally Media Pty. Ltd. It sits within the Totally Radio family, a multi-channel streaming network that markets “10 channels of music” with a DJ-light, mostly music-forward approach. The station is publicly listed as online-only across Australia, with apps and websites enabling worldwide access. Its branding emphasizes a light, humorous vibe rather than long-form announcer talk. ([totallymedia.com.au](https://totallymedia.com.au/?utm_source=openai))
+
+History and ownership
+- Launch and format: Totally Radio 70s appears to have launched around 2016 as part of the Totally Radio suite. Multiple independent listings cite 2016 as the first air date for Totally Radio 70s, aligning with the network’s expansion into decade-based streams. ([australian-radio.com](https://australian-radio.com/totally-radio-70s?utm_source=openai))
+- Corporate ownership: The network is owned and operated by Totally Media Pty. Ltd., an Australian company based in Camp Hill, Queensland (4152). The Impressum on the Totally Radio site confirms the corporate structure and address. ([totallyradio.com.au](https://totallyradio.com.au/impressum/?utm_source=openai))
+- Network context: Totally Media positions Totally Radio as its flagship pure-play streaming service, stressing “10 channels of music” and minimal talk from announcers, with 60s, 70s, 80s, and other channels in the family. This parent-brand description provides the broader context for Totally Radio 70s. ([totallymedia.com.au](https://totallymedia.com.au/?utm_source=openai))
+
+Programming and notable shows/hosts
+- Format and approach: Totally Radio 70s is described as “Just for Hits & Giggles,” reflecting a music-first, DJ-lite presentation. The broader network emphasizes a non-stop music format with limited on-air chatter, which shapes the 70s channel as a soundscape of era-appropriate hits rather than heavyweight hosted programs. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+- Hosts: There is no consistently documented, publicly published roster of hosts or notable hosts specifically for Totally Radio 70s. The station’s public-facing materials emphasize music and branding rather than biographical host profiles. This aligns with the company’s “no waffling announcers” posture across channels. ([totallymedia.com.au](https://totallymedia.com.au/?utm_source=openai))
+- Representative music and artists: The channel’s current top-song snapshots include 70s and late-70s/early-80s staples from artists such as Gary Numan, Roxy Music, Boz Scaggs, The Kinks, and Peter Frampton, illustrating a broad 1970s-into-disco-pop blend rather than a single genre niche. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+
+Streaming, coverage, and accessibility
+- Streaming model: Totally Radio 70s is streamed online and is available across all Australian states online; fans outside Australia can access it via the web and mobile apps. App download options are visible on listing pages, indicating iOS and Android availability. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+- Coverage notes: The station is part of a nationwide online initiative; there are no FM/AM frequencies listed for Totally Radio 70s. The broader Totally Radio family provides access through its own site and app ecosystem, with additional sister channels such as Totally Radio Hits, 60s, 80s, Greatest Hits, and more. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+- Site and branding: The official Totally Radio domain presents multiple decade-specific channels, with the 70s channel clearly positioned among other era-based streams; the site confirms the Camp Hill base and contact details via Impressum. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+
+Selected listening snapshot
+- The Top Songs list (recent 7–30 days) reflects familiar 70s and early 80s staples: Cars, Lola, Lowdown, Brass in Pocket, Dancing Away, and related tracks. This reinforces a curated 70s/retro-pop mix rather than a strictly canonical “classic rock” or “oldies” playbill. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+
+Summary table
+Feature | Description
+Totally Radio 70s | Australian digital channel dedicated to 1970s hits; part of Totally Radio network
+Owner | Totally Media Pty. Ltd., Camp Hill, QLD 4152, Australia
+First aired | 2016 (year Totally Radio 70s began broadcasting online)
+Format | 70s Hits and Oldies; DJ-light, music-forward presentation
+Streaming | Online-only; accessible across Australia and worldwide via website/apps
+Notable hosts | No widely published host roster; branding emphasizes music over talk
+Related channels | Totally Radio 60s, 70s, 80s, Hits, Greatest Hits, etc., within the same network
+
+Notes
+- For precise stream URLs, the network’s pages and app listings provide the official routes; third-party aggregators frequently mirror the feed. ([radio-australia.org](https://www.radio-australia.org/totally-radio-70s))
+
+*******************************************************
+--- 2025-10-08 18:22:56 ---
+https://www.abc.net.au/listen/live/northandwest
+ABC North and West SA
+
+PM
+with
+Samantha Donovan
+
+AI Generated Content:
+ABC North and West SA is one of ABC Local Radio’s regional services in South Australia. It is based in Port Pirie and serves the North and West regions of SA with a mix of local programming and network relays from ABC Adelaide when not producing its own content. The station is part of the ABC’s state-wide SA footprint and maintains a strong presence in regional community life. ([abc.net.au](https://www.abc.net.au/northandwest/?utm_source=openai))
+
+Historical snapshot
+- The station traces to 5CK in Port Pirie, officially opened on 15 March 1932 as a relay of 5CL Adelaide, among ABC’s early regional outlets. The analogue era saw a long history of engineering upgrades, including a purpose-built studio complex opened in 1988. These landmarks anchor the station’s legacy in SA broadcasting. ([en.wikipedia.org](https://en.wikipedia.org/wiki/ABC_North_and_West_SA?utm_source=openai))
+- In the late 1980s the Port Pirie studios were completed (opening date October 20, 1988), marking a major upgrade in local production facilities. Since then, ABC North and West SA has balanced local programming with Adelaide-originated network content. ([en.wikipedia.org](https://en.wikipedia.org/wiki/ABC_North_and_West_SA?utm_source=openai))
+
+Local programming and notable hosts
+- Historically, the station ran four local programs weekly: North and West Rural Report, Breakfast, Mornings, and Saturday Breakfast, with local hosts including Tom Mann (Breakfast) and Angela Smallcombe (Mornings). These roles illustrate the station’s emphasis on rural, regional and community topics. ([en.wikipedia.org](https://en.wikipedia.org/wiki/ABC_North_and_West_SA?utm_source=openai))
+- In addition to daytime local shows, ABC North and West SA participates in the broader ABC Radio Adelaide relay when local production is not in progress, a common pattern for regional ABC Local Radio stations. ([abc.net.au](https://www.abc.net.au/northandwest/?utm_source=openai))
+
+Streaming, coverage and access
+- Live streaming is available via the ABC Listen platform: the page for ABC North and West SA Live Audio provides the current on-air schedule and the “Listen live” button. This makes the station accessible beyond its terrestrial frequencies. ([abc.net.au](https://www.abc.net.au/listen/live/northandwest?utm_source=openai))
+- The “Listen Back” feature on the same station page offers recent local news and feature segments, allowing on-demand listening of past content. ([abc.net.au](https://www.abc.net.au/northandwest/listenback?utm_source=openai))
+- Coverage includes a broad reach across the North and West SA region, with listed relay towns and frequencies across Eyre Peninsula and nearby towns (e.g., Port Pirie 639 AM; other Eyre/Southern SA areas via FM/AM relays). ABC lists these as the operational reach for listeners around the coast and interior SA. ([abc.net.au](https://www.abc.net.au/northandwest/?utm_source=openai))
+
+Notable modern programming and cross-overs
+- The PM program, hosted nationwide by Samantha Donovan, is part of ABC Listen and Radio networks and features current affairs analysis; while PM is a national program, Samantha Donovan’s ABC bio notes her long-standing role across AM/PM and World Today; the PM pages show her as presenter. This reflects how ABC Local Radio programs interweave with national news coverage. ([abc.net.au](https://www.abc.net.au/radio/programs/pm?utm_source=openai))
+
+Summary table
+Feature | Description
+Launch / Identity        | ABC Local Radio based in Port Pirie, serving North & West SA region
+Coverage Area            | Relays to Eyre Peninsula and coast via a few AM/FM frequencies now.
+Local Programming        | Local programs include Breakfast, Mornings, and Rural Reports here.
+Notable Hosts            | Notable hosts include Tom Mann and Angela Smallcombe; others spoke.
+Streaming / Access       | Stream live on the ABC Listen webpage or app; SA coverage included.
+History Milestones       | Opened 15 March 1932 as 5CK in Port Pirie, relay of Adelaide's 5CL.
+Current Network          | Most local content airs locally; otherwise relays ABC Adelaide SA.!
+

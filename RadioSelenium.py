@@ -15,7 +15,7 @@ import psutil
 import tempfile
 
 try:
-    import RPi.GPIO as GPIO
+    import RPi.GPIO as GPIO # type: ignore
 except ModuleNotFoundError:
     GPIO = None
 
@@ -224,8 +224,8 @@ def rotary_callback(channel):
     global indexKeyList, indexBank, indexVisibleKey
 
     global last_counter, counter, last_clk_state
-    current_clk = GPIO.input(CLK_PIN)
-    current_dt  = GPIO.input(DT_PIN)
+    current_clk = GPIO.input(CLK_PIN) # type: ignore
+    current_dt  = GPIO.input(DT_PIN) # type: ignore
 
     # When the state of CLK changes, determine rotation direction.
     # This simple method checks the state of DT relative to CLK.
@@ -710,12 +710,13 @@ def Radio4(br, nNum, sPath, sClass, nType):
         _navigate_to_station(br, sPath, refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
-
     if eventFlag:
         btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
+        #btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/section/div[2]/button')
         btn.click(); time.sleep(3)
         try:
             img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
+            #img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/div/div/img[2]')
             image_path = f"{pathImages}/logo.png"
             _fetch_image_to(image_path, img.get_attribute("src"))
         except Exception as e:
@@ -743,6 +744,43 @@ def Radio4(br, nNum, sPath, sClass, nType):
     fe3 = fe3 + "* *" + fe2
     return fe3
 
+
+def Radio4new(br, nNum, sPath, sClass, nType):
+    """ABC pattern #4 new: different DOM; click large primary button; program image square crop.
+       THis was due to changes for ABC regional website layouts around 7-Oct-2025 
+    """
+
+    if eventFlag:
+        _navigate_to_station(br, sPath, refresh_http)
+
+    be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
+    if eventFlag:
+        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/section/div[2]/button')
+        btn.click(); time.sleep(3)
+        try:
+            img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/div/div/img[2]')
+            image_path = f"{pathImages}/logo.png"
+            _fetch_image_to(image_path, img.get_attribute("src"))
+        except Exception as e:
+            print(f"Caught a problem: {e}")
+            image_path = f"{pathImages}/Blank.png"
+        _display_logo_from_file(image_path)
+    try:
+        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/div/div/img[1]')
+        image2_path = f"{pathImages}/presenter.jpg"
+        _fetch_image_to(image2_path, img2.get_attribute("src"))
+    except Exception as e:
+        print(f"Caught a problem: {e}")
+        image2_path = f"{pathImages}/ABC_faint.png"
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap2 + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+
+    soup = _soup_inner_html(be)
+    fe = soup.find(lambda tag: tag.has_attr("class") and any("LiveAudioPlayer_programLink" in c for c in tag["class"]))
+    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No item playing"
+    fe3 = fe2.replace("*-", "")
+    fe3 = "*"+fe3
+    return fe3
 
 
 def Radio5(br, nNum, sPath, sClass, nType):
@@ -921,7 +959,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
         # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
-        label.image = photo  # Keep a reference to avoid garbage collection
+        label.image = photo  # type: ignore # Keep a reference to avoid garbage collection
 
     # Display the program image as given in the scaled_image2
     try:
@@ -948,7 +986,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     scaled_image2 = image2.resize((width-X1, Xprog-X1))  # Adjust the size as needed
     photo2 = ImageTk.PhotoImage(scaled_image2)
     label2.config(image=photo2)
-    label2.image = photo2  # Keep a reference to avoid garbage collection
+    label2.image = photo2  # type: ignore # Keep a reference to avoid garbage collection
     if not HiddenFlag:
         label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
         label2.lift(text_box)
@@ -962,7 +1000,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
         fe1 = fe.get_text(separator="*", strip=True)
     else:
         fe1 = "None"
-    return fe1
+    return "*"+fe1
 
 
 
@@ -1317,6 +1355,7 @@ function_map = {
     'Radio2': Radio2,
     'Radio3': Radio3,
     'Radio4': Radio4,
+    'Radio4new': Radio4new,
     'Radio5': Radio5,
     'Radio6': Radio6,
     'Radio7': Radio7,
@@ -2777,7 +2816,7 @@ def ai_button_pressed(event):
 
             # If you want the 'thinking' variant for harder tasks:
             # model_name = "gpt-5-thinking"
-            model_name = "gpt-5"
+            model_name = "gpt-5-nano"
 
             # Optional: nudge depth of reasoning when using "gpt-5-thinking"
             # reasoning = {"effort": "medium"}  # or "low" | "high"
@@ -3267,7 +3306,7 @@ if GPIO:
         labels_main.append(label_main)
     labels_main[indexKeyList].config(bg="lightblue")  
 else:
-    labelRE = tk.Label(root, text="       windows ai version running")
+    labelRE = tk.Label(root, text="       windows ai gpt-5-nano version running")
     labelRE.place(x=0, y=0)
 
 # create a list of all the available station names

@@ -4,9 +4,9 @@ ABC NewsRadio,76
 gb BBC Radio 5 live,31290
 au ABC Jazz,4224
 ABC triple j Hottest,2
-au The Bunkhouse,4837
-ro OneFM,52889
-ab Classical - Shostakovich,387
+ABC Radio Adelaide SA,50
+ABC North and West SA,52
+de Klassik Radio Mozart,20595
 au ABC Classic FM,4210
 au ABC Classic 2,4209
 us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61587
@@ -21,7 +21,7 @@ au Gold 101.7 FM,4417
 au Totally Radio 70s,4855
 au 2GN Goulburn,4079
 de Bayern 1,19586
--- EMPTY 23 --,-1
+br New Generation,7883
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
 -- EMPTY 26 --,-1
@@ -68,7 +68,7 @@ de Epic Piano - TSCHAIKOWSKI,20100
 de Epic Piano - ROMANTIC PIANO,20098
 de Epic Piano - SOLO PIANO,20099
 de Epic-Piano - GREAT CONCERTS,20106
--- EMPTY 70 --,-1
+2MBS Fine Music Sydney,80
 -- EMPTY 71 --,-1
 de Klassik Radio Bach,20559
 de Klassik Radio Barock,20561

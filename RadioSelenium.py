@@ -289,7 +289,7 @@ def on_KeypressButton_press(channel):
         focused_widget = root.focus_get()
     else:
         focused_widget = setup.focus_get()
-    focused_widget.event_generate(f"<Key-{sKey1}>")
+    focused_widget.event_generate(f"<Key-{sKey1}>") # type: ignore
     print(f"sKey0: <Key-{sKey1}> pressed")
 
 # --- GPIO Event Detection ---

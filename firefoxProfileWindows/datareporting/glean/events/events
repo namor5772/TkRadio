@@ -1,8 +1,7 @@
-{"timestamp":55558716,"category":"webcompatreporting","name":"reason_dropdown","extra":{"setting":"required","glean_timestamp":"1759909455887"}}
-{"timestamp":55558969,"category":"nimbus_events","name":"startup_database_consistency","extra":{"total_store_count":"32","trigger":"startup","store_active_count":"0","primary":"jsonfile","glean_timestamp":"1759909456140","total_db_count":"0","db_active_count":"0"}}
-{"timestamp":55559025,"category":"doh","name":"state_rollback","extra":{"value":"null","glean_timestamp":"1759909456196"}}
-{"timestamp":55559043,"category":"containers","name":"container_profile_loaded","extra":{"containers":"4","glean_timestamp":"1759909456214"}}
-{"timestamp":55559128,"category":"jsonfile","name":"load_logins","extra":{"glean_timestamp":"1759909456299","value":"error_notfounderror"}}
-{"timestamp":55559128,"category":"upgrade_dialog","name":"trigger_reason","extra":{"value":"not-major","glean_timestamp":"1759909456299"}}
-{"timestamp":55783714,"category":"media","name":"error","extra":{"error_name":"NS_ERROR_DOM_MEDIA_NOT_SUPPORTED_ERR","glean_timestamp":"1759909680912","error_type":"SrcNotSupportedErr"}}
-{"timestamp":56088327,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1759909985498"}}
+{"timestamp":2484826,"category":"webcompatreporting","name":"reason_dropdown","extra":{"glean_timestamp":"1762203527003","setting":"required"}}
+{"timestamp":2485170,"category":"nimbus_events","name":"startup_database_consistency","extra":{"total_db_count":"0","db_active_count":"0","store_active_count":"0","total_store_count":"32","primary":"jsonfile","glean_timestamp":"1762203527347","trigger":"startup"}}
+{"timestamp":2485205,"category":"doh","name":"state_rollback","extra":{"glean_timestamp":"1762203527382","value":"null"}}
+{"timestamp":2485229,"category":"containers","name":"container_profile_loaded","extra":{"containers":"4","glean_timestamp":"1762203527406"}}
+{"timestamp":2485319,"category":"jsonfile","name":"load_logins","extra":{"value":"error_notfounderror","glean_timestamp":"1762203527496"}}
+{"timestamp":2485323,"category":"upgrade_dialog","name":"trigger_reason","extra":{"glean_timestamp":"1762203527500","value":"not-major"}}
+{"timestamp":2515785,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1762203557962"}}

@@ -718,3 +718,340 @@ Streaming / Access       | Stream live on the ABC Listen webpage or app; SA cove
 History Milestones       | Opened 15 March 1932 as 5CK in Port Pirie, relay of Adelaide's 5CL.
 Current Network          | Most local content airs locally; otherwise relays ABC Adelaide SA.!
 
+*******************************************************
+--- 2025-10-09 14:59:03 ---
+https://www.radio-en-vivo.mx/la-voz-4-regiones
+mx Contacto 4 Regiones
+
+Contacto 4 Regiones en vivo
+ 
+No program information and image
+
+AI Generated Content:
+The station known as Contacto 4 Regiones, also appearing as La Voz 4 Regiones in some listings, operates as an internet radio service focused on the San Luis Potosí region of Mexico. It is accessible via the live stream listed on Radio En Vivo (la-voz-4-regiones) and is catalogued in multiple radio directories as an online-only station with a regional emphasis. The public-facing page shows a live player labeled Contacto 4 Regiones en vivo, with a San Luis Potosí online frequency and contact details (phone and email). ([radio-en-vivo.mx](https://www.radio-en-vivo.mx/la-voz-4-regiones))
+
+History and positioning
+- The earliest verifiable public entry appears on Zeno FM with an “Announcement” entry dated September 6, 2022, describing La Voz 4 Regiones as a medium of information. This suggests the project began at least by late 2022 and has been marketed as a regional information/music service. ([zeno.fm](https://zeno.fm/radio/contacto-4-regiones/))
+- Directory listings since then frame the station as a newer internet radio offering that blends music with news and regional capsules, emphasizing a four-region coverage concept around San Luis Potosí (Region Media, Altiplano, Huasteca, Centro). This is reflected in MyTuner’s description and the regional focus noted across listings. ([mytuner-radio.com](https://mytuner-radio.com/es/emisora/la-voz-4-regiones-492288/?utm_source=openai))
+
+Programming and hosts
+- Public pages describe a format mixing music, news, reports, and informational capsules rather than a fixed, long-running talk-host lineup. No specific hosts are publicly named on the main pages, suggesting either a rotating roster or a low-profile host setup typical of small online stations. This aligns with the “Música, Noticias, Reportajes y Cápsulas Informativas” framing seen in Zeno FM’s entry. ([zeno.fm](https://zeno.fm/radio/contacto-4-regiones/))
+- The platform’s stated content type implies short-form news bites or capsules in addition to music, rather than a strict, conventional radio show schedule. This is echoed in the MyTuner listing’s phrasing about “notes informativas” and regional coverage. ([mytuner-radio.com](https://mytuner-radio.com/es/emisora/la-voz-4-regiones-492288/?utm_source=openai))
+
+Streaming, coverage, and technical notes
+- The main stream is online-only; no FM/AM frequencies are listed, with San Luis Potosí indicated as “Online.” The Radio En Vivo page shows a live player and a clickable “LIVE” interface for Contacto 4 Regiones en vivo. This confirms online streaming as the primary delivery method. ([radio-en-vivo.mx](https://www.radio-en-vivo.mx/la-voz-4-regiones))
+- The station’s reach is described as regional in scope (the four-región concept) and accessible to a global audience via the internet. Directory entries reinforce this, noting online access and cross-listings on multiple aggregators (MyTuner, Zeno FM). ([mytuner-radio.com](https://mytuner-radio.com/es/emisora/la-voz-4-regiones-492288/?utm_source=openai))
+- Monitoring and metadata: MyTuner specifies “Broadcast Monitoring by ACRCloud,” indicating the stream is tracked for content recognition, timing, and metadata, a common practice for online radio aggregations. ([mytuner-radio.com](https://mytuner-radio.com/es/emisora/la-voz-4-regiones-492288/?utm_source=openai))
+
+Contact and ownership signals
+- Public contact details include a phone number (4871380884) and an email (lavoz4regiones@gmail.com), which are typical for independent online stations. No corporate owner is listed in the public pages reviewed, suggesting a small, possibly community-based operation. ([radio-en-vivo.mx](https://www.radio-en-vivo.mx/la-voz-4-regiones))
+- Social media presence is linked on Zeno FM, though direct access to profiles was restricted in this session; the existence of social channels is consistent with many niche web-based stations seeking local engagement. ([zeno.fm](https://zeno.fm/radio/contacto-4-regiones/))
+
+Summary table (Feature | Description)
+Feature                  | Description                                                             
+Launch/start date        | Public listing on Zeno FM dated September 6, 2022; signals origin in 2022. 
+Platform/format          | Internet-only streaming; no FM/AM frequencies listed. 
+Coverage area            | San Luis Potosí region; four-region concept (Media/Altiplano/Huasteca/Centro). 
+Content/format           | Music, news, reports, and informational capsules; hosts not publicly listed. 
+Hosts/crew               | No publicly listed hosts on main pages; suggests rotating or local crew. 
+Contact/ownership        | Email lavoz4regiones@gmail.com; phone 4871380884; owner details not public. 
+Streaming/coverage notes | Online access via RadioEnVivo.mx and MyTuner; ACRCloud monitoring used.
+
+*******************************************************
+--- 2025-10-09 15:06:16 ---
+https://www.radio-polska.pl/jump-radio
+pl JUMP Radio
+
+JUMP Radio na żywo
+Posluchaj Nas!
+ 
+My Angel (QK Project Remix)
+89ers
+LIVE
+
+AI Generated Content:
+JUMP Radio is a Warsaw-based electronic music station whose current presentation centers on a live, online stream focused on Dance, EDM and Trance. The station is listed as online in Warsaw with the ability to reach a worldwide audience via the internet, according to the JUMP Radio page on Radio Polska and aggregators. ([radio-polska.pl](https://www.radio-polska.pl/jump-radio))
+
+Historically, the brand has appeared in sources as Jump Radio with an FM signal in Warsaw (FM 92.9), suggesting that the station once operated on conventional FM before shifting to online streaming. Contemporary listings emphasize the online feed, with the FM reference appearing in older directory pages (e.g., Streema’s Jump Radio 929FM entry). This points to a potential FM era followed by a primarily internet-based presence in recent years. ([pt.streema.com](https://pt.streema.com/radios/Jump_Radio_929FM))
+
+The official portal for JUMP Radio is jumpradio.net, which is cited on the station’s listing and by aggregators. The current contact channel publicly listed is studio@jumpradio.net, with the jumpradio.net site serving as the station’s main hub for streaming and information. This setup aligns with an online-first operation that relies on a central website rather than a traditional, hosted broadcast schedule. ([radio-polska.pl](https://www.radio-polska.pl/jump-radio))
+
+In terms of programming, the JUMP Radio page emphasizes a live feed of dance-oriented tracks rather than a clearly published host lineup. On the live page you can see a stream of recent titles such as Sound Bass – Toksyna (SOUND BASS Remix), DJ Shog – Another World, and other electronic selections, indicating a rotating DJ/track-based format typical of online EDM stations. The page sections labeled “Najpopularniejsze piosenki” (top songs) and the “Zobacz więcej” link further suggest an active, continually updated playlist rather than fixed talk-shows. ([radio-polska.pl](https://www.radio-polska.pl/jump-radio))
+
+The site’s playlist highlights underscore the station’s contemporary EDM orientation. Recent seven- and 30-day top tracks include names like Sonny Fodera, Kryder, Swedish House Mafia, EDX, and Stereopole among others, illustrating a mix of high-energy club cuts and crossover dance tracks that are common to European EDM stations. This supports the station’s branding as a dance/EDM hub rather than a personality-driven talk station. ([radio-polska.pl](https://www.radio-polska.pl/jump-radio))
+
+Coverage and availability are straightforward: JUMP Radio is listed with Warsaw online as the primary “frequency,” meaning it is an internet stream accessible from anywhere with a connection. The listing confirms that the station’s availability is online-only in its current configuration, rather than a traditional FM broadcast in Warsaw. ([radio-polska.pl](https://www.radio-polska.pl/jump-radio))
+
+Summary table
+Feature | Description
+------------------------------------------------------------------ 
+Current status | Online-only stream based in Warszawa; globally accessible via internet        
+Historical note | Earlier listings show FM 92.9 Warsaw; current focus is online streaming      
+Genres | Dance, EDM, Trance; broad electronic-dance rotation                                 
+Main website | jumpradio.net; streaming also appears on Radio Polska and aggregators            
+Public playlist highlights | Recent top tracks include Dash Berlin, Sonny Fodera, Kryder, Sash!                        
+Hosts/shows | No named hosts or scheduled shows listed on the official pages                           
+Contact/ownership | Email studio@jumpradio.net; ownership not publicly documented                        
+
+
+*******************************************************
+--- 2025-10-10 08:54:49 ---
+https://www.radio-ao-vivo.com/xodo-fm-estancia
+br Xodó FM Cristinápolis
+
+Xodó FM Cristinápolis ao vivo
+ 
+No program information and image
+
+AI Generated Content:
+Xodó FM is a Sergipe-based radio network branding itself as “A Rádio do Seu Coração.” The Cristinápolis outlet broadcasts on 90.7 FM, and the same brand lockstep operates other frequencies around the state, including Estância (101.5 FM, per local listings) and Aracaju (89.9 FM), among others. The network’s multiple transmitters and shared branding indicate a regional chain rather than a single local station, a pattern you can verify across the state listings and aggregators. ([radios-brasil.com](https://radios-brasil.com/6813-xodo-fm.html?utm_source=openai))
+
+History and structure: Xodó FM appears to have launched as a network around 2016, expanding through several studios under a common corporate umbrella. The Mobile/IoT app stores describe “Estúdios Reunidos” (Estúdio A in Nossa Senhora do Socorro, Estúdio B in Aracaju, Estúdio C in Nossa Senhora da Glória), underscoring a multi-studio, multi-city operation. This infrastructure aligns with the network’s spread across Sergipe and its ongoing app presence in 2025. ([apps.apple.com](https://apps.apple.com/br/app/rede-xod%C3%B3/id1659698634?utm_source=openai))
+
+Programming and hosts: Detailed host lineups are not consistently published in the readily accessible pages; however, the network’s listings and regional pages suggest an eclectic musical format, with variations by city. Aracaju’s Xodó FM pages (for the 89.9 FM outlet) describe an ecletic mix, while Cristinápolis’ local listing identifies the station as serving Sertanejo and related Brazilian popular music. This pattern—eclectic/varied playlists with strong regional flavor—appears common across the Xodó FM system. For current show names and hosts, the official site and social channels are the best sources. ([cxradio.com.br](https://www.cxradio.com.br/radio/xodo-fm-aracaju?utm_source=openai))
+
+Streaming and coverage notes: The Cristinápolis feed (90.7 FM) is accessible via several streaming aggregators, and a live page on radio-ao-vivo presents Xodó FM Cristinápolis ao vivo, confirming the station’s online presence beyond the terrestrial FM signal. The official site is xodofm.com.br, which is referenced across multiple listings. Additional platforms like MyTuner and OpenRadio broadcast or index the Xodó FM Estância and Cristinápolis feeds, indicating broad digital coverage for listeners abroad, including the US. ([radio-ao-vivo.com](https://www.radio-ao-vivo.com/xodo-fm-estancia?utm_source=openai))
+
+Community and activities: Xodó FM appears engaged in local education initiatives through partnerships with state programs. A SEED (Secretaria de Educação de Sergipe) piece notes the Xodó FM team promoting the “Projeto Foca na Educação,” illustrating the network’s involvement in youth media training and community outreach. This aligns with the broader regional role many Sergipe stations seek in local civic life. ([seduc.se.gov.br](https://seduc.se.gov.br/radio-xodo-fm-fala-da-importancia-do-projeto-foca-na-educacao/?utm_source=openai))
+
+Notes for listeners in the US: If you’re tuning in from overseas, verify live streams via the main outlet pages (xodofm.com.br) or trusted aggregators (MyTuner, OpenRadio) to confirm current streams and schedules, since local programming can change. The network’s presence on multiple platforms helps ensure a stable feed despite regional bandwidth variations. ([radios-brasil.com](https://radios-brasil.com/6813-xodo-fm.html?utm_source=openai))
+
+Summary table (Feature | Description)
+Feature                           | Description
+Network identity and reach        | Sergipe-based Xodó FM with Cristinápolis 90.7, Estância 101.5, Aracaju 89.9, and other relays; a branded multi-station network.
+Launch and studio structure       | Emerged ~2016; multiple studios (Nossa Senhora do Socorro, Aracaju, Nossa Senhora da Glória) under a common brand.
+Programming scope and hosts        | Eclectic/varied formats with regional music (sertaneja, sertanejo-pop blends); host details vary by city.
+Streaming availability             | Live streams on radio-ao-vivo, aggregators like MyTuner/OpenRadio; site: xodofm.com.br.
+Community involvement             | Active in education projects such as Projeto Foca na Educação with SEED Sergipe.
+Official sources and contact        | Official site xodofm.com.br; engineering contact via engenharia@xodofm.com.br. 
+Current status (2025)               | Active network with mobile apps and ongoing platform updates (e.g., Rede Xodó app).
+
+*******************************************************
+--- 2025-10-10 08:57:04 ---
+https://www.emisorascolombianas.co/la-que-te-gusta
+co La que te gusta
+
+La que te gusta en vivo
+24 horas de buena programación
+ 
+No program information and image
+
+AI Generated Content:
+La Que Te Gusta is a Colombian radio brand whose public presence centers on a local 100.5 FM
+signal serving Becerril (Cesar Department) and a modest online footprint. The Emisoras
+Colombianas directory lists the station as La que te gusta en vivo with 24 hours of
+programming and identifies the Becerril frequency as 100.5 FM, plus a website at laquetegusta.com. The station’s own site confirms the brand and provides social links. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+
+The Emisoras Colombianas entry further describes the station as “24 horas de buena programación” in the Variety category, reinforcing the impression of a lightweight, all-day music-and-mix format aimed at a broad audience. The site shows a contact email and phone number, and notes a web presence (laquetegusta.com). The 2025 copyright on La Que Te Gusta’s site suggests active operation in 2025, though no formal founding date or corporate owner is published publicly. ShockMEDIA Colombia is credited for the site design, a clue about the station’s online presentation rather than ownership. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+
+Programming and branding are consistently described as Variety with a 24/7 music focus; the station appears to emphasize broad, accessible fare over a tightly defined genre. Public listings do not reveal named hosts or signature programs, which is common for smaller local or community-oriented stations that rely on rotating on-air talent rather than a marquee lineup. The Emisoras page explicitly does not list hosts in the visible metadata. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+
+Streaming and coverage notes are modest but clear. The Emisoras Colombianas entry provides a “LIVE” link, identifying La Que Te Gusta as a live, around-the-clock station, and lists a direct website (laquetegusta.com) for streaming. The site’s mobile-compatibility and presence on social networks are indicated in the directory, while app icons on the Emisoras page suggest listener access via Android and iOS platforms via the directory’s app launcher. Location data in aggregators is inconsistent: Becerril is listed as the frequency’s city, while TuneIn aggregates sometimes place the station in San Juan del Cesar, another town in Cesar Department. This discrepancy is not uncommon for small signals with regional reach. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+
+In short, La Que Te Gusta appears to be a small, locally focused Colombian station built around a 24/7 music-and-variety format, centered on 100.5 FM in Becerril, with a digital footprint via laquetegusta.com and presence in radio directories. Its public-facing materials emphasize accessibility and broad programming rather than a fixed lineup or high-profile hosts. The exact ownership and founding date remain undocumented in readily accessible public records; the 2025 site copyright and design credits provide a snapshot of its current online branding rather than corporate history. ([laquetegusta.com](https://laquetegusta.com/))
+
+Frequency / Location: Becerril 100.5 FM; Cesar Department (Colombia); online presence at laquetegusta.com. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+Format / Programming: Variety; 24/7 music focus; no publicly listed hosts on official pages. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+Ownership / History: Public founding date unavailable; site shows 2025 copyright; design credited to ShockMEDIA Colombia. ([laquetegusta.com](https://laquetegusta.com/))
+Streaming / Accessibility: Live streaming via laquetegusta.com; apps indicated on directory; multiple social links. ([emisorascolombianas.co](https://www.emisorascolombianas.co/la-que-te-gusta))
+Location notes: Some listings place location as Becerril, others as San Juan del Cesar; Cesar Department context. ([tunein.com](https://tunein.com/radio/LA-QUE-TE-GUSTA-1005-s343993/?utm_source=openai))
+
+
+Feature                    | Description                                                         
+---------------------------|--------------------------------------------------------------------- 
+Frequency / Location       | Becerril 100.5 FM; Cesar Department, Colombia; online via laquetegusta.com
+Format / Programming       | Variety; 24/7 music programming; hosts not publicly listed
+Ownership / History       | No public founding date; 2025 site copyright; site design by ShockMEDIA Colombia
+Streaming / Accessibility  | Live streaming on laquetegusta.com; app links; social channels
+Location notes             | Listings vary: Becerril vs. San Juan del Cesar; both in Cesar Department
+
+*******************************************************
+--- 2025-10-17 10:23:34 ---
+https://www.radio-en-vivo.mx/coahuila-radio-y-television
+mx Coahuila Radio y Televisión
+
+Coahuila Radio y Televisión en vivo
+Te llega.
+ 
+No program information and image
+
+AI Generated Content:
+mx Coahuila Radio y Televisión is the public radio–television broadcaster for the State of Coahuila, Mexico. The radio network operates across 16 FM transmitters, while the television service is centered in Saltillo on XHPBSA-TDT channel 17. The agency is an arm of the state government (Coahuila Radio y Televisión) and its studios/controls are co-located with the radio operation in Saltillo. This arrangement links radio and TV under one state-run public media umbrella. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Coahuila_Radio?utm_source=openai))
+
+History and organization
+The state’s public-radio network began as a formal government entity on February 28, 2014, when Radio Coahuila was constituted as a separate government agency. On March 8, 2019, a decree renamed the agency to Coahuila Radio y Televisión, signaling the integration of the TV service with the existing radio network (and the forthcoming TV outlet). The TV component, XHPBSA-TDT (Saltillo) later joined the network as its television service, launching in January 2020. The restructuring and launch timeline are documented in official records and summaries of the network’s evolution. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Coahuila_Radio?utm_source=openai))
+
+Coverage and transmitters
+Coahuila Radio y Televisión distributes programming statewide via 16 FM transmitters. The Saltillo flagship is XHSOC-FM at 89.7, with additional frequencies in other cities such as Monclova (102.7), Piedras Negras (102.5), Minas de Barroterán (94.3), and more, reflecting the network’s broad public-service reach across Coahuila. The TV arm operates alongside the radio with the Saltillo TV outlet on channel 17. The public-network model emphasizes state-wide information, culture, and public affairs through both radio and TV facilities. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Coahuila_Radio?utm_source=openai))
+
+Streaming and online presence
+Even though the station’s landing pages emphasize frequencies and contact details, Coahuila Radio y Televisión maintains online streaming presence. The live stream is accessible via aggregators such as radio-en-vivo.mx, which lists Coahuila Radio y Televisión and its regional frequencies; the site also links to the state’s TV and radio sites (coahuilartv.com.mx and radiocoahuila.com.mx). The public-facing pages reinforce that the network serves as a state-run information and culture channel, with streaming options and contact information available for listeners/viewers. ([radio-en-vivo.mx](https://www.radio-en-vivo.mx/coahuila-radio-y-television?utm_source=openai))
+
+Notes on programming and hosts
+As a state public broadcaster, Coahuila Radio y Televisión concentrates on cultural programming, regional news, and public-information content designed to reflect Coahuila’s identity and civic life. Individual program schedules and host lineups are not consistently published in widely accessible pages, which is common for many public networks that operate across multiple transmitters and a TV channel. The available sources focus on structure, coverage, and official channels rather than publishing detailed show rosters. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Coahuila_Radio?utm_source=openai))
+
+Summary table (Feature | Description)
+Feature                     | Description                                                 
+Ownership / Operator        | Public broadcaster operated by the Government of Coahuila.      
+Network scope               | Radio network across 16 FM; TV service centered in Saltillo     
+Launch history              | Formed Feb 28, 2014 as a government agency; renamed Mar 8, 2019
+Flagship frequency          | Saltillo XHSOC-FM 89.7 is flagship; other transmitters statewide
+TV service                  | Public TV via XHPBSA-TDT channel 17; launched Jan 2020 Saltillo
+Online presence             | Live stream via radiocoahuila.com.mx; streaming on radio-en-vivo.mx
+
+*******************************************************
+--- 2025-10-19 10:05:08 ---
+https://www.internetradio-horen.de/rpr1-festival
+de RPR1. Festival
+
+RPR1. Festival Live
+RPR1. der beste Musikmix mit guter Laune von der Suedpfalz bis nach Koeln
+ 
+No program information and image
+
+AI Generated Content:
+RPR1 is a private radio service based in Rheinland-Pfalz that has long branded itself as the region’s friendly “AC” music mix. It began broadcasting on 30 April 1986 as one of the earliest landwide privates in the state, operated by Rheinland-Pfälzische Rundfunk GmbH & Co. KG. In late 2020/2021 the four-station group Audiotainment Südwest formed a central production company, but RPR1 kept its own brand and core format. Current MA 2025 Audio II figures show a daily reach of about 1.317 million listeners and around 2.131 million online audio sessions per month, reflecting strong regional engagement. ([de.wikipedia.org](https://de.wikipedia.org/wiki/RPR1))
+
+Notable on-air talent and programs have helped define RPR1’s character. The station markets a Guten Morgen Rheinland-Pfalz with Ben Salzner and Solin, a daily morning pair, plus daytime shows such as Topthemen am Mittag and Der Tag in Rheinland-Pfalz, and evening/morning hosts like Selina Schmitt, Tobias Gebhard, Daniel Kaiser, and Miriam Audrey Hannah. Comedic and specialty segments have featured Sven Hieronymus (RPR1. Rockertreff), Bob Murawka (Musikclub, Samstag XXL), Uwe Burkert (Einfach Himmlisch), Reiner Meutsch (Mein Abenteuer), and Handwerker Peters, who in 2024 was voted Comedystar von Rheinland-Pfalz. These lineups illustrate a mix of music, local news, and light entertainment that has been a hallmark of the station. ([de.wikipedia.org](https://de.wikipedia.org/wiki/RPR1))
+
+RPR1’s festival footprint is anchored in Mainz. The Rhine­land-Pfalz Open Air, run by RPR1 and partners, spanned 2005–2014 and became a signature free-entry open-air event in Mainz’ Regierungsviertel. The 2014 edition celebrated its tenth anniversary with a line-up that included Cro, Alligatoah, Kim Wilde, and Rea Garvey, and featured government officials praising the festival’s role in regional culture. This event line underscores RPR1’s historically strong live-music presence beyond the studio. ([de.wikipedia.org](https://de.wikipedia.org/wiki/RPR1))
+
+Streaming and coverage notes. RPR1 broadcasts around the clock with webradio today, and since October 27, 2017 has been carried digitally via DAB+ (the service also expanded into Saarland on 9C from May 1, 2024). The RPR1 app offers access to more than 30 streams and a variety of podcasts, extending reach beyond the FM/DAB footprint. A linked page such as the InternetRadio-Horen “RPR1. Festival” stream illustrates how the brand’s festival mood travels to aggregators, though it is not an official RPR1 site. ([de.wikipedia.org](https://de.wikipedia.org/wiki/RPR1))
+
+Summary: RPR1 remains a central, long-running AX program in Rhineland-Palatinate, with a rich festival heritage (notably Mainz Open Air), a stable stable of hosts and formats that blend music, news, and humor, and multi-channel streaming coverage that includes modern apps and DAB+. The linked festival stream reflects the label’s continued association with live-event energy, even as the core operation sits within Audiotainment Südwest. ([de.wikipedia.org](https://de.wikipedia.org/wiki/RPR1))
+
+Feature | Description
+Feature                       | Description
+History                       | Began 30 Apr 1986; one of Germany’s early private regional stations; owned by RPR1/RS GmbH & Co. KG; 2021 reorganization under Audiotainment Südwest; MA 2025: 1.317M daily listeners, 2.131M online sessions/mo.
+Notable Shows/Hosts           | Guten Morgen Rheinland-Pfalz with Ben Salzner & Solin; Kunze; Topthemen am Mittag; Der Tag in Rheinland-Pfalz; Selina Schmitt; Tobias Gebhard; Nightlounge with Daniel Kaiser; Comedy hosts incl. Sven Hieronymus; Handwerker Peters (Comedystar 2024).
+Festivals & Live Events       | Rheinland-Pfalz Open Air Mainz (2005–2014); 2014 10th anniversary; free entry; Cro, Kim Wilde, Rea Garvey among headliners; held in Mainz’ Regierungsviertel. 
+Streaming & Coverage        | 24/7 web radio; DAB+ since 2017; Saarland channel 9C since May 2024; RPR1 app offers 30+ streams; third‑party streams (e.g., RPR1. Festival) exist.
+
+*******************************************************
+--- 2025-10-19 10:31:08 ---
+https://www.canadaradiostations.com/la-radio-de-radio-canada
+ca CBC Radio One
+
+CBC Radio One - live
+Public Broadcasting
+ 
+No program information and image
+
+AI Generated Content:
+CBC Radio One is the English-language public radio network of the Canadian Broadcasting Corporation (CBC). It originated as CBC Radio in 1936, part of the Trans-Canada Network; the Dominion Network operated separately from 1944 until its dissolution in 1962, after which CBC consolidated into a single Radio One service. The FM network that carried CBC Radio in major markets was rebranded CBC Stereo in 1975, and the national network adopted the CBC Radio One identity in 1997. The network is commercial-free and available across Canada on AM/FM, with online streaming available worldwide. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+
+Notable programs and hosts
+- The Current: CBC’s flagship morning current affairs program, launched in 2002 and originally hosted by Anna Maria Tremonti. Tremonti remained the host until 2019; Matt Galloway has been the permanent host since January 6, 2020. The show blends interviews, features, and long-form pieces. ([en.wikipedia.org](https://en.wikipedia.org/wiki/The_Current_%28radio_program%29?utm_source=openai))
+- As It Happens: A long-running CBC evening interview program that began in 1968. It features CBC journalists conducting interviews with newsmakers; as of 2022, Nil Köksal has been the host, with Chris Howden serving as co-host since 2020. The program has been a cornerstone of CBC Radio One’s current affairs lineup. ([en.wikipedia.org](https://en.wikipedia.org/wiki/As_It_Happens?utm_source=openai))
+
+Streaming and coverage notes
+- CBC Radio One is widely available over the air, and its national and local programs are distributed via the CBC Listen app and CBC.ca/listen, enabling live streaming and on-demand access for listeners outside traditional broadcast ranges. The Apple CBC Listen app page highlights live streams and CBC podcasts as core features. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+- The user-provided link (La Radio de Radio Canada) is a third-party directory/listing that aggregates CBC Radio One content with a link to CBC’s official site (cbc.ca/radio). It confirms CBC Radio One – live as a listing option and provides a CBC site reference. ([canadaradiostations.com](https://www.canadaradiostations.com/la-radio-de-radio-canada))
+
+Nearby history and context
+- The CBC’s network structure historically included the Trans-Canada Network and the Dominion Network; their consolidation in 1962 and the later evolution to the CBC Radio One brand shaped how local and national programming were scheduled, with a strong emphasis on news, analysis, documentaries, and public affairs. This evolution is documented in CBC history references and standard program guides. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+
+Streaming/coverage addendum
+- The CBC Listen app is available on iOS and Android, and CBC’s streaming offerings continue to emphasize live listen and on-demand content, including long-running CBC programs as part of its public-service mission. ([apps.apple.com](https://apps.apple.com/ca/app/cbc-listen/id325946767?utm_source=openai))
+
+Summary table
+Feature                         | Description                                                                               
+Network origin                  | 32-char field left; 60-char field right: CBC Radio One began 1936, evolving from CBC Radio; Dominion Network dissolved 1962; CBC Stereo rebrand 1975; name CBC Radio One 1997. 
+Launch and branding            | Launch 1936; Dominion/Network consolidation 1962; CBC Stereo 1975; Radio One branding 1997. 
+Key programs                    | The Current (2002–present; Matt Galloway since 2020); As It Happens (1968–present; Nil Köksal 2022–present). 
+Streaming access                | Over-air + online via CBC Listen app and CBC.ca/listen; CBC Listen app for iOS/Android. 
+External link reference         | The user’s page shows CBC Radio One - live and links to CBC’s site; validates live streaming. 
+Notes on availability           | CBC Radio One is available nationwide on AM/FM across Canada and worldwide via the Internet.
+
+*******************************************************
+--- 2025-10-19 10:35:50 ---
+https://www.canadaradiostations.com/la-radio-de-radio-canada
+ca CBC Radio One
+
+CBC Radio One - live
+Public Broadcasting
+ 
+No program information and image
+
+AI Generated Content:
+CBC Radio One is the English-language public radio network of the Canadian Broadcasting Corporation (CBC). It originated as CBC Radio in 1936, part of the Trans-Canada Network; the Dominion Network operated separately from 1944 until its dissolution in 1962, after which CBC consolidated into a single Radio One service. The FM network that carried CBC Radio in major markets was rebranded CBC Stereo in 1975, and the national network adopted the CBC Radio One identity in 1997. The network is commercial-free and available across Canada on AM/FM, with online streaming available worldwide. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+
+Notable programs and hosts
+- The Current: CBC’s flagship morning current affairs program, launched in 2002 and originally hosted by Anna Maria Tremonti. Tremonti remained the host until 2019; Matt Galloway has been the permanent host since January 6, 2020. The show blends interviews, features, and long-form pieces. ([en.wikipedia.org](https://en.wikipedia.org/wiki/The_Current_%28radio_program%29?utm_source=openai))
+- As It Happens: A long-running CBC evening interview program that began in 1968. It features CBC journalists conducting interviews with newsmakers; as of 2022, Nil Köksal has been the host, with Chris Howden serving as co-host since 2020. The program has been a cornerstone of CBC Radio One’s current affairs lineup. ([en.wikipedia.org](https://en.wikipedia.org/wiki/As_It_Happens?utm_source=openai))
+
+Streaming and coverage notes
+- CBC Radio One is widely available over the air, and its national and local programs are distributed via the CBC Listen app and CBC.ca/listen, enabling live streaming and on-demand access for listeners outside traditional broadcast ranges. The Apple CBC Listen app page highlights live streams and CBC podcasts as core features. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+- The user-provided link (La Radio de Radio Canada) is a third-party directory/listing that aggregates CBC Radio One content with a link to CBC’s official site (cbc.ca/radio). It confirms CBC Radio One – live as a listing option and provides a CBC site reference. ([canadaradiostations.com](https://www.canadaradiostations.com/la-radio-de-radio-canada))
+
+Nearby history and context
+- The CBC’s network structure historically included the Trans-Canada Network and the Dominion Network; their consolidation in 1962 and the later evolution to the CBC Radio One brand shaped how local and national programming were scheduled, with a strong emphasis on news, analysis, documentaries, and public affairs. This evolution is documented in CBC history references and standard program guides. ([en.wikipedia.org](https://en.wikipedia.org/wiki/CBC_Radio_One?utm_source=openai))
+
+Streaming/coverage addendum
+- The CBC Listen app is available on iOS and Android, and CBC’s streaming offerings continue to emphasize live listen and on-demand content, including long-running CBC programs as part of its public-service mission. ([apps.apple.com](https://apps.apple.com/ca/app/cbc-listen/id325946767?utm_source=openai))
+
+Summary table
+Feature                         | Description                                                                               
+Network origin                  | 32-char field left; 60-char field right: CBC Radio One began 1936, evolving from CBC Radio; Dominion Network dissolved 1962; CBC Stereo rebrand 1975; name CBC Radio One 1997. 
+Launch and branding            | Launch 1936; Dominion/Network consolidation 1962; CBC Stereo 1975; Radio One branding 1997. 
+Key programs                    | The Current (2002–present; Matt Galloway since 2020); As It Happens (1968–present; Nil Köksal 2022–present). 
+Streaming access                | Over-air + online via CBC Listen app and CBC.ca/listen; CBC Listen app for iOS/Android. 
+External link reference         | The user’s page shows CBC Radio One - live and links to CBC’s site; validates live streaming. 
+Notes on availability           | CBC Radio One is available nationwide on AM/FM across Canada and worldwide via the Internet.
+
+*******************************************************
+--- 2025-10-19 10:43:28 ---
+https://www.radiaonline.org/radio-krokodyl
+cz Rádio Krokodýl FM
+
+Rádio Krokodýl FM
+ 
+No program information and image
+
+AI Generated Content:
+Rádio Krokodýl FM is Brno’s longstanding regional radio, branding itself as the
+most-listened regional station in the Czech Republic and a Brno‑core station for
+south Moravia. The outlet has been on air since 1994 and emphasizes a broad music
+mix with a regional news and traffic footprint to match its audience in Brno and
+surrounding towns. ([krokodyl.cz](https://www.krokodyl.cz/o-nas))
+
+Coverage and reach are central to its identity. The station operates on 13 FM
+frequencies across Brno and nearby counties and Vysočina, including Brno 103.0 FM,
+Vyškov 102.6, Hodonín 95.4, Břeclav 99.1, Znojmo 96.2, Boskovice 91.9, Žďár nad Sázavou
+96.0, Velké Meziříčí 89.1, Třebíč 101.7, Jihlava 102.3, Svitavy 96.3, Dačice 98.5 and more,
+with a coverage map published on the site. This breadth underpins its claim of being
+the region’s premier local outlet. ([krokodyl.cz](https://www.krokodyl.cz/mapa-pokryti))
+
+Ownership and licensing are explicit in industry references. The licence is listed as
+held by Nonstop, s.r.o., with a start date of 30 July 1999 and a traditional licence
+extension (compensation licence) through 2025, indicating the station’s continued legal
+operation in the Czech radio ecosystem. ([radiotv.cz](https://www.radiotv.cz/radio/radio-krokodyl/))
+
+Notable shows and on‑air talent define the listening experience. The current on‑air team
+includes Jarek Hemala (Noční Expres) overnight, and daytime majors such as Honza Kolařík
+(To Nejlepší Po Ránu / Devadesátky v devět), Tonda Kala (Hit za hitem), Jirka Wiener
+(Hity na přání / Hity mého života), Petr Holík (Odpolední show), Jana Houbová, and
+Martin Sláma, among others. The station highlights a strong mix of singer‑songwriter and
+pop formats, with a hit‑oriented rotation designed to keep Brno’s listeners engaged. ([krokodyl.cz](https://www.krokodyl.cz/moderatori))
+
+Streaming and online presence complement the FM signal. The program page advertises a live
+stream with a “spustit živě” option via listen.play.cz, and the site confirms internet
+streaming of Rádio Krokodýl, alongside its 13‑frequency FM footprint. The station also
+hosts ongoing hitparades and regular program schedules, underscoring its multi‑platform
+presence. ([agent.krokodyl.cz](https://agent.krokodyl.cz/program/))
+
+In sum, Rádio Krokodýl FM remains a Brno‑centered regional radio with a long history, a
+broad transmitter footprint across southern Moravia and Vysočina, a stable on‑air host
+lineup, and a robust online streaming option that sustains its local identity into the
+2020s. It continues to publish updated programming and news relevant to Brno and nearby
+communities, confirming its status as a staple of the region’s radio landscape. ([krokodyl.cz](https://www.krokodyl.cz/o-nas))
+
+Feature | Description
+Feature  | Description
+History  | Brno-based regional radio, on air since 1994; branding as top local station.
+Coverage & Frequencies | 13 FM frequencies across Brno, South Moravia, and Vysočina (Brno 103.0, Vyškov 102.6, Hodonín 95.4, etc.).
+Ownership & Licensing | Licence holder: Nonstop, s.r.o.; licence since 1999; compensation licence to 2025.
+Notable Hosts | Jarek Hemala; Honza Kolařík; Tonda Kala; Jirka Wiener; Jana Houbová; Martin Sláma.
+Streaming & Online | Live stream via krokodyl.cz; Listen.plays.cz option; internet signal included.
+Programming Highlights | Hit za hitem; Devadesátky v devět; Hity na přání; S krokodýlem do pelíšku.
+

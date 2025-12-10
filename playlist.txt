@@ -9,14 +9,14 @@ ABC North and West SA,52
 -- EMPTY 8 --,-1
 Cruise 1323,87
 au Totally Radio 70s,4855
-us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61585
+us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61584
 hu Papageno,38118
 ab Classical - Chopin,365
 de BR Klassik,19739
 de Klassik Radio,20555
 de Klassik 1,20554
 de Epic Piano - CHOPIN,20091
--- EMPTY 18 --,-1
+us Home Coming Gospel,60768
 -- EMPTY 19 --,-1
 -- EMPTY 20 --,-1
 au 2GN Goulburn,4079
@@ -25,9 +25,9 @@ br New Generation,7883
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
 -- EMPTY 26 --,-1
-pl msRadio 90s,51408
-pl ESKA2 Nowy Sącz,51331
-pl JUMP Radio,51374
+pl msRadio 90s,51407
+pl ESKA2 Nowy Sącz,51330
+pl JUMP Radio,51373
 ca CBC Radio One,12456
 -- EMPTY 31 --,-1
 -- EMPTY 32 --,-1
@@ -97,12 +97,12 @@ ca CIAT Cat Country 98,12791
 -- EMPTY 96 --,-1
 -- EMPTY 97 --,-1
 -- EMPTY 98 --,-1
-pe Peru Cumbia,49094
+pe Peru Cumbia,49093
 br Estação 104 FM,7043
 de NOSTALGIE New Wave,20944
 de رادیو شاه میهن آبادی,20962
-us MPIR Old Time Radio,67215
-us KANE Radio 1240 AM,61407
-us WROX 1450 AM,75962
+us MPIR Old Time Radio,67214
+us KANE Radio 1240 AM,61406
+us WROX 1450 AM,75961
 de Radio Gong Würzburg,21502
-ph Spotlight Radio FM,51118
+ph Spotlight Radio FM,51117

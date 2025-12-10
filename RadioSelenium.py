@@ -3638,7 +3638,8 @@ if GPIO:
     wifiButton.bind("<Return>", find_wifi)  
     wifiButton.bind("<FocusIn>", on_focus_dostuff)
     wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
-    wifiButton.bind("<Right>", focus_next)
+    wifiButton.bind("<Righ" \
+    "t>", focus_next)
     wifiButton.bind("<Left>", focus_prev)
     label7 = tk.Label(setup, text="")
     label7.place(x=cX+400+100, y=cY+2-30)

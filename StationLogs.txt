@@ -1260,3 +1260,37 @@ Current breakfast host       | Chris Taylor presents Sydney Breakfast (since 202
 Streaming/Access             | Live audio on ABC Listen; direct HLS streams listed by ABC Help Center.     
 Notable former hosts        | Sarah Macdonald, Caroline Jones, Margaret Throsby, Deborah Cameron, etc.
 
+*******************************************************
+--- 2025-12-26 10:08:03 ---
+https://www.abc.net.au/listen/live/radionational
+ABC Radio National LIVE
+The Bookshelf
+with Kate Evans and Cassie McCullaugh
+
+AI Generated Content:
+ABC Radio National (RN) is the Australian public‑service network of the ABC. RN traces its roots to 1923 (as 2FC) and evolved into Radio National in 1985, becoming the core arts, ideas and science channel it remains today; the network’s centenary was noted in 2023 and again in coverage of RN’s evolution through 2024–25. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Radio_National?utm_source=openai))
+
+The Bookshelf, a RN book‑culture program, is a long‑running feature devoted to fiction and readers’ culture. It is currently presented by Kate Evans and Cassie McCullagh and airs on Fridays at 10am, with repeats on Sunday 3pm and Monday 11pm. The program’s page confirms the hosts and time slot, and episode listings show ongoing activity through 2025. The series began in 2018, with Evans and McCullagh as the original co‑hosts; Evans’ and McCullagh’s bios confirm their long association with the show. ([abc.net.au](https://www.abc.net.au/radionational/programs/the-bookshelf/))
+
+Hosts:
+- Kate Evans: a historian by training who has worked across publishing, universities, TV and radio; she joined RN in the 1990s and has long led author interviews on Books and Arts and related strands. She has co‑hosted The Bookshelf since its inception in 2018. ([abc.net.au](https://www.abc.net.au/listen/kate-evans-and-cassie-mccullagh/13740248?utm_source=openai))
+- Cassie McCullagh: an Australian journalist/presenter who joined the ABC in 2007; she has hosted RN programs including The Bookshelf as a key author‑interview voice alongside Evans. Biography and program pages corroborate her RN tenure and co‑hosting role. ([abc.net.au](https://www.abc.net.au/listen/kate-evans-and-cassie-mccullagh/13740248?utm_source=openai))
+
+Streaming and coverage notes:
+- The ABC listen platform streams RN live and also hosts on‑demand audio; the live stream is accessible via the program pages and the ABC help/streaming guidance. The Bookshelf is listed on the RN listen site with current air times and episodes; the live stream is also accessible through the ABC listen app. ([abc.net.au](https://www.abc.net.au/radionational/programs/the-bookshelf/))
+- For listeners in the United States or elsewhere, the ABC listen site and app provide the primary access path to RN’s live feed and book‑centric programs like The Bookshelf. The Bookshelf’s archive pages show recent episodes and ongoing releases through 2025. ([abc.net.au](https://www.abc.net.au/radionational/programs/the-bookshelf/))
+
+Live events and extensions:
+- The Bookshelf has been presented as live recordings at literary festivals, reflecting its engagement beyond the studio. Examples include live festival segments and collaborations with writers’ festivals, illustrating RN’s public‑facing approach to books and authors. ([bluemountainswritersfestival.com.au](https://www.bluemountainswritersfestival.com.au/events/bookshelf-live?utm_source=openai))
+
+In short, The Bookshelf anchors RN’s Books and Arts programming with Evans and McCullagh, continuing a tradition begun in 2018 of rigorous, reader‑focused literary discussion. For streaming, tune in via the ABC listen page or the ABC listen app; the program page confirms air times and recent episodes, and the hosts’ bios confirm their long association with RN and The Bookshelf. ([abc.net.au](https://www.abc.net.au/radionational/programs/the-bookshelf/))
+
+Feature | Description
+The Bookshelf live stream availability          | Live RN feed available on ABC listen site/app; on‑demand episodes archived
+History / Origin of Radio National              | RN grew from 2FC in 1923, becoming Radio National in 1985
+The Bookshelf program overview                   | Bookshelf show on RN hosted by Kate Evans and Cassie McCullagh
+Host bios: Kate Evans                            | Historian and author; joined RN in the 1990s and hosts with Cassie. RN.
+Host bios: Cassie McCullagh                      | Journalist and presenter; joined RN in 2007;  hosts The Bookshelf.
+Streaming / Coverage notes                       | Live stream on the ABC listen site/app;  past episodes available now.
+Live events and festivals                        | Live recordings at writers' festivals with Evans and McCullagh. live
+

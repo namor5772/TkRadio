@@ -45,7 +45,7 @@ user_pref("media.gmp-manager.updateEnabled", false);
 user_pref("media.sanity-test.disabled", true);
 user_pref("network.manage-offline-status", false);
 user_pref("network.sntp.pools", "%(server)s");
-user_pref("remote.active-protocols", 3);
+user_pref("remote.active-protocols", 1);
 user_pref("remote.log.level", "Info");
 user_pref("security.certerrors.mitm.priming.enabled", false);
 user_pref("services.settings.server", "data:,#remote-settings-dummy/v1");

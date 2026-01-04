@@ -356,7 +356,7 @@ firefox_options.add_argument("-profile")
 firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # Ensure this argument is correct
+#firefox_options.add_argument("-headless")  # comment out if you want to see the browser window
 browser = webdriver.Firefox(options=firefox_options)
 
 firefox_exe = find_process_exe("firefox")

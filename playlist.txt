@@ -1,56 +1,56 @@
-ABC Radio Sydney NSW,24
-ABC Radio National LIVE,4
-ABC NewsRadio,76
-ABC Classic LIVE,19
-ABC Classic2,0
-ABC triple j Hottest,2
-ABC Radio Adelaide SA,50
-ABC North and West SA,52
+ABC Radio Sydney NSW,30
+-- EMPTY 1 --,-1
+-- EMPTY 2 --,-1
+-- EMPTY 3 --,-1
+-- EMPTY 4 --,-1
+-- EMPTY 5 --,-1
+-- EMPTY 6 --,-1
+-- EMPTY 7 --,-1
 -- EMPTY 8 --,-1
-Cruise 1323,87
-au Totally Radio 70s,4855
-us KBCW / KUCO / KCSC - 91.9 / 90.1 / 95.9 FM,61584
-hu Papageno,38118
-ab Classical - Chopin,365
-de BR Klassik,19739
-de Klassik Radio,20555
-de Klassik 1,20554
-de Epic Piano - CHOPIN,20091
-us Home Coming Gospel,60768
+-- EMPTY 9 --,-1
+-- EMPTY 10 --,-1
+-- EMPTY 11 --,-1
+-- EMPTY 12 --,-1
+-- EMPTY 13 --,-1
+-- EMPTY 14 --,-1
+-- EMPTY 15 --,-1
+-- EMPTY 16 --,-1
+-- EMPTY 17 --,-1
+-- EMPTY 18 --,-1
 -- EMPTY 19 --,-1
 -- EMPTY 20 --,-1
-au 2GN Goulburn,4079
-de Bayern 1,19585
-br New Generation,7883
+-- EMPTY 21 --,-1
+-- EMPTY 22 --,-1
+-- EMPTY 23 --,-1
 -- EMPTY 24 --,-1
 -- EMPTY 25 --,-1
 -- EMPTY 26 --,-1
-pl msRadio 90s,51407
-pl ESKA2 Nowy Sącz,51330
-pl JUMP Radio,51373
-ca CBC Radio One,12456
+-- EMPTY 27 --,-1
+-- EMPTY 28 --,-1
+-- EMPTY 29 --,-1
+-- EMPTY 30 --,-1
 -- EMPTY 31 --,-1
 -- EMPTY 32 --,-1
 -- EMPTY 33 --,-1
 -- EMPTY 34 --,-1
 -- EMPTY 35 --,-1
-gb BBC London,31282
-gb BBC Radio 1,31283
-gb BBC Radio 2,31285
-gb BBC Radio 3,31286
-gb BBC Radio 4,31287
-gb BBC Radio 4 Extra,31288
-gb BBC Radio 5 live,31289
-gb BBC World Service,31328
-gb BBC World Service Global News,31332
+-- EMPTY 36 --,-1
+-- EMPTY 37 --,-1
+-- EMPTY 38 --,-1
+-- EMPTY 39 --,-1
+-- EMPTY 40 --,-1
+-- EMPTY 41 --,-1
+-- EMPTY 42 --,-1
+-- EMPTY 43 --,-1
+-- EMPTY 44 --,-1
 -- EMPTY 45 --,-1
 -- EMPTY 46 --,-1
-gb BritCom 1 - Pumpkin FM,31526
-gb BritCom 2 - Pumpkin FM,31527
-gb BritCom 3 - Pumpkin FM,31528
-gb British Comedy 1 - ROKiT Radio Network,31529
-gb British Comedy 2 - ROKiT Radio Network,31530
-gb Comedy Gold - ROKiT Radio Network,31752
+-- EMPTY 47 --,-1
+-- EMPTY 48 --,-1
+-- EMPTY 49 --,-1
+-- EMPTY 50 --,-1
+-- EMPTY 51 --,-1
+-- EMPTY 52 --,-1
 -- EMPTY 53 --,-1
 -- EMPTY 54 --,-1
 -- EMPTY 55 --,-1
@@ -61,24 +61,24 @@ gb Comedy Gold - ROKiT Radio Network,31752
 -- EMPTY 60 --,-1
 -- EMPTY 61 --,-1
 -- EMPTY 62 --,-1
-de Epic Piano - CHOPIN,20091
-de Epic Piano - GRIEG,20092
-de Epic Piano - LISZT,20093
-de Epic Piano - TSCHAIKOWSKI,20099
-de Epic Piano - ROMANTIC PIANO,20097
-de Epic Piano - SOLO PIANO,20098
-de Epic-Piano - GREAT CONCERTS,20105
-2MBS Fine Music Sydney,80
+-- EMPTY 63 --,-1
+-- EMPTY 64 --,-1
+-- EMPTY 65 --,-1
+-- EMPTY 66 --,-1
+-- EMPTY 67 --,-1
+-- EMPTY 68 --,-1
+-- EMPTY 69 --,-1
+-- EMPTY 70 --,-1
 -- EMPTY 71 --,-1
-de Klassik Radio Bach,20558
-de Klassik Radio Barock,20560
-de Klassik Radio Barock2,20561
-de Klassik Radio Beethoven,20562
-de Klassik Radio Best of Oper,20563
-de Klassik Radio Classic Dreams,20569
-de Klassik Radio Klassik Dreams,20585
-de Klassik Radio Mozart,20594
-de Klassik Radio Verdi,20609
+-- EMPTY 72 --,-1
+-- EMPTY 73 --,-1
+-- EMPTY 74 --,-1
+-- EMPTY 75 --,-1
+-- EMPTY 76 --,-1
+-- EMPTY 77 --,-1
+-- EMPTY 78 --,-1
+-- EMPTY 79 --,-1
+-- EMPTY 80 --,-1
 -- EMPTY 81 --,-1
 -- EMPTY 82 --,-1
 -- EMPTY 83 --,-1
@@ -88,7 +88,7 @@ de Klassik Radio Verdi,20609
 -- EMPTY 87 --,-1
 -- EMPTY 88 --,-1
 -- EMPTY 89 --,-1
-br Rádio Diocesana 960,8788
+-- EMPTY 90 --,-1
 ca CIAT Cat Country 98,12791
 -- EMPTY 92 --,-1
 -- EMPTY 93 --,-1
@@ -97,12 +97,12 @@ ca CIAT Cat Country 98,12791
 -- EMPTY 96 --,-1
 -- EMPTY 97 --,-1
 -- EMPTY 98 --,-1
-pe Peru Cumbia,49093
-br Estação 104 FM,7043
-de NOSTALGIE New Wave,20944
-de رادیو شاه میهن آبادی,20962
-us MPIR Old Time Radio,67214
-us KANE Radio 1240 AM,61406
-us WROX 1450 AM,75961
-de Radio Gong Würzburg,21502
-ph Spotlight Radio FM,51117
+-- EMPTY 99 --,-1
+-- EMPTY 100 --,-1
+-- EMPTY 101 --,-1
+-- EMPTY 102 --,-1
+-- EMPTY 103 --,-1
+-- EMPTY 104 --,-1
+-- EMPTY 105 --,-1
+-- EMPTY 106 --,-1
+-- EMPTY 107 --,-1

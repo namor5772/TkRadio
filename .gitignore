@@ -1,0 +1,16 @@
+# Firefox profile runtime data (cookies, cache, telemetry, etc.)
+firefoxProfileWindows/
+firefoxProfileRPI5/
+
+# Vendored e-Paper library
+Hardware/e-Paper-master/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

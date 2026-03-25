@@ -1,9 +1,0 @@
-{"timestamp":33569640,"category":"webcompatreporting","name":"reason_dropdown","extra":{"setting":"required","glean_timestamp":"1767596796829"}}
-{"timestamp":33569865,"category":"nimbus_events","name":"startup_database_consistency","extra":{"total_db_count":"0","store_active_count":"0","total_store_count":"32","primary":"jsonfile","trigger":"startup","db_active_count":"0","glean_timestamp":"1767596797054"}}
-{"timestamp":33569874,"category":"jsonfile","name":"load_autofillprofiles","extra":{"value":"error_notfounderror","glean_timestamp":"1767596797064"}}
-{"timestamp":33569877,"category":"doh","name":"state_rollback","extra":{"value":"null","glean_timestamp":"1767596797066"}}
-{"timestamp":33569936,"category":"nimbus_events","name":"is_ready","extra":{"glean_timestamp":"1767596797125"}}
-{"timestamp":33569940,"category":"containers","name":"container_profile_loaded","extra":{"glean_timestamp":"1767596797129","containers":"4"}}
-{"timestamp":33570028,"category":"jsonfile","name":"load_logins","extra":{"glean_timestamp":"1767596797217","value":"error_notfounderror"}}
-{"timestamp":33570029,"category":"upgrade_dialog","name":"trigger_reason","extra":{"value":"not-major","glean_timestamp":"1767596797218"}}
-{"timestamp":33644750,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1767596871939"}}

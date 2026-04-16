@@ -2,8 +2,6 @@ import subprocess
 import inspect
 import tkinter as tk
 import time
-from unittest import case
-import requests
 import os
 import csv
 import re
@@ -71,13 +69,13 @@ if GPIO:
 # KeyList array & related global variables
 # horizontal list of keys you can press (in a simulated fashion)
 sizeKeyList = 120 # number of keys
-indexKeyList = 1 # currently selected key (= indexBank*sizeBank+indexVisibleKey) 
+indexKeyList = 1 # currently selected key (= indexBank*sizeBank+indexVisibleKey)
 indexVisibleKey = 1 # index of selected key within current bank
-sizeBank = 15 # number of keys in a bank                  
+sizeBank = 15 # number of keys in a bank
 indexBank = 0 # bank containing currently selected Key
 numBanks = 8 # number of banks (thus numBanks*sizeBank = sizeKeyList)
 
-# In ["what is displayed","actual Python key code"] format 
+# In ["what is displayed","actual Python key code"] format
 KeyList = [
     ["<-Tab","ISO_Left_Tab"],
     ["Tab","Tab"],
@@ -94,7 +92,7 @@ KeyList = [
     ["PgDn","Next"],
     ["Esc","Escape"],
     ["Back","BackSpace"],
-    
+
     ["a","a"],
     ["b","b"],
     ["c","c"],
@@ -126,7 +124,7 @@ KeyList = [
     ["B","B"],
     ["C","C"],
     ["D","D"],
-    
+
     ["E","E"],
     ["F","F"],
     ["G","G"],
@@ -198,7 +196,7 @@ KeyList = [
     ["F1","F1"],
     ["F2","F2"],
     ["F3","F3"],
-    ["F4","F4"], 
+    ["F4","F4"],
     ["F5","F5"],
     ["F6","F6"],
     ["F7","F7"],
@@ -241,7 +239,7 @@ def rotary_callback(channel):
             update_label("L" + str(counter))
             rightFlag = False
 
-        # only actually do stuff if counter is even    
+        # only actually do stuff if counter is even
         if counter % 2 == 0: # counter is even
             labels_main[indexVisibleKey].config(bg="darkgray")
             if rightFlag: # go right
@@ -261,7 +259,7 @@ def rotary_callback(channel):
                     indexKeyList += 1
                   # indexBank unchanged
                     indexVisibleKey += 1
-            else: # if righFlag == False (ie. go left)            
+            else: # if righFlag == False (ie. go left)
                 if indexVisibleKey == 0:
                     if indexBank == 0:
                         indexKeyList = sizeKeyList-1
@@ -270,7 +268,7 @@ def rotary_callback(channel):
                         indexKeyList -= 1
                         indexBank -= 1
                     indexVisibleKey = sizeBank-1
-                    
+
                     # adjust bank of keys visible on top of main form
                     for i in range(sizeBank):
                         labels_main[i].config(text=KeyList[sizeBank*indexBank+i][0])
@@ -302,7 +300,7 @@ if GPIO:
 
 
 # START #######################################################
-# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
+# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT
 
 # just a function to find the executable of a process by its name
 # for debugging and interest
@@ -371,7 +369,7 @@ print(f"System temp dir: {tempfile.gettempdir()}")
 #refresh_http = "http://www.ri.com.au" # use my basic "empty" website
 refresh_http = "https://www.blank.org/" # use a basic "empty" website
 
-# global graphic position variables
+# --- Display position constants ---
 Ydown = 63
 Ygap = 10;  Ygap2 = 110+Ydown; Ygap3 = 110+Ydown
 Xgap = 560-70; Xgap2 = 490; Xgap3 = 490
@@ -379,7 +377,7 @@ Xprog = 300
 X1 = 55 # 55 for RP version
 Y1 = 30 # 30 for RP version
 
-# global variables related to bluetooth and wifi
+# --- Bluetooth/WiFi state ---
 onBluetooth = True
 currentPair = "No bluetooth speakers paired" # details of currently paired speakers
 aPairable = [] # used to list bluetooth visible devices for pairing a speaker
@@ -398,7 +396,7 @@ filename4 = 'pollflag.txt'
 filepath4 = os.path.join(script_dir, filename4)
 print(f'The file {filepath4} stores the pollFlag when it is changed.')
 
-# global variables for combobox selection indexes & button related
+# --- Combobox/selection state ---
 numButtons = 108 # 12 rows of 9 playlist buttons
 sizeButton = 62
 combobox_index = -1
@@ -420,8 +418,8 @@ station = ""
 needSleep = 4 # can be less on faster machines
 pressButton = True # flag for how stream is started
 
-# global variables for radio station calling functions
-def SomeFunction(): pass    
+# --- Station parameters ---
+def SomeFunction(): pass
 StationName = ""
 CountryCode = ""
 StationLogo = ""
@@ -433,7 +431,7 @@ sPath = ""
 sClass = ""
 nType = 0
 
-# new browser tab related variables
+# --- Browser tab state ---
 img_url_g = ""
 oh = 0
 nh = 0
@@ -444,9 +442,9 @@ nh3 = 0
 ExtraWindowFlag = False
 Streaming = True # if streaming is working
 
-# other global variables
+# --- Flags ---
 rootFlag = True # False indicates that you are in the secondary window
-pollFlag = False # if true then poll website for program text and picture changes 
+pollFlag = False # if true then poll website for program text and picture changes
 justDeletedFlag = False # if true then just deleted a station from the aStation[] list
 stopLastStream = False # if true then stop current stream call
 firstRun = True # if true then first run of a station stream
@@ -460,13 +458,13 @@ saveButton_pos = {0,0,0,0}
 viewButton_pos = {0,0,0,0}
 labelRE_pos = {0,0,0,0}
 labelPlaylistFocus_pos = {0,0,0,0}
-label2_pos = {0,0,0,0} 
+label2_pos = {0,0,0,0}
 firstRun_select2 = True # if true then first run of select2
 visibleItemsNum = 0 # number of items visible in the combobox
 gfromCombobox = True # if true then combobox is used to select a station (global version)
 
 # END #########################################################
-# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT 
+# SETUP VARIOUS GLOBAL VARIABLES AND THE FIREFOX BROWSER OBJECT
 
 
 # Define a custom event class
@@ -480,7 +478,7 @@ class CustomEvent:
 # START ##################################################
 # DEFINE VARIOUS CORE FUNCTIONS THAT STREAM RADIO STATIONS
 #
-# There are 9 of them: Radio1 ... Radio7, Commercial1 & Commercial2. They are needed because the 
+# There are 9 of them: Radio1 ... Radio7, Commercial1 & Commercial2. They are needed because the
 # websites used to stream individual radio stations can differ in their layout, but many are
 # similar so can use the same code. Radio1...Radio7 are for the ABC stations, while Commercial1 &
 # Commercial2 are for the commercial stations.
@@ -570,6 +568,74 @@ def _trim_after(s, marker):
     """Return substring of s up to first occurrence of marker, if present."""
     pos = s.find(marker)
     return s if pos == -1 else s[:pos]
+
+def _update_text_box(text_str):
+    """Write star-delimited text into text_box (one row per segment)."""
+    text_rows = text_str.split("*")
+    text_box.config(state=tk.NORMAL)
+    text_box.delete('1.0', tk.END)
+    for row in text_rows:
+        text_box.insert(tk.END, row + "\n")
+    text_box.config(state=tk.DISABLED)
+
+def _show_blank_images():
+    """Set both station logo and program image to Blank.png."""
+    image = Image.open(pathImages + "/Blank.png")
+    scaled = image.resize((iconSize, iconSize))
+    photo = ImageTk.PhotoImage(scaled)
+    label.config(image=photo)
+    label.image = photo
+    scaled2 = image.resize((Xprog - X1, Xprog - X1))
+    photo2 = ImageTk.PhotoImage(scaled2)
+    label2.config(image=photo2)
+    label2.image = photo2
+    if not HiddenFlag:
+        label2.place(x=Xgap + X1, y=Ygap2 + Y1, width=Xprog - X1, height=Xprog - X1)
+        label2.lift(text_box)
+    root.update_idletasks()
+
+def _clear_ai_text_box():
+    """Clear the AI text box (Windows only)."""
+    if not GPIO:
+        text_box_ai.config(state=tk.NORMAL)
+        text_box_ai.delete("1.0", tk.END)
+        text_box_ai.config(state=tk.DISABLED)
+
+def _schedule_poll(fromCombobox):
+    """Schedule the next on_select() call if polling is active."""
+    global firstRun
+    if pollFlag:
+        if Streaming:
+            if fromCombobox:
+                print("JUST ABOUT to schedule on_select(True) to run in the future")
+                root.after(int(refreshTime * 1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo"), True))
+                print("DID SCHEDULE on_select(True) to run in the future")
+            else:
+                print("JUST ABOUT to schedule on_select(False) to run in the future")
+                root.after(int(refreshTime * 1000), lambda: on_select(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons"), False))
+                print("DID SCHEDULE on_select(False) to run in the future")
+        else:
+            print(f"Streaming==FALSE so DID NOT schedule on_select({fromCombobox}) to run in the future")
+            firstRun = True
+    else:
+        print(f"pollFlag==False so DID NOT schedule on_select({fromCombobox}) to run in the future")
+
+def _show_http_error(event, station_name, e):
+    """Display HTTP error in text_box."""
+    event.type = "Manual"  # prevent saving of buttonIndex
+    text = ("<<< ERROR >>>*" + station_name + "*failed to load properly*"
+            + "HTTP Error " + str(e.code) + ": " + str(e.reason)
+            + "*Try again or select a different station.")
+    _update_text_box(text)
+    root.update_idletasks()
+
+def _place_button_at_grid(button_widget, i, y_offset):
+    """Place a playlist button at its grid position."""
+    row = i // 9
+    col = i % 9
+    button_widget.place(x=128 + (sizeButton + 5) * (col + 1),
+                        y=y_offset + (sizeButton + 5) * row,
+                        width=sizeButton, height=sizeButton)
 # ============================================================================
 
 
@@ -762,8 +828,8 @@ def Radio4new(br, nNum, sPath, sClass, nType):
         case 6: TZstr="?tz=sa"
         case 7: TZstr="?tz=wa"
         case _: TZstr=""
-    sPath = sPath + TZstr    
- 
+    sPath = sPath + TZstr
+
     if eventFlag:
         _navigate_to_station(br, sPath, refresh_http)
 
@@ -921,7 +987,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
         # determine file name for the station logo graphic
         logo = StationLogo + ".png"
         print(logo)
-        
+
         # go to the station website
         br.get(refresh_http)
         time.sleep(2)
@@ -947,7 +1013,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
                 buttonStream.click()
                 print("Case 1")
             case _:
-                print("Out of bounds")            
+                print("Out of bounds")
         time.sleep(3)
 
         # get station logo
@@ -963,7 +1029,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
             except Exception as e:
                 print(f"Caught a problem: {e}")
                 # Display a blank image
-                image_path = pathImages + "/Blank.png"    
+                image_path = pathImages + "/Blank.png"
         else:
             # for Smooth & Nova stations
             image_path = pathImages + "/" + logo
@@ -972,7 +1038,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
         image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon if adding station to playlist 
+        # saving button icon if adding station to playlist
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
@@ -987,7 +1053,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
 
     # Display the program image as given in the scaled_image2
     try:
-        if nType==0: 
+        if nType==0:
             # iHeart stations
             img2_element = be.find_element(By.XPATH, '/html/body/div[1]/div[5]/div/div[1]/div[1]/div/img')
         else:
@@ -1001,7 +1067,7 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     except Exception as e:
         print(f"Caught a problem: {e}")
         # Display a blank image
-        image2_path = pathImages + "/Blank.png"    
+        image2_path = pathImages + "/Blank.png"
 
     image2 = Image.open(image2_path)
     width2, height2 = image2.size;
@@ -1014,8 +1080,8 @@ def Commercial1(br,nNum,sPath,sClass,nType):
     if not HiddenFlag:
         label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
         label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
- 
+    root.update_idletasks()  # Force update the layout
+
     # get station and program details
     ht = be.get_attribute('innerHTML')
     soup = BeautifulSoup(ht, 'lxml')
@@ -1055,7 +1121,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         if nType == 0:
             widthPx = 250 #110
         else: # if nType == 1:
-            widthPx = 250 #250    
+            widthPx = 250 #250
         heightPx = 330
         print(f"Move size: width = {widthPx}, height = {heightPx}")
         actions = ActionChains(br)
@@ -1065,7 +1131,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             actions.move_by_offset(winWidth-widthPx, heightPx).click().perform()
             print(f"RTL country {CountryCode} detected, moving to the right side of the screen")
             pass
-        else:    
+        else:
             actions.move_by_offset(widthPx, heightPx).click().perform()
         time.sleep(16)
 
@@ -1123,7 +1189,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                 br.switch_to.window(nh2)
                 br.close()
                 br.switch_to.window(oh2)
-                print("<<< Shut down second window >>>")    
+                print("<<< Shut down second window >>>")
         else:
             # identify whether streaming works using identifiers on a path element
             # that display an error in playing graphic on the play button
@@ -1155,14 +1221,14 @@ def Commercial2(br,nNum,sPath,sClass,nType):
             image = Image.open(image_path)
         scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
 
-        # saving button icon if adding station to playlist 
+        # saving button icon if adding station to playlist
         global addFlag
         if addFlag:
             buttonImagePath = pathImages + "/button" + str(buttonIndex) + ".png"
             scaled_image.save(buttonImagePath)
             addFlag = False
             print(f"saving button icon {buttonImagePath}")
-        
+
         # Display the station logo as given in the scaled_image
         photo = ImageTk.PhotoImage(scaled_image)
         label.config(image=photo)
@@ -1226,7 +1292,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                         tabNum = 1
                     else: # tabNum == 1
                         print("display downloaded station logo!")
-        
+
     # Stations with program image
     image_path = pathImages + "/presenter.jpg"
     foundImage = True
@@ -1283,7 +1349,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
                         # failed to find image so display a blank image
                         foundImage = False
                         print("=====> xpath NONE")
-        
+
     if foundImage:
         image = Image.open(image_path)
         width2, height2 = image.size;
@@ -1296,7 +1362,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         if not HiddenFlag:
             label2.place(x=Xgap3-(width-Xprog)+X1, y=Ygap2+Y1, width=width-X1, height=Xprog-X1)  # Adjust the position
             label2.lift(text_box)
-    else:    
+    else:
         image_path = pathImages + "/Blank.png"
         image = Image.open(image_path)
         scaled_image = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
@@ -1306,7 +1372,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
         if not HiddenFlag:
             label2.place(x=Xgap+X1, y=Ygap3+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
             label2.lift(text_box)
-    root.update_idletasks()  # Force update the layout        
+    root.update_idletasks()  # Force update the layout
 
     # get station and program details (if available)
     ht = be.get_attribute('innerHTML')
@@ -1324,7 +1390,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
     if fe is not None:
         fe1 = fe1+fe.get_text(separator="*", strip=True)+"* *"
     else:
-        fe1 = fe1+" *"        
+        fe1 = fe1+" *"
 
     # get program details
     fe = soup.find(attrs={"class": "history-song"})
@@ -1359,7 +1425,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
 
 # 2D array of radio station information in [long name, station icon name, Streamer Function, nNum, sPath, sClass, nType] format
 # where nNum, sPath, sClass & nType are arguments for the Radio1, Radio2, Radio3, Radio4, Radio5, Radio6,
-# Radio7, Commercial1 & Commercial2 station calling functions. 
+# Radio7, Commercial1 & Commercial2 station calling functions.
 # Clearly this can be varied if you wish to listen to different stations
 # Currently we Have all 83 ABC stations (included time shifted versions) and 186 in total.
 # This 2D array used to be explicitly populated here:
@@ -1370,7 +1436,7 @@ def Commercial2(br,nNum,sPath,sClass,nType):
 #        ["ABC triple j Hottest","ABC_triple_j_Hottest",Radio1,7,"https://www.abc.net.au/triplej/live/triplejhottest","",0],
 #        ["ABC triple j Unearthed","ABC_triple_j_Unearthed",Radio1,7,"https://www.abc.net.au/triplej/live/unearthed","",0],
 #        ["ABC Radio Australia","ABC_Radio_Australia",Radio1,7,"https://www.abc.net.au/radio-australia/live/","",0]
-#   ]  
+#   ]
 
 # Prepare a mapping from function names (as strings) to actual function objects
 # this enables us to load the aStation list from a CSV file with the function names as strings
@@ -1393,8 +1459,8 @@ with open(allStations_filepath, mode="r", newline="", encoding="utf-8") as csvfi
     reader = csv.reader(csvfile)
     for row in reader:
         row = [function_map.get(cell, cell) for cell in row]  # Replace function names with actual references
-        row[3] = int(row[3]) if row[3].isdigit() else row[3]  # Convert column 3 to integer 
-        row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer 
+        row[3] = int(row[3]) if row[3].isdigit() else row[3]  # Convert column 3 to integer
+        row[6] = int(row[6]) if row[6].isdigit() else row[6]  # Convert column 6 to integer
         aStation.append(row)
 print("---- aStation loaded from file: " + allStations_filepath + " ----")
 
@@ -1445,14 +1511,14 @@ def after_GUI_started():
     except FileNotFoundError:
         print(f'Error: The file {filepath} does not exist.')
         buttonIndex = 0
-    buttons[buttonIndex].focus_set()    
-    print(f'Button of last station played in playlist is {buttonIndex}')    
+    buttons[buttonIndex].focus_set()
+    print(f'Button of last station played in playlist is {buttonIndex}')
     print("")
     on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"),False)
     setupButton.focus_set()  # set focus to the setup button
     setupButton.update_idletasks()
 
-    if GPIO:    
+    if GPIO:
         # load bluetooth status file and use it to populate global variables
         global onBluetooth
         global currentPair
@@ -1472,12 +1538,12 @@ def after_GUI_started():
         except FileNotFoundError:
             print(f"File not found: {filepath3}")
             # create a bluetooth status file and give it default values
-            onBluetooth = False; line1 = "0"  
+            onBluetooth = False; line1 = "0"
             currentPair = "00:00:00:00:00:00 - NOTHING"; line2 = currentPair
             with open(filepath3, 'w') as file:
                 file.write(line1 + '\n')  # Write the first line with a newline character
                 file.write(line2 + '\n')  # Write the second line with a newline character
-            print(f"Default file created {filepath3}")        
+            print(f"Default file created {filepath3}")
         print(f"onBluetooth: {str(onBluetooth)}")
         print(f"currentPair: {currentPair}")
 
@@ -1492,15 +1558,15 @@ def after_GUI_started():
             BTstatusButton.config(text="BT is ON")
             BTstatusButton.config(bg="light green")
         else: # onBluetooth==False
-            subprocess_run("sudo systemctl disable bluetooth")                        
-            subprocess_run("sudo systemctl stop bluetooth")                        
+            subprocess_run("sudo systemctl disable bluetooth")
+            subprocess_run("sudo systemctl stop bluetooth")
             BTstatusButton.config(text="BT is OFF")
             BTstatusButton.config(bg="light coral")
 
     # This starts the regular restart of Firefox and the last station stream
     # we do this to avoid memory leaks and other issues if running the app for a long time
     root.after(int(resetTime*1000), lambda: RegularRestart())
-        
+
 
 
 
@@ -1516,7 +1582,7 @@ def kill_gekodrivers():
         for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
             try:
                 name = proc.info['name'] or ''
-                # also check cmdline in case it’s renamed
+                # also check cmdline in case it's renamed
                 if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in proc.info['cmdline']):
                     pid = proc.info['pid']
                     print(f"Killing {name} (PID {pid})")
@@ -1547,7 +1613,7 @@ def on_closing():
     browser.quit() # close the WebDriver
     kill_gekodrivers() # kill any running geckodriver processes
     time.sleep(2)
-    root.destroy() # destroy GUI   
+    root.destroy() # destroy GUI
     print("Closing the app...")
 
 
@@ -1569,11 +1635,11 @@ def RestartFirefoxAndLastStation(fromCombobox: bool, onError: bool):
         else: # if not onError
             firstRun = True
             stopLastStream = True
-        rTime = int(refreshTime*1500)   
+        rTime = int(refreshTime*1500)
     else: # if not pollFlag
         firstRun = True
         stopLastStream = False
-        rTime = int(refreshTime*500)   
+        rTime = int(refreshTime*500)
 
     print(f"firstRun: {firstRun}, stopLastStream: {stopLastStream}")
     if fromCombobox:
@@ -1588,7 +1654,7 @@ def RegularRestart():
     RestartFirefoxAndLastStation(gfromCombobox, False)
     root.after(int(resetTime*1000), lambda: RegularRestart())
     print("---- RegularRestart() finished ---------------------------------------------")
- 
+
 
 
 
@@ -1598,7 +1664,7 @@ def on_select(event,fromCombobox):
     global firstRun, stopLastStream, Streaming, justDeletedFlag, pollFlag
     global StationName, CountryCode, StationLogo, StationFunction, nNum, sPath, sClass, nType
     global ExtraWindowFlag, TimeNum, selectedStationIndex
-    global eventFlag, selected_value, combobox_index, selected_value_last,selected_index 
+    global eventFlag, selected_value, combobox_index, selected_value_last,selected_index
     global startTime, finishTime
     global firstRun_select2
 
@@ -1619,12 +1685,12 @@ def on_select(event,fromCombobox):
         timeInterval = finishTime-startTime
         timeIntervalStr = f"{timeInterval:.2f}"
         print(f"Time interval: {timeIntervalStr} seconds")
-        
+
         startTime = time.time()
         print(f"Type: {event.type}")
         print(f"Widget: {event.widget}")
         print(f"Data: {event.data}")
-        
+
         timeInterval2 = finishTime-startTime2
         timeIntervalStr2 = f"{timeInterval2:.2f}"
         print(f"Time interval2: {timeIntervalStr2} seconds")
@@ -1634,16 +1700,14 @@ def on_select(event,fromCombobox):
             if justDeletedFlag:
                 print("justDeletedFlag is True, so returning")
                 justDeletedFlag = False;
-                firstRun = True    
+                firstRun = True
                 print(f"---- on_select(fromCombobox={fromCombobox}) finished ---------------------------------------------\n")
-                return    
+                return
 
         # set various flags and parameters related to starting a station stream or accesing its website
         if event.type=="Auto":
+            _clear_ai_text_box()
             if not GPIO:
-                text_box_ai.config(state=tk.NORMAL)      # unlock it
-                text_box_ai.delete("1.0", tk.END)        # clear all content
-                text_box_ai.config(state=tk.DISABLED)    # lock it again
                 print("DELETED text_box_ai contents")
 
             if pollFlag:
@@ -1662,7 +1726,7 @@ def on_select(event,fromCombobox):
                 except Exception as e:
                     # Need to catch the exception if the window is not open
                     # which can happen if the browser was restarted last time
-                    print(f"Error closing extra window: {e}")   
+                    print(f"Error closing extra window: {e}")
 
             eventFlag = True
             if fromCombobox:
@@ -1671,7 +1735,7 @@ def on_select(event,fromCombobox):
                 combobox_index = custom_combo.current()
                 print("selected_value:", selected_value)
                 print("combobox_index:", combobox_index)
-            else: # if not fromCombobox       
+            else: # if not fromCombobox
                 selected_value_last = selected_value
                 selected_value = aStation2[buttonIndex][0]
                 selected_index = int(aStation2[buttonIndex][1])
@@ -1680,62 +1744,30 @@ def on_select(event,fromCombobox):
 
             # clear the icon and program graphic from the last selected station
             # to prevent confusion when loading a new station.
-            image_path = pathImages + "/Blank.png"
-            image = Image.open(image_path)
-            scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-            photo = ImageTk.PhotoImage(scaled_image)
-            label.config(image=photo)
-            label.image = photo  # Keep a reference to avoid garbage collection
-            scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-            photo2 = ImageTk.PhotoImage(scaled_image2)
-            label2.config(image=photo2)
-            label2.image = photo2  # Keep a reference to avoid garbage collection
-            if not HiddenFlag:
-                label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-                label2.lift(text_box)
-            root.update_idletasks()  # Force update the layout
+            _show_blank_images()
 
         # extract all parameters for the selected radio station
-        if fromCombobox:
-            try:
-                StationName = aStation[combobox_index][0]
-                CountryCode = StationName[:2]
-                print("CountryCode:", CountryCode)
-            except IndexError:
-                print(f"IndexError: {combobox_index} is out of range!")
-                return
-            StationLogo = aStation[combobox_index][1]
-            StationFunction = aStation[combobox_index][2]
-            nNum = aStation[combobox_index][3]
-            sPath = aStation[combobox_index][4]
-            sClass = aStation[combobox_index][5]
-            nType = aStation[combobox_index][6]
-        else: # if not fromCombobox
-            try:
-                StationName = aStation[selected_index][0]
-                CountryCode = StationName[:2]
-                print("CountryCode:", CountryCode)
-            except IndexError:
-                print(f"IndexError: {selected_index} is out of range!")
-                return
-            StationLogo = aStation[selected_index][1]
-            StationFunction = aStation[selected_index][2]
-            nNum = aStation[selected_index][3]
-            sPath = aStation[selected_index][4]
-            sClass = aStation[selected_index][5]
-            nType = aStation[selected_index][6]
+        idx = combobox_index if fromCombobox else selected_index
+        try:
+            StationName = aStation[idx][0]
+            CountryCode = StationName[:2]
+            print("CountryCode:", CountryCode)
+        except IndexError:
+            print(f"IndexError: {idx} is out of range!")
+            return
+        StationLogo = aStation[idx][1]
+        StationFunction = aStation[idx][2]
+        nNum = aStation[idx][3]
+        sPath = aStation[idx][4]
+        sClass = aStation[idx][5]
+        nType = aStation[idx][6]
 
         # setting stop flag, this prevents on_select() from running again
         # "mysterious" code due to timing issues
         if eventFlag:
             # inform user that a station is being started
             text = "Please be patient, the station *" +  StationName + "*is being started"
-            text_rows = text.split("*")
-            text_box.config(state=tk.NORMAL)
-            text_box.delete('1.0', tk.END)
-            for row in text_rows:
-                text_box.insert(tk.END, row + "\n")
-            text_box.config(state=tk.DISABLED)
+            _update_text_box(text)
             root.update_idletasks()
 
         print("eventFlag:",eventFlag)
@@ -1744,9 +1776,9 @@ def on_select(event,fromCombobox):
             print("Index:", selected_index)
             print("Button index:", buttonIndex)
 
-        if fromCombobox:
+        if fromCombobox or selected_index != -1:
             try:
-                # run selected radio station stream, and return associated textual information 
+                # run selected radio station stream, and return associated textual information
                 print("*** Will run:", StationFunction)
                 text = StationFunction(browser,nNum,sPath,sClass,nType)
                 text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
@@ -1755,74 +1787,9 @@ def on_select(event,fromCombobox):
                     if text_rows[0]==text_rows[1]:
                         del text_rows[0]
 
-                # Make text box editable, so contents can be deleted and rewritten
-                text_box.config(state=tk.NORMAL)
-                text_box.delete('1.0', tk.END)
-                print(text_rows)
-                # Insert each row of text into the text box
-                for row in text_rows:
-                    text_box.insert(tk.END, row + "\n")
-                # Disable the text box to make it read-only
-                text_box.config(state=tk.DISABLED)
-
-                # on_select() schedules itself to run in nominally refreshTime seconds.
-                # this updates the program text and grapic while the selected radio station is streaming
-                eventFlag = False
-                if pollFlag:
-                    if Streaming:
-                        print("JUST ABOUT to schedule on_select(True) to run in the future")
-                        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", custom_combo, "Manual from custom_combo"),True))
-                        print("DID SCHEDULE on_select(True) to run in the future")
-                    else:
-                        print("Streaming==FALSE so DID NOT schedule on_select(True) to run in the future")
-                        firstRun = True 
-                else:
-                    print("pollFlag==False so DID NOT schedule on_select(True) to run in the future")
-
-            except urllib.error.HTTPError as e:
-                print(f"\nCrashed in on_select({fromCombobox}), HTTPError: {e.code} - {e.reason}")
-                event.type = "Manual" # to prevent saving of buttonIndex
-
-                # inform user that starting station has failed in some way
-                text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
-                text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
-                text = text + "*Try again or select a different station."
-                text_rows = text.split("*")
-                text_box.config(state=tk.NORMAL)
-                text_box.delete('1.0', tk.END)
-                for row in text_rows:
-                    text_box.insert(tk.END, row + "\n")
-                text_box.config(state=tk.DISABLED)
-                root.update_idletasks()
-
-            Streaming = True # always reset this to True
-            print(f"---- on_select({fromCombobox}) finished ---------------------------------------------\n")
-
-        else: # if not fromCombobox
-            if selected_index != -1:
-                # run selected radio station stream, and return associated textual information 
-                try:
-                    print("*** Will run:", StationFunction)
-                    text = StationFunction(browser,nNum,sPath,sClass,nType)
-                    text = sPath + "*" + StationName + "*" + text # + "* *[" + timeIntervalStr + "]"
-                    text_rows = text.split("*")
-                    if len(text_rows)>1:
-                        if text_rows[0]==text_rows[1]:
-                                del text_rows[0]
-
-                    # Make text box editable, so contents can be deleted and rewritten
-                    text_box.config(state=tk.NORMAL)
-                    text_box.delete('1.0', tk.END)
-                    print(text_rows)
-
-                    # Insert each row of text into the text box
-                    for row in text_rows:
-                        text_box.insert(tk.END, row + "\n")
-
-                    # Disable the text box to make it read-only
-                    text_box.config(state=tk.DISABLED)
+                _update_text_box("*".join(text_rows))
+                if not fromCombobox:
                     root.update_idletasks()
-
                     # make seleted button synchronize with combobox
                     # hide the annoying blinking cursor though the fudge
                     # of selective focus setting
@@ -1831,101 +1798,50 @@ def on_select(event,fromCombobox):
                         custom_combo.focus_set()
                         custom_combo.selection_clear()
                         buttons[buttonIndex].focus_set()
-                    
-                    eventFlag = False
-                    if pollFlag:
-                        if Streaming:
-                            print("JUST ABOUT to schedule on_select(False) to run in the future")
-                            root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons"),False))
-                            print("DID SCHEDULE on_select(False) to run in the future")
-                        else:    
-                            print("Streaming==FALSE so DID NOT schedule on_select(False) to run in the future")
-                            firstRun = True
-                    else:    
-                        print("pollFlag==False so DID NOT schedule on_select(False) to run in the future")
-
-                except urllib.error.HTTPError as e:
-                    print(f"\nCrashed in on_select({fromCombobox}), HTTPError: {e.code} - {e.reason}")
-
-                    event.type = "Manual" # to prevent saving of buttonIndex
-
-                    # inform user that starting station has failed in some way
-                    text = "<<< ERROR >>>*" + StationName + "*failed to load properly*"
-                    text = text + "HTTP Error " + str(e.code) + ": " + str(e.reason)
-                    text = text + "*Try again or select a different station."
-                    text_rows = text.split("*")
-                    text_box.config(state=tk.NORMAL)
-                    text_box.delete('1.0', tk.END)
-                    for row in text_rows:
-                        text_box.insert(tk.END, row + "\n")
-                    text_box.config(state=tk.DISABLED)
-                    root.update_idletasks()
-            else:
-                # There is nothing to stream
-                browser.get(refresh_http)
-                time.sleep(2)
-                text = selected_value + "*No station playing"
-                #text = text + "* *[" + timeIntervalStr + "]"
-                text_rows = text.split("*")
-
-                # Make text box editable, so contents can be deleted and rewritten
-                text_box.config(state=tk.NORMAL)
-                text_box.delete('1.0', tk.END)
-                print(text_rows)
-
-                # Insert each row of text into the text box
-                for row in text_rows:
-                    text_box.insert(tk.END, row + "\n")
-
-                # Disable the text box to make it read-only
-                text_box.config(state=tk.DISABLED)
-                root.update_idletasks()
-
-                # Display the station logo and program graphic as blank
-                image_path = pathImages + "/Blank.png"
-                image = Image.open(image_path)
-                scaled_image = image.resize((iconSize, iconSize))  # Adjust the size as needed
-                photo = ImageTk.PhotoImage(scaled_image)
-                label.config(image=photo)
-                label.image = photo  # Keep a reference to avoid garbage collection
-                scaled_image2 = image.resize((Xprog-X1, Xprog-X1))  # Adjust the size as needed
-                photo2 = ImageTk.PhotoImage(scaled_image2)
-                label2.config(image=photo2)
-                label2.image = photo2  # Keep a reference to avoid garbage collection
-                if not HiddenFlag:
-                    label2.place(x=Xgap+X1, y=Ygap2+Y1, width=Xprog-X1, height=Xprog-X1)  # Adjust the position
-                    label2.lift(text_box)
-                root.update_idletasks()
-
-                print("BLANK END")
-                print("")
 
                 eventFlag = False
-                if pollFlag:
-                    if Streaming:
-                        print("JUST ABOUT to schedule on_select(False) to run for NO station in the future")
-                        root.after(int(refreshTime*1000), lambda: on_select(CustomEvent("Manual", buttons[buttonIndex], "Manual from buttons"),False))
-                        print("DID SCHEDULE on_select(False) to run in the future")
-                    else:    
-                        print("Streaming==FALSE so DID NOT schedule on_select(False) to run in the future")
-                        firstRun = True
-                else:    
-                    print("pollFlag==False so DID NOT schedule on_select(False) to run in the future")
+                _schedule_poll(fromCombobox)
 
+            except urllib.error.HTTPError as e:
+                print(f"\nCrashed in on_select({fromCombobox}), HTTPError: {e.code} - {e.reason}")
+                _show_http_error(event, StationName, e)
+
+            Streaming = True # always reset this to True
+        else:
+            # There is nothing to stream
+            browser.get(refresh_http)
+            time.sleep(2)
+            text = selected_value + "*No station playing"
+            _update_text_box(text)
+            root.update_idletasks()
+
+            # Display the station logo and program graphic as blank
+            _show_blank_images()
+
+            print("BLANK END")
+            print("")
+
+            eventFlag = False
+            _schedule_poll(fromCombobox)
+
+            Streaming = True # always reset this to True
+
+        if not fromCombobox:
             if event.type=="Auto":
                 # save number of last playlist radio station that was played (0,...,9), ie buttonIndex.
                 with open(filepath, 'w') as file:
                     file.write(str(buttonIndex))
 
-            Streaming = True # always reset this to True
-            print("---- on_select(False) finished ---------------------------------------------\n")
-            
+            print(f"---- on_select(False) finished ---------------------------------------------\n")
+
             if firstRun_select2:
                 firstRun_select2 = False
                 view_button_pressed(None)
                 print("First run of on_select(False) completed, view_button_pressed() the first time")
                 view_button_pressed(None)
                 print("First run of on_select(False) completed, view_button_pressed() a second time")
+        else:
+            print(f"---- on_select({fromCombobox}) finished ---------------------------------------------\n")
 
     except Exception as e:
     #except WebDriverException as e:
@@ -1941,7 +1857,7 @@ def on_select(event,fromCombobox):
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
-    time.sleep(1) 
+    time.sleep(1)
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     buttons[i].update_idletasks()  # Force update
 
@@ -1950,11 +1866,11 @@ def on_button_press(event, i):
     print(f"\nPlaylist button {buttonIndex} pressed")
     global justDeletedFlag
     copyFlag = justDeletedFlag
-    on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)    
+    on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)
     if copyFlag:
         # forces pressing this playlist button twice if necessary
         print(f"Playlist button {buttonIndex} pressed AGAIN")
-        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)    
+        on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Enter key"),False)
     print(f"COMPLETED pressing the Playlist button {buttonIndex}")
 
 
@@ -1968,7 +1884,7 @@ def on_button_delete(event, i):
     index = aStation2[buttonIndex][1]
     print("deleting station:", index, "with playlist index:", buttonIndex)
     if index != -1:
-        print("station deleted")    
+        print("station deleted")
 
         lastStation = "-- EMPTY " + str(buttonIndex) +" --"
         aStation2[buttonIndex][0] = lastStation
@@ -1987,7 +1903,7 @@ def on_button_delete(event, i):
         photo = ImageTk.PhotoImage(image_resized)
         buttons[buttonIndex].config(image=photo)
         buttons[buttonIndex].image = photo
-        buttons[buttonIndex].update_idletasks() 
+        buttons[buttonIndex].update_idletasks()
 
         # This will "play" the blank station for the real purpose of shutting down the current station
         on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from Delete key"),False)
@@ -1996,8 +1912,8 @@ def on_button_delete(event, i):
         with open(filepath2, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(aStation2)
-    else:        
-        print("No station to delete")    
+    else:
+        print("No station to delete")
 
 
 # called when playlist button i is in focus and the Insert key is pressed.
@@ -2012,7 +1928,7 @@ def on_button_insert(event, i):
     combobox_index = custom_combo.current()
     print(f"combobox_index: {combobox_index}")
     if (combobox_index != -1):
-        print("station added")    
+        print("station added")
         global addFlag
         addFlag = True # so can get and save icon for playlist button
 
@@ -2039,7 +1955,7 @@ def on_button_insert(event, i):
             writer = csv.writer(file)
             writer.writerows(aStation2)
     else:
-        print("No station added")    
+        print("No station added")
     print("")
 
 
@@ -2050,17 +1966,17 @@ def button_move_focus_vertically(event, i, d):
     if d == -1:  # Up arrow key pressed
         if i > 8:  # assume button is not in first row
             i -= 9
-            buttons[i].focus_set()  
+            buttons[i].focus_set()
             buttons[i].update_idletasks()
         else:  # if i <= 8, then button is in the first row
             # move focus off playlist button grid to rightmost button
-            i = 0  # wrap to the first button    
+            i = 0  # wrap to the first button
             setupButton.focus_set()  # set focus to the setup button
             setupButton.update_idletasks()
     else:  # Down arrow key pressed
         if i < numButtons-9:
-            i += 9 # assume button is not in last visible 
-            buttons[i].focus_set()  
+            i += 9 # assume button is not in last visible
+            buttons[i].focus_set()
             buttons[i].update_idletasks()
 
 
@@ -2069,12 +1985,12 @@ def button_move_focus_vertically(event, i, d):
 def button_move_focus_horizontally(event, i, d):
     print(f"button_move_focus_horizontally() called with i={i} and d={d}")
     if d == -1:  # Left arrow key pressed
-        if i%9 > 0: # assume button is not in first column 
-            i -= 1 
+        if i%9 > 0: # assume button is not in first column
+            i -= 1
     else:  # Right arrow key pressed
-        if i%9 < 8: # assume button is not in last (rightmost) column 
-            i += 1 
-    buttons[i].focus_set()  
+        if i%9 < 8: # assume button is not in last (rightmost) column
+            i += 1
+    buttons[i].focus_set()
     buttons[i].update_idletasks()  # Force update
 
 
@@ -2109,12 +2025,12 @@ def on_focus(event, i):
                                          width=labelPlaylistFocus_pos['width'], height=labelPlaylistFocus_pos['height'])
                 StationHiddenFlag = False
     else:
-        print("No widget is currently focused") 
+        print("No widget is currently focused")
     buttons[i].update_idletasks()  # Force update
 
 
 # called when a playlist button loses focus.
-# returns the button to a visually "unfocused" state. 
+# returns the button to a visually "unfocused" state.
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
     labelPlaylistFocus.config(text="")
@@ -2130,12 +2046,12 @@ def on_focus_wifiPassword(event):
 
 # called when wifiPassword Entry widget loses focus.
 def on_focus_out_wifiPassword(event):
-    style.map("Focused.TEntry",fieldbackground=[("!focus", "white")])    
+    style.map("Focused.TEntry",fieldbackground=[("!focus", "white")])
     event.widget.update_idletasks()
 
 
 # show the setup form (over the top of the main window)
-# Only in RP5B version. Poll status toggle button otherwise  
+# Only in RP5B version. Poll status toggle button otherwise
 def show_setup_form(event):
     rootFlag = False
     setup.deiconify()
@@ -2158,7 +2074,7 @@ def subprocess_run(command):
     returnCode = result.returncode
     if returnCode == 0: print(f"Command '{command}' succeeded")
     else: print(f"Command '{command}' FAILED")
-    return returnCode    
+    return returnCode
 
 
 # Helper function to execute a bluetoothctl command
@@ -2177,8 +2093,8 @@ def toggle_bluetooth(event):
         BTstatusButton.config(text="BT OFF")
         BTstatusButton.config(bg="light coral")
         onBluetooth = False; line1 = "0"
-        subprocess_run("sudo systemctl disable bluetooth")                        
-        subprocess_run("sudo systemctl stop bluetooth")                        
+        subprocess_run("sudo systemctl disable bluetooth")
+        subprocess_run("sudo systemctl stop bluetooth")
     else: #if sText=="BT OFF"
         BTstatusButton.config(text="BT ON")
         BTstatusButton.config(bg="light green")
@@ -2188,7 +2104,7 @@ def toggle_bluetooth(event):
     with open(filepath3, 'w') as file:
         file.write(line1 + '\n')
         file.write(currentPair + '\n')
-    print(f"updated: {filepath3}")        
+    print(f"updated: {filepath3}")
 
 
 # if pollFlag is True then set it to False, and vica-versa.
@@ -2209,7 +2125,7 @@ def toggle_pollStatus(event):
             firstRun = True
             stopLastStream = False
             pollFlag = True; line = "1"
-    else:    
+    else:
         sText = setupButton.cget("text")
         if sText=="ON":
             setupButton.config(text="OFF")
@@ -2234,19 +2150,19 @@ def _connect_bluetooth(event):
             label4.config(text=f"FAILED")
         else:
             label4.config(text=f"")
-    else:    
+    else:
         print("NOT CONNECTING")
         label4.config(text=f"TURN ON BT")
 
 
 # Press [CONNECT] button to restart bluetooth interface.
 # if a previously paired set of bluetooth speakers is turned and then this function is run
-# if will connect and play though them even if Bluetootch was originally turned off  
+# if will connect and play though them even if Bluetootch was originally turned off
 def connect_bluetooth():
     mac_address = currentPair.split(" - ")[0]
     device_name = currentPair.split(" - ")[1]
     print(f"Restarting Bluetooth interface with currently paired device: {device_name}")
-    subprocess_run("sudo systemctl enable bluetooth")                        
+    subprocess_run("sudo systemctl enable bluetooth")
     subprocess_run("sudo systemctl start bluetooth")
     subprocess_run("rfkill unblock bluetooth")
     returnCode = subprocess_run(f"sudo bluetoothctl connect {mac_address}")
@@ -2267,12 +2183,12 @@ def on_select_bluetooth(event):
         print("SELECTION DOES NOT EXIST - CANNOT PAIR")
         label3.config(text=f"NOT A VALID SELECTION - TRY AGAIN?")
         setup.update_idletasks()
-        root.after(100,lambda: mainButton.focus_set()) 
+        root.after(100,lambda: mainButton.focus_set())
         return # all code below is ignored
-        
+
     loop=0
     while True:
-        # does the actual pairing to selected mac address - need previous actions else not connectable?   
+        # does the actual pairing to selected mac address - need previous actions else not connectable?
         process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
         process.stdin.write("discoverable on\n")
         process.stdin.flush()
@@ -2302,7 +2218,7 @@ def on_select_bluetooth(event):
             print(f"Failed to Pair try {loop}")
         else:
             break
-        
+
     if position == -1:
         print("GAVE UP TRYING TO PAIR - TRY AGAIN!")
         label3.config(text=f"GAVE UP TRYING TO PAIR - TRY AGAIN?")
@@ -2318,15 +2234,15 @@ def on_select_bluetooth(event):
         else:
             line1 = "0"
         line2 = "00:00:00:00:00:00 - NOTHING"
-    else:    
-        onBluetooth = True; line1 = "1"  
+    else:
+        onBluetooth = True; line1 = "1"
         global currentPair; currentPair= f"{mac_address} - {device_name}"; line2 = currentPair
         BTstatusButton.config(text="BT ON")
     with open(filepath3, 'w') as file:
         file.write(line1 + '\n')  # Write the first line with a newline character
         file.write(line2 + '\n')  # Write the second line with a newline character
     print(f"Default file created {filepath3}")
-    root.after(100,lambda: mainButton.focus_set()) 
+    root.after(100,lambda: mainButton.focus_set())
 
 
 # when [SEE BT DEVICES] button pressed.
@@ -2336,11 +2252,11 @@ def pair_bluetooth(event):
     print("Start Bluetooth PAIRING")
     label6.config(text="WAITING - please be patient!")
     setup.update_idletasks()
-    
+
     # restarts bluetooth so that we can remove all paired devices
     subprocess_run("rfkill unblock bluetooth")
     subprocess_run("sudo systemctl restart bluetooth")
-    
+
     # remove all paired devices
     output = run_bluetoothctl_command("devices\n")
     for line in output.splitlines():
@@ -2349,7 +2265,7 @@ def pair_bluetooth(event):
             run_bluetoothctl_command(f"remove {device_mac}\n")
             print(f"Removed device: {device_mac}")
 
-    # create a list aPairable of devices available for possibly pairing to   
+    # create a list aPairable of devices available for possibly pairing to
     process = subprocess.Popen(['sudo','bluetoothctl'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
     process.stdin.write("discoverable on\n")
     process.stdin.flush()
@@ -2387,7 +2303,7 @@ def pair_bluetooth(event):
     global numPairable; numPairable = len(aPairable)
     if numPairable==0:
         label3.config(text="No Bluetooth devices found")
-    else:    
+    else:
         custom_combo_bt.current(0)
         custom_combo_bt.entry.focus_set()
         if len(aPairable)==1:
@@ -2396,7 +2312,7 @@ def pair_bluetooth(event):
             label3.config(text=f"Found {numPairable} devices")
     print(f"Found {numPairable} device(s)\n")
     label6.config(text="")
-   
+
 
 # when [custom_combo_wifi] selected
 # Use current selection from the combobox to connect to the internet
@@ -2413,7 +2329,7 @@ def on_select_wifi(event):
         print("SELECTION DOES NOT EXIST - CANNOT PAIR")
         label5.config(text=f"NOT A VALID SELECTION - TRY AGAIN?")
         setup.update_idletasks()
-        root.after(100,lambda: mainButton.focus_set()) 
+        root.after(100,lambda: mainButton.focus_set())
         return # all code below is ignored
 
     # assumes credentials for this network have previously been stored, ie. its
@@ -2429,15 +2345,15 @@ def on_select_wifi(event):
         # need to reload last streaming station
         #global PollFlag; pollFlag=True
         on_select(CustomEvent("Auto", buttons[buttonIndex], "Auto from GUI start"),False)
-        root.after(100,lambda: mainButton.focus_set()) 
+        root.after(100,lambda: mainButton.focus_set())
     else: # fail, so try with password
         print(f"Command '{command}' FAILED, need password")
         label5.config(text=f"NEED password for {sSSID}")
-        root.after(100,lambda: wifiPassword.focus_set()) 
+        root.after(100,lambda: wifiPassword.focus_set())
 
 
 # when the Enter key is pressed after text has been keyed into the
-# [wifiPassword] Entry widget  
+# [wifiPassword] Entry widget
 def process_wifiPassword(event):
     global sSSID
     sPassword = wifiPassword.get()
@@ -2454,7 +2370,7 @@ def process_wifiPassword(event):
         else: # fail, can try with a new password or not
             loop += 1
             print(f"Attempt {loop}: FAILED")
-            
+
     if loop==3:
         label5.config(text=f"Failed connect for {sSSID} - try again?")
         root.after(100,lambda: wifiPassword.focus_set())
@@ -2489,7 +2405,7 @@ def find_wifi(event):
     for line in sLines:
         if "Quality" in line:
             match = re.search(r'=(.+?)/', line)
-            sQuality = match.group(1) 
+            sQuality = match.group(1)
             sQuality = f"Q{sQuality}"
         elif "ESSID" in line:
             match = re.search(r'"([^"]*)"', line)
@@ -2503,7 +2419,7 @@ def find_wifi(event):
     global numWIFI; numWIFI = len(aWIFI)
     if numWIFI==0:
         label5.config(text="No visible wifi networks found")
-    else:    
+    else:
         custom_combo_wifi.current(0)
         custom_combo_wifi.entry.focus_set()
         if numWIFI==1:
@@ -2558,7 +2474,7 @@ def focus_next(event):
     # Move to the next widget in focus order
     event.widget.tk_focusNext().focus_set()
     return "break"
- 
+
 
 def focus_prev(event):
     # Move to the previous widget in focus order
@@ -2584,10 +2500,8 @@ def random_button_pressed(event):
 # when the [DEL] button has focus
 def delete_key_pressed(event):
     print("\n*** [DEL] BUTTON PRESSED ***")
+    _clear_ai_text_box()
     if not GPIO:
-        text_box_ai.config(state=tk.NORMAL)      # unlock it
-        text_box_ai.delete("1.0", tk.END)        # clear all content
-        text_box_ai.config(state=tk.DISABLED)    # lock it again
         print("DELETED text_box_ai contents")
 
     global ExtraWindowFlag
@@ -2610,7 +2524,7 @@ def delete_key_pressed(event):
             row = [reverse_function_map.get(cell, cell) for cell in row]  # Convert function references to strings
             writer.writerow(row)  # Write row to CSV
     print("---- COMPLETED Saving the modified aStation list file")
- 
+
     # Update the combobox values (so the deleted station is no longer shown)
     global aStringArray
     aStringArray = []
@@ -2628,12 +2542,12 @@ def delete_key_pressed(event):
             # decrement the index of all stations greater than delIndex
             ix -= 1
             aStation2[i][1] = ix
-            changeFlag = True                
+            changeFlag = True
         if ix == delIndex:
             # if the station is the one deleted, set it to empty
             aStation2[i][0] = "-- EMPTY " + str(i) + " --"
-            aStation2[i][1] = -1     
-            changeFlag = True                
+            aStation2[i][1] = -1
+            changeFlag = True
 
             # get blank station logo
             image_path = pathImages + "/Blank.png"
@@ -2650,7 +2564,7 @@ def delete_key_pressed(event):
             buttons[i].image = photo
             buttons[i].update_idletasks()
 
-    # if modified save the playlist to file         
+    # if modified save the playlist to file
     if changeFlag:
         with open(filepath2, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
@@ -2665,25 +2579,13 @@ def delete_key_pressed(event):
         browser.switch_to.window(oh2)
         print("Extra window closed")
 
-    # There is no station streaming so refresh the browser 
+    # There is no station streaming so refresh the browser
     # and clear icon and program image  and display the "No station playing" message
     # in the text box.
     browser.get(refresh_http)
     time.sleep(2)
     text = "Just deleted the radio station:*" + StationName + "* *NO STATION CURRENTLY PLAYING!"
-    text_rows = text.split("*")
-
-    # Make text box editable, so contents can be deleted and rewritten
-    text_box.config(state=tk.NORMAL)
-    text_box.delete('1.0', tk.END)
-    print(text_rows)
-
-    # Insert each row of text into the text box
-    for row in text_rows:
-        text_box.insert(tk.END, row + "\n")
-
-    # Disable the text box to make it read-only
-    text_box.config(state=tk.DISABLED)
+    _update_text_box(text)
     root.update_idletasks()
 
     # Display the station logo and program graphic as blank
@@ -2718,56 +2620,6 @@ def save_button_pressed(event):
             if text_content_ai.strip() != "": file.write(text_content_ai)
         file.write("\n")
     print("*** COMPLETED - [SAVE] BUTTON PRESSED ***\n")
-     
-'''
-def ai_button_pressed(event):
-    print("\n*** [AI] BUTTON PRESSED ***")
-    print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
-    print(f"Event argument: {event}")
-
-    currentIndex = custom_combo.current()
-    currentStationName = aStation[currentIndex][0]
-    currentStationURL = aStation[currentIndex][4]
-    print(f"Current station: {currentStationName} - URL: {currentStationURL}")
-
-    text_box_content = text_box.get("1.0", tk.END)   # "1.0" means line 1, character 0
-    text_box_content = text_box_content.strip()  # remove trailing newline
-    inputStr = (
-        text_box_content
-    )    
-
-    print(f"input into AI:\n{inputStr}\n")
-
-    def worker():
-        try:
-            messages = [
-                # 1. System prompt: sets overall behavior
-                {"role": "system",
-                 "content": "You are a radio station broadcast historian and researcher. Respond in clean plaintext format, under 600 words. "
-                 "Provide a detailed analysis of the radio station, including its history, "
-                 "Always include a well-aligned summary table of the station, with 2 columns: Feature and Description. "
-                 "The table must fit within 95 characters per line."},
-
-                # 2. First user message
-                {"role": "user",
-                 "content": inputStr}
-            ]
-
-            response =  client.chat.completions.create(
-                model="gpt-4.1",
-                messages=messages,
-            )
-            text = response.choices[0].message.content
-        except Exception as e:
-            text = f"Error: {e}"
-
-        # Schedule update on the main thread
-        text_box_ai.after(0, lambda: display_text(text))
-
-    print("Starting AI processing in a separate thread...")    
-    threading.Thread(target=worker, daemon=True).start()
-    print("*** COMPLETED - [AI] BUTTON PRESSED ***\n")
-'''
 
 
 def ai_button_pressed(event):
@@ -2786,7 +2638,7 @@ def ai_button_pressed(event):
     print(f"input into AI:\n{inputStr}\n")
 
     # --- Helper to robustly extract text from Responses API objects ---
-    def _extract_output_text(resp):         
+    def _extract_output_text(resp):
         """
         Prefer resp.output_text (SDK convenience); fall back to concatenating
         message content if needed; last resort: str(resp).
@@ -2881,10 +2733,10 @@ def view_button_pressed(event):
     print("\n*** [VIEW] BUTTON PRESSED ***")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
- 
+
     # differentiate between GPIO and non-GPIO versions on what playlist buttons can be displayed
     hideRange = numButtons
-    if GPIO: 
+    if GPIO:
         hideRange = numButtons - 54
 
     # toggle the visibility of the text_box & label2, it is initially assumed
@@ -2893,11 +2745,11 @@ def view_button_pressed(event):
     if HiddenFlag:
         text_box.place(x=text_box_pos['x'], y=text_box_pos['y'],
             width=text_box_pos['width'], height=text_box_pos['height'])
-        
+
         label2.place(x=label2_pos['x'], y=label2_pos['y'],
             width=label2_pos['width'], height=label2_pos['height'])
         label2.lift(text_box)
-        
+
         if not GPIO:
             text_box_ai.place(x=text_box_ai_pos['x'], y=text_box_ai_pos['y'],
                 width=text_box_ai_pos['width'], height=text_box_ai_pos['height'])
@@ -2906,7 +2758,7 @@ def view_button_pressed(event):
             buttons[i].place_forget()  # Hide the buttons
 
         HiddenFlag = False
-    else: 
+    else:
         text_box_pos = {'x': text_box.winfo_x(), 'y': text_box.winfo_y(),
             'width': text_box.winfo_width(), 'height': text_box.winfo_height()}
         text_box.place_forget()
@@ -2921,37 +2773,13 @@ def view_button_pressed(event):
                 'width': text_box_ai.winfo_width(), 'height': text_box_ai.winfo_height()}
             text_box_ai.place_forget()
 
-        b = 55  
         for i in range(18, hideRange):
-            if (i<9*1):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
-            elif (i<9*2):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*1), y=b+(sizeButton+5)*1, width=sizeButton, height=sizeButton)
-            elif (i<9*3):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*2), y=b+(sizeButton+5)*2, width=sizeButton, height=sizeButton)
-            elif (i<9*4):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
-            elif (i<9*5):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
-            elif (i<9*6):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
-            elif (i<9*7):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*6), y=b+(sizeButton+5)*6, width=sizeButton, height=sizeButton)
-            elif (i<9*8):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*7), y=b+(sizeButton+5)*7, width=sizeButton, height=sizeButton)
-            elif (i<9*9):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*8), y=b+(sizeButton+5)*8, width=sizeButton, height=sizeButton)
-            elif (i<9*10):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*9), y=b+(sizeButton+5)*9, width=sizeButton, height=sizeButton)
-            elif (i<9*11):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*10), y=b+(sizeButton+5)*10, width=sizeButton, height=sizeButton)
-            else: # (i<9*12):
-                buttons[i].place(x=128+(sizeButton+5)*(i+1-9*11), y=b+(sizeButton+5)*11, width=sizeButton, height=sizeButton)
+            _place_button_at_grid(buttons[i], i, 55)
 
         HiddenFlag = True
 
     text_box.update_idletasks()  # Force update the layout
-    label2.update_idletasks()  # Force update the layout        
+    label2.update_idletasks()  # Force update the layout
     if not GPIO:
         text_box_ai.update_idletasks()  # Force update the layout
     print(f"label2_pos: {label2_pos['x']}, {label2_pos['y']}, {label2_pos['width']}, {label2_pos['height']}")
@@ -2959,18 +2787,18 @@ def view_button_pressed(event):
 
 
 
-# Thanks to Copilot (Think Deeper) AI 
+# Thanks to Copilot (Think Deeper) AI
 class CustomCombobox(tk.Frame):
     def __init__(self, master, values, name, visible_items=5, width=25, *args, **kwargs):
         """
     Initialize a custom combobox.
-        
+
         Parameters:
             master      : Parent widget.
             values      : List of item strings.
             name        : string used to identify actual created object to distinguish function calls
             visible_items: Number of items visible in the dropdown.
-            width       : Width of the entry and dropdown fields (in average characters).            
+            width       : Width of the entry and dropdown fields (in average characters).
         """
         super().__init__(master, *args, **kwargs)
         self.values = values
@@ -2981,13 +2809,13 @@ class CustomCombobox(tk.Frame):
 
         # Variable for the displayed item.
         self.var = tk.StringVar(value=self.values[self.selected_index])
-        
+
         # This entry acts as the combobox display field.
         self.entry = tk.Entry(self, textvariable=self.var, width=self.width)
         self.entry.pack(fill="x", expand=True)
 
         # Store the original background color.
-        self.default_bg = self.entry.cget("background")  
+        self.default_bg = self.entry.cget("background")
 
         # Initialize the dropdown-related attributes.
         self.dropdown = None
@@ -3014,7 +2842,7 @@ class CustomCombobox(tk.Frame):
             self.listbox.delete(0, "end")  # Clear the current items
             for value in self.values:
                 self.listbox.insert("end", value)
-        
+
         # Reset the current selection if necessary.
         if self.values:
             self.selected_index = 0
@@ -3077,7 +2905,7 @@ class CustomCombobox(tk.Frame):
         # Create a borderless Toplevel widget to act as the dropdown
         self.dropdown = tk.Toplevel(self)
         self.dropdown.wm_overrideredirect(True)  # Remove window decorations
-        
+
         # Position the dropdown right below the entry widget.
         x = self.entry.winfo_rootx()
         y = self.entry.winfo_rooty() + self.entry.winfo_height()
@@ -3116,7 +2944,7 @@ class CustomCombobox(tk.Frame):
         If the dropdown is closed, open it.
         Otherwise, move selection down one in the listbox.
         """
-        print("\n*** Down key pressed on combobox dropdown selection ***")        
+        print("\n*** Down key pressed on combobox dropdown selection ***")
         if not self.dropdown:
             self.open_dropdown()
         else:
@@ -3139,7 +2967,7 @@ class CustomCombobox(tk.Frame):
         """
         If the dropdown is open, move the selection up one in thr listbox.
         """
-        print("\n*** Up key pressed on combobox dropdown selection ***")        
+        print("\n*** Up key pressed on combobox dropdown selection ***")
         if self.dropdown:
             current = self.listbox.curselection()
             if current:
@@ -3156,7 +2984,7 @@ class CustomCombobox(tk.Frame):
         """
         If the dropdown is open, move selection down one page.
         """
-        print("\n*** Page Down pressed on combobox dropdown selection ***")        
+        print("\n*** Page Down pressed on combobox dropdown selection ***")
         global visibleItemsNum
         if self.dropdown:
             current = self.listbox.curselection()
@@ -3176,7 +3004,7 @@ class CustomCombobox(tk.Frame):
         """
         If the dropdown is open, move the selection up one page.
         """
-        print("\n*** Page Up pressed on combobox dropdown selection ***")        
+        print("\n*** Page Up pressed on combobox dropdown selection ***")
         global visibleItemsNum
         if self.dropdown:
             current = self.listbox.curselection()
@@ -3207,15 +3035,15 @@ class CustomCombobox(tk.Frame):
             self.close_dropdown()
             self.entry.focus_set()
             if self.name=="custom_combo":
-                print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
+                print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")
                 copyFlag = justDeletedFlag
                 on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
                 if copyFlag:
                     # to force pressing the RETURN button twice if necessary
                     print("\n*** RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION - AGAIN ***")
                     on_select(CustomEvent("Auto", self, "ComboBox Event"),True)
-                print("\n*** COMPLETED - RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")    
-            elif self.name=="custom_combo_bt":    
+                print("\n*** COMPLETED - RETURN PRESSED ON COMBOBOX DROPDOWN SELECTION ***")
+            elif self.name=="custom_combo_bt":
                 on_select_bluetooth(CustomEvent("Auto", self, "ComboBox Event"))
             elif self.name=="custom_combo_wifi":
                 on_select_wifi(CustomEvent("Auto", self, "ComboBox Event"))
@@ -3267,7 +3095,7 @@ class CustomCombobox(tk.Frame):
 
     def on_focus_out(self, event):
         """
-        Restore the background color to its default value and 
+        Restore the background color to its default value and
         check if we need to close the dropdown.
         """
         self.entry.config(background=self.default_bg)
@@ -3287,7 +3115,7 @@ class CustomCombobox(tk.Frame):
         """
         Handles mouse selection from the listbox.
         """
-       
+
         index = self.listbox.curselection()
         if index:
             self.selected_index = index[0]
@@ -3303,10 +3131,10 @@ class CustomCombobox(tk.Frame):
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
-root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio/"+script_name)  
+root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio/"+script_name)
 if GPIO:
     root.geometry("800x455+0+0")
-else:    
+else:
     # more space for windows ai version
     root.geometry("800x861+0+0")
 root.resizable(False, False)
@@ -3328,7 +3156,7 @@ if GPIO:
         label_main = tk.Label(root, text=KeyList[i][0], font=("Arial", 12), bg="darkgray")
         label_main.place(x=10+52*i, y=0, width=50, height=20)
         labels_main.append(label_main)
-    labels_main[indexKeyList].config(bg="lightblue")  
+    labels_main[indexKeyList].config(bg="lightblue")
 else:
     labelRE = tk.Label(root, text="       windows ai gpt-5-nano version running")
     labelRE.place(x=0, y=0)
@@ -3357,22 +3185,22 @@ if GPIO:
     custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=visibleItemsNum, width=35)
     custom_combo.place(x=127+(sizeButton+5), y=24)
     labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 10), bg="gray90")
-    labelPlaylistFocus.place(x=487, y=26, width=275, height=20)      
+    labelPlaylistFocus.place(x=487, y=26, width=275, height=20)
     labelPlaylistFocus.update_idletasks()
     labelPlaylistFocus_pos = {'x': labelPlaylistFocus.winfo_x(), 'y': labelPlaylistFocus.winfo_y(),
                               'width': labelPlaylistFocus.winfo_width(), 'height': labelPlaylistFocus.winfo_height()}
 else: # if windows version
-    visibleItemsNum = 50    
+    visibleItemsNum = 50
     custom_combo = CustomCombobox(root, aStringArray, "custom_combo", visible_items=visibleItemsNum, width=45)
     custom_combo.place(x=130+(sizeButton+5), y=30)
     labelPlaylistFocus = tk.Label(root, text="", anchor="w", font=("Segoe UI", 9), bg="gray90")
-    labelPlaylistFocus.place(x=478, y=30, width=275, height=20)      
+    labelPlaylistFocus.place(x=478, y=30, width=275, height=20)
 
 # Populate if possible the playlist array aStation2[] from file saved at shutdown
 try:
     with open(filepath2,'r', encoding='utf-8') as file:
         reader = csv.reader(file)
-        aStation2 = [row for row in reader]             
+        aStation2 = [row for row in reader]
 except FileNotFoundError:
     # will just use the default aStation2[] array created previously
     print(f'Error: The file {filepath2} does not exist.')
@@ -3390,7 +3218,7 @@ else:
     randomButton.place(x=493 , y=0, height=25)
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
-randomButton.bind("<Return>", random_button_pressed)  
+randomButton.bind("<Return>", random_button_pressed)
 randomButton.bind("<FocusIn>", on_focus_dostuff)
 randomButton.bind("<FocusOut>", on_focus_out_dostuff)
 randomButton.bind("<Right>", focus_next)
@@ -3411,7 +3239,7 @@ else:
     deleteButton.place(x=550-7 , y=0, height=25)
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
-deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button 
+deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button
 deleteButton.bind("<FocusIn>", on_focus_dostuff)
 deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
 deleteButton.bind("<Right>", focus_next)
@@ -3431,20 +3259,20 @@ else:
     saveButton.place(x=590-7, y=0, height=25)
 saveButton.config(takefocus=True)
 saveButton.config(bg="gray90")
-saveButton.bind("<Return>", save_button_pressed)  
+saveButton.bind("<Return>", save_button_pressed)
 saveButton.bind("<FocusIn>", on_focus_dostuff)
 saveButton.bind("<FocusOut>", on_focus_out_dostuff)
 saveButton.bind("<Right>", focus_next)
 saveButton.bind("<Left>", focus_prev)
 
-# button used to run ai to obtain details about the current streaming station 
+# button used to run ai to obtain details about the current streaming station
 # and display it in the text_box_ai
 if not GPIO:
     aiButton = tk.Button(root, text="AI", name="aiButton")
     aiButton.place(x=630, y=0, height=25)
     aiButton.config(takefocus=True)
     aiButton.config(bg="gray90")
-    aiButton.bind("<Return>", ai_button_pressed)  
+    aiButton.bind("<Return>", ai_button_pressed)
     aiButton.bind("<FocusIn>", on_focus_dostuff)
     aiButton.bind("<FocusOut>", on_focus_out_dostuff)
     aiButton.bind("<Right>", focus_next)
@@ -3459,10 +3287,10 @@ if GPIO:
                       'width': viewButton.winfo_width(), 'height': viewButton.winfo_height()}
     viewButton.place_forget()
 else:
-    viewButton.place(x=667-7, y=0, height=25)    
+    viewButton.place(x=667-7, y=0, height=25)
 viewButton.config(takefocus=True)
 viewButton.config(bg="gray90")
-viewButton.bind("<Return>", view_button_pressed)  
+viewButton.bind("<Return>", view_button_pressed)
 viewButton.bind("<FocusIn>", on_focus_dostuff)
 viewButton.bind("<FocusOut>", on_focus_out_dostuff)
 viewButton.bind("<Right>", focus_next)
@@ -3471,23 +3299,23 @@ viewButton.bind("<Left>", focus_prev)
 # Create a button on the root form to display the secondary setup form
 # Note: if windows version this button is used to toggle polling!
 setupButton = tk.Button(root, text="+", name="setupButton")
-setupButton.default_bg = setupButton.cget("bg") 
+setupButton.default_bg = setupButton.cget("bg")
 if GPIO:
     setupButton.place(x=768 , y=24, width=25, height=25)
 else:
     setupButton.place(x=768-7 , y=0, width=25+7, height=25)
 setupButton.config(takefocus=True)
 if GPIO:
-    setupButton.bind("<Return>", show_setup_form)  
-#    setupButton.bind("<ButtonPress>", show_setup_form)  
+    setupButton.bind("<Return>", show_setup_form)
+#    setupButton.bind("<ButtonPress>", show_setup_form)
 else:
-    setupButton.bind("<Return>", toggle_pollStatus)  
-#    setupButton.bind("<ButtonPress>", toggle_pollStatus)  
+    setupButton.bind("<Return>", toggle_pollStatus)
+#    setupButton.bind("<ButtonPress>", toggle_pollStatus)
 setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
 setupButton.bind("<Right>", focus_next)
 setupButton.bind("<Left>", focus_prev)
-   
+
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
 label = tk.Label(root)
@@ -3498,48 +3326,21 @@ label2.config(state=tk.NORMAL) # Enable the text box to insert text
 
 # Create the playlist buttons (fully) and add them to the buttons[] list
 buttons = []
-b = 55  
+b = 55
 for i in range(numButtons):
     button = tk.Button(root, text=f"Button{i}")
 
     # positioning buttons in 12 rows of 9 (only 6 rows if GPIO is True)
-    if (i<9*1):
-        button.place(x=128+(sizeButton+5)*(i+1-9*0), y=b+(sizeButton+5)*0, width=sizeButton, height=sizeButton)
-    elif (i<9*2):
-        button.place(x=128+(sizeButton+5)*(i+1-9*1), y=b+(sizeButton+5)*1, width=sizeButton, height=sizeButton)
-    elif (i<9*3):
-        button.place(x=128+(sizeButton+5)*(i+1-9*2), y=b+(sizeButton+5)*2, width=sizeButton, height=sizeButton)
-    elif (i<9*4):
-        button.place(x=128+(sizeButton+5)*(i+1-9*3), y=b+(sizeButton+5)*3, width=sizeButton, height=sizeButton)
-    elif (i<9*5):
-        button.place(x=128+(sizeButton+5)*(i+1-9*4), y=b+(sizeButton+5)*4, width=sizeButton, height=sizeButton)
-    elif (i<9*6):
-        button.place(x=128+(sizeButton+5)*(i+1-9*5), y=b+(sizeButton+5)*5, width=sizeButton, height=sizeButton)
-    elif (i<9*7):
-        button.place(x=128+(sizeButton+5)*(i+1-9*6), y=b+(sizeButton+5)*6, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
-    elif (i<9*8):
-        button.place(x=128+(sizeButton+5)*(i+1-9*7), y=b+(sizeButton+5)*7, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
-    elif (i<9*9):
-        button.place(x=128+(sizeButton+5)*(i+1-9*8), y=b+(sizeButton+5)*8, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
-    elif (i<9*10):
-        button.place(x=128+(sizeButton+5)*(i+1-9*9), y=b+(sizeButton+5)*9, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
-    elif (i<9*11):
-        button.place(x=128+(sizeButton+5)*(i+1-9*10), y=b+(sizeButton+5)*10, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
-    else: # (i<9*12):
-        button.place(x=128+(sizeButton+5)*(i+1-9*11), y=b+(sizeButton+5)*11, width=sizeButton, height=sizeButton)
-        if GPIO: button.place_forget()
+    _place_button_at_grid(button, i, b)
+    if GPIO and i >= 9*6:
+        button.place_forget()
 
     button.config(bg="gray90")
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
     button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
-    button.bind("<Return>", lambda event, i=i: on_button_press(event, i))  
-    button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))  
-    button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))  
+    button.bind("<Return>", lambda event, i=i: on_button_press(event, i))
+    button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))
+    button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))
     button.bind('<Down>', lambda event, i=i, d=1: button_move_focus_vertically(event, i, d))
     button.bind('<Up>', lambda event, i=i, d=-1: button_move_focus_vertically(event, i, d))
     button.bind('<Right>', lambda event, i=i, d=1: button_move_focus_horizontally(event, i, d))
@@ -3566,7 +3367,7 @@ text_box.bind("<Left>", focus_prev)
 
 # Create a text box to display the results of ai queries, position and size it
 if not GPIO:
-    text_box_ai = tk.Text(root, wrap="word", takefocus=True)  
+    text_box_ai = tk.Text(root, wrap="word", takefocus=True)
     text_box_ai.place(x=10, y=460, width=780, height=392)
     text_box_ai.config(state=tk.NORMAL, takefocus=True)
     text_box_ai.bind("<FocusIn>", on_focus_dostuff)
@@ -3591,27 +3392,27 @@ if GPIO:
 
     # button which returns focus and visibility back to the main/root form
     mainButton = tk.Button(setup, text="+", name="mainButton")
-    mainButton.default_bg = mainButton.cget("bg") 
+    mainButton.default_bg = mainButton.cget("bg")
     mainButton.place(x=768, y=0, width=25, height=25)
     mainButton.config(takefocus=True)
-    mainButton.bind("<Return>", show_root_form)  
+    mainButton.bind("<Return>", show_root_form)
     mainButton.bind("<FocusIn>", on_focus_dostuff)
     mainButton.bind("<FocusOut>", on_focus_out_dostuff)
     mainButton.bind("<Right>", focus_next)
     mainButton.bind("<Left>", focus_prev)
 
     # button to toggle bluetooth connection on/off
-    BTstatusButton = tk.Button(setup, text="NONE") 
+    BTstatusButton = tk.Button(setup, text="NONE")
     BTstatusButton.place(x=15, y=10+25, height=25)
     BTstatusButton.config(takefocus=True)
-    BTstatusButton.bind("<Return>", toggle_bluetooth)  
+    BTstatusButton.bind("<Return>", toggle_bluetooth)
     BTstatusButton.bind("<Right>", focus_next)
     BTstatusButton.bind("<Left>", focus_prev)
 
     # button & label to connect to currently paired bluetooth speakers
     cX = 15; cY = 10+25+30
-    connectButton = tk.Button(setup, text="CONNECT", name="connectButton") 
-    connectButton.default_bg = connectButton.cget("bg") 
+    connectButton = tk.Button(setup, text="CONNECT", name="connectButton")
+    connectButton.default_bg = connectButton.cget("bg")
     connectButton.place(x=cX, y=cY, height=25)
     connectButton.config(takefocus=True)
     connectButton.bind("<FocusIn>", on_focus_dostuff)
@@ -3622,11 +3423,11 @@ if GPIO:
     label4.place(x=cX+100, y=cY+2)
 
     # button to enable scanning for bluetooth devices (which will appear in above combobox)
-    pairButton = tk.Button(setup, text="SEE BT DEVICES", name="pairButton") 
-    pairButton.default_bg = pairButton.cget("bg") 
+    pairButton = tk.Button(setup, text="SEE BT DEVICES", name="pairButton")
+    pairButton.default_bg = pairButton.cget("bg")
     pairButton.place(x=cX, y=cY+60, height=25)
     pairButton.config(takefocus=True)
-    pairButton.bind("<Return>", pair_bluetooth)  
+    pairButton.bind("<Return>", pair_bluetooth)
     pairButton.bind("<FocusIn>", on_focus_dostuff)
     pairButton.bind("<FocusOut>", on_focus_out_dostuff)
     pairButton.bind("<Right>", focus_next)
@@ -3647,19 +3448,19 @@ if GPIO:
     separator.place(relx=0.5, rely=0, relheight=1, anchor="n")  # Positioned in the center
 
     # button to toggle bluetooth connection on/off
-    pollStatusButton = tk.Button(setup, text="NONE") 
+    pollStatusButton = tk.Button(setup, text="NONE")
     pollStatusButton.place(x=cX+400, y=10+25, height=25)
     pollStatusButton.config(takefocus=True)
-    pollStatusButton.bind("<Return>", toggle_pollStatus)  
+    pollStatusButton.bind("<Return>", toggle_pollStatus)
     pollStatusButton.bind("<Right>", focus_next)
     pollStatusButton.bind("<Left>", focus_prev)
 
     # button to enable scanning for wifi devices (which will appear in above combobox)
-    wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton") 
-    wifiButton.default_bg = wifiButton.cget("bg") 
+    wifiButton = tk.Button(setup, text="SEE WIFI", name="wifiButton")
+    wifiButton.default_bg = wifiButton.cget("bg")
     wifiButton.place(x=cX+400, y=cY-30, height=25)
     wifiButton.config(takefocus=True)
-    wifiButton.bind("<Return>", find_wifi)  
+    wifiButton.bind("<Return>", find_wifi)
     wifiButton.bind("<FocusIn>", on_focus_dostuff)
     wifiButton.bind("<FocusOut>", on_focus_out_dostuff)
     wifiButton.bind("<Righ" \

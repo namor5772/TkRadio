@@ -21,7 +21,7 @@ python3 RadioSelenium.py
 
 ## Architecture
 
-**Single-file application:** Everything lives in `RadioSelenium.py` (~3,700 lines). No package structure, no test framework.
+**Single-file application:** Everything lives in `RadioSelenium.py` (~3,500 lines). No package structure, no test framework.
 
 ### Platform Detection
 
@@ -40,6 +40,16 @@ CSV with 7 columns: `LongName, StationLogoName, StationFunction, nNum, sPath, sC
 9 driver functions (`Radio1`–`Radio7`, `Commercial1`, `Commercial2`) handle different website layouts. All follow the same pattern: **navigate** → **prime** (click play) → **fetch images** → **parse text** → **return `*`-separated string**. Shared helpers prefixed with `_` handle common operations (navigation, image download/display, BeautifulSoup parsing).
 
 See `README_StationDrivers.md` for the full driver architecture and how to add new drivers.
+
+### Shared Helper Functions
+
+Extracted helpers reduce duplication across the codebase:
+- `_update_text_box(text_str)` — write `*`-delimited text into the main text box
+- `_show_blank_images()` — reset both logo and program image to blank
+- `_clear_ai_text_box()` — clear the AI panel (Windows only)
+- `_schedule_poll(fromCombobox)` — schedule the next polling refresh
+- `_show_http_error(event, station_name, e)` — display HTTP errors in text box
+- `_place_button_at_grid(button_widget, i, y_offset)` — position a preset button by grid index
 
 ### Central Dispatcher
 

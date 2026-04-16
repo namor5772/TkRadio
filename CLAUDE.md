@@ -1,37 +1,73 @@
 # CLAUDE.md
 
-## Project overview
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-TkRadio is a Python internet radio app (Tkinter + Selenium/Firefox) that runs on both Windows 11 and Raspberry Pi 5. One codebase — GPIO detection decides which mode. Access to ~79,500 stations. On Windows, an OpenAI-powered AI commentary panel is available.
+## Project Overview
 
-## Key files
+TkRadio is a Tkinter-based Internet Radio Player that uses Selenium to automate Firefox for audio playback from ~79,500 stations. It runs on **Raspberry Pi 5** (primary target, with 5" touchscreen + rotary encoder) and **Windows 11** (secondary, with AI commentary).
 
-- `RadioSelenium.py` — the entire app (GUI, Selenium automation, station drivers, GPIO handling)
-- `AllRadioStations.csv` — master station list (~9 MB). `function_map` column must match driver function names in code. Do not reorder/delete rows without adjusting playlists
-- `playlist.txt` — saved user presets (54 on RPi, 108 on Windows)
-- `savedRadioStation.txt`, `StationLogs.txt`, `bluetooth.txt`, `pollflag.txt` — runtime state files
-- `Images/` — station logos, program art, preset button assets. Keep filenames and sizes stable
-- `Hardware/` — PCB designs, station CSVs, scraping scripts, gcode files
-- `firefoxProfileWindows/`, `firefoxProfileRPI5/` — Firefox profiles for Selenium (gitignored, keep stable)
+## Running the Application
 
-## Dependencies
+```bash
+# Windows
+py RadioSelenium.py
+# or with pythonw.exe for no console window
 
-- Python 3.11+ with: `selenium`, `pillow`, `beautifulsoup4`, `requests`, `psutil`
-- Windows-only: `openai` (requires `OPENAI_API_KEY` env var)
-- RPi-only: `RPi.GPIO`
-- Firefox + geckodriver on PATH
-
-## Running
-
-```sh
-python RadioSelenium.py        # Linux/RPi
-pythonw RadioSelenium.py       # Windows (hides console)
+# Raspberry Pi
+python3 RadioSelenium.py
 ```
 
-## Development rules
+**Dependencies:** `selenium`, `pillow`, `requests`, `beautifulsoup4`, `psutil`, `openai` (Windows only). RPi also uses `RPi.GPIO`. Requires Firefox and geckodriver installed.
 
-- Station drivers: follow patterns in `README_StationDrivers.md` — helpers above drivers, drivers above dispatch map. Preserve return string formats and geometry constants
-- Do not wipe Firefox profile folders unless intentionally recreating them
-- No automated tests — manual verification: run app, start a station, confirm logo/program art, check AI panel on Windows
-- The repo lives in a OneDrive-synced directory; line-ending changes on vendored/binary files are expected noise — do not commit them
-- Keep `.gitignore` up to date for browser runtime data and vendored libraries
+## Architecture
+
+**Single-file application:** Everything lives in `RadioSelenium.py` (~3,700 lines). No package structure, no test framework.
+
+### Platform Detection
+
+The script detects RPi vs Windows at startup by attempting `import RPi.GPIO`. This controls:
+- Window geometry: `800x455` (RPi) vs `800x861` (Windows)
+- Preset grid: 54 buttons (6x9) vs 108 (12x9)
+- Input: rotary encoder (GPIO pins CLK=2, DT=3, SW=4) vs mouse/keyboard
+- Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows)
+
+### Station Database (`AllRadioStations.csv`)
+
+CSV with 7 columns: `LongName, StationLogoName, StationFunction, nNum, sPath, sClass, nType`. The first 2 characters of `LongName` encode the country code. `StationFunction` maps to a driver function via `function_map` dictionary.
+
+### Station Drivers
+
+9 driver functions (`Radio1`–`Radio7`, `Commercial1`, `Commercial2`) handle different website layouts. All follow the same pattern: **navigate** → **prime** (click play) → **fetch images** → **parse text** → **return `*`-separated string**. Shared helpers prefixed with `_` handle common operations (navigation, image download/display, BeautifulSoup parsing).
+
+See `README_StationDrivers.md` for the full driver architecture and how to add new drivers.
+
+### Central Dispatcher
+
+`on_select(event, fromCombobox)` is the core function — triggered by combobox selection or preset button click. It reads the CSV row, resolves the driver via `function_map`, and calls it. Optional polling re-invokes this every ~10 seconds to refresh program info.
+
+### GUI Components
+
+- **`CustomCombobox`** — Custom dropdown for 79,500+ stations with keyboard navigation
+- **Preset grid** — Buttons with cached thumbnail images (`Images/button0.png`–`button107.png`)
+- **Logo/artwork labels** — Station logo (160x160) + program artwork (square or rectangular)
+- **Text boxes** — "Now Playing" info + AI commentary (Windows)
+
+### Firefox Browser Management
+
+Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWindows` and `./firefoxProfileRPI5`. Auto-restarts every 3600 seconds (`RegularRestart()`) to prevent memory leaks. Stale geckodriver processes cleaned up via `psutil`.
+
+## State Files
+
+- `playlist.txt` — Preset grid state (station name + index pairs)
+- `savedRadioStation.txt` — Last played button index (restored on startup)
+- `bluetooth.txt` — Bluetooth ON/OFF + last paired MAC/name (RPi)
+- `pollflag.txt` — Polling toggle (0/1)
+- `StationLogs.txt` — Play history and AI summaries
+
+## Key Conventions
+
+- Station logos go in `Images/{StationLogoName}.png`
+- ~50+ global variables manage application state
+- The `function_map` dictionary must be populated before CSV loading
+- Audio plays through Firefox itself (not VLC or other players)
+- RPi rotary encoder uses "virtual key banks" (16 keys/bank, 8 banks) to map rotation to keyboard events

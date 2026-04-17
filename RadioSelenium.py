@@ -3449,6 +3449,8 @@ for i in range(numButtons):
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))
     button.bind("<Delete>", lambda event, i=i: on_button_delete(event, i))
     button.bind("<Insert>", lambda event, i=i: on_button_insert(event, i))
+    if IS_MACOS:
+        button.bind("<Command-i>", lambda event, i=i: on_button_insert(event, i))
     button.bind('<Down>', lambda event, i=i, d=1: button_move_focus_vertically(event, i, d))
     button.bind('<Up>', lambda event, i=i, d=-1: button_move_focus_vertically(event, i, d))
     button.bind('<Right>', lambda event, i=i, d=1: button_move_focus_horizontally(event, i, d))

@@ -324,6 +324,7 @@ else:
     pathProfile = script_dir + "/firefoxProfileWindows"
 print(f"The Images path is: {pathImages}")
 print(f"The Firefox profile path is: {pathProfile}")
+os.makedirs(pathProfile, exist_ok=True)
 
 # Create the full filepath to the saved radio station file
 filename = 'savedRadioStation.txt'

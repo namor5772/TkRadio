@@ -1,5 +1,5 @@
 ABC Radio Sydney NSW,30
--- EMPTY 1 --,-1
+ABC Radio Canberra ACT,44
 -- EMPTY 2 --,-1
 -- EMPTY 3 --,-1
 -- EMPTY 4 --,-1

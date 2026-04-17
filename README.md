@@ -9,10 +9,11 @@ Script: `RadioSelenium.py` (single-file application, run from the repo folder)
 
 The radio accesses streams via station websites through a headless Firefox browser automated by Selenium. When a station is streaming, its logo is displayed alongside program artwork (e.g. album cover) and "Now Playing" text, refreshed approximately every 12 seconds.
 
-The software runs in two modes from a single codebase:
+The software runs in three modes from a single codebase:
 
 - **Raspberry Pi 5** (primary target): 5-inch touchscreen, rotary encoder input, Bluetooth speakers, GPIO integration
 - **Windows 11** (standalone): mouse/keyboard, AI-powered station commentary via OpenAI
+- **macOS** (tertiary): mouse/keyboard, same layout as Windows, AI commentary available when `OPENAI_API_KEY` is set
 
 Main window on Windows with AI station summary panel:
 ![app GUI image1a](ImagesDocs/imageGUI1a.png)
@@ -230,6 +231,42 @@ All state files are expected in the same directory as `RadioSelenium.py`.
     ```
 
 8. **AI commentary**: Set the `OPENAI_API_KEY` environment variable to enable the AI summary feature.
+
+### macOS
+
+Tested on macOS (Apple Silicon) with Python 3.14 via Homebrew. The app reuses the Windows layout and adds macOS-only fixes for Aqua's quirky button rendering, text-box borders, and Shift-Tab traversal.
+
+1. **Install Homebrew** (if not already): <https://brew.sh>.
+
+2. **Install runtime dependencies**:
+
+    ```sh
+    brew install python-tk@3.14 geckodriver
+    brew install --cask firefox
+    ```
+
+    `python-tk@3.14` supplies Tkinter for Homebrew's Python (not bundled by default). Match the formula to whatever Python version you're using.
+
+3. **Clone this repository** via VS Code or `git clone`.
+
+4. **Create a virtual environment and install dependencies**:
+
+    ```sh
+    python3 -m venv .venv
+    .venv/bin/pip install -r requirements.txt
+    ```
+
+5. **VS Code setup**: `Cmd+Shift+P` → `Python: Select Interpreter` → pick `./.venv/bin/python`. The committed `.vscode/settings.json` hardcodes the Windows path as a fallback hint, but your pick is stored locally and overrides it.
+
+6. **Run from a terminal** (preferred over the F5 debugger — `debugpy` adds noticeable overhead):
+
+    ```sh
+    .venv/bin/python RadioSelenium.py
+    ```
+
+7. **AI commentary**: optional. Set `OPENAI_API_KEY` to enable the AI button. Without it, the button is still visible but will show a warning dialog when pressed.
+
+The Firefox profile directory `firefoxProfileMacOS/` is auto-created at first run and gitignored.
 
 ---
 

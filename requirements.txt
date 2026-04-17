@@ -2,5 +2,6 @@ selenium
 pillow
 requests
 beautifulsoup4
+lxml
 psutil
 openai

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-TkRadio is a Tkinter-based Internet Radio Player that uses Selenium to automate Firefox for audio playback from ~79,500 stations. It runs on **Raspberry Pi 5** (primary target, with 5" touchscreen + rotary encoder) and **Windows 11** (secondary, with AI commentary).
+TkRadio is a Tkinter-based Internet Radio Player that uses Selenium to automate Firefox for audio playback from ~79,500 stations. It runs on **Raspberry Pi 5** (primary target, with 5" touchscreen + rotary encoder), **Windows 11** (secondary, with AI commentary), and **macOS** (tertiary, behaves like Windows but with platform-specific visual tweaks).
 
 ## Running the Application
 
@@ -15,9 +15,12 @@ py RadioSelenium.py
 
 # Raspberry Pi
 python3 RadioSelenium.py
+
+# macOS (run from terminal, not VS Code F5 — debugpy adds noticeable overhead)
+.venv/bin/python RadioSelenium.py
 ```
 
-**Dependencies:** `selenium`, `pillow`, `requests`, `beautifulsoup4`, `psutil`, `openai` (Windows only). RPi also uses `RPi.GPIO`. Requires Firefox and geckodriver installed.
+**Dependencies:** `selenium`, `pillow`, `requests`, `beautifulsoup4`, `lxml`, `psutil`, `openai` (non-RPi only). RPi also uses `RPi.GPIO`. Requires Firefox and geckodriver installed. macOS additionally needs Homebrew's `python-tk@3.14` (or matching) for Tkinter bindings.
 
 ## Architecture
 
@@ -25,11 +28,18 @@ python3 RadioSelenium.py
 
 ### Platform Detection
 
-The script detects RPi vs Windows at startup by attempting `import RPi.GPIO`. This controls:
-- Window geometry: `800x455` (RPi) vs `800x861` (Windows)
-- Preset grid: 54 buttons (6x9) vs 108 (12x9)
-- Input: rotary encoder (GPIO pins CLK=2, DT=3, SW=4) vs mouse/keyboard
-- Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows)
+The script detects the platform at startup:
+- `GPIO`: set by attempting `import RPi.GPIO` (None on non-RPi)
+- `IS_RPI = GPIO is not None`
+- `IS_MACOS = sys.platform == "darwin" and not IS_RPI`
+- `IS_WINDOWS = not IS_RPI and not IS_MACOS` (default / fallback branch — all original Windows code paths key off `GPIO` / `not GPIO` and are unchanged)
+
+Controls:
+- Window geometry: `800x455` (RPi) vs `800x861` (Windows and macOS)
+- Preset grid: 54 buttons (6x9) on RPi, 108 (12x9) on Windows/macOS
+- Input: rotary encoder (GPIO pins CLK=2, DT=3, SW=4) on RPi vs mouse/keyboard
+- Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows; available on macOS when `OPENAI_API_KEY` is set, otherwise the button shows a warning)
+- macOS-only additive visual tweaks via `_mac_btn_normal/_focused/_pressed/_active_toggle` helpers (all no-ops on Windows/RPi). Aqua ignores `bg=`/`relief=` on `tk.Button`, so focus/press state is simulated via `highlightbackground` + `highlightthickness`. Top-row buttons get a narrower font + repositioning, and text widgets get an explicit border. Shift-Tab is explicitly bound to `focus_prev` on macOS to short-circuit slow default traversal.
 
 ### Station Database (`AllRadioStations.csv`)
 
@@ -64,7 +74,7 @@ Extracted helpers reduce duplication across the codebase:
 
 ### Firefox Browser Management
 
-Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWindows` and `./firefoxProfileRPI5`. Auto-restarts every 3600 seconds (`RegularRestart()`) to prevent memory leaks. Stale geckodriver processes cleaned up via `psutil`.
+Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWindows`, `./firefoxProfileRPI5`, and `./firefoxProfileMacOS`. On macOS `firefox_options.binary_location` is set to `/Applications/Firefox.app/Contents/MacOS/firefox` to bypass the Homebrew shell wrapper. Auto-restarts every 3600 seconds (`RegularRestart()`) to prevent memory leaks. Stale geckodriver processes cleaned up via `psutil` — the kill branch matches `geckodriver` (no `.exe`) on both RPi and macOS; Windows branch still matches `geckodriver.exe`.
 
 ## State Files
 

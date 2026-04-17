@@ -1,5 +1,6 @@
 import subprocess
 import inspect
+import sys
 import tkinter as tk
 import time
 import os
@@ -17,6 +18,12 @@ try:
     import RPi.GPIO as GPIO # type: ignore
 except ModuleNotFoundError:
     GPIO = None
+
+# Platform flags. IS_WINDOWS is the default non-RPi, non-macOS branch
+# so existing Windows behavior is preserved byte-for-byte.
+IS_RPI = GPIO is not None
+IS_MACOS = sys.platform == "darwin" and not IS_RPI
+IS_WINDOWS = not IS_RPI and not IS_MACOS
 
 from datetime import datetime
 from PIL import Image, ImageTk
@@ -36,9 +43,44 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+client = None
 if not GPIO:
     from openai import OpenAI
-    client = OpenAI()
+    try:
+        client = OpenAI()
+    except Exception as e:
+        # Missing OPENAI_API_KEY or other init failure. On Windows this
+        # is normally set; on macOS it is typically absent so we degrade
+        # gracefully instead of crashing at startup.
+        print(f"OpenAI client not initialized: {e}")
+        client = None
+
+
+# macOS visual-feedback helpers. No-ops on Windows and RPi so all existing
+# bg= / relief= calls on those platforms are unaffected. macOS Tk's native
+# Aqua renderer ignores bg/relief on tk.Button, so we simulate focus/press
+# state via highlightbackground + highlightthickness instead.
+def _mac_btn_normal(btn):
+    if IS_MACOS:
+        btn.config(highlightbackground="gray60", highlightthickness=1)
+
+def _mac_btn_focused(btn):
+    if IS_MACOS:
+        btn.config(highlightbackground="#1a73e8", highlightthickness=3)
+
+def _mac_btn_pressed(btn):
+    if IS_MACOS:
+        btn.config(highlightbackground="#c62828", highlightthickness=3)
+
+def _mac_btn_active_toggle(btn, on):
+    if IS_MACOS:
+        btn.config(highlightbackground=("#2e7d32" if on else "#c62828"),
+                   highlightthickness=3)
+
+def _mac_refresh():
+    # Late binds `root` (defined later). Safe to call after Tk is up.
+    if IS_MACOS:
+        root.update_idletasks()
 
 
 # START #######################################################
@@ -320,6 +362,8 @@ script_dir = script_dir.replace("\\","/")
 pathImages = script_dir + "/Images"
 if GPIO:
     pathProfile = script_dir + "/firefoxProfileRPI5"
+elif IS_MACOS:
+    pathProfile = script_dir + "/firefoxProfileMacOS"
 else:
     pathProfile = script_dir + "/firefoxProfileWindows"
 print(f"The Images path is: {pathImages}")
@@ -357,6 +401,12 @@ firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
 #firefox_options.add_argument("-headless")  # comment out if you want to see the browser window
+if IS_MACOS:
+    # Homebrew cask installs Firefox.app; point geckodriver at the real binary
+    # rather than relying on the /opt/homebrew/bin/firefox shell wrapper.
+    _mac_firefox = "/Applications/Firefox.app/Contents/MacOS/firefox"
+    if os.path.exists(_mac_firefox):
+        firefox_options.binary_location = _mac_firefox
 browser = webdriver.Firefox(options=firefox_options)
 
 firefox_exe = find_process_exe("firefox")
@@ -515,6 +565,7 @@ def _display_logo_from_image(image):
         print(f"saving button icon {buttonImagePath}")
     photo = ImageTk.PhotoImage(scaled)
     label.config(image=photo); label.image = photo
+    _mac_refresh()
 
 def _display_logo_from_file(path):
     """Open image at 'path' (fallback to Blank.png) and display as station logo."""
@@ -542,6 +593,7 @@ def _display_program_image_square(path):
     im2 = _crop_square(im).resize((Xprog - X1, Xprog - X1))
     ph = ImageTk.PhotoImage(im2)
     label2.config(image=ph); label2.image = ph
+    _mac_refresh()
 
 def _display_program_image_rect(path, width_px):
     """Resize to given width keeping station program image height at (Xprog-X1)."""
@@ -549,6 +601,7 @@ def _display_program_image_rect(path, width_px):
     ph_im = im.resize((width_px - X1, Xprog - X1))
     ph = ImageTk.PhotoImage(ph_im)
     label2.config(image=ph); label2.image = ph
+    _mac_refresh()
 
 def _lift_program_image_at(x, y, w, h):
     """Place program image at given geometry if not HiddenFlag; keep above text_box."""
@@ -578,6 +631,7 @@ def _update_text_box(text_str):
     for row in text_rows:
         text_box.insert(tk.END, row + "\n")
     text_box.config(state=tk.DISABLED)
+    _mac_refresh()
 
 def _show_blank_images():
     """Set both station logo and program image to Blank.png."""
@@ -1494,6 +1548,7 @@ def after_GUI_started():
         else:
             setupButton.config(text="OFF")
             setupButton.config(bg="light coral")
+            _mac_btn_active_toggle(setupButton, on=False)
     else: #if int_pollFlag==1
         pollFlag = True
         if GPIO:
@@ -1502,6 +1557,7 @@ def after_GUI_started():
         else:
             setupButton.config(text="ON")
             setupButton.config(bg="light green")
+            _mac_btn_active_toggle(setupButton, on=True)
     print(f'pollFlag : {pollFlag}')
 
     # select to stream last station that was streaming just before radio was powered down
@@ -1579,12 +1635,15 @@ reverse_function_map = {v: k for k, v in function_map.items()}  # Assuming funct
 # Function to kill all geckodriver processes.
 # Use after browser.quit() to clean everything out before reopening Firefox or quitting app.
 def kill_gekodrivers():
-    if GPIO:
+    if GPIO or IS_MACOS:
+        # RPi and macOS: process is named 'geckodriver' (no .exe suffix)
         for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
             try:
                 name = proc.info['name'] or ''
+                # cmdline can be None for some system processes on macOS
+                cmdline = proc.info['cmdline'] or []
                 # also check cmdline in case it's renamed
-                if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in proc.info['cmdline']):
+                if 'geckodriver' in name.lower() or any('geckodriver' in c.lower() for c in cmdline):
                     pid = proc.info['pid']
                     print(f"Killing {name} (PID {pid})")
                     proc.kill()
@@ -1857,9 +1916,10 @@ def on_select(event,fromCombobox):
 # calling the on_select2() function
 def on_button_press(event, i):
     buttons[i].config(relief="sunken", bg="lightgray")  # Simulate button press
+    _mac_btn_pressed(buttons[i])
     buttons[i].update_idletasks()  # Force update
-    time.sleep(1)
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
+    _mac_btn_normal(buttons[i])
     buttons[i].update_idletasks()  # Force update
 
     global buttonFlag;  buttonFlag = True
@@ -1999,6 +2059,7 @@ def button_move_focus_horizontally(event, i, d):
 def on_shift_tab(event):
     event.widget.tk_focusPrev().focus()
     print("Shift-Tab pressed, focus moved to previous widget")
+    return "break"
 
 
 # called when a playlist button receives focus.
@@ -2007,6 +2068,7 @@ def on_shift_tab(event):
 def on_focus(event, i):
     global StationHiddenFlag
     buttons[i].config(relief="sunken", bg="darkgray")  # Simulate button press
+    _mac_btn_focused(buttons[i])
 
     print(f"\nPlaylist button {i} focused")
     focused_widget = root.focus_get()  # Get the currently focused widget
@@ -2034,6 +2096,7 @@ def on_focus(event, i):
 # returns the button to a visually "unfocused" state.
 def on_focus_out(event, i):
     buttons[i].config(relief="raised", bg="gray90")  # Simulate button press
+    _mac_btn_normal(buttons[i])
     labelPlaylistFocus.config(text="")
     buttons[i].update_idletasks()  # Force update
 
@@ -2131,10 +2194,12 @@ def toggle_pollStatus(event):
         if sText=="ON":
             setupButton.config(text="OFF")
             setupButton.config(bg="light coral")
+            _mac_btn_active_toggle(setupButton, on=False)
             pollFlag = False; line = "0"
         else: #if sText=="OFF"
             setupButton.config(text="ON")
             setupButton.config(bg="light green")
+            _mac_btn_active_toggle(setupButton, on=True)
             firstRun = True
             stopLastStream = False
             pollFlag = True; line = "1"
@@ -2457,6 +2522,7 @@ def on_focus_dostuff(event):
         pass
     else:
         widget.config(bg="lightblue")
+    _mac_btn_focused(widget)
 
 
 def on_focus_out_dostuff(event):
@@ -2469,6 +2535,7 @@ def on_focus_out_dostuff(event):
         pass
     else:
         widget.config(bg="gray90")
+    _mac_btn_normal(widget)
 
 
 def focus_next(event):
@@ -2627,6 +2694,13 @@ def ai_button_pressed(event):
     print("\n*** [AI] BUTTON PRESSED ***")
     print(f"This function's name is: {inspect.currentframe().f_code.co_name}")
     print(f"Event argument: {event}")
+
+    if client is None:
+        messagebox.showwarning(
+            "AI unavailable",
+            "OpenAI client is not configured. Set the OPENAI_API_KEY environment variable and restart."
+        )
+        return
 
     currentIndex = custom_combo.current()
     currentStationName = aStation[currentIndex][0]
@@ -2814,6 +2888,9 @@ class CustomCombobox(tk.Frame):
         # This entry acts as the combobox display field.
         self.entry = tk.Entry(self, textvariable=self.var, width=self.width)
         self.entry.pack(fill="x", expand=True)
+        if IS_MACOS:
+            self.entry.config(highlightbackground="gray60", highlightthickness=1,
+                              relief="solid", borderwidth=1)
 
         # Store the original background color.
         self.default_bg = self.entry.cget("background")
@@ -3219,6 +3296,7 @@ else:
     randomButton.place(x=493 , y=0, height=25)
 randomButton.config(takefocus=True)
 randomButton.config(bg="gray90")
+_mac_btn_normal(randomButton)
 randomButton.bind("<Return>", random_button_pressed)
 randomButton.bind("<FocusIn>", on_focus_dostuff)
 randomButton.bind("<FocusOut>", on_focus_out_dostuff)
@@ -3240,6 +3318,7 @@ else:
     deleteButton.place(x=550-7 , y=0, height=25)
 deleteButton.config(takefocus=True)
 deleteButton.config(bg="gray90")
+_mac_btn_normal(deleteButton)
 deleteButton.bind("<Delete>", delete_key_pressed) # the only way to press the [DEL] button
 deleteButton.bind("<FocusIn>", on_focus_dostuff)
 deleteButton.bind("<FocusOut>", on_focus_out_dostuff)
@@ -3260,6 +3339,7 @@ else:
     saveButton.place(x=590-7, y=0, height=25)
 saveButton.config(takefocus=True)
 saveButton.config(bg="gray90")
+_mac_btn_normal(saveButton)
 saveButton.bind("<Return>", save_button_pressed)
 saveButton.bind("<FocusIn>", on_focus_dostuff)
 saveButton.bind("<FocusOut>", on_focus_out_dostuff)
@@ -3273,6 +3353,7 @@ if not GPIO:
     aiButton.place(x=630, y=0, height=25)
     aiButton.config(takefocus=True)
     aiButton.config(bg="gray90")
+    _mac_btn_normal(aiButton)
     aiButton.bind("<Return>", ai_button_pressed)
     aiButton.bind("<FocusIn>", on_focus_dostuff)
     aiButton.bind("<FocusOut>", on_focus_out_dostuff)
@@ -3291,6 +3372,7 @@ else:
     viewButton.place(x=667-7, y=0, height=25)
 viewButton.config(takefocus=True)
 viewButton.config(bg="gray90")
+_mac_btn_normal(viewButton)
 viewButton.bind("<Return>", view_button_pressed)
 viewButton.bind("<FocusIn>", on_focus_dostuff)
 viewButton.bind("<FocusOut>", on_focus_out_dostuff)
@@ -3306,6 +3388,7 @@ if GPIO:
 else:
     setupButton.place(x=768-7 , y=0, width=25+7, height=25)
 setupButton.config(takefocus=True)
+_mac_btn_normal(setupButton)
 if GPIO:
     setupButton.bind("<Return>", show_setup_form)
 #    setupButton.bind("<ButtonPress>", show_setup_form)
@@ -3316,6 +3399,29 @@ setupButton.bind("<FocusIn>", on_focus_dostuff)
 setupButton.bind("<FocusOut>", on_focus_out_dostuff)
 setupButton.bind("<Right>", focus_next)
 setupButton.bind("<Left>", focus_prev)
+
+if IS_MACOS:
+    # macOS fonts are wider than Segoe UI and Aqua buttons have extra
+    # horizontal padding. Use a narrower font and shift positions so
+    # labels don't clip or collide.
+    _top_font = ("Helvetica", 10)
+    for _btn in (randomButton, deleteButton, saveButton, aiButton, viewButton, setupButton):
+        _btn.config(font=_top_font)
+    randomButton.place_configure(x=455, y=0, width=55, height=25)
+    deleteButton.place_configure(x=513, y=0, width=50, height=25)
+    saveButton.place_configure(x=566, y=0, width=55, height=25)
+    aiButton.place_configure(x=624, y=0, width=40, height=25)
+    viewButton.place_configure(x=667, y=0, width=55, height=25)
+    setupButton.place_configure(x=725, y=0, width=65, height=25)
+    labelPlaylistFocus.config(font=("Helvetica", 10),
+                              highlightbackground="gray60", highlightthickness=1,
+                              relief="solid", borderwidth=1)
+    # Combobox's char-count width (45) renders wider than Segoe UI on macOS
+    # and bleeds across labelPlaylistFocus (which starts at x=478). Keep the
+    # combobox's left edge unchanged and expand both widgets by the same
+    # amount so they fill the second row without overlap.
+    custom_combo.place_configure(width=294)
+    labelPlaylistFocus.place_configure(x=497, width=294)
 
 # Create labels used for station logo image (label) and program related image (label2)
 # Positioning of latter can vary
@@ -3337,6 +3443,7 @@ for i in range(numButtons):
         button.place_forget()
 
     button.config(bg="gray90")
+    _mac_btn_normal(button)
     button.bind("<FocusIn>", lambda event, i=i: on_focus(event, i))
     button.bind("<FocusOut>", lambda event, i=i: on_focus_out(event, i))
     button.bind("<Return>", lambda event, i=i: on_button_press(event, i))
@@ -3355,10 +3462,24 @@ for i in range(numButtons):
     button.update_idletasks()
     buttons.append(button)
 
+if IS_MACOS:
+    # Tk 9.0 on macOS dispatches Shift-Tab through additional layers than
+    # plain Tab, making focus traversal backward feel sluggish. Bind the
+    # shift variants explicitly on buttons to short-circuit to focus_prev.
+    for _w in (randomButton, deleteButton, saveButton, aiButton, viewButton, setupButton):
+        _w.bind("<Shift-Tab>", focus_prev)
+        _w.bind("<ISO_Left_Tab>", focus_prev)
+    for _b in buttons:
+        _b.bind("<Shift-Tab>", focus_prev)
+        _b.bind("<ISO_Left_Tab>", focus_prev)
+
 # Create a text box, position and size it, used to display the program and song details
 text_box = tk.Text(root, wrap="word", takefocus=True)
 text_box.place(x=10, y=140+Ydown, width=Xgap+35, height=Xprog-55)
 text_box.config(state=tk.NORMAL, takefocus=True) # Enable the text box to insert text
+if IS_MACOS:
+    text_box.config(highlightbackground="gray60", highlightthickness=1,
+                    relief="solid", borderwidth=1)
 text_box.bind("<FocusIn>", on_focus_dostuff)
 text_box.bind("<FocusOut>", on_focus_out_dostuff)
 text_box.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms
@@ -3371,6 +3492,9 @@ if not GPIO:
     text_box_ai = tk.Text(root, wrap="word", takefocus=True)
     text_box_ai.place(x=10, y=460, width=780, height=392)
     text_box_ai.config(state=tk.NORMAL, takefocus=True)
+    if IS_MACOS:
+        text_box_ai.config(highlightbackground="gray60", highlightthickness=1,
+                           relief="solid", borderwidth=1)
     text_box_ai.bind("<FocusIn>", on_focus_dostuff)
     text_box_ai.bind("<FocusOut>", on_focus_out_dostuff)
     text_box_ai.bind("<ISO_Left_Tab>", on_shift_tab)  # This is the correct event on most platforms

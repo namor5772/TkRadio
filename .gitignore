@@ -1,6 +1,7 @@
 # Firefox profile runtime data (cookies, cache, telemetry, etc.)
 firefoxProfileWindows/
 firefoxProfileRPI5/
+firefoxProfileMacOS/
 
 # Vendored e-Paper library
 Hardware/e-Paper-master/

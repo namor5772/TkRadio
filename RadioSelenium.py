@@ -1598,6 +1598,32 @@ reverse_function_map = {v: k for k, v in function_map.items()}  # Assuming funct
 
 
 
+def kill_orphan_firefox():
+    """Kill any Firefox processes started against this app's profile.
+
+    ``browser.quit()`` is supposed to terminate Firefox, but on a discarded browsing
+    context (e.g. after the WebDriverException we sometimes hit during polling) it
+    can fail silently — the Selenium handle is dropped, geckodriver dies, but Firefox
+    keeps running. On macOS that leaves a stale Dock icon and on every platform it
+    leaks memory. Matching on the profile path means we never touch the user's
+    personal Firefox, only ours.
+    """
+    profile_marker = pathProfile.lower()
+    for proc in psutil.process_iter(attrs=['pid', 'name', 'cmdline']):
+        try:
+            cmdline = proc.info.get('cmdline') or []
+            if not cmdline:
+                continue
+            joined = ' '.join(cmdline).lower()
+            if 'firefox' in joined and profile_marker in joined:
+                pid = proc.info['pid']
+                name = proc.info.get('name') or ''
+                print(f"Killing orphan firefox {name} (PID {pid})")
+                proc.kill()
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+
+
 # Function to kill all geckodriver processes.
 # Use after browser.quit() to clean everything out before reopening Firefox or quitting app.
 def kill_gekodrivers():
@@ -1636,8 +1662,12 @@ def on_closing():
     if GPIO:
         GPIO.cleanup()
 
-    browser.quit() # close the WebDriver
+    try:
+        browser.quit() # close the WebDriver
+    except Exception as e:
+        print(f"browser.quit() failed during shutdown: {e}")
     kill_gekodrivers() # kill any running geckodriver processes
+    kill_orphan_firefox() # kill Firefox if browser.quit() failed to take it down
     time.sleep(2)
     root.destroy() # destroy GUI
     print("Closing the app...")
@@ -1649,8 +1679,12 @@ def on_closing():
 def RestartFirefoxAndLastStation(fromCombobox: bool, onError: bool):
     global firefox_options, browser, firstRun, stopLastStream, pollFlag
 
-    browser.quit() # close the WebDriver
+    try:
+        browser.quit() # close the WebDriver
+    except Exception as e:
+        print(f"browser.quit() failed during restart: {e}")
     kill_gekodrivers() # kill any running geckodriver processes
+    kill_orphan_firefox() # kill Firefox if browser.quit() failed to take it down
     time.sleep(2)
     browser = webdriver.Firefox(options=firefox_options) # restart the WebDriver
 

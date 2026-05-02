@@ -37,7 +37,7 @@ Type to filter the ~79,400 stations. Use `Up`/`Down` arrows, `PgUp`/`PgDn` to na
 54 buttons (6x9) on Raspberry Pi or 108 buttons (12x9) on Windows, each showing a station logo thumbnail.
 
 - **Enter** — play the focused preset
-- **Insert** — assign the current combobox station to the focused button
+- **Insert** (or **Cmd-I** on macOS, since Mac keyboards lack an Insert key) — assign the current combobox station to the focused button
 - **Delete** — clear the focused button
 - **Arrow keys** — navigate the grid (wrapping)
 
@@ -86,7 +86,7 @@ LongName, StationLogoName, StationFunction, nNum, sPath, sClass, nType
 
 - **LongName** — display name; first 2 characters encode country code
 - **StationLogoName** — image filename (matches `Images/<name>.png`)
-- **StationFunction** — driver function: `Radio1`..`Radio7`, `Commercial1`, `Commercial2`
+- **StationFunction** — driver function: `Radio1`..`Radio7`, `Radio4new`, `Commercial1`, `Commercial2`
 - **nNum/sPath/sClass/nType** — driver-specific parameters (URL, DOM selectors, etc.)
 
 Example:
@@ -312,6 +312,8 @@ You will also need a soldering iron, solder, sellotape, glue gun with sticks, an
 - **"Firefox/geckodriver not found"** — Ensure both are installed and on PATH.
 - **No images / broken logos** — Make sure `Images/` exists and contains `Blank.png`. The app saves per-station logos on the fly where possible.
 - **"Streaming is not working"** — Some sites geo-block or change their markup. Try selecting the station again. Rarely you may need to restart the app.
+- **`NoSuchElementException` on an ABC station** — ABC occasionally reshuffles their player markup. The drivers match on stable class-name *prefixes* (e.g. `LiveAudioPlayer_controlBtn`) so most redesigns survive, but a renamed component will require a probe + selector update in `RadioSelenium.py`.
+- **Station shows a blank logo on `Radio4` stations** — drop a square PNG at `Images/<StationLogoName>.png` (e.g. `Images/ABC_NewsRadio.png`); the driver prefers a bundled file and only falls back to scraping the player's floating logo image when no PNG is present.
 - **Selenium SessionNotCreatedException** — The `firefoxProfileWindows/` or `firefoxProfileRPI5/` directory is missing. Create it (it's gitignored and not included in clones).
 - **"Couldn't find a tree builder: lxml"** — Install lxml: `pip install lxml`
 - **Bluetooth/Wi-Fi issues (RPi)** — The app shells out to `bluetoothctl`, `nmcli`, `rfkill`, and `iwlist`. Confirm these work from the terminal with your permissions.
@@ -321,8 +323,10 @@ You will also need a soldering iron, solder, sellotape, glue gun with sticks, an
 ## Extending the Station List
 
 1. Add a row to `AllRadioStations.csv`.
-2. Choose an appropriate `StationFunction` (`Radio1`..`Radio7`, `Commercial1`, `Commercial2`) and fill its parameters.
+2. Choose an appropriate `StationFunction` (`Radio1`..`Radio7`, `Radio4new`, `Commercial1`, `Commercial2`) and fill its parameters.
 3. Drop a logo PNG into `Images/` named exactly as `StationLogoName.png`.
+
+`Radio1`/`Radio2`/`Radio3`/`Radio4`/`Radio4new`/`Radio6` all target the post-2025 ABC listen player and share helpers (`_abc_listen_click_play`, `_abc_listen_program_image`, `_abc_listen_station_logo`, `_abc_listen_now_playing`). They use `[class*="LiveAudioPlayer_..."]` partial-class CSS selectors so they survive ABC's frequent CSS-modules hash bumps. For `Radio2` and `Radio3` the timezone is selected via `?tz=qld|wa|sa|nt` query params (the old TAB/UP/DOWN keystroke flow is gone).
 
 For driver architecture details and how to add new drivers, see [README_StationDrivers.md](README_StationDrivers.md).
 

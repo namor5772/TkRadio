@@ -20,11 +20,11 @@ python3 RadioSelenium.py
 .venv/bin/python RadioSelenium.py
 ```
 
-**Dependencies:** `selenium`, `pillow`, `requests`, `beautifulsoup4`, `lxml`, `psutil`, `openai` (non-RPi only). RPi also uses `RPi.GPIO`. Requires Firefox and geckodriver installed. macOS additionally needs Homebrew's `python-tk@3.14` (or matching) for Tkinter bindings.
+**Dependencies:** listed in `requirements.txt` — `selenium`, `pillow`, `requests`, `beautifulsoup4`, `lxml`, `psutil`, `openai` (the last is non-RPi only). RPi also uses `RPi.GPIO`. Requires Firefox and geckodriver installed. macOS additionally needs Homebrew's `python-tk@3.14` (or matching) for Tkinter bindings.
 
 ## Architecture
 
-**Single-file application:** Everything lives in `RadioSelenium.py` (~3,500 lines). No package structure, no test framework.
+**Single-file application:** Everything lives in `RadioSelenium.py` (~3,600 lines). No package structure, no test framework.
 
 ### Platform Detection
 
@@ -40,6 +40,9 @@ Controls:
 - Input: rotary encoder (GPIO pins CLK=2, DT=3, SW=4) on RPi vs mouse/keyboard
 - Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows; available on macOS when `OPENAI_API_KEY` is set, otherwise the button shows a warning)
 - macOS-only additive visual tweaks via `_mac_btn_normal/_focused/_pressed/_active_toggle` helpers (all no-ops on Windows/RPi). Aqua ignores `bg=`/`relief=` on `tk.Button`, so focus/press state is simulated via `highlightbackground` + `highlightthickness`. Top-row buttons get a narrower font + repositioning, and text widgets get an explicit border. Shift-Tab is explicitly bound to `focus_prev` on macOS to short-circuit slow default traversal.
+- macOS key mapping differences vs. Windows/RPi:
+  - `<Command-i>` is bound as an alias for `<Insert>` on preset grid buttons (Mac keyboards have no Insert key). Both bindings remain active on macOS so external/full-size keyboards still work.
+  - `<Shift-Tab>` and `<ISO_Left_Tab>` are explicitly bound to `focus_prev` on top-row buttons and preset grid buttons (perf workaround, not a behavior change).
 
 ### Station Database (`AllRadioStations.csv`)
 
@@ -47,7 +50,7 @@ CSV with 7 columns: `LongName, StationLogoName, StationFunction, nNum, sPath, sC
 
 ### Station Drivers
 
-9 driver functions (`Radio1`–`Radio7`, `Commercial1`, `Commercial2`) handle different website layouts. All follow the same pattern: **navigate** → **prime** (click play) → **fetch images** → **parse text** → **return `*`-separated string**. Shared helpers prefixed with `_` handle common operations (navigation, image download/display, BeautifulSoup parsing).
+10 driver functions (`Radio1`–`Radio7`, `Radio4new`, `Commercial1`, `Commercial2`) handle different website layouts. All follow the same pattern: **navigate** → **prime** (click play) → **fetch images** → **parse text** → **return `*`-separated string**. Shared helpers prefixed with `_` handle common operations (navigation, image download/display, BeautifulSoup parsing). All drivers must be defined *above* the `function_map` dictionary (line ~1498) — the CSV loader looks up names there at import time, so a forward reference will raise `NameError`.
 
 See `README_StationDrivers.md` for the full driver architecture and how to add new drivers.
 

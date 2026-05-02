@@ -1,21 +1,21 @@
 ABC Radio Sydney NSW,30
 ABC Radio Canberra ACT,44
--- EMPTY 2 --,-1
--- EMPTY 3 --,-1
--- EMPTY 4 --,-1
--- EMPTY 5 --,-1
--- EMPTY 6 --,-1
--- EMPTY 7 --,-1
--- EMPTY 8 --,-1
--- EMPTY 9 --,-1
--- EMPTY 10 --,-1
+ABC Radio Adelaide SA,56
+ABC Classic2,0
+ABC triple j Hottest,2
+ABC Radio National LIVE,4
+ABC Classic SA,28
+ABC NewsRadio,82
+ABC Radio Australia,84
+ABC Radio National SA,7
+au ABC Radio National,4244
 -- EMPTY 11 --,-1
 -- EMPTY 12 --,-1
 -- EMPTY 13 --,-1
 -- EMPTY 14 --,-1
 -- EMPTY 15 --,-1
 -- EMPTY 16 --,-1
--- EMPTY 17 --,-1
+ab Country Music Radio - Brooks & Dunn,450
 -- EMPTY 18 --,-1
 -- EMPTY 19 --,-1
 -- EMPTY 20 --,-1

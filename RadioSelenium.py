@@ -691,180 +691,160 @@ def _place_button_at_grid(button_widget, i, y_offset):
     button_widget.place(x=128 + (sizeButton + 5) * (col + 1),
                         y=y_offset + (sizeButton + 5) * row,
                         width=sizeButton, height=sizeButton)
+
+
+# --- Shared helpers for the post-2025 ABC listen player ---------------------
+# All ABC stations now share the same Next.js player. Class names use the
+# CSS-modules pattern ``ComponentName_role__<hash>`` where the hash changes
+# on every deploy, so we match on the stable prefix via ``[class*=]`` (CSS)
+# or a callable predicate (BeautifulSoup).
+
+def _abc_listen_click_play(br):
+    """Click the Play Live button on the ABC listen player."""
+    btn = br.find_element(By.CSS_SELECTOR, 'button[class*="LiveAudioPlayer_controlBtn"]')
+    btn.click()
+
+def _abc_listen_program_image(br, dest_path, fallback_path):
+    """Download the current track artwork; return dest_path on success or fallback_path on failure."""
+    try:
+        img = br.find_element(
+            By.CSS_SELECTOR,
+            'section[class*="LiveAudioPlayer_liveAudioPlayer"] img[class*="CrossfadeImage_topImage"]',
+        )
+        _fetch_image_to(dest_path, img.get_attribute("src"))
+        return dest_path
+    except Exception as e:
+        print(f"Caught a problem fetching program image: {e}")
+        return fallback_path
+
+def _abc_listen_station_logo(br, dest_path, fallback_path):
+    """Download the station logo (the floating wordmark) — used when no static logo PNG is bundled.
+
+    Some ABC stations don't expose this element (e.g. NewsRadio); a missing logo is expected
+    and falls back silently rather than logging a stack trace.
+    """
+    imgs = br.find_elements(By.CSS_SELECTOR, 'img[class*="LiveAudioPlayer_logoFloating"]')
+    if not imgs:
+        return fallback_path
+    try:
+        _fetch_image_to(dest_path, imgs[0].get_attribute("src"))
+        return dest_path
+    except Exception as e:
+        print(f"Caught a problem fetching station logo: {e}")
+        return fallback_path
+
+def _abc_listen_now_playing(soup):
+    """Parse the player's now-playing text into a *-separated string for the text_box."""
+    def _has(fragment):
+        return lambda c: c and any(fragment in cls for cls in (c if isinstance(c, list) else [c]))
+    def _norm(el):
+        return " ".join(el.get_text(separator=" ", strip=True).split()) if el else ""
+
+    show = _norm(soup.find(class_=_has("LiveAudioPlayer_programHeading")))
+    track = _norm(soup.find(class_=_has("LiveAudioPlayer_headingLink")))
+    artist = _norm(soup.find(class_=_has("LiveAudioPlayer_artist")))
+    props = [_norm(p) for p in soup.find_all(class_=_has("LiveAudioPlayer_trackProperty"))]
+
+    parts = [p for p in [show, track, artist, *props] if p]
+    return "*".join(parts) if parts else "No specific item playing"
 # ============================================================================
 
 
 
 def Radio1(br, nNum, sPath, sClass, nType):
-    """ABC sites pattern #1: click primary stream button, square program image right column."""
+    """ABC sites pattern #1: square program image, station-specific Y placement (ABC Classic2 / ABC Jazz)."""
     if eventFlag:
-        logo_path = f"{pathImages}/{StationLogo}.png"
         print(f"{StationLogo}.png")
         _navigate_to_station(br, sPath, refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
-        btn.click(); time.sleep(1)
+        _abc_listen_click_play(br); time.sleep(1)
         _display_logo_from_file(f"{pathImages}/{StationLogo}.png")
 
-    # Program image
-    try:
-        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
-        image2_path = f"{pathImages}/presenter.jpg"
-        _fetch_image_to(image2_path, img2.get_attribute("src"))
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        image2_path = f"{pathImages}/Blank.png"
-
+    image2_path = _abc_listen_program_image(br, f"{pathImages}/presenter.jpg", f"{pathImages}/Blank.png")
     _display_program_image_square(image2_path)
     if not HiddenFlag:
-        if station == "ABC_Classic2":
-            _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
-        else:
-            _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+        y_off = Ygap3 if station == "ABC_Classic2" else Ygap2
+        _lift_program_image_at(Xgap + X1, y_off + Y1, Xprog - X1, Xprog - X1)
 
-    soup = _soup_inner_html(be)
-    fe = soup.find(attrs={"class": "view-live-now popup"})
-    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
-    fe1 = _trim_after(fe1, "*More").replace("More from*", "").replace("*.", "")
-    fe = soup.find(attrs={"class": "playingNow"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
-    return fe1 + "*" + fe2
+    return _abc_listen_now_playing(_soup_inner_html(be))
 
 
+
+_ABC_RN_TZ = {0: "", 1: "?tz=qld", 2: "?tz=wa", 3: "?tz=sa", 4: "?tz=nt"}
 
 def Radio2(br, nNum, sPath, sClass, nType):
-    """ABC sites pattern #2: timezone selection via keyboard, then stream button."""
+    """ABC Radio National (5 timezone variants).
+
+    Timezone now selected via ``?tz=`` query param (post-2025 ABC redesign replaced the old
+    in-page dropdown that this driver used to drive via TAB/UP/DOWN keystrokes).
+    """
     if eventFlag:
-        _navigate_to_station(br, sPath, refresh_http)
+        _navigate_to_station(br, sPath + _ABC_RN_TZ.get(nNum, ""), refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        for _ in range(3): be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(4): be.send_keys(Keys.UP)
-        for _ in range(nNum): be.send_keys(Keys.DOWN)
-        be.send_keys(Keys.ENTER)
-
-        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
-        btn.click(); time.sleep(1)
+        _abc_listen_click_play(br); time.sleep(1)
         _display_logo_from_file(f"{pathImages}/ABC_Radio_National.png")
 
-    # Program image (header img)
-    try:
-        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/header/div/div/img')
-        image2_path = f"{pathImages}/presenter.jpg"
-        _fetch_image_to(image2_path, img2.get_attribute("src"))
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        image2_path = f"{pathImages}/Blank.png"
+    image2_path = _abc_listen_program_image(br, f"{pathImages}/presenter.jpg", f"{pathImages}/Blank.png")
+    _display_program_image_square(image2_path)
+    _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
 
-    # Rectangular placement
-    im = Image.open(image2_path); w2, h2 = im.size
-    width = int(Xprog * w2 / h2)
-    _display_program_image_rect(image2_path, width)
-    _lift_program_image_at(Xgap3 - (width - Xprog) + X1, Ygap2 + Y1, width - X1, Xprog - X1)
-
-    soup = _soup_inner_html(be)
-    fe = soup.find(attrs={"class": "view-live-now popup"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
-    fe2 = _trim_after(fe2, "*.*More")
-    return fe2
+    return _abc_listen_now_playing(_soup_inner_html(be))
 
 
 
 def Radio3(br, nNum, sPath, sClass, nType):
-    """ABC pattern #3: timezone combo further to the right; logo derives from StationLogo prefix."""
+    """ABC Classic (5 timezone variants); logo derives from StationLogo prefix.
+
+    Timezone now selected via ``?tz=`` query param (same migration as Radio2).
+    """
+    global station_short
     if eventFlag:
-        station = StationLogo
-        first = station.find("_")
-        second = station.find("_", first + 1)
-        global station_short
-        station_short = station[:second]
-        logo = f"{station_short}.png"
-        print(logo)
-        _navigate_to_station(br, sPath, refresh_http)
+        st = StationLogo
+        first = st.find("_")
+        second = st.find("_", first + 1)
+        station_short = st[:second]
+        print(f"{station_short}.png")
+        _navigate_to_station(br, sPath + _ABC_RN_TZ.get(nNum, ""), refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        for _ in range(5): be.send_keys(Keys.TAB)
-        be.send_keys(Keys.ENTER)
-        for _ in range(4): be.send_keys(Keys.UP)
-        for _ in range(nNum): be.send_keys(Keys.DOWN)
-        be.send_keys(Keys.ENTER)
-
-        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div/div[2]/div[12]/div[4]/div/div[1]')
-        btn.click(); time.sleep(1)
+        _abc_listen_click_play(br); time.sleep(1)
         _display_logo_from_file(f"{pathImages}/{station_short}.png")
 
-    # Program image
-    try:
-        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[3]/div[1]/div/div[2]/div[2]/img')
-        image2_path = f"{pathImages}/presenter.jpg"
-        _fetch_image_to(image2_path, img2.get_attribute("src"))
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        image2_path = f"{pathImages}/Blank.png"
-
+    image2_path = _abc_listen_program_image(br, f"{pathImages}/presenter.jpg", f"{pathImages}/Blank.png")
     _display_program_image_square(image2_path)
-    if station_short == "ABC_Classic":
-        _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
-    else:
-        _lift_program_image_at(Xgap + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
+    y_off = Ygap3 if station_short == "ABC_Classic" else Ygap2
+    _lift_program_image_at(Xgap + X1, y_off + Y1, Xprog - X1, Xprog - X1)
 
-    soup = _soup_inner_html(be)
-    fe = soup.find(attrs={"class": "view-live-now popup"})
-    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
-    fe1 = _trim_after(fe1, "*More")
-    fe = soup.find(attrs={"class": "playingNow"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
-    return fe1 + "*" + fe2
+    return _abc_listen_now_playing(_soup_inner_html(be))
 
 
 
 def Radio4(br, nNum, sPath, sClass, nType):
-    """ABC pattern #4: different DOM; click large primary button; program image square crop."""
+    """ABC NewsRadio / ABC Radio Australia: prefer static logo PNG, else fetch from player."""
     if eventFlag:
         _navigate_to_station(br, sPath, refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
     if eventFlag:
-        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[2]/button')
-        #btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/section/div[2]/button')
-        btn.click(); time.sleep(3)
-        try:
-            img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/a/div/img')
-            #img = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/section/div[2]/div/div/div/div/div/img[2]')
-            image_path = f"{pathImages}/logo.png"
-            _fetch_image_to(image_path, img.get_attribute("src"))
-        except Exception as e:
-            print(f"Caught a problem: {e}")
-            image_path = f"{pathImages}/Blank.png"
-        _display_logo_from_file(image_path)
+        _abc_listen_click_play(br); time.sleep(1)
+        static_logo = f"{pathImages}/{StationLogo}.png"
+        logo_path = static_logo if os.path.exists(static_logo) \
+            else _abc_listen_station_logo(br, f"{pathImages}/logo.png", f"{pathImages}/Blank.png")
+        _display_logo_from_file(logo_path)
 
-    try:
-        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/main/div[1]/div/div/div/div[1]/div[1]/div/div/div/img')
-        image2_path = f"{pathImages}/presenter.jpg"
-        _fetch_image_to(image2_path, img2.get_attribute("src"))
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        image2_path = f"{pathImages}/ABC_faint.png"
-
+    image2_path = _abc_listen_program_image(br, f"{pathImages}/presenter.jpg", f"{pathImages}/ABC_faint.png")
     _display_program_image_square(image2_path)
     _lift_program_image_at(Xgap2 + X1, Ygap2 + Y1, Xprog - X1, Xprog - X1)
 
-    soup = _soup_inner_html(be)
-    fe = soup.find(attrs={"class": "LiveAudioPlayer_body__y6nYe"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No item playing"
-    fe3 = fe2.replace("*-", "")
-    fe = soup.find(attrs={"class": "LiveAudioSynopsis_content__DZ6E7"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No Description"
-    fe3 = fe3 + "* *" + fe2
-    return fe3
+    return _abc_listen_now_playing(_soup_inner_html(be))
 
 
 def Radio4new(br, nNum, sPath, sClass, nType):
@@ -970,35 +950,21 @@ def Radio5(br, nNum, sPath, sClass, nType):
 
 
 def Radio6(br, nNum, sPath, sClass, nType):
-    """ABC Kids Listen pattern: square program art from right column."""
+    """ABC Kids Listen: square program art, lower Y placement (Ygap3)."""
     if eventFlag:
         _navigate_to_station(br, sPath, refresh_http)
 
     be = br.find_element(By.TAG_NAME, "body"); time.sleep(1)
 
     if eventFlag:
-        btn = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[1]/div/div[2]/div[12]/div[4]/div/div[1]')
-        btn.click(); time.sleep(1)
+        _abc_listen_click_play(br); time.sleep(1)
         _display_logo_from_file(f"{pathImages}/ABC_Kids_listen.png")
 
-    try:
-        img2 = be.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div/div/div[2]/div[1]/div/div[2]/div[2]/img')
-        image2_path = f"{pathImages}/presenter.jpg"
-        _fetch_image_to(image2_path, img2.get_attribute("src"))
-    except Exception as e:
-        print(f"Caught a problem: {e}")
-        image2_path = f"{pathImages}/Blank.png"
-
+    image2_path = _abc_listen_program_image(br, f"{pathImages}/presenter.jpg", f"{pathImages}/Blank.png")
     _display_program_image_square(image2_path)
     _lift_program_image_at(Xgap + X1, Ygap3 + Y1, Xprog - X1, Xprog - X1)
 
-    soup = _soup_inner_html(be)
-    fe = soup.find(attrs={"class": "view-live-now popup"})
-    fe1 = fe.get_text(separator="*", strip=True) if fe is not None else "None"
-    fe1 = _trim_after(fe1, "*More")
-    fe = soup.find(attrs={"class": "playingNow"})
-    fe2 = fe.get_text(separator="*", strip=True) if fe is not None else "No specific item playing"
-    return fe1 + "*" + fe2
+    return _abc_listen_now_playing(_soup_inner_html(be))
 
 
 

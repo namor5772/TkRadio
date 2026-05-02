@@ -1,3 +1,4 @@
+import argparse
 import subprocess
 import inspect
 import sys
@@ -24,6 +25,12 @@ except ModuleNotFoundError:
 IS_RPI = GPIO is not None
 IS_MACOS = sys.platform == "darwin" and not IS_RPI
 IS_WINDOWS = not IS_RPI and not IS_MACOS
+
+_parser = argparse.ArgumentParser(description="TkRadio Internet Radio Player")
+_parser.add_argument("--head", "--no-headless", dest="headed", action="store_true",
+                     help="Run Firefox with a visible window for debugging (default: headless)")
+_args, _ = _parser.parse_known_args()
+HEADLESS = not _args.headed
 
 from datetime import datetime
 from PIL import Image, ImageTk
@@ -400,7 +407,18 @@ firefox_options.add_argument("-profile")
 firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-firefox_options.add_argument("-headless")  # comment out if you want to see the browser window
+if HEADLESS:
+    firefox_options.add_argument("-headless")  # pass --head on the command line to see the browser window
+
+# Anti-bot mitigations: Cloudflare (used by novafm.com.au and others) flags headless
+# Firefox via the navigator.webdriver property and the default "HeadlessFirefox" UA.
+# Spoof a normal desktop UA and disable the webdriver flag at the profile level.
+firefox_options.set_preference(
+    "general.useragent.override",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0",
+)
+firefox_options.set_preference("dom.webdriver.enabled", False)
+firefox_options.set_preference("useAutomationExtension", False)
 if IS_MACOS:
     # Prefer the project's local FirefoxHeadless.app (LSUIElement=true → no Dock icon),
     # built once via ./build_headless_firefox.sh. Falls back to the system Firefox if

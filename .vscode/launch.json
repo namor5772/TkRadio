@@ -10,6 +10,21 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "RadioSelenium (headless)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/RadioSelenium.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "RadioSelenium (--head, visible Firefox)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/RadioSelenium.py",
+            "args": ["--head"],
+            "console": "integratedTerminal"
         }
     ]
 }

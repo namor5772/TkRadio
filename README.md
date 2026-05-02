@@ -266,6 +266,14 @@ Tested on macOS (Apple Silicon) with Python 3.14 via Homebrew. The app reuses th
 
 7. **AI commentary**: optional. Set `OPENAI_API_KEY` to enable the AI button. Without it, the button is still visible but will show a warning dialog when pressed.
 
+8. **Hide the headless Firefox Dock icon** (optional): macOS shows every foreground GUI app in the Dock, even with `-headless` (no visible windows). To get a truly invisible Firefox while the radio is running:
+
+    ```sh
+    ./build_headless_firefox.sh
+    ```
+
+    This clones `/Applications/Firefox.app` to `./FirefoxHeadless.app` (~150 MB, gitignored), sets `LSUIElement=true` in its `Info.plist`, and re-signs it. The radio app prefers this copy when present and falls back to the system Firefox otherwise. Re-run the script after Firefox updates.
+
 The Firefox profile directory `firefoxProfileMacOS/` is auto-created at first run and gitignored.
 
 ---

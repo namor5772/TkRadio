@@ -6,6 +6,9 @@ firefoxProfileMacOS/
 # Vendored e-Paper library
 Hardware/e-Paper-master/
 
+# macOS-only Firefox copy with LSUIElement=true (built via build_headless_firefox.sh)
+FirefoxHeadless.app/
+
 # Python
 __pycache__/
 *.pyc

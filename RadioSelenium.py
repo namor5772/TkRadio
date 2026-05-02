@@ -400,12 +400,16 @@ firefox_options.add_argument("-profile")
 firefox_options.add_argument(pathProfile)
 firefox_options.add_argument("--width=1280")
 firefox_options.add_argument("--height=917")
-#firefox_options.add_argument("-headless")  # comment out if you want to see the browser window
+firefox_options.add_argument("-headless")  # comment out if you want to see the browser window
 if IS_MACOS:
-    # Homebrew cask installs Firefox.app; point geckodriver at the real binary
-    # rather than relying on the /opt/homebrew/bin/firefox shell wrapper.
+    # Prefer the project's local FirefoxHeadless.app (LSUIElement=true → no Dock icon),
+    # built once via ./build_headless_firefox.sh. Falls back to the system Firefox if
+    # the local copy hasn't been built yet (Dock icon will reappear in that case).
+    _mac_headless = os.path.join(script_dir, "FirefoxHeadless.app", "Contents", "MacOS", "firefox")
     _mac_firefox = "/Applications/Firefox.app/Contents/MacOS/firefox"
-    if os.path.exists(_mac_firefox):
+    if os.path.exists(_mac_headless):
+        firefox_options.binary_location = _mac_headless
+    elif os.path.exists(_mac_firefox):
         firefox_options.binary_location = _mac_firefox
 browser = webdriver.Firefox(options=firefox_options)
 

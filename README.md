@@ -109,6 +109,7 @@ For details on station driver architecture, see [README_StationDrivers.md](READM
 | `StationLogs.txt` | Play history and AI summaries |
 | `bluetooth.txt` | Bluetooth ON/OFF + last paired MAC/name (RPi only) |
 | `pollflag.txt` | Polling toggle (0/1) |
+| `windowPosition.txt` | Last main-window geometry `WxH+X+Y` (Windows/macOS only). Restored on startup; auto-falls-back to default if the saved monitor is gone or the position is off-screen. |
 | `AllRadioStations.csv` | Master station list |
 
 All state files are expected in the same directory as `RadioSelenium.py`.
@@ -219,18 +220,30 @@ All state files are expected in the same directory as `RadioSelenium.py`.
 6. **Run**:
 
     ```sh
-    .venv\Scripts\python RadioSelenium.py
+    .venv\Scripts\python RadioSelenium.py            # default: Firefox runs headless
+    .venv\Scripts\python RadioSelenium.py --head     # debug: visible Firefox + console (alias: --no-headless)
     ```
 
-    Or run/debug directly from VS Code using the play button.
+    Or run/debug directly from VS Code using the play button. Use `pythonw.exe` instead of `python.exe` to suppress the console window for normal use.
 
-7. **Optional desktop shortcut**: Create a Windows shortcut with target:
+7. **Optional desktop shortcuts** (Windows): the repo ships an icon generator and the two recommended shortcut configurations. From the project root:
 
-    ```text
-    C:\path\to\python\pythonw.exe "C:\path\to\TkRadio\RadioSelenium.py"
+    ```sh
+    .venv\Scripts\python tools\make_icons.py
     ```
+
+    This produces `Images\icons\tkradio_headless.ico` (blue, crescent-moon badge) and `Images\icons\tkradio_head.ico` (amber, magnifier badge). Then create two `.lnk` files on your Desktop:
+
+    | Shortcut | Target | Arguments | Icon |
+    |----------|--------|-----------|------|
+    | TkRadio (Headless) | `.venv\Scripts\pythonw.exe` | `RadioSelenium.py` | `Images\icons\tkradio_headless.ico` |
+    | TkRadio (Head Mode) | `.venv\Scripts\python.exe` | `RadioSelenium.py --head` | `Images\icons\tkradio_head.ico` |
+
+    Working directory should be the project root for both. The headless shortcut runs cleanly with no console window; the head-mode shortcut opens a console alongside the Tk window so Selenium output is captured.
 
 8. **AI commentary**: Set the `OPENAI_API_KEY` environment variable to enable the AI summary feature.
+
+9. **Window position**: Each clean shutdown writes the main window's `WxH+X+Y` to `windowPosition.txt`. On the next launch the window restores to the same spot, with an automatic fallback to the default centered position if your monitor configuration changed and the saved position is no longer on-screen. RPi is unaffected — the kiosk-style fixed `+0+0` is preserved.
 
 ### macOS
 

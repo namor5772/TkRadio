@@ -398,6 +398,9 @@ filename2 = 'playlist.txt'
 filepath2 = os.path.join(script_dir, filename2)
 print(f'The file {filepath2} stores the playlist before shutdown.')
 
+# Create the full filepath to the saved window-position file (Windows/macOS only).
+windowPosition_filepath = os.path.join(script_dir, 'windowPosition.txt')
+
 # Open and setup FireFox browser
 # we use an explicitly given profile since via Selenium any changes are only temporary
 # We setup a profile that deletes cookies etc. between starting browser which should help
@@ -1681,6 +1684,7 @@ def kill_gekodrivers():
 # do this when closing the window/app
 def on_closing():
     print("\n---- on_closing() entered ---------------------------------------------")
+    save_window_position() # persist window x/y for next launch (Windows/macOS only)
     if GPIO:
         GPIO.cleanup()
 
@@ -3228,6 +3232,60 @@ class CustomCombobox(tk.Frame):
 ##########################################
 ### THIS IS WHERE THE CORE CODE STARTS ###
 
+# Window-position persistence (Windows/macOS only — RPi keeps its fixed +0+0).
+def _virtual_screen_bounds(tk_root):
+    """Return (x, y, w, h) for the union of all monitors. Falls back to primary."""
+    if IS_WINDOWS:
+        try:
+            import ctypes
+            user32 = ctypes.windll.user32
+            return (
+                user32.GetSystemMetrics(76),  # SM_XVIRTUALSCREEN
+                user32.GetSystemMetrics(77),  # SM_YVIRTUALSCREEN
+                user32.GetSystemMetrics(78),  # SM_CXVIRTUALSCREEN
+                user32.GetSystemMetrics(79),  # SM_CYVIRTUALSCREEN
+            )
+        except Exception as e:
+            print(f"virtual_screen_bounds: ctypes lookup failed ({e}); falling back to primary")
+    return 0, 0, tk_root.winfo_screenwidth(), tk_root.winfo_screenheight()
+
+
+def save_window_position():
+    """Persist current window geometry. No-op on RPi."""
+    if IS_RPI:
+        return
+    try:
+        geom = root.geometry()  # round-trip-safe "WxH+X+Y"
+        with open(windowPosition_filepath, 'w') as f:
+            f.write(geom + '\n')
+    except Exception as e:
+        print(f"save_window_position failed: {e}")
+
+
+def load_window_position(default_geom):
+    """Apply saved geometry if it lands on-screen, else apply default_geom."""
+    if IS_RPI or not os.path.exists(windowPosition_filepath):
+        root.geometry(default_geom)
+        return
+    try:
+        with open(windowPosition_filepath) as f:
+            saved = f.read().strip().splitlines()[0]
+        root.geometry(saved)
+        root.update_idletasks()
+        x, y = root.winfo_x(), root.winfo_y()
+        w, h = root.winfo_width(), root.winfo_height()
+        vx, vy, vw, vh = _virtual_screen_bounds(root)
+        x_visible = max(0, min(x + w, vx + vw) - max(x, vx))
+        y_visible = max(0, min(y + h, vy + vh) - max(y, vy))
+        if x_visible < 100 or y_visible < 50:
+            print(f"saved window position {saved} is off-screen for current "
+                  f"monitor layout (virtual {vw}x{vh}+{vx}+{vy}); reverting to default")
+            root.geometry(default_geom)
+    except Exception as e:
+        print(f"load_window_position failed: {e}; using default")
+        root.geometry(default_geom)
+
+
 # Create the main window
 # Set title, size and position of the main window, and make it non-resizable
 root = tk.Tk()
@@ -3235,8 +3293,8 @@ root.title("INTERNET RADIO - https://github.com/namor5772/TkRadio/"+script_name)
 if GPIO:
     root.geometry("800x455+0+0")
 else:
-    # more space for windows ai version
-    root.geometry("800x861+0+0")
+    # more space for windows ai version; restored from windowPosition.txt if present and on-screen
+    load_window_position("800x861+0+0")
 root.resizable(False, False)
 root.update_idletasks()
 

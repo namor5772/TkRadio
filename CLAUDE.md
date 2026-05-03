@@ -86,6 +86,7 @@ Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWi
 - `bluetooth.txt` — Bluetooth ON/OFF + last paired MAC/name (RPi)
 - `pollflag.txt` — Polling toggle (0/1)
 - `StationLogs.txt` — Play history and AI summaries
+- `windowPosition.txt` — Last main-window geometry string `WxH+X+Y` (Windows/macOS only). Loader (`load_window_position()`) applies it then validates the window is at least 100x50 px on the current virtual screen via `GetSystemMetrics(SM_*VIRTUALSCREEN)`; falls back to default if the saved monitor is gone.
 
 ## Key Conventions
 

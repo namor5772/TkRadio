@@ -400,6 +400,10 @@ print(f'The file {filepath2} stores the playlist before shutdown.')
 
 # Create the full filepath to the saved window-position file (Windows/macOS only).
 windowPosition_filepath = os.path.join(script_dir, 'windowPosition.txt')
+print(f'The file {windowPosition_filepath} stores the main window geometry between launches (Windows/macOS only).')
+
+# Default main window geometry for non-RPi platforms; restored from windowPosition.txt when valid.
+DEFAULT_WINDOW_GEOM = "800x861+0+0"
 
 # Open and setup FireFox browser
 # we use an explicitly given profile since via Selenium any changes are only temporary
@@ -3233,17 +3237,27 @@ class CustomCombobox(tk.Frame):
 ### THIS IS WHERE THE CORE CODE STARTS ###
 
 # Window-position persistence (Windows/macOS only — RPi keeps its fixed +0+0).
+# Win32 SM_*VIRTUALSCREEN constants for GetSystemMetrics — the union of all monitors.
+SM_XVIRTUALSCREEN = 76
+SM_YVIRTUALSCREEN = 77
+SM_CXVIRTUALSCREEN = 78
+SM_CYVIRTUALSCREEN = 79
+
+
 def _virtual_screen_bounds(tk_root):
     """Return (x, y, w, h) for the union of all monitors. Falls back to primary."""
+    # Tk's winfo_screenwidth/height and winfo_vrootwidth/height return the *primary*
+    # monitor on Windows (vroot logic is X11-only) — useless for a window dragged to
+    # a secondary display. ctypes is required for true multi-monitor bounds.
     if IS_WINDOWS:
         try:
             import ctypes
             user32 = ctypes.windll.user32
             return (
-                user32.GetSystemMetrics(76),  # SM_XVIRTUALSCREEN
-                user32.GetSystemMetrics(77),  # SM_YVIRTUALSCREEN
-                user32.GetSystemMetrics(78),  # SM_CXVIRTUALSCREEN
-                user32.GetSystemMetrics(79),  # SM_CYVIRTUALSCREEN
+                user32.GetSystemMetrics(SM_XVIRTUALSCREEN),
+                user32.GetSystemMetrics(SM_YVIRTUALSCREEN),
+                user32.GetSystemMetrics(SM_CXVIRTUALSCREEN),
+                user32.GetSystemMetrics(SM_CYVIRTUALSCREEN),
             )
         except Exception as e:
             print(f"virtual_screen_bounds: ctypes lookup failed ({e}); falling back to primary")
@@ -3262,10 +3276,10 @@ def save_window_position():
         print(f"save_window_position failed: {e}")
 
 
-def load_window_position(default_geom):
-    """Apply saved geometry if it lands on-screen, else apply default_geom."""
+def load_window_position():
+    """Apply saved geometry if it lands on-screen, else apply DEFAULT_WINDOW_GEOM."""
     if IS_RPI or not os.path.exists(windowPosition_filepath):
-        root.geometry(default_geom)
+        root.geometry(DEFAULT_WINDOW_GEOM)
         return
     try:
         with open(windowPosition_filepath) as f:
@@ -3277,13 +3291,15 @@ def load_window_position(default_geom):
         vx, vy, vw, vh = _virtual_screen_bounds(root)
         x_visible = max(0, min(x + w, vx + vw) - max(x, vx))
         y_visible = max(0, min(y + h, vy + vh) - max(y, vy))
+        # Require enough on-screen window for a draggable title bar handle (~100x50 px);
+        # below that the window is effectively unreachable and we revert to default.
         if x_visible < 100 or y_visible < 50:
             print(f"saved window position {saved} is off-screen for current "
                   f"monitor layout (virtual {vw}x{vh}+{vx}+{vy}); reverting to default")
-            root.geometry(default_geom)
+            root.geometry(DEFAULT_WINDOW_GEOM)
     except Exception as e:
         print(f"load_window_position failed: {e}; using default")
-        root.geometry(default_geom)
+        root.geometry(DEFAULT_WINDOW_GEOM)
 
 
 # Create the main window
@@ -3294,7 +3310,7 @@ if GPIO:
     root.geometry("800x455+0+0")
 else:
     # more space for windows ai version; restored from windowPosition.txt if present and on-screen
-    load_window_position("800x861+0+0")
+    load_window_position()
 root.resizable(False, False)
 root.update_idletasks()
 

@@ -6,7 +6,7 @@ Head icon:     amber/orange, magnifier = "debug / browser visible".
 Both share the same radio silhouette so the pair reads as one app, two modes.
 Drawn at 4x then downscaled for clean anti-aliased edges.
 """
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw
 from pathlib import Path
 
 OUT_DIR = Path(__file__).resolve().parent.parent / "Images" / "icons"
@@ -14,10 +14,6 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 SIZES = [16, 32, 48, 64, 128, 256]
 SS = 4  # supersampling factor
-
-
-def rounded_rect(draw, box, radius, fill, outline=None, width=0):
-    draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
 
 def vertical_gradient(size, top, bottom):
@@ -40,13 +36,13 @@ def draw_radio(draw, cx, cy, w, h, body_color, grill_color, dial_color, accent):
     # Body
     left, top = cx - w // 2, cy - h // 2
     right, bottom = cx + w // 2, cy + h // 2
-    rounded_rect(draw, (left, top, right, bottom), radius=h // 6, fill=body_color)
+    draw.rounded_rectangle((left, top, right, bottom), radius=h // 6, fill=body_color)
 
     # Inner panel (slight inset, darker)
     inset = h // 14
     panel = (left + inset, top + inset, right - inset, bottom - inset)
     inner = tuple(max(0, c - 22) for c in body_color)
-    rounded_rect(draw, panel, radius=h // 8, fill=inner)
+    draw.rounded_rectangle(panel, radius=h // 8, fill=inner)
 
     # Speaker grill (left half)
     grill_cx = left + w // 4 + inset
@@ -77,8 +73,7 @@ def draw_radio(draw, cx, cy, w, h, body_color, grill_color, dial_color, accent):
     tuner_w = right - inset - tuner_left
     tuner_h = h // 3
     tuner_top = cy - tuner_h // 2 - inset
-    rounded_rect(
-        draw,
+    draw.rounded_rectangle(
         (tuner_left, tuner_top, tuner_left + tuner_w, tuner_top + tuner_h),
         radius=tuner_h // 5,
         fill=dial_color,

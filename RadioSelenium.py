@@ -427,12 +427,12 @@ firefox_options.set_preference(
 firefox_options.set_preference("dom.webdriver.enabled", False)
 firefox_options.set_preference("useAutomationExtension", False)
 if IS_MACOS:
-    # Prefer the project's local FirefoxHeadless.app (LSUIElement=true → no Dock icon),
-    # built once via ./build_headless_firefox.sh. Falls back to the system Firefox if
-    # the local copy hasn't been built yet (Dock icon will reappear in that case).
+    # Headless mode: prefer the project's local FirefoxHeadless.app (LSUIElement=true → no
+    # Dock icon), built via ./build_headless_firefox.sh. Headed/debug mode (--head): use
+    # the system Firefox so windows behave normally (Dock icon, Cmd-Tab, Mission Control).
     _mac_headless = os.path.join(script_dir, "FirefoxHeadless.app", "Contents", "MacOS", "firefox")
     _mac_firefox = "/Applications/Firefox.app/Contents/MacOS/firefox"
-    if os.path.exists(_mac_headless):
+    if HEADLESS and os.path.exists(_mac_headless):
         firefox_options.binary_location = _mac_headless
     elif os.path.exists(_mac_firefox):
         firefox_options.binary_location = _mac_firefox

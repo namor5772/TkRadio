@@ -285,7 +285,17 @@ Tested on macOS (Apple Silicon) with Python 3.14 via Homebrew. The app reuses th
     ./build_headless_firefox.sh
     ```
 
-    This clones `/Applications/Firefox.app` to `./FirefoxHeadless.app` (~150 MB, gitignored), sets `LSUIElement=true` in its `Info.plist`, and re-signs it. The radio app prefers this copy when present and falls back to the system Firefox otherwise. Re-run the script after Firefox updates.
+    This clones `/Applications/Firefox.app` to `./FirefoxHeadless.app` (~150 MB, gitignored), sets `LSUIElement=true` in its `Info.plist`, and re-signs it. The radio app prefers this copy when present and falls back to the system Firefox otherwise. When Firefox auto-updates, the radio app detects the version mismatch at startup and re-runs this script itself (a stale copy would otherwise be killed instantly by the profile's downgrade protection), so manual re-runs are no longer needed.
+
+9. **Optional desktop shortcuts**: the Desktop launchers are plain AppleScript applets that start the app detached from any terminal, logging to `/tmp/tkradio.log` / `/tmp/tkradio_head.log`. Recreate them with (adjust the repo path if you cloned elsewhere):
+
+    ```sh
+    osacompile -o ~/Desktop/TkRadio.app -e 'do shell script "export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py > /tmp/tkradio.log 2>&1 &"'
+
+    osacompile -o ~/Desktop/"TkRadio Head.app" -e 'do shell script "export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py --head > /tmp/tkradio_head.log 2>&1 &"'
+    ```
+
+    To give an applet a custom icon, select it in Finder, open *Get Info*, and paste an image (e.g. `Images/icons/tkradio_headless.png` or `tkradio_head.png`) onto the small icon in the window's top-left corner. If a shortcut appears to do nothing when pressed, check the corresponding `/tmp/tkradio*.log` — startup failures also surface in an error dialog.
 
 The Firefox profile directory `firefoxProfileMacOS/` is auto-created at first run and gitignored.
 

@@ -14,6 +14,7 @@ import urllib.request
 import urllib.error
 import psutil
 import tempfile
+import plistlib
 
 try:
     import RPi.GPIO as GPIO # type: ignore
@@ -432,11 +433,44 @@ if IS_MACOS:
     # the system Firefox so windows behave normally (Dock icon, Cmd-Tab, Mission Control).
     _mac_headless = os.path.join(script_dir, "FirefoxHeadless.app", "Contents", "MacOS", "firefox")
     _mac_firefox = "/Applications/Firefox.app/Contents/MacOS/firefox"
+
+    def _mac_app_version(app_dir):
+        try:
+            with open(os.path.join(app_dir, "Contents", "Info.plist"), "rb") as f:
+                return plistlib.load(f).get("CFBundleShortVersionString")
+        except (OSError, plistlib.InvalidFileException):
+            return None
+
+    if HEADLESS and os.path.exists(_mac_firefox):
+        # Firefox auto-updates leave the local copy behind, and once the (shared) profile
+        # has been touched by the newer system Firefox, the stale copy is killed instantly
+        # by profile downgrade protection. Rebuild the copy whenever versions differ.
+        _sys_ver = _mac_app_version("/Applications/Firefox.app")
+        _copy_ver = _mac_app_version(os.path.join(script_dir, "FirefoxHeadless.app"))
+        if _copy_ver != _sys_ver:
+            print(f"FirefoxHeadless.app ({_copy_ver}) does not match system Firefox ({_sys_ver}), rebuilding...")
+            subprocess.run(["/bin/bash", os.path.join(script_dir, "build_headless_firefox.sh")], check=False)
     if HEADLESS and os.path.exists(_mac_headless):
         firefox_options.binary_location = _mac_headless
     elif os.path.exists(_mac_firefox):
         firefox_options.binary_location = _mac_firefox
-browser = webdriver.Firefox(options=firefox_options)
+    # Safety net: if the chosen binary is still older than the one that last used the
+    # profile (e.g. the rebuild failed), start anyway instead of dying at launch.
+    firefox_options.add_argument("--allow-downgrade")
+try:
+    browser = webdriver.Firefox(options=firefox_options)
+except WebDriverException as e:
+    # Desktop-shortcut launches have no console, so without a dialog a failure
+    # here looks like the app silently refusing to start.
+    print(f"Could not start Firefox: {e}")
+    try:
+        _err_root = tk.Tk()
+        _err_root.withdraw()
+        messagebox.showerror("TkRadio", f"Could not start Firefox:\n\n{e}")
+        _err_root.destroy()
+    except Exception:
+        pass
+    sys.exit(1)
 
 firefox_exe = find_process_exe("firefox")
 geckodriver_exe = find_process_exe("geckodriver")

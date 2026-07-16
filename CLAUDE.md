@@ -77,7 +77,7 @@ Extracted helpers reduce duplication across the codebase:
 
 ### Firefox Browser Management
 
-Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWindows`, `./firefoxProfileRPI5`, and `./firefoxProfileMacOS`. On macOS `firefox_options.binary_location` is set to `/Applications/Firefox.app/Contents/MacOS/firefox` to bypass the Homebrew shell wrapper. Auto-restarts every 3600 seconds (`RegularRestart()`) to prevent memory leaks. Stale geckodriver processes cleaned up via `psutil` — the kill branch matches `geckodriver` (no `.exe`) on both RPi and macOS; Windows branch still matches `geckodriver.exe`.
+Runs headless Firefox via Selenium. Per-platform profiles in `./firefoxProfileWindows`, `./firefoxProfileRPI5`, and `./firefoxProfileMacOS`. On macOS `firefox_options.binary_location` points at the local `FirefoxHeadless.app` copy in headless mode (no Dock icon) and at `/Applications/Firefox.app/Contents/MacOS/firefox` in `--head` mode (also bypasses the Homebrew shell wrapper). Because head and headless modes share one profile, a Firefox auto-update makes the copy stale and profile downgrade protection then kills it at launch — so startup compares `CFBundleShortVersionString` of both bundles and re-runs `build_headless_firefox.sh` on mismatch, passes `--allow-downgrade` as a belt-and-braces, and shows a Tk error dialog (instead of dying silently under a desktop shortcut) if `webdriver.Firefox()` still fails. Auto-restarts every 3600 seconds (`RegularRestart()`) to prevent memory leaks. Stale geckodriver processes cleaned up via `psutil` — the kill branch matches `geckodriver` (no `.exe`) on both RPi and macOS; Windows branch still matches `geckodriver.exe`.
 
 ## State Files
 

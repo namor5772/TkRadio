@@ -7,7 +7,7 @@ A Tkinter-based Internet Radio Player using Selenium to automate Firefox for aud
 Repo: <https://github.com/namor5772/TkRadio>  
 Script: `RadioSelenium.py` (single-file application, run from the repo folder)
 
-The radio accesses streams via station websites through a headless Firefox browser automated by Selenium. When a station is streaming, its logo is displayed alongside program artwork (e.g. album cover) and "Now Playing" text, refreshed approximately every 12 seconds.
+The radio accesses streams via station websites through a headless Firefox browser automated by Selenium. When a station is streaming, its logo is displayed alongside program artwork (e.g. album cover) and "Now Playing" text, refreshed approximately every 10 seconds.
 
 The software runs in three modes from a single codebase:
 
@@ -34,7 +34,7 @@ Type to filter the ~79,400 stations. Use `Up`/`Down` arrows, `PgUp`/`PgDn` to na
 
 ### Preset Grid (Playlist)
 
-54 buttons (6x9) on Raspberry Pi or 108 buttons (12x9) on Windows, each showing a station logo thumbnail.
+54 buttons (6x9) on Raspberry Pi or 108 buttons (12x9) on Windows/macOS, each showing a station logo thumbnail.
 
 - **Enter** — play the focused preset
 - **Insert** (or **Cmd-I** on macOS, since Mac keyboards lack an Insert key) — assign the current combobox station to the focused button
@@ -48,17 +48,17 @@ Type to filter the ~79,400 stations. Use `Up`/`Down` arrows, `PgUp`/`PgDn` to na
 | **RND** | Play a random station |
 | **DEL** | Remove the current station from the master CSV |
 | **SAVE** | Append current station/program info to `StationLogs.txt` |
-| **AI** | Generate an OpenAI summary (Windows only) |
+| **AI** | Generate an OpenAI summary (Windows/macOS) |
 | **VIEW** | Toggle between playlist grid and full program/text view |
-| **+** | RPi: open Setup panel (Bluetooth/Wi-Fi). Windows: toggle polling |
+| **+** | RPi: open Setup panel (Bluetooth/Wi-Fi). Windows/macOS: toggle polling |
 
 ### Raspberry Pi Input (Rotary Encoder)
 
 The push-button rotary encoder emulates keyboard navigation. Rotating steps through "virtual key banks" (displayed along the top row); pressing sends the selected key to the focused widget.
 
-### AI Commentary (Windows Only)
+### AI Commentary (Windows/macOS)
 
-Pressing **AI** sends current program info to OpenAI (model `gpt-4.1`) in a background thread and renders a summary in the bottom text panel. Requires `OPENAI_API_KEY` environment variable set.
+Pressing **AI** sends current program info to OpenAI (model `gpt-5-nano`) in a background thread and renders a summary in the bottom text panel. Requires the `OPENAI_API_KEY` environment variable to be set (on macOS export it in `~/.zshenv` — see the macOS setup section).
 
 ---
 
@@ -70,7 +70,7 @@ Pressing **AI** sends current program info to OpenAI (model `gpt-4.1`) in a back
    - Scrapes "Now Playing" text and downloads artwork via BeautifulSoup
    - Updates the GUI (logo, program art, text)
 3. **Persistence** — the current preset index is saved to `savedRadioStation.txt`
-4. **Polling** — optionally re-scrapes every ~12 seconds to refresh program info
+4. **Polling** — optionally re-scrapes every ~10 seconds to refresh program info
 
 Firefox is automatically restarted every ~1 hour (`RegularRestart()`) to prevent memory leaks. On errors, the app restarts Firefox and replays the last action.
 
@@ -166,13 +166,7 @@ All state files are expected in the same directory as `RadioSelenium.py`.
     geckodriver --version
     ```
 
-6. **Create the Firefox profile directory**:
-
-    ```sh
-    mkdir -p /home/{username}/TkRadio/firefoxProfileRPI5
-    ```
-
-7. **Configure audio**: Run `alsamixer` from a terminal and set volume to max. Then set audio to PulseAudio:
+6. **Configure audio**: Run `alsamixer` from a terminal and set volume to max. Then set audio to PulseAudio:
 
     ```sh
     sudo raspi-config
@@ -180,11 +174,11 @@ All state files are expected in the same directory as `RadioSelenium.py`.
 
     Navigate to: `6 Advanced Options` → `A7 Audio Config` → `1 PulseAudio` → Enter twice → Tab to `Finish`.
 
-8. **Remove the Bluetooth taskbar plugin** to prevent popups stealing focus from the app:
+7. **Remove the Bluetooth taskbar plugin** to prevent popups stealing focus from the app:
     - Right-click the taskbar → `Add / Remove Plugins...`
     - Select "Bluetooth" → `Remove` → `OK`
 
-9. **Setup auto-start**: Create `/home/{username}/.config/autostart/autoRadio.desktop`:
+8. **Setup auto-start**: Create `/home/{username}/.config/autostart/autoRadio.desktop`:
 
     ```ini
     [Desktop Entry]
@@ -192,9 +186,9 @@ All state files are expected in the same directory as `RadioSelenium.py`.
     Exec=/usr/bin/idle -r /home/{username}/TkRadio/RadioSelenium.py
     ```
 
-10. **Reboot**. After ~1 minute the radio app should auto-start streaming.
+9. **Reboot**. After ~1 minute the radio app should auto-start streaming.
 
-11. **Optional**: Change display resolution to 800x600 to match the app form size.
+10. **Optional**: Change display resolution to 800x600 to match the app form size.
 
 ### Windows 11
 
@@ -209,15 +203,9 @@ All state files are expected in the same directory as `RadioSelenium.py`.
     .venv\Scripts\pip install selenium pillow requests beautifulsoup4 psutil openai lxml
     ```
 
-4. **Create the Firefox profile directory** (gitignored, not included in the clone):
+4. **VS Code setup**: The repo includes `.vscode/settings.json` configured to use the `.venv` interpreter automatically. In VS Code, select the `.venv` interpreter via `Ctrl+Shift+P` → `Python: Select Interpreter`.
 
-    ```sh
-    mkdir firefoxProfileWindows
-    ```
-
-5. **VS Code setup**: The repo includes `.vscode/settings.json` configured to use the `.venv` interpreter automatically. In VS Code, select the `.venv` interpreter via `Ctrl+Shift+P` → `Python: Select Interpreter`.
-
-6. **Run**:
+5. **Run**:
 
     ```sh
     .venv\Scripts\python RadioSelenium.py            # default: Firefox runs headless
@@ -226,7 +214,7 @@ All state files are expected in the same directory as `RadioSelenium.py`.
 
     Or run/debug directly from VS Code using the play button. Use `pythonw.exe` instead of `python.exe` to suppress the console window for normal use.
 
-7. **Optional desktop shortcuts** (Windows): the repo ships an icon generator and the two recommended shortcut configurations. From the project root:
+6. **Optional desktop shortcuts** (Windows): the repo ships an icon generator and the two recommended shortcut configurations. From the project root:
 
     ```sh
     .venv\Scripts\python tools\make_icons.py
@@ -241,9 +229,9 @@ All state files are expected in the same directory as `RadioSelenium.py`.
 
     Working directory should be the project root for both. The headless shortcut runs cleanly with no console window; the head-mode shortcut opens a console alongside the Tk window so Selenium output is captured.
 
-8. **AI commentary**: Set the `OPENAI_API_KEY` environment variable to enable the AI summary feature.
+7. **AI commentary**: Set the `OPENAI_API_KEY` environment variable to enable the AI summary feature.
 
-9. **Window position**: Each clean shutdown writes the main window's `WxH+X+Y` to `windowPosition.txt`. On the next launch the window restores to the same spot, with an automatic fallback to the default centered position if your monitor configuration changed and the saved position is no longer on-screen. RPi is unaffected — the kiosk-style fixed `+0+0` is preserved.
+8. **Window position**: Each clean shutdown writes the main window's `WxH+X+Y` to `windowPosition.txt`. On the next launch the window restores to the same spot, with an automatic fallback to the default centered position if your monitor configuration changed and the saved position is no longer on-screen. RPi is unaffected — the kiosk-style fixed `+0+0` is preserved.
 
 ### macOS
 
@@ -345,7 +333,7 @@ You will also need a soldering iron, solder, sellotape, glue gun with sticks, an
 - **"Streaming is not working"** — Some sites geo-block or change their markup. Try selecting the station again. Rarely you may need to restart the app.
 - **`NoSuchElementException` on an ABC station** — ABC occasionally reshuffles their player markup. The drivers match on stable class-name *prefixes* (e.g. `LiveAudioPlayer_controlBtn`) so most redesigns survive, but a renamed component will require a probe + selector update in `RadioSelenium.py`.
 - **Station shows a blank logo on `Radio4` stations** — drop a square PNG at `Images/<StationLogoName>.png` (e.g. `Images/ABC_NewsRadio.png`); the driver prefers a bundled file and only falls back to scraping the player's floating logo image when no PNG is present.
-- **Selenium SessionNotCreatedException** — The `firefoxProfileWindows/` or `firefoxProfileRPI5/` directory is missing. Create it (it's gitignored and not included in clones).
+- **Selenium SessionNotCreatedException** — Usually a Firefox/geckodriver version mismatch; update both. (The per-platform Firefox profile directory is auto-created at first run, so a missing profile is no longer a cause.)
 - **"Couldn't find a tree builder: lxml"** — Install lxml: `pip install lxml`
 - **Bluetooth/Wi-Fi issues (RPi)** — The app shells out to `bluetoothctl`, `nmcli`, `rfkill`, and `iwlist`. Confirm these work from the terminal with your permissions.
 
@@ -375,15 +363,15 @@ For driver architecture details and how to add new drivers, see [README_StationD
 | `beautifulsoup4` | HTML parsing |
 | `lxml` | BeautifulSoup HTML parser backend |
 | `psutil` | Process management (geckodriver cleanup) |
-| `openai` | AI commentary (Windows only) |
+| `openai` | AI commentary (Windows/macOS) |
 | `RPi.GPIO` | GPIO rotary encoder (RPi only) |
 
 ### External Tools
 
 | Tool | Platform | Purpose |
 |------|----------|---------|
-| Firefox | Both | Audio playback via Selenium |
-| geckodriver | Both | Selenium WebDriver for Firefox |
+| Firefox | All | Audio playback via Selenium |
+| geckodriver | All | Selenium WebDriver for Firefox |
 | bluetoothctl | RPi | Bluetooth pairing/connection |
 | nmcli | RPi | Wi-Fi connection |
 | rfkill | RPi | Radio device control |

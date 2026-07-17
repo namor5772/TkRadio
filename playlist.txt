@@ -8,7 +8,7 @@ ABC Classic SA,28
 ABC NewsRadio,82
 ABC Radio Australia,84
 ABC Radio National SA,7
-au ABC Radio National,4244
+nova 96.9 Sydney,126
 -- EMPTY 11 --,-1
 -- EMPTY 12 --,-1
 -- EMPTY 13 --,-1

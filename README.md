@@ -277,7 +277,7 @@ Tested on macOS (Apple Silicon) with Python 3.14 via Homebrew. The app reuses th
     .venv/bin/python RadioSelenium.py
     ```
 
-7. **AI commentary**: optional. Set `OPENAI_API_KEY` to enable the AI button. Without it, the button is still visible but will show a warning dialog when pressed.
+7. **AI commentary**: optional. Set `OPENAI_API_KEY` to enable the AI button. Put the `export` in `~/.zshenv` (not `~/.zshrc`): the desktop shortcuts below run through a non-interactive `zsh -c`, which sources only `~/.zshenv` — a key exported in `~/.zshrc` is visible in Terminal but not to Finder-launched apps. Without the key, the button is still visible but will show a warning dialog when pressed.
 
 8. **Hide the headless Firefox Dock icon** (optional): macOS shows every foreground GUI app in the Dock, even with `-headless` (no visible windows). To get a truly invisible Firefox while the radio is running:
 
@@ -287,12 +287,12 @@ Tested on macOS (Apple Silicon) with Python 3.14 via Homebrew. The app reuses th
 
     This clones `/Applications/Firefox.app` to `./FirefoxHeadless.app` (~150 MB, gitignored), sets `LSUIElement=true` in its `Info.plist`, and re-signs it. The radio app prefers this copy when present and falls back to the system Firefox otherwise. When Firefox auto-updates, the radio app detects the version mismatch at startup and re-runs this script itself (a stale copy would otherwise be killed instantly by the profile's downgrade protection), so manual re-runs are no longer needed.
 
-9. **Optional desktop shortcuts**: the Desktop launchers are plain AppleScript applets that start the app detached from any terminal, logging to `/tmp/tkradio.log` / `/tmp/tkradio_head.log`. Recreate them with (adjust the repo path if you cloned elsewhere):
+9. **Optional desktop shortcuts**: the Desktop launchers are plain AppleScript applets that start the app detached from any terminal, logging to `/tmp/tkradio.log` / `/tmp/tkradio_head.log`. The command is wrapped in `/bin/zsh -c` so `~/.zshenv` is sourced (AppleScript's `do shell script` otherwise runs a bare `/bin/sh` with no shell environment — that's how `OPENAI_API_KEY` reaches the app, see step 7). Recreate them with (adjust the repo path if you cloned elsewhere):
 
     ```sh
-    osacompile -o ~/Desktop/TkRadio.app -e 'do shell script "export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py > /tmp/tkradio.log 2>&1 &"'
+    osacompile -o ~/Desktop/TkRadio.app -e "do shell script \"/bin/zsh -c 'export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py > /tmp/tkradio.log 2>&1 &'\""
 
-    osacompile -o ~/Desktop/"TkRadio Head.app" -e 'do shell script "export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py --head > /tmp/tkradio_head.log 2>&1 &"'
+    osacompile -o ~/Desktop/"TkRadio Head.app" -e "do shell script \"/bin/zsh -c 'export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && cd /Users/roman/projects/TkRadio && nohup ./.venv/bin/python RadioSelenium.py --head > /tmp/tkradio_head.log 2>&1 &'\""
     ```
 
     To give an applet a custom icon, select it in Finder, open *Get Info*, and paste an image (e.g. `Images/icons/tkradio_headless.png` or `tkradio_head.png`) onto the small icon in the window's top-left corner. If a shortcut appears to do nothing when pressed, check the corresponding `/tmp/tkradio*.log` — startup failures also surface in an error dialog.

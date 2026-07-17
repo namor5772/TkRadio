@@ -38,7 +38,7 @@ Controls:
 - Window geometry: `800x455` (RPi) vs `800x861` (Windows and macOS)
 - Preset grid: 54 buttons (6x9) on RPi, 108 (12x9) on Windows/macOS
 - Input: rotary encoder (GPIO pins CLK=2, DT=3, SW=4) on RPi vs mouse/keyboard
-- Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows; available on macOS when `OPENAI_API_KEY` is set, otherwise the button shows a warning)
+- Features: Bluetooth/Wi-Fi setup (RPi), AI commentary (Windows; available on macOS when `OPENAI_API_KEY` is set, otherwise the button shows a warning). On macOS the key must be exported in `~/.zshenv` — the desktop applets launch via `zsh -c`, which sources `~/.zshenv` but not `~/.zshrc`.
 - macOS-only additive visual tweaks via `_mac_btn_normal/_focused/_pressed/_active_toggle` helpers (all no-ops on Windows/RPi). Aqua ignores `bg=`/`relief=` on `tk.Button`, so focus/press state is simulated via `highlightbackground` + `highlightthickness`. Top-row buttons get a narrower font + repositioning, and text widgets get an explicit border. Shift-Tab is explicitly bound to `focus_prev` on macOS to short-circuit slow default traversal.
 - macOS key mapping differences vs. Windows/RPi:
   - `<Command-i>` is bound as an alias for `<Insert>` on preset grid buttons (Mac keyboards have no Insert key). Both bindings remain active on macOS so external/full-size keyboards still work.
